@@ -1,0 +1,51 @@
+.contiene-nav-portada{
+  width:100%;
+  padding:6px;
+  border-radius:4px;
+  margin-top:20px;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  @include flex-wrap(wrap); 
+  @include justify-content(space-around); 
+}
+
+ .item-nav-portada{
+  text-aling:center;
+  width:48%;
+  margin-top:10px;
+  padding:10px 20px;
+  border:solid 1px $color-3-primary_hover;
+  color:$color-gris-text;
+  list-style: none;
+  font-size:14px;
+ }
+
+ .item-nav-portada:hover{
+  color:white;
+  background-color:$color-3-primary_hover;
+ }
+
+
+
+
+ @media (min-width: $BrackPoint-Secundario){
+
+        .item-nav-portada{
+          width:24%;
+          font-size:16px;
+         }
+
+  
+}
+
+
+@media (min-width: $BrackPoint-Tercer){
+
+   .item-nav-portada{
+          width:24%;
+          border:solid 1px transparent;
+         }
+
+  
+}

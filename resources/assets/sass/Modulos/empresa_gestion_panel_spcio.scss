@@ -1,0 +1,96 @@
+.panel-socio-header-contenedor{
+  width: 100%;
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(center); 
+  padding: 15px;
+  border-radius: 4px; 
+}
+
+
+  .panel-socio-name{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+
+  .panel-socio-contiene-acciones{
+    padding:8px;
+    border-radius:4px;
+    background-color: $Color-Gris-Claro;
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+  }
+
+
+
+
+  .panel-socio-contiene-seccion{
+    padding:6px;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start); 
+    margin-top: 20px;
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.26);
+    background-color: #fff;
+  }
+
+    .panel-socio-titulo-seccion{
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-left: 7px;
+    }
+
+    .panel-socio-contiene-servicios{
+      padding:6px;
+      border-radius:8px;      
+      @include flexbox;       
+      @include flex-direction(row);
+      @include align-items(center); 
+      @include flex-wrap(wrap); 
+      @include justify-content(space-around); 
+      width: 100%;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: $BrackPoint-Primario){}
+@media (min-width: $BrackPoint-Secundario){
+
+
+.panel-socio-header-contenedor{ 
+  @include flex-direction(row);
+  @include align-items(center);   
+  @include justify-content(space-between);
+  margin-bottom: 10px;
+}
+
+  .panel-socio-name{
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .panel-socio-titulo-seccion{
+      font-size: 20px;
+    }
+
+
+
+}
+@media (min-width: $BrackPoint-Tercer){}

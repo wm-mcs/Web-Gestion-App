@@ -1,0 +1,46 @@
+.contenedor-tema-nuevo-imgs{
+  width:100%;
+  position:relative;  
+}
+
+
+ .contiene-rectangulos-targeteables{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:2000;
+  height:100%;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  @include justify-content(space-around);
+ }
+  .elementos-targeteables{
+    width:40%;
+    text-align: center;
+    color:white;
+    font-size:20px;
+    padding:40px;
+    border:solid 1px transparent;
+    cursor:pointer;
+  }
+  .elementos-targeteables:hover{
+    border:solid 1px white;
+  }
+
+ .img-tema-nuevo-general{
+  width:100%;
+  height:auto;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+ }
+
+
+ .agrego-z-index{
+  z-index:500;
+  -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;
+ }

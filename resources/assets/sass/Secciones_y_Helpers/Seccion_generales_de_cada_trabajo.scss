@@ -1,0 +1,187 @@
+//clases personalizadas para cada trabajo
+.contenedor-baner-img-tex-html{
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+}
+
+.padding-secion-custom{
+  padding: 4rem 0;
+}
+
+
+
+.enviar-boton-sin-efecto{
+  curso:pointer;
+}
+
+.enviar-boton-sin-efecto:hover{
+   cursor: not-allowed;
+}
+
+.mensaje-luego-de-envio{
+  max-width: 100px;
+  padding:8px;
+  border-radius:4px;
+  color:white;
+  background-color: $color-3;
+  font-size:12px;
+  margin:0 15px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+/* .mostrar-cabecera-destop{
+  display:none;
+}
+
+.ocultar-cabecera-mobil{
+  display:block;
+}
+ */
+
+
+
+              .mi-float-up{
+               -webkit-transition: all .3s ease;
+               -moz-transition: all .3s ease;
+               transition: all .3s ease;
+              }
+              .mi-float-up:hover{
+               -webkit-transform: translate(0, -10px);
+               -moz-transform: translate(0, -10px);
+               transform: translate(0, -10px);
+               }
+
+             
+
+
+
+              /*  * * * * E F E C T O S   E S P E C I A L E S  - -
+               - - P A R A L L A X   S C R O L L I N G * * * * * */
+              .parallax_section1 { 
+                  /* The image used */
+                  background-image: url('../../imagenes/Slider/uruwild_section_foto1.jpg');
+
+                  /* Set a specific height */
+                  height: 100vh; 
+
+                  /* Create the parallax scrolling effect */
+                  background-attachment: fixed;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+              } 
+              .parallax_section2 { 
+                  /* The image used */
+                  background-image: url("../../imagenes/Slider/uruwild_section_foto2.jpg");
+
+                  /* Set a specific height */
+                  height: 100vh; 
+
+                  /* Create the parallax scrolling effect */
+                  background-attachment: fixed;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+              }
+
+
+.iconos-custom{
+ padding: 20px;
+ height: 130px;
+}
+
+.iconos-tamano{
+  width:40px;
+  height:auto;
+}
+
+.img-slider-size{
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+
+.logo-MORETHANFISHING{
+  width:130px;
+  height:auto;
+}
+
+.texto-MORETHANFISHING{
+  text-align: center;
+} 
+
+  .texto-MORETHANFISHING-titulo{
+    font-size:1.8rem;
+    margin-bottom:20px;
+  }
+
+
+
+
+/* @media (min-width: 768px) {  
+.mostrar-cabecera-destop{
+  display:block;
+}
+
+
+.ocultar-cabecera-mobil{
+  display:none;
+}
+
+
+
+} */
+
+
+
+
+
+@media (min-width: $BrackPoint-Primario){
+
+  .logo-MORETHANFISHING{
+  width:160px;  
+  }
+
+  .texto-MORETHANFISHING-titulo{
+    font-size:2rem;
+    margin-bottom:10px;
+  }
+
+   
+}
+
+@media (min-width: $BrackPoint-Secundario){
+
+  .logo-MORETHANFISHING{
+  width:180px;
+  }
+
+  .texto-MORETHANFISHING{
+    text-align: left;
+  }
+
+   .texto-MORETHANFISHING-titulo{
+    
+    margin-bottom:5px;
+  }
+
+  
+}
+
+@media (min-width: $BrackPoint-Tercer){
+
+
+.logo-MORETHANFISHING{
+  width:200px;
+  }
+  
+}
+
+

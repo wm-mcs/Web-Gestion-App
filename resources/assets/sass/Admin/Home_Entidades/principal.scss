@@ -1,0 +1,185 @@
+.contenedor-admin-entidad{
+  padding:6px;
+  border-radius: 4px;
+  width: 100%;
+  @include flexbox;
+  @include align-items(flex-start);
+  @include flex-direction(column);  
+}
+
+ .contenedor-admin-entidad-titulo-form-busqueda{
+    width: 100%;
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    padding: 5px 2px;
+    border-bottom: solid 1px $Color-Gris-Claro;
+
+ }
+
+  .contenedor-img-titulo{
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(row);
+    padding: 3px 0px;
+  }
+
+   .admin-entidad-img{
+    height: 80px;
+    border-radius:4px;
+    margin-right: 4px;
+   }
+
+   .admin-entidad-titulo{
+    font-size: 20px;
+    margin-left: 15px;
+    border-radius:4px;
+    
+   }
+
+   .admin-entidad-contenedor-imagenes-y-form{
+     @include flexbox;
+     @include align-items(center);
+     @include flex-direction(row);
+     width: 100%;
+     @include justify-content(space-around);
+     @include flex-wrap(wrap);
+     padding:6px;
+     border-radius: 4px;
+     background-color: $color-grey0;
+
+   }
+
+     .admin-entidad-contenedor-imagenes-form-form{
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(row);
+      @include justify-content(center);
+      @include flex-wrap(wrap);
+      margin:15px auto;
+      padding:6px;
+      border-radius:4px;
+      background-color:$Color-Gris-Claro;
+      width: 800px;
+     }
+
+    
+
+     .admin-entidad-proyecto-img-adicionales-contenedor{
+        border-color: $Color-Gris-Claro-Para-Bordes;
+        position: relative;
+        
+        border: solid 1px $Color-Gris-Claro;
+        margin-right: 4px;
+        margin-top: 5px;
+     }
+
+     .admin-entidad-proyecto-img-adicionales-contenedor__show{
+        border:solid 6px $color-3;
+     }
+
+        .admin-entidad-proyecto-img-adicionales{
+          height: 75px;
+
+          
+        }
+
+
+        .icono-eleminar-imagen{
+          position: absolute;
+          right: 2px;
+          top: 1px;
+          padding:1px;
+          border-radius:2px;
+          color:$color-grey2 ;
+        }
+        .icono-eleminar-imagen:hover{
+          background-color: $Color-Errors-BG;
+          border-color: $Color-Rojo-Texto-Error;
+          color:white;
+        }
+
+        .icono-establecer-imagen{
+          position: absolute;
+          right: 2px;
+          bottom: 1px;
+          padding:2px;
+          border-radius:2px;
+          color:$color-3;
+        }
+        .icono-establecer-imagen:hover{
+          background-color: $color-3;
+          color: white;
+        }
+
+      .admin-entidad-contenedor-imagenes-form-field{
+        font-size: 10px;
+        margin: 0 5px;
+      }
+ 
+
+
+         .boton-subir-img{
+          @include Boton-Chico($color-3);
+          margin: 5px ;
+         }
+
+         .boton-subir-img:hover{
+          background-color:$color-3light ;
+         }
+
+   .admin-entidad-buscador-contenedor{
+     @include flexbox;
+     @include align-items(center);
+     @include flex-direction(row); 
+   }
+   .admin-contiene-entidades-y-pagination{
+      width: 100%;
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(column);
+   }
+
+
+     .admin-entidad-contenedor-entidades{
+      width: 100%;
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(row);
+      @include justify-content(space-around);
+      @include flex-wrap(wrap);
+      padding: 4px;
+     }
+
+
+
+
+
+
+
+
+     /*  E n t i d a d e s   l i s t a d a s  */
+
+     .Entidades-listada-contenedor{
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(row);
+      padding:8px;
+      border-radius:4px;
+     }
+
+
+
+        .Entidades-listada-img{
+          width: 60px;
+          margin-right: 8px;
+          height:auto;
+        }
+
+        .Entidad-listada-name{
+          width:130px;
+          font-size: 10px;
+          color: $color-grey2;
+        }
+

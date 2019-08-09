@@ -1,3 +1,10 @@
+
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db

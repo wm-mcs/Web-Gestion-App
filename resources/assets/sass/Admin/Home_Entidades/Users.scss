@@ -1,0 +1,76 @@
+
+
+.admin-user-boton-Crear{
+ @include Boton-Normal($Color-Gris-Plata);
+ display: inline-block;
+}
+.admin-user-boton-Crear:hover{
+  background-color:$color-3;
+}
+
+
+  .admin-user-lista-contenedor{
+    padding: 4px;
+    border-radius:4px;
+    background-color:$Color-Gris-CasiBlanco ;
+    border: solid 1px $Color-Gris-Claro-Para-Bordes;
+    margin-top: 3px;
+    width: 300px;
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(row);
+    @include justify-content(space-between);
+
+  }
+
+    .admin-user-lista-icono{
+      font-size: 20px;
+      color:$Color-texto-gris-Mercadolibre;
+      padding:3px;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .admin-user-contenedor-datos{
+      width: 270px;
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(row);
+      @include justify-content(space-between);
+      padding: 4px;
+      border-left:solid 1px $Color-Gris-Claro-Para-Bordes;
+
+    }
+
+       .admin-user-name-y-mas{
+        @include flexbox;
+        @include align-items(flex-start);
+        @include flex-direction(column);        
+       }
+
+        .admin-lista-dato-primario{
+          font-size: 13px;
+          padding:1px;
+          border-bottom: solid 1px $Color-Gris-Claro-Para-Bordes;
+          font-weight: bold;
+        }
+
+
+
+        .admin-lista-dato-secundario{
+          font-size: 10px;
+          padding:1px;
+          color:$Color-texto-gris-Mercadolibre;
+        }
+
+
+       .admin-user-lista-contenedor-acciones{
+        
+       }
+
+         .boton-acciones-editar{
+          @include Boton-Chico($color-3);
+         }
+         .boton-acciones-editar:hover{
+          background-color:$color-3light;
+         }

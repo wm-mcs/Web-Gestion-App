@@ -1,0 +1,74 @@
+.Seccion_team_contenedor_padre{
+  width:100%;
+}
+
+.Seccion_team_ajuste_ancho{
+  width:48%;
+}
+
+.Seccion_team_contenedor{
+  padding:20px 0;
+  border-radius:4px;
+  background-color: white;
+  border:solid 3px $color-3;
+  border-radius:4px;
+
+}
+
+.Seccion_team_img{
+  border-radius:100%;
+  height:150px;
+  width:auto;
+  margin: 20px 0;
+}
+
+.Seccion_team_nombre{
+  font-size:32px;
+  
+}
+
+.Seccion_team_habilidad{
+  padding-bottom:20px;
+  color: $color-gris-text;
+  font-size: 14px;
+  border-bottom:solid 1px $color-gris-lineas;
+}
+
+
+.Seccion_team_contiene_atributos{
+  padding:10px 0px;
+}
+
+    .Seccion_team_atributos{
+      color: $color-gris-text;
+      font-size: 14px;
+    }
+
+
+.Seccion_team_icono_social{
+  font-family:Social-Media-Circled;
+  font-size:40px;
+  margin-left:10px;
+}
+
+
+
+@media (min-width: $BrackPoint-Primario){
+  .Seccion_team_ajuste_ancho{
+  width:40%;
+}
+
+.Seccion_team_contenedor_padre{
+  width:80%;
+}
+}
+@media (min-width: $BrackPoint-Secundario){
+   .Seccion_team_contenedor_padre{
+  width:800px;
+}
+
+   .Seccion_team_ajuste_ancho{
+  width:300px;
+}
+}
+@media (min-width: $BrackPoint-Tercer){}

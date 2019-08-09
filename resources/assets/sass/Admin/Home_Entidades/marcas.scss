@@ -1,0 +1,47 @@
+
+.admin-marca-lista-contenedor{
+  @include flexbox; 
+  @include flex-direction(row);
+  @include align-items(center);
+  padding: 6px;
+  border-radius: 4px;  
+  width: 300px;
+  margin-top: 10px;
+  background-color: $color-grey0;
+}
+
+
+.admin-marca-lista-contenedor:hover{
+  border-color: $Color-Gris-Claro-Para-Bordes;
+}
+
+.admin-marca-lista-contenedor-desactivado{
+  color: $color-grey1;
+  
+}
+  .admin-marca-img{
+    width: 60px;
+    height: 60px;
+    margin-right: 4px;
+  }
+
+  .admin-marca-titulo{
+    font-size: 12px;
+    padding:1px 2px;
+    font-weight: bold;
+  }
+
+  .admin-marca-fecha{ 
+    padding: 0 2px ;
+    color: $color-grey1;
+    font-size: 10px;
+
+  }
+
+  .admin-marca-contnedor-datos{
+    @include flexbox; 
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(space-between);
+    width: 100%;
+  }

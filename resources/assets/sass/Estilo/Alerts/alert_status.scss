@@ -1,0 +1,37 @@
+
+.Alert_Success-Contenedor{
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(row);
+  background-color: $Color-Verde-Super-Claro;
+  @include justify-content(space-between);
+  border-radius: 4px;
+  padding: 8px;
+  
+  width: 100%;
+  
+}
+
+ .Alert_Success-iconoCerrar{
+   padding:12px;
+   font-size: 18px;
+   @include align-self(flex-start);
+   color: #807E7E ;
+   cursor: pointer;
+   border-radius:4px;
+   border: solid 1px transparent;
+
+ }
+.Alert_Success-iconoCerrar:hover{
+  color: $Color-Rojo-Cancelar;
+}
+.Alert_Success-iconoCerrar:active{
+  border-color:$Color-Rojo-Cancelar ;
+}
+ .Alert_Success-Titulo{
+  padding:7px 15px;
+  width: 92%;
+  font-size: 18px;
+  color:$Color-Verde-Google ;
+
+ }

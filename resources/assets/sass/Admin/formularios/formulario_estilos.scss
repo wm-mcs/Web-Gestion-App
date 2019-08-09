@@ -1,0 +1,115 @@
+.formulario-contenedor{
+      @include flexbox; 
+      @include flex-direction(row);
+      @include align-items(flex-start);
+      @include justify-content(space-around);
+      @include flex-wrap(wrap);      
+      margin-top: 30px;
+      width:100%;
+}
+
+ .contenedor-grupo-datos{
+      @include flexbox; 
+      @include flex-direction(column);
+      @include align-items(flex-start);
+      margin-bottom: 15px;          
+      border-radius:6px;      
+      width: 49%;
+
+   }
+    .contenedor-grupo-datos-titulo{
+     padding:8px;
+     margin-bottom: 8px;
+     font-size: 16px;     
+     color:black;     
+     width: 100%;
+     border-radius:4px;
+     font-weight: bold;
+    }
+
+
+.contenedor-formulario-label-fiel{
+  @include flexbox; 
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  width:100%;
+}
+
+
+#form-admin-empresa-datos{
+  @include flexbox; 
+  @include flex-direction(column);
+  @include align-items(center);
+}
+
+           .formulario-label-fiel{
+             @include flexbox; 
+             @include flex-direction(column);
+             @include align-items(flex-start);
+             width:100%;
+             padding: 4px;
+             border-radius: 4px;
+             border:solid 1px transparent;
+             background-color:$color-grey0;
+             margin-top: 4px;
+           }
+
+            //lo uso en la aprte de gestion
+            .formulario-label-fiel-sin-width{
+             @include flexbox; 
+             @include flex-direction(column);
+             @include align-items(flex-start);             
+             padding: 4px;
+             border-radius: 4px;
+             border:solid 1px transparent;
+             background-color:$color-grey0;
+             margin-top: 4px 4px 0 0;
+           }
+
+           //lo uso en la aprte de gestion
+           .titulo-dentro-de-form{
+            font-size: 28px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+           }
+           
+           
+
+
+              .formulario-label{                
+                padding:2px 4px;                
+                color: black; 
+                font-size: 10px;
+              }
+
+              .formulario-field{
+                padding: 6px;
+                border-radius: 4px;
+                border:solid 1px $Color-Gris-Claro-Para-Bordes;
+                font-size: 10px;                
+                color: $color-grey2;
+                width: 100%;
+              }
+
+
+              .admin-boton-editar{
+                @include Boton-Normal($color-3)
+              }
+              .admin-boton-editar:hover{
+                background-color:$color-3light;
+              }
+
+
+
+
+              .admin-img-section-img{
+                width: 100%;
+                padding:10px;
+                margin-top: 10px;
+              }
+
+
+
+
+              

@@ -1,0 +1,89 @@
+.formulario-contacto-wraper{
+  padding:4px 10px;
+}
+
+.contiene_contacto_img{
+  
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(center); 
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.contacto_img{
+  width: 200px;
+  height: auto;
+  border-radius:100%;
+  margin-bottom: 20px;
+}
+
+.contacto_name{
+    font-size: 28px;  
+    padding: 2px 8px;
+    border-radius: 4px;
+  
+}
+
+.contacto_aclaracion{
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;    
+    width: 300px;
+    text-align: center;
+  
+}
+
+
+
+.contacto-whatsapp-contenedor{
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  padding:8px;
+  border-radius:8px;
+  background-color: white;
+  border:solid 4px transparent;
+
+}
+.contacto-whatsapp-contenedor:hover{
+  border-color: $color-3;
+}
+
+
+.contacto-whatsapp-img{
+  width: 70px;
+  height: auto;
+  border-radius:100%;
+  margin-right: 20px;
+}
+
+.contacto-whatsapp-texto{
+  letter-spacing: 2px;
+  color: $color-gris-text;
+  padding: 8px; 
+  border-radius:8px;
+  font-size: 12px;
+  width: 150px;
+}
+
+.contacto-whatsapp-icono{
+  font-size: 38px;  
+}
+
+
+ @media (min-width: $BrackPoint-Secundario){
+
+
+.formulario-contacto-wraper{
+  padding:4px 4px;
+}
+  .contiene_contacto_img{
+  
+  }
+
+  .contacto_img{
+  width: 300px;
+}
+  
+}

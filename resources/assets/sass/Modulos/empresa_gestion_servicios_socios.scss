@@ -1,0 +1,117 @@
+.contiene-entidad-lista-servicio{
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 3px;
+  background-color: $Color-Gris-Claro;  
+  width: 98%;
+}
+
+.contiene-entidad-lista-servicio:hover{
+  background-color: $Color-Gris-Claro-Para-Bordes;  
+}
+
+
+.entidad-lista-name{
+  font-size: 18px;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  font-weight: bold;
+
+}
+
+
+
+.entidad-lista-servicio-contiene-fecha{
+  padding: 4px;
+  border-radius:6px;
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-end); 
+
+}
+   .entidad-lista-servicio-fecha{
+    font-size: 10px;
+    margin-top: 2px;
+    color: $color-gris-text;
+    letter-spacing: 2px;
+
+   } 
+
+   .entidad-lista-servicio-fecha-input{
+    font-size: 10px;
+    margin-top: 1px;
+    color: $color-gris-text;
+    background-color:transparent;
+    border-color:transparent;
+   } 
+
+
+   .lista-estado-activo{
+    padding: 6px;
+    border-radius:8px;
+    font-size: 18px;
+    text-align: center;
+    background-color: $Color-Gris-Claro;
+    font-weight: bold;
+    color: $color-verde-texto-success;
+    margin-top: 3px;
+   }
+
+
+   .lista-estado-consumido{
+    padding: 6px;
+    border-radius:8px;
+    font-size: 12px;
+    text-align: center;
+    background-color: $Color-Amarill-warning;
+    font-weight: bold;
+    color:  $Color-Texto-Warning;
+    margin-top: 3px;
+   }
+
+
+   .lista-estado-por-clase{
+    padding: 6px;
+    border-radius:8px;
+    font-size: 12px;
+    text-align: center;    
+    font-weight: bold;
+    color: $color-gris-text;
+    margin-top: 3px;
+
+   }
+
+   .lista-estado-por-mensual{
+    padding: 6px;
+    border-radius:8px;
+    font-size: 12px;
+    text-align: center;
+    background-color: $Color-info;
+    font-weight: bold;
+    color: white;
+    margin-top: 3px;
+   }
+
+
+
+
+
+
+
+
+
+@media (min-width: $BrackPoint-Primario){}
+@media (min-width: $BrackPoint-Secundario){
+
+
+.contiene-entidad-lista-servicio{   
+  width: 49%;
+}
+
+}
+
+
+
+
+@media (min-width: $BrackPoint-Tercer){}

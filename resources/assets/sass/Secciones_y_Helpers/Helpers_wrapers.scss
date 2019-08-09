@@ -1,0 +1,11 @@
+
+
+$margin_wraper_layout_con_nav : 62px;
+
+.wraper-content-principal-con-nav{
+  margin-top: $margin_wraper_layout_con_nav;
+  width: 100%;
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(center); 
+}

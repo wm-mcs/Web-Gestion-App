@@ -1,0 +1,82 @@
+.producto-individual-contenedor-imgs{
+  width: 100%;
+  padding: 8px;
+  border-radius:4px;
+  background-color: $color-grey0;  
+}
+
+
+ .producto-individual-img-contendor{ 
+  
+  width: 100%;
+  
+
+ }
+
+  .producto-individual-img{
+
+    width: 100%;
+    height: auto;
+
+  }
+
+
+.producto-individual-descripcion{
+  margin-top: 30px;
+  margin-bottom:20px;
+  text-align: center;
+  color: $color-gris-text;
+  font-size: 14px;
+
+}
+
+
+.producto-individual-aclaracion-stock{
+  margin: 20px auto;
+  background-color:$color-grey0;
+  padding: 10px;
+  width: 100%;
+  color:$color-verde-texto-success;
+  font-size: 12px;
+  text-align: center;
+  border-radius:4px;
+  
+  
+}
+
+
+.producto-individual-aclaracion-no-stock{
+  
+  color:$color-gris-text;  
+}
+
+
+
+.producto-individual-precio{
+
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(center); 
+  width: 100%;
+  margin-top: 10px;
+  padding:10px;
+}
+
+.producto-individual-moneda{
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.producto-individual-precio-valor{
+  font-size: 22px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.producto-individual-pregunta{
+  padding:8px;
+  color: $color-gris-text;
+  font-size:20px;
+  margin-right: 5px;
+}
+

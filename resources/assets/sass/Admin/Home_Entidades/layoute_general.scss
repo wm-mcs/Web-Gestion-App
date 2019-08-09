@@ -1,0 +1,205 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  C L A S E S   E S P E C Í F I C A S            *
+ *  P A R A   D I F E R E N T E S   P Á G I N A S  *
+ *  (pertenecientes al panel de ADMIN)             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
+
+/* * * * *  - - - - -    L A Y O U T   G E N E R A L    - - - - - * * * * */
+
+
+
+
+
+
+
+
+/* --- H E A D E R --- */
+
+.admin-header{
+  width: 100%;  
+  padding: 0 6px; 
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(row); 
+  border:solid 1px transparent;
+  font-family: $font-primary;
+  
+}  
+
+  
+
+  .admi-header-titulo{
+    font-size: 16px;
+    color: $Color-texto-gris-Mercadolibre;
+    margin-left: 5px; 
+  }
+
+
+/* --- C O N T E N E D O R  d e  C O L U M N A  y  C O N T E N T --- */
+
+.admin-contiene-columna-y-content{  
+  width: 100%;
+  @include flexbox;
+  @include align-items(flex-start);
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  margin: 0 auto;
+  position:absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: $font-primary;
+ 
+}
+
+  .admin-contiene-content{
+    width: 80%;    
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(column);  
+  }
+
+    .admin-contiene-content-wraper{
+      width: 95%;    
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(column); 
+      padding:8px;
+      border-radius:4px;
+      
+    }
+
+
+  .admin-contnedor-navegacion-miga{
+    width: 100%;
+    padding:6px 2px;
+    border-bottom: solid 1px $Color-Gris-Claro;
+    font-size: 14px;
+    margin-bottom:12px;
+  }
+    .spam-separador{
+      margin: 0 2px;
+      
+
+    }
+
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * *
+ *    N A V I G A T I O N   S L I D E   B A R (Admin)*
+ *        (la "columna" de la izquierda)            *
+ * * * * * * * * * * * * * * * * * * * * * * * * * */
+ // columna
+ .admin-columna-contenedor{
+  width: 20%;  
+  border-right: 1px solid $color-3;  
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(column);   
+  min-height: 100vh;
+  position: fixed;
+}
+
+
+// logo o isologo de la marca
+.admin-header-logo{
+    width: 80px;
+    margin:35px 3px;
+  }
+
+// secciones de la columna con diferentes permisos y sus lineas separadoras
+#admin-col-admin,
+#admin-col-superadmin,
+#admin-col-backtoweb{
+  padding: 14px 0;
+}
+// color de la linea divisora
+#admin-col-admin,
+#admin-col-superadmin{
+  border-bottom: 1px solid $color-2light;
+}
+
+
+// E S T I L O S   D E   L O S   L I N K S   D E   L A   C O L U M N A
+
+.admin-columna-contenedor ul{
+  margin-top: 40px;
+  padding:6px;
+}
+
+// links a secciones de la admin
+.admin-columna-contenedor a li:not(.Helper-Class-Active){
+  color: $color-3;
+}
+.admin-columna-contenedor a li:not(.Helper-Class-Active):hover {
+  color: $color-3superlight;
+}
+
+// glyphicons de los links
+.admin-columna-contenedor a li:not(.Helper-Class-Active) span{
+  color: $color-2light;
+}
+.admin-columna-contenedor a li:not(.Helper-Class-Active):hover span{
+  color: $color-3light;
+}
+
+// link inferior (para volver a la pagina)
+.admin-columna-contenedor #admin-col-backtoweb a p {
+  color: $color-3dark;
+}
+.admin-columna-contenedor #admin-col-backtoweb a p:hover {
+  color: $color-3;
+}
+// color de los links cuando estan activos
+.admin-columna-contenedor a li.admin-columna-li.mi-float-right.Helper-Class-Active{
+  color: $color-3superlight;
+  text-shadow: 0 0 5px $color-3, 0 0 10px $color-3;
+  -webkit-transition: none; /*cambiar "all" por "translate" si quiero que los demás cambios se hagan instantáneamente*/
+  -moz-transition: none;
+  transition: none;
+}
+// para que no se muevan hacia la derecha en hover
+.admin-columna-contenedor a:hover li.admin-columna-li.mi-float-right.Helper-Class-Active{
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+// color del glyphicon cuando esta active
+.admin-columna-contenedor a li.admin-columna-li.mi-float-right.Helper-Class-Active span{
+  color: $color-2superlight;
+  text-shadow: 0 0 5px $color-2light, 0 0 10px $color-2light;
+}
+
+// links que llevan a secciones del admin panel
+.admin-columna-contenedor #admin-col-superadmin a li,
+.admin-columna-contenedor #admin-col-admin a li{
+  width: 100%;
+  padding:5px;
+  font: arial;
+  font-size: 14px;
+  margin-top: 2px;
+  text-decoration: none;
+  list-style: none; 
+}
+
+// link que lleva de vuelta al sitio web para ver los cambios
+.admin-columna-contenedor #admin-col-backtoweb a p{
+letter-spacing:3px;
+}
+
+
+
+
+
+@media (min-width: $BrackPoint-Secundario){
+
+
+
+}

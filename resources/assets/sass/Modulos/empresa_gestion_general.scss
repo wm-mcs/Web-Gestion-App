@@ -1,0 +1,42 @@
+.empresa-gestion-barra-top-boton-y-forma-busqueda{
+
+  width: 100%;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  padding: 10px;
+  border-radius: 4px;
+  @include justify-content(space-between);
+
+}
+
+
+
+.empresa-gestion-contiene-input-busqueda{
+  width: 60%;
+}
+
+ .empresa-gestion-input-busqueda{
+      height: 50px;
+      font-size: 18px;
+ }
+
+
+
+
+
+
+
+ .empresa-gestion-listado-contenedor{
+  padding:6px;
+  border-radius:6px;
+  margin-top: 4px;
+  width: 100%;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+
+ }
+ .empresa-gestion-listado-contenedor:hover{
+  background-color: $Color-Gris-Claro;
+ }

@@ -1,0 +1,52 @@
+.Seccion_clientes_slider{
+
+   margin:60px 0 40px 0;
+ }
+
+.Seccion_clientes_slider_elementos{
+  width:47%;
+  padding:20px 30px;
+}
+
+  .Seccion_clientes_slider_elementos_img{
+    width:100%;
+    height:auto;
+   }
+
+
+
+
+
+
+
+
+@media (min-width: $BrackPoint-Primario){
+
+
+.Seccion_clientes_slider_elementos{
+  width:33%;
+}
+
+
+
+}
+
+
+
+@media (min-width: $BrackPoint-Secundario){
+
+.Seccion_clientes_slider_elementos{
+  width:24%;
+}
+
+
+
+
+}
+
+
+@media (min-width: $BrackPoint-Tercer){
+.Seccion_clientes_slider_elementos{
+  width:20%;
+}
+}

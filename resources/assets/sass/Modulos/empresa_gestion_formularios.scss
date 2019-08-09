@@ -1,0 +1,30 @@
+.formulario-label{
+    width: 100%;
+    text-align: -webkit-left;
+    margin-bottom: 1px;
+    font-size: 12px;
+    padding: 2px;
+    font-weight: bold;
+
+}
+
+
+ .formulario-label-aclaracion{
+ 
+  color: $Color-texto-gris-Mercadolibre;
+ }
+
+
+
+
+
+ .recuadro-validacion-pendiente{
+  padding:8px;
+  text-align: center;
+  line-height: 2;
+  background-color:$Color-Amarill-warning;
+  color: $color-negro-para-textos;
+  font-size: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}

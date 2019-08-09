@@ -1,0 +1,76 @@
+.estado-de-cuenta-saldo{
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.estado-pago-indication{
+  
+  color:$color-verde-texto-success;
+  
+}
+
+.estado-debe-indication{  
+  color:$Color-Rojo-Texto-Error;
+  
+}
+
+.estado-de-cuenta-titulo-saldo-contenedor{
+    width: 100%;
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include justify-content(space-between);
+    @include flex-wrap(wrap); 
+    padding:2px 0;
+}
+
+
+.contiene-estados-de-cuenta-lista{
+    width: 100%;
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include flex-wrap(wrap); 
+    @include justify-content(space-around); 
+}
+
+.contiene-estado-de-cuenta{
+  border-radius:6px;
+  padding: 8px;
+  margin-top: 3px;
+  background-color: $Color-Gris-Claro;  
+  width: 98%;
+}
+
+
+   .estado-detalle{
+
+    font-size: 14px;    
+    font-weight: bold;
+    margin-bottom: 4px;
+    padding:4px;
+    border-radius:6px;
+
+   }
+
+
+
+
+
+
+
+@media (min-width: $BrackPoint-Primario){}
+@media (min-width: $BrackPoint-Secundario){
+
+
+.contiene-estado-de-cuenta{   
+  width: 49%;
+}
+
+}
+
+
+
+
+@media (min-width: $BrackPoint-Tercer){}
