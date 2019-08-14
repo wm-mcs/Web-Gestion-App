@@ -4,7 +4,7 @@
  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa_gestion->url_img}}"></a>
 
  <ul>
-   @if(Auth::user()->role === 'adminMcos522')
+   @if(Auth::user()->role == '10')
    <div id="admin-col-superadmin">
 
 
