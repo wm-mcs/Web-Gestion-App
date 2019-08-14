@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'],function()
            require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
 
                  //admin_nuestro
-                 Route::group(['middleware' => 'role:10'], function()
+                 Route::group(['middleware' => 'SistemaGestionUserGerarquia:10'], function()
                  {
                    require __DIR__ . '/Rutas/Admin_Supremo.php';
                  });
