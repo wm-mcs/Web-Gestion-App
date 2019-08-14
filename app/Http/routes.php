@@ -19,12 +19,12 @@ Route::group(['middleware' => 'auth'],function()
 
 
          //admin_empresa_clientes
-         Route::group(['middleware' => 'role:admin_empresa'], function()
+         Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
          {
            require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
 
                  //admin_nuestro
-                 Route::group(['middleware' => 'role:adminMcos522'], function()
+                 Route::group(['middleware' => 'role:10'], function()
                  {
                    require __DIR__ . '/Rutas/Admin_Supremo.php';
                  });
