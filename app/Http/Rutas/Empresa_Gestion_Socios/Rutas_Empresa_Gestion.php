@@ -1,51 +1,50 @@
 <?php 
 
-//Get Listado
-Route::get('get_admin_empresas_gestion_socios',
-[
-  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios',
-  'as'         => 'get_admin_empresas_gestion_socios',
 
-  'middleware' => 'role:10'     
-]);
-
-
-
-//GET Crear
-Route::get('get_admin_empresas_gestion_socios_crear',
-[
-  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios_crear',
-  'as'         => 'get_admin_empresas_gestion_socios_crear',
-
-  'middleware' => 'role:10'
-]);
-
-Route::post('set_admin_empresas_gestion_socios_crear',
-[
-  'uses'            => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_crear',
-  'as'              => 'set_admin_empresas_gestion_socios_crear',
-
-  'middleware' => 'role:10'
-]);
+Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
+{
+          //Get Listado
+          Route::get('get_admin_empresas_gestion_socios',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios',
+            'as'         => 'get_admin_empresas_gestion_socios',                
+          ]);
 
 
-//GET Editar
-Route::get('get_admin_empresas_gestion_socios_editar_{id}',
-[
-  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios_editar',
-  'as'         => 'get_admin_empresas_gestion_socios_editar',
 
-  'middleware' => 'role:10'
-]); 
+          //GET Crear
+          Route::get('get_admin_empresas_gestion_socios_crear',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios_crear',
+            'as'         => 'get_admin_empresas_gestion_socios_crear',            
+          ]);
+
+          Route::post('set_admin_empresas_gestion_socios_crear',
+          [
+            'uses'            => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_crear',
+            'as'              => 'set_admin_empresas_gestion_socios_crear',            
+          ]);
 
 
-//Patch Editar
-Route::patch('set_admin_empresas_gestion_socios_editar_{id}',
-[
-  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_editar',
-  'as'         => 'set_admin_empresas_gestion_socios_editar',
-  'middleware' => 'role:10'
-]); 
+          //GET Editar
+          Route::get('get_admin_empresas_gestion_socios_editar_{id}',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios_editar',
+            'as'         => 'get_admin_empresas_gestion_socios_editar',
+            
+          ]); 
+
+
+          //Patch Editar
+          Route::patch('set_admin_empresas_gestion_socios_editar_{id}',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_editar',
+            'as'         => 'set_admin_empresas_gestion_socios_editar',            
+          ]); 
+
+
+});
+
 
 
 
