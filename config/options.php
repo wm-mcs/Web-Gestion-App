@@ -5,10 +5,10 @@ return array(
 
 
 	'role' => [   ''                              => 'Selecciona uno',
-  	            'adminMcos522'                    => 'Admin Supremo',
-  	            'user'                            => 'Usuario',
-  	            'admin_empresa'                   => 'Admin Empresa Cliente',
-                'admin_empresa_cliente'           => 'Moderador Empresa Cliente'
+  	            '10'                              => 'Admin Supremo',
+  	            '4'                               => 'Vendedor',
+  	            '3'                               => 'Empresa Master',
+                '2'                               => 'Operador de Empresa'
                  
               ],
 
