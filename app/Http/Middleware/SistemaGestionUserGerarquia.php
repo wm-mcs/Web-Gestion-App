@@ -36,7 +36,7 @@ class SistemaGestionUserGerarquia
          */
         $user = auth()->user();
 
-        if($user->role < $role )
+        if($user->role < $gerarquia )
         {
             return ['Validacion'          => false,
                     'Validacion_mensaje'  => 'No tienes permiso para hacer eso :('];
