@@ -25,7 +25,7 @@ Route::post('set_admin_empresas_gestion_socios_crear',
   'uses'            => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_crear',
   'as'              => 'set_admin_empresas_gestion_socios_crear',
 
-  'middleware' => 'role:adminMcos522'
+  'middleware' => 'role:10'
 ]);
 
 
