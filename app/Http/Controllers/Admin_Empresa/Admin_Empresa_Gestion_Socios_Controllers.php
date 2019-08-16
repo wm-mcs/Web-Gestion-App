@@ -200,8 +200,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //Post para crear socio desde modal
   public function post_crear_socio_desde_modal(Request $Request)
   { 
-        $User            = Auth::user();  
-
+        $User    = $Request->get('user_desde_middleware');
         $entidad = '';
         $manager = new CrearSocioModalManager($entidad,$Request->all());
         $Validacion = false;
@@ -209,8 +208,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     if ($manager->isValid())
     {
-     if($this->Guardian->son_iguales($User->empresa_gestion_id,$Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
+     
        $Socio                   = $this->SocioRepo
                                        ->getEntidad();
 
@@ -234,17 +232,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
 
-     }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede crear el socio en este momento'];
-     }   
+      
     }
     else
     {
       return  ['Validacion'          => $Validacion,
-                     'Validacion_mensaje'  => 'No se puede crear el socio en este momento'];
+               'Validacion_mensaje'  => 'No se puede crear el socio en este momento'];
     }
 
     
@@ -253,39 +246,22 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //para editar al socio desde el modal
   public function post_editar_socio_desde_modal(Request $Request)
   {
-        $User    = Auth::user();  
+        $User       = $Request->get('user_desde_middleware'); 
 
-        $entidad = '';
-        $manager = new CrearSocioModalManager($entidad,$Request->all());
-        $Validacion = false;
-
-        $Socio   = $this->SocioRepo->find($Request->get('id'));
-
-
-   
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Socio->empresa_id) || $User->role == 'adminMcos522' )
-     { 
+        $entidad    = '';
+        $manager    = new CrearSocioModalManager($entidad,$Request->all());
+        $Validacion = true;
+        $Socio      = $this->SocioRepo->find($Request->get('id'));
+    
 
        $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota'];
 
-       $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades);  
-
-       $Validacion = true;
-
-
+       $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades); 
 
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente a '. $Socio->name,
                'Socio'               => $this->SocioRepo->find($Socio->id)];
-
-
-
-     }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede crear el socio en este momento'];
-     }   
+       
     
    
   }

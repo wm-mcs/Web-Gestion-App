@@ -26,13 +26,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'                        => \App\Http\Middleware\Authenticate::class,
-        'auth.basic'                  => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'                       => \App\Http\Middleware\RedirectIfAuthenticated::class,        
-        'verificad'                   => \App\Http\Middleware\RestriccionUsuarioNoVerificado::class,
-        'role'                        => \App\Http\Middleware\ControlAcceso::class,
-        'SistemaGestionSocios'        => \App\Http\Middleware\SistemaGestionSocios::class,
-        'SistemaPaginaWeb'            => \App\Http\Middleware\SistemaPaginaWeb::class,
-        'SistemaGestionUserGerarquia' => \App\Http\Middleware\SistemaGestionUserGerarquia::class
+        'auth'                                    => \App\Http\Middleware\Authenticate::class,
+        'auth.basic'                              => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest'                                   => \App\Http\Middleware\RedirectIfAuthenticated::class,        
+        'verificad'                               => \App\Http\Middleware\RestriccionUsuarioNoVerificado::class,
+        'role'                                    => \App\Http\Middleware\ControlAcceso::class,
+        'SistemaGestionSocios'                    => \App\Http\Middleware\SistemaGestionSocios::class,
+        'SistemaPaginaWeb'                        => \App\Http\Middleware\SistemaPaginaWeb::class,
+        'SistemaGestionUserGerarquia'             => \App\Http\Middleware\SistemaGestionUserGerarquia::class,
+        'SistemaGestionEmpresaIgualUserEmpresa'   => \App\Http\Middleware\SistemaGestionEmpresaIgualUserEmpresa::class,
     ];
 }
