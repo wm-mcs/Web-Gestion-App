@@ -82,6 +82,26 @@ Route::get('get_socios_activos{empresa_id}',
 
 
 
+//Para ir al panel del socio
+Route::get('get_socio_panel{id}',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socio_panel',
+  'as'         => 'get_socio_panel']);  
+
+
+
+//Para ir al panel del socio
+Route::get('get_socio{id}',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socio',
+  'as'         => 'get_socio']);  
+
+
+
+Route::get('get_tipo_servicios{empresa_id}',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_tipo_servicios',
+  'as'         => 'get_tipo_servicios']);  
 
 
 
