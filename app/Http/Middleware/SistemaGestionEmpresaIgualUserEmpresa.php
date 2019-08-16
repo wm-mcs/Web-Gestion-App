@@ -29,7 +29,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
                            //le paso como 3º parametre
                            //lo que viene de la Ruta 
-    public function handle($Request, Closure $next)
+    public function handle($request, Closure $next)
     {
         /**
          * obtengo el usuario conectado con el helper auth();
@@ -38,10 +38,10 @@ class SistemaGestionEmpresaIgualUserEmpresa
         $Validacion = false;
 
 
-        if($User->empresa_gestion_id == $Request->get('empresa_id') )
+        if($User->empresa_gestion_id == $request->get('empresa_id') )
         { 
           //agrego al user desde aqui para no pedirlo en el controller
-          $Request->attributes->add(['user_desde_middleware' => $User ]);
+          $request->attributes->add(['user_desde_middleware' => $User ]);
         }  
 
         if(!$Validacion)
@@ -52,7 +52,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
         
 
-        return $next($Request);
+        return $next($request);
     }
 }
 
