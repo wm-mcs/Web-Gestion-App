@@ -29,7 +29,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
                            //le paso como 3º parametre
                            //lo que viene de la Ruta 
-    public function handle($request, Closure $next, $gerarquia)
+    public function handle($request, Closure $next)
     {
         /**
          * obtengo el usuario conectado con el helper auth();
