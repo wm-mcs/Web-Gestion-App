@@ -32,7 +32,7 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
 
 
-    Route::group(['middleware' => 'SistemaGestionEmpresaIgualSocioEmpresa'],function()
+    Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
     {
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php';
     });
