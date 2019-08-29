@@ -18,7 +18,7 @@ methods:{
 
      getSociosActivos:function()
      {
-       var url = '/get_socios_activos;
+       var url = '/get_socios_activos';
 
        var vue = this;
 
