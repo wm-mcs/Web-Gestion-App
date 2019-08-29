@@ -8,7 +8,7 @@ data:function(){
     return {
       socio:{!! json_encode($Socio) !!},
       socio_id: 1,
-      servicios_del_socio:{!! json_encode($Socio->tipo_servicios_del_socio) !!},      
+      servicios_del_socio:{!! json_encode($Socio->servicios_contratados_del_socio) !!},      
       empresa_id: {{$Empresa_gestion->id}},
 
     }

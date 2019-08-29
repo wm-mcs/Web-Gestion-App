@@ -3,6 +3,8 @@
 namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Entidades\TipoDeServicio;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -21,7 +23,7 @@ class EmpresaConSocios extends Model
     protected $fillable = ['name', 'description'];
 
 
-
+    
 
 
 
