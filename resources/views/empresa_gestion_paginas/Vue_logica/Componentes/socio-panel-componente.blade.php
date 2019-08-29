@@ -25,7 +25,7 @@ methods:{
 
     
      
-     },
+     
      getServiciosDelSocio:function(servicios){
 
       if(servicios == 'mounted')
