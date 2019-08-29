@@ -136,18 +136,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
   //me devulve los oscios activos
-  public function get_socios_activos($empresa_id)
+  public function get_socios_activos(Request $Request)   
   {
 
-       $User            = Auth::user();  
-
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$empresa_id ) || $User->role == 'adminMcos522' )
-       {      
+       $User            = $Request->get('user_desde_middleware');
+     
       
-       $Socios          = $this->SocioRepo->getSociosBusqueda($empresa_id,null,30);
+       $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id,null,30);
       
        return ['socios' => $Socios];
-       }
+       
      
   }
 
@@ -295,12 +293,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
    
 
-     $Validacion  = false;
-     $User        = Auth::user();  
+       $Validacion  = false;
+       $User        = $Request->get('user_desde_middleware');   
      
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
+   
        $Entidad     = $this->TipoDeServicioRepo->getEntidad(); 
 
        $Propiedades = ['name','tipo','empresa_id'];
@@ -317,12 +314,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  => 'Se creo correctamente ',
                'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
 
-     }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede crear el tipo de servicio en este momento'];
-     }   
+    
+       
     
   }
 
@@ -331,10 +324,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function delet_servicio(Request $Request)
   {
      $Validacion  = false;
-     $User        = Auth::user();       
+     $User        = $Request->get('user_desde_middleware');      
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
+     
        $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
 
        $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
@@ -345,12 +337,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  => 'Se borró correctamente ',
                'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
 
-     }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede borrar el tipo de servicio en este momento'];
-     }   
+      
   }
 
 
@@ -360,10 +347,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function editar_servicio(Request $Request)
   {
      $Validacion  = false;
-     $User        = Auth::user();  
+     $User        = $Request->get('user_desde_middleware');  
      
-     if($this->Guardian->son_iguales($User->empresa_gestion_id,$Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
+    
 
        $Validacion  = true;
        $Servicio    = $Request->get('servicio'); //me manda la data en array vue
@@ -389,33 +375,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  => 'Se editó correctamente ',
                'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
 
-     }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede editar el tipo de servicio en este momento'];
-     } 
+    
   }
 
   //agrega servicio a socio
   public function agregar_servicio_a_socio(Request $Request)
   {
      $Validacion  = false;
-     $User        = Auth::user(); 
+     $User        = $Request->get('user_desde_middleware');  
 
-      if($this->Guardian->son_iguales($User->empresa_gestion_id,$Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
-
-        //para saber que es de esa empresa y no de otra
-        if($this->Guardian->son_iguales($User->empresa_gestion_id,$Request->get('socio_empresa_id')) )
-        {
-          $Validacion  = true;
-        } 
-        else
-        {
-          $Validacion  = false;
-        }
-
+    
        
        //las porpiedades que se van a editar
        $Propiedades = ['name','tipo','moneda','fecha_vencimiento'];
@@ -497,13 +466,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        
 
-       //Logica d emoviemiento de caja
-       
-       
-
-       
-
-     }
+       //Logica d emoviemiento de caja     
 
 
      if($Validacion)
@@ -513,11 +476,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Socio'               => $this->SocioRepo->find($Request->get('socio_id')),
                'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Request->get('socio_id'))];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
+    
   }
 
 
@@ -528,37 +487,36 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
      $Validacion        = false;
-     $User              = Auth::user(); 
+     $User              = $Request->get('user_desde_middleware');
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
-
-     
-
      $Socio             = $this->SocioRepo->find($Servicio_a_editar->socio_id);
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Socio->socio_empresa_id ) || $User->role == 'adminMcos522' )
-     { 
+    
 
         //para saber que es de esa empresa y no de otra
         if($this->Guardian->son_iguales($Servicio_a_editar->socio_id,$Socio->id) )
         {
-          $Validacion  = true;
+           $Validacion  = true;
+
+           $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
+       
+           //las porpiedades que se van a editar
+           $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido'];
+
+
+           $this->ServicioContratadoSocioRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
+           $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
+
+           $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
+
         } 
         else
         {
           $Validacion  = false;
         }
 
-       $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
-       
-       //las porpiedades que se van a editar
-       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido'];
-
-
-       $this->ServicioContratadoSocioRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
-       $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
-
-       $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
-     }  
+      
+      
 
 
       
@@ -585,14 +543,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
 
      $Validacion        = false;
-     $User              = Auth::user(); 
+     $User              = $Request->get('user_desde_middleware'); 
      $Socio             = $this->SocioRepo->find($Request->get('socio_id'));
 
-      if($this->Guardian->son_iguales($User->empresa_gestion_id,$Request->get('empresa_id')) || $User->role == 'adminMcos522' )
-     { 
+     
 
         //para saber que es de esa empresa y no de otra
-        if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->socio_empresa_id) || $User->role == 'adminMcos522' )
+        if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->socio_empresa_id) || $User->role >9 )
         {
           $Validacion  = true;
         } 
@@ -601,7 +558,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Validacion  = false;
         }
 
-     }  
+      
 
 
 

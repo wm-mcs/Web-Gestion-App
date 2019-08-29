@@ -18,13 +18,13 @@ methods:{
 
      getSociosActivos:function()
      {
-       var url = '/get_socios_activos'+ this.empresa_id;
+       var url = '/get_socios_activos;
 
        var vue = this;
 
-       
+       var data = {empresa_id:this.empresa_id};
 
-       axios.get(url).then(function(response){  
+       axios.post(url,data).then(function(response){     
           
            
 

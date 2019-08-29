@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class SistemaGestionEmpresaIgualUserEmpresa
+class SistemaGestionUserEmpresIgualSociaEmpresa
 {
 
 
@@ -35,10 +35,11 @@ class SistemaGestionEmpresaIgualUserEmpresa
          * obtengo el usuario conectado con el helper auth();
          */
         $User       = auth()->user();
+        $Socio      = 
         $Validacion = false;
 
 
-        if($User->empresa_gestion_id == $request->get('empresa_id')  || $User->role > 6 )
+        if($User->empresa_gestion_id == $request->get('empresa_id') )
         { 
           //agrego al user desde aqui para no pedirlo en el controller
           $request->attributes->add(['user_desde_middleware' => $User ]);
@@ -55,5 +56,3 @@ class SistemaGestionEmpresaIgualUserEmpresa
         return $next($request);
     }
 }
-
-
