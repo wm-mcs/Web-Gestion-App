@@ -14,8 +14,7 @@ data:function(){
 mounted: function mounted () {        
 
     
-     this.local_servicios = this.servicios;
-     console.log(this.servicios);
+     
 
 
 },

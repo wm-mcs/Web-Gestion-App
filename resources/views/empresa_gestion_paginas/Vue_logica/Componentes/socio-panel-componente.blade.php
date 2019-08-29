@@ -6,74 +6,25 @@ props:['servicios'],
 
 data:function(){
     return {
-      socio:'hola',
+      socio:{!! json_encode($Socio) !!},
       socio_id: 1,
-      servicios_del_socio:'',
-      
+      servicios_del_socio:{!! json_encode($Socio->tipo_servicios_del_socio) !!},      
       empresa_id: {{$Empresa_gestion->id}},
 
     }
 }, 
 mounted: function mounted () {        
 
-       this.getSocio();
-       this.getServiciosDelSocio('mounted');
+       
+       
       
 
 
 },
-methods:{
+methods:{  
 
-     getServicios:function(){
-
-
-       var url = '/get_tipo_servicios' + this.empresa_id;
-
-       var vue = this;
-
-       axios.get(url).then(function(response){  
-          
-          if(response.data.Validacion == true)
-          {
-            vue.servicios = response.data.servicios;
-          }
-          else
-          {
-            $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
+    
      
-
-     },     
-     getSocio:function()
-     {
-       var url = '/get_socio' + this.socio_id;
-
-       var vue = this;
-
-       axios.get(url).then(function(response){  
-          
-          if(response.data.Validacion == true)
-          {
-            vue.socio = response.data.Socio;
-          }
-          else
-          {
-            $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
      },
      getServiciosDelSocio:function(servicios){
 

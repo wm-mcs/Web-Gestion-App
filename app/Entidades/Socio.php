@@ -4,6 +4,8 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
+use App\Entidades\TipoDeServicio;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -24,6 +26,20 @@ class Socio extends Model
 
 
     protected $appends = ['route', 'estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares'];
+
+
+    public function tipoDeServicio()
+    {
+      return $this->hasMany(TipoDeServicio::class,'socio_id','id')->orderBy('name', 'asc');
+    }
+
+
+    public function getTipoServiciosDelSocioAttribute()
+    {
+        return Cache::remember('tipoDeServicio'.$this->id, 15, function() {
+                              return $this->tipoDeServicio; 
+                          }); 
+    }
     
 
     
