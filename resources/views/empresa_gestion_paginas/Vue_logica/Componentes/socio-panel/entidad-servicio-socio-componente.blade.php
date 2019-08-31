@@ -29,10 +29,11 @@ methods:{
 
        var vue  = this;
 
-       var data = {socio_id:this.servicio.socio_id,
+       var data = {
+                   socio_id:this.servicio.socio_id,
                 servicio_id:this.servicio.id
 
-                  }
+                  };
 
        axios.post(url,data).then(function(response){  
           
