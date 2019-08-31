@@ -18,8 +18,8 @@
       </div>
       
 
-      <socios-crear-boton accion_name="Crear"  > </socios-crear-boton>
-      <tipo-de-servicios-modal :servicios="servicios"></tipo-de-servicios-modal>  
+      <socios-crear-boton accion_name="Crear" :empresa="empresa" > </socios-crear-boton>
+      <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
    
   </div>  
 

@@ -4,7 +4,6 @@ props:[empresa],
 data:function(){
     return {
       socios: {!! json_encode($Socios) !!},
-      empresa_id: {{$Empresa_gestion->id}}
 
     }
 },

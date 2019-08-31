@@ -241,6 +241,7 @@ template:'<span>
 
            <estado-de-cuenta-socio v-for="estado in socio.estado_de_cuenta_socio" 
                                    :estado_de_cuenta="estado" 
+                                   :empresa="empresa"
                                    @actualizar_socio="actualizar_socio">
                                      
            </estado-de-cuenta-socio>
