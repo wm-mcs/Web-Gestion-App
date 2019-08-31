@@ -316,7 +316,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
        
     
-  }
+  } 
 
 
   //borrar un servicio
