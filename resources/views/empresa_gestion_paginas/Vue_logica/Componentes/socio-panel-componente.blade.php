@@ -2,14 +2,13 @@ Vue.component('socio-panel-componente',
 {
 
 
-props:['servicios'],
+props:['servicios','empresa'],
 
 data:function(){
     return {
       socio:{!! json_encode($Socio) !!},
       socio_id: 1,
-      servicios_del_socio:{!! json_encode($Socio->servicios_contratados_del_socio) !!},      
-      empresa_id: {{$Empresa_gestion->id}},
+      servicios_del_socio:{!! json_encode($Socio->servicios_contratados_del_socio) !!}, 
 
     }
 }, 
@@ -37,7 +36,7 @@ methods:{
 
 
                socio_id: this.socio_id,
-             empresa_id: this.empresa_id
+             empresa_id: this.empresa.id
             
 
           };
@@ -162,6 +161,7 @@ template:'<span>
       
      <agregar-al-socio-un-servicio :socio="socio"  
                                    :servicios="servicios"
+                                   :empresa="empresa"
                                    @actualizar_servicios_de_socios="getServiciosDelSocio"
                                    @actualizar_socio="actualizar_socio" ></agregar-al-socio-un-servicio>  
       
@@ -180,6 +180,7 @@ template:'<span>
 
 
             <servicio-socio-lista :servicio="servicio" 
+                                  :empresa="empresa"
             @actualizar_servicios_de_socios="getServiciosDelSocio" 
                           @actualizar_socio="actualizar_socio"
 

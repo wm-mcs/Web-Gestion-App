@@ -1,11 +1,10 @@
 
 Vue.component('tipo-de-servicios-modal',
 {
-props:['servicios'],
+props:['servicios','empresa'],
 
 data:function(){
-    return {
-      empresa_id: {{$Empresa_gestion->id}},      
+    return { 
       crear_service_name:'',
       crear_service_tipo:''
 
@@ -42,7 +41,7 @@ methods:{
 
        var data = {    name:this.crear_service_name,
                        tipo:this.crear_service_tipo ,
-                 empresa_id:this.empresa_id
+                 empresa_id:this.empresa.id
                    }; 
 
               axios.post(url,data).then(function (response){  
@@ -81,7 +80,7 @@ methods:{
         var vue = this;
 
         var data = {   id:servicio.id,
-               empresa_id:this.empresa_id
+               empresa_id:this.empresa.id
                        
                    }; 
 
@@ -115,7 +114,7 @@ methods:{
         var vue = this;
 
         var data = {   servicio:servicio,
-                     empresa_id:this.empresa_id
+                     empresa_id:this.empresa.id
                        
                    }; 
 

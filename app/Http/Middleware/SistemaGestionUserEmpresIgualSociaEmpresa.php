@@ -54,7 +54,7 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
         if(!$Validacion)
         {
             return ['Validacion'          => $Validacion,
-                    'Validacion_mensaje'  => 'No tienes permiso para hacer eso:  no controlas a está empresa'];
+                    'Validacion_mensaje'  => 'No tienes permiso para hacer eso:  el socio no es de está empresa'];
         }
 
         

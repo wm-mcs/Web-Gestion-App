@@ -9,7 +9,7 @@
 
       socios:[],
       servicios:[],
-      empresa_id: {{$Empresa_gestion->id}},
+      empresa: {!! json_encode($Empresa_gestion) !!},
       variable:'esta es la instancia',
 
 
@@ -28,7 +28,7 @@
      getServicios:function(){
 
 
-       var url = '/get_tipo_servicios' + this.empresa_id;
+       var url = '/get_tipo_servicios' + this.empresa.id;
 
        var vue = this;
 

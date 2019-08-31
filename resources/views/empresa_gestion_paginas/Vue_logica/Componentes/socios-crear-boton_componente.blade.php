@@ -1,7 +1,8 @@
 Vue.component('socios-crear-boton' ,
 {
 props: {   
-    accion_name: String
+    accion_name: String,
+    empresa:Object
     
 }
 
@@ -13,7 +14,7 @@ data:function(){
       form_socio_email:'',
       form_socio_celular:'',
       form_socio_cedula:'' ,
-      empresa_id: {{$Empresa_gestion->id}},
+      
     }
 },
 
