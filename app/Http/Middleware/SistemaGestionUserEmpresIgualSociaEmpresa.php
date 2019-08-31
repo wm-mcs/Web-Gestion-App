@@ -42,7 +42,7 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
         $Validacion = false;
 
 
-        if(($User->empresa_gestion_id == $Socio->empresa_gestion_id) || ($User->role > 6) )
+        if(($User->empresa_gestion_id == $Socio->empresa_id) || ($User->role > 6) )
         { 
 
 
