@@ -1,6 +1,6 @@
 Vue.component('socios-lista' ,
 {
-props:[ socios,empresa ],
+props:[ 'socios','empresa' ],
 data:function(){
     return {
      

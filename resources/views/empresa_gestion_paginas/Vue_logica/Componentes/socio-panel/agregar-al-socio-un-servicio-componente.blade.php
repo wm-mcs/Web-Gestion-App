@@ -2,7 +2,7 @@ Vue.component('agregar-al-socio-un-servicio' ,
 {
 
 
-props:[empresa],
+props:['empresa'],
 data:function(){
     return {
       
