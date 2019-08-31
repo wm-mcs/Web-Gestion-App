@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use App\Repositorios\SocioRepo;
 
 use Closure;
 
@@ -35,16 +36,19 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
          * obtengo el usuario conectado con el helper auth();
          */
         $User       = auth()->user();
+        $ReposSocio = new SocioRepo();
+        $Socio      = $ReposSocio->find($request->get('socio_id'));
         
         $Validacion = false;
 
 
-        if(($User->empresa_gestion_id == $request->get('empresa_id')) || ($User->role > 6) )
+        if(($User->empresa_gestion_id == $Socio->empresa_gestion_id) || ($User->role > 6) )
         { 
 
-          dd($User->role)  ;
+
           //agrego al user desde aqui para no pedirlo en el controller
-          $request->attributes->add(['user_desde_middleware' => $User ]);
+          $request->attributes->add(['user_desde_middleware'  => $User ]);
+          $request->attributes->add(['socio_desde_middleware' => $Socio]);
         }  
 
         if(!$Validacion)

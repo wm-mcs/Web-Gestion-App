@@ -316,7 +316,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
        
     
-  } 
+  }
 
 
   //borrar un servicio
@@ -577,22 +577,20 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
   //borra el servicio del socio
-  public function borrar_servicio_de_socio($id)
+  public function borrar_servicio_de_socio(Request $Request)
   {
      $Validacion   = false;
-     $User         = Auth::user(); 
-     $Servicio     = $this->ServicioContratadoSocioRepo->find($id);
-     $Socio        = $this->SocioRepo->find($Servicio->socio_id);
+     $User         = $Request->get('user_desde_middleware'); 
+     $Servicio     = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
+     $Socio        = $Request->get('socio_desde_middleware'); 
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->socio_empresa_id) || $User->role == 'adminMcos522' )
-     { 
 
       $Validacion  = true;
 
       $this->ServicioContratadoSocioRepo->destruir_esta_entidad($Servicio);
 
       //borrar los estados de cuenta
-      $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadoDeCuentasDelSocioDeUnServicioEnParticular($Socio->id,$id);
+      $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadoDeCuentasDelSocioDeUnServicioEnParticular($Socio->id,$Request->get('servicio_id'));
 
       
 
@@ -604,7 +602,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        
 
-     }  
+      
 
 
      if($Validacion)
@@ -614,11 +612,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Socio'               =>  $Socio,
                'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
+     
   }
 
   //indica que el servicio tipo calse ya fué usado

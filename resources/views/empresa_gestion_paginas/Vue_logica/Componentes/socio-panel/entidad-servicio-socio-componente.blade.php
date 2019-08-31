@@ -25,11 +25,16 @@ methods:{
         return '';
        }
 
-       var url = '/borrar_servicio_de_socio' + servicio.id;
+       var url  = '/borrar_servicio_de_socio';
 
-       var vue = this;
+       var vue  = this;
 
-       axios.get(url).then(function(response){  
+       var data = {socio_id:this.servicio.socio_id,
+                servicio_id:this.servicio.id
+
+                  }
+
+       axios.post(url,data).then(function(response){  
           
           if(response.data.Validacion == true)
           {
