@@ -40,6 +40,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
         if($User->empresa_gestion_id == $request->get('empresa_id')  || $User->role > 6 )
         { 
+            $Validacion = true;
           //agrego al user desde aqui para no pedirlo en el controller
           $request->attributes->add(['user_desde_middleware' => $User ]);
         }  

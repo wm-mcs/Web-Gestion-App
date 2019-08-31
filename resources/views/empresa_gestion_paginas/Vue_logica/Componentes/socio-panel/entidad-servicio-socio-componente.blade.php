@@ -1,6 +1,6 @@
 Vue.component('servicio-socio-lista' ,
 {
-props:['servicio','empresa'],  
+props:['servicio','empresa_id'],  
 
 data:function(){
     return {
