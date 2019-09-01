@@ -7,6 +7,7 @@ use App\Repositorios\ServicioContratadoSocioRepo;
 use Closure;
 
 class SistemaGestionServicioSocioIdIgualSocioId
+{
 
 
 
