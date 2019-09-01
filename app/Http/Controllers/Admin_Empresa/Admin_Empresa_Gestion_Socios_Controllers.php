@@ -382,6 +382,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
      $Validacion  = false;
      $User        = $Request->get('user_desde_middleware');  
+     $Socio       = $Request->get('socio_desde_middleware'); 
 
     
        
@@ -430,7 +431,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        else
        {
           $Entidad           = $this->ServicioContratadoSocioRepo->getEntidad();
-          $Entidad->socio_id = $Request->get('socio_id');
+          $Entidad->socio_id = $Socio->id;
           $Entidad->estado   = 'si' ;
           $Entidad->valor    = round($Request->get('valor'));      
 
@@ -439,7 +440,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
              //Logica de estado de cuenta cuando compra
              $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                  ->setEstadoDeCuentaCuando($Socio->id, 
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -452,7 +453,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             if($Request->get('paga') == 'si') 
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                  ->setEstadoDeCuentaCuando($Socio->id, 
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -472,8 +473,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creó correctamente ',
-               'Socio'               => $this->SocioRepo->find($Request->get('socio_id')),
-               'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Request->get('socio_id'))];
+               'Socio'               => $this->SocioRepo->find($Request->get($Socio->id)),
+               'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
     
   }
@@ -488,13 +489,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Validacion        = false;
      $User              = $Request->get('user_desde_middleware');
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
-     $Socio             = $this->SocioRepo->find($Servicio_a_editar->socio_id);
+     $Socio             = $Request->get('socio_desde_middleware');    
 
-    
-
-        //para saber que es de esa empresa y no de otra
-        if($this->Guardian->son_iguales($Servicio_a_editar->socio_id,$Socio->id) )
-        {
+       
            $Validacion  = true;
 
            $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
@@ -508,31 +505,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
            $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
 
-        } 
-        else
-        {
-          $Validacion  = false;
-        }
-
-      
-      
-
-
-      
-
-
      if($Validacion)
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente ',
                'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
-
 
 
   }
@@ -541,27 +519,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function get_servicios_de_socio(Request $Request)
   {
 
-     $Validacion        = false;
+     $Validacion        = true;
      $User              = $Request->get('user_desde_middleware'); 
      $Socio             = $this->SocioRepo->find($Request->get('socio_id'));
-
-     
-
-        //para saber que es de esa empresa y no de otra
-        if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->socio_empresa_id) || $User->role >9 )
-        {
-          $Validacion  = true;
-        } 
-        else
-        {
-          $Validacion  = false;
-        }
-
-      
-
-
-
-
 
     if($Validacion)
      {
@@ -569,23 +529,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  =>  'Se cargó correctamente',
                'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Request->get('socio_id'))];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
   }
 
   //borra el servicio del socio
   public function borrar_servicio_de_socio(Request $Request)
   {
-     $Validacion   = false;
+     $Validacion   = true;
      $User         = $Request->get('user_desde_middleware'); 
      $Servicio     = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
      $Socio        = $Request->get('socio_desde_middleware'); 
 
 
-      $Validacion  = true;
+      
 
       $this->ServicioContratadoSocioRepo->destruir_esta_entidad($Servicio);
 
@@ -598,11 +553,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad($Estado);
       }
 
-      //borrar los moviemiento de caja si es que hubo
-
-       
-
-      
+      //borrar los moviemiento de caja si es que hubo         
 
 
      if($Validacion)
