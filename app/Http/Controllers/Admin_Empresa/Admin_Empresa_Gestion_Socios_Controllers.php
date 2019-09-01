@@ -482,11 +482,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //editar servicio a socio
   public function editar_servicio_a_socio(Request $Request)
-  { 
-
-
-
-     $Validacion        = false;
+  {      
      $User              = $Request->get('user_desde_middleware');
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
      $Socio             = $Request->get('socio_desde_middleware');    
@@ -511,8 +507,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  => 'Se editó correctamente ',
                'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
-
-
   }
 
   //obtengo servicios

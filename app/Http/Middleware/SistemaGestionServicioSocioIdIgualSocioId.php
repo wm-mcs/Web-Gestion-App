@@ -8,26 +8,6 @@ use Closure;
 class SistemaGestionServicioSocioIdIgualSocioId
 {
 
-
-
-    /**
-     * 1 = Usuario operador
-     * 2 = Usuario moderador de la empresa
-     * 3 = Usuario vendeor
-     * 4 = Usuario Administrador principal
-     */
-
-
-
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-
                            //le paso como 3º parametre
                            //lo que viene de la Ruta 
     public function handle($request, Closure $next)
