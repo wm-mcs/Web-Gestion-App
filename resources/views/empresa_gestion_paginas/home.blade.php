@@ -24,7 +24,7 @@
   </div>  
 
   {{-- visor de socios --}}
-  <socios-lista></socios-lista>
+  <socios-lista :empresa="empresa"></socios-lista>
 
 
 
