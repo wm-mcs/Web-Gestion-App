@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\Repositorios\SocioRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 
 use Closure;
