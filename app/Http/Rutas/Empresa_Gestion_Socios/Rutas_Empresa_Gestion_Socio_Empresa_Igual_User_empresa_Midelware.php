@@ -29,5 +29,5 @@ Route::post('agregar_servicio_a_socio',
 
 Route::group(['middleware' => 'SistemaGestionServicioSocioIdIgualSocioId'],function()
 {
-   require __DIR__ . '/' . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Servicio_Socio_Id_Igual_Socio_Id_Midelware.php';
+   require __DIR__ .'Rutas_Empresa_Gestion_Empresa_Servicio_Socio_Id_Igual_Socio_Id_Midelware.php';
 });
