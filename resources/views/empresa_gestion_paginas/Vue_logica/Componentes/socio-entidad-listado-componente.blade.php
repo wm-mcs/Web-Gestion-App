@@ -1,7 +1,7 @@
 Vue.component('socio-entidad-listado' ,
 {
 
-props:['socio','empresa']
+props:['socios','empresa']
 ,  
 
 
