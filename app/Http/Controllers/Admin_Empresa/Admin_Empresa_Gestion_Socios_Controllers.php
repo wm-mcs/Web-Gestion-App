@@ -380,7 +380,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //agrega servicio a socio
   public function agregar_servicio_a_socio(Request $Request)
   {
-     $Validacion  = false;
+     $Validacion  = true;
      $User        = $Request->get('user_desde_middleware');  
      $Socio       = $Request->get('socio_desde_middleware'); 
 
