@@ -234,7 +234,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     else
     {
       return  ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede crear el socio en este momento: ' . $manager->getErrors()->withInput($manager->getData())];
+               'Validacion_mensaje'  => 'No se puede crear el socio en este momento: ' . $manager->getErrors()];
     }
 
     
