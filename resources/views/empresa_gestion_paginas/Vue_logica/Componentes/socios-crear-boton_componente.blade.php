@@ -34,7 +34,7 @@ methods:{
                    celular:this.form_socio_celular,
                     cedula:this.form_socio_cedula,
                     empresa_id: this.empresa.id       
-                 }; 
+                 };  
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -42,11 +42,12 @@ methods:{
 
             if(data.Validacion == true)
             {
-              
+               app.socios = data.socios; 
+               $.notify(response.data.Validacion_mensaje, "success");
             }
             else
             {
-              
+              $.notify(response.data.Validacion_mensaje, "success");
             }
            
            }).catch(function (error){
