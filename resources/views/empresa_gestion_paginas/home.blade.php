@@ -18,13 +18,13 @@
       </div>
       
 
-      <socios-crear-boton accion_name="Crear" :socios="socios" :empresa="empresa" > </socios-crear-boton>
+      <socios-crear-boton accion_name="Crear"  :empresa="empresa" > </socios-crear-boton>
       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
    
   </div>  
 
   {{-- visor de socios --}}
-  <socios-lista :empresa="empresa"></socios-lista>
+  <socios-lista :empresa="empresa" :socios="socios"></socios-lista>
 
 
 
