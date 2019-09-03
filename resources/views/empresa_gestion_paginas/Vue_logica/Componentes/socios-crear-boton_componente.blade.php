@@ -32,7 +32,8 @@ methods:{
       var data = {    name:this.form_socio_name,
                      email:this.form_socio_email, 
                    celular:this.form_socio_celular,
-                    cedula:this.form_socio_cedula        
+                    cedula:this.form_socio_cedula,
+                    empresa_id: this.empresa.id       
                  }; 
 
      axios.post(url,data).then(function (response){  
