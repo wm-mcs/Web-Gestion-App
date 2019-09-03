@@ -10,7 +10,7 @@
       socios: {!!  json_encode($Socios) !!},
       @else
         socios:'',
-      @endif,
+      @endif
       servicios:[],
       empresa: {!! json_encode($Empresa_gestion) !!},
       variable:'esta es la instancia',
