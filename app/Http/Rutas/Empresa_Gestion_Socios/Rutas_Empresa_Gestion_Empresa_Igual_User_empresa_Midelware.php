@@ -1,5 +1,19 @@
 <?php
 
+//Desde Panel creo socio
+Route::post('post_crear_socio_desde_modal',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@post_crear_socio_desde_modal',
+  'as'         => 'post_crear_socio_desde_modal']);  
+
+//editar al socio
+Route::post('post_editar_socio_desde_modal',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@post_editar_socio_desde_modal',
+  'as'         => 'post_editar_socio_desde_modal']);  
+
+  
+
 
 
 //Para ir al panel de la empresa vista del cliente
