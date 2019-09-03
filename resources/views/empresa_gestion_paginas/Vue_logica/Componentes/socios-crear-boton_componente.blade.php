@@ -42,7 +42,7 @@ methods:{
 
             if(data.Validacion == true)
             {
-               app.socios = data.socios; 
+               app.socios = data.Socios; 
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
