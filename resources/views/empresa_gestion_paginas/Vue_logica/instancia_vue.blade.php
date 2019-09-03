@@ -6,8 +6,11 @@
     var app = new Vue({
     el: '#app',    
     data:{
-
-      socios:[],
+      @if(isset($Socios))
+      socios: {!!  json_encode($Socios) !!},
+      @else
+        socios:'',
+      @endif,
       servicios:[],
       empresa: {!! json_encode($Empresa_gestion) !!},
       variable:'esta es la instancia',

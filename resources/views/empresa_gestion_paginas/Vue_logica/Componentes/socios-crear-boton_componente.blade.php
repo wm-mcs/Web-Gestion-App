@@ -47,7 +47,7 @@ methods:{
             }
             else
             {
-              $.notify(response.data.Validacion_mensaje, "success");
+              $.notify(response.data.Validacion_mensaje, "error");
             }
            
            }).catch(function (error){
