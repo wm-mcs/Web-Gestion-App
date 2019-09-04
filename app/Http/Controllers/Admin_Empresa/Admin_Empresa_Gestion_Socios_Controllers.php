@@ -610,7 +610,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
 
-     }
+     
 
 
      if($Validacion)
