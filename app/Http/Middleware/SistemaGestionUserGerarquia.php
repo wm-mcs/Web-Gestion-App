@@ -10,10 +10,17 @@ class SistemaGestionUserGerarquia
 
 
     /**
-     * 1 = Usuario operador
-     * 2 = Usuario moderador de la empresa
-     * 3 = Usuario vendeor
-     * 4 = Usuario Administrador principal
+     * 1  = Usuario simple 
+     * 2  = Usuario operador
+     * 3  = Usuario moderador de la empresa
+     * 4  = Usuario vendeor
+     * 
+     *
+     *
+     *
+     *
+     *
+     * 10 = Usuario Administrador principal
      */
 
 
