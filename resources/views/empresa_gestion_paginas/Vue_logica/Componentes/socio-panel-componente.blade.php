@@ -245,6 +245,7 @@ template:'<span>
                                    :estado_de_cuenta="estado" 
                                    :empresa="empresa"
                                    :socio="socio"
+                                   :key="estado.id"
                                    @actualizar_socio="actualizar_socio">
                                      
            </estado-de-cuenta-socio>
