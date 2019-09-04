@@ -395,7 +395,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        {
           $Cantidad = 0; 
 
-          while($Cantidad <= (int)$Request->get('cantidad_de_servicios'))
+          while($Cantidad < (int)$Request->get('cantidad_de_servicios'))
           {
             $Cantidad          = $Cantidad + 1;
             $Entidad           = $this->ServicioContratadoSocioRepo->getEntidad();
