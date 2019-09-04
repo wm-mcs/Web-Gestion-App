@@ -72,7 +72,9 @@ methods:{
        var vue = this;
 
        var data = {servicio_a_editar:this.servicio,
-                  empresa_id:this.empresa.id };
+                  socio_id:this.servicio.socio_id,
+                servicio_id:this.servicio.id,
+                 empresa_id:this.empresa.id };
 
        axios.post(url,data).then(function(response){ 
 
@@ -122,6 +124,8 @@ methods:{
        var vue = this;
 
        var data = {servicio_a_editar:this.servicio,
+                            socio_id:this.servicio.socio_id,
+                         servicio_id:this.servicio.id,
                           empresa_id:this.empresa.id};
 
        axios.post(url,data).then(function(response){ 
