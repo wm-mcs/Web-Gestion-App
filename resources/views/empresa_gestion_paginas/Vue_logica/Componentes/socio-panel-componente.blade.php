@@ -7,7 +7,6 @@ props:['servicios','empresa'],
 data:function(){
     return {
       socio:{!! json_encode($Socio) !!},
-      socio_id: 1,
       servicios_del_socio:{!! json_encode($Socio->servicios_contratados_del_socio) !!}, 
 
     }

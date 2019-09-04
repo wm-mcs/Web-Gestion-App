@@ -13,7 +13,7 @@ data:function(){
                         valor:'',
                         fecha_vencimiento:'',
                         cantidad_de_servicios:'',
-                        empresa_id: {{$Empresa_gestion->id}},
+                        empresa_id:this.empresa.id,
                         socio_id:this.socio.id,
                         socio_empresa_id:'',
                         paga:'si'
