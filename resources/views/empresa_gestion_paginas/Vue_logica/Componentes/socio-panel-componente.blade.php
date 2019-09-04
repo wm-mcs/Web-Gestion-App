@@ -35,7 +35,7 @@ methods:{
           var data = {
 
 
-               socio_id: this.socio_id,
+               socio_id: this.socio.id,
              empresa_id: this.empresa.id
             
 
@@ -102,6 +102,8 @@ methods:{
          mutualista:this.socio.mutualista,
          nota:this.socio.nota ,
          estado:this.socio.estado,
+         socio_id: this.socio.id,
+       empresa_id: this.empresa.id
 
       };
 
@@ -242,6 +244,7 @@ template:'<span>
            <estado-de-cuenta-socio v-for="estado in socio.estado_de_cuenta_socio" 
                                    :estado_de_cuenta="estado" 
                                    :empresa="empresa"
+                                   :socio="socio"
                                    @actualizar_socio="actualizar_socio">
                                      
            </estado-de-cuenta-socio>

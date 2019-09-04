@@ -1,7 +1,7 @@
 Vue.component('estado-de-cuenta-socio' ,
 {
 
-props:['empresa'],
+props:['empresa','socio'],
 data:function(){
     return {
       
@@ -34,7 +34,9 @@ methods:{
 
        var vue = this;
 
-       var data = {estado_de_cuenta:this.estado_de_cuenta};
+       var data = {estado_de_cuenta:this.estado_de_cuenta,
+                           socio_id: this.socio.id,
+                         empresa_id: this.empresa.id};
 
        axios.post(url,data).then(function(response){ 
 
