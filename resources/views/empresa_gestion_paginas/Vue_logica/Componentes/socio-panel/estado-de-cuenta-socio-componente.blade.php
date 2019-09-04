@@ -1,7 +1,7 @@
 Vue.component('estado-de-cuenta-socio' ,
 {
 
-props:['empresa','socio'],
+
 data:function(){
     return {
       
@@ -10,7 +10,7 @@ data:function(){
     }
 },
 
-props:['estado_de_cuenta']
+props:['estado_de_cuenta','empresa','socio']
 ,
 
 
