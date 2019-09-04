@@ -14,7 +14,7 @@ data:function(){
                         fecha_vencimiento:'',
                         cantidad_de_servicios:'',
                         empresa_id: {{$Empresa_gestion->id}},
-                        socio_id:'',
+                        socio_id:socio.id,
                         socio_empresa_id:'',
                         paga:'si'
 
@@ -84,7 +84,7 @@ methods:{
 
   
   var servicio = this.seleccionarUnObjetoSegunAtributo( this.servicios,'name',this.tipo_servicio);
-                  console.log(servicio);
+                  
 
   this.servicio_data.name             = servicio.name;
   this.servicio_data.tipo             = servicio.tipo;
