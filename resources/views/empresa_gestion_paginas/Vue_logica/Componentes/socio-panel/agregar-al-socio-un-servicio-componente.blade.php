@@ -74,7 +74,7 @@ methods:{
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            
-      }).catch(function (error){});
+      }).catch(function (error){}); 
 
 
 
