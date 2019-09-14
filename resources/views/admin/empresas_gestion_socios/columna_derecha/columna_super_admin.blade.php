@@ -2,7 +2,7 @@
 @if(Auth::user()->role >= 7)
  <ul >
    <div class="admin-columna-ul-titulo">Super admin</div>
-   <div id="admin-col-superadmin">
+   <div >
         
         <a href="{{route('get_admin_users')}}">
           <li class="admin-columna-li mi-float-right"><i class="fas fa-user"></i> Usuarios</li>
