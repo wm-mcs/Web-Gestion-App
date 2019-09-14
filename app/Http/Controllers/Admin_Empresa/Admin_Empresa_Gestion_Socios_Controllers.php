@@ -89,9 +89,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get edit admin marca
   public function get_admin_empresas_gestion_socios_editar($id)
   {
-    $Entidad = $this->EmpresaConSociosoRepo->find($id);
+    $Empresa = $this->EmpresaConSociosoRepo->find($id);
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Entidad'));
+    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa'));
   }
 
   //set edit admin marca
@@ -121,9 +121,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
      if($this->Guardian->son_iguales($User->empresa_gestion_id,$id) || $User->role > 6 )
      {
-       $Empresa_gestion = $this->EmpresaConSociosoRepo->find($id); 
+       $Empresa = $this->EmpresaConSociosoRepo->find($id); 
        $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id, null, 100);
-       return view('empresa_gestion_paginas.home', compact('Empresa_gestion','Socios'));   
+       return view('empresa_gestion_paginas.home', compact('Empresa','Socios'));   
      }
      else
      {

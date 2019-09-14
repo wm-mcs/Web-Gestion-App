@@ -16,7 +16,7 @@
  {{-- titulo --}}
  <div class="contenedor-admin-entidad-titulo-form-busqueda">
     <div class="admin-entidad-titulo"> 
-     <a href="{{$Entidad->route_panel_empresa}}">
+     <a href="{{$Empresa->route_panel_empresa}}">
        <span class="admin-user-boton-Crear">Vista de cliente</span>
      </a>  
     </div>
@@ -26,7 +26,7 @@
 
 
   {{-- formulario --}}
-  {!! Form::model($Entidad,   ['route' => ['set_admin_empresas_gestion_socios_editar',$Entidad->id],
+  {!! Form::model($Empresa,   ['route' => ['set_admin_empresas_gestion_socios_editar',$Empresa->id],
                             'method'=> 'PATCH',
                             'files' =>  true,
                             'id'    => 'form-admin-empresa-datos'
