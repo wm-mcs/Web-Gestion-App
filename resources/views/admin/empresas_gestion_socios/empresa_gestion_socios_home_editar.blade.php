@@ -49,6 +49,11 @@
         </div>
       </div>
 
+
+      <div class="contenedor-grupo-datos">
+        <vincular-user-empresa></vincular-user-empresa>
+      </div>
+
       
 
       
@@ -72,6 +77,7 @@
     
 
      
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-user-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
