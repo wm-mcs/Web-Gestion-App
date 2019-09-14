@@ -76,7 +76,7 @@
 
     
 
-     
+     Vue.component('v-select', VueSelect.VueSelect)
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-user-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
