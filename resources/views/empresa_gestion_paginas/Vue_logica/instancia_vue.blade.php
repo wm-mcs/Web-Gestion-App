@@ -12,7 +12,7 @@
         socios:'',
       @endif
       servicios:[],
-      empresa: {!! json_encode($Empresa_gestion) !!},
+      empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
 
 
