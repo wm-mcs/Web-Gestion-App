@@ -6,6 +6,7 @@ props:['empresa'],
 data:function(){
     return { 
       
+      users:[]
 
       }
 },
@@ -22,7 +23,9 @@ computed: {
 methods:{
 
     
-
+getUserSegunRole:function(role){
+  
+}
      
 
 
@@ -32,6 +35,8 @@ methods:{
 template:'
 
 <div>hola</div>
+
+<v-select label="name_para_select" :options="users"></v-select>
 ',
 
 });

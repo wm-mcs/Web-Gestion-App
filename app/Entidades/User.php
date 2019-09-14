@@ -33,6 +33,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    protected $appends = ['name_para_select'];
+
 
 
 
@@ -76,5 +78,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $name = explode(" ", $this->name);
       
         return $name[0];
+    }
+
+    public function getNameParaSelectAttribute()
+    {
+        return $this->name . ' -> ' .$this->email;
     }
 }
