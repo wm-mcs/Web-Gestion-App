@@ -4,9 +4,17 @@
 .contiene_auth_form{
  width:80%;
  padding:10px;
-	border-radius:8px;
+ border-radius:8px;
 	margin-top:30px;
 	background-color: $color-grey0;
+	@include flexbox;       
+  @include flex-direction(column);
+  @include align-items(center); 
+}
+
+.auth_titulo_h1{
+	text-align:center;
+	margin-bottom:30px;
 }
 
 
