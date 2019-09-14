@@ -35,11 +35,11 @@
 
 
            <span id="app">
-             @include('layouts.user_layout.navbar.navbar')
+             
              <div class="flex-row-column get_width_100{{-- wraper-content-principal-con-nav --}}">
                   @yield('content')  
              </div>           
-             @include('paginas.home.home_footer')
+             
         </span>
 
 

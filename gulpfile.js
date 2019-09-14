@@ -17,6 +17,8 @@ elixir(function(mix) {
      mix.sass('mixer.scss','public/css');
      mix.sass('creative_template_mixer.scss','public/css'); 
      mix.sass('admin.scss','public/css'); 
+     mix.sass('appGestionPublic.scss','public/css'); 
+     
 
      
     mix.scripts([
