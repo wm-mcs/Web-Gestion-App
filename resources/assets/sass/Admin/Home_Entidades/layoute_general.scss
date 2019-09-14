@@ -134,6 +134,7 @@
   padding:8px;  
   border-radius: 6px;
   border-bottom: solid 1px $color-grey0;
+  list-style: none;
 }
 
 .admin-columna-ul-titulo{
@@ -189,12 +190,12 @@
 }
 
 // links que llevan a secciones del admin panel
-.admin-columna-contenedor #admin-col-superadmin a li,
-.admin-columna-contenedor #admin-col-admin a li{
+
+.admin-columna-contenedor-li{
   width: 100%;
   padding:5px;
   font: arial;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 2px;
   text-decoration: none;
   list-style: none; 
