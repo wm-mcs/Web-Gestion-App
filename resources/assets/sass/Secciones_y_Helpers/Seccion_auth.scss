@@ -7,9 +7,7 @@
  border-radius:8px;
 	margin-top:30px;
 	background-color: $color-grey0;
-	@include flexbox;       
-  @include flex-direction(column);
-  @include align-items(center); 
+	
 }
 
 .auth_titulo_h1{
