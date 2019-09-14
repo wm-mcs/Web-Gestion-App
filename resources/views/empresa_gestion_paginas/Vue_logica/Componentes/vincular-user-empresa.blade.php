@@ -33,10 +33,10 @@ getUserSegunRole:function(role){
 
 },
 template:'
-
+<span>
 <div>hola</div>
 
 <v-select label="name_para_select" :options="users"></v-select>
-',
+</span>',
 
 });
