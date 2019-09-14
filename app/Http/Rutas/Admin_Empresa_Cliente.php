@@ -23,33 +23,26 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
 
 
 Route::group(['middleware' => 'SistemaGestionSocios'],function()
-{
+{  
 
-
- Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
- {
-    require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
-
-
-
-    Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
-    {
-       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php';
-
-
-       Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
-       {
-        require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
-       });
-    });
-
- });      
+   Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
+   {
+      require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
 
 
+      Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
+      {
+         require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php';
 
 
+         Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
+         {
+          require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
+         });
+      });
 
+   }); 
 });
 
 

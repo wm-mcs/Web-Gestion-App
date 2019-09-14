@@ -234,7 +234,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     else
     {
       return  ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'No se puede crear el socio en este momento'];
+               'Validacion_mensaje'  => 'No se puede crear el socio en este momento: ' . $manager->getErrors()];
     }
 
     
@@ -395,7 +395,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        {
           $Cantidad = 0; 
 
-          while($Cantidad <= (int)$Request->get('cantidad_de_servicios'))
+          while($Cantidad < (int)$Request->get('cantidad_de_servicios'))
           {
             $Cantidad          = $Cantidad + 1;
             $Entidad           = $this->ServicioContratadoSocioRepo->getEntidad();
@@ -473,7 +473,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creó correctamente ',
-               'Socio'               => $this->SocioRepo->find($Request->get($Socio->id)),
+               'Socio'               => $this->SocioRepo->find($Socio->id),
                'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
     
@@ -564,23 +564,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function indicar_que_se_uso_el_servicio_hoy(Request $Request)
   {
 
-     $Validacion        = false;
-     $User              = Auth::user(); 
+     $Validacion        = true;
+     $User              = $Request->get('user_desde_middleware');  
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));     
-     $Socio             = $this->SocioRepo->find($Servicio_a_editar->socio_id);
+     $Socio             = $Request->get('socio_desde_middleware'); 
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Socio->socio_empresa_id ) || $User->role == 'adminMcos522' )
-     { 
-
-        //para saber que es de esa empresa y no de otra
-        if($this->Guardian->son_iguales($Servicio_a_editar->socio_id,$Socio->id) )
-        {
-          $Validacion  = true;
-        } 
-        else
-        {
-          $Validacion  = false;
-        }
+    
 
        $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
        
@@ -588,11 +577,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido', Carbon::now('America/Montevideo') );
 
        $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
-
-       
-     }  
-
-
 
 
 
@@ -602,24 +586,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  =>  'Se consumió la clase correctamente',
                'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
+     
   }
 
   //elimina el estado de cuenta
   public function eliminar_estado_de_cuenta(Request $Request)
   {
-     $Validacion        = false;
-     $User              = Auth::user(); 
+     $Validacion = true;
+     $User              = $Request->get('user_desde_middleware');  
      $estado_de_cuenta  = json_decode(json_encode($Request->get('estado_de_cuenta')));     
-     $Socio             = $this->SocioRepo->find($estado_de_cuenta->socio_id);
+     $Socio             = $Request->get('socio_desde_middleware'); 
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id, $Socio->socio_empresa_id ) || $User->role == 'adminMcos522' )
-     { 
-          $Validacion  = true;
+    
 
 
 
@@ -632,7 +610,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
 
-     }
+     
 
 
      if($Validacion)
@@ -641,11 +619,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Validacion_mensaje'  =>  'Se eliminó el estado de cuentacorrectamente',
                'Socio'               =>  $Socio];
      }
-     else
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Algo no está bien :( '];
-     } 
+     
        
   }
 

@@ -2,7 +2,6 @@ Vue.component('agregar-al-socio-un-servicio' ,
 {
 
 
-props:['empresa'],
 data:function(){
     return {
       
@@ -14,8 +13,8 @@ data:function(){
                         valor:'',
                         fecha_vencimiento:'',
                         cantidad_de_servicios:'',
-                        empresa_id: {{$Empresa_gestion->id}},
-                        socio_id:'',
+                        empresa_id:this.empresa.id,
+                        socio_id:this.socio.id,
                         socio_empresa_id:'',
                         paga:'si'
 
@@ -25,7 +24,7 @@ data:function(){
     }
 },
 
-props:['socio','servicios']
+props:['socio','servicios','empresa']
 ,
 
 
@@ -74,7 +73,7 @@ methods:{
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            
-      }).catch(function (error){});
+      }).catch(function (error){}); 
 
 
 
@@ -85,7 +84,7 @@ methods:{
 
   
   var servicio = this.seleccionarUnObjetoSegunAtributo( this.servicios,'name',this.tipo_servicio);
-                  console.log(servicio);
+                  
 
   this.servicio_data.name             = servicio.name;
   this.servicio_data.tipo             = servicio.tipo;

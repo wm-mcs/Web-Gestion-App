@@ -40,7 +40,7 @@ class Authenticate
             } else {
                 return redirect()->route('auth_login_get')
                                  ->with('alert-rojo' ,  
-                            'Debes iniciar sesion para ingresar aqui');
+                                 'Debes iniciar sesión para ingresar aquí');
             }
         }
 
