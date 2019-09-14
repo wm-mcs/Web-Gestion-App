@@ -22,13 +22,17 @@
  
 
 
-
-    <h1>Inicio de Sesión</h1>
-    <div class="contiene_auth_form">
-     
-       @include('formularios.auth.login_form')
+    <div class="contiene_auth">
       
-    </div>
+   
+      <h1>Inicio de Sesión</h1>
+      <div class="contiene_auth_form">
+       
+         @include('formularios.auth.login_form')
+        
+      </div>
+
+     </div>
   
      
 

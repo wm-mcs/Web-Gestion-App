@@ -1,3 +1,11 @@
+.contiene_auth{
+	padding:10px;
+	border-radius:8px;
+	margin-top:30px;
+	background-color: $color-grey0;
+}
+
+
 .contiene_auth_form{
  width:80%;
 }
@@ -28,6 +36,6 @@
 @media (min-width: $BrackPoint-Tercer){
 
 	.contiene_auth_form{
-	 width:50%;
+	 width:40%;
     }
 }
