@@ -8,7 +8,7 @@
            
 
              <div class="form-group">
-              <label for="username" class="cols-sm-2 control-label">Usuario</label>
+              
               <div class="cols-sm-10">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
