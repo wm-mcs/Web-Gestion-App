@@ -83,7 +83,7 @@
 @section('columna')
 
   {{-- imagen logo --}}
-  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->img_logo_cuadrado}}"></a>
+  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->url_img}}"></a>
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
