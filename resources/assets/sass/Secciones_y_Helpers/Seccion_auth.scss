@@ -1,3 +1,33 @@
 .contiene_auth_form{
  width:80%;
 }
+
+
+
+@media (min-width: $BrackPoint-Primario){
+
+
+	.contiene_auth_form{
+	 width:70%;
+    }
+}
+
+
+
+
+
+@media (min-width: $BrackPoint-Secundario){
+	.contiene_auth_form{
+	 width:60%;
+    }
+}
+
+
+
+
+@media (min-width: $BrackPoint-Tercer){
+
+	.contiene_auth_form{
+	 width:50%;
+    }
+}
