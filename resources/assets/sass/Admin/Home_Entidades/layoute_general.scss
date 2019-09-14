@@ -131,18 +131,18 @@
 
 .admin-columna-contenedor ul{
   margin-top: 40px;
-  padding:8px;
-  background-color: $color-grey1;
+  padding:8px;  
   border-radius: 6px;
+  border-bottom: solid 1px $color-grey0;
 }
 
 .admin-columna-ul-titulo{
-  font-size: 8px;
+  font-size: 10px;
   font-weight: bold;
   color:$color-gris-text;
-  margin-bottom: 3px;
-  width: 100%;
   
+  width: 100%;
+
 }
 
 // links a secciones de la admin
