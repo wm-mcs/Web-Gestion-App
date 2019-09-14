@@ -1,4 +1,4 @@
-@extends('layouts.admin_layout.admin_layout')
+@extends('layouts.gestion_socios_layout.admin_layout')
 
 @section('miga-de-pan') 
   {{-- lugar atras --}}
@@ -59,4 +59,27 @@
 
   {!! Form::close() !!}
   
+@stop
+
+
+
+@section('vue-logica')
+
+
+<script type="text/javascript">
+
+
+    
+
+     
+     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
+
+
+
+</script>
+
+@stop
+
+@section('columna')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna')
 @stop
