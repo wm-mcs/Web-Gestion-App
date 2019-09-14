@@ -25,7 +25,7 @@
 
 
       <div class="contiene_auth_form">
-         <h1 class="auth_titulo_h1">Resetear contraseña  </h1>
+         <h1 class="auth_titulo_h1">Recuperar contraseña  </h1>
            @include('formularios.auth.reset_password_form')
       </div>
 

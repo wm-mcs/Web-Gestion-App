@@ -2,11 +2,11 @@
 
 
 @section('title')
- Resetear Contraseña  
+ Recuperar Contraseña  
 @stop
 
 @section('MetaContent')
-  Resetear Contraseña .  
+  Recuperar Contraseña .  
 @stop
 
 @section('MetaRobot')
@@ -21,7 +21,7 @@
   
 
      <div class="contiene_auth_form">
-         <h1 class="auth_titulo_h1">Resetear contraseña  </h1>
+         <h1 class="auth_titulo_h1">Cambiar constraseña  </h1>
           @include('formularios.auth.reset_password_get_form')
       </div>     
           
