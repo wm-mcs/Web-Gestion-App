@@ -38,7 +38,7 @@ getUserSegunRole:function(role){
 
   var url  = "/get_user_rol_panel_gestion";
 
-  var data = {empresa_id:empresa.id,
+  var data = {empresa_id:this.empresa.id,
                     role:role};
    var vue = this;
 
