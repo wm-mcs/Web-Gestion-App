@@ -8,7 +8,8 @@ props:['empresa'],
 data:function(){
     return { 
       
-      users:[]
+      users:[],
+      user_seleccionado = ''
 
       }
 },
@@ -26,7 +27,41 @@ methods:{
 
     
 getUserSegunRole:function(role){
-  
+
+
+  var url  = "/get_user_rol_panel_gestion";
+
+  var data = {empresa_id:empresa.id,
+                    role:role};
+   var vue = this;
+
+      axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+              $.notify(data.Validacion_mensaje, "success");
+              
+              
+              
+              vue.users = data.Usuarios;
+
+              
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "warn");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });                  
+},
+vincular_user_con_empresa:function(){
+  alert('hola');
 }
      
 
@@ -36,9 +71,59 @@ getUserSegunRole:function(role){
 },
 template:'
 <span>
-<div>hola</div>
 
-<v-select label="name_para_select" :options="users"></v-select>
+
+
+
+
+   <div       class="admin-user-boton-Crear" 
+       v-on:click="getUserSegunRole(2)"
+        data-toggle="modal" 
+        data-target="#modal-vincular-usuario">
+        Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
+   </div>
+
+         <div class="modal fade" id="modal-vincular-usuario" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Vincular usuario</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+          
+        </div>
+        <div class="modal-body text-center"> 
+
+                  <div class="form-group">
+                      <label class="formulario-label" for="Nombre">Usuario  </label>
+                      <v-select label="name_para_select" :options="users" v-model="user_seleccionado"></v-select>
+                  </div> 
+                 
+               
+
+                  <div  v-on:click="vincular_user_con_empresa" class="boton-simple">Agregar</div>
+                  
+                 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </span>',
 
 });
