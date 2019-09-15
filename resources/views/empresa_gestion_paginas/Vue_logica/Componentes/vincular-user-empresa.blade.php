@@ -32,6 +32,9 @@ abrirModalon:function(id){
 getUserSegunRole:function(role){
 
 
+  alert(role);
+
+
   this.abrirModalon('#modal-vincular-usuario');
 
 
