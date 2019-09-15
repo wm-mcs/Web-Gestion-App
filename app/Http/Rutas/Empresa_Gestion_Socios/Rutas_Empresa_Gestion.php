@@ -11,7 +11,7 @@
           ]);
 
           //llana mmo a los usuarios con el rol para asiganr a una empresa
-          Route::get('get_user_rol_panel_gestion',
+          Route::post('get_user_rol_panel_gestion',
           [
             'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_user_rol_panel_gestion',
             'as'         => 'get_user_rol_panel_gestion',                
