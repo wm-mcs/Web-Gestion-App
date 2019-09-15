@@ -1,7 +1,7 @@
 <?php 
 
 
- Route::group(['middleware' => 'SistemaGestionUserGerarquia:4'], function()
+ Route::group(['middleware' => 'SistemaGestionUserGerarquia:3'], function()
  {
           //Get Listado
           Route::get('get_admin_empresas_gestion_socios',
@@ -9,6 +9,14 @@
             'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios',
             'as'         => 'get_admin_empresas_gestion_socios',                
           ]);
+
+          //llana mmo a los usuarios con el rol para asiganr a una empresa
+          Route::get('get_user_rol_panel_gestion',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_user_rol_panel_gestion',
+            'as'         => 'get_user_rol_panel_gestion',                
+          ]);
+          
 
 
            Route::group(['middleware' => 'SistemaGestionUserGerarquia:8'], function()

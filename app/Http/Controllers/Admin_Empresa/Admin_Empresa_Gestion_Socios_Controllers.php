@@ -16,6 +16,7 @@ use App\Repositorios\TipoDeServicioRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
+use App\Repositorios\UserRepo;
 
 
 
@@ -29,13 +30,15 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $TipoDeServicioRepo;
   protected $ServicioContratadoSocioRepo;
   protected $MovimientoEstadoDeCuentaSocioRepo;
+  protected $UserRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
                               SocioRepo                         $SocioRepo, 
                               TipoDeServicioRepo                $TipoDeServicioRepo,
                               ServicioContratadoSocioRepo       $ServicioContratadoSocioRepo,
-                              MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo )
+                              MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo,
+                              UserRepo                          $UserRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -43,6 +46,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->TipoDeServicioRepo                = $TipoDeServicioRepo;
     $this->ServicioContratadoSocioRepo       = $ServicioContratadoSocioRepo;
     $this->MovimientoEstadoDeCuentaSocioRepo = $MovimientoEstadoDeCuentaSocioRepo;
+    $this->UserRepo                          = $UserRepo;
   }
 
   public function getPropiedades()
@@ -597,10 +601,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $estado_de_cuenta  = json_decode(json_encode($Request->get('estado_de_cuenta')));     
      $Socio             = $Request->get('socio_desde_middleware'); 
 
-    
-
-
-
           //elimino a la entidad
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
 
@@ -621,6 +621,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      }
      
        
+  }
+
+
+
+  public function get_user_rol_panel_gestion(Request $Request)
+  {
+      $Users = $this->UserRepo->getUserSegunRole($Request->get('role'));
+
+       return ['Validacion'          =>  true,
+               'Validacion_mensaje'  =>  'Se cargaron los usuarios correctamente',
+               'Usuarios'            =>  $Users];
+
   }
 
 

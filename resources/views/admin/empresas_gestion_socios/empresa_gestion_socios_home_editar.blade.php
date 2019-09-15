@@ -51,7 +51,7 @@
 
 
       <div class="contenedor-grupo-datos">
-        <vincular-user-empresa></vincular-user-empresa>
+        <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
       </div>
 
       
