@@ -99,7 +99,7 @@ class UserRepo extends BaseRepo
   public function getUserSegunRole($Role)
   {
     return $this->getEntidad()
-                ->where('role' > $Role)
+                ->where('role','>' ,$Role)
                 ->get();
   }
   
