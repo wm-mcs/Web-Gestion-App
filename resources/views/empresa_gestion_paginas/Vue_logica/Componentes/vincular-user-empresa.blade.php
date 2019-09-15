@@ -9,7 +9,7 @@ data:function(){
     return { 
       
       users:[],
-      user_seleccionado = ''
+      user_seleccionado: ''
 
       }
 },
