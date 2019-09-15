@@ -25,8 +25,15 @@ computed: {
 },
 methods:{
 
+abrirModalon:function(id){
+  $(id).appendTo("body").modal('show'); 
+},
     
 getUserSegunRole:function(role){
+
+
+  this.abrirModalon('#modal-vincular-usuario');
+
 
 
   var url  = "/get_user_rol_panel_gestion";
@@ -78,8 +85,7 @@ template:'
 
    <div       class="admin-user-boton-Crear" 
        v-on:click="getUserSegunRole(2)"
-        data-toggle="modal" 
-        data-target="#modal-vincular-usuario">
+        
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
