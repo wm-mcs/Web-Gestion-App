@@ -17,6 +17,7 @@ use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Repositorios\UserRepo;
+use App\Repositorios\UserEmpresaRepo,
 
 
 
@@ -31,6 +32,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $ServicioContratadoSocioRepo;
   protected $MovimientoEstadoDeCuentaSocioRepo;
   protected $UserRepo;
+  protected $UserEmpresaRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -38,7 +40,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               TipoDeServicioRepo                $TipoDeServicioRepo,
                               ServicioContratadoSocioRepo       $ServicioContratadoSocioRepo,
                               MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo,
-                              UserRepo                          $UserRepo  )
+                              UserRepo                          $UserRepo, 
+                              UserEmpresaRepo                   $UserEmpresaRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -47,6 +50,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->ServicioContratadoSocioRepo       = $ServicioContratadoSocioRepo;
     $this->MovimientoEstadoDeCuentaSocioRepo = $MovimientoEstadoDeCuentaSocioRepo;
     $this->UserRepo                          = $UserRepo;
+    $this->UserEmpresaRepo                   = $UserEmpresaRepo;
   }
 
   public function getPropiedades()
@@ -632,6 +636,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        return ['Validacion'          =>  true,
                'Validacion_mensaje'  =>  'Se cargaron los usuarios correctamente',
                'Usuarios'            =>  $Users];
+
+  }
+
+
+  public function set_user_a_empresa(Request $Request)
+  {
 
   }
 

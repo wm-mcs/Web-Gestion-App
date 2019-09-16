@@ -72,6 +72,37 @@ getUserSegunRole:function(role){
 },
 vincular_user_con_empresa:function(){
   alert('hola');
+
+  var url  = "/set_user_a_empresa";
+
+  var data = {empresa_id:this.empresa.id,
+                 user_id:this.user_seleccionado.id};
+   var vue = this;
+
+      axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+              $.notify(data.Validacion_mensaje, "success");
+              
+              
+              
+              app.empresa = data.empresa;
+
+              
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "warn");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });       
 }
      
 

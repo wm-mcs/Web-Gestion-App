@@ -16,6 +16,17 @@
             'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_user_rol_panel_gestion',
             'as'         => 'get_user_rol_panel_gestion',                
           ]);
+
+          // vinculo una empresa con un usuario
+          Route::post('set_user_a_empresa',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_user_a_empresa',
+            'as'         => 'set_user_a_empresa',                
+          ]);
+
+
+
+          
           
 
 
