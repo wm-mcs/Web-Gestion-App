@@ -2,7 +2,7 @@
 
 
 @section('miga-de-pan') 
-  <span>Panel general de {{$Empresa_gestion->name}}</span>
+  <span>Panel general de {{$Empresa->name}}</span>
 @stop
 
 @section('content')
