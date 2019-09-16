@@ -161,11 +161,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Socio           = $this->SocioRepo->find($id);
       
        //verifico que el socio sea de esa empresa y no de otra
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role == 'adminMcos522' )
+       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role > 6 )
        {           
 
-         $Empresa_gestion = $this->EmpresaConSociosoRepo->find($Socio->empresa_id); 
-         return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa_gestion'));   
+         $Empresa = $this->EmpresaConSociosoRepo->find($Socio->empresa_id); 
+         return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));   
        }
        else
        {
