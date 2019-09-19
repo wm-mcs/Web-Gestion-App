@@ -28,17 +28,18 @@ class UserEmpresa extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     } 
 
       public function getUsuarioAttribute()
       {
+        dd($this->user);
         return $this->user;
       }
 
     public function empresa()
     {
-        return $this->hasOne(EmpresaConSocios::class,'empresa_id','id');
+        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
     }  
 
       public function getEmpresaAsociadaAttribute()
