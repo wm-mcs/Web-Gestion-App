@@ -5,6 +5,7 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
+use App\Entidades\UserEmpresa;
 
 
 
@@ -23,10 +24,19 @@ class EmpresaConSocios extends Model
     protected $fillable = ['name', 'description'];
 
 
-    
+    protected $appends  = ['usuarios_de_empresa'];
 
 
+    public function users()
+    {
+      return $this->hasMany(UserEmpresa::class,'empresa_id','id');
+    } 
 
+
+    public function getUsuariosDeEmpresaAttribute()
+    {
+        return $this->usuarios_de_empresa;
+    }
     
 
 

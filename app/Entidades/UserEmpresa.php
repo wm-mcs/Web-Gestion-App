@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use App\Entidades\User;
 use App\Entidades\EmpresaConSocios;
+use App\Entidades\User;
 
 
 
@@ -22,9 +23,28 @@ class UserEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+    protected $appends  = ['user_asociado','empresa_asociada'];
 
 
-   
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    } 
+
+      public function getUserAsociadoAttribute()
+      {
+        return $this->user;
+      }
+
+    public function empresa()
+    {
+        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
+    }  
+
+      public function getEmpresaAsociadaAttribute()
+      {
+        return $this->empresa;
+      }
 
 
     
