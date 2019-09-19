@@ -123,11 +123,13 @@ template:'
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
-   <div>
+   <div v-if="empresa.usuarios_de_empresa.length">
       <div v-for="usuario_empresa in empresa.usuarios_de_empresa" :key="usuario_empresa.id" >
         @{{usuario_empresa.user_asociado.name}}
-
       </div>
+   </div>
+   <div v-else>
+     No hay usuarios asociados     
    </div>
 
          <div class="modal fade" id="modal-vincular-usuario" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">

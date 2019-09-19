@@ -642,6 +642,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function set_user_a_empresa(Request $Request)
   {
+     
+      //creo el usuario
+      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+
+      //traigo la empresa
+      $Empresa    = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+
+      return [ 'Validacion'          =>  $Validacion['Validacion'],
+               'Validacion_mensaje'  =>  $Validacion['Validacion_mensaje'],
+               'empresa'             =>  $Empresa];
 
   }
 

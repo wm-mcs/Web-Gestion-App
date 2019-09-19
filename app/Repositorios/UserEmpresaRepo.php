@@ -21,10 +21,34 @@ class UserEmpresaRepo extends BaseRepo
 
   public function setAsociarEmpresaYUser($Empresa_id,$User_id)
   {
-  	$Entidad             = $this->getEntidad();
-  	$Entidad->user_id    = $User_id;
-  	$Entidad->empresa_id = $Empresa_id;
-  	$Entidad->save();
+
+    $Existe = $this->getEntidad()
+                   ->where('user_id',$User_id)
+                   ->where('empresa_id',$Empresa_id)
+                   ->get();
+
+    $Validacion = false;
+    $Mensaje    = 'Ya está asociado este usuario con esta empresa';
+
+    if($Existe->count() == 0)
+    {
+      $Validacion = true;
+      $Mensaje    = 'Se asoció correctamente';
+      
+      $Entidad             = $this->getEntidad();
+      $Entidad->user_id    = $User_id;
+      $Entidad->empresa_id = $Empresa_id;
+      $Entidad->save();
+    }
+
+
+    return [  
+             'Validacion'          =>  $Validacion,
+             'Validacion_mensaje'  =>  $Mensaje     
+           ];
+
+
+  	
 
   }
 
