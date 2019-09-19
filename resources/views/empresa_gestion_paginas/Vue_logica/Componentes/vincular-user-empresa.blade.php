@@ -1,6 +1,3 @@
-
-
-
 Vue.component('vincular-user-empresa',
 {
 props:['empresa'],
