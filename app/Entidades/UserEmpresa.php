@@ -28,7 +28,7 @@ class UserEmpresa extends Model
 
     public function user()
     {
-       /* return $this->belongsTo(User::class,'user_id','id');*/
+        return $this->belongsTo(User::class,'user_id','id');
     } 
 
       public function getUserAsociadoAttribute()
@@ -38,7 +38,7 @@ class UserEmpresa extends Model
 
     public function empresa()
     {
-       /* return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');*/
+        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
     }  
 
       public function getEmpresaAsociadaAttribute()
