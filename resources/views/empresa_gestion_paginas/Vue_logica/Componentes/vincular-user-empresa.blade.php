@@ -32,7 +32,7 @@ abrirModalon:function(id){
 getUserSegunRole:function(role){
 
 
-  alert(role);
+  
 
 
   this.abrirModalon('#modal-vincular-usuario');
@@ -71,7 +71,7 @@ getUserSegunRole:function(role){
            });                  
 },
 vincular_user_con_empresa:function(){
-  alert('hola');
+  
 
   var url  = "/set_user_a_empresa";
 
