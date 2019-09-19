@@ -647,5 +647,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
 
+  //caja crear registro
+  public function crear_registro_de_caja(Request $Request)
+  {
+    
+  }
+
+
+
   
 }
