@@ -5,7 +5,7 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use App\Entidades\User;
-use App\Entidades\EmpresaConSocios,
+use App\Entidades\EmpresaConSocios;
 
 
 
