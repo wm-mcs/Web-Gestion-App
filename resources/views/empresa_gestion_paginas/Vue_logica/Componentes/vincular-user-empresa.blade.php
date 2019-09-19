@@ -122,7 +122,7 @@ template:'
 
    <div v-if="empresa.usuarios_de_empresa.length">
       <div v-for="usuario_empresa in empresa.usuarios_de_empresa" :key="usuario_empresa.id" >
-        @{{usuario_empresa.user_asociado.name}}
+        @{{usuario_empresa.usuario.name}}
       </div>
    </div>
    <div v-else>
