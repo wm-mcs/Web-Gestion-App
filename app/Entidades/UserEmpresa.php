@@ -28,7 +28,7 @@ class UserEmpresa extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class,'user_id','id');
+        return $this->hasOne(User::class,'id','user_id');
     } 
 
       public function getUsuarioAttribute()
@@ -39,13 +39,13 @@ class UserEmpresa extends Model
 
     public function empresa()
     {
-        return $this->hasOne(EmpresaConSocios::class,'empresa_id','id');
+        return $this->hasOne(EmpresaConSocios::class,'id','empresa_id');
     }  
 
       public function getEmpresaAsociadaAttribute()
       {
 
-        
+
         return $this->empresa;
       }
 
