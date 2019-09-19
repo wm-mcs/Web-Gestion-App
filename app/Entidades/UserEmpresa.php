@@ -17,24 +17,37 @@ class UserEmpresa extends Model
 
     protected $table ='lista_usuarios_empresas';
 
-    protected $appends  = ['get_user'];
-    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'description'];
+    protected $appends  = ['usuario','empresa_asociada'];
 
 
     public function user()
     {
-        return $this->belongsTo(User::class,'id','user_id');
+        return $this->hasOne(User::class,'user_id','id');
     } 
 
-     public function getGetUserAttribute()
-     {
+      public function getUsuarioAttribute()
+      {
+
         return $this->user;
-     }
+      }
 
-     
+    public function empresa()
+    {
+        return $this->hasOne(EmpresaConSocios::class,'empresa_id','id');
+    }  
 
+      public function getEmpresaAsociadaAttribute()
+      {
 
-      
+        
+        return $this->empresa;
+      }
 
 
     
