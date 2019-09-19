@@ -38,7 +38,7 @@ class UserEmpresa extends Model
 
     public function empresa()
     {
-        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
+       /* return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');*/
     }  
 
       public function getEmpresaAsociadaAttribute()
