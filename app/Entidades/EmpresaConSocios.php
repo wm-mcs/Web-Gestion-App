@@ -29,7 +29,7 @@ class EmpresaConSocios extends Model
 
     public function users()
     {
-      return $this->hasMany(UserEmpresa::class,'empresa_id');
+      return $this->hasMany(UserEmpresa::class,'empresa_id','id');
     } 
 
 
