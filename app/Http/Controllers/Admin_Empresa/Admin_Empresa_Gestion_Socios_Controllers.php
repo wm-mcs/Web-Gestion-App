@@ -17,7 +17,7 @@ use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Repositorios\UserRepo;
-use App\Repositorios\UserEmpresaRepo,
+use App\Repositorios\UserEmpresaRepo;
 
 
 
