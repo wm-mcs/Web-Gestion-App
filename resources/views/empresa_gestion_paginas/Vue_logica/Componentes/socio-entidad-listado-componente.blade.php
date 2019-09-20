@@ -24,13 +24,13 @@ template:'<span>
        {!! Form::open(['route' => ['get_socio_panel'],
                             'method'=> 'Post',
                             'files' =>  true,
-                            'name'  => 'form1'
+                            'id'    => 'theForm'
                           ])               !!}   
-                          
+
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <input type="hidden" name="socio_id" :value="socio.id">
 
-       <span class="simula_link" onclick="javascript:document.form1.submit()">@{{socio.name}}</span> 
+       <span class="simula_link" onclick="javascript:document.getElementById('theForm')">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
