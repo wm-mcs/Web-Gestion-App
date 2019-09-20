@@ -4,39 +4,47 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use App\Repositorios\UserRepo;
-use App\Repositorios\EmpresaConSociosoRepo;
+use App\Entidades\User;
+use App\Entidades\EmpresaConSocios;
 
 
 
+
+
+//Usuarios y empresas asociados
 class UserEmpresa extends Model
 {
 
     protected $table ='lista_usuarios_empresas';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'description'];
     protected $appends  = ['usuario','empresa_asociada'];
 
 
-   
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    } 
 
       public function getUsuarioAttribute()
       {
-        $Repo = new UserRepo();
-        $User = $Repo->find($this->user_id);
-
-        return $User;
+       
+        return $this->user;
       }
 
-   
+    public function empresa()
+    {
+        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
+    }  
 
       public function getEmpresaAsociadaAttribute()
       {
-
-        $Repo    = new EmpresaConSociosoRepo();
-        $Empresa = $Repo->find($this->empresa_id);
-
-        return $Empresa;
-        
+        return $this->empresa;
       }
 
 
@@ -66,6 +74,16 @@ class UserEmpresa extends Model
                 
     }
 
+
+
+
+
+   
+
+    public function getRouteAttribute()
+    {
+        /*return route('',[$this->helper_convertir_cadena_para_url($this->name), $this->id]);*/
+    }
     
     
 }
