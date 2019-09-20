@@ -156,25 +156,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
   //devulve el socio
-  public function get_socio($id)
+  public function get_socio(Request $Request)
   {
-       $User            = Auth::user();       
-      
-       $Socio           = $this->SocioRepo->find($id);
+       $User            = $Request->get('user_desde_middleware');
+       $Socio           = $Request->get('socio_desde_middleware'); 
 
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role == 'adminMcos522' )
-       { 
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
                   'Socio'                => $Socio 
                  ];
-       }
-       else
-       {
-          return ['Validacion'           => false,
-                  'Validacion_mensaje'   => 'No se puede acceder a el socio en este momento'
-                 ];
-       }
+       
+      
   }
 
 
