@@ -9,20 +9,11 @@ use App\Repositorios\EmpresaConSociosoRepo;
 
 
 
-
-
-//Usuarios y empresas asociados
 class UserEmpresa extends Model
 {
 
     protected $table ='lista_usuarios_empresas';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'description'];
     protected $appends  = ['usuario','empresa_asociada'];
 
 
@@ -75,16 +66,6 @@ class UserEmpresa extends Model
                 
     }
 
-
-
-
-
-   
-
-    public function getRouteAttribute()
-    {
-        /*return route('',[$this->helper_convertir_cadena_para_url($this->name), $this->id]);*/
-    }
     
     
 }
