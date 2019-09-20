@@ -6,7 +6,8 @@ data:function(){
     return { 
       
       users:[],
-      user_seleccionado: ''
+      user_seleccionado: '',
+      usuarios_de_empresa: {!! json_encode($UsersEmpresa) !!}
 
       }
 },
@@ -121,8 +122,8 @@ template:'
    </div>
 
    <div v-if="empresa.usuarios_de_empresa.length">
-      <div v-for="usuario_empresa in empresa.usuarios_de_empresa" :key="usuario_empresa.id" >
-        
+      <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" >
+        @{{usuario_empresa.id}}
       </div>
    </div>
    <div v-else>

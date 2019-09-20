@@ -24,19 +24,7 @@ class EmpresaConSocios extends Model
     protected $fillable = ['name', 'description'];
 
 
-    protected $appends  = ['usuarios_de_empresa'];
-
-
-    public function users()
-    {
-      return $this->hasMany(UserEmpresa::class,'empresa_id','id');
-    } 
-
-
-    public function getUsuariosDeEmpresaAttribute()
-    {
-        return $this->users;
-    }
+   
     
 
 

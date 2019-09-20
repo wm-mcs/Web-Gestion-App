@@ -97,11 +97,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get edit admin marca
   public function get_admin_empresas_gestion_socios_editar($id)
   {
-    $Empresa = $this->EmpresaConSociosoRepo->find($id);
+    $Empresa      = $this->EmpresaConSociosoRepo->find($id);
 
-    
+    $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id );
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa'));
+    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa'));
   }
 
   //set edit admin marca

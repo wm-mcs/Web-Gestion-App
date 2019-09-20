@@ -23,7 +23,7 @@
     
  </div>
 
-  {{dd($Empresa)}}
+  
 
   {{-- formulario --}}
   {!! Form::model($Empresa,   ['route' => ['set_admin_empresas_gestion_socios_editar',$Empresa->id],
