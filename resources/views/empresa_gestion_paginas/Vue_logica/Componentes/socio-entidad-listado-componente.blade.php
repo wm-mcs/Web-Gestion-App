@@ -10,7 +10,7 @@ methods:{
 enviar_form:function(){
 
 
-   this.$refs.form.$el.submit()
+   this.$refs.form.submit()
 }
          
 
