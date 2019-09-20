@@ -90,7 +90,7 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 vue.servicios = response.data.servicios;
+                 vue.empresa = response.data.empresa;
                  
                  $.notify(response.data.Validacion_mensaje, "warn");
                  
@@ -124,7 +124,7 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 vue.servicios = response.data.servicios;
+                 vue.empresa = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "warn");
                  
               }

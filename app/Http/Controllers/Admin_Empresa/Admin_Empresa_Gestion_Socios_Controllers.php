@@ -267,9 +267,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //agrega un nuevo tipo de servicio ( Tipo Clase o Tipo Mensual )
   public function set_nuevo_servicio(Request $Request)
   {
-   
-
-       $Validacion  = false;
        $User        = $Request->get('user_desde_middleware');   
      
        $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
@@ -288,28 +285,25 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creo correctamente ',
-               'empresa'             => $Empresa];
-
-    
-       
-    
+               'empresa'             => $Empresa];    
   }
 
 
   //borrar un servicio
   public function delet_servicio(Request $Request)
   {
-     $Validacion  = false;
+     
      $User        = $Request->get('user_desde_middleware');     
      $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
+     $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
-       $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
+     $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
 
-       $Validacion = true;
+     $Validacion   = true;
 
-       return ['Validacion'          => $Validacion,
+     return  [ 'Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se borró correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
+               'empresa'             => $Empresa];
 
       
   }
@@ -320,18 +314,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //editar un servicio
   public function editar_servicio(Request $Request)
   {
-     $Validacion  = false;
-     $User        = $Request->get('user_desde_middleware');  
-     
-    
-
+       $User        = $Request->get('user_desde_middleware'); 
        $Validacion  = true;
-       $Servicio    = $Request->get('servicio'); //me manda la data en array vue
-
-       
+       $Servicio    = $Request->get('servicio'); //me manda la data en array vue       
        $Entidad     = $this->TipoDeServicioRepo->find($Servicio['id']); 
-
-
+       $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
        
        //las porpiedades que se van a editar
        $Propiedades = ['name','tipo','valor','moneda'];
@@ -343,13 +330,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        $Entidad->save();
 
-       
-
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
-
-    
+               'empresa'             => $Empresa];
   }
 
   //agrega servicio a socio
