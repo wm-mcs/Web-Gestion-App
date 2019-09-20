@@ -26,7 +26,7 @@ class UserEmpresa extends Model
     protected $appends  = ['usuario','empresa_asociada'];
 
 
-    public function user()
+    public function usuario_asociado()
     {
         return $this->belongsTo(User::class,'user_id','id');
     } 
@@ -34,7 +34,7 @@ class UserEmpresa extends Model
       public function getUsuarioAttribute()
       {
 
-        return $this->id;
+        return $this->usuario_asociado;
       }
 
     public function empresa()
