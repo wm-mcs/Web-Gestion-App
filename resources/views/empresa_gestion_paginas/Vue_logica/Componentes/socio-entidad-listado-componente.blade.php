@@ -10,7 +10,7 @@ methods:{
 enviar_form:function(){
 
 
-   $(this).parents().submit();
+   this.$refs.form.$el.submit()
 }
          
 
@@ -27,7 +27,8 @@ template:'<span>
          
        {!! Form::open(['route' => ['get_socio_panel'],
                             'method'=> 'Post',
-                            'files' =>  true
+                            'files' =>  true,
+                            'refs'  => 'form'
                           ])               !!}   
 
        <input type="hidden" name="empresa_id" :value="empresa.id">
