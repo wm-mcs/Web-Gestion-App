@@ -99,7 +99,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $Empresa = $this->EmpresaConSociosoRepo->find($id);
 
-    dd($Empresa);
+    dd($Empresa->users);
 
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa'));
   }
