@@ -23,7 +23,7 @@ class UserEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['usuario','empresa_asociada'];
+    /*protected $appends  = ['usuario','empresa_asociada'];*/
 
 
     public function user()
