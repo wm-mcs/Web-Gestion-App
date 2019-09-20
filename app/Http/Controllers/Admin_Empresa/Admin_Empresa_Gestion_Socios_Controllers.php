@@ -124,21 +124,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
   //Panel de gestio de empresa
-  public function get_empresa_panel_de_gestion($id)
+  public function get_empresa_panel_de_gestion(Request $Request)
   {
-     $User            = Auth::user();  
-      
+       $User            =  $Request->get('user_desde_middleware');  
+       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id,$id) || $User->role > 6 )
-     {
-       $Empresa = $this->EmpresaConSociosoRepo->find($id); 
-       $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id, null, 100);
+     
+       $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+       $Socios  = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
+
        return view('empresa_gestion_paginas.home', compact('Empresa','Socios'));   
-     }
-     else
-     {
-       return redirect()->back()->with('alert-danger', 'hay algo raro aquí :( ');
-     }   
+       
 
       
   }
@@ -148,14 +144,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function get_socios_activos(Request $Request)   
   {
 
-       $User            = $Request->get('user_desde_middleware');
-     
-      
-       $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id,null,30);
-      
-       return ['socios' => $Socios];
-       
-     
+       $User               = $Request->get('user_desde_middleware'); 
+       $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
+       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,30);
+       return ['socios' => $Socios];     
   }
 
   //es el panel del socio para editar

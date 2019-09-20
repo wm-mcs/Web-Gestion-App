@@ -15,12 +15,17 @@
 
  {{-- titulo --}}
  <div class="contenedor-admin-entidad-titulo-form-busqueda">
-    <div class="admin-entidad-titulo"> 
-     <a href="{{$Empresa->route_panel_empresa}}">
-       <span class="admin-user-boton-Crear">Vista de cliente</span>
-     </a>  
-    </div>
-    
+    <div class="admin-entidad-titulo">   
+        {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'class' =>
+                          ])               !!}   
+       <input type="hidden" name="empresa_id" :value="empresa.id">
+       <span class="admin-user-boton-Crear" onclick="javascript:document.form1.submit()">Vista de cliente</span>    
+
+       {!! Form::close() !!}  
+    </div>    
  </div>
 
   
