@@ -20,11 +20,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select','empresas_asociadas'];
+    protected $appends  = ['name_para_select'];
 
 
 
-    public function empresas()
+    /*public function empresas()
     {
       return $this->hasMany(UserEmpresa::class,'user_id','id');
     } 
@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      public function getEmpresasAsociadasAttribute()
      {
         return $this->empresas;
-     }
+     }*/
 
 
 
