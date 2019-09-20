@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
+use App\Repositorios\UserEmpresaRepo;
+use Illuminate\Support\Facades\Cache;
 
 use Closure;
 
@@ -31,19 +33,30 @@ class SistemaGestionEmpresaIgualUserEmpresa
                            //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
-        /**
-         * obtengo el usuario conectado con el helper auth();
-         */
-        $User       = auth()->user();
-        $Validacion = false;
+        $UserEmpresa  = new UserEmpresaRepo();
+        $User         = auth()->user();
+        $Validacion   = false;
+
+        $Validacion_de_usuario_vinculado_empresa = 
+        Cache::remember('UserIgualEmpresa'.$User->id, 10, function() use($UserEmpresa,$User,$request)
+                         {
+                              return $UserEmpresa->verificarSiUserYEmpresaEstanVicnulados($User->id,$request->get('empresa_id'));
+                         }
+                        ); 
 
 
-        if($User->empresa_gestion_id == $request->get('empresa_id')  || $User->role > 6 )
-        { 
-            $Validacion = true;
-          //agrego al user desde aqui para no pedirlo en el controller
-          $request->attributes->add(['user_desde_middleware' => $User ]);
-        }  
+
+        if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true  || $User->role > 6)
+        {
+              //el usuario que vicnula
+              $UserEmpresa = $Validacion_de_usuario_vinculado_empresa['UserEmpresa'];            
+              $Validacion = true;
+
+              //agrego al user desde aqui para no pedirlo en el controller
+              $request->attributes->add(['user_desde_middleware' => $User ]);
+              $request->attributes->add(['user_empresa_desde_middleware' => $UserEmpresa ]);
+              
+        }
 
         if(!$Validacion)
         {

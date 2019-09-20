@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 use App\Repositorios\SocioRepo;
+use App\Repositorios\UserEmpresaRepo;
+use Illuminate\Support\Facades\Cache;
 
 use Closure;
 
@@ -32,22 +34,21 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
                            //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
-        /**
-         * obtengo el usuario conectado con el helper auth();
-         */
-        $User       = auth()->user();
-        $ReposSocio = new SocioRepo();
-        $Socio      = $ReposSocio->find($request->get('socio_id'));
+        $UserEmpresaRepo = new UserEmpresaRepo();
+        $User            = $request->get('user_desde_middleware');
+        $ReposSocio      = new SocioRepo();
+        $Socio           = $ReposSocio->find($request->get('socio_id'));
+        $UserEmpresa     = $request->get('user_empresa_desde_middleware');
         
-        $Validacion = false;
+        $Validacion      = false;
+
+    
 
 
-        if(($User->empresa_gestion_id == $Socio->empresa_id) || ($User->role > 6) )
+        if(($UserEmpresa->empresa_id == $Socio->empresa_id) || ($User->role > 6) )
         { 
 
-            $Validacion = true;
-          //agrego al user desde aqui para no pedirlo en el controller
-          $request->attributes->add(['user_desde_middleware'  => $User ]);
+          $Validacion = true;          
           $request->attributes->add(['socio_desde_middleware' => $Socio]);
         }  
 

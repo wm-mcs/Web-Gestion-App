@@ -53,6 +53,28 @@ class UserEmpresaRepo extends BaseRepo
   }
 
 
+  public function verificarSiUserYEmpresaEstanVicnulados($User_id,$Empresa_id)
+  {
+      $User = $this->getEntidad()
+                   ->where('user_id',$User_id)
+                   ->where('empresa_id',$Empresa_id)
+                   ->get(); 
+
+      $Validacion = false;             
+
+      if($User->count() > 0)
+      {
+          $Validacion = true;
+      }
+
+
+      return [  
+             'Validacion'   =>  $Validacion,
+             'UserEmpresa'  =>  $User->first()   
+               ];
+  }
+
+
  
 
 
