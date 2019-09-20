@@ -35,7 +35,7 @@ class EmpresaConSocios extends Model
 
     public function getUsuariosDeEmpresaAttribute()
     {
-        return $this->users;
+        return $this->id;
     }
     
 
