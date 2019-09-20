@@ -4,8 +4,8 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use App\Entidades\User;
-use App\Entidades\EmpresaConSocios;
+use App\Repositorios\UserRepo;
+use App\Repositorios\EmpresaConSociosoRepo;
 
 
 
@@ -26,26 +26,25 @@ class UserEmpresa extends Model
     protected $appends  = ['usuario','empresa_asociada'];
 
 
-    public function usuario_asociado()
-    {
-        return $this->belongsTo(User::class,'id','user_id');
-    } 
+   
 
       public function getUsuarioAttribute()
       {
+        $Repo = new UserRepo();
+        $User = $Repo->find($this->user_id);
 
-        return $this->usuario_asociado;
+        return $User;
       }
 
-    public function empresa()
-    {
-        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
-    }  
+   
 
       public function getEmpresaAsociadaAttribute()
       {
 
-         return $this->empresa_id;
+        $Repo    = new EmpresaConSociosoRepo();
+        $Empresa = $Repo->find($this->empresa_id);
+
+        return $Empresa;
         
       }
 
