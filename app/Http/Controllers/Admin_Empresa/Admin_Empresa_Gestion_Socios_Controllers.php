@@ -145,7 +145,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
   //es el panel del socio para editar
-  public function get_socio_panel()
+  public function get_socio_panel(Request $Request)
   {
        $User            = $Request->get('user_desde_middleware'); 
        $Socio           = $Request->get('socio_desde_middleware'); 
