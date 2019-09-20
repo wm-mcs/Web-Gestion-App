@@ -11,7 +11,7 @@
     
   
 
-<socio-panel-componente :servicios="empresa.tipo_servicios" :empresa="empresa"></socio-panel-componente>
+<socio-panel-componente  :empresa="empresa"></socio-panel-componente>
 
    
 

@@ -2,7 +2,7 @@ Vue.component('socio-panel-componente',
 {
 
 
-props:['servicios','empresa'],
+props:['empresa'],
 
 data:function(){
     return {
@@ -160,8 +160,7 @@ template:'<span>
     </div>
     <div class="panel-socio-contiene-acciones"> 
       
-     <agregar-al-socio-un-servicio :socio="socio"  
-                                   :servicios="servicios"
+     <agregar-al-socio-un-servicio :socio="socio"                                     
                                    :empresa="empresa"
                                    @actualizar_servicios_de_socios="getServiciosDelSocio"
                                    @actualizar_socio="actualizar_socio" ></agregar-al-socio-un-servicio>  
