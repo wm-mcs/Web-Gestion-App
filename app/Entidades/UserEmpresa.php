@@ -33,7 +33,7 @@ class UserEmpresa extends Model
 
       public function getUsuarioAttribute()
       {
-       
+
         return $this->user;
       }
 
@@ -44,6 +44,8 @@ class UserEmpresa extends Model
 
       public function getEmpresaAsociadaAttribute()
       {
+
+        dd($this->empresa);
         return $this->empresa;
       }
 
