@@ -33,7 +33,7 @@ class EmpresaConSocios extends Model
        public function getTipoServiciosAttribute()
     {
         
-        return $this->servicios();
+        return $this->servicios;
     }
 
 
