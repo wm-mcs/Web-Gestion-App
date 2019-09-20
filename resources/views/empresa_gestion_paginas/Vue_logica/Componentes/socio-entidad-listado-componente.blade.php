@@ -8,7 +8,9 @@ props:['socios','empresa']
 
 methods:{
 enviar_form:function(){
-  document.getElementById('Form1').submit();
+
+
+   $(this).parent().submit();
 }
          
 
