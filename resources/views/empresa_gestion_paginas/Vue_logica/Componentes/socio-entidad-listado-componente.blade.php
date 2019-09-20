@@ -28,7 +28,7 @@ template:'<span>
        {!! Form::open(['route' => ['get_socio_panel'],
                             'method'=> 'Post',
                             'files' =>  true,
-                            'id'  => 'socio.id'
+                            'v-id'  => 'socio.id'
                           ])               !!}   
 
        <input type="hidden" name="empresa_id" :value="empresa.id">
