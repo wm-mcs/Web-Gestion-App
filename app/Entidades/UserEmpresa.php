@@ -23,7 +23,7 @@ class UserEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    /*protected $appends  = ['usuario','empresa_asociada'];*/
+    protected $appends  = ['usuario','empresa_asociada'];
 
 
     public function user()
@@ -34,7 +34,7 @@ class UserEmpresa extends Model
       public function getUsuarioAttribute()
       {
 
-        return $this->user;
+        return $this->id;
       }
 
     public function empresa()
@@ -45,8 +45,8 @@ class UserEmpresa extends Model
       public function getEmpresaAsociadaAttribute()
       {
 
-       
-        return $this->empresa;
+         return $this->empresa_id;
+        
       }
 
 
