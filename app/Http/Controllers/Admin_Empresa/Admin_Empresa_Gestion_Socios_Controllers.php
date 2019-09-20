@@ -129,6 +129,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $User            =  $Request->get('user_desde_middleware');  
        $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');
 
+       dd($User,$UserEmpresa);
      
        $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
        $Socios  = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
