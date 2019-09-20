@@ -26,9 +26,11 @@ template:'<span>
                             'files' =>  true,
                             'name'  => 'form1'
                           ])               !!}   
+                          
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <input type="hidden" name="socio_id" :value="socio.id">
-       <span class="" onclick="javascript:document.form1.submit()" >@{{socio.name}}</span> 
+
+       <span class="simula_link" onclick="javascript:document.form1.submit()">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
