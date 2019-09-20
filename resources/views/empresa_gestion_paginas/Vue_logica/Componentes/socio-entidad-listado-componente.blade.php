@@ -10,7 +10,7 @@ methods:{
 enviar_form:function(){
 
 
-   $(this).parent().submit();
+   $(this).parents().submit();
 }
          
 
@@ -27,8 +27,7 @@ template:'<span>
          
        {!! Form::open(['route' => ['get_socio_panel'],
                             'method'=> 'Post',
-                            'files' =>  true,
-                            'id'    => 'Form1'
+                            'files' =>  true
                           ])               !!}   
 
        <input type="hidden" name="empresa_id" :value="empresa.id">
