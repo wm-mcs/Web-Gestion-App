@@ -87,7 +87,7 @@ vincular_user_con_empresa:function(){
               
               
               
-              app.empresa = data.empresa;
+              this.usuarios_de_empresa = data.UsersEmpresa;
 
               
             }
@@ -121,9 +121,9 @@ template:'
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
-   <div v-if="empresa.usuarios_de_empresa.length">
+   <div v-if="usuarios_de_empresa.length">
       <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" >
-        @{{usuario_empresa.id}}
+        @{{usuario_empresa.user.name}}
       </div>
    </div>
    <div v-else>

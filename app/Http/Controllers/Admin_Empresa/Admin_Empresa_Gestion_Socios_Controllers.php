@@ -649,11 +649,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
       //traigo la empresa
-      $Empresa    = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+      $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
-      return [ 'Validacion'          =>  $Validacion['Validacion'],
-               'Validacion_mensaje'  =>  $Validacion['Validacion_mensaje'],
-               'empresa'             =>  $Empresa];
+      return [ 'Validacion'               =>  $Validacion['Validacion'],
+               'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
+               'UsersEmpresa'             =>  $UsersEmpresa     ];
 
   }
 
