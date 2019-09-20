@@ -7,10 +7,10 @@ props:['socios','empresa']
 
 
 methods:{
-enviar_form:function(){
+enviar_form:function(id){
+  var id = '#'+ id.toString();
 
-
-   this.$refs.form.$el.submit()
+   $( id ).submit();
 }
          
 
@@ -28,13 +28,13 @@ template:'<span>
        {!! Form::open(['route' => ['get_socio_panel'],
                             'method'=> 'Post',
                             'files' =>  true,
-                            'ref'  => 'form'
+                            'id'  => 'socio.id'
                           ])               !!}   
 
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <input type="hidden" name="socio_id" :value="socio.id">
 
-       <span class="simula_link"  v-on:click="enviar_form">@{{socio.name}}</span> 
+       <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
