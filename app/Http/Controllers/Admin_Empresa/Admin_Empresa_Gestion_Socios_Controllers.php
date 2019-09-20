@@ -272,7 +272,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Validacion  = false;
        $User        = $Request->get('user_desde_middleware');   
      
-
+       $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
    
        $Entidad     = $this->TipoDeServicioRepo->getEntidad(); 
 
@@ -288,7 +288,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creo correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
+               'empresa'             => $Empresa];
 
     
        

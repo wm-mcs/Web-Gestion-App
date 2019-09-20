@@ -50,7 +50,7 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 vue.servicios = response.data.servicios;
+                 vue.empresa = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
 
                  vue.crear_service_name = '';
@@ -164,7 +164,7 @@ template:'
 
 
              <div v-if="servicios.length > 0">
-               <div v-for="servicio in listaDeServicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between">
+               <div v-for="servicio in empresa.tipo_servicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between">
                  
                 <div class="get_width_70 flex-wrap flex-row-center">
                  <div class="get_width_40 formulario-label-fiel-sin-width">
