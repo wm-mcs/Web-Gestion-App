@@ -5,7 +5,7 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
-use App\Repositorios\UserEmpresaRepo;
+use App\Entidades\UserEmpresa;
 
 
 
@@ -27,15 +27,15 @@ class EmpresaConSocios extends Model
     protected $appends  = ['usuarios_de_empresa'];
 
 
-    
+    public function users()
+    {
+      return $this->hasMany(UserEmpresa::class,'empresa_id','id');
+    } 
 
 
     public function getUsuariosDeEmpresaAttribute()
     {
-        $Repo    = new UserEmpresaRepo();
-        $Empresas = $Repo->find($this->id);
-
-        return $Empresas;
+        return $this->users;
     }
     
 
