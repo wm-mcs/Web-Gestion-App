@@ -136,7 +136,7 @@ template:'<span>
                       <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
                      <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
                         <option></option>
-                        <option v-for="servicio in empresa.">@{{servicio.name}}</option>
+                        <option v-for="servicio in empresa.tipo_servicios">@{{servicio.name}}</option>
                        
                         
                       </select>

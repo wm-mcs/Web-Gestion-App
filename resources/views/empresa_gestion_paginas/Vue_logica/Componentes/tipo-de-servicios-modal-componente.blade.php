@@ -19,7 +19,7 @@ mounted: function mounted () {
 },
 computed: {
   listaDeServicios:function(){
-    return this.servicios.sort();
+    return this.empresa.tipo_servicios.sort();
   }
 
 },
@@ -163,7 +163,7 @@ template:'
         <div class="modal-body text-center"> 
 
 
-             <div v-if="servicios.length > 0">
+             <div v-if="empresa.tipo_servicios.length > 0">
                <div v-for="servicio in empresa.tipo_servicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between">
                  
                 <div class="get_width_70 flex-wrap flex-row-center">
