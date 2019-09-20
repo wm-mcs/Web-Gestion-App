@@ -30,7 +30,7 @@ template:'<span>
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <input type="hidden" name="socio_id" :value="socio.id">
 
-       <span class="simula_link" onclick="javascript:document.getElementById('theForm').submit()">@{{socio.name}}</span> 
+       <span class="simula_link" onclick="javascript:document.getElementById("theForm").submit()">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
