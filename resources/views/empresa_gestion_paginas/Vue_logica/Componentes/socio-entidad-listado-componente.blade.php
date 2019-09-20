@@ -7,7 +7,9 @@ props:['socios','empresa']
 
 
 methods:{
-
+enviar_form:function(){
+  document.getElementById('Form1').submit();
+}
          
 
 },
@@ -30,7 +32,7 @@ template:'<span>
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <input type="hidden" name="socio_id" :value="socio.id">
 
-       <span class="simula_link" onclick="javascript:document.getElementById('Form1').submit()">@{{socio.name}}</span> 
+       <span class="simula_link"  v-on:click="enviar_form">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
