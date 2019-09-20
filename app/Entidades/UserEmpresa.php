@@ -28,7 +28,7 @@ class UserEmpresa extends Model
 
     public function usuario_asociado()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'id','user_id');
     } 
 
       public function getUsuarioAttribute()
