@@ -1,7 +1,7 @@
 
 Vue.component('tipo-de-servicios-modal',
 {
-props:['servicios','empresa'],
+props:['empresa'],
 
 data:function(){
     return { 
