@@ -127,24 +127,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function get_empresa_panel_de_gestion(Request $Request)
   {
        $User            =  $Request->get('user_desde_middleware');  
-       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');
+       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
+       $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+       $Socios          = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
 
-       dd($User,$UserEmpresa);
-     
-       $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
-       $Socios  = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
-
-       return view('empresa_gestion_paginas.home', compact('Empresa','Socios'));   
-       
-
-      
+       return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
   }
 
 
   //me devulve los oscios activos
   public function get_socios_activos(Request $Request)   
   {
-
        $User               = $Request->get('user_desde_middleware'); 
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
        $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,30);
@@ -152,25 +145,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
   //es el panel del socio para editar
-  public function get_socio_panel($id)
+  public function get_socio_panel()
   {
+       $User            = $Request->get('user_desde_middleware'); 
+       $Socio           = $Request->get('socio_desde_middleware'); 
+       $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
+       $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
-       $User            = Auth::user();       
-      
-       $Socio           = $this->SocioRepo->find($id);
-      
-       //verifico que el socio sea de esa empresa y no de otra
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role > 6 )
-       {           
-
-         $Empresa = $this->EmpresaConSociosoRepo->find($Socio->empresa_id); 
-         return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));   
-       }
-       else
-       {
-         return redirect()->back()->with('alert-danger', 'hay algo raro aquí :( ');
-       }   
-     
+       return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));      
   }
 
   //devulve el socio
@@ -326,10 +308,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function delet_servicio(Request $Request)
   {
      $Validacion  = false;
-     $User        = $Request->get('user_desde_middleware');      
-
-     
-       $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
+     $User        = $Request->get('user_desde_middleware');     
+     $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
 
        $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
 

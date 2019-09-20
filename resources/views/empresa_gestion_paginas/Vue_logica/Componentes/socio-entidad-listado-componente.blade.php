@@ -18,7 +18,22 @@ template:'<span>
      
 
       <div class="listado-socios-sub-contenedor-name-estado">
-        <div class="listado-socios-name">  <a :href="socio.route">@{{socio.name}}</a> </div>
+        <div class="listado-socios-name"> 
+
+         
+       {!! Form::open(['route' => ['get_socio_panel'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'name'  => 'form1'
+                          ])               !!}   
+       <input type="hidden" name="empresa_id" :value="empresa.id">
+       <input type="hidden" name="socio_id" :value="socio.id">
+       <span class="" onclick="javascript:document.form1.submit()" >@{{socio.name}}</span> 
+        
+
+       {!! Form::close() !!}  
+
+        </div>
         <div>@{{socio.estado}}</div>
       </div>
 
