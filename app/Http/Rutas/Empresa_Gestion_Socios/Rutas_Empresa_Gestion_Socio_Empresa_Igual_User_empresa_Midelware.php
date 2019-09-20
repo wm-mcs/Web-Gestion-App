@@ -1,5 +1,13 @@
 <?php
 
+
+//Para ir al panel del socio
+Route::post('get_socio{id}',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socio',
+  'as'         => 'get_socio']);  
+
+
 //Para ir al panel del socio
 Route::post('get_socio_panel',
 [

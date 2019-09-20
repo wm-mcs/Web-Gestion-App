@@ -22,6 +22,19 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+     protected $appends = ['tipo_servicios'];
+
+
+    public function servicios()
+    {
+      return $this->hasMany(TipoDeServicio::class,'empresa_id','id');
+    }
+
+       public function getTipoServiciosAttribute()
+    {
+        
+        return $this->servicios();
+    }
 
 
    
