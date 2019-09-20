@@ -19,7 +19,7 @@
         {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                             'method'=> 'Post',
                             'files' =>  true,
-                            'id'    => 'form1'
+                            'name'  => 'form1'
                           ])               !!}   
        <input type="hidden" name="empresa_id" :value="empresa.id">
        <span class="admin-user-boton-Crear" onclick="javascript:document.form1.submit()">Vista de cliente</span>    
