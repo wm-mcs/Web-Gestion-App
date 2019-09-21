@@ -97,9 +97,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get edit admin marca
   public function get_admin_empresas_gestion_socios_editar($id)
   {
-    $Empresa = $this->EmpresaConSociosoRepo->find($id);
+    $Empresa      = $this->EmpresaConSociosoRepo->find($id);
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa'));
+    $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+
+    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa'));
   }
 
   //set edit admin marca
@@ -122,82 +124,49 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
   //Panel de gestio de empresa
-  public function get_empresa_panel_de_gestion($id)
+  public function get_empresa_panel_de_gestion(Request $Request)
   {
-     $User            = Auth::user();  
-      
+       $User            =  $Request->get('user_desde_middleware');  
+       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
+       $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+       $Socios          = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
 
-     if($this->Guardian->son_iguales($User->empresa_gestion_id,$id) || $User->role > 6 )
-     {
-       $Empresa = $this->EmpresaConSociosoRepo->find($id); 
-       $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id, null, 100);
-       return view('empresa_gestion_paginas.home', compact('Empresa','Socios'));   
-     }
-     else
-     {
-       return redirect()->back()->with('alert-danger', 'hay algo raro aquí :( ');
-     }   
-
-      
+       return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
   }
 
 
   //me devulve los oscios activos
   public function get_socios_activos(Request $Request)   
   {
-
-       $User            = $Request->get('user_desde_middleware');
-     
-      
-       $Socios          = $this->SocioRepo->getSociosBusqueda($User->empresa_gestion_id,null,30);
-      
-       return ['socios' => $Socios];
-       
-     
+       $User               = $Request->get('user_desde_middleware'); 
+       $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
+       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,30);
+       return ['socios' => $Socios];     
   }
 
   //es el panel del socio para editar
-  public function get_socio_panel($id)
+  public function get_socio_panel(Request $Request)
   {
+       $User            = $Request->get('user_desde_middleware'); 
+       $Socio           = $Request->get('socio_desde_middleware'); 
+       $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
+       $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
-       $User            = Auth::user();       
-      
-       $Socio           = $this->SocioRepo->find($id);
-      
-       //verifico que el socio sea de esa empresa y no de otra
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role > 6 )
-       {           
-
-         $Empresa = $this->EmpresaConSociosoRepo->find($Socio->empresa_id); 
-         return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));   
-       }
-       else
-       {
-         return redirect()->back()->with('alert-danger', 'hay algo raro aquí :( ');
-       }   
-     
+       return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));      
   }
 
   //devulve el socio
-  public function get_socio($id)
+  public function get_socio(Request $Request)
   {
-       $User            = Auth::user();       
-      
-       $Socio           = $this->SocioRepo->find($id);
+       $User            = $Request->get('user_desde_middleware');
+       $Socio           = $Request->get('socio_desde_middleware'); 
 
-       if($this->Guardian->son_iguales($User->empresa_gestion_id,$Socio->empresa_id ) || $User->role == 'adminMcos522' )
-       { 
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
                   'Socio'                => $Socio 
                  ];
-       }
-       else
-       {
-          return ['Validacion'           => false,
-                  'Validacion_mensaje'   => 'No se puede acceder a el socio en este momento'
-                 ];
-       }
+       
+      
   }
 
 
@@ -298,12 +267,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //agrega un nuevo tipo de servicio ( Tipo Clase o Tipo Mensual )
   public function set_nuevo_servicio(Request $Request)
   {
-   
-
-       $Validacion  = false;
        $User        = $Request->get('user_desde_middleware');   
      
-
+       $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
    
        $Entidad     = $this->TipoDeServicioRepo->getEntidad(); 
 
@@ -319,30 +285,25 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creo correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
-
-    
-       
-    
+               'empresa'             => $Empresa];    
   }
 
 
   //borrar un servicio
   public function delet_servicio(Request $Request)
   {
-     $Validacion  = false;
-     $User        = $Request->get('user_desde_middleware');      
-
      
-       $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
+     $User        = $Request->get('user_desde_middleware');     
+     $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
+     $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
-       $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
+     $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
 
-       $Validacion = true;
+     $Validacion   = true;
 
-       return ['Validacion'          => $Validacion,
+     return  [ 'Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se borró correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
+               'empresa'             => $Empresa];
 
       
   }
@@ -353,18 +314,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //editar un servicio
   public function editar_servicio(Request $Request)
   {
-     $Validacion  = false;
-     $User        = $Request->get('user_desde_middleware');  
-     
-    
-
+       $User        = $Request->get('user_desde_middleware'); 
        $Validacion  = true;
-       $Servicio    = $Request->get('servicio'); //me manda la data en array vue
-
-       
+       $Servicio    = $Request->get('servicio'); //me manda la data en array vue       
        $Entidad     = $this->TipoDeServicioRepo->find($Servicio['id']); 
-
-
+       $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
        
        //las porpiedades que se van a editar
        $Propiedades = ['name','tipo','valor','moneda'];
@@ -376,13 +330,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        $Entidad->save();
 
-       
-
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente ',
-               'servicios'           => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($Request->get('empresa_id'))];
-
-    
+               'empresa'             => $Empresa];
   }
 
   //agrega servicio a socio
@@ -642,19 +592,26 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function set_user_a_empresa(Request $Request)
   {
-      $Empresa_id = $Request->get('empresa_id');
-      $User_id    = $Request->get('user_id');
+     
+      //creo el usuario
+      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
-      $this->UserEmpresaRepo->setAsociarEmpresaYUser($Empresa_id,$User_id);
+      //traigo la empresa
+      $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
-      $Empresa    = $this->EmpresaConSociosoRepo->find( $Empresa_id);
+      return [ 'Validacion'               =>  $Validacion['Validacion'],
+               'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
+               'UsersEmpresa'             =>  $UsersEmpresa     ];
+
+  }
 
 
-      return ['Validacion'           =>  true,
-               'Validacion_mensaje'  =>  'Se asoció correctamente',
-               'Empresa'             =>  $Empresa];
 
-
+  //caja crear registro
+  public function crear_registro_de_caja(Request $Request)
+  {
+    
   }
 
 
