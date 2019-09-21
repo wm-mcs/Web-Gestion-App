@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Repositorios\UserRepo;
 use App\Repositorios\UserEmpresaRepo;
+use App\Repositorios\VendedorEmpresaRepo;
 
 
 
@@ -33,6 +34,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $MovimientoEstadoDeCuentaSocioRepo;
   protected $UserRepo;
   protected $UserEmpresaRepo;
+  protected $VendedorEmpresaRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -41,7 +43,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               ServicioContratadoSocioRepo       $ServicioContratadoSocioRepo,
                               MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo,
                               UserRepo                          $UserRepo, 
-                              UserEmpresaRepo                   $UserEmpresaRepo  )
+                              UserEmpresaRepo                   $UserEmpresaRepo,
+                              VendedorEmpresaRepo               $VendedorEmpresaRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -51,6 +54,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->MovimientoEstadoDeCuentaSocioRepo = $MovimientoEstadoDeCuentaSocioRepo;
     $this->UserRepo                          = $UserRepo;
     $this->UserEmpresaRepo                   = $UserEmpresaRepo;
+    $this->VendedorEmpresaRepo               = $VendedorEmpresaRepo;
   }
 
   public function getPropiedades()
@@ -594,7 +598,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
      
       //creo el usuario
-      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+      $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
