@@ -27,6 +27,10 @@
 
 
           
+
+
+
+          
           
 
 
@@ -61,6 +65,15 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_admin_empresas_gestion_socios_editar',
                   'as'         => 'set_admin_empresas_gestion_socios_editar',            
                 ]);   
+
+
+                // vinculo una vendedor con un usuario
+                Route::post('set_vendedor_a_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_vendedor_a_empresa',
+                  'as'         => 'set_vendedor_a_empresa',                
+                ]);
+
            });
          
  });
