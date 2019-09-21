@@ -52,14 +52,14 @@ class UserRepo extends BaseRepo
     $this->setEntidadDato($user,$request,$Propiedades);
 
     //variables para enviar email
-    $nombre_de_quien_envia = 'EasySocios';
-    $email_de_quien_envia  = 'noresponder@gestionsocios.com.uy';
-    $mensaje               = ' Felicitaciones '. $user->name .' , ya eres un usuario en EasySocio. Tu usuario es '.$user->email.' y tu contraseña es ' . $Contraseña . '  (podrás cambiarla cuando quieras! ) ' ;
-    $email_a_enviar        = $user->email;
-    $nombre_de_quien_envia = $user->name;
-    $titulo_email          = 'Bienvenido a EasySocios';
-    $llamado_accion_texto  = 'Incia sesion ahora!';
-    $llamado_accion_link   = route('auth_login_get');
+    $nombre_de_quien_envia    = 'EasySocios';
+    $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
+    $mensaje                  = ' Felicitaciones '. $user->name .' , ya eres un usuario en EasySocio. Tu usuario es '.$user->email.' y tu contraseña es ' . $Contraseña . '  (podrás cambiarla cuando quieras! ) ' ;
+    $email_a_enviar           = $user->email;
+    $nombre_de_email_a_enviar = $user->name;
+    $titulo_email             = 'Bienvenido a EasySocios';
+    $llamado_accion_texto     = 'Incia sesion ahora!';
+    $llamado_accion_link      = route('auth_login_get');
 
     //enviar email con la info que se creo el usuario y que la contraseña es tal
     $this->getEmailsRepo()->EnvioDeEmailSimple($nombre_de_quien_envia, 
