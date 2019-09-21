@@ -31,7 +31,7 @@ class UserRepo extends BaseRepo
 
   public function getPropiedades()
   {
-    return ['name','email','telefono','estado','role','contrato_pagina_web','contrato_sistema_gestion','empresa_gestion_id'];
+    return ['name','email','telefono','estado','role','contrato_pagina_web'];
   }
 
 
@@ -40,13 +40,36 @@ class UserRepo extends BaseRepo
   public function setUserAdmin($request)
   {
     $user           = $this->getEntidad();
-    $user->password = 'secret';
+    $user->password = str_random(8);
+
+    $Contraseña     = $user->password;
+
     $user->password = bcrypt($user->password);
 
     //propiedades para crear
-    $Propiedades = $this->getPropiedades();
+    $Propiedades    = $this->getPropiedades();
 
     $this->setEntidadDato($user,$request,$Propiedades);
+
+    //variables para enviar email
+    $nombre_de_quien_envia = 'EasySocios';
+    $email_de_quien_envia  = 'noresponder@gestionsocios.com.uy';
+    $mensaje               = ' Felicitaciones '. $user->name .' , ya eres un usuario en EasySocio. Tu usuario es '.$user->email.' y tu contraseña es ' . $Contraseña . '  (podrás cambiarla cuando quieras! ) ' ;
+    $email_a_enviar        = $user->email;
+    $nombre_de_quien_envia = $user->name;
+    $titulo_email          = 'Bienvenido a EasySocios';
+    $llamado_accion_texto  = 'Incia sesion ahora!';
+    $llamado_accion_link   = route('auth_login_get');
+
+    //enviar email con la info que se creo el usuario y que la contraseña es tal
+    $this->getEmailsRepo()->EnvioDeEmailSimple($nombre_de_quien_envia, 
+                                               $email_de_quien_envia, 
+                                               $mensaje, 
+                                               $email_a_enviar, 
+                                               $nombre_de_email_a_enviar, 
+                                               $titulo_email,
+                                               $llamado_accion_texto,
+                                               $llamado_accion_link);
 
     $user->save(); 
 
