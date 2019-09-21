@@ -101,11 +101,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get edit admin marca
   public function get_admin_empresas_gestion_socios_editar($id)
   {
-    $Empresa      = $this->EmpresaConSociosoRepo->find($id);
+    $Empresa         = $this->EmpresaConSociosoRepo->find($id);
 
-    $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+    $UsersEmpresa    = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa'));
+    $VendedorEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+
+    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa','VendedorEmpresa'));
   }
 
   //set edit admin marca
@@ -598,11 +600,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
      
       //creo el usuario
-      $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-      $UsersEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
       return [ 'Validacion'               =>  $Validacion['Validacion'],
                'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
@@ -613,11 +615,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function set_vendedor_a_empresa(Request $Request)
   {
       //creo el usuario
-      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+      $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $UsersEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
       return [ 'Validacion'               =>  $Validacion['Validacion'],
                'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],

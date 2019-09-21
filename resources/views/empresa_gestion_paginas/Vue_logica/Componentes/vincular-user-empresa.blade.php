@@ -8,7 +8,7 @@ data:function(){
       users:[],
       user_seleccionado: '',
       usuarios_de_empresa: {!! json_encode($UsersEmpresa) !!},
-      vendedores_de_empresa:[]
+      vendedores_de_empresa: {!! json_encode($VendedorEmpresa) !!}
 
       }
 },
