@@ -6,7 +6,7 @@
 
 <div class="formulario-label-fiel">
   {!! Form::label('role', 'Role', array('class' => 'formulario-label ')) !!}
-  @if(Auth::user()->role != 'adminMcos522')
+  @if(Auth::user()->role < 10)
      {!! Form::select('role', config('options.role_para_user'),null ) !!}
   @else
      {!! Form::select('role', config('options.role'),null ) !!}

@@ -19,12 +19,9 @@ return array(
               ],
 
 
-  'role_para_user' => [   ''              => 'Selecciona uno',
-        'user'                            => 'Usuario',
-        'admin_empresa'                   => 'Admin Empresa Cliente',
-        'admin_empresa_cliente'           => 'Moderador Empresa Cliente'
-        
-              ],
+  'role_para_user' => [     ''         => 'Selecciona uno',               
+                            '3'        => 'Empresa Master',
+                            '2'        => 'Operador de Empresa' ],
 
   'interior-capital' => [   ' '            => 'Selecciona uno',
                             'Montevideo'   => 'Montevideo',
