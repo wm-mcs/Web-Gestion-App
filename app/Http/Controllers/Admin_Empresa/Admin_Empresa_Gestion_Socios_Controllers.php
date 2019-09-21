@@ -602,7 +602,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $UsersEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
       return [ 'Validacion'               =>  $Validacion['Validacion'],
                'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
