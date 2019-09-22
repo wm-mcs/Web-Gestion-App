@@ -20,7 +20,10 @@
    <div id="app" class="admin-contiene-columna-y-content">
 
    <div class="admin-columna-contenedor">
-      @yield('columna')
+     <div class="admin-columna-wraper">
+       @yield('columna')
+     </div>
+      
    </div>
       <div class="get_width_20"></div>
       <div class="admin-contiene-content">
