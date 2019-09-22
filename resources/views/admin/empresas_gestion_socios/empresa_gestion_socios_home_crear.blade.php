@@ -66,7 +66,7 @@
     
 
      
-     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
+    
 
 
 

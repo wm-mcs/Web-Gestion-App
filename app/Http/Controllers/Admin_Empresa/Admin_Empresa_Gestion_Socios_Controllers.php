@@ -67,7 +67,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   { 
     $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivasPaginadas( $Request, 20);
 
-    $Empresa  = $this->EmpresaConSociosoRepo->find($id);
+    
 
     //mostrar marcas de la a a la z (orden)
 
@@ -77,7 +77,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get Crear admin User
   public function get_admin_empresas_gestion_socios_crear()
   {  
-    $Empresa  = $this->EmpresaConSociosoRepo->find($id);
+    
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_crear',compact('Empresa'));
   }
 
