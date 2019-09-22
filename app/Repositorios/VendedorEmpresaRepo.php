@@ -27,14 +27,13 @@ class VendedorEmpresaRepo extends BaseRepo
                    ->where('empresa_id',$Empresa_id)
                    ->get();
 
-    $Validacion = false;
-    $Mensaje    = 'Ya está asociado este usuario vendedor con esta empresa';
+    $Validator = $this->verificarSiUserYEmpresaEstanVicnulados($User_id,$Empresa_id);
 
-    if($Existe->count() == 0)
-    {
-      $Validacion = true;
-      $Mensaje    = 'Se asoció correctamente';
-      
+    $Validacion = $Validator['Validacion'];
+    $Mensaje    = $Validator['Mensaje'];
+
+    if($Validacion)
+    {      
       $Entidad             = $this->getEntidad();
       $Entidad->user_id    = $User_id;
       $Entidad->empresa_id = $Empresa_id;
@@ -60,17 +59,32 @@ class VendedorEmpresaRepo extends BaseRepo
                    ->where('empresa_id',$Empresa_id)
                    ->get(); 
 
-      $Validacion = false;             
+      $User_de_empresa = $this->getEntidad()                             
+                              ->where('empresa_id',$Empresa_id)
+                              ->get(); 
+
+      $Validacion = true;  
+      $Mensaje    = 'Vendedor asignado correctamente';
+
+      if($User_de_empresa->count() > 0)
+      {
+          $Validacion = false;
+          $Mensaje    = 'Ya tiene un vendedor asignado';
+      }           
 
       if($User->count() > 0)
       {
-          $Validacion = true;
+          $Validacion = false;
+         c
       }
+
+     
 
 
       return [  
              'Validacion'   =>  $Validacion,
-             'UserEmpresa'  =>  $User->first()   
+             'UserEmpresa'  =>  $User->first(),
+             'Mensaje'      =>  $Mensaje   
                ];
   }
 

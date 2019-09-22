@@ -151,8 +151,9 @@ template:'
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
-   <div v-if="usuarios_de_empresa.length">
-      <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" >
+   <div v-if="usuarios_de_empresa.length" class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Usuarios</div>
+      <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         @{{usuario_empresa.user.name}}
       </div>
    </div>
@@ -160,7 +161,8 @@ template:'
      No hay usuarios asociados     
    </div>
     <div v-if="vendedores_de_empresa.length" class="empresa-contendor-de-secciones">
-      <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="class="component-user-list-contenedor"">
+    <div class="empresa-titulo-de-secciones">Vendedor</div>
+      <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         @{{usuario_empresa.user.name}}
       </div>
    </div>
