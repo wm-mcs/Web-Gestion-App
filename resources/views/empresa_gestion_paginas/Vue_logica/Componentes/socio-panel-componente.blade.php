@@ -172,8 +172,8 @@ template:'<span>
 
   </div>
 
-  <div class="panel-socio-contiene-seccion">
-      <div class="panel-socio-titulo-seccion">Servicios que contrató el socio</div>
+  <div class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios que contrató el socio</div>
       <div class="panel-socio-contiene-servicios">
         
           
@@ -192,10 +192,10 @@ template:'<span>
       </div>
   </div>
 
-  <div class="panel-socio-contiene-seccion">
+  <div class="empresa-contendor-de-secciones">
       <div class="estado-de-cuenta-titulo-saldo-contenedor ">
 
-          <span class="panel-socio-titulo-seccion">Estado de cuenta del socio</span>
+          <span class="empresa-titulo-de-secciones">Estado de cuenta del socio</span>
 
           <div v-if="!socio.saldo_de_estado_de_cuenta_pesos == 0 || !socio.saldo_de_estado_de_cuenta_dolares == 0" class="flex-row-center">
             

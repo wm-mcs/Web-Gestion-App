@@ -159,8 +159,8 @@ template:'
    <div v-else>
      No hay usuarios asociados     
    </div>
-    <div v-if="vendedores_de_empresa.length">
-      <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" >
+    <div v-if="vendedores_de_empresa.length" class="empresa-contendor-de-secciones">
+      <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="class="component-user-list-contenedor"">
         @{{usuario_empresa.user.name}}
       </div>
    </div>

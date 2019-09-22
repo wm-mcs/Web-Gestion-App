@@ -1,0 +1,11 @@
+.component-user-list-contenedor{
+	padding:6px;
+	border-radius:6px;
+	margin-top:3px;
+	background-color: $Color-Gris-Claro;
+	@include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center);     
+    @include justify-content(space-between); 
+    width:100%;
+}
