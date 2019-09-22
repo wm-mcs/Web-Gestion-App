@@ -75,7 +75,6 @@ class VendedorEmpresaRepo extends BaseRepo
       if($User->count() > 0)
       {
           $Validacion = false;
-         c
       }
 
      
