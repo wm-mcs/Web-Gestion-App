@@ -25,7 +25,8 @@ computed: {
 methods:{
 
 abrirModalon:function(id){
-  $(id).appendTo("#app").modal('show'); 
+
+  $(id).appendTo('#app').modal('show'); 
 },
 cerrarModal:function()
 {
