@@ -504,7 +504,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       
 
-      $this->ServicioContratadoSocioRepo->destruir_esta_entidad($Servicio);
+      $this->ServicioContratadoSocioRepo->destruir_esta_entidad_de_manera_logica($Servicio);
 
       //borrar los estados de cuenta
       $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadoDeCuentasDelSocioDeUnServicioEnParticular($Socio->id,$Request->get('servicio_id'));
@@ -512,7 +512,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
 
       foreach ($Estados_de_cuenta as $Estado) {
-        $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad($Estado);
+        $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Estado);
       }
 
       //borrar los moviemiento de caja si es que hubo         
@@ -567,9 +567,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
           //elimino a la entidad
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
+          
 
-
-          $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad($Entidad);
+          $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Entidad);
 
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 

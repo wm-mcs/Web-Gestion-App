@@ -46,6 +46,14 @@ abstract class BaseRepo
       $Entidad->delete();
     }
 
+    //se cambia la propiedad borrado a si
+    public function destruir_esta_entidad_de_manera_logica($Entidad)
+    {
+
+      $Entidad->borrado = 'si';
+      $Entidad->save();
+    }
+
     /**
      * Entidades Activas 
      */

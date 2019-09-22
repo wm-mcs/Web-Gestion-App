@@ -30,7 +30,7 @@ class Socio extends Model
 
     public function servicios_contratados()
     {
-      return $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')->orderBy('created_at', 'asc');
+      return $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')->where('borrado','no')->orderBy('created_at', 'asc');
     }
 
 
@@ -89,10 +89,12 @@ class Socio extends Model
         $EstadosRepo = new MovimientoEstadoDeCuentaSocioRepo();
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
                                                 ->where('moneda','$')                                                
                                                 ->sum('valor');
 
-        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')                                  
+        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor') 
+                                                ->where('borrado','no')                                 
                                                 ->where('moneda','$')
                                                 ->sum('valor');
 
@@ -105,11 +107,13 @@ class Socio extends Model
         $EstadosRepo = new MovimientoEstadoDeCuentaSocioRepo();
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
                                                 ->where('moneda','U$S')                                                
                                                 ->sum('valor');
 
         $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')                                  
                                                 ->where('moneda','U$S')
+                                                ->where('borrado','no')
                                                 ->sum('valor');
 
 
