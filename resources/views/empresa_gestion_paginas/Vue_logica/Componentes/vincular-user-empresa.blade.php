@@ -28,6 +28,12 @@ abrirModalon:function(id){
 
   $(id).appendTo('body').modal('show'); 
 },
+cerrarModal:function(){
+
+  $('#modal-vincular-usuario').modal('hide');
+              
+},
+    
 getUserSegunRole:function(role){
 
 
