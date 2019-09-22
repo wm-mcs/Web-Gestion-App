@@ -28,11 +28,6 @@ abrirModalon:function(id){
 
   $(id).appendTo('body').modal('show'); 
 },
-cerrarModal:function(){
-
-  $('#modal-vincular-usuario').modal('hide');
-              
-},
     
 getUserSegunRole:function(role){
 
@@ -139,10 +134,8 @@ vincular_vendedor_con_empresa:function(){
             
            });       
 
-},
-desvincular_user:function(){
-  
 }
+
      
 
 
@@ -175,7 +168,8 @@ template:'
     <div class="empresa-titulo-de-secciones">Vendedor</div>
       <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <span>@{{usuario_empresa.user.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_user"> <i class="fas fa-trash-alt"></i> </span>
+        <span class="simula_link" title="Desvincular a esté usuario"> <i class="fas fa-trash-alt"></i> 
+        </span>
       </div>
    </div>
    <div v-else>
