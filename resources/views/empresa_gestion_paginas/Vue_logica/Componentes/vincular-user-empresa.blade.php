@@ -95,14 +95,12 @@ vincular_user_con_empresa:function(){
               
               
               this.usuarios_de_empresa = data.UsersEmpresa;
-              this.cerrarModal();
 
               
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
-              this.cerrarModal();
             }
            
            }).catch(function (error){
@@ -127,14 +125,12 @@ vincular_vendedor_con_empresa:function(){
             {
               $.notify(data.Validacion_mensaje, "success");
               this.vendedores_de_empresa = data.UsersEmpresa;
-              this.cerrarModal();
 
               
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
-              this.cerrarModal();
             }
            
            }).catch(function (error){
