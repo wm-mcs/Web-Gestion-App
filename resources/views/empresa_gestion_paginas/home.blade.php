@@ -62,6 +62,8 @@
 
 @section('columna')
 
+  
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
   {{-- imagen logo --}}
   <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->url_img}}"></a>
 
