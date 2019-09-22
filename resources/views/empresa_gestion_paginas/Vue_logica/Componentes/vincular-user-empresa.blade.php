@@ -27,6 +27,11 @@ methods:{
 abrirModalon:function(id){
   $(id).appendTo("body").modal('show'); 
 },
+cerrarModal:function()
+{
+  $('#modal-vincular-usuario').modal('hide');
+              
+},
     
 getUserSegunRole:function(role){
 
@@ -89,12 +94,14 @@ vincular_user_con_empresa:function(){
               
               
               this.usuarios_de_empresa = data.UsersEmpresa;
+              this.cerrarModal();
 
               
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
+              this.cerrarModal();
             }
            
            }).catch(function (error){
@@ -119,10 +126,14 @@ vincular_vendedor_con_empresa:function(){
             {
               $.notify(data.Validacion_mensaje, "success");
               this.vendedores_de_empresa = data.UsersEmpresa;
+              this.cerrarModal();
+
+              
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
+              this.cerrarModal();
             }
            
            }).catch(function (error){
@@ -131,6 +142,9 @@ vincular_vendedor_con_empresa:function(){
             
            });       
 
+},
+desvincular_user:function(url){
+  
 }
      
 
@@ -163,7 +177,8 @@ template:'
     <div v-if="vendedores_de_empresa.length" class="empresa-contendor-de-secciones">
     <div class="empresa-titulo-de-secciones">Vendedor</div>
       <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
-        @{{usuario_empresa.user.name}}
+        <span>@{{usuario_empresa.user.name}}</span> 
+        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_user()"> <i class="fas fa-trash-alt"></i> </span>
       </div>
    </div>
    <div v-else>

@@ -28,7 +28,7 @@ class UserEmpresaRepo extends BaseRepo
                    ->get();
 
     $Validacion = false;
-    $Mensaje    = 'Ya está asociado este usuario con esta empresa';
+    $Mensaje    = 'Ya está asociado este usuario con está empresa';
 
     if($Existe->count() == 0)
     {
