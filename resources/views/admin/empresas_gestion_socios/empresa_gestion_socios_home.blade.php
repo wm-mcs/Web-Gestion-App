@@ -1,4 +1,5 @@
-@extends('layouts.admin_layout.admin_layout')
+@extends('layouts.gestion_socios_layout.admin_layout')
+
 
 @section('miga-de-pan') 
 
@@ -35,4 +36,34 @@
   
 
   
+@stop
+
+@section('vue-logica')
+
+
+<script type="text/javascript">
+
+
+    
+
+     
+     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
+
+
+
+</script>
+
+@stop
+
+
+
+@section('columna')
+
+  {{-- imagen logo --}}
+  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->url_img}}"></a>
+
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
 @stop
