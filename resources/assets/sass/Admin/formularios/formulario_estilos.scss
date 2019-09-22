@@ -9,24 +9,19 @@
 }
 
  .contenedor-grupo-datos{
-      @include flexbox; 
-      @include flex-direction(column);
-      @include align-items(flex-start);
-      margin-bottom: 15px;          
-      border-radius:6px;      
-      width: 49%;
+    padding:6px;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start); 
+    margin-top: 20px;    
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.26);
+    background-color: #fff;    
+    width: 49%;
 
    }
-    .contenedor-grupo-datos-titulo{
-     padding:8px;
-     margin-bottom: 8px;
-     font-size: 16px;     
-     color:black;     
-     width: 100%;
-     border-radius:4px;
-     font-weight: bold;
-    }
-
+   
 
 .contenedor-formulario-label-fiel{
   @include flexbox; 
