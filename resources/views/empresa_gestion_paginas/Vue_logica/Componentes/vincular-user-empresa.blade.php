@@ -28,7 +28,11 @@ abrirModalon:function(id){
 
   $(id).appendTo('body').modal('show'); 
 },
-    
+cerrarModal:function(){
+
+ $('#modal-vincular-usuario').modal().hide();
+  
+},    
 getUserSegunRole:function(role){
 
 
@@ -85,17 +89,17 @@ vincular_user_con_empresa:function(){
 
             if(data.Validacion == true)
             {
-              $.notify(data.Validacion_mensaje, "success");
-              
-              
-              
+              $.notify(data.Validacion_mensaje, "success");              
               this.usuarios_de_empresa = data.UsersEmpresa;
+
+              this.cerrarModal();
 
               
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
+              this.cerrarModal();
             }
            
            }).catch(function (error){
