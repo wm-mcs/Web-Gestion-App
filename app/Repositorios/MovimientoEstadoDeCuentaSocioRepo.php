@@ -25,6 +25,7 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
     return $this->getEntidad()
                 ->where('socio_id',$socio_id)
                 ->orderBy('fecha_ingreso', 'desc')
+                ->where('borrado','no')
                 ->get();
   }
 
@@ -32,7 +33,8 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
   {
     return $this->getEntidad()
                 ->where('socio_id',$socio_id)
-                ->where('servicio_id',$servicio_id)                
+                ->where('servicio_id',$servicio_id)    
+                ->where('borrado','no')            
                 ->get();
   }
 
