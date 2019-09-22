@@ -26,10 +26,10 @@ methods:{
 
 abrirModalon:function(id){
 
-  $(id).appendTo('#app').modal('show'); 
+  $(id).appendTo('body').modal('show'); 
 },
-cerrarModal:function()
-{
+cerrarModal:function(){
+
   $('#modal-vincular-usuario').modal('hide');
               
 },
