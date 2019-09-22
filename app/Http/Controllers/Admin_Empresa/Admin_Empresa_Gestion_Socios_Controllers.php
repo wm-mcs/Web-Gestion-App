@@ -441,8 +441,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creó correctamente ',
-               'Socio'               => $this->SocioRepo->find($Socio->id),
-               'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
+               'Socio'               => $this->SocioRepo->find($Socio->id),];
      }
     
   }
@@ -473,7 +472,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente ',
-               'servicios'           => $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
+               'Socio'               =>  $Socio];
      }
   }
 
@@ -522,8 +521,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se eliminó correctamente',
-               'Socio'               =>  $Socio,
-               'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
+               'Socio'               =>  $Socio];
      }
      
   }
@@ -552,7 +550,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se consumió la clase correctamente',
-               'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id)];
+               'Socio'               =>  $Socio];
      }
      
   }

@@ -30,6 +30,7 @@ class ServicioContratadoSocioRepo extends BaseRepo
     return $this->getEntidad()
                 ->where('socio_id',$socio_id)
                 ->where('estado','si')
+                ->where('borrado','no')
                 ->orderBy('fecha_vencimiento','desc')
                 ->get();
   }

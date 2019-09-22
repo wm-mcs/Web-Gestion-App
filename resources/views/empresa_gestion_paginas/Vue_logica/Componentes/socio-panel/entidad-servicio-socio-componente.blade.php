@@ -43,7 +43,7 @@ methods:{
 
             vue.destroy_modal = true;
             vue.$emit('actualizar_socio',response.data.Socio);    
-            vue.$emit('actualizar_servicios_de_socios',response.data.servicios); 
+            
 
             
 
@@ -84,7 +84,7 @@ methods:{
           {
             
             
-            vue.$emit('actualizar_servicios_de_socios',response.data.servicios); 
+            vue.$emit('actualizar_socio',response.data.Socio);  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
@@ -136,7 +136,7 @@ methods:{
           {
             
             
-            vue.$emit('actualizar_servicios_de_socios',response.data.servicios); 
+            vue.$emit('actualizar_socio',response.data.Socio);  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else

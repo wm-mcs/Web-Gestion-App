@@ -6,8 +6,7 @@ props:['empresa'],
 
 data:function(){
     return {
-      socio:{!! json_encode($Socio) !!},
-      servicios_del_socio:{!! json_encode($Socio->servicios_contratados_del_socio) !!}, 
+      socio:{!! json_encode($Socio) !!}
 
     }
 }, 
@@ -162,7 +161,6 @@ template:'<span>
       
      <agregar-al-socio-un-servicio :socio="socio"                                     
                                    :empresa="empresa"
-                                   @actualizar_servicios_de_socios="getServiciosDelSocio"
                                    @actualizar_socio="actualizar_socio" ></agregar-al-socio-un-servicio>  
       
      
@@ -181,10 +179,10 @@ template:'<span>
 
             <servicio-socio-lista :servicio="servicio" 
                                   :empresa="empresa"
-            @actualizar_servicios_de_socios="getServiciosDelSocio" 
+            
                           @actualizar_socio="actualizar_socio"
 
-                           v-for="servicio in servicios_del_socio" :key="servicio.id"> 
+                           v-for="servicio in socio.servicios_contratados_del_socio" :key="servicio.id"> 
             </servicio-socio-lista>
             
           
