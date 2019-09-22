@@ -155,26 +155,7 @@ template:'
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
-   <div v-if="usuarios_de_empresa.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Usuarios</div>
-      <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
-        @{{usuario_empresa.user.name}}
-      </div>
-   </div>
-   <div v-else>
-     No hay usuarios asociados     
-   </div>
-    <div v-if="vendedores_de_empresa.length" class="empresa-contendor-de-secciones">
-    <div class="empresa-titulo-de-secciones">Vendedor</div>
-      <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
-        <span>@{{usuario_empresa.user.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario"> <i class="fas fa-trash-alt"></i> 
-        </span>
-      </div>
-   </div>
-   <div v-else>
-     No hay vendedores asociados     
-   </div>
+  
 
          <div class="modal fade" id="modal-vincular-usuario" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
