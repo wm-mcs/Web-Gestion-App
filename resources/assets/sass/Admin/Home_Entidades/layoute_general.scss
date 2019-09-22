@@ -114,6 +114,7 @@
   @include flexbox;
   @include align-items(center);
   @include flex-direction(row);   
+  @include justify-content(space-around); 
 }
 
 .easy-text{
@@ -130,17 +131,7 @@
     margin:35px 3px;
   }
 
-// secciones de la columna con diferentes permisos y sus lineas separadoras
-#admin-col-admin,
-#admin-col-superadmin,
-#admin-col-backtoweb{
-  padding: 14px 0;
-}
-// color de la linea divisora
-#admin-col-admin,
-#admin-col-superadmin{
-  border-bottom: 1px solid $color-2light;
-}
+
 
 
 // E S T I L O S   D E   L O S   L I N K S   D E   L A   C O L U M N A
@@ -156,71 +147,12 @@
 .admin-columna-ul-titulo{
   font-size: 10px;
   font-weight: bold;
-  color:$color-gris-text;
-  
+  color:$color-gris-text;  
   width: 100%;
 
 }
 
-// links a secciones de la admin
-.admin-columna-contenedor a li:not(.Helper-Class-Active){
-  color: $color-3;
-}
-.admin-columna-contenedor a li:not(.Helper-Class-Active):hover {
-  color: $color-3superlight;
-}
 
-// glyphicons de los links
-.admin-columna-contenedor a li:not(.Helper-Class-Active) span{
-  color: $color-2light;
-}
-.admin-columna-contenedor a li:not(.Helper-Class-Active):hover span{
-  color: $color-3light;
-}
-
-// link inferior (para volver a la pagina)
-.admin-columna-contenedor #admin-col-backtoweb a p {
-  color: $color-3dark;
-}
-.admin-columna-contenedor #admin-col-backtoweb a p:hover {
-  color: $color-3;
-}
-// color de los links cuando estan activos
-.admin-columna-contenedor a li.admin-columna-li.mi-float-right.Helper-Class-Active{
-  color: $color-3superlight;
-  text-shadow: 0 0 5px $color-3, 0 0 10px $color-3;
-  -webkit-transition: none; /*cambiar "all" por "translate" si quiero que los demás cambios se hagan instantáneamente*/
-  -moz-transition: none;
-  transition: none;
-}
-// para que no se muevan hacia la derecha en hover
-.admin-columna-contenedor a:hover li.admin-columna-li.mi-float-right.Helper-Class-Active{
-  -webkit-transform: none;
-  -moz-transform: none;
-  transform: none;
-}
-// color del glyphicon cuando esta active
-.admin-columna-contenedor a li.admin-columna-li.mi-float-right.Helper-Class-Active span{
-  color: $color-2superlight;
-  text-shadow: 0 0 5px $color-2light, 0 0 10px $color-2light;
-}
-
-// links que llevan a secciones del admin panel
-
-.admin-columna-contenedor-li{
-  width: 100%;
-  padding:5px;
-  font: arial;
-  font-size: 12px;
-  margin-top: 2px;
-  text-decoration: none;
-  list-style: none; 
-}
-
-// link que lleva de vuelta al sitio web para ver los cambios
-.admin-columna-contenedor #admin-col-backtoweb a p{
-letter-spacing:3px;
-}
 
 
 
