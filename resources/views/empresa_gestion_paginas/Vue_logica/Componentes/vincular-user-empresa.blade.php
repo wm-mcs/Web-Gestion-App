@@ -138,7 +138,7 @@ vincular_vendedor_con_empresa:function(){
             
            });       
 
-}
+},
 desvincular_este_user:function(user,url){
   
 
