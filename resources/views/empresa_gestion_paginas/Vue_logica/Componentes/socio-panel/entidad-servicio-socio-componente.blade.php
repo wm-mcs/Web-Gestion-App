@@ -41,7 +41,7 @@ methods:{
           if(response.data.Validacion == true)
           {
 
-            var id_modal = vue.open_modal();
+            var id_modal = vue.open_modal;
             app.cerrarModal(id_modal);  
             vue.$emit('actualizar_socio',response.data.Socio);    
             
