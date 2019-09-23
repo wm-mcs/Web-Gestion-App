@@ -27,12 +27,7 @@ methods:{
 abrirModalon:function(id){
 
   $(id).appendTo('body').modal('show'); 
-},
-cerrarModal:function(){
-
- $('#modal-vincular-usuario').modal('hide');
- $('.modal-backdrop').remove();
-},    
+}, 
 getUserSegunRole:function(role){
 
 
@@ -89,17 +84,18 @@ vincular_user_con_empresa:function(){
 
             if(data.Validacion == true)
             {
-              $.notify(data.Validacion_mensaje, "success");              
+                         
               vue.usuarios_de_empresa = data.UsersEmpresa;
-
-              vue.cerrarModal();
+              app.cerrarModal('#modal-vincular-usuario');
+              $.notify(data.Validacion_mensaje, "success");   
 
               
             }
             else
             {
+              
+              app.cerrarModal('#modal-vincular-usuario');
               $.notify(response.data.Validacion_mensaje, "warn");
-              vue.cerrarModal();
             }
            
            }).catch(function (error){
@@ -122,13 +118,15 @@ vincular_vendedor_con_empresa:function(){
 
             if(data.Validacion == true)
             {
-              $.notify(data.Validacion_mensaje, "success");
+              
               vue.vendedores_de_empresa = data.UsersEmpresa;
+              app.cerrarModal('#modal-vincular-usuario');
+              $.notify(data.Validacion_mensaje, "success");
 
               
             }
             else
-            {
+            { app.cerrarModal('#modal-vincular-usuario');
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            

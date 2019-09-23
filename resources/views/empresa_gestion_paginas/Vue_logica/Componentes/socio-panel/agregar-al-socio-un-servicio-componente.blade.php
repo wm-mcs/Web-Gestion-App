@@ -63,10 +63,12 @@ methods:{
 
             if(data.Validacion == true)
             {
-              $.notify(data.Validacion_mensaje, "success");              
+                          
               
               vue.$emit('actualizar_servicios_de_socios',response.data.servicios);   
-              vue.$emit('actualizar_socio',response.data.Socio);          
+              vue.$emit('actualizar_socio',response.data.Socio);   
+              app.cerrarModal('#modal-agregar-servicio-socio');  
+              $.notify(data.Validacion_mensaje, "success");       
             }
             else
             {

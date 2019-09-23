@@ -27,6 +27,15 @@
     },
 
     methods:{
+
+
+
+    cerrarModal:function(id_modal){
+
+     $(id_modal).modal('hide');
+     $('.modal-backdrop').remove();
+    },   
+    
     }
 
      
