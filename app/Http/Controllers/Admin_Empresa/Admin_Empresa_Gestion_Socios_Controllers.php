@@ -616,7 +616,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function delete_user_a_empresa(Request $Request)
     {
-      $User = $this->UserEmpresaRepo->find($Request->get('user_id'));
+      $User     = $this->UserEmpresaRepo->find($Request->get('user_id'));
+      $Empresa  = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
       $this->UserEmpresaRepo->destruir_esta_entidad($User);
       $UsersEmpresa = $this->UserEmpresaRepo->getUsuariosDeEstaEmpresa($Empresa->id); 
@@ -641,7 +642,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
     public function delete_vendedor_a_empresa(Request $Request)
     {
-      $User = $this->VendedorEmpresaRepo->find($Request->get('user_id'));
+      $User     = $this->VendedorEmpresaRepo->find($Request->get('user_id'));
+      $Empresa  = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
       $this->VendedorEmpresaRepo->destruir_esta_entidad($User);
 

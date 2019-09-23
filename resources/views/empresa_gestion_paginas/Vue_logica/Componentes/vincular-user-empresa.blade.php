@@ -141,6 +141,12 @@ vincular_vendedor_con_empresa:function(){
 },
 desvincular_este_user:function(user,url){
   
+    var validation = confirm("¿Quieres desvincular a esté usuario?");
+
+       if(!validation)
+       {
+        return '';
+       }
 
    var url  = "/" + url ;
 
