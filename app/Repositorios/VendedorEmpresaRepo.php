@@ -18,6 +18,10 @@ class VendedorEmpresaRepo extends BaseRepo
   }
 
 
+  public function getVendedoresDeEstaEmpresa($Empresa_id)
+  {
+    return  $this->getEntidad()->where('empresa_id',$Empresa_id )->get();
+  }
 
   public function setAsociarEmpresaYUser($Empresa_id,$User_id)
   {

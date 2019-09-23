@@ -147,6 +147,38 @@ desvincular_este_user:function(user,url){
    var vue  = this;
 
 
+    axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+              if(url == 'delete_vendedor_a_empresa')
+              {
+                vue.vendedores_de_empresa = data.UsersEmpresa;
+              }
+              else
+              {
+                vue.usuarios_de_empresa = data.UsersEmpresa;
+              }
+              
+              
+              $.notify(data.Validacion_mensaje, "success");
+
+              
+            }
+            else
+            { 
+              $.notify(response.data.Validacion_mensaje, "warn");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });    
+
+
 
 
 }

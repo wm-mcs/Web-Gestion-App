@@ -606,7 +606,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-      $UsersEmpresa = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $UsersEmpresa = $this->UserEmpresaRepo->getUsuariosDeEstaEmpresa($Empresa->id); 
 
       return [ 'Validacion'               =>  $Validacion['Validacion'],
                'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
@@ -616,7 +616,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function delete_user_a_empresa(Request $Request)
     {
-      $User = $this->UserEmpresaRepo->find($Request->get(''))
+      $User = $this->UserEmpresaRepo->find($Request->get('user_id'));
+
+      $this->UserEmpresaRepo->destruir_esta_entidad($User);
+      $UsersEmpresa = $this->UserEmpresaRepo->getUsuariosDeEstaEmpresa($Empresa->id); 
+      return [ 'Validacion'               =>  true,
+               'Validacion_mensaje'       =>  'Usuario desvinculado correctamente',
+               'UsersEmpresa'             =>  $UsersEmpresa     ];
     }
 
   public function set_vendedor_a_empresa(Request $Request)
@@ -626,12 +632,25 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-      $UsersEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+
+      $UsersEmpresa = $this->VendedorEmpresaRepo->getVendedoresDeEstaEmpresa($Empresa->id);
 
       return [ 'Validacion'               =>  $Validacion['Validacion'],
                'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
                'UsersEmpresa'             =>  $UsersEmpresa     ];
   }
+    public function delete_vendedor_a_empresa(Request $Request)
+    {
+      $User = $this->VendedorEmpresaRepo->find($Request->get('user_id'));
+
+      $this->VendedorEmpresaRepo->destruir_esta_entidad($User);
+
+      $UsersEmpresa = $this->VendedorEmpresaRepo->getVendedoresDeEstaEmpresa($Empresa->id);
+
+      return [ 'Validacion'               =>  true,
+               'Validacion_mensaje'       =>  'Vendedor desvinculado correctamente',
+               'UsersEmpresa'             =>  $UsersEmpresa     ];
+    }
 
 
 

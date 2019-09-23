@@ -18,6 +18,13 @@ class UserEmpresaRepo extends BaseRepo
   }
 
 
+  public function getUsuariosDeEstaEmpresa($Empresa_id)
+  {
+    return $this->getEntidad()->where('empresa_id',$Empresa_id )->get();
+  } 
+
+
+
 
   public function setAsociarEmpresaYUser($Empresa_id,$User_id)
   {
