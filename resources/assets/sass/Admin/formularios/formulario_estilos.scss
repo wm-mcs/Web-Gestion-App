@@ -1,8 +1,8 @@
 .wrpaer-formulario-contenedor{
   width:100%;
   @include flexbox; 
-  @include flex-direction(center);
-  @include align-items(column);
+  @include flex-direction(column);
+  @include align-items(center);
 }
 
 .formulario-contenedor{

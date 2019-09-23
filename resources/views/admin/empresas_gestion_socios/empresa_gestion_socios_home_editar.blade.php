@@ -57,7 +57,7 @@
                 @include('admin.empresas_gestion_socios.formularios_partes.datos_imagenes')
               </div>
             </div>
-            <div class="contenedor-grupo-datos">
+            <div class="get_width_100 flex-row-column">
               <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
             </div>
           </div>      
