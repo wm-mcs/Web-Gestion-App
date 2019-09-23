@@ -90,16 +90,16 @@ vincular_user_con_empresa:function(){
             if(data.Validacion == true)
             {
               $.notify(data.Validacion_mensaje, "success");              
-              this.usuarios_de_empresa = data.UsersEmpresa;
+              vue.usuarios_de_empresa = data.UsersEmpresa;
 
-              this.cerrarModal();
+              vue.cerrarModal();
 
               
             }
             else
             {
               $.notify(response.data.Validacion_mensaje, "warn");
-              this.cerrarModal();
+              vue.cerrarModal();
             }
            
            }).catch(function (error){
@@ -123,7 +123,7 @@ vincular_vendedor_con_empresa:function(){
             if(data.Validacion == true)
             {
               $.notify(data.Validacion_mensaje, "success");
-              this.vendedores_de_empresa = data.UsersEmpresa;
+              vue.vendedores_de_empresa = data.UsersEmpresa;
 
               
             }
