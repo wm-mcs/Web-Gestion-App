@@ -11,7 +11,7 @@
 @if(isset($Empresa))
 <div class="admin-img-section-contenedor" >
   <div class="admin-img-section-text">Imagen actual de la empresa</div>
-  <img class="admin-img-section-img" src="{{$Entidad->url_img}}"> 
+  <img class="admin-img-section-img" src="{{$Empresa->url_img}}"> 
 </div>
 @endif
 
