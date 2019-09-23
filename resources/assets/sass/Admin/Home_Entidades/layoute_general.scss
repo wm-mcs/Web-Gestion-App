@@ -87,6 +87,12 @@
   position: fixed;  
 }
 
+.admin-columna-wraper{
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(column);  
+}
+
 .admin-logo-contendor{
   width:100%;
   height:90px;
