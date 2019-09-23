@@ -137,6 +137,19 @@ vincular_vendedor_con_empresa:function(){
            });       
 
 }
+desvincular_este_user:function(user,url){
+  
+
+   var url  = "/"+url ";
+
+   var data = {empresa_id:this.empresa.id,
+                  user_id:user.id};
+   var vue  = this;
+
+
+
+
+}
 
      
 
@@ -160,7 +173,10 @@ template:'
    <div v-if="usuarios_de_empresa.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
-        @{{usuario_empresa.user.name}}
+        <span>@{{usuario_empresa.user.name}}</span> 
+        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa,'delete_user_a_empresa')"> 
+          <i class="fas fa-trash-alt"></i> 
+        </span>
       </div>
    </div>
    <div v-else>
@@ -172,7 +188,7 @@ template:'
     <div class="empresa-titulo-de-secciones">Vendedor</div>
       <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <span>@{{usuario_empresa.user.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario"> 
+        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa,'delete_vendedor_a_empresa')"> 
           <i class="fas fa-trash-alt"></i> 
         </span>
       </div>

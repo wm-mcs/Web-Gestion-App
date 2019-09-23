@@ -614,6 +614,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   }
 
+    public function delete_user_a_empresa(Request $Request)
+    {
+      $User = $this->UserEmpresaRepo->find($Request->get(''))
+    }
+
   public function set_vendedor_a_empresa(Request $Request)
   {
       //creo el usuario

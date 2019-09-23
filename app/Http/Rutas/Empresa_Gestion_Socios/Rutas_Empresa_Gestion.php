@@ -24,6 +24,13 @@
             'as'         => 'set_user_a_empresa',                
           ]);
 
+          // vinculo una empresa con un usuario
+          Route::post('delete_user_a_empresa',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delete_user_a_empresa',
+            'as'         => 'delete_user_a_empresa',                
+          ]);
+
 
 
           
@@ -73,6 +80,15 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_vendedor_a_empresa',
                   'as'         => 'set_vendedor_a_empresa',                
                 ]);
+
+
+                //
+                Route::post('delete_vendedor_a_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delete_vendedor_a_empresa',
+                  'as'         => 'delete_vendedor_a_empresa',                
+                ]);
+                
 
            });
          
