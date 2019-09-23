@@ -8,7 +8,9 @@ data:function(){
       users:[],
       user_seleccionado: false,
       usuarios_de_empresa: {!! json_encode($UsersEmpresa) !!},
-      vendedores_de_empresa: {!! json_encode($VendedorEmpresa) !!}
+      vendedores_de_empresa: {!! json_encode($VendedorEmpresa) !!},
+      url_delete_vendedores: 'delete_vendedor_a_empresa',
+      url_delete_usuarios: 'delete_user_a_empresa'
 
       }
 },
@@ -206,7 +208,7 @@ template:'
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <span>@{{usuario_empresa.user.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa,'delete_user_a_empresa')"> 
+        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa,url_delete_usuarios)"> 
           <i class="fas fa-trash-alt"></i> 
         </span>
       </div>
@@ -220,7 +222,7 @@ template:'
     <div class="empresa-titulo-de-secciones">Vendedor</div>
       <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <span>@{{usuario_empresa.user.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa, 'delete_vendedor_a_empresa')"> 
+        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa, url_delete_vendedores)"> 
           <i class="fas fa-trash-alt"></i> 
         </span>
       </div>
