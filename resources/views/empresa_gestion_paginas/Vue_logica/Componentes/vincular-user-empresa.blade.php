@@ -161,7 +161,7 @@ desvincular_este_user:function(user,url){
 
             if(data.Validacion == true)
             {
-              if(url == 'delete_vendedor_a_empresa')
+              if(url === 'delete_vendedor_a_empresa')
               {
                 vue.vendedores_de_empresa = data.UsersEmpresa;
               }
