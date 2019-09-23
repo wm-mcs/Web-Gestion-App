@@ -101,11 +101,23 @@
                 background-color:$color-3light;
               }
 
+              .admin-img-section-contenedor{
+                width: 100%;
+                padding:8px;
+                @include flexbox; 
+                @include flex-direction(column);
+                @include align-items(flex-start); 
 
-
+              }
+              .admin-img-section-text{
+                margin-top: 5px;
+                font-size: 10px;
+                color: $color-gris-text;
+              }
 
               .admin-img-section-img{
-                width: 100%;
+                width: 70px;
+                height: auto;
                 padding:10px;
                 margin-top: 10px;
               }
