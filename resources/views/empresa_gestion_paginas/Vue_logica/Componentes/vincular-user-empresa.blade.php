@@ -139,7 +139,7 @@ vincular_vendedor_con_empresa:function(){
            });       
 
 },
-desvincular_este_user:function(user,url){
+desvincular_este_user:function(user,url_enviada){
   
     var validation = confirm("¿Quieres desvincular a esté usuario?");
 
@@ -148,7 +148,7 @@ desvincular_este_user:function(user,url){
         return '';
        }
 
-   var url  = "/" + url ;
+   var url  = "/" + url_enviada ;
 
    var data = {empresa_id:this.empresa.id,
                   user_id:user.id};
@@ -161,7 +161,7 @@ desvincular_este_user:function(user,url){
 
             if(data.Validacion == true)
             {
-              if(url === 'delete_vendedor_a_empresa')
+              if(url_enviada === 'delete_vendedor_a_empresa')
               {
                 vue.vendedores_de_empresa = data.UsersEmpresa;
               }
