@@ -36,48 +36,36 @@
                             'files' =>  true,
                             'id'    => 'form-admin-empresa-datos'
                           ])               !!}
-   <div class="formulario-contenedor">
 
-    <div class="get_width_50">
-         {{-- datos corporativos --}}
-      <div class="contenedor-grupo-datos">
-        <div class="contenedor-grupo-datos-titulo"> Datos</div>
-        <div class="contenedor-formulario-label-fiel">                       
-         @include('admin.empresas_gestion_socios.formularios_partes.datos_basicos')
-        </div>
-      </div>
-      
-    </div>
+  <div class="wrpaer-formulario-contenedor">
+     <div class="formulario-contenedor">
+          <div class="formulario-contenedor-columnas">
+               {{-- datos corporativos --}}
+            <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Datos</div>
+              <div class="contenedor-formulario-label-fiel">                       
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_basicos')
+              </div>
+            </div>
+          </div>
 
-    <div class="get_width_50">
-
-      
-      {{-- imagenes corporativos --}}
-      <div class="contenedor-grupo-datos">
-        <div class="contenedor-grupo-datos-titulo">Imagen</div>
-        <div class="contenedor-formulario-label-fiel">                       
-          @include('admin.empresas_gestion_socios.formularios_partes.datos_imagenes')
-        </div>
-      </div>
-
-
-      <div class="contenedor-grupo-datos">
-        <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
-      </div>
-      
-    </div>
-
-    
-
-
-      
-
-      
-   </div>
-   <div class="admin-boton-editar">
-     Guardar
-   </div> 
-
+          <div class="formulario-contenedor-columnas">
+            {{-- imagenes corporativos --}}
+            <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo">Imagen</div>
+              <div class="contenedor-formulario-label-fiel">                       
+                @include('admin.empresas_gestion_socios.formularios_partes.datos_imagenes')
+              </div>
+            </div>
+            <div class="contenedor-grupo-datos">
+              <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
+            </div>
+          </div>      
+     </div>
+     <div class="admin-boton-editar">
+       Guardar
+     </div> 
+ </div>   
   {!! Form::close() !!}
   
 @stop

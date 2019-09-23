@@ -1,3 +1,10 @@
+.wrpaer-formulario-contenedor{
+  width:100%;
+  @include flexbox; 
+  @include flex-direction(center);
+  @include align-items(column);
+}
+
 .formulario-contenedor{
       @include flexbox; 
       @include flex-direction(row);
@@ -6,6 +13,11 @@
       @include flex-wrap(wrap);      
       margin-top: 30px;
       width:100%;
+}
+
+.formulario-contenedor-columnas{
+  width:100%;
+  padding:8px;
 }
 
  .contenedor-grupo-datos{
@@ -99,6 +111,14 @@
               }
 
 
+ @media (min-width: $BrackPoint-Secundario){
 
+
+   .formulario-contenedor-columnas{
+    width:49%;
+  }
+
+
+ }
 
               

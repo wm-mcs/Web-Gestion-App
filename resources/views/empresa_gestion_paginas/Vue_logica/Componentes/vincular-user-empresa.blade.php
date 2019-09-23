@@ -146,7 +146,7 @@ vincular_vendedor_con_empresa:function(){
 
 },
 template:'
-<span>
+<span class="get_width_100 ">
 
 
 
