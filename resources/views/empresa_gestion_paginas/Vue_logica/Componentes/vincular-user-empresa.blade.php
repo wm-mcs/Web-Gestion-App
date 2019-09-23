@@ -140,7 +140,7 @@ vincular_vendedor_con_empresa:function(){
 desvincular_este_user:function(user,url){
   
 
-   var url  = "/"+url ";
+   var url  = "/"+url ;
 
    var data = {empresa_id:this.empresa.id,
                   user_id:user.id};
