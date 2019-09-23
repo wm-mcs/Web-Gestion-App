@@ -30,7 +30,8 @@ abrirModalon:function(id){
 },
 cerrarModal:function(){
 
- $('.modal').hide();
+ $('#modal-vincular-usuario').modal('hide');
+ $('.modal-backdrop').remove();
 },    
 getUserSegunRole:function(role){
 
