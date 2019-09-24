@@ -36,6 +36,30 @@ computed:{
     {
       return false;
     }
+  },
+  cantidadDeClasesDisponibles:function(){
+
+    if(this.socio.servicios_contratados_disponibles_tipo_clase.length > 0)
+    {
+      return this.socio.servicios_contratados_disponibles_tipo_clase.length;
+    }
+    else
+    {
+      return 0;
+    }
+
+  },
+  cantidadDeMensualesDisponibles:function(){
+
+    if(this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0)
+    {
+      return this.socio.servicios_contratados_disponibles_tipo_mensual.length;
+    }
+    else
+    {
+      return 0;
+    }
+
   }
 
 
@@ -68,8 +92,8 @@ template:'
         
       </div>
       <div class="listado-socio-contiene-los-hay">
-        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene clases disponibles</div>
-        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene abono mensual disponibles</div>        
+        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  clases disponibles</div>
+        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> abono mensual disponibles</div>        
       </div>
           
 </div>'  

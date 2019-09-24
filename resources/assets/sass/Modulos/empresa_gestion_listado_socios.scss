@@ -71,16 +71,19 @@
    .listado-socios-datos{
     margin-top: 1px;
     width: 49%;
-    padding:2px;    
+    padding:4px;    
     background-color: $Color-Gris-Claro;
     overflow: hidden;
     text-align: center;
+    border-radius:8px;
    }
 
    .listado-socio-contiene-los-hay{
     @include flexbox;       
     @include flex-direction(row);
     @include align-items(flex-start); 
+    @include flex-wrap(wrap); 
+    @include justify-content(space-around); 
     width: 100%;
     padding:4px;
     margin-top: 3px;
@@ -89,7 +92,7 @@
    .listado-socio-tiene-mensual{
     padding: 3px;
     border-radius:8px;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     background-color: $Color-info;
     font-weight: bold;
@@ -100,7 +103,7 @@
    .listado-socio-tiene-clases{    
     padding: 3px;
     border-radius:8px;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     background-color: $Color-clase;
     font-weight: bold;
