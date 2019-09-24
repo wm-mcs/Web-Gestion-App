@@ -108,6 +108,7 @@ template:'
         <span class="listado-socios-datos"><i class="fas fa-envelope"></i> @{{socio.email}}</span>
         <span class="listado-socios-datos"><i class="far fa-id-badge"></i> @{{socio.cedula}}</span>
         <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
+        <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
         
       </div>
       <div class="listado-socio-contiene-los-hay">
