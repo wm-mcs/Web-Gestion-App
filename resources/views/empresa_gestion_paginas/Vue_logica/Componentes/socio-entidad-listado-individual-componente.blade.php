@@ -32,6 +32,19 @@ abrir_cerrar_clases:function(){
   {
     this.clases_desplegadas = true;
   }
+},
+abrir_cerrar_mensual:function(){
+
+  if(this.mensuales_desplegadas)
+  {
+    this.mensuales_desplegadas = false;
+  }
+  else
+  {
+    this.mensuales_desplegadas = true;
+  }
+
+  
 }
 
          
@@ -150,6 +163,8 @@ template:'
         <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">
           <span>
              Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> 
+             <span v-if="mensuales_desplegadas" v-on:click="abrir_cerrar_mensual"><i class="fas fa-chevron-up"></i>  </span>  
+             <span v-else v-on:click="abrir_cerrar_mensual"> <i class="fas fa-chevron-down"></i></span>  
           </span>
            <div v-if="mensuales_desplegadas">
             
