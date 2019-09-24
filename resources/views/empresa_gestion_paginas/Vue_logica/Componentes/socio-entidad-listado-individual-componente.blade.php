@@ -6,12 +6,34 @@ props:['socio','empresa']
 
 
 
+data:function(){
+    return {
+         clases_desplegadas:false,
+      mensuales_desplegadas:false
+
+
+    }
+}, 
+
+
+
 methods:{
 enviar_form:function(id){
   var id = '#'+ id.toString();
 
    $( id ).parent().submit();
+},
+abrir_cerrar_clases:function(){
+  if(this.clases_desplegadas)
+  {
+    this.clases_desplegadas = false;
+  }
+  else
+  {
+    this.clases_desplegadas = true;
+  }
 }
+
          
 
 },
@@ -112,8 +134,29 @@ template:'
         
       </div>
       <div class="listado-socio-contiene-los-hay">
-        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>   </div>
-        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong>   </div>        
+        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">
+          <span>
+             Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  
+             <span v-if="clases_desplegadas" v-on:click="abrir_cerrar_clases"><i class="fas fa-chevron-up"></i>  </span>  
+             <span v-else v-on:click="abrir_cerrar_clases"> <i class="fas fa-chevron-down"></i></span>            
+          </span> 
+
+          <div v-if="clases_desplegadas">
+            Hola
+          </div>
+
+
+        </div>
+        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">
+          <span>
+             Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> 
+          </span>
+           <div v-if="mensuales_desplegadas">
+            
+           </div>
+            
+
+        </div>        
       </div>
           
 </div>'  
