@@ -67,7 +67,7 @@ template:'
         <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
         
       </div>
-      <div>
+      <div class="listado-socio-contiene-los-hay">
         <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene clases disponibles</div>
         <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene abono mensual disponibles</div>        
       </div>
