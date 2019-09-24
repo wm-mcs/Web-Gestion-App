@@ -39,7 +39,7 @@ computed:{
   }
 
 
-}
+},
 template:'  
 <div class="listado-socios-contenedor-individual">
      
