@@ -100,11 +100,11 @@ computed:{
     {
       if(cantidad > 1)
       {
-        return cantidad + ' abonos mensuales disponibles';
+        return cantidad + ' mensuales disponibles';
       }
       else
       {
-         return cantidad + ' abono mensual disponible';
+         return cantidad + ' mensual disponible';
       }
 
       return cantidad;
