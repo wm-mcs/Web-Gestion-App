@@ -160,6 +160,9 @@ template:'
 
 
         </div>
+        <div v-else class="listado-socio-no-tiene">
+            No tiene clases disponibles <i class="far fa-meh"></i>
+        </div>
         <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">
           <span>
              Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> 
@@ -171,6 +174,9 @@ template:'
            </div>
             
 
+        </div>
+         <div v-else class="listado-socio-no-tiene">
+            No tiene mensual disponible <i class="far fa-meh"></i>
         </div>        
       </div>
           
