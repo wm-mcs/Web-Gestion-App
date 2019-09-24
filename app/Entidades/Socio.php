@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Entidades\ServicioContratadoSocio;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 
 
@@ -25,12 +26,13 @@ class Socio extends Model
 
 
 
-    protected $appends = ['route', 'estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares','servicios_contratados_del_socio'];
+    protected $appends = ['route', 'estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares','servicios_contratados_del_socio','servicios_contratados_disponibles_tipo_clase','servicios_contratados_disponibles_tipo_mensual'];
 
 
     public function servicios_contratados()
     {
-      return $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')->where('borrado','no')->orderBy('created_at', 'asc');
+      return $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')->where('borrado','no')
+                                                                           ->orderBy('created_at', 'asc');
     }
 
 
@@ -40,6 +42,44 @@ class Socio extends Model
                               return $this->servicios_contratados; 
                           }); */
     }
+
+    public function servicio_contratados_tipo_clases()
+    {
+        $Hoy = Carbon::now('America/Montevideo');  
+
+        $Servicos_tipo_clase =  $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')
+                                     ->where('borrado','no')
+                                     ->where('tipo','clase')
+                                     ->where('esta_consumido','no')
+                                     ->where('fecha_vencimiento','>',$Hoy)
+                                     ->orderBy('created_at', 'asc');
+
+        return $Servicos_tipo_clase;                             
+    }
+
+               public function getServiciosContratadosDisponiblesTipoClaseAttribute()
+               {
+                    return $this->servicio_contratados_tipo_clases;
+               }
+
+
+
+    public function servicio_contratados_tipo_mensual()
+    {
+        $Hoy = Carbon::now('America/Montevideo');  
+
+        $Servicos_tipo_mensual =  $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')
+                                     ->where('borrado','no')
+                                     ->where('tipo','mensual')
+                                     ->where('fecha_vencimiento','>',$Hoy)
+                                     ->orderBy('created_at', 'asc');
+
+        return $Servicos_tipo_mensual;                             
+    }
+               public function getServiciosContratadosDisponiblesTipoMensualAttribute()
+               {
+                    return $this->servicio_contratados_tipo_mensual;
+               }
     
 
     
