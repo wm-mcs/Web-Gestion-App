@@ -46,25 +46,17 @@ template:'
 
       <div class="listado-socios-sub-contenedor-name-estado">
         <div class="listado-socios-name"> 
+           <span class="listado-socio-icono"><i class="fas fa-portrait"></i></span> 
+           {!! Form::open(['route' => ['get_socio_panel'],
+                                'method'=> 'Post',
+                                'files' =>  true,
+                              ])               !!}   
 
-         
-       {!! Form::open(['route' => ['get_socio_panel'],
-                            'method'=> 'Post',
-                            'files' =>  true,
-                          ])               !!}   
-
-       <input type="hidden" name="empresa_id" :value="empresa.id">
-       <input type="hidden" name="socio_id" :value="socio.id">
-       <span :id="socio.id"></span>
-
-
-                 <span class="listado-socio-icono"><i class="fas fa-portrait"></i></span>
-
-                 <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span> 
-        
-
-       {!! Form::close() !!}  
-
+           <input type="hidden" name="empresa_id" :value="empresa.id">
+           <input type="hidden" name="socio_id" :value="socio.id">
+           <span :id="socio.id"></span>
+           <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+           {!! Form::close() !!} 
         </div>
         <div>@{{socio.estado}}</div>
       </div>
@@ -76,9 +68,8 @@ template:'
         
       </div>
       <div>
-        <div v-if="clasesDisponibles">Hay clases disponibles</div>
-        <div v-if="mensualDisponibles">Hay mensual disponibles</div>
-        
+        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene clases disponibles</div>
+        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene abono mensual disponibles</div>        
       </div>
           
 </div>'  

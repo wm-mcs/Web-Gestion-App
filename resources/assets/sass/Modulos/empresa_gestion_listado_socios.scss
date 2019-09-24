@@ -57,18 +57,48 @@
 
   .listado-socios-sub-contenedor-datos{
     @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include flex-wrap(wrap); 
+    @include justify-content(space-around); 
     padding: 3px;
     border-radius: 4px;
-    background-color: $Color-Gris-Claro;
+   
     font-size: 10px;
     color: $Color-texto-gris-Mercadolibre;
+    width: 100%;
   }
 
    .listado-socios-datos{
     margin-top: 1px;
+    width: 49%;
+    padding:4px;
+    letter-spacing: 1.5px;
+    background-color: $Color-Gris-Claro;
+   }
 
+   .listado-socio-tiene-mensual{
+    padding: 6px;
+    border-radius:8px;
+    font-size: 12px;
+    text-align: center;
+    background-color: $Color-info;
+    font-weight: bold;
+    color: white;
+    margin-top: 3px;
+
+   }
+
+   .listado-socio-tiene-clases{
+    
+    padding: 6px;
+    border-radius:8px;
+    font-size: 12px;
+    text-align: center;
+    background-color: $Color-purple;
+    font-weight: bold;
+    color: white;
+    margin-top: 3px;
    }
 
 
