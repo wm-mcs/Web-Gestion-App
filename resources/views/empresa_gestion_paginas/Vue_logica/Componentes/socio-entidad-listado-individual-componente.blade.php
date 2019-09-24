@@ -154,7 +154,7 @@ template:'
              <span v-else v-on:click="abrir_cerrar_clases"> <i class="fas fa-chevron-down"></i></span>            
           </span> 
 
-          <div v-if="clases_desplegadas">
+          <div v-if="clases_desplegadas" class="listado-socio-contiene-clases-o-mensuales">
             Hola
           </div>
 
@@ -167,7 +167,7 @@ template:'
              <span v-else v-on:click="abrir_cerrar_mensual"> <i class="fas fa-chevron-down"></i></span>  
           </span>
            <div v-if="mensuales_desplegadas">
-            
+            Hola
            </div>
             
 
