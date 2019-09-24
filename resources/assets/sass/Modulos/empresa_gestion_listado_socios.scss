@@ -37,11 +37,22 @@
   }
 
 
+
+
     .listado-socios-name{
       font-weight: bold;
       font-size: 16px;
       width: 70%;
+      @include flexbox;       
+      @include flex-direction(row);
+      @include align-items(center);
     }
+
+       .listado.socio-icono{
+        font-size: 30px;
+        color: $Color-Gris-Claro ;
+        margin-right: 5px;
+       }
 
 
   .listado-socios-sub-contenedor-datos{

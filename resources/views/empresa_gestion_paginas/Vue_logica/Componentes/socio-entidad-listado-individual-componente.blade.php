@@ -57,7 +57,10 @@ template:'
        <input type="hidden" name="socio_id" :value="socio.id">
        <span :id="socio.id"></span>
 
-       <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span> 
+
+                 <span class=""><i class="fas fa-portrait"></i></span>
+
+                 <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span> 
         
 
        {!! Form::close() !!}  
@@ -78,7 +81,7 @@ template:'
         
       </div>
           
-</div>'
+</div>'  
 
 }
 
