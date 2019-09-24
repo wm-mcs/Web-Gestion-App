@@ -18,7 +18,7 @@ enviar_form:function(id){
 computed:{
   
   clasesDisponibles:function(){
-    if(socio.servicios_contratados_disponibles_tipo_clase.length > 0)
+    if(this.socio.servicios_contratados_disponibles_tipo_clase.length > 0)
     {
       return true;
     }
@@ -28,7 +28,7 @@ computed:{
     }
   },
   mensualDisponibles:function(){
-    if(socio.servicios_contratados_disponibles_tipo_mensual.length > 0)
+    if(this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0)
     {
       return true;
     }
