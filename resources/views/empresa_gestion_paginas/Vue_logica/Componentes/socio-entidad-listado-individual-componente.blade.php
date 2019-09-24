@@ -155,7 +155,11 @@ template:'
           </span> 
 
           <div v-if="clases_desplegadas" class="listado-socio-contiene-clases-o-mensuales">
-            Hola
+            <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase" :key="servicio.id">
+              <div>
+                @{{servicio.name}}
+              </div>
+            </div>
           </div>
 
 
@@ -170,7 +174,11 @@ template:'
              <span v-else v-on:click="abrir_cerrar_mensual"> <i class="fas fa-chevron-down"></i></span>  
           </span>
            <div v-if="mensuales_desplegadas">
-            Hola
+              <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" :key="servicio.id">
+              <div>
+                @{{servicio.name}}
+              </div>
+            </div>
            </div>
             
 
