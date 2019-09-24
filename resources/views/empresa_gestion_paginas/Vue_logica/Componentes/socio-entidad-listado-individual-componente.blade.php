@@ -58,7 +58,7 @@ template:'
        <span :id="socio.id"></span>
 
 
-                 <span class=""><i class="fas fa-portrait"></i></span>
+                 <span class="listado-socio-icono"><i class="fas fa-portrait"></i></span>
 
                  <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span> 
         
