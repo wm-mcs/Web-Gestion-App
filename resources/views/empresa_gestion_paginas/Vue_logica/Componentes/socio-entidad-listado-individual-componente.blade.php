@@ -39,9 +39,18 @@ computed:{
   },
   cantidadDeClasesDisponibles:function(){
 
-    if(this.socio.servicios_contratados_disponibles_tipo_clase.length > 0)
+    var cantidad = this.socio.servicios_contratados_disponibles_tipo_clase.length;
+
+    if(cantidad > 0)
     {
-      return this.socio.servicios_contratados_disponibles_tipo_clase.length;
+      if(cantidad > 1)
+      {
+        return cantidad + ' clases disponibles';
+      }
+      else
+      {
+         return cantidad + ' clase disponible';
+      }
     }
     else
     {
@@ -51,9 +60,19 @@ computed:{
   },
   cantidadDeMensualesDisponibles:function(){
 
-    if(this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0)
+    var cantidad = this.socio.servicios_contratados_disponibles_tipo_mensual.length;
+    if( cantidad > 0)
     {
-      return this.socio.servicios_contratados_disponibles_tipo_mensual.length;
+      if(cantidad > 1)
+      {
+        return cantidad + ' abonos mensuales disponibles';
+      }
+      else
+      {
+         return cantidad + ' abono mensual disponible';
+      }
+
+      return cantidad;
     }
     else
     {
@@ -92,8 +111,8 @@ template:'
         
       </div>
       <div class="listado-socio-contiene-los-hay">
-        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  clases disponibles</div>
-        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> abono mensual disponibles</div>        
+        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>   </div>
+        <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong>   </div>        
       </div>
           
 </div>'  
