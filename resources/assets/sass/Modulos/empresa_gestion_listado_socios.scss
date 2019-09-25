@@ -134,23 +134,28 @@
 
 
         .listado-socio-lista-servicio-disponible{
-          padding: 3px 1px; 
+          padding: 3px 3px; 
           @include flexbox;       
           @include flex-direction(row);
           @include align-items(center); 
           @include justify-content(space-between); 
           width: 100%;
         }
+        .listado-socio-lista-servicio-disponible:hover{
+          background-color: $Color-Gris-Claro;
+        }
 
           .listado-socio-lista-servicio-disponible-servicio{
             font-size: 10px;
             color: $color-verde-texto-success;
-            width: 90%;
+            width: 80%;
+            text-align: left;
           }
 
           .listado-socio-lista-servicio-disponible-accion{
             font-size: 14px;            
-            width: 10%;
+            width: 20%;
+            text-align: center;
           }
 
 
