@@ -133,6 +133,27 @@
      }
 
 
+        .listado-socio-lista-servicio-disponible{
+          padding: 3px 1px; 
+          @include flexbox;       
+          @include flex-direction(row);
+          @include align-items(center); 
+          @include justify-content(space-between); 
+          width: 100%;
+        }
+
+          .listado-socio-lista-servicio-disponible-servicio{
+            font-size: 10px;
+            color: $color-verde-texto-success;
+            width: 90%;
+          }
+
+          .listado-socio-lista-servicio-disponible-accion{
+            font-size: 14px;            
+            width: 10%;
+          }
+
+
   
 
 

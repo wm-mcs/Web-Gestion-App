@@ -45,6 +45,11 @@ abrir_cerrar_mensual:function(){
   }
 
   
+},
+consumir_esta_clase:function(servicio){
+
+  alert('hola');
+  
 }
 
          
@@ -156,8 +161,9 @@ template:'
 
           <div v-if="clases_desplegadas" class="listado-socio-contiene-clases-o-mensuales">
             <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase" :key="servicio.id">
-              <div>
-                @{{servicio.name}}
+              <div class="listado-socio-lista-servicio-disponible">
+                <span class="listado-socio-lista-servicio-disponible-servicio"> @{{servicio.name}}</span>
+                <span class="listado-socio-lista-servicio-disponible-accion simula_link"  v-on:click="consumir_esta_clase(servicio)" title="Consumir está clase"> <i class="far fa-check-square"></i></span>
               </div>
             </div>
           </div>
@@ -171,12 +177,12 @@ template:'
           <span>
              Tiene <strong>@{{cantidadDeMensualesDisponibles}}</strong> 
              <span v-if="mensuales_desplegadas" v-on:click="abrir_cerrar_mensual"><i class="fas fa-chevron-up"></i>  </span>  
-             <span v-else v-on:click="abrir_cerrar_mensual"> <i class="fas fa-chevron-down"></i></span>  
+             <span v-else v-on:click="abrir_cerrar_mensual" > <i class="fas fa-chevron-down"></i></span>  
           </span>
-           <div v-if="mensuales_desplegadas">
+           <div v-if="mensuales_desplegadas" class="listado-socio-contiene-clases-o-mensuales">
               <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" :key="servicio.id">
-              <div>
-                @{{servicio.name}}
+               <div class="listado-socio-lista-servicio-disponible">
+                <span class="listado-socio-lista-servicio-disponible-servicio"> @{{servicio.name}}</span>               
               </div>
             </div>
            </div>
