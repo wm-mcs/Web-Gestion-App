@@ -541,7 +541,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 
-     $Socios            = $this->SocioRepo->getSociosDeEstaEmpresa($Servicio_a_editar->empresa_id);
+     $Socios            = $this->SocioRepo->getSociosDeEstaEmpresa($Socio->empresa_id);
 
     if($Validacion)
      {
