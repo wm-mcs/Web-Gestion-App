@@ -48,8 +48,54 @@ abrir_cerrar_mensual:function(){
 },
 consumir_esta_clase:function(servicio){
 
-  alert('hola');
   
+
+       var mensaje    = "¿Seguro quieres consumir está clase? (de " + this.socio.name + ' )' ;
+
+       var validation = confirm(mensaje);
+
+       if(!validation)
+       {
+        return '';
+       }
+
+
+       var url = '/indicar_que_se_uso_el_servicio_hoy';
+
+       var vue = this;
+
+       var data = {servicio_a_editar:servicio,
+                            socio_id:this.socio.id,
+                         servicio_id:servicio.id,
+                          empresa_id:this.empresa.id};
+
+       axios.post(url,data).then(function(response){ 
+
+
+          
+          if(response.data.Validacion == true)
+          {
+            
+            
+             app.Socios = response.data.Socios;  
+             $.notify(response.data.Validacion_mensaje, "success");
+          }
+          else
+          {
+            $.notify(response.data.Validacion_mensaje, "warn");
+          }    
+           
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+
+
+
+  
+
 }
 
          

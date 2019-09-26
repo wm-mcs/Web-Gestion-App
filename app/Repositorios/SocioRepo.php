@@ -93,5 +93,11 @@ class SocioRepo extends BaseRepo
   } 
 
 
+  public function getSociosDeEstaEmpresa($Empresa_id)
+  {
+    return $this->getEntidad()->active()->where('empresa_id',$Empresa_id)->get();
+  }
+
+
   
 }

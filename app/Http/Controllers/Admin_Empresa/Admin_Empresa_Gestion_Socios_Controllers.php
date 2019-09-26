@@ -534,23 +534,21 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $User              = $Request->get('user_desde_middleware');  
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));     
      $Socio             = $Request->get('socio_desde_middleware'); 
+     $Servicio          = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
+     
+     //las porpiedades que se van a editar  
+     $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido', Carbon::now('America/Montevideo') );
 
-    
+     $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 
-       $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
-       
-       //las porpiedades que se van a editar  
-       $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido', Carbon::now('America/Montevideo') );
-
-       $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
-
-
+     $Socios            = $this->SocioRepo->getSociosDeEstaEmpresa($Servicio_a_editar->empresa_id);
 
     if($Validacion)
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se consumió la clase correctamente',
-               'Socio'               =>  $Socio];
+               'Socio'               =>  $Socio,
+               'Socios'              =>  $Socios];
      }
      
   }
