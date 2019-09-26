@@ -77,7 +77,7 @@ consumir_esta_clase:function(servicio){
           {
             
             
-             app.Socios = response.data.Socios;  
+             app.socios = response.data.Socios;  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
