@@ -5,12 +5,7 @@
 
     var app = new Vue({
     el: '#app',    
-    data:{
-      @if(isset($Socios))
-      socios: {!!  json_encode($Socios) !!},
-      @else
-        socios:'',
-      @endif
+    data:{     
       servicios:[],
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',

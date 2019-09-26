@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
 use App\Entidades\UserEmpresa;
+use App\Entidades\Socio;
 
 
 
@@ -22,7 +23,7 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-     protected $appends = ['tipo_servicios'];
+     protected $appends = ['tipo_servicios','socios_de_la_empresa'];
 
 
     public function servicios()
@@ -30,10 +31,20 @@ class EmpresaConSocios extends Model
       return $this->hasMany(TipoDeServicio::class,'empresa_id','id');
     }
 
-       public function getTipoServiciosAttribute()
+    public function getTipoServiciosAttribute()
+    {        
+       return $this->servicios;
+    }
+
+
+    public function socios()
     {
-        
-        return $this->servicios;
+      return $this->hasMany(Socio::class,'empresa_id','id')->orderBy('name','asc');
+    }
+
+      public function getSociosDeLaEmpresaAttribute()
+    {        
+       return $this->socios;
     }
 
 

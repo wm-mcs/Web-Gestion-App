@@ -138,10 +138,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
        $User            =  $Request->get('user_desde_middleware');  
        $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
-       $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
-       $Socios          = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, null, 100);
+       $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+      
 
-       return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
+       return view('empresa_gestion_paginas.home', compact('Empresa')); 
   }
 
 
@@ -541,14 +541,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 
-     $Socios            = $this->SocioRepo->getSociosDeEstaEmpresa($Socio->empresa_id);
+     $Empresa            = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
 
     if($Validacion)
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se consumió la clase correctamente',
                'Socio'               =>  $Socio,
-               'Socios'              =>  $Socios];
+               'Empresa'             =>  $Empresa];
      }
      
   }
