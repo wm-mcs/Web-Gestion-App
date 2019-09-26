@@ -184,17 +184,21 @@ template:'
            <input type="hidden" name="empresa_id" :value="empresa.id">
            <input type="hidden" name="socio_id" :value="socio.id">
            <span :id="socio.id"></span>
-           <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+           <div class="listado-socios-sub-name-email"> 
+              <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+              <span class="listado-socios-sub-name-email__email"><i class="fas fa-envelope"></i> @{{socio.email}}</span>
+           </div>
+          
            {!! Form::close() !!} 
         </div>
         <div>@{{socio.estado}}</div>
       </div>
 
       <div class="listado-socios-sub-contenedor-datos">
-        <span class="listado-socios-datos"><i class="fas fa-envelope"></i> @{{socio.email}}</span>
+        
         <span class="listado-socios-datos"><i class="far fa-id-badge"></i> @{{socio.cedula}}</span>
         <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
-        <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
+        
         
       </div>
       <div class="listado-socio-contiene-los-hay">

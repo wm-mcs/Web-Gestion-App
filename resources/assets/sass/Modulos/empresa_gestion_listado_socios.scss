@@ -48,6 +48,18 @@
       @include align-items(center);
     }
 
+       .listado-socios-sub-name-email{
+        @include flexbox;       
+        @include flex-direction(column);
+        @include align-items(flex-start); 
+
+       }
+
+      .listado-socios-sub-name-email__email{
+        color:$Color-texto-gris-Mercadolibre;
+        margin-top: 3px;
+      }
+
        .listado-socio-icono{
         font-size: 30px;
         color: $Color-Gris-Claro ;
