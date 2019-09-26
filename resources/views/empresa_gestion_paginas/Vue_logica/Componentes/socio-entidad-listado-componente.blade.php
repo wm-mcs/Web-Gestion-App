@@ -12,7 +12,7 @@ methods:{
 },
 template:'<span>
 
-  <div v-if="socios.length > 0" class="listado-socios-contenedor-lista">
+  <div v-if="empresa.socios_de_la_empresa.length > 0" class="listado-socios-contenedor-lista">
 
     <socio-list  v-for="socio in empresa.socios_de_la_empresa" :key="socio.id" :socio="socio" :empresa="empresa"></socio-list>
   
