@@ -32,13 +32,8 @@
             
          
                @include('alerts.Alertas_Todos_Agrupados.alertas_agrupados')  
-               <div class="admin-contnedor-navegacion-miga">
-                {{-- home --}}
-                <a href="{{route('get_admin_home')}}"><i class="fas fa-home"></i></a>
-                {{-- separador --}}
-                <span class="spam-separador">|</span> 
-                {{-- lugar donde esta --}}
-                @yield('miga-de-pan')                
+               <div class="admin-contnedor-navegacion-miga">           
+                 @yield('miga-de-pan')                
               </div>
               <div class="contenedor-admin-entidad">
                 <div class="get_width_100 Helper-OrdenarHijos-columna"> 
