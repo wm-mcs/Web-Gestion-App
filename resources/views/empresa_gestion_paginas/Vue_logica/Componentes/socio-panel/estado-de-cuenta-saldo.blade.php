@@ -20,6 +20,17 @@ mounted: function mounted () {
 
 },
 methods:{
+
+es_mayor_que_sero:function(valor){
+        if(valor >= 0)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+     }
    
      
 

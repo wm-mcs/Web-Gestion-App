@@ -133,16 +133,7 @@ methods:{
      actualizar_socio:function(socio){
       this.socio = socio;
      },
-     es_mayor_que_sero:function(valor){
-        if(valor >= 0)
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-     }
+     
     
 
          
