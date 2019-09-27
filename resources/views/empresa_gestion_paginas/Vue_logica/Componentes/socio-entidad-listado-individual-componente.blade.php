@@ -175,7 +175,7 @@ template:'
 
       <div class="listado-socios-sub-contenedor-name-estado">
         <div class="listado-socios-name"> 
-           <span class="listado-socio-icono"><i class="fas fa-portrait"></i></span> 
+           {{-- <span class="listado-socio-icono"><i class="fas fa-portrait"></i></span>  --}}
            {!! Form::open(['route' => ['get_socio_panel'],
                                 'method'=> 'Post',
                                 'files' =>  true,
