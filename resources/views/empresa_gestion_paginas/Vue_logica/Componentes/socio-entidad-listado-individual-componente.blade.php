@@ -191,7 +191,7 @@ template:'
           
            {!! Form::close() !!} 
         </div>
-        <estado-de-cuenta-socio-saldo :empresa="empresa" socio:"socio"> </estado-de-cuenta-socio-saldo>
+        <estado-de-cuenta-socio-saldo :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
       </div>
 
       <div class="listado-socios-sub-contenedor-datos">

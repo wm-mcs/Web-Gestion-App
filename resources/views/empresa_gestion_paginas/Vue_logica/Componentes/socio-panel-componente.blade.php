@@ -195,7 +195,7 @@ template:'<span>
 
           <span class="empresa-titulo-de-secciones">Estado de cuenta del socio</span>
 
-          <estado-de-cuenta-socio-saldo :empresa="empresa" socio:"socio"> </estado-de-cuenta-socio-saldo>
+          <estado-de-cuenta-socio-saldo :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
       </div>
       <div class="contiene-estados-de-cuenta-lista">
         
