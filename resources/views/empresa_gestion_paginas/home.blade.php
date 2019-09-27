@@ -48,6 +48,7 @@
      @include('empresa_gestion_paginas.Vue_logica.Componentes.tipo-de-servicios-modal-componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socios-crear-boton_componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socios-lista-componente')
+      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.estado-de-cuenta-saldo')
    
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-entidad-listado-individual-componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-entidad-listado-componente')
