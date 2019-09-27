@@ -1,4 +1,4 @@
-@extends('layouts.admin_layout.admin_layout')
+@extends('layouts.gestion_socios_layout.admin_layout')
 
 
 @section('miga-de-pan')
