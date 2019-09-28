@@ -167,7 +167,7 @@ template:'
                  
                
 
-                  <div v-if="sucursal_id == ''" v-on:click="crear_editar_sucursal(url_crear)" class="boton-simple">Crear</div>
+                  <div v-if="sucursal_id == """ v-on:click="crear_editar_sucursal(url_crear)" class="boton-simple">Crear</div>
                   <div v-else v-on:click="crear_editar_sucursal(url_editar)" class="boton-simple">Ediatr</div>
                   
                  
