@@ -162,7 +162,7 @@ template:'
 
                   <div v-if="sucursal_id != """ class="form-group">
                       <label class="formulario-label" for="Nombre">¿Está borrado?  </label>
-                      <v-select label="name_para_select" :options="['si','no']" v-model="sucursal_borrado"></v-select>
+                      <v-select label="name_para_select" :options="["si","no"]" v-model="sucursal_borrado"></v-select>
                   </div> 
                  
                
