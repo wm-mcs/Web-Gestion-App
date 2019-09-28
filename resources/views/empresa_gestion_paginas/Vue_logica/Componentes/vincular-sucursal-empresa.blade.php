@@ -114,7 +114,7 @@ template:'
 
 
 
-   <div      v-on:click="abrirModalon('"modal-sucursal"','"crear"')" class="admin-user-boton-Crear">
+   <div      v-on:click="abrirModalon("modal-sucursal","crear")" class="admin-user-boton-Crear">
         
         Crear sucursal a emrpesa <i class="fas fa-user-plus"></i>
    </div>
