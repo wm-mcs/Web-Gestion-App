@@ -9,7 +9,7 @@ data:function(){
        sucursal_name:'',
        sucursal_direccion:'',
        sucursal_telefono:'',
-       sucursal_borrado:''
+       sucursal_borrado:'',
 
        url_crear:'crear_sucursal',
        url_editar:'editar_sucursal'
