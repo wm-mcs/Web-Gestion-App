@@ -46,7 +46,6 @@ perparar_modal:function(sucursal){
         this.sucursal_borrado  = sucursal.borrado
   }
 },
-
 abrirModalon:function(id,sucursal){
 
   this.perparar_modal(sucursal);
@@ -67,9 +66,9 @@ crear_editar_sucursal:function(url_enviada){
    var data = {   empresa_id:this.empresa.id,
                           id:this.sucursal_id,
                         name:this.sucursal_name,
-                   direccion:sucursal_direccion,
-                   telefono:sucursal_telefono,
-                    borrado:sucursal_telefono};
+                   direccion:this.sucursal_direccion,
+                   telefono:this.sucursal_telefono,
+                    borrado:this.sucursal_telefono};
    var vue  = this;
 
 
@@ -115,7 +114,7 @@ template:'
 
 
 
-   <div      v-on:click="abrirModalon('modal-sucursal','crear')" class="admin-user-boton-Crear">
+   <div      v-on:click="abrirModalon('"modal-sucursal"','"crear"')" class="admin-user-boton-Crear">
         
         Crear sucursal a emrpesa <i class="fas fa-user-plus"></i>
    </div>
