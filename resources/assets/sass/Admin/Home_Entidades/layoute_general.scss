@@ -88,9 +88,13 @@
 }
 
 .admin-columna-wraper{
+
+  width: 80%; 
+  
   @include flexbox;
   @include align-items(center);
-  @include flex-direction(column);  
+  @include flex-direction(column);
+
 }
 
 .admin-logo-contendor{

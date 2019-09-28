@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Guardianes\Guardian;
 use App\Repositorios\SocioRepo;
 use App\Managers\EmpresaGestion\CrearSocioModalManager;
+use App\Managers\EmpresaGestion\CrearSucursalManager;
 use App\Repositorios\TipoDeServicioRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
@@ -19,6 +20,7 @@ use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Repositorios\UserRepo;
 use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\VendedorEmpresaRepo;
+use App\Repositorios\SucursalEmpresaRepo;
 
 
 
@@ -35,6 +37,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $UserRepo;
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
+  protected $SucursalEmpresaRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -44,7 +47,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo,
                               UserRepo                          $UserRepo, 
                               UserEmpresaRepo                   $UserEmpresaRepo,
-                              VendedorEmpresaRepo               $VendedorEmpresaRepo  )
+                              VendedorEmpresaRepo               $VendedorEmpresaRepo,
+                              SucursalEmpresaRepo               $SucursalEmpresaRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -55,6 +59,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->UserRepo                          = $UserRepo;
     $this->UserEmpresaRepo                   = $UserEmpresaRepo;
     $this->VendedorEmpresaRepo               = $VendedorEmpresaRepo;
+    $this->SucursalEmpresaRepo               = $SucursalEmpresaRepo;
   }
 
   public function getPropiedades()
@@ -652,7 +657,28 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'UsersEmpresa'             =>  $UsersEmpresa     ];
     }
 
+  public function crear_sucursal(Request $Request)
+  {
+    $manager = new CrearSucursalManager('',$Request->all());
 
+    if($manager->isValid())
+    {
+      $Validacion_mensaje = 'Sucursal creada correctamente';
+    }
+    else
+    {
+      $Validacion_mensaje = $manager->getErrors();
+    }
+
+    return [   'Validacion'               =>  $manager->isValid(),
+               'Validacion_mensaje'       =>  $Validacion_mensaje,
+               'empresa'                  =>  $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))     ];
+  }
+
+  public function editar_sucursal(Request $Request)
+  {
+
+  }
 
   //caja crear registro
   public function crear_registro_de_caja(Request $Request)

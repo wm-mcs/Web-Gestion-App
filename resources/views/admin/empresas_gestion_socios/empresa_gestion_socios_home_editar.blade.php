@@ -60,6 +60,12 @@
             <div class="get_width_100 flex-row-column">
               <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
             </div>
+
+             <div class="get_width_100 flex-row-column">
+              <vincular-sucursal-empresa :empresa="empresa"></vincular-sucursal-empresa>
+             </div>
+
+            
           </div>      
      </div>
      <div class="admin-boton-editar">
@@ -81,6 +87,7 @@
     
 
      Vue.component('v-select', VueSelect.VueSelect)
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-sucursal-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-user-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 

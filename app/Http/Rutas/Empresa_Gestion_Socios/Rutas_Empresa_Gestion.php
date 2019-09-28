@@ -31,6 +31,20 @@
             'as'         => 'delete_user_a_empresa',                
           ]);
 
+          // creo sucursal
+          Route::post('crear_sucursal',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@crear_sucursal',
+            'as'         => 'crear_sucursal',                
+          ]);
+
+          // edito sucursal
+          Route::post('editar_sucursal',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_sucursal',
+            'as'         => 'editar_sucursal',                
+          ]);
+
 
 
           
