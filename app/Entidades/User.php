@@ -88,11 +88,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getGerarquiConNombreAttribute()
     {
         $array [
-                    '1' => 'Simple',
-                    '2' => 'Operador',
-                    '3' => 'Dueño',
-                    '4' => 'Vendedor',
-                    '10'=> 'Admin supremo'
+                    1 => 'Simple',
+                    2 => 'Operador',
+                    3 => 'Dueño',
+                    4 => 'Vendedor',
+                  10  => 'Admin supremo'
 
                ];
 
