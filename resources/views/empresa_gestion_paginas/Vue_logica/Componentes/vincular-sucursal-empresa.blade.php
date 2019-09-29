@@ -160,14 +160,14 @@ template:'
                       <input type="text" class="form-control"  v-model="sucursal_telefono" placeholder="Teléfono" required  />
                   </div>
 
-                  <div v-if="sucursal_id != """ class="form-group">
+                  <div v-if="sucursal_id != "''"" class="form-group">
                       <label class="formulario-label" for="Nombre">¿Está borrado?  </label>
                       <v-select label="name_para_select" :options="["si","no"]" v-model="sucursal_borrado"></v-select>
                   </div> 
                  
                
 
-                  <div v-if="sucursal_id == """ v-on:click="crear_editar_sucursal(url_crear)" class="boton-simple">Crear</div>
+                  <div v-if="sucursal_id == "''"" v-on:click="crear_editar_sucursal(url_crear)" class="boton-simple">Crear</div>
                   <div v-else v-on:click="crear_editar_sucursal(url_editar)" class="boton-simple">Ediatr</div>
                   
                  
