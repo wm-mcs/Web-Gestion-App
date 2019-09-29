@@ -27,17 +27,7 @@ class SucursalEmpresa extends Model
 
  
 
-    public function empresa()
-    {
-        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
-    }  
-
-      public function getEmpresaAsociadaAttribute()
-      {
-
-
-        return $this->empresa;
-      }
+    
 
 
     
