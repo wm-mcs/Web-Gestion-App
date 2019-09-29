@@ -133,7 +133,7 @@ template:'
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="sucursale in empresa.sucursuales_empresa" :key="sucursale.id" class="component-user-list-contenedor">
         <span>@{{sucursale.name}}</span> 
-        <span class="simula_link" title="Editar a está sucursal" > 
+        <span class="simula_link" title="Editar a está sucursal" v-on:click="abrirModalon(id_modal,sucursale)" > 
           <i class="fas fa-edit"></i>
         </span>
       </div>
