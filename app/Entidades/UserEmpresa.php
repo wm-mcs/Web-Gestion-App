@@ -30,19 +30,25 @@ class UserEmpresa extends Model
 
     public function sucursal()
     {
-        return $this->belongsTo(SucursalEmpresa::class,'sucursal_id','id');
+      if($this->sucursal_id == null)
+      {
+        return null;        
+      }
+      return $this->belongsTo(SucursalEmpresa::class,'sucursal_id','id');
+
     } 
 
       public function getSucursalNombreAttribute()
       {
 
-        if($this->sucursal->count() > 0)
+        if($this->sucursal == null)
         {
-          return $this->sucursal->name;
+          return 'no se le asignó sucursal';
+          
         }
         else
         {
-          return 'no se le asignó sucursal';
+          return $this->sucursal->name;
         }
         
         
