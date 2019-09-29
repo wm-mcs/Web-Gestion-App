@@ -24,7 +24,7 @@ class UserEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['usuario','empresa_asociada','sucursal_nombre'];
+    protected $appends  = ['usuario','sucursal_nombre'];
 
 
 
