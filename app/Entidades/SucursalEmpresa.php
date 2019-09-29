@@ -22,8 +22,7 @@ class SucursalEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['empresa_asociada'];
-
+    
 
  
 
