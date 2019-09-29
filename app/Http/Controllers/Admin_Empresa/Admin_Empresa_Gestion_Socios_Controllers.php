@@ -603,10 +603,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function set_user_a_empresa(Request $Request)
   {
-     
-      //creo el usuario
-      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+     //gerarqui para validar si se crea 3 = user dueño
+      $Gerarquia = 3;
 
+      //Envio user para validar
+      $User = $this->UserRepo->find( $Request->get('user_id'));
+
+      //creo el usuario
+      $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User ); 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
       $UsersEmpresa = $this->UserEmpresaRepo->getUsuariosDeEstaEmpresa($Empresa->id); 
@@ -631,13 +635,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function set_vendedor_a_empresa(Request $Request)
   {
-      //me fijo si tiene la gerarquia para ser vendedor
-      $Tipo_user = $Validacion['User']->role;
+        //gerarqui para validar si se crea
+        $Gerarquia = 4;
 
-      if($Tipo_user > 3)
-      {
+        //Envio user para validar
+        $User = $this->UserRepo->find( $Request->get('user_id'));
+      
         //creo el usuario
-        $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+        $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User ); 
 
         //traigo la empresa
         $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
@@ -647,12 +652,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         return [ 'Validacion'               =>  $Validacion['Validacion'],
                  'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
                  'UsersEmpresa'             =>  $UsersEmpresa     ];
-      }
-      else
-      {
-            return [ 'Validacion'               =>  false,
-                     'Validacion_mensaje'       =>  'Esté usuario no tiene gerarquía para ser vendedor' ];
-      }
       
 
       
