@@ -12,7 +12,9 @@ data:function(){
        sucursal_borrado:'',
 
        url_crear:'crear_sucursal',
-       url_editar:'editar_sucursal'
+       url_editar:'editar_sucursal',
+       id_modal: 'modal-sucursal',
+       palabra_crear:'crear'
 
       }
 },
@@ -122,7 +124,7 @@ template:'
 
 
 
-   <div      v-on:click="abrirModalon('modal-sucursal','crear')" class="admin-user-boton-Crear">
+   <div      v-on:click="abrirModalon(id_modal,palabra_crear)" class="admin-user-boton-Crear">
         
         Crear sucursal a emrpesa <i class="fas fa-user-plus"></i>
    </div>
