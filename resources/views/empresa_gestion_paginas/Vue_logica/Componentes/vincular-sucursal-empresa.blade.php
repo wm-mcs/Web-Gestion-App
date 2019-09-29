@@ -131,8 +131,8 @@ template:'
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="sucursale in empresa.sucursales_empresa" :key="sucursale.id" class="component-user-list-contenedor">
         <span>@{{sucursale.name}}</span> 
-        <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(sucursale,url_delete_usuarios)"> 
-          <i class="fas fa-trash-alt"></i> 
+        <span class="simula_link" title="Editar a está sucursal" > 
+          <i class="fas fa-edit"></i>
         </span>
       </div>
    </div>
