@@ -216,10 +216,15 @@ template:'
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <div class="component-user-list-sub">
-            <span class="component-user-list-dato-name">@{{usuario_empresa.user.name}}</span>
-            <span class="component-user-list-dato-email">@{{usuario_empresa.user.email}}</span>  
-            <span class="component-user-list-dato-role">Role: @{{usuario_empresa.user.gerarqui_con_nombre}}</span>
-            <span class="component-user-list-dato-role">Role: @{{usuario_empresa.sucursal_nombre}}</span>
+
+            <span class="component-user-list-dato-name"> <a :href="usuario_empresa.user.route_admin">@{{usuario_empresa.user.name}}</a> </span>
+
+            <div class="component-user-list-sub-de-seb">
+              <span class="component-user-list-dato-email">@{{usuario_empresa.user.email}}</span>  
+              <span class="component-user-list-dato-role">Gerarquía = @{{usuario_empresa.user.gerarqui_con_nombre}}</span>
+              <span class="component-user-list-dato-role">Sucursal = @{{usuario_empresa.sucursal_nombre}}</span>
+            </div>
+            
 
         </div>
            
@@ -238,8 +243,10 @@ template:'
       <div v-for="usuario_empresa in vendedores_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
         <div class="component-user-list-sub">
             <span class="component-user-list-dato-name">@{{usuario_empresa.user.name}}</span>
-            <span class="component-user-list-dato-email">@{{usuario_empresa.user.email}}</span>  
-            <span class="component-user-list-dato-role">Role: @{{usuario_empresa.user.gerarqui_con_nombre}}</span>
+            <div class="component-user-list-sub-de-seb">
+              <span class="component-user-list-dato-email">@{{usuario_empresa.user.email}}</span>  
+              <span class="component-user-list-dato-role">Gerarquía: @{{usuario_empresa.user.gerarqui_con_nombre}}</span>
+              </div>  
         </div>
         <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa, url_delete_vendedores)"> 
           <i class="fas fa-trash-alt"></i> 

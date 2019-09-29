@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select','gerarqui_con_nombre'];
+    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin'];
 
 
 
@@ -97,5 +97,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                ];
 
            return $array[$this->role];    
+    }
+
+
+    public function getRouteAdminAttribute()
+    {
+        return route('get_admin_users_editar',$this->id);
     }
 }
