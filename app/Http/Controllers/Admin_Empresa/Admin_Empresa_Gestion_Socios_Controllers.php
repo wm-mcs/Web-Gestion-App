@@ -631,17 +631,31 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function set_vendedor_a_empresa(Request $Request)
   {
-      //creo el usuario
-      $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
+      //me fijo si tiene la gerarquia para ser vendedor
+      $Tipo_user = $Validacion['User']->role;
 
-      //traigo la empresa
-      $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+      if($Tipo_user > 3)
+      {
+        //creo el usuario
+        $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id') ); 
 
-      $UsersEmpresa = $this->VendedorEmpresaRepo->getVendedoresDeEstaEmpresa($Empresa->id);
+        //traigo la empresa
+        $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
-      return [ 'Validacion'               =>  $Validacion['Validacion'],
-               'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
-               'UsersEmpresa'             =>  $UsersEmpresa     ];
+        $UsersEmpresa = $this->VendedorEmpresaRepo->getVendedoresDeEstaEmpresa($Empresa->id);
+
+        return [ 'Validacion'               =>  $Validacion['Validacion'],
+                 'Validacion_mensaje'       =>  $Validacion['Validacion_mensaje'],
+                 'UsersEmpresa'             =>  $UsersEmpresa     ];
+      }
+      else
+      {
+            return [ 'Validacion'               =>  false,
+                     'Validacion_mensaje'       =>  'Esté usuario no tiene gerarquía para ser vendedor' ];
+      }
+      
+
+      
   }
     public function delete_vendedor_a_empresa(Request $Request)
     {

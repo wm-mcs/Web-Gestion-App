@@ -51,7 +51,8 @@ class UserEmpresaRepo extends BaseRepo
 
     return [  
              'Validacion'          =>  $Validacion,
-             'Validacion_mensaje'  =>  $Mensaje     
+             'Validacion_mensaje'  =>  $Mensaje,
+             'User'                =>  $Entidad->usuario     
            ];
 
 

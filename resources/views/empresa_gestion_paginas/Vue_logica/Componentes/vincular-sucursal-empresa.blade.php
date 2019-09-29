@@ -131,7 +131,7 @@ template:'
    </div>
 
    <div v-if="empresa.sucursuales_empresa.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Usuarios</div>
+      <div class="empresa-titulo-de-secciones">Sucursales</div>
       <div v-for="sucursale in empresa.sucursuales_empresa" :key="sucursale.id" class="component-user-list-contenedor">
         <span>@{{sucursale.name}}</span> 
         <span class="simula_link" title="Editar a está sucursal" v-on:click="abrirModalon(id_modal,sucursale)" > 
