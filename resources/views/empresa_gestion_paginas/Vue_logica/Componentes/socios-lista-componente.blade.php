@@ -1,9 +1,10 @@
 Vue.component('socios-lista' ,
 {
-props:['empresa','socios'],
+props:['empresa'],
 data:function(){
     return {
       
+
 
     }
 },
@@ -11,7 +12,7 @@ data:function(){
 template:'<span>
 
   
-    <socio-entidad-listado  :socios="socios" :empresa="empresa"></socio-entidad-listado>
+    <socio-entidad-listado   :empresa="empresa"></socio-entidad-listado>
   
 
 </span>'
