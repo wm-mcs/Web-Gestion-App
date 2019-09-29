@@ -13,8 +13,8 @@
  .component-user-list-sub{
  	width:80%;
  	@include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
+    @include flex-direction(row);
+    @include align-items(center); 
     padding:3px;    
 
  }
@@ -22,13 +22,15 @@
    .component-user-list-dato-name{
    	font-size:12px;
    	font-weight:bold;
-   	margin-bottom:2px;
+   	margin-right:3px;
+   	
    }
 
    .component-user-list-dato-email{
    	color:  $Color-texto-gris-Mercadolibre;
    	font-size:10px;
-   	margin-bottom:1px;
+   	margin-right:2px;
+   	
    }
 
    .component-user-list-dato-role{

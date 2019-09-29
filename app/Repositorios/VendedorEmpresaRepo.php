@@ -23,34 +23,47 @@ class VendedorEmpresaRepo extends BaseRepo
     return  $this->getEntidad()->where('empresa_id',$Empresa_id )->get();
   }
 
-  public function setAsociarEmpresaYUser($Empresa_id,$User_id)
+  public function setAsociarEmpresaYVendedor($Empresa_id,$User_id,$Gerarqui,$User)
   {
 
-    $Existe = $this->getEntidad()
-                   ->where('user_id',$User_id)
-                   ->where('empresa_id',$Empresa_id)
-                   ->get();
+    if($User->role >= $Gerarqui)
+    {
 
-    $Validator = $this->verificarSiUserYEmpresaEstanVicnulados($User_id,$Empresa_id);
+    
+        $Existe = $this->getEntidad()
+                       ->where('user_id',$User_id)
+                       ->where('empresa_id',$Empresa_id)
+                       ->get();
 
-    $Validacion = $Validator['Validacion'];
-    $Mensaje    = $Validator['Mensaje'];
+        $Validacion = false;
+        $Mensaje    = 'Ya está asociado este usuario con está empresa';
 
-    if($Validacion)
-    {      
-      $Entidad             = $this->getEntidad();
-      $Entidad->user_id    = $User_id;
-      $Entidad->empresa_id = $Empresa_id;
-      $Entidad->save();
+        if($Existe->count() == 0)
+        {
+          $Validacion = true;
+          $Mensaje    = 'Se asoció correctamente';
+          
+          $Entidad             = $this->getEntidad();
+          $Entidad->user_id    = $User_id;
+          $Entidad->empresa_id = $Empresa_id;
+          $Entidad->save();
+        }
+
+
+        return [  
+                 'Validacion'          =>  $Validacion,
+                 'Validacion_mensaje'  =>  $Mensaje     
+               ];
+
+
+    } 
+    else
+    {
+       return [  
+                 'Validacion'          =>  false,
+                 'Validacion_mensaje'  =>  'Ese usuario no tiene la gerarquia necesaría para vincular como tal'     
+               ];
     }
-
-
-    return [  
-             'Validacion'          =>  $Validacion,
-             'Validacion_mensaje'  =>  $Mensaje     
-           ];
-
-
   	
 
   }

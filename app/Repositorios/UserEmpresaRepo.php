@@ -26,7 +26,7 @@ class UserEmpresaRepo extends BaseRepo
 
 
 
-  public function setAsociarEmpresaYUser($Empresa_id,$User_id,$Gerarqui,$User)
+  public function setAsociarEmpresaYUser($Empresa_id,$User_id,$Gerarqui,$User,$Sucursal_id)
   {
 
 
@@ -47,9 +47,14 @@ class UserEmpresaRepo extends BaseRepo
           $Validacion = true;
           $Mensaje    = 'Se asoció correctamente';
           
-          $Entidad             = $this->getEntidad();
-          $Entidad->user_id    = $User_id;
-          $Entidad->empresa_id = $Empresa_id;
+          $Entidad              = $this->getEntidad();
+          $Entidad->user_id     = $User_id;
+          $Entidad->empresa_id  = $Empresa_id;
+
+          if($Sucursal_id != null){
+          $Entidad->sucursal_id = $Sucursal_id;
+          }
+          
           $Entidad->save();
         }
 

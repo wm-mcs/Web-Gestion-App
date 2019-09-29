@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use App\Entidades\User;
 use App\Entidades\EmpresaConSocios;
+use App\Entidades\SucursalEmpresa;
 
 
 
@@ -23,7 +24,29 @@ class UserEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['usuario','empresa_asociada'];
+    protected $appends  = ['usuario','empresa_asociada','sucursal_nombre'];
+
+
+
+    public function sucursal()
+    {
+        return $this->belongsTo(SucursalEmpresa::class,'sucursal_id','id');
+    } 
+
+      public function getSucursalNombreAttribute()
+      {
+
+        if($this->sucursal->count() > 0)
+        {
+          return $this->sucursal->name;
+        }
+        else
+        {
+          return 'no se le asignó sucursal';
+        }
+        
+        
+      }
 
 
     public function user()

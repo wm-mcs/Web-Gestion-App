@@ -607,10 +607,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Gerarquia = 3;
 
       //Envio user para validar
-      $User = $this->UserRepo->find( $Request->get('user_id'));
+      $User          = $this->UserRepo->find( $Request->get('user_id'));
+      $Sucursal_id   = $Request->get('sucursal_id');
 
       //creo el usuario
-      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User ); 
+      $Validacion = $this->UserEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User,$Sucursal_id ); 
       //traigo la empresa
       $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
       $UsersEmpresa = $this->UserEmpresaRepo->getUsuariosDeEstaEmpresa($Empresa->id); 
@@ -642,7 +643,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User = $this->UserRepo->find( $Request->get('user_id'));
       
         //creo el usuario
-        $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYUser($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User ); 
+        $Validacion = $this->VendedorEmpresaRepo->setAsociarEmpresaYVendedor($Request->get('empresa_id'), $Request->get('user_id'),$Gerarquia,$User ); 
 
         //traigo la empresa
         $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
