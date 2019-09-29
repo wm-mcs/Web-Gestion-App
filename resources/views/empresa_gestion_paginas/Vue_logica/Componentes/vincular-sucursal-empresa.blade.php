@@ -14,7 +14,8 @@ data:function(){
        url_crear:'crear_sucursal',
        url_editar:'editar_sucursal',
        id_modal: 'modal-sucursal',
-       palabra_crear:'crear'
+       palabra_crear:'crear',
+       si_no:['si','no']
 
       }
 },
@@ -172,7 +173,7 @@ template:'
 
                   <div v-if="sucursal_id_condition" class="form-group">
                       <label class="formulario-label" for="Nombre">¿Está borrado?  </label>
-                      <v-select label="name_para_select" :options="["si","no"]" v-model="sucursal_borrado"></v-select>
+                      <v-select label="name_para_select" :options="si_no" v-model="sucursal_borrado"></v-select>
                   </div> 
                  
                
