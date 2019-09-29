@@ -1,5 +1,5 @@
 <?php  
-namespace App\Managers;
+namespace App\Managers\EmpresaGestion;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Managers\ManagerBase;

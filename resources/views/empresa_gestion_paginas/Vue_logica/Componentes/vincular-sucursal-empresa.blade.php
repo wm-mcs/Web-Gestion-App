@@ -27,7 +27,7 @@ mounted: function mounted () {
 },
 computed: {
 sucursal_id_condition:function(){
-  if(this.sucursal_id == '')
+  if(this.sucursal_id === '')
   {
   return false;
   }
