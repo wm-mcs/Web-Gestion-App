@@ -48,7 +48,7 @@ class UserEmpresa extends Model
         }
         else
         {
-          return $this->sucursal->name;
+          return $this->sucursal;
         }
         
         
