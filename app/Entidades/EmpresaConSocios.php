@@ -24,17 +24,17 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-     protected $appends = ['tipo_servicios','socios_de_la_empresa','sucursuales_empresa'];
+    protected $appends  = ['tipo_servicios','socios_de_la_empresa','sucursuales_empresa'];
 
 
-    public function servicios()
+    public function servicios_relation()
     {
       return $this->hasMany(TipoDeServicio::class,'empresa_id','id');
     }
 
         public function getTipoServiciosAttribute()
         {        
-           return $this->servicios;
+           return $this->servicios_relation;
         }
 
 
