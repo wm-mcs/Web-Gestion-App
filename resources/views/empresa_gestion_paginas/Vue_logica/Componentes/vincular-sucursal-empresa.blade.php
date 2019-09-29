@@ -126,7 +126,7 @@ template:'
 
    <div      v-on:click="abrirModalon(id_modal,palabra_crear)" class="admin-user-boton-Crear">
         
-        Crear sucursal a emrpesa <i class="fas fa-user-plus"></i>
+        Crear sucursal a emrpesa <i class="fas fa-building"></i>
    </div>
 
    <div v-if="empresa.sucursuales_empresa.length" class="empresa-contendor-de-secciones">

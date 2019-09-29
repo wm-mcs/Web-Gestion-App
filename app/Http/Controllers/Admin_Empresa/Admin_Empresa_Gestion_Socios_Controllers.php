@@ -664,6 +664,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     if($manager->isValid())
     {
       $Validacion_mensaje = 'Sucursal creada correctamente';
+
+      $this->SucursalEmpresaRepo->crearSucursal($Request);
     }
     else
     {
@@ -677,7 +679,22 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function editar_sucursal(Request $Request)
   {
+    $manager = new CrearSucursalManager('',$Request->all());
 
+    if($manager->isValid())
+    {
+      $Validacion_mensaje = 'Sucursal ediatada correctamente';
+
+      $this->SucursalEmpresaRepo->editarSucursal($Request);
+    }
+    else
+    {
+      $Validacion_mensaje = $manager->getErrors();
+    }
+
+    return [   'Validacion'               =>  $manager->isValid(),
+               'Validacion_mensaje'       =>  $Validacion_mensaje,
+               'empresa'                  =>  $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))     ];
   }
 
   //caja crear registro
