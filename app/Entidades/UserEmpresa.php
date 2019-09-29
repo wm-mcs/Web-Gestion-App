@@ -66,7 +66,7 @@ class UserEmpresa extends Model
         return $this->user;
       }
 
-    public function empresa()
+   /* public function empresa()
     {
         return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
     }  
@@ -78,7 +78,7 @@ class UserEmpresa extends Model
         return $this->empresa;
       }
 
-
+*/
     
 
 
