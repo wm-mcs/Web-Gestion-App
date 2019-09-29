@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Entidades\User;
 use App\Entidades\EmpresaConSocios;
 use App\Entidades\SucursalEmpresa;
+use App\Repositorios\SucursalEmpresaRepo;
 
 
 
@@ -28,14 +29,15 @@ class UserEmpresa extends Model
 
 
 
-    public function sucursal()
+    public function getSucursalAttribute()
     {
       if($this->sucursal_id == null)
       {
         return null;        
       }
-      return $this->belongsTo(SucursalEmpresa::class,'sucursal_id','id');
 
+      $Repo = new SucursalEmpresaRepo();
+      return $Repo->find($this->sucursal_id);
     } 
 
       public function getSucursalNombreAttribute()
@@ -48,7 +50,7 @@ class UserEmpresa extends Model
         }
         else
         {
-          return $this->sucursal;
+          return $this->sucursal->name;
         }
         
         
