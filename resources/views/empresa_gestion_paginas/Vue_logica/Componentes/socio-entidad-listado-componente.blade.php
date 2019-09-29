@@ -6,7 +6,7 @@ props:['empresa']
 
 data:function(){
     return {
-         socios:empresa.socios_de_la_empresa,
+         socios:this.empresa.socios_de_la_empresa,
 
     }
 }, 
