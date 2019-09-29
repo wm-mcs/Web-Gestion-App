@@ -9,3 +9,29 @@
     @include justify-content(space-between); 
     width:100%;
 }
+
+ .c-contenedor-sub{
+ 	width:80%;
+ 	@include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start); 
+    padding:3px;    
+
+ }
+
+   .component-user-list-dato-name{
+   	font-size:12px;
+   	font-weight:bold;
+   	margin-bottom:2px;
+   }
+
+   .component-user-list-dato-email{
+   	color:  $Color-texto-gris-Mercadolibre;
+   	font-size:10px;
+   	margin-bottom:1px;
+   }
+
+   .component-user-list-dato-role{
+   	font-weight:bold;
+   	font-size:10px;
+   }

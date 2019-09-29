@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select'];
+    protected $appends  = ['name_para_select','gerarqui_con_nombre'];
 
 
 
@@ -82,5 +82,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getNameParaSelectAttribute()
     {
         return $this->name . ' -> ' .$this->email;
+    }
+
+
+    public function getGerarquiConNombreAttribute()
+    {
+        $array [
+                    '1' => 'Simple',
+                    '2' => 'Operador',
+                    '3' => 'Dueño',
+                    '4' => 'Vendedor',
+                    '10'=> 'Admin supremo'
+
+               ];
+
+           return $array[$this->role];    
     }
 }

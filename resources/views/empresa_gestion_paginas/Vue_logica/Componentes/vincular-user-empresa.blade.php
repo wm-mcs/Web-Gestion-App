@@ -213,7 +213,12 @@ template:'
    <div v-if="usuarios_de_empresa.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Usuarios</div>
       <div v-for="usuario_empresa in usuarios_de_empresa" :key="usuario_empresa.id" class="component-user-list-contenedor">
-        <span>@{{usuario_empresa.user.name}}</span> 
+        <div class="component-user-list-sub">
+            <span class="component-user-list-dato-name">@{{usuario_empresa.user.name}}</span>
+            <span class="component-user-list-dato-email">@{{usuario_empresa.user.email}}</span>  
+            <span class="component-user-list-dato-role">Role: @{{usuario_empresa.user.gerarqui_con_nombre}}</span>
+        </div>
+           
         <span class="simula_link" title="Desvincular a esté usuario" v-on:click="desvincular_este_user(usuario_empresa,url_delete_usuarios)"> 
           <i class="fas fa-trash-alt"></i> 
         </span>
