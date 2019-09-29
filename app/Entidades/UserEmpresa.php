@@ -28,7 +28,7 @@ class UserEmpresa extends Model
 
 
 
-    public function sucursal()
+    public function getSucursalAttribute()
     {
       if($this->sucursal_id == null)
       {
