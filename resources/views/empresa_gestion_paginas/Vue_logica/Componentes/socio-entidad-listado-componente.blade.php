@@ -16,9 +16,11 @@ data:function(){
 
 methods:{
          
-
+actualizar_socios:function(socios){
+	this.socios = socios;
+}
 },
-template:'<span>
+template:'
 
   <div v-if="socios.length > 0" class="listado-socios-contenedor-lista">
 
@@ -26,7 +28,7 @@ template:'<span>
   
   </div> 
 
-</span>'
+'
 
 }
 
