@@ -4,6 +4,13 @@ Vue.component('socio-entidad-listado' ,
 props:['empresa']
 ,  
 
+data:function(){
+    return {
+         socios:empresa.socios_de_la_empresa,
+
+    }
+}, 
+
 
 
 methods:{
@@ -12,9 +19,9 @@ methods:{
 },
 template:'<span>
 
-  <div v-if="empresa.socios_de_la_empresa.length > 0" class="listado-socios-contenedor-lista">
+  <div v-if="socios > 0" class="listado-socios-contenedor-lista">
 
-    <socio-list  v-for="socio in empresa.socios_de_la_empresa" :key="socio.id" :socio="socio" :empresa="empresa"></socio-list>
+    <socio-list v-for="socio in socios" :key="socio.id" :socio="socio" :empresa="empresa"></socio-list>
   
   </div> 
 
