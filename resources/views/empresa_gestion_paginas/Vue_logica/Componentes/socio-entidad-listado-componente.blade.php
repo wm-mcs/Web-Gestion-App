@@ -13,13 +13,14 @@ data:function(){
 
 
 
+
 methods:{
          
 
 },
 template:'<span>
 
-  <div v-if="socios > 0" class="listado-socios-contenedor-lista">
+  <div v-if="socios.lenght > 0" class="listado-socios-contenedor-lista">
 
     <socio-list v-for="socio in socios" :key="socio.id" :socio="socio" :empresa="empresa"></socio-list>
   
