@@ -127,9 +127,9 @@ template:'
         Crear sucursal a emrpesa <i class="fas fa-user-plus"></i>
    </div>
 
-   <div v-if="empresa.sucursales_empresa.length" class="empresa-contendor-de-secciones">
+   <div v-if="empresa.sucursuales_empresa.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Usuarios</div>
-      <div v-for="sucursale in empresa.sucursales_empresa" :key="sucursale.id" class="component-user-list-contenedor">
+      <div v-for="sucursale in empresa.sucursuales_empresa" :key="sucursale.id" class="component-user-list-contenedor">
         <span>@{{sucursale.name}}</span> 
         <span class="simula_link" title="Editar a está sucursal" > 
           <i class="fas fa-edit"></i>
