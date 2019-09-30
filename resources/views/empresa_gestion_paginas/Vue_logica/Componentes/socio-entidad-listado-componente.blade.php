@@ -7,18 +7,16 @@ props:['empresa','palabra_busqueda']
 data:function(){
     return {
          socios:this.empresa.socios_de_la_empresa,
-         searchQuery:this.palabra_busqueda,
-         searchQueryIsDirty: false,
-         isCalculating: false
+         busqueda:this.palabra_busqueda
 
     }
 }, 
 
 watch:{ 
 
-    searchQuery: function () {
-      this.searchQueryIsDirty = true
-      this.expensiveOperation()
+    busqueda: function (newVal) {
+
+      this.checkSearchStr(newVal);
     }
 },
 methods:{
@@ -26,13 +24,9 @@ methods:{
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
-expensiveOperation: _.debounce(function () {
-      this.isCalculating = true
-      setTimeout(function () {
-        this.isCalculating = false
-        this.searchQueryIsDirty = false
-      }.bind(this), 1000)
-    }, 500)
+checkSearchStr: _.debounce(function(string) {
+        alert(string);
+    }, 100)
 },
 template:'
 
