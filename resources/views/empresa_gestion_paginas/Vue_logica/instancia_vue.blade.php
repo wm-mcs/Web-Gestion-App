@@ -9,6 +9,7 @@
       servicios:[],
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
+      busqueda:''
 
 
       

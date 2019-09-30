@@ -14,7 +14,7 @@
   <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
 
       <div class="empresa-gestion-contiene-input-busqueda">
-        <input class="empresa-gestion-input-busqueda form-control" type="text" placeholder="Buscar socio" aria-label="Search">
+        <input class="empresa-gestion-input-busqueda form-control" v-model="busqueda" type="text" placeholder="Buscar socio" aria-label="Search">
       </div>
       
 
@@ -24,7 +24,7 @@
   </div>  
 
   
-  <socio-entidad-listado   :empresa="empresa"></socio-entidad-listado>
+  <socio-entidad-listado :palabra_busqueda="busqueda"  :empresa="empresa"></socio-entidad-listado>
 
 
 
