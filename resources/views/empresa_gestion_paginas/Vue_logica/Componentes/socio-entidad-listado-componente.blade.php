@@ -6,18 +6,23 @@ props:['empresa','palabra_busqueda']
 
 data:function(){
     return {
-         socios:this.empresa.socios_de_la_empresa,
-         busqueda:this.palabra_busqueda
+         socios:this.empresa.socios_de_la_empresa
 
     }
 }, 
 
 watch:{ 
 
-    busqueda: function (newVal) {
-
-      this.checkSearchStr(newVal);
+    palabra_busqueda: {
+      immediate: true,
+      deep: true,
+      handler(newValue, oldValue) {
+      	this.checkSearchStr(newValue);
+      }
     }
+
+
+   
 },
 methods:{
          
