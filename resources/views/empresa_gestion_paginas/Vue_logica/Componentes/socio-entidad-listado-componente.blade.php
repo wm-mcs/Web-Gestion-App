@@ -31,7 +31,7 @@ actualizar_socios:function(socios){
 },
 checkSearchStr: _.debounce(function(string) {
         alert(string);
-    }, 10000)
+    }, 800)
 },
 template:'
 
