@@ -29,8 +29,12 @@ methods:{
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
-checkSearchStr: _.debounce(function(string) {
-        alert(string);
+checkSearchStr: _.debounce(function(string){
+
+	if(string != '')
+	{
+      alert(string);
+	}
     }, 800)
 },
 template:'
