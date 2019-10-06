@@ -24,7 +24,7 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['tipo_servicios','socios_de_la_empresa','sucursuales_empresa'];
+    protected $appends  = ['tipo_servicios','socios_de_la_empresa','sucursuales_empresa','url_img'];
 
 
     public function servicios_relation()
