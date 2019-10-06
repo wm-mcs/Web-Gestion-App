@@ -8,6 +8,14 @@
 
 @section('content')
 
+<div class="contenedor-admin-entidad-titulo-form-busqueda">
+    <div class="admin-entidad-titulo"> 
+     <a href="{{route('get_admin_empresas_gestion_socios_crear')}}">
+      <span class="admin-user-boton-Crear">Crear </span>
+     </a>  
+    </div>
+    @include('admin.empresas_gestion_socios.partes.buscador')
+ </div>
 
 
  <mostrar-empresas></mostrar-empresas>
