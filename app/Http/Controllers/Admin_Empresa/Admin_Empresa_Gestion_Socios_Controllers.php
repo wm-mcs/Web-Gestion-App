@@ -70,10 +70,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //home admin User
   public function get_admin_empresas_gestion_socios(Request $Request)
   { 
-    $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivasPaginadas( $Request, 20);
+    $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
 
     
-
+    $Empresa  = '';
     //mostrar marcas de la a a la z (orden)
 
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home', compact('Empresas','Empresa'));
