@@ -2,11 +2,11 @@ Vue.component('mostrar-empresas' ,
 {
 
 
-,  
+
 
 data:function(){
     return {
-       Empresas:{!! json_encode($Empresas) !!};
+       Empresas:{!! json_encode($Empresas) !!}
 
     }
 }, 
