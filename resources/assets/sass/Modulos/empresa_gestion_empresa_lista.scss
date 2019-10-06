@@ -1,0 +1,21 @@
+.empresa-lista-contenedor{
+    padding: 8px;
+    border-radius:8px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.26);
+    background-color: #fff;
+    width: 300px;
+}
+
+  .empresa-lista-header{
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    width: 100%;
+  }
+
+     .empresa-lista-img{
+      height: 50px;
+      margin-right: 6px;
+     }

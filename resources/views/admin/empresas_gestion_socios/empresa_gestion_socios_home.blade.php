@@ -21,12 +21,10 @@
  </div>
  <div class="admin-contiene-entidades-y-pagination">
    <div class="admin-entidad-contenedor-entidades">
-     @foreach($Empresas as $marca)
-          @include('admin.empresas_gestion_socios.partes.lista')
-     @endforeach
+      <empresa-lista v-for="Empresa in  {!! json_encode($Empresas) !!}" :empresa="Empresa"> </empresa-lista>
    </div>
    <div>
-     {!! $Empresas->appends(Request::all())->render() !!}
+    
    </div>
  </div>
 
@@ -46,8 +44,8 @@
 
     
 
-     
-    
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')        
+@include('empresa_gestion_paginas.Vue_logica.instancia_vue')   
 
 
 
