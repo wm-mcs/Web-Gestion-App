@@ -18,7 +18,7 @@ class Empresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected 
+     
 
     /**
      * para verificar si no es null o no es cadena vacia
