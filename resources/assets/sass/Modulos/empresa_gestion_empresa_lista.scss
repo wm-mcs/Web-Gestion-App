@@ -15,7 +15,15 @@
     width: 100%;
   }
 
-     .empresa-lista-img{
-      height: 50px;
+    .empresa-lista-contiene-img{
+      width: 80px;
       margin-right: 6px;
-     }
+      @include flexbox;       
+      @include flex-direction(row);
+      @include align-items(center); 
+    }
+         .empresa-lista-img{
+          width: 100%;
+          height: auto;
+          
+         }

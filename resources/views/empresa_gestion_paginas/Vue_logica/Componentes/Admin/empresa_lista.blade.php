@@ -18,7 +18,10 @@ template:'
 
   <div class="empresa-lista-contenedor">
     <div class="empresa-lista-header">
-      <img :src="empresa.url_img" class="empresa-lista-img">
+      <div class="empresa-lista-contiene-img">
+        <img :src="empresa.url_img" class="empresa-lista-img">
+      </div>
+      
       <a :href="empresa.route_admin" > @{{empresa.name}}</a> 
     </div>
   
