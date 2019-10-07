@@ -89,7 +89,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Emmpresas      = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
     }
 
-    return view('admin.empresas_gestion_socios.home_general', compact('Empresas'));
+    return view('empresa_gestion_paginas.home_general', compact('Empresas'));
 
 
   }
