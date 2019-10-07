@@ -67,6 +67,33 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     return ['name','user_id','rut','razon_social','email','celular','direccion','factura_con_iva','estado'];
   }
 
+
+  //La pagina de inicio
+  public function get_home()
+  {
+    $User = Auth::user();
+
+    
+    if($User->role == 10) //admin
+    {
+      $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
+    }
+    elseif($User->role == 4) //vendedor
+    {
+      $Id_de_empresas = $this->VendedorEmpresaRepo->getEmpresasDeEsteVendedor($User->id);
+      $Emmpresas      = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+    }
+    elseif($User->role <= 3) //dueño
+    {
+      $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
+      $Emmpresas      = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+    }
+
+    return view('admin.empresas_gestion_socios.home_general', compact('Empresas'));
+
+
+  }
+
   //home admin User
   public function get_admin_empresas_gestion_socios(Request $Request)
   { 

@@ -10,11 +10,7 @@ require __DIR__ . '/Noticias/Rutas_Noticias_Publicas.php';
 
 require __DIR__ . '/Productos/Rutas_Productos_publicas.php';
 
-//Ruta de Home
-Route::get('/' , [                    
-  'uses' => 'Publicas\Home_Public_Controller@get_home',
-  'as'   => 'get_home']
-);
+
 
 
 //Contacto

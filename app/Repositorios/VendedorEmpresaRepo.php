@@ -104,6 +104,21 @@ class VendedorEmpresaRepo extends BaseRepo
                ];
   }
 
+  public function getEmpresasDeEsteVendedor($UserId)
+  {
+    $empresas =  $this->getEntidad()
+                      ->where('user_id',$UserId)
+                      ->get();
+    $array_id = [];
+    
+    foreach ($empresas as $empresa) 
+    {
+            array_push($array_id,$empresa->id);
+    }   
+
+    return $array_id;               
+  }
+
 
  
 

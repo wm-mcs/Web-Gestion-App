@@ -17,6 +17,9 @@ class EmpresaConSociosoRepo extends BaseRepo
     return new EmpresaConSocios();
   }
 
+
+  
+
    
   
 

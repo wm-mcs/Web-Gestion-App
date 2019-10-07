@@ -12,8 +12,11 @@ require __DIR__ . '/Rutas/Auth.php';
 Route::group(['middleware' => 'auth'],function()
 {
 
-    // Authentication routes...
-    require __DIR__ . '/Rutas/Publicas.php';
+    //home
+    Route::get('/' , [                    
+     'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_home',
+     'as'   => 'get_home']
+    );
     
     //usuario verificado
     Route::group(['middleware' => 'verificad'],function()

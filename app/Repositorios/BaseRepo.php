@@ -112,6 +112,18 @@ abstract class BaseRepo
   
     }
 
+
+
+    public function getEntidadesConEstosId($ids)
+    {
+       $array = array_unique($ids);
+
+       return  $this->entidad
+                    ->active() 
+                    ->whereIn('id',$array)
+                    ->get();
+    }
+
     /**
      * Devuelve una coleccion de una entidad segun un atributo variable y ordenada como queramos y Paginadas.
      */
