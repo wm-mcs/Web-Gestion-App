@@ -35,7 +35,7 @@
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')    
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')     
      
-     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
+     @include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
 
 
 
