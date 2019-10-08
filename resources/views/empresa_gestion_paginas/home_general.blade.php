@@ -7,10 +7,18 @@
 
 @section('content')
   
+<div class="admin-contiene-entidades-y-pagination">
+ @if($Empresas->count() > 0)
 
- @if()
+ <div class="empresa-gestion-texto-gris-grande-de-aviso">
+   {{Auth::user()->first_name}} bienvenida a EasySocios. 
+   @if($Empresas->count() == 1)
+     Clic para ingresar <i class="far fa-hand-point-down"></i>
+
+   @endif
+ </div>
   
- <div class="admin-contiene-entidades-y-pagination">
+ 
    <div class="admin-entidad-contenedor-entidades">
       
     @foreach($Empresas as $empresa)
@@ -32,6 +40,16 @@
    @endforeach
 
    </div>  
+ 
+ @else
+  <div class="empresa-gestion-texto-gris-grande-de-aviso">
+   {{Auth::user()->first_name}} bienvenida a EasySocios. 
+   @if($Empresas->count() == 1)
+     Clic para ingresar <i class="far fa-hand-point-down"></i>
+
+   @endif
+ </div>
+ @endif
  </div>
 
 
