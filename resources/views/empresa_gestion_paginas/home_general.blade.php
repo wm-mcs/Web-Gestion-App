@@ -11,7 +11,7 @@
  @if($Empresas->count() > 0)
 
  <div class="empresa-gestion-texto-gris-grande-de-aviso">
-   {{Auth::user()->first_name}} bienvenida a EasySocios. 
+   
    @if($Empresas->count() == 1)
      Clic para ingresar <i class="far fa-hand-point-down"></i>
 
