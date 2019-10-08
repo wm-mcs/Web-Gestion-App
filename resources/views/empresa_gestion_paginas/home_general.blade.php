@@ -10,7 +10,39 @@
 
     
   
- <mostrar-empresas></mostrar-empresas>
+ <div class="admin-contiene-entidades-y-pagination">
+   <div class="admin-entidad-contenedor-entidades">
+      
+    @foreach($Empresas as $empresa)
+      <div class="empresa-lista-contenedor">
+        <div class="empresa-lista-header">
+          <div class="empresa-lista-contiene-img">
+            <img src="{{$empresa->url_img}}" class="empresa-lista-img">
+          </div>
+          
+          <div class="simula_link" > {{$empresa->name}}</div> 
+        </div>
+        <div class="empresa-lista-header">
+         @foreach($empresa->sucursuales_empresa as $sucursal)          
+          @if($sucursal->puede_ver_el_user)
+            <div class="empresa-lista-contiene-img">
+              <div>{{$sucursal->name}}</div>
+            </div>
+          @endif
+         @endforeach
+          
+          <div class="simula_link" > {{$empresa->name}}</div> 
+        </div>
+  
+  
+  </div> 
+
+
+   </div>
+   <div>
+    
+   </div>
+ </div>
 
 
 

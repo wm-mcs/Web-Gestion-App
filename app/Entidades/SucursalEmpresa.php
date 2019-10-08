@@ -5,6 +5,8 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use App\Entidades\EmpresaConSocios;
+use Illuminate\Support\Facades\Auth;
+use App\Repositorios\UserEmpresaRepo;
 
 
 
@@ -61,9 +63,31 @@ class SucursalEmpresa extends Model
 
    
 
-    public function getRouteAttribute()
+    public function getPuedeVerElUserAttribute()
     {
-        /*return route('',[$this->helper_convertir_cadena_para_url($this->name), $this->id]);*/
+        $User      = Auth::user();
+        $Gerarquia = $User->role;
+
+        if($Gerarquia > 2)
+        {
+            return true;
+        }
+        else
+        {
+            $Repo        = new UserEmpresaRepo();
+            $UserEmpresa = $Repo->find($this->id);
+
+            if($UserEmpresa->user_id == $User->id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
     }
     
     
