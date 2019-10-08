@@ -22,7 +22,7 @@
            @foreach($empresa->sucursuales_empresa as $sucursal)          
             @if($sucursal->puede_ver_el_user)
               <div class="empresa-lista-user-sucursal">
-                <div class="empresa-lista-user-sucursal-entrar">Entrar a </div>
+                <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
                 <div class="simula_link empresa-lista-user-sucursal-nombre">{{$sucursal->name}}</div>
               </div>
             @endif

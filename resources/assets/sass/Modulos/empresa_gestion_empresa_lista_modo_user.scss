@@ -36,18 +36,20 @@
       border-radius:4px;
       margin-left: 6px;
       background-color:$color-gris-background ;
+      width: 100px;
     } 
     .empresa-lista-user-sucursal:hover{
-      background-color: $color-grey1;
+      background-color: white;
     }
 
       .empresa-lista-user-sucursal-entrar{
-        font-size: 10px; 
+        font-size: 8px; 
         color: $Color-texto-gris-Mercadolibre;
         margin-bottom: 4px;
+
       }
 
        .empresa-lista-user-sucursal-nombre{
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bold;
       }
