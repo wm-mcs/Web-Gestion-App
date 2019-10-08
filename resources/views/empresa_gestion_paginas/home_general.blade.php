@@ -14,34 +14,24 @@
    <div class="admin-entidad-contenedor-entidades">
       
     @foreach($Empresas as $empresa)
-      <div class="empresa-lista-contenedor">
-        <div class="empresa-lista-header">
-          <div class="empresa-lista-contiene-img">
-            <img src="{{$empresa->url_img}}" class="empresa-lista-img">
+      <div class="empresa-lista-user-contenedor">
+        <div class="empresa-lista-user-header">
+          <div class="empresa-lista-user-contiene-img">
+            <img src="{{$empresa->url_img}}" class="empresa-lista-user-img">
           </div>
-          
-          <div class="simula_link" > {{$empresa->name}}</div> 
+           @foreach($empresa->sucursuales_empresa as $sucursal)          
+            @if($sucursal->puede_ver_el_user)
+              <div class="empresa-lista-user-sucursal">
+                <div class="empresa-lista-user-sucursal-entrar">Entrar a </div>
+                <div class="simula_link empresa-lista-user-sucursal-nombre">{{$sucursal->name}}</div>
+              </div>
+            @endif
+           @endforeach
         </div>
-        <div class="empresa-lista-header">
-         @foreach($empresa->sucursuales_empresa as $sucursal)          
-          @if($sucursal->puede_ver_el_user)
-            <div class="empresa-lista-contiene-img">
-              <div>{{$sucursal->name}}</div>
-            </div>
-          @endif
-         @endforeach
-          
-          <div class="simula_link" > {{$empresa->name}}</div> 
-        </div>
-  
-      @endforeach
-  </div> 
+    </div> 
+   @endforeach
 
-
-   </div>
-   <div>
-    
-   </div>
+   </div>  
  </div>
 
 
