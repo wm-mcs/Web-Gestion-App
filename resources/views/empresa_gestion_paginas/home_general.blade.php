@@ -34,7 +34,7 @@
           <div class="simula_link" > {{$empresa->name}}</div> 
         </div>
   
-  
+      @endforeach
   </div> 
 
 
