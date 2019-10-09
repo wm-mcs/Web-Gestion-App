@@ -28,19 +28,19 @@
       
       <div class="admin-contiene-content">
         
-          <div class="admin-contiene-content-wraper"> 
-           @include('layouts.gestion_socios_layout.mensajes.mensajes')   
+                        
+             @include('layouts.gestion_socios_layout.mensajes.mensajes')   
          
                
-               <div class="admin-contnedor-navegacion-miga">           
+             <div class="admin-contnedor-navegacion-miga">           
                  @yield('miga-de-pan')                
               </div>
               <div class="contenedor-admin-entidad">
                 <div class="get_width_100 Helper-OrdenarHijos-columna"> 
-               @yield('content')
+                    @yield('content')
                 </div>
               </div>
-           </div>
+          
       </div>      
    </div>
 
