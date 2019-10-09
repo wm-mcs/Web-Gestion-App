@@ -15,7 +15,7 @@
   <body>
   
   
-  <div class="admin-content-background-color"></div>
+ 
    
    <div id="app" class="admin-contiene-columna-y-content">
 
