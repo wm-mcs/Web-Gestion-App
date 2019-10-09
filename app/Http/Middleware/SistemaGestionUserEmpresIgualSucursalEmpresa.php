@@ -35,7 +35,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
 
-                dd('hola');
+                dd('hola',$request->ajax());
 
                 if($request->ajax())
                 {
