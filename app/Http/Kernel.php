@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
         'SistemaGestionUserGerarquia'               => \App\Http\Middleware\SistemaGestionUserGerarquia::class,
         'SistemaGestionEmpresaIgualUserEmpresa'     => \App\Http\Middleware\SistemaGestionEmpresaIgualUserEmpresa::class,
         'SistemaGestionUserEmpresIgualSociaEmpresa' => \App\Http\Middleware\SistemaGestionUserEmpresIgualSociaEmpresa::class,
-        'SistemaGestionServicioSocioIdIgualSocioId' => \App\Http\Middleware\SistemaGestionServicioSocioIdIgualSocioId::class
+        'SistemaGestionServicioSocioIdIgualSocioId' => \App\Http\Middleware\SistemaGestionServicioSocioIdIgualSocioId::class,
+        'SistemaGestionUserEmpresIgualSucursalEmpresa'=> \App\Http\Middleware\SistemaGestionUserEmpresIgualSucursalEmpresa::class
     ];
 }

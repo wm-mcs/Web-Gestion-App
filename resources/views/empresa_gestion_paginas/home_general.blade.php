@@ -31,7 +31,17 @@
             @if($sucursal->puede_ver_el_user)
               <div class="empresa-lista-user-sucursal">
                 <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
-                <div class="simula_link empresa-lista-user-sucursal-nombre">{{$sucursal->name}}</div>
+                 {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'name'  => 'form1'
+                          ])               !!}   
+                 <input type="hidden" name="empresa_id" value="{{$empresa->id}}">
+                 <input type="hidden" name="sucursal_id" value="{{$sucursal->id}}">
+                 <span class="simula_link empresa-lista-user-sucursal-nombre" onclick="javascript:document.form1.submit()">{{$sucursal->name}}</span>    
+
+                 {!! Form::close() !!}  
+                
               </div>
             @endif
            @endforeach
@@ -42,12 +52,8 @@
    </div>  
  
  @else
-  <div class="empresa-gestion-texto-gris-grande-de-aviso">
-   {{Auth::user()->first_name}} bienvenida a EasySocios. 
-   @if($Empresas->count() == 1)
-     Clic para ingresar <i class="far fa-hand-point-down"></i>
-
-   @endif
+  <div class="empresa-gestion-texto-gris-grande-de-aviso">   
+   En breve tendrás acceso a una empresa 
  </div>
  @endif
  </div>

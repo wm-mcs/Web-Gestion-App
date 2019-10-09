@@ -1,4 +1,44 @@
 
+.mensajes-contenedor{
+  width: 98%;
+  padding: 20px;
+  border-radius:4px;
+  margin: 20px 0;
+  position: relative;
+} 
+
+.alert-dager{
+ background-color: $Color-Errors-BG;
+ color:$Color-Rojo-Texto-Error ;
+}
+.alert-success{
+ background-color: $Color-Verde-Super-Claro;
+ color:$color-verde-texto-success;
+}
+.alert-warning{
+ background-color: $Color-Amarill-warning;
+ color:$Color-Texto-Warning;
+}
+
+.alert-info{
+ background-color: $Color-info;
+ color:$Color-texto-gris-Mercadolibre;
+}
+
+  .mensaje-cerrar-icono{
+    position:absolute;
+    color: $color-grey1;
+    font-size: 20px;
+    top:5px;
+    right:5px;
+  }
+
+
+
+
+
+
+
 //mensaje de inicio de la app en la home
 .empresa-gestion-texto-gris-grande-de-aviso{
   font-size: 25px;

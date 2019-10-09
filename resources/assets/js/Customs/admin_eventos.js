@@ -40,4 +40,12 @@
    $("input[name=tipo_de_boton]").val('guardar-y-salir');
 
       form.submit();
-  });
+  }); 
+
+
+
+    // buscador de eventos por marca
+  $('body').on('click','.ocultar-esto',function(e)
+  {
+     $(this).hide() ; 
+  }); 

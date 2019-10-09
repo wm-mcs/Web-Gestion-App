@@ -25,13 +25,13 @@
      </div>
       
    </div>
-      <div class="get_width_20"></div>
+      
       <div class="admin-contiene-content">
         
           <div class="admin-contiene-content-wraper"> 
-            
+           @include('layouts.gestion_socios_layout.mensajes.mensajes')   
          
-               @include('alerts.Alertas_Todos_Agrupados.alertas_agrupados')  
+               
                <div class="admin-contnedor-navegacion-miga">           
                  @yield('miga-de-pan')                
               </div>

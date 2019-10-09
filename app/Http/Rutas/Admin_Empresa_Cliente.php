@@ -33,13 +33,19 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
       Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
       {
-         require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php';
+         require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php'; 
 
 
-         Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
-         {
-          require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
-         });
+          Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
+          {             
+                 Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
+                 {
+                  require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
+                 });
+          });
+         
+
+
       });
 
    }); 
