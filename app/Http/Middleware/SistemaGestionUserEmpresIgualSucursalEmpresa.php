@@ -56,6 +56,13 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             }
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
+
+                if($request->ajax())
+                {
+                     return ['Validacion'          => false,
+                             'Validacion_mensaje'  => $Mensaje];
+                }
+                
                 return redirect()->route('get_home')->with('alert-danger',$Mensaje);
             }
         }    
