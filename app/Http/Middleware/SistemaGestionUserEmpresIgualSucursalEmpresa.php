@@ -5,7 +5,7 @@ use App\Repositorios\SocioRepo;
 use App\Repositorios\UserEmpresaRepo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-
+use Request; 
 use Closure;
 
 class SistemaGestionUserEmpresIgualSucursalEmpresa
