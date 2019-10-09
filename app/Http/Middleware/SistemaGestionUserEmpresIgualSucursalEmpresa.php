@@ -11,28 +11,6 @@ use Closure;
 class SistemaGestionUserEmpresIgualSucursalEmpresa
 {
 
-
-
-    /**
-     * 1 = Usuario operador
-     * 2 = Usuario moderador de la empresa
-     * 3 = Usuario vendeor
-     * 4 = Usuario Administrador principal
-     */
-
-
-
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-
-                           //le paso como 3º parametre
-                           //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
         $UserEmpresaRepo = new UserEmpresaRepo();
@@ -56,6 +34,8 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             }
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
+
+                dd('hola');
 
                 if($request->ajax())
                 {
