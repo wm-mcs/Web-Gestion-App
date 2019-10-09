@@ -5,7 +5,7 @@ use App\Repositorios\SocioRepo;
 use App\Repositorios\UserEmpresaRepo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-use Request; 
+
 use Closure;
 
 class SistemaGestionUserEmpresIgualSucursalEmpresa
@@ -35,9 +35,9 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
 
-                dd('hola',$request->ajax());
+                dd('hola',$request->isJson());
 
-                if($request->ajax())
+                if($request->isJson())
                 {
                      return ['Validacion'          => false,
                              'Validacion_mensaje'  => $Mensaje];
