@@ -62,8 +62,12 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
                      return ['Validacion'          => false,
                              'Validacion_mensaje'  => $Mensaje];
                 }
+                else
+                {
+                   return redirect()->route('get_home')->with('alert-danger',$Mensaje); 
+                }
+
                 
-                return redirect()->route('get_home')->with('alert-danger',$Mensaje);
             }
         }    
     
