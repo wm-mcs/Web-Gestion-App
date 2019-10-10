@@ -14,7 +14,7 @@
 @section('content')
 
  {{-- titulo --}}
- <div class="contenedor-admin-entidad-titulo-form-busqueda">
+ {{-- <div class="contenedor-admin-entidad-titulo-form-busqueda">
     <div class="admin-entidad-titulo">   
         {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                             'method'=> 'Post',
@@ -26,7 +26,33 @@
 
        {!! Form::close() !!}  
     </div>    
- </div>
+ </div>  --}}
+
+ <div class="empresa-lista-user-contenedor">
+        <div class="empresa-lista-user-header">
+          <div class="empresa-lista-user-contiene-img">
+            <img src="{{$Empresa->url_img}}" class="empresa-lista-user-img">
+          </div>
+           @foreach($Empresa->sucursuales_empresa as $sucursal)          
+            @if($sucursal->puede_ver_el_user)
+              <div class="empresa-lista-user-sucursal">
+                <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
+                 {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'name'  => 'form1'
+                          ])               !!}   
+                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
+                 <input type="hidden" name="sucursal_id" value="{{$sucursal->id}}">
+                 <span class="simula_link empresa-lista-user-sucursal-nombre" onclick="javascript:document.form1.submit()">{{$sucursal->name}}</span>    
+
+                 {!! Form::close() !!}  
+                
+              </div>
+            @endif
+           @endforeach
+        </div>
+    </div> 
 
   
 
