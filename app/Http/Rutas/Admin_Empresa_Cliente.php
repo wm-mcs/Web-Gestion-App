@@ -38,12 +38,7 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
           Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
           {     
-                //Get Listado
-                Route::get('get_admin_empresas_gestion_socios',
-                [
-                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_admin_empresas_gestion_socios',
-                  'as'         => 'get_admin_empresas_gestion_socios',                
-                ]);
+               
 
 
 
