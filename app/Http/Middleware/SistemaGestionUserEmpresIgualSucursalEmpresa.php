@@ -56,17 +56,6 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
     
 
 
-        if(($UserEmpresa->empresa_id == $Socio->empresa_id) || ($User->role > 6) )
-        { 
-
-          $Validacion = true;          
-          $request->attributes->add(['socio_desde_middleware' => $Socio]);
-        }
-        else
-        {
-          $Validacion = false;
-          $Mensaje    = 'No tienes permiso para hacer eso:  el socio no es de está empresa';
-        }  
 
         if(!$Validacion)
         {
