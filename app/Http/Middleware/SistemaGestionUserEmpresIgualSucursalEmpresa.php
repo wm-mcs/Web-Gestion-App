@@ -31,9 +31,23 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             //si tiene sucursal id la request
             if($request->has('sucursal_id'))
             {
-                $SucursalRepo = new SucursalEmpresaRepo();
+                if(($UserEmpresa->sucursal_id == $request->get('sucursal_id')) || ($User->role > 3) )
+                { 
 
-                Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+                  $Validacion = true;          
+                  $Mensaje    = 'El usuario puede entrar';
+
+                  $SucursalRepo = new SucursalEmpresaRepo();
+
+                  Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+                }  
+                else
+                {
+                  $Mensaje    = 'No puede operar está sucursal';
+                }
+
+
+                
             }
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
