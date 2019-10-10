@@ -10,7 +10,7 @@
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
       busqueda:'',
-      Sucursal: {!! json_encode(Session::get('sucursal')) !!};
+      Sucursal: {!! json_encode(Session::get('sucursal')) !!}
 
 
       
