@@ -49,3 +49,9 @@
   {
      $(this).hide() ; 
   }); 
+
+  $('body').on('click','.disparar-este-form',function(e)
+  {
+     $(this).hide() ; 
+  }); 
+  

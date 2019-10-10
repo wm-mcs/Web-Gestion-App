@@ -44,7 +44,7 @@
                           ])               !!}   
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
                  <input type="hidden" name="sucursal_id" value="{{$sucursal->id}}">
-                 <span class="simula_link empresa-lista-user-sucursal-nombre" onclick="javascript:document.form1.submit()">{{$sucursal->name}}</span>    
+                 <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >{{$sucursal->name}}</span>    
 
                  {!! Form::close() !!}  
                 
