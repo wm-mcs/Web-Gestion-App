@@ -24,7 +24,17 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
         //verifico si la sesion tiene sucursal
         if(Session::has('sucursal'))
         {            
-            $request->attributes->add(['sucursal_desde_middleware' => Session::get('sucursal')]);
+           
+            $Validacion      = true;
+            
+            if($request->has('sucursal_id'))
+            {
+                  $SucursalRepo = new SucursalEmpresaRepo();
+                  Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+            }   
+
+            $request->attributes->add(['sucursal_desde_middleware' => Session::get('sucursal')]); 
+
         }
         else
         {
