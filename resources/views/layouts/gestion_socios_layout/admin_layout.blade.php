@@ -33,10 +33,13 @@
                         
              @include('layouts.gestion_socios_layout.mensajes.mensajes')   
          
-               
-             <div class="admin-contnedor-navegacion-miga">           
+              <div class="">
+                <div class="admin-contnedor-navegacion-miga">           
                  @yield('miga-de-pan')                
-              </div>
+                </div>
+                @yield('sucursal')
+              </div> 
+              
               <div class="contenedor-admin-entidad">
                 <div class="get_width_100 Helper-OrdenarHijos-columna"> 
                     @yield('content')

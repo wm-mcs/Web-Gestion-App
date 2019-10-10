@@ -5,6 +5,13 @@
   <span>Panel general de {{$Empresa->name}}</span>
 @stop
 
+@section('sucursal')
+  
+  <div >
+    Estás en @{{Sucursal.name}}
+  </div>
+@stop
+
 @section('content')
   
 
