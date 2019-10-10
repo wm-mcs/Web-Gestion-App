@@ -5,6 +5,7 @@ use App\Repositorios\SocioRepo;
 use App\Repositorios\UserEmpresaRepo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+use App\Repositorios\SucursalEmpresaRepo;
 
 use Closure;
 
@@ -22,15 +23,17 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
 
         //verifico si la sesion tiene sucursal
         if(Session::has('sucursal'))
-        {
-
+        {            
+            $request->attributes->add(['sucursal_desde_middleware' => Session::get('sucursal')]);
         }
         else
         {
             //si tiene sucursal id la request
             if($request->has('sucursal_id'))
             {
+                $SucursalRepo = new SucursalEmpresaRepo();
 
+                Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
             }
             else
             {   $Mensaje    = 'Debes elegír una sucursal.';
