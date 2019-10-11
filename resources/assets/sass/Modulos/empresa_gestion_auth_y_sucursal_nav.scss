@@ -1,7 +1,7 @@
  .contiene-auth-y-sucursal{
   @include flexbox;
   @include align-items(flex-end);
-  @include flex-direction(column); 
+  @include flex-direction(row); 
  }
 
     .navigation-auth-contenedor{
