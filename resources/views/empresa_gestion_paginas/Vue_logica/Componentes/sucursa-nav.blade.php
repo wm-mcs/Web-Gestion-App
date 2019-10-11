@@ -4,7 +4,7 @@ props:[ 'empresa','sucursal' ],
 data:function(){
     return {
      
-
+      modal_cambiar_sucursal:'modal-cambiar-sucursal';
     }
 },
 methods:{
@@ -18,7 +18,7 @@ methods:{
 
 },
 template:'
-  <div class="contiene-sucursal" v-on:click="abrirModal('modal-cambiar-sucursal')">
+  <div class="contiene-sucursal" v-on:click="abrirModal(modal_cambiar_sucursal)">
     <span class="sucursal-estas">Estás en la sucursal</span> 
     <span class="sucursal-nombre">@{{sucursal.name}} <i class="fas fa-chevron-down"></i></span> 
 
