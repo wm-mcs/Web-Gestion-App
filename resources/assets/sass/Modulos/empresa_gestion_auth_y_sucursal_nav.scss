@@ -9,6 +9,9 @@
       color: $Color-texto-gris-Mercadolibre;
       font-size: 10px;
       letter-spacing: 1.2px;  
+      @include flexbox;
+  @include align-items(flex-end);
+  @include flex-direction(row); 
     }
 
 
