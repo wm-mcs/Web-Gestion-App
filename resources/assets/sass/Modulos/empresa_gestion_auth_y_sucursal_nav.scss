@@ -18,7 +18,7 @@
       @include align-items(center);
       @include flex-direction(column); 
       margin-bottom: 8px;
-      background-color:$color-gris-background ;
+      background-color: $color-gris-background ;
       border:solid 2px transparent;
       cursor: pointer;
     }
