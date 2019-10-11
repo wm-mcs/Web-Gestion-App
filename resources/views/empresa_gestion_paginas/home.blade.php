@@ -5,12 +5,8 @@
   <span>Panel general de {{$Empresa->name}}</span>
 @stop
 
-@section('sucursal')
-  
-  <div class="contiene-sucursal">
-    <span class="sucursal-estas">Estás en la sucursale</span> 
-    <span class="sucursal-nombre">@{{Sucursal.name}} <i class="fas fa-chevron-down"></i></span> 
-  </div>
+@section('sucursal')  
+  <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
 @stop
 
 @section('content')
@@ -53,6 +49,7 @@
 <script type="text/javascript">
 
 
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.tipo-de-servicios-modal-componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socios-crear-boton_componente')
      
