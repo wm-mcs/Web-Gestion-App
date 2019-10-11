@@ -17,6 +17,14 @@ methods:{
     
 
 },
+computed:{
+
+SucursalesMenosLaQueEsta:function(){
+  return this.empresa.sucursuales_empresa.filter(Sucursal => Sucursal.id != this.sucursal.id);
+
+}
+  
+},
 template:'
   <div class="contiene-sucursal" v-on:click="abrirModal(modal_cambiar_sucursal)">
     <span class="sucursal-estas">Estás en la sucursal</span> 
@@ -33,7 +41,14 @@ template:'
         </div>
         <div class="modal-body text-center"> 
 
-                 
+            <div>
+              <div class="empresa-lista-user-sucursal" v-for="SucursalDeEmpresa in SucursalesMenosLaQueEsta">
+                <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
+                <span  class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >{{$sucursal->name}}</span>    
+              </div>
+
+
+            </div>     
                
 
                   
