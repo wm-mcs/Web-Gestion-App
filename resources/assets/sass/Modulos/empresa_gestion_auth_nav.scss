@@ -1,0 +1,40 @@
+ .contiene-auth-y-sucursal{
+  @include flexbox;
+  @include align-items(flex-end);
+  @include flex-direction(column); 
+ }
+
+    .navigation-auth-contenedor{
+      padding: 8px;
+      color: $Color-texto-gris-Mercadolibre;
+      font-size: 10px;
+      letter-spacing: 1.2px;  
+    }
+
+
+    .contiene-sucursal{
+      padding:10px;
+      @include flexbox;
+      @include align-items(center);
+      @include flex-direction(column); 
+      margin-bottom: 8px;
+      background-color:$color-gris-background ;
+      border:solid 2px transparent;
+      cursor: pointer;
+    }
+
+    .contiene-sucursal:hover{
+      border-color:$color-3;
+    }
+
+     .sucursal-estas{
+      font-size: 8px; 
+      color: $Color-texto-gris-Mercadolibre;
+      margin-bottom: 4px;
+     }
+
+     .sucursal-nombre{
+       font-size: 12px;
+       font-weight: bold;
+     }
+

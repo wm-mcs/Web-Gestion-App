@@ -7,8 +7,9 @@
 
 @section('sucursal')
   
-  <div >
-    Estás en @{{Sucursal.name}}
+  <div class="contiene-sucursal">
+    <span class="sucursal-estas">Estás en la sucursale</span> 
+    <span class="sucursal-nombre">@{{Sucursal.name}} <i class="fas fa-hand-point-down"></i></span> 
   </div>
 @stop
 

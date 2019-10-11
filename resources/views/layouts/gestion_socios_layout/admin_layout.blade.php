@@ -33,11 +33,17 @@
                         
              @include('layouts.gestion_socios_layout.mensajes.mensajes')   
          
-              <div class="">
+              <div class="contiene-miga-y-auth">
                 <div class="admin-contnedor-navegacion-miga">           
                  @yield('miga-de-pan')                
                 </div>
-                @yield('sucursal')
+                <div class="contiene-auth-y-sucursal">
+                    <div class="navigation-auth-contenedor">
+                      <span> <i class="fas fa-user"></i> {{Auth::user()->first_name}}</span>
+                    </div>
+                    @yield('sucursal')
+                </div>
+               
               </div> 
               
               <div class="contenedor-admin-entidad">
