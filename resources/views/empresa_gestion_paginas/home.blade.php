@@ -9,7 +9,7 @@
   
   <div class="contiene-sucursal">
     <span class="sucursal-estas">Estás en la sucursale</span> 
-    <span class="sucursal-nombre">@{{Sucursal.name}} <i class="fas fa-hand-point-down"></i></span> 
+    <span class="sucursal-nombre">@{{Sucursal.name}} <i class="fas fa-chevron-down"></i></span> 
   </div>
 @stop
 

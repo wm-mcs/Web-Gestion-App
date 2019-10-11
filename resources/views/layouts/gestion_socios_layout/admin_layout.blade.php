@@ -39,9 +39,10 @@
                 </div>
                 <div class="contiene-auth-y-sucursal">
                     <div class="navigation-auth-contenedor">
+                      @yield('sucursal')
                       <span> <i class="fas fa-user"></i> {{Auth::user()->first_name}}</span>
                     </div>
-                    @yield('sucursal')
+                   
                 </div>
                
               </div> 
