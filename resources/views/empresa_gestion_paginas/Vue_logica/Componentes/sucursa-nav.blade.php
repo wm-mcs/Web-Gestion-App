@@ -44,7 +44,7 @@ template:'
             <div>
               <div class="empresa-lista-user-sucursal" v-for="SucursalDeEmpresa in SucursalesMenosLaQueEsta">
                 <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
-                <span  class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >{{$sucursal->name}}</span>    
+                <span  class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{SucursalDeEmpresa.>name}}</span>    
               </div>
 
 
