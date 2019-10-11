@@ -4,7 +4,7 @@ props:[ 'empresa','sucursal' ],
 data:function(){
     return {
      
-      modal_cambiar_sucursal:'modal-cambiar-sucursal';
+      modal_cambiar_sucursal:'modal-cambiar-sucursal'
     }
 },
 methods:{
