@@ -10,8 +10,17 @@ data:function(){
 methods:{
   abrirModal:function(id){
 
-    var id_modal = '#'+id;
-    app.abrirModal(id_modal);
+
+    if(this.SucursalesMenosLaQueEsta.length)
+    {
+      var id_modal = '#'+id;
+      app.abrirModal(id_modal);
+    }
+    else
+    {
+      $.notify('Es la única sucursal', "info");
+    }
+    
 
   }
     
@@ -28,7 +37,7 @@ SucursalesMenosLaQueEsta:function(){
 template:'
   <div class="contiene-sucursal" v-on:click="abrirModal(modal_cambiar_sucursal)">
     <span class="sucursal-estas">Estás en la sucursal</span> 
-    <span class="sucursal-nombre">@{{sucursal.name}} <i class="fas fa-chevron-down"></i></span> 
+    <span class="sucursal-nombre">@{{sucursal.name}} <i v-if="SucursalesMenosLaQueEsta.length" class="fas fa-chevron-down"></i></span> 
 
 
    <div class="modal fade" id="modal-cambiar-sucursal" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
