@@ -26,12 +26,13 @@ methods:{
   cambiar_a_esta_sucursal:function(sucursal){
       
 
-      var url = '/cambiar_de_sucursal';
+      var url  = '/cambiar_de_sucursal';
 
-      var data = {   
-                    sucursal_id:sucursal.id,
-                     empresa_id: this.empresa.id       
+      var data = {  
+                  sucursal_id: sucursal.id,
+                   empresa_id: this.empresa.id       
                  };  
+      var vue  = this;
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -40,7 +41,7 @@ methods:{
             if(data.Validacion == true)
             {
                app.Sucursal = data.Sucursal; 
-               app.cerrarModal('#'+ this.modal_cambiar_sucursal );
+               app.cerrarModal('#'+ vue.modal_cambiar_sucursal );
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
