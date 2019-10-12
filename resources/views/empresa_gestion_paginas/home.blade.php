@@ -9,7 +9,7 @@
                           ])               !!}   
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
-                  <img class="admin-header-logo" src="{{$Empresa->url_img}}">
+                  <img class="miga-imagen" src="{{$Empresa->url_img}}">
                  </span>    
  
   {!! Form::close() !!} 
