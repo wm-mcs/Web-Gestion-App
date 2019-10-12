@@ -40,7 +40,7 @@ methods:{
             if(data.Validacion == true)
             {
                app.Sucursal = data.Sucursal; 
-               app.cerrarModal('#'+modal_cambiar_sucursal );
+               app.cerrarModal('#'+ this.modal_cambiar_sucursal );
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
