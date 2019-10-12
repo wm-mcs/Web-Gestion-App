@@ -2,7 +2,20 @@
 
 
 @section('miga-de-pan') 
-  <span>Panel general de {{$Empresa->name}}</span>
+  {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'name'  => 'form1'
+                          ])               !!}   
+                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
+                 <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
+                  <img class="admin-header-logo" src="{{$Empresa->url_img}}">
+                 </span>    
+ 
+  {!! Form::close() !!} 
+  <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>
+
+  <span> Panel general de {{$Empresa->name}}</span>
 @stop
 
 @section('sucursal')  
@@ -72,8 +85,7 @@
 
   
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
-  {{-- imagen logo --}}
-  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->url_img}}"></a>
+  
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
