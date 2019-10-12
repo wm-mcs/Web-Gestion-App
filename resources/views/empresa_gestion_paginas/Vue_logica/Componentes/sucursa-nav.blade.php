@@ -22,6 +22,37 @@ methods:{
     }
     
 
+  },
+  cambiar_a_esta_sucursal:function(sucursal){
+      
+
+      var url = '/cambiar_de_sucursal';
+
+      var data = {   
+                    sucursal_id:sucursal.id,
+                     empresa_id: this.empresa.id       
+                 };  
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               app.Sucursal = data.Sucursal; 
+               app.cerrarModal('#'+modal_cambiar_sucursal );
+               $.notify(response.data.Validacion_mensaje, "success");
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
   }
     
 
@@ -51,7 +82,7 @@ template:'
         <div class="modal-body text-center"> 
 
             <div>
-              <div class="empresa-lista-user-sucursal" v-for="SucursalDeEmpresa in SucursalesMenosLaQueEsta">
+              <div class="empresa-lista-user-sucursal" v-for="SucursalDeEmpresa in SucursalesMenosLaQueEsta" v-on:click="cambiar_a_esta_sucursal(SucursalDeEmpresa)">
                 <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
                 <span  class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{SucursalDeEmpresa.name}}</span>    
               </div>
@@ -63,9 +94,7 @@ template:'
                   
                  
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
-        </div>
+        
       </div>
     </div>
   </div>

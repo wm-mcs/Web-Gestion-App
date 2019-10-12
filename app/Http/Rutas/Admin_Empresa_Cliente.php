@@ -38,7 +38,14 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
           Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
           {     
-               
+                
+
+
+                //cambiar de sucursal
+                Route::post('cambiar_de_sucursal',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@cambiar_de_sucursal',
+                  'as'         => 'cambiar_de_sucursal']);  
 
 
 

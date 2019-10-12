@@ -738,6 +738,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'empresa'                  =>  $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))     ];
   }
 
+
+
+  //cambiar de sucursal
+  public function cambiar_de_sucursal(Request $Request)
+  {
+      $Sucursal = $Request->get('sucursal_desde_middleware');
+      return [ 'Validacion'               =>  true,
+               'Validacion_mensaje'       =>  'Se cambió la sucursal correctamente',
+               'Sucursal'                  => $Sucursal   ];
+
+  }
+
   //caja crear registro
   public function crear_registro_de_caja(Request $Request)
   {
