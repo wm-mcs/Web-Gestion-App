@@ -383,6 +383,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Validacion  = true;
      $User        = $Request->get('user_desde_middleware');  
      $Socio       = $Request->get('socio_desde_middleware'); 
+     $Sucursal    = $Request->get('sucursal_desde_middleware'); 
 
     
        
@@ -397,11 +398,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
           while($Cantidad < (int)$Request->get('cantidad_de_servicios'))
           {
-            $Cantidad          = $Cantidad + 1;
-            $Entidad           = $this->ServicioContratadoSocioRepo->getEntidad();
-            $Entidad->socio_id = $Request->get('socio_id');
-            $Entidad->estado   = 'si' ;
-            $Entidad->valor    = round($Request->get('valor')/$Request->get('cantidad_de_servicios'));
+            $Cantidad                    = $Cantidad + 1;
+            $Entidad                     = $this->ServicioContratadoSocioRepo->getEntidad();
+            $Entidad->socio_id           = $Request->get('socio_id');
+            $Entidad->estado             = 'si' ;
+            $Entidad->sucursal_emitio_id = $Sucursal->id;
+            $Entidad->valor              = round($Request->get('valor')/$Request->get('cantidad_de_servicios'));
             $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
              //Logica de estado de cuenta cuando compra
@@ -430,10 +432,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        }
        else
        {
-          $Entidad           = $this->ServicioContratadoSocioRepo->getEntidad();
-          $Entidad->socio_id = $Socio->id;
-          $Entidad->estado   = 'si' ;
-          $Entidad->valor    = round($Request->get('valor'));      
+          $Entidad                     = $this->ServicioContratadoSocioRepo->getEntidad();
+          $Entidad->socio_id           = $Socio->id;
+          $Entidad->estado             = 'si' ;
+          $Entidad->valor              = round($Request->get('valor'));     
+          $Entidad->sucursal_emitio_id = $Sucursal->id; 
 
           $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
@@ -567,9 +570,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));     
      $Socio             = $Request->get('socio_desde_middleware'); 
      $Servicio          = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
+     $Sucursal          = $Request->get('sucursal_desde_middleware'); 
      
      //las porpiedades que se van a editar  
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido', Carbon::now('America/Montevideo') );
+
+     //indico la sucursal donde se usó
+     $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'sucursal_uso_id', $Sucursal->id );
 
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 

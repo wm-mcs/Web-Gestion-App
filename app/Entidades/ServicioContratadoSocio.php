@@ -4,6 +4,8 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Entidades\SucursalEmpresa;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -25,14 +27,38 @@ class ServicioContratadoSocio extends Model
                            'fecha_contratado_formateada',
                            'fecha_consumido_formateada',
                            'esta_vencido',
-                           'se_consumio'
+                           'se_consumio',
+                           'sucursal_donde_se_emitio',
+                           'sucursal_donde_se_uso'
                           ];
 
 
 
 
     
+    public function SucursalEmitio()
+    {
+      return  $this->belongsTo(SucursalEmpresa::class,'sucursal_emitio_id','id'); 
+    }
 
+        public function getSucursalDondeSeEmitioAttribute()
+        {
+           return Cache::remember('SucursalDondeSeEmitio'.$this->id, 15, function() {
+                              return $this->SucursalEmitio; 
+                          }); 
+        }  
+
+    public function SucursalUso()
+    {
+      return  $this->belongsTo(SucursalEmpresa::class,'sucursal_uso_id','id'); 
+    }
+
+        public function getSucursalDondeSeUsoAttribute()
+        {
+           return Cache::remember('SucursalDondeSeUso'.$this->id, 15, function() {
+                              return $this->SucursalUso; 
+                          }); 
+        }  
     
 
 
