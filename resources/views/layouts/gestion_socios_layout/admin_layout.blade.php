@@ -76,9 +76,11 @@
         <script  src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 
 
+        <script type="text/javascript">
+           @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.inicio') 
+        </script>
+       
 
-        @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.inicio') 
-        
         @yield('vue-logica')   
 
 
