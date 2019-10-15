@@ -40,7 +40,7 @@
                 <div class="contiene-auth-y-sucursal">
                     <div class="navigation-auth-contenedor">
                       @yield('sucursal')
-                      <span> <i class="fas fa-user"></i> {{Auth::user()->first_name}}</span>
+                     <nav-inicio></nav-inicio>
                     </div>
                    
                 </div>
@@ -77,6 +77,7 @@
 
 
 
+        @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.inicio') 
         
         @yield('vue-logica')   
 
