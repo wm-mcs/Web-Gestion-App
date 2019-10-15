@@ -15,6 +15,15 @@ mounted: function mounted () {
 },
 methods:{
 
+
+    ditintoDeNull:function(valor){
+      if(valor != null)
+      {
+        return valor;
+      }
+      return false;
+    },
+
     borrar_servicio:function(servicio){
 
 
@@ -204,7 +213,29 @@ computed:{
     open_modal:function(){
       
       return   'modal-editar-servicio-socio-'+ String(this.servicio.id);
-    }
+    },
+    donde_se_emitio:function(){
+     if(this.servicio.sucursal_donde_se_emitio != null)
+     {
+      return 'Se compró en sucursal ' + this.servicio.sucursal_donde_se_emitio.name;
+     } 
+     else
+     {
+      return false;
+     }     
+      
+    },
+    donde_se_uso:function(){
+     if(this.servicio.sucursal_donde_se_uso != null)
+     {
+      return 'Se usó en sucursal ' + this.servicio.sucursal_donde_se_uso.name;
+     } 
+     else
+     {
+      return false;
+     }     
+      
+    },
 
 
   
@@ -252,6 +283,9 @@ template:'
                 <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
                 <div v-show="esta_activo" class="lista-estado-activo" > <i class="fas fa-check"></i> Disponible</div>
                 <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}}</div>
+
+                <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
+                <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha" >@{{donde_se_uso}}</span> 
             </div>
             
         </div>
