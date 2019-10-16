@@ -139,6 +139,15 @@ methods:{
          
 
 },
+computed:{
+  servicios_disponibles:function(){
+   return socio.servicios_contratados_del_socio;
+  },
+  servicios_no_disponibles:function(){
+  return socio.servicios_contratados_del_socio;
+  }
+
+},
 template:'<span>
 
 
@@ -162,7 +171,7 @@ template:'<span>
   </div>
 
   <div class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios que contrató el socio</div>
+      <div class="empresa-titulo-de-secciones">Servicios que contrató <span class="color-text-success">disponibles</span> </div>
       <div class="panel-socio-contiene-servicios">
         
           
@@ -173,7 +182,27 @@ template:'<span>
             
                           @actualizar_socio="actualizar_socio"
 
-                           v-for="servicio in socio.servicios_contratados_del_socio" :key="servicio.id"> 
+                           v-for="servicio in servicios_disponibles" :key="servicio.id"> 
+            </servicio-socio-lista>
+            
+          
+
+      </div>
+  </div>
+
+   <div class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios que contrató el socio <span class="color-text-gris">No disponibles</span></div>
+      <div class="panel-socio-contiene-servicios">
+        
+          
+
+
+            <servicio-socio-lista :servicio="servicio" 
+                                  :empresa="empresa"
+            
+                          @actualizar_socio="actualizar_socio"
+
+                           v-for="servicio in servicios_disponibles" :key="servicio.id"> 
             </servicio-socio-lista>
             
           
