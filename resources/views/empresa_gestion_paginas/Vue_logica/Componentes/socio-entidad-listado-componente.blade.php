@@ -44,8 +44,9 @@ template:'
     <socio-list v-for="socio in socios" 
                  :key="socio.id" 
                :socio="socio" 
-             :empresa="empresa"></socio-list>
-             v-on:ActualizarSocios="actualizar_socios"
+             :empresa="empresa"
+              v-on:ActualizarSocios="actualizar_socios" ></socio-list>
+
   
   </div> 
 
