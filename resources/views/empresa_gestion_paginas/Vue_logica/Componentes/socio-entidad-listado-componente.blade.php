@@ -41,7 +41,11 @@ template:'
 
   <div v-if="socios.length > 0" class="listado-socios-contenedor-lista">
 
-    <socio-list v-for="socio in socios" :key="socio.id" :socio="socio" :empresa="empresa"></socio-list>
+    <socio-list v-for="socio in socios" 
+                 :key="socio.id" 
+               :socio="socio" 
+             :empresa="empresa"></socio-list>
+             v-on:ActualizarSocios="actualizar_socios"
   
   </div> 
 

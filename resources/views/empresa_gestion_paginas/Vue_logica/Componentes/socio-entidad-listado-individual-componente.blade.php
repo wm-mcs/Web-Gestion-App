@@ -77,7 +77,9 @@ consumir_esta_clase:function(servicio){
           {
             
             
-             app.empresa = response.data.Empresa;  
+             
+             vue.$emit("ActualizarSocios", response.data.Empresa.socios_de_la_empresa);
+
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
