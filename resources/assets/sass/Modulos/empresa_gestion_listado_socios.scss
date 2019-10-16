@@ -12,9 +12,9 @@
  .listado-socios-contenedor-individual{
    width: 100%;
    padding: 4px;
-   border-radius: 4px;
+   
    background-color:$Color-Gris-CasiBlanco ;
-   margin-top: 2px;
+   margin-top: 6px;
    @include flexbox;       
    @include flex-direction(column);
    @include align-items(flex-start); 
@@ -215,7 +215,7 @@
 
    .listado-socios-contenedor-individual{
     width: 33%;
-    padding: 8px;
+    
    }
 
 
