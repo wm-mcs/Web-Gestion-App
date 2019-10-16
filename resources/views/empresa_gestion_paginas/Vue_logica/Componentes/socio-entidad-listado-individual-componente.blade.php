@@ -196,13 +196,7 @@ template:'
         <estado-de-cuenta-socio-saldo :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
       </div>
 
-      <div class="listado-socios-sub-contenedor-datos">
-        
-        <span class="listado-socios-datos"><i class="far fa-id-badge"></i> @{{socio.cedula}}</span>
-        <span class="listado-socios-datos"><i class="fas fa-mobile-alt"></i> @{{socio.celular}}</span>
-        
-        
-      </div>
+     
       <div class="listado-socio-contiene-los-hay">
         <div v-if="clasesDisponibles" class="listado-socio-tiene-clases">
           <span>
