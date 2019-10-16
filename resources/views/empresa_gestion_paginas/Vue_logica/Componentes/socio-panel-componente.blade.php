@@ -141,10 +141,10 @@ methods:{
 },
 computed:{
   servicios_disponibles:function(){
-   return socio.servicios_contratados_del_socio;
+   return this.socio.servicios_contratados_del_socio;
   },
   servicios_no_disponibles:function(){
-  return socio.servicios_contratados_del_socio;
+  return this.socio.servicios_contratados_del_socio;
   }
 
 },
