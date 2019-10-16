@@ -31,11 +31,8 @@ template:'
               </div>
               <div class="modal-body text-center"> 
 
-                  <div>
-                    
+                 <a href="{{route('logout')}}">Salir</a>
 
-
-                  </div>     
                      
 
                         
