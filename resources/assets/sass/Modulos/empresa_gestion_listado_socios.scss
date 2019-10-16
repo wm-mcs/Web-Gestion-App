@@ -57,7 +57,7 @@
 
       .listado-socios-sub-name-email__email{
         color:$Color-texto-gris-Mercadolibre;
-        margin-top: 3px;
+        margin-top: 1px;
         font-size: 10px;
       }
 
@@ -147,7 +147,7 @@
 
 
         .listado-socio-lista-servicio-disponible{
-          padding: 3px 3px; 
+          padding: 3px 5px; 
           @include flexbox;       
           @include flex-direction(row);
           @include align-items(center); 
@@ -159,17 +159,25 @@
         }
 
           .listado-socio-lista-servicio-disponible-servicio{
-            font-size: 10px;
+            font-size: 11px;
             color: $color-verde-texto-success;
             width: 80%;
             text-align: left;
+
           }
 
           .listado-socio-lista-servicio-disponible-accion{
-            font-size: 14px;            
+            font-size: 12px;            
             width: 20%;
             text-align: center;
+            color:white;
+            background-color:$Color-clase;
           }
+           .listado-socio-lista-servicio-disponible-accion:hover{
+            background-color:$color-3;
+          }
+
+
 
 
   
