@@ -142,7 +142,17 @@ methods:{
 computed:{
   servicios_disponibles:function(){
    return this.socio.servicios_contratados_del_socio.filter(function(servicio) {
-      return servicio.esta_vencido != true || servicio.se_consumio != true;
+      
+       if( servicio.esta_vencido == true || servicio.se_consumio == true )
+        {
+          return false ;
+        }
+        else
+        {
+          return true;
+        }
+
+      
     });
   },
   servicios_no_disponibles:function(){
