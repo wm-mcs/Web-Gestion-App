@@ -18,7 +18,7 @@ class CajaEmpresaRepo extends BaseRepo
   }
 
 
-  public function InresarMovimientoDeCaja($empresa_id,$sucursal_id,$user_id,$tipo_saldo,$moneda,$valor,$detalle,$fecha_ingreso)
+  public function InresarMovimientoDeCaja($empresa_id,$sucursal_id,$user_id,$tipo_saldo,$moneda,$valor,$detalle,$fecha_ingreso,$servicio = null)
   {
     $Entidad                = $this->getEntidad();
     $Entidad->empresa_id    = $empresa_id;
@@ -29,6 +29,13 @@ class CajaEmpresaRepo extends BaseRepo
     $Entidad->valor         = $valor;
     $Entidad->detalle       = $detalle;
     $Entidad->fecha_ingreso = $fecha_ingreso;
+
+    if($servicio != null)
+    {
+      $Entidad->servicio_id = $servicio->id;
+    }
+
+
     $Entidad->save();
 
   }

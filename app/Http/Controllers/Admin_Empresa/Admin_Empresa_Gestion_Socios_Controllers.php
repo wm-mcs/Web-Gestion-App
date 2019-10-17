@@ -404,30 +404,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Entidad->estado             = 'si' ;
             $Entidad->sucursal_emitio_id = $Sucursal->id;
             $Entidad->valor              = round($Request->get('valor')/$Request->get('cantidad_de_servicios'));
-            $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
-
-             //Logica de estado de cuenta cuando compra
-             $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
-                                            $Entidad->moneda,
-                                            $Entidad->valor,
-                                            'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
-                                            'acredor',
-                                            Carbon::now('America/Montevideo'),
-                                            $Entidad->id);
-            //si se paga ahora      
-            if($Request->get('paga') == 'si') 
-            {
-                $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
-                                            $Entidad->moneda,
-                                            $Entidad->valor,
-                                            'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
-                                            'deudor',
-                                            Carbon::now('America/Montevideo'),
-                                            $Entidad->id);
-            }     
+            $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);           
+             
           }
+
+           
 
        }
        else
@@ -439,33 +420,33 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad->sucursal_emitio_id = $Sucursal->id; 
 
           $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+       
+
+       }
 
 
-             //Logica de estado de cuenta cuando compra
-             $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Socio->id, 
-                                            $Entidad->moneda,
-                                            $Entidad->valor,
-                                            'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
-                                            'acredor',
-                                            Carbon::now('America/Montevideo'),
-                                            $Entidad->id);
-
+           //Logica de estado de cuenta cuando compra
+           $this->MovimientoEstadoDeCuentaSocioRepo
+                ->setEstadoDeCuentaCuando($Socio->id, 
+                                          $Entidad->moneda,
+                                          round($Request->get('valor')),
+                                          'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
+                                          'acredor',
+                                          Carbon::now('America/Montevideo'),
+                                          $Entidad->id);
 
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Socio->id, 
+                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
                                             $Entidad->moneda,
-                                            $Entidad->valor,
+                                            round($Request->get('valor')),
                                             'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
                                             'deudor',
                                             Carbon::now('America/Montevideo'),
                                             $Entidad->id);
-            }           
-
-       }
+            }   
 
        
 
