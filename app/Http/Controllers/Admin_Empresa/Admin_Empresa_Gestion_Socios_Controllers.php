@@ -21,6 +21,7 @@ use App\Repositorios\UserRepo;
 use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\VendedorEmpresaRepo;
 use App\Repositorios\SucursalEmpresaRepo;
+use App\Repositorios\CajaEmpresaRepo;
 
 
 
@@ -38,6 +39,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
   protected $SucursalEmpresaRepo;
+  protected $CajaEmpresaRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -48,7 +50,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               UserRepo                          $UserRepo, 
                               UserEmpresaRepo                   $UserEmpresaRepo,
                               VendedorEmpresaRepo               $VendedorEmpresaRepo,
-                              SucursalEmpresaRepo               $SucursalEmpresaRepo  )
+                              SucursalEmpresaRepo               $SucursalEmpresaRepo,
+                              CajaEmpresaRepo                   $CajaEmpresaRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -60,6 +63,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->UserEmpresaRepo                   = $UserEmpresaRepo;
     $this->VendedorEmpresaRepo               = $VendedorEmpresaRepo;
     $this->SucursalEmpresaRepo               = $SucursalEmpresaRepo;
+    $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
   }
 
   public function getPropiedades()
@@ -404,7 +408,40 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Entidad->estado             = 'si' ;
             $Entidad->sucursal_emitio_id = $Sucursal->id;
             $Entidad->valor              = round($Request->get('valor')/$Request->get('cantidad_de_servicios'));
-            $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);           
+            $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+
+             //Logica de estado de cuenta cuando compra
+             $this->MovimientoEstadoDeCuentaSocioRepo
+                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                                            $Entidad->moneda,
+                                            $Entidad->valor,
+                                            'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
+                                            'acredor',
+                                            Carbon::now('America/Montevideo'),
+                                            $Entidad->id);
+
+            //si se paga ahora      
+            if($Request->get('paga') == 'si') 
+            {
+                $this->MovimientoEstadoDeCuentaSocioRepo
+                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                                            $Entidad->moneda,
+                                            $Entidad->valor,
+                                            'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
+                                            'deudor',
+                                            Carbon::now('America/Montevideo'),
+                                            $Entidad->id);
+                //Movimiento de caja
+                $this->CajaEmpresaRepo->InresarMovimientoDeCaja( $Request->get('empresa_id'), 
+                                                                 $Sucursal->id;, 
+                                                                 $User->id, 
+                                                                 'deudor', 
+                                                                 $Entidad->moneda, 
+                                                                 $Entidad->valor, 
+                                                                 'Venta de servicio a socio '. $Socio->name, 
+                                                                 Carbon::now('America/Montevideo'), 
+                                                                 $Entidad ) ;
+            }         
              
           }
 
@@ -420,37 +457,55 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad->sucursal_emitio_id = $Sucursal->id; 
 
           $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
-       
-
-       }
 
 
-           //Logica de estado de cuenta cuando compra
-           $this->MovimientoEstadoDeCuentaSocioRepo
-                ->setEstadoDeCuentaCuando($Socio->id, 
-                                          $Entidad->moneda,
-                                          round($Request->get('valor')),
-                                          'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
-                                          'acredor',
-                                          Carbon::now('America/Montevideo'),
-                                          $Entidad->id);
+             //Logica de estado de cuenta cuando compra
+             $this->MovimientoEstadoDeCuentaSocioRepo
+                  ->setEstadoDeCuentaCuando($Socio->id, 
+                                            $Entidad->moneda,
+                                            $Entidad->valor,
+                                            'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
+                                            'acredor',
+                                            Carbon::now('America/Montevideo'),
+                                            $Entidad->id);
+
 
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                  ->setEstadoDeCuentaCuando($Socio->id, 
                                             $Entidad->moneda,
-                                            round($Request->get('valor')),
+                                            $Entidad->valor,
                                             'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
                                             'deudor',
                                             Carbon::now('America/Montevideo'),
                                             $Entidad->id);
-            }   
+
+                //Movimiento de caja
+                $this->CajaEmpresaRepo->InresarMovimientoDeCaja( $Request->get('empresa_id'), 
+                                                                 $Sucursal->id;, 
+                                                                 $User->id, 
+                                                                 'deudor', 
+                                                                 $Entidad->moneda, 
+                                                                 $Entidad->valor, 
+                                                                 'Venta de servicio a socio '. $Socio->name, 
+                                                                 Carbon::now('America/Montevideo'), 
+                                                                 $Entidad ) ;
+
+
+
+            } 
+
+             
+
+
+
+       }
 
        
 
-       //Logica d emoviemiento de caja     
+          
 
 
      if($Validacion)
@@ -488,7 +543,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se editó correctamente ',
-               'Socio'               =>  $Socio];
+               'Socio'               => $Socio];
      }
   }
 
