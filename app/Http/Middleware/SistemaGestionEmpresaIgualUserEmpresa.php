@@ -60,9 +60,20 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
         if(!$Validacion)
         {
-            return ['Validacion'          => $Validacion,
-                    'Validacion_mensaje'  => 'No tienes permiso para hacer eso:  no controlas a está empresa'];
+            
+                $Mensaje    = 'No tienes permiso para hacer éso:  no controlas a ésta empresa';
+                if($request->isJson())
+                {
+                     return ['Validacion'          => false,
+                             'Validacion_mensaje'  => $Mensaje];
+                }
+                else
+                {
+                   return redirect()->route('get_home')->with('alert-danger',$Mensaje); 
+                }
         }
+
+        
 
         
 
