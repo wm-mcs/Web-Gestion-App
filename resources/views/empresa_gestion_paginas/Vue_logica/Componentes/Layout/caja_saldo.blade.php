@@ -1,4 +1,4 @@
-var bus = new Vue():
+var bus = new Vue();
 
 Vue.component('caja-saldo' ,
 {
