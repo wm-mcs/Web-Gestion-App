@@ -800,6 +800,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function cambiar_de_sucursal(Request $Request)
   {
       $Sucursal = $Request->get('sucursal_desde_middleware');
+      
       return [ 'Validacion'               =>  true,
                'Validacion_mensaje'       =>  'Se cambió la sucursal correctamente',
                'Sucursal'                  => $Sucursal   ];

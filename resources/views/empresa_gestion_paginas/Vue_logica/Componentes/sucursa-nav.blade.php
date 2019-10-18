@@ -40,6 +40,8 @@ methods:{
 
             if(data.Validacion == true)
             {
+
+               bus.$emit('sucursal-set', response.data.Sucursal); 
                app.Sucursal = data.Sucursal; 
                app.cerrarModal('#'+ vue.modal_cambiar_sucursal );
                $.notify(response.data.Validacion_mensaje, "success");
