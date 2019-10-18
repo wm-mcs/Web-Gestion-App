@@ -35,7 +35,7 @@
       </div>
       
 
-      <socios-crear-boton accion_name="Crear"  :empresa="empresa" > </socios-crear-boton>
+      <socios-crear-boton :accion_name="Crear"  :empresa="empresa" > </socios-crear-boton>
       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
    
   </div>  
@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
 
-
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_saldo')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.tipo-de-servicios-modal-componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socios-crear-boton_componente')
@@ -91,4 +91,6 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
+
+  <caja-saldo></caja-saldo>
 @stop

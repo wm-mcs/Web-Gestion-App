@@ -37,7 +37,7 @@
 <script type="text/javascript">
 
 
-    
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_saldo')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.estado-de-cuenta-socio-componente') 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.entidad-servicio-socio-componente')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.agregar-al-socio-un-servicio-componente') 
@@ -63,4 +63,6 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
+
+  <caja-saldo></caja-saldo>
 @stop
