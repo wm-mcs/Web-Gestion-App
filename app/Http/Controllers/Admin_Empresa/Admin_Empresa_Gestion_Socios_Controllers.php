@@ -433,7 +433,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                             $Entidad->id);
                 //Movimiento de caja
                 $this->CajaEmpresaRepo->InresarMovimientoDeCaja( $Request->get('empresa_id'), 
-                                                                 $Sucursal->id;, 
+                                                                 $Sucursal->id, 
                                                                  $User->id, 
                                                                  'deudor', 
                                                                  $Entidad->moneda, 

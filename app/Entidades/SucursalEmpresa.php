@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Cache;
 use App\Entidades\EmpresaConSocios;
 use Illuminate\Support\Facades\Auth;
 use App\Repositorios\UserEmpresaRepo;
+use App\Repositorios\CajaEmpresaRepo;
+use App\Entidades\CajaEmpresa;
 
 
 
@@ -24,11 +26,22 @@ class SucursalEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+    protected $appends  = ['movimientos_de_caja','saldo_de_caja_pesos','saldo_de_caja_dolares'];
     
 
  
 
-    
+    public function movimientos_de_caja_relation()
+    {
+        return $this->hasMany(CajaEmpresa::class,'sucursal_id','id')
+                    ->where('borrado','no')
+                    ->orderBy('created_at', 'DESC');
+    }
+
+      public function getMovimientosDeCajaAttribute()
+      {
+        return $this->movimientos_de_caja_relation;
+      }
 
 
     
@@ -88,6 +101,43 @@ class SucursalEmpresa extends Model
 
 
         }
+    }
+
+
+    public function getSaldoDeCajaPesosAttribute()
+    {
+        $EstadosRepo = new CajaEmpresaRepo();
+
+        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
+                                                ->where('moneda','$')                                                
+                                                ->sum('valor');
+
+        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor') 
+                                                ->where('borrado','no')                                 
+                                                ->where('moneda','$')
+                                                ->sum('valor');
+
+
+        return round($Debe - $Acredor) ;                                    
+    }
+
+    public function getSaldoDeCajaDolaresAttribute()
+    {
+        $EstadosRepo = new CajaEmpresaRepo();
+
+        $Debe    = $this->movimientos_de_caja->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
+                                                ->where('moneda','U$S')                                                
+                                                ->sum('valor');
+
+        $Acredor = $this->movimientos_de_caja->where('tipo_saldo','acredor')                                  
+                                                ->where('moneda','U$S')
+                                                ->where('borrado','no')
+                                                ->sum('valor');
+
+
+        return round($Debe - $Acredor) ;                                    
     }
     
     

@@ -32,7 +32,7 @@ class Socio extends Model
     public function servicios_contratados()
     {
       return $this->hasMany(ServicioContratadoSocio::class,'socio_id','id')->where('borrado','no')
-                                                                           ->orderBy('created_at', 'asc');
+                                                                           ->orderBy('created_at', 'DESC');
     }
 
 
@@ -52,7 +52,7 @@ class Socio extends Model
                                      ->where('tipo','clase')
                                      ->where('esta_consumido','no')
                                      ->where('fecha_vencimiento','>',$Hoy)
-                                     ->orderBy('created_at', 'asc');
+                                     ->orderBy('created_at', 'DESC');
 
         return $Servicos_tipo_clase;                             
     }
@@ -72,7 +72,7 @@ class Socio extends Model
                                      ->where('borrado','no')
                                      ->where('tipo','mensual')
                                      ->where('fecha_vencimiento','>',$Hoy)
-                                     ->orderBy('created_at', 'asc');
+                                     ->orderBy('created_at', 'DESC');
 
         return $Servicos_tipo_mensual;                             
     }
