@@ -512,7 +512,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creó correctamente ',
-               'Socio'               => $this->SocioRepo->find($Socio->id),];
+               'Socio'               => $this->SocioRepo->find($Socio->id),
+               'sucursal'            => $Sucursal ];
      }
     
   }
@@ -570,6 +571,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $User         = $Request->get('user_desde_middleware'); 
      $Servicio     = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
      $Socio        = $Request->get('socio_desde_middleware'); 
+     $Sucursal     = $Request->get('sucursal_desde_middleware'); 
 
 
       
@@ -586,13 +588,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       }
 
       //borrar los moviemiento de caja si es que hubo         
+      $MovimeintosDeCaja = $this->CajaEmpresaRepo->getMovimeintosDeEstaSecursalYServicio($Request->get('servicio_id'),$Sucursal->id);
 
+      foreach ($MovimeintosDeCaja as $Caja) {
+        $this->CajaEmpresaRepo->destruir_esta_entidad_de_manera_logica($Caja);
+      }
 
      if($Validacion)
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se eliminó correctamente',
-               'Socio'               =>  $Socio];
+               'Socio'               =>  $Socio,
+               'sucursal'            =>  $Sucursal ];
      }
      
   }

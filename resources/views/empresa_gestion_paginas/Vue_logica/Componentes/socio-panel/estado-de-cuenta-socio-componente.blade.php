@@ -45,6 +45,7 @@ methods:{
           if(response.data.Validacion == true)
           {    
              vue.$emit('actualizar_socio',response.data.Socio); 
+             bus.$emit('sucursal-set', response.data.sucursal);
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else

@@ -51,6 +51,7 @@ methods:{
           {
 
             var id_modal = '#'+vue.open_modal;
+            bus.$emit('sucursal-set', response.data.sucursal);
             app.cerrarModal(id_modal);  
             vue.$emit('actualizar_socio',response.data.Socio);    
             

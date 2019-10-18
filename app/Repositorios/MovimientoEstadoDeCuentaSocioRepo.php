@@ -52,6 +52,9 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
     $Entidad->fecha_ingreso = $Fecha;
     $Entidad->servicio_id   = $Servicio_id;
 
+   
+    
+
     $Entidad->save();
 
   }

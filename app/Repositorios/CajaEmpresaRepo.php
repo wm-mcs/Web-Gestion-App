@@ -41,6 +41,15 @@ class CajaEmpresaRepo extends BaseRepo
   }
 
 
+  public function getMovimeintosDeEstaSecursalYServicio($sucursal_id,$servicio_id)
+  {
+    return $this->getEntidad()
+                ->where('servicio_id',$servicio_id)  
+                ->where('sucursal_id',$sucursal_id )
+                ->get();
+  }
+
+
  
 
 

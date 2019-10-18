@@ -65,7 +65,8 @@ methods:{
             {
               vue.$emit('actualizar_servicios_de_socios',response.data.servicios);   
               vue.$emit('actualizar_socio',response.data.Socio);   
-              app.cerrarModal('#modal-agregar-servicio-socio');  
+              app.cerrarModal('#modal-agregar-servicio-socio');
+              bus.$emit('sucursal-set', response.data.sucursal); 
               $.notify(data.Validacion_mensaje, "success");      
             }
             else
