@@ -6,6 +6,8 @@ use App\Entidades\CajaEmpresa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
+
+
 /**
 * Repositorio de consultas a la base de datos User
 */
@@ -16,6 +18,9 @@ class CajaEmpresaRepo extends BaseRepo
   {
     return new CajaEmpresa();
   }
+
+
+  
 
 
   public function InresarMovimientoDeCaja($empresa_id,$sucursal_id,$user_id,$tipo_saldo,$moneda,$valor,$detalle,$fecha_ingreso,$servicio = null)
@@ -34,9 +39,9 @@ class CajaEmpresaRepo extends BaseRepo
     {
       $Entidad->servicio_id = $servicio->id;
     }
-
-
     $Entidad->save();
+
+    
 
   }
 

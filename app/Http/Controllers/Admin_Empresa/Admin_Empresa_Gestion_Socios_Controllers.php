@@ -504,9 +504,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        }
 
        
-
+     //actualiza la session
+     $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
           
-
+     $Sucursal = $this->SucursalEmpresaRepo->find($Sucursal->id);
 
      if($Validacion)
      {
@@ -593,6 +594,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       foreach ($MovimeintosDeCaja as $Caja) {
         $this->CajaEmpresaRepo->destruir_esta_entidad_de_manera_logica($Caja);
       }
+
+      //actualiza la session
+      $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
+
+      $Sucursal = $this->SucursalEmpresaRepo->find($Sucursal->id);
 
      if($Validacion)
      {
