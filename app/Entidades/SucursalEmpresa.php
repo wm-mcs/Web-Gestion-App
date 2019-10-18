@@ -107,19 +107,19 @@ class SucursalEmpresa extends Model
     public function getSaldoDeCajaPesosAttribute()
     {
 
-        if($this->estado_de_cuenta_socio->count() == 0)
+        if($this->movimientos_de_caja->count() == 0)
         {
             return 0;
         }
 
         $EstadosRepo = new CajaEmpresaRepo();
 
-        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+        $Debe    = $this->movimientos_de_caja->where('tipo_saldo','deudor')
                                                 ->where('borrado','no')
                                                 ->where('moneda','$')                                                
                                                 ->sum('valor');
 
-        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor') 
+        $Acredor = $this->movimientos_de_caja->where('tipo_saldo','acredor') 
                                                 ->where('borrado','no')                                 
                                                 ->where('moneda','$')
                                                 ->sum('valor');
@@ -131,7 +131,7 @@ class SucursalEmpresa extends Model
     public function getSaldoDeCajaDolaresAttribute()
     {
 
-        if($this->estado_de_cuenta_socio->count() == 0)
+        if($this->movimientos_de_caja->count() == 0)
         {
             return 0;
         }
