@@ -45,7 +45,7 @@ template:'<div>
      <span class="saldo-aclaracion"> 
        Saldo de caja en pesos de la sucursal <span >@{{sucursal.name}}</span>
      </span>
-     <div class="v-if="esMatoyIgualACero(sucursal.saldo_de_caja_pesos)" class="saldo-valor">
+     <div v-if="esMatoyIgualACero(sucursal.saldo_de_caja_pesos)" class="saldo-valor">
        $ @{{sucursal.saldo_de_caja_pesos}}
      </div>
      <div v-else class="color-text-danger saldo-valor ">
@@ -53,7 +53,7 @@ template:'<div>
      </div>
   </div> 
 
- <div v-if="esDistintoACero(sucursal.saldo_de_caja_pesos)" class="contiene-saldo">
+ <div v-if="esDistintoACero(sucursal.saldo_de_caja_dolares)" class="contiene-saldo">
      <span class="saldo-aclaracion"> 
        Saldo de caja en dolares de la sucursal <span >@{{sucursal.name}}</span>
      </span>
