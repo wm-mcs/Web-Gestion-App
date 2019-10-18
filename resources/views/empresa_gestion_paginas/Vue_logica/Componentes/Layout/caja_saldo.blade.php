@@ -17,11 +17,11 @@ methods:{
 template:'<div>
 
    <span> 
-     Saldo de caja en pesos de la sucursal <span v-model="sucursal.name"></span>
+     Saldo de caja en pesos de la sucursal <span >@{{sucursal.name}}</span>
    </span>
    
    <span> 
-     Saldo de caja en dolares de la sucursal <span v-model="sucursal.name"></span>
+     Saldo de caja en dolares de la sucursal <span >@{{sucursal.name}}</span>
    </span>
    
   
