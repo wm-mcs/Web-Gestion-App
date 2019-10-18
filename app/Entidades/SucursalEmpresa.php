@@ -106,6 +106,12 @@ class SucursalEmpresa extends Model
 
     public function getSaldoDeCajaPesosAttribute()
     {
+
+        if($this->estado_de_cuenta_socio->count() == 0)
+        {
+            return 0;
+        }
+
         $EstadosRepo = new CajaEmpresaRepo();
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
@@ -124,6 +130,11 @@ class SucursalEmpresa extends Model
 
     public function getSaldoDeCajaDolaresAttribute()
     {
+
+        if($this->estado_de_cuenta_socio->count() == 0)
+        {
+            return 0;
+        }
         $EstadosRepo = new CajaEmpresaRepo();
 
         $Debe    = $this->movimientos_de_caja->where('tipo_saldo','deudor')
