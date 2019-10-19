@@ -43,7 +43,7 @@ template:'<div>
 
   <div v-if="esDistintoACero(sucursal.saldo_de_caja_pesos)" class="contiene-saldo">
      <span class="saldo-aclaracion"> 
-       Saldo de caja en pesos de la sucursal <span >@{{sucursal.name}}</span>
+       Saldo de caja en pesos de la sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
      <div v-if="esMatoyIgualACero(sucursal.saldo_de_caja_pesos)" class="saldo-valor">
        $ @{{sucursal.saldo_de_caja_pesos}}
@@ -55,7 +55,7 @@ template:'<div>
 
  <div v-if="esDistintoACero(sucursal.saldo_de_caja_dolares)" class="contiene-saldo">
      <span class="saldo-aclaracion"> 
-       Saldo de caja en dolares de la sucursal <span >@{{sucursal.name}}</span>
+       Saldo de caja en dolares de la sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
      <div v-if="esMatoyIgualACero(sucursal.saldo_de_caja_dolares)" class="saldo-valor">
        U$S @{{sucursal.saldo_de_caja_dolares}}

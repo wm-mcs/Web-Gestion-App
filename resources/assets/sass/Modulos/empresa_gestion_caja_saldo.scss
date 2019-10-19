@@ -5,7 +5,7 @@
   border-radius:8px;
   margin-top: 20px;
   @include flexbox;       
-  @include flex-direction(column);
+  @include flex-direction(row);
   @include align-items(center); 
   width: 100%;
 }
@@ -13,9 +13,9 @@
   .saldo-aclaracion{
     font-size: 10px;
     color: $color-gris-text;
-    text-align: center;
-    margin-bottom: 8px;
-    width: 70%;
+    text-align: center;    
+    width: 60%;
+    margin-right: 10px;
   }
 
   .saldo-valor{
