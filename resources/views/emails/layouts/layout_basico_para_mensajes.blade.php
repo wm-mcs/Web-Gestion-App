@@ -95,6 +95,13 @@
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
+                            <tr>
+                              <a href="@yield('boton-llamada-accion-link')">
+                                <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; ">
+                                  @yield('boton-llamada-accion-texto')
+                                </div>
+                              </a>
+                            </tr>
                         </tbody></table>
                     </td>
                 </tr>
