@@ -41,6 +41,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             //si tiene sucursal id la request
             if($request->has('sucursal_id'))
             {
+                dd('hola');
                 if(($UserEmpresa->sucursal_id == $request->get('sucursal_id')) || ($User->role > 3) )
                 { 
 
