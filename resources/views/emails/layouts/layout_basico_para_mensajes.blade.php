@@ -110,17 +110,17 @@
                     <td class="rnb-del-min-width" valign="top" align="center" style="min-width: 590px;">
                         <table width="100%" cellpadding="0" border="0" bgcolor="#f9fafc" align="center" cellspacing="0" style="background-color: rgb(249, 250, 252);">
                             <tbody><tr>
-                                <td height="10" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
+                                <td height="30" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                              <tr>
-                              <a href="@yield('boton-llamada-accion-link')">
+                              <a href="@yield('boton-llamada-accion-link')" style="text-decoration: none; ">
                                 <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; width: 150px; font-family:Arial,Helvetica,sans-serif; font-size: 16px;">
                                   @yield('boton-llamada-accion-texto')
                                 </div>
                               </a>
                             </tr>
                             <tr>
-                                <td height="10" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
+                                <td height="30" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                         </tbody></table>
                     </td>
