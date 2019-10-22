@@ -41,8 +41,17 @@ class SistemaGestionUserGerarquia
         if($user->role < $gerarquia )
         {
 
-            return ['Validacion'          => false,
-                    'Validacion_mensaje'  => 'No tienes permiso para hacer eso :('];
+            
+                $Mensaje =    'No tienes permiso para hacer eso :(';  
+                if($request->isJson())
+                {
+                     return ['Validacion'          => false,
+                             'Validacion_mensaje'  => $Mensaje];
+                }
+                else
+                {
+                   return redirect()->route('get_home')->with('alert-danger',$Mensaje); 
+                }
         }
 
         //agrego al user desde aqui para no pedirlo en el controller
