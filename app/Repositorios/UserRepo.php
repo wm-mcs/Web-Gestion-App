@@ -65,13 +65,15 @@ class UserRepo extends BaseRepo
 
     //enviar email con la info que se creo el usuario y que la contraseña es tal
     $this->getEmailsRepo()->EnvioDeEmailAlCrearUser($nombre_de_quien_envia, 
-                                               $email_de_quien_envia, 
-                                               $Texto, 
-                                               $email_a_enviar, 
-                                               $nombre_de_email_a_enviar, 
-                                               $titulo_email,
-                                               $Texto_boton,
-                                               $Link_del_boton);
+                                                    $email_de_quien_envia, 
+                                                    $Texto, 
+                                                    $User_name,
+                                                    $Contraseña,
+                                                    $email_a_enviar, 
+                                                    $nombre_de_email_a_enviar, 
+                                                    $titulo_email,
+                                                    $Texto_boton,
+                                                    $Link_del_boton);
 
     $user->save(); 
 
