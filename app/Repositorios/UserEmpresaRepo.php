@@ -105,7 +105,7 @@ class UserEmpresaRepo extends BaseRepo
                       ->get();
     $array_id = [];
 
-    dd($empresas);
+    
     
     foreach ($empresas as $empresa) 
     {
