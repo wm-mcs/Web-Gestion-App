@@ -26,13 +26,6 @@ class SistemaGestionUserGerarquia
 
 
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
 
                            //le paso como 3º parametre
                            //lo que viene de la Ruta 
@@ -43,11 +36,11 @@ class SistemaGestionUserGerarquia
          */
         $user = auth()->user();
 
-
+        dd('SistemaGestionUserGerarquia',$user->role,$gerarquia);
 
         if($user->role < $gerarquia )
         {
-            
+
             return ['Validacion'          => false,
                     'Validacion_mensaje'  => 'No tienes permiso para hacer eso :('];
         }

@@ -30,7 +30,7 @@ class SistemaGestionSocios
          */
         $user = auth()->user();
 
-        dd('MidelwareSistemaGestionSocios');
+        
 
         if($user->role == '10')
         {
