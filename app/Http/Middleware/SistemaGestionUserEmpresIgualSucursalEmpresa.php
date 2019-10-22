@@ -14,13 +14,15 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
 
     public function handle($request, Closure $next)
     {
+
+        dd('hola');
         $UserEmpresaRepo = new UserEmpresaRepo();
         $User            = $request->get('user_desde_middleware');        
         $UserEmpresa     = $request->get('user_empresa_desde_middleware');
         
         $Validacion      = false;
 
-        
+
 
         //verifico si la sesion tiene sucursal
         if(Session::has('sucursal'))
