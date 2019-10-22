@@ -114,7 +114,7 @@
                             </tr>
                              <tr>
                               <a href="@yield('boton-llamada-accion-link')">
-                                <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; ">
+                                <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; width: 150px; font-family:Arial,Helvetica,sans-serif; font-size: 16px;">
                                   @yield('boton-llamada-accion-texto')
                                 </div>
                               </a>
