@@ -36,7 +36,7 @@ class SistemaGestionUserGerarquia
          */
         $user = auth()->user();
 
-        dd('SistemaGestionUserGerarquia',$user->role,$gerarquia);
+       
 
         if($user->role < $gerarquia )
         {
