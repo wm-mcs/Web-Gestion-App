@@ -48,13 +48,17 @@
                                         <tbody><tr>
                                             <td valign="top" align="center">
                                                 <table cellpadding="0" border="0" align="center" cellspacing="0" class="logo-img-center"> 
-                                                    <tbody><tr>
+                                                    <tbody>
+                                                      <tr>
                                                         <td valign="middle" align="center" style="line-height: 1px;">
                                                             <div style="border-top:0px None #000;border-right:0px None #000;border-bottom:0px None #000;border-left:0px None #000;display:inline-block; " cellspacing="0" cellpadding="0" border="0">
                                                                 <div>                                                                  
                                                                         <img ng-if="col.img.source != 'url'" width="150" vspace="0" hspace="0" border="0" alt="La Oferta Irresistible" style="float: left;max-width:150px;" class="rnb-logo-img" src="{{url()}}/imagenes/Empresa/simbionte-logo-A.png">
                                                                 </div>
                                                             </div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="80" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                                                     </tr>
                                                 </tbody></table>
                                                 </td>

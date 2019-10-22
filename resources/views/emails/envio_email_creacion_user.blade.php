@@ -16,7 +16,7 @@
                                 <td height="40" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
+                                <td style="font-size:14px; color:#888888; font-weight:normal; text-align:center; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
                                     {{$Texto}}
                                 </td>
                                
@@ -25,7 +25,7 @@
                                 <td height="20" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                             <tr>
-                             <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
+                             <td style="font-size:14px; color:#888888; font-weight:normal; text-align:center; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
                                     Tu usuario es:  <strong>{{$User_name}}</strong>
                                 </td>
                              </tr>
@@ -33,8 +33,8 @@
                                 <td height="20" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                              <tr>
-                                <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
-                                    Tu contraseña es: <strong>{{$Contraseña}}</strong> 
+                                <td style="font-size:14px; color:#888888; font-weight:normal; text-align:center; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
+                                    Tu contraseña es: <strong>{{$Contraseña}}</strong>  (la podrás cambiar)
                                 </td>
                              </tr>
                             <tr>
