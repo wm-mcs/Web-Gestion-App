@@ -37,6 +37,8 @@ class SistemaGestionEmpresaIgualUserEmpresa
         $User         = auth()->user();
         $Validacion   = false;
 
+        dd('hola');
+
         $Validacion_de_usuario_vinculado_empresa = 
         Cache::remember('UserIgualEmpresa'.$User->id, 10, function() use($UserEmpresa,$User,$request)
                          {

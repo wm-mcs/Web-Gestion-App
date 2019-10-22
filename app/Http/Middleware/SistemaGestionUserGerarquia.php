@@ -54,7 +54,7 @@ class SistemaGestionUserGerarquia
         //agrego al user desde aqui para no pedirlo en el controller
         $request->attributes->add(['user_desde_middleware' => $user ]);
 
-        dd('hola');
+       
 
         return $next($request);
     }
