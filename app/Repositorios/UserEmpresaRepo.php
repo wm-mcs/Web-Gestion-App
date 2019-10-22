@@ -104,6 +104,8 @@ class UserEmpresaRepo extends BaseRepo
                       ->where('user_id',$UserId)
                       ->get();
     $array_id = [];
+
+    dd($empresas);
     
     foreach ($empresas as $empresa) 
     {
