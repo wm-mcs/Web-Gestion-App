@@ -26,9 +26,7 @@ class SistemaGestionUserGerarquia
 
 
 
-
-                           //le paso como 3º parametre
-                           //lo que viene de la Ruta 
+ 
     public function handle($request, Closure $next, $gerarquia)
     {
         /**
@@ -53,10 +51,6 @@ class SistemaGestionUserGerarquia
                    return redirect()->route('get_home')->with('alert-danger',$Mensaje); 
                 }
         }
-
-        //agrego al user desde aqui para no pedirlo en el controller
-        $request->attributes->add(['user_desde_middleware' => $user ]);
-
 
 
         return $next($request);

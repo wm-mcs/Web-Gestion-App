@@ -21,16 +21,14 @@ Route::group(['middleware' => 'auth'],function()
      'as'   => 'get_home']
     );
     
-    //usuario verificado
-    Route::group(['middleware' => 'verificad'],function()
-    {
-         require __DIR__ . '/Rutas/Usuarios_Verificados.php'; 
+    
+       
 
 
          //admin_empresa_clientes
          Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
          {
-           require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
+                 require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
 
                  //admin_nuestro
                  Route::group(['middleware' => 'SistemaGestionUserGerarquia:10'], function()
@@ -38,7 +36,7 @@ Route::group(['middleware' => 'auth'],function()
                    require __DIR__ . '/Rutas/Admin_Supremo.php';
                  });
          });
-    });
+    
 });
 
 
