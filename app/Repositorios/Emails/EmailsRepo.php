@@ -132,6 +132,8 @@ class EmailsRepo
                                             $Texto,
                                             $User_name,
                                             $Contraseña,
+                                            $email_a_enviar,
+                                            $nombre_de_email_a_enviar,
                                             $titulo_email,
                                             $Texto_boton,
                                             $Link_del_boton
