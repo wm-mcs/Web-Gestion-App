@@ -819,18 +819,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
 
       $Email = 'email';
-      $Texto = 'Bienvenido a  Easy Socios Mauricio!,'."\r\n\r\n"  .' te hemos creado una cuenta:'
+      $Texto = 'Bienvenido a Easy Socios!,'."\r\n\r\n"  .' te hemos creado una cuenta.'
 
-      ."\r\n\r\n"  .
-       'te usuarios es: mauricio@worldmaster.com.uy' 
-      ."\r\n"  .
-       'tu contraseña es: 78df544 (luego podrás cambiarla).'
-
-       ."\r\n\r\n"  ;
+      $User_name  = 'mauricio@worldmaster.com.uy';
+      $Contraseña = 'ñakljsdfi';
 
       $Texto_boton    = 'Ingresar ahora';
       $Link_del_boton = 'asdasd';
-      return view('emails.envio_email_simple', compact('Texto','Texto_boton','Link_del_boton'));
+      return view('emails.envio_email_creacion_user', compact('Texto','Texto_boton','Link_del_boton','User_name','Contraseña'));
 
   }
 
