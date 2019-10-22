@@ -25,7 +25,7 @@
 
         <td align="center" valign="top">
 
-            <div style="background-color: rgb(255, 255, 255); border-radius: 0px;">
+            <div style=" border-radius: 0px;">
                 <!--[if mso]>
                 <table align="center" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
                 <tr>
@@ -81,7 +81,7 @@
 
         <td align="center" valign="top">
 
-            <table class="rnb-del-min-width rnb-tmpl-width" width="100%" cellpadding="0" border="0" cellspacing="0" style="min-width:590px;" name="Layout_4" id="Layout_4">
+            <table class="rnb-del-min-width rnb-tmpl-width" width="100%" cellpadding="0" border="0" cellspacing="0" style="max-width:590px;" name="Layout_4" id="Layout_4">
                 <tbody><tr>
                     <td class="rnb-del-min-width" align="center" valign="top" style="min-width:590px;">
                         <table width="100%" cellpadding="0" border="0" align="center" cellspacing="0" bgcolor="#f9fafc" style="padding-right: 20px; padding-left: 20px; background-color: rgb(249, 250, 252);">
