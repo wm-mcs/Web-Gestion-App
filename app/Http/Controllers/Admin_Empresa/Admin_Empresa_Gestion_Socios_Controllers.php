@@ -826,7 +826,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       ."\r\n"  .
        'tu contraseña es: 78df544 (luego podrás cambiarla).'
 
-       ."\r\n\r\n"  .;
+       ."\r\n\r\n"  ;
 
       $Texto_boton    = 'Ingresar ahora';
       $Link_del_boton = 'asdasd';
