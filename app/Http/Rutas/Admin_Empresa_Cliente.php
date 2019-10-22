@@ -22,11 +22,9 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
 
 
 
-Route::group(['middleware' => 'SistemaGestionSocios'],function()
-{  
+ 
 
-   Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
-   {
+ 
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
 
@@ -63,8 +61,8 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
       });
 
-   }); 
-});
+ 
+
 
 
 

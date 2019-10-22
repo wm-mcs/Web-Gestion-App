@@ -22,20 +22,11 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
 
 
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
 
-                           //le paso como 3º parametre
-                           //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
 
-         dd('SistemaGestionUserEmpresIgualSociaEmpresa');
+
         $UserEmpresaRepo = new UserEmpresaRepo();
         $User            = $request->get('user_desde_middleware');
         $ReposSocio      = new SocioRepo();
