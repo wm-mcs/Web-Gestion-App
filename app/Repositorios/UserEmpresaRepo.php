@@ -98,6 +98,21 @@ class UserEmpresaRepo extends BaseRepo
                ];
   }
 
+  public function getEmpresasDeEsteUsuario($UserId)
+  {
+    $empresas =  $this->getEntidad()
+                      ->where('user_id',$UserId)
+                      ->get();
+    $array_id = [];
+    
+    foreach ($empresas as $empresa) 
+    {
+            array_push($array_id,$empresa->id);
+    }   
+
+    return $array_id;               
+  }
+
 
  
 
