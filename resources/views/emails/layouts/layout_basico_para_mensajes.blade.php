@@ -1,7 +1,7 @@
 
 
 
-@yield('mensaje-texto')
+
 
 
 
@@ -10,7 +10,7 @@
 
 
 
-<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#f5fbff" style="background-color: rgb(245, 251, 255);">
+<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#FFFFFF" style="background-color: rgb(255, 255, 255); padding: 20px;">
 
     <tbody><tr>
         <td align="center" valign="top">
@@ -19,8 +19,9 @@
                         <tr>
                         <td align="center" valign="top" width="590" style="width:590px;">
                         <![endif]-->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="max-width:590px!important; width: 590px;">
-        <tbody><tr>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="max-width:590px!important; width: 590px; padding: 10px;" >
+        <tbody>
+        <tr>
 
         <td align="center" valign="top">
 
@@ -36,7 +37,7 @@
             <table class="rnb-del-min-width" width="100%" cellpadding="0" border="0" cellspacing="0" style="min-width:590px;" name="Layout_34" id="Layout_34">
                 <tbody><tr>
                     <td class="rnb-del-min-width" align="center" valign="top" style="min-width:590px;">
-                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="rnb-container" bgcolor="#ffffff" style="background-color: rgb(255, 255, 255); border-radius: 0px; padding-left: 20px; padding-right: 20px; border-collapse: separate;">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="rnb-container" style="border-radius: 0px; padding-left: 20px; padding-right: 20px; border-collapse: separate;">
                             <tbody><tr>
                                 <td height="10" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
@@ -75,7 +76,8 @@
                 </table>
                 <![endif]-->
         </div></td>
-    </tr><tr>
+    </tr>
+    <tr>
 
         <td align="center" valign="top">
 
@@ -88,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td style="font-size:14px; color:#888888; font-weight:normal; text-align:center; font-family:Arial,Helvetica,sans-serif;">
-                                    <div>EasySocios</div>
+                                    <div>@yield('mensaje-texto')</div>
                                 </td></tr>
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
