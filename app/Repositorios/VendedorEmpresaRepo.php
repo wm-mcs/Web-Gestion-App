@@ -113,7 +113,7 @@ class VendedorEmpresaRepo extends BaseRepo
     
     foreach ($empresas as $empresa) 
     {
-            array_push($array_id,$empresa->id);
+            array_push($array_id,$empresa->empresa_id);
     }   
 
     return $array_id;               
