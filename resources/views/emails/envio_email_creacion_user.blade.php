@@ -18,13 +18,18 @@
                                 <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
                                     {{$Texto}}
                                 </td>
-                                <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
+                               
+                            </tr>
+                            <tr>
+                             <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
                                     Tu usuario es: {{$User_name}}
                                 </td>
+                             </tr>
+                             <tr>
                                 <td style="font-size:14px; color:#888888; font-weight:normal; text-align:left; font-family:Arial,Helvetica,sans-serif; word-wrap:break-word;">
                                     Tu contraseña es: {{$Contraseña}}
                                 </td>
-                            </tr>
+                             </tr>
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
