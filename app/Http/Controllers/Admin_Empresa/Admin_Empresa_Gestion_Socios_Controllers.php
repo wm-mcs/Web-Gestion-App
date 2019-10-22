@@ -85,12 +85,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     elseif($User->role == 4) //vendedor
     {
       $Id_de_empresas = $this->VendedorEmpresaRepo->getEmpresasDeEsteVendedor($User->id);
-      $Emmpresas      = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
     }
     elseif($User->role <= 3) //dueño
     {
       $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
-      $Emmpresas      = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
     }
 
     return view('empresa_gestion_paginas.home_general', compact('Empresas'));
