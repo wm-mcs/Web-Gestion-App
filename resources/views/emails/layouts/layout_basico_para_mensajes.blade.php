@@ -10,7 +10,7 @@
 
 
 
-<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#FFFFFF" style="background-color: rgb(255, 255, 255); padding: 20px;">
+<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#FFFFFF" style="background-color: rgb(255, 255, 255); padding: 10px;">
   <tbody>
     <tr>
       <td align="center" valign="top">
@@ -19,7 +19,7 @@
                         <tr>
                         <td align="center" valign="top" width="590" style="width:590px;">
                         <![endif]-->
-       <table border="0" cellpadding="0" bgcolor="#f9fafc" cellspacing="0" width="100%" class="templateContainer" style="padding: 10px;background-color: rgb(249, 250, 252);  " >
+       <table border="0" cellpadding="0" bgcolor="#f9fafc" cellspacing="0" width="100%" class="templateContainer" style="padding: 10px;background-color: rgb(249, 250, 252); border-radius: 8px; " >
         <tbody>
         <tr>
 
