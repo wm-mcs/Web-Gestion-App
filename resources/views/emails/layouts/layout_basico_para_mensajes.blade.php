@@ -10,7 +10,7 @@
 
 
 
-<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#FFFFFF" style="background-color: rgb(255, 255, 255); padding: 10px;">
+<table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#f9fafc" style="background-color: rgb(249, 250, 252); padding: 10px;">
   <tbody>
     <tr>
       <td align="center" valign="top">
