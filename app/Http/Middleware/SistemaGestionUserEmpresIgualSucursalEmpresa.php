@@ -20,7 +20,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
         
         $Validacion      = false;
 
-        dd('hola');
+        
 
         //verifico si la sesion tiene sucursal
         if(Session::has('sucursal'))

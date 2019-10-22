@@ -30,7 +30,7 @@ class SistemaGestionSocios
          */
         $user = auth()->user();
 
-        if($user->role == 'adminMcos522')
+        if($user->role == '10')
         {
             return $next($request);
         }

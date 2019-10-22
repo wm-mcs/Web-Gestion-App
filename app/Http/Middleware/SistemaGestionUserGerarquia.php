@@ -43,6 +43,8 @@ class SistemaGestionUserGerarquia
          */
         $user = auth()->user();
 
+        dd('hola');
+
         if($user->role < $gerarquia )
         {
             return ['Validacion'          => false,
