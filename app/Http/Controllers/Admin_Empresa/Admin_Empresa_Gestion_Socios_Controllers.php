@@ -815,5 +815,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
 
+  public function email_simples()
+  {
+
+      $Email = 'email';
+      $Texto = 'Bienvenido a  Easy Socios Mauricio!, te hemos creado una cuenta: te usuarios es: mauricio@worldmaster.com.uy y tu contraseña es: 78df544 (luego podrás cambiarla).';
+
+      $Texto_boton    = 'Ingresar ahora';
+      $Link_del_boton = 'asdasd';
+      return view('emails.envio_email_simple', compact('Texto','Texto_boton','Link_del_boton'));
+
+  }
+
+
+
   
 }

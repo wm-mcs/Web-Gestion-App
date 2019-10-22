@@ -4,7 +4,10 @@
 // Authentication routes...
 require __DIR__ . '/Rutas/Auth.php';
 
-
+Route::get('email_simples' , [                    
+     'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@email_simples',
+     'as'   => 'email_simples']
+    );
 
 /**
  * Grupo de Rutas con middleware
