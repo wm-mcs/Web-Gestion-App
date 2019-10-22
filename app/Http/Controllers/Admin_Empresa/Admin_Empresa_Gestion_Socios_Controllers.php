@@ -819,7 +819,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
 
       $Email = 'email';
-      $Texto = 'Bienvenido a Easy Socios!,'."\r\n\r\n"  .' te hemos creado una cuenta.';
+      $Texto = 'Bienvenido a Easy Socios! te hemos creado una cuenta.';
 
       $User_name  = 'mauricio@worldmaster.com.uy';
       $Contraseña = 'ñakljsdfi';

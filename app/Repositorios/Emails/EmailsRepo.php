@@ -127,6 +127,44 @@ class EmailsRepo
 
     }
 
+    public function EnvioDeEmailAlCrearUser($nombre_de_quien_envia,
+                                            $email_de_quien_envia,
+                                            $Texto,
+                                            $User_name,
+                                            $Contraseña,
+                                            $titulo_email,
+                                            $Texto_boton,
+                                            $Link_del_boton
+                                              )
+    {
+
+       Mail::send('emails.envio_email_creacion_user' ,
+
+                   //con esta funcion le envia los datos a la vista.
+                   compact('nombre_de_quien_envia' , 
+                           'email_de_quien_envia',
+                           'Texto',
+                           'User_name', 
+                           'Contraseña',
+                           'titulo_email',
+                           'Texto_boton',
+                           'Link_del_boton')       ,
+                   function($m) use ($nombre_de_quien_envia,
+                                     $email_de_quien_envia,
+                                     $email_a_enviar,
+                                     $nombre_de_email_a_enviar,
+                                     $titulo_email) 
+                   {
+
+                     $m->from($email_de_quien_envia, $nombre_de_quien_envia);
+
+                     $m->to( $email_a_enviar, 
+                             $nombre_de_email_a_enviar)->subject($titulo_email);
+                   }
+         );
+      
+    }
+
 
    
 
