@@ -11,15 +11,15 @@
 
 
 <table border="0" align="center" width="100%" cellpadding="0" cellspacing="0" class="main-template" bgcolor="#FFFFFF" style="background-color: rgb(255, 255, 255); padding: 20px;">
-
-    <tbody><tr>
-        <td align="center" valign="top">
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
         <!--[if gte mso 9]>
                         <table align="center" border="0" cellspacing="0" cellpadding="0" width="590" style="width:590px;">
                         <tr>
                         <td align="center" valign="top" width="590" style="width:590px;">
                         <![endif]-->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="max-width:590px!important; width: 590px; padding: 10px;" >
+       <table border="0" cellpadding="0" bgcolor="#f9fafc" cellspacing="0" width="100%" class="templateContainer" style="padding: 10px;background-color: rgb(249, 250, 252);  " >
         <tbody>
         <tr>
 
