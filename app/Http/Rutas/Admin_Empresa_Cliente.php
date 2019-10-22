@@ -29,7 +29,7 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
    {
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
-      
+
 
       Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
       {
@@ -38,7 +38,11 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
 
           Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
           {     
-                
+                //Para ir al panel de la empresa vista del cliente
+                Route::post('get_empresa_panel_de_gestion',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_empresa_panel_de_gestion',
+                  'as'         => 'get_empresa_panel_de_gestion']);  
 
 
                 //cambiar de sucursal
