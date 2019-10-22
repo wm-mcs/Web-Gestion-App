@@ -47,7 +47,7 @@ class SistemaGestionUserGerarquia
 
         if($user->role < $gerarquia )
         {
-            dd('hola');
+            
             return ['Validacion'          => false,
                     'Validacion_mensaje'  => 'No tienes permiso para hacer eso :('];
         }
