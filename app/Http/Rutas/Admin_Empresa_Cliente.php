@@ -29,7 +29,7 @@ Route::group(['middleware' => 'SistemaGestionSocios'],function()
    {
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
-
+      
 
       Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
       {

@@ -47,6 +47,7 @@ class SistemaGestionUserGerarquia
 
         if($user->role < $gerarquia )
         {
+            dd('hola');
             return ['Validacion'          => false,
                     'Validacion_mensaje'  => 'No tienes permiso para hacer eso :('];
         }
@@ -54,7 +55,7 @@ class SistemaGestionUserGerarquia
         //agrego al user desde aqui para no pedirlo en el controller
         $request->attributes->add(['user_desde_middleware' => $user ]);
 
-       
+
 
         return $next($request);
     }
