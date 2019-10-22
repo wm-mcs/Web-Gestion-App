@@ -34,6 +34,8 @@ class SistemaGestionUserEmpresIgualSociaEmpresa
                            //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
+
+         dd('SistemaGestionUserEmpresIgualSociaEmpresa');
         $UserEmpresaRepo = new UserEmpresaRepo();
         $User            = $request->get('user_desde_middleware');
         $ReposSocio      = new SocioRepo();

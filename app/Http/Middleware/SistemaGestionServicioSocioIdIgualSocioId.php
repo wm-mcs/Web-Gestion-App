@@ -12,6 +12,9 @@ class SistemaGestionServicioSocioIdIgualSocioId
                            //lo que viene de la Ruta 
     public function handle($request, Closure $next)
     {
+        dd('SistemaGestionServicioSocioIdIgualSocioId');
+
+
         /**
          * obtengo el usuario conectado con el helper auth();
          */
