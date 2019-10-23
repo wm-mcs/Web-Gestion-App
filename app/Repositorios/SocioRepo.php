@@ -41,10 +41,10 @@ class SocioRepo extends BaseRepo
        $array_de_ids          = $this->traer_poner_ids($colecciones_separado3,$array_de_ids);
 
        $colecciones_separado4 = $socios_base->where('email', "LIKE","%$palabra_de_busqueda%")->get();  
-       $array_de_ids          = $this->traer_poner_ids($colecciones_separado3,$array_de_ids);
+       $array_de_ids          = $this->traer_poner_ids($colecciones_separado4,$array_de_ids);
 
        $colecciones_separado5 = $socios_base->where('celular', "LIKE","%$palabra_de_busqueda%")->get();  
-       $array_de_ids          = $this->traer_poner_ids($colecciones_separado3,$array_de_ids);
+       $array_de_ids          = $this->traer_poner_ids($colecciones_separado5,$array_de_ids);
 
        $array_de_ids          = array_unique($array_de_ids); 
 
