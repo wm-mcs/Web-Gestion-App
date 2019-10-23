@@ -31,6 +31,11 @@ methods:{
     }
   },
   cambiar_pass:function(){
+
+      if(this.pass == '')
+      {
+        return $.notify('Debes escribir alguna contraseña para poder cambiar', "error");
+      }
       var url = '/cambiarContraseñaUser';
 
       var data = {    pass:this.pass,     
@@ -89,7 +94,7 @@ template:'
                   <div class="flex-row-center get_width_100" >
                     <input type="text" class="form-control get_width_80" name="" placeholder="Esribe la nueva contraseña">
                     <div class="flex-row-center get_width_20 flex-justifice-space-around">
-                      <span v-if="pass.length" class="boton-acciones-editar" v-on:click="cambiar_pass">Cambiar</span> 
+                      <span  class="boton-acciones-editar" v-on:click="cambiar_pass">Cambiar</span> 
                     </div>
                   </div>
                   
