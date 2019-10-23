@@ -32,8 +32,21 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             
             if($request->has('sucursal_id'))
             {
+                if(($UserEmpresa->sucursal_id == $request->get('sucursal_id')) || ($User->role > 3) )
+                { 
+
+                  $Validacion = true;          
+                  $Mensaje    = 'El usuario puede entrar';
+
                   $SucursalRepo = new SucursalEmpresaRepo();
+
                   Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+                }  
+                else
+                {
+                  $Validacion = false; 
+                  $Mensaje    = 'No puede operar está sucursal';
+                }
             }   
 
             $request->attributes->add(['sucursal_desde_middleware' => Session::get('sucursal')]); 
