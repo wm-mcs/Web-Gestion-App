@@ -21,7 +21,7 @@ class SocioRepo extends BaseRepo
 
   public function getSociosBusqueda($empresa_id, $palabra_de_busqueda,$cantidad_de_resultados = null)
   {
-       $socios_base         = $this->getEntidad()->active()->where('empresa_id',$empresa_id);
+       $socios_base         = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->get() ;
 
        $palabra_de_busqueda = trim($palabra_de_busqueda);
 
