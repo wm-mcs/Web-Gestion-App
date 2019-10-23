@@ -85,7 +85,7 @@ class SocioRepo extends BaseRepo
   public function traer_poner_ids($coleccion)
   {
     $array = [];
-    if($coleccion->count() > 0)
+    if(count($coleccion) > 0)
     {
       foreach($coleccion as $producto)  
        {
