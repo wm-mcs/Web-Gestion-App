@@ -45,7 +45,7 @@ methods:{
             if(data.Validacion == true)
             {
                
-               vue.$emit('ActualizarSocios',response.data.Socio); 
+               app.empresa = data.empresa;
                app.cerrarModal(vue.modal);
                $.notify(response.data.Validacion_mensaje, "success");
             }
