@@ -20,6 +20,20 @@ Route::group(['middleware' => 'auth'],function()
      'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_home',
      'as'   => 'get_home']
     );
+
+
+    
+        //user cambio de contraseña
+        Route::post('cambiarContraseñaUser',
+        [
+          'uses'  => 'Admin_Empresa\Admin_Users_Controllers@cambiarContraseñaUser',
+          'as'    => 'cambiarContraseñaUser'
+        ]);
+
+    
+
+
+
     
     
        

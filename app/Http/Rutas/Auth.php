@@ -74,3 +74,8 @@ Route::get('confirma/{token}', [
   'as'    => 'confirmation'
 ]);
 
+
+
+
+
+

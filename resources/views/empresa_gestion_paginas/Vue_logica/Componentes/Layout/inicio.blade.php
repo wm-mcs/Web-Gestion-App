@@ -4,7 +4,8 @@ Vue.component('nav-inicio' ,
 data:function(){
     return {
      modal_nombre:'#modal-inicio-user',
-     contraseña:false
+     contraseña:false,
+     pass:''
 
     }
 },
@@ -28,6 +29,35 @@ methods:{
     {
       this.contraseña = false;
     }
+  },
+  cambiar_pass:function(){
+      var url = '/cambiarContraseñaUser';
+
+      var data = {    pass:this.pass,     
+                 };  
+      var vue = this;           
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               
+               
+               app.cerrarModal(vue.modal_nombre);
+               $.notify(response.data.Validacion_mensaje, "success");
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
   }
     
 
@@ -59,7 +89,7 @@ template:'
                   <div class="flex-row-center get_width_100" >
                     <input type="text" class="form-control get_width_80" name="" placeholder="Esribe la nueva contraseña">
                     <div class="flex-row-center get_width_20 flex-justifice-space-around">
-                      <span class="boton-acciones-editar">Cambiar</span> 
+                      <span v-if="pass.length" class="boton-acciones-editar" v-on:click="cambiar_pass">Cambiar</span> 
                     </div>
                   </div>
                   
