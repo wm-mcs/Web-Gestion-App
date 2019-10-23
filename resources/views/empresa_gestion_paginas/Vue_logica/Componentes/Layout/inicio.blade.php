@@ -13,9 +13,13 @@ methods:{
   abrir_modal:function(){
   app.abrirModal(this.modal_nombre);
   },
+
+  probar:function(){
+   alert('hola');
+  },
   abrir_contraseña:function(){
 
-    alert('hola');
+   
 
     if(this.contraseña === false){
       this.contraseña = true;
@@ -46,7 +50,7 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="abrir_contraseña" >
+                <div class="contraseña-titulo" v-on:click="probar" >
                    Cambiar contraseña 
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
