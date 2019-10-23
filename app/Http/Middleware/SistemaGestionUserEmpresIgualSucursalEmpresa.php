@@ -101,8 +101,15 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
 
         if(!$Validacion)
         {
-            return ['Validacion'          => $Validacion,
-                    'Validacion_mensaje'  => $Mensaje];
+                if($request->isJson())
+                {
+                     return ['Validacion'          => $Validacion,
+                             'Validacion_mensaje'  => $Mensaje];
+                }
+                else
+                {
+                   return redirect()->route('get_home')->with('alert-danger',$Mensaje); 
+                }
         }
 
         
