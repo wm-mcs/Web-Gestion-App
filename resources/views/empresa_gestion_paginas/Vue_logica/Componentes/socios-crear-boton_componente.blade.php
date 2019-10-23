@@ -75,7 +75,7 @@ computed:{
 },
 template:'<span >
    <div id="socio-boton-crear" style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
-        @{{ accion_name }} socio <i class="fas fa-user-plus"></i>
+        socio <i class="fas fa-user-plus"></i>
 
 
 
