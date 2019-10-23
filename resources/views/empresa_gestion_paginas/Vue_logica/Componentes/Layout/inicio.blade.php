@@ -57,9 +57,10 @@ template:'
                 </div>
                 <div v-show="contraseña" class="contenedor-cambiar-contraseña-nav">
                   <input type="text" class="form-control" name="" placeholder="Esribe la nueva contraseña">
+                  <br>
                   <input type="text" class="form-control" name="" placeholder="Repite la nueva contraseña">
 
-                  
+
                 </div>
 
 
