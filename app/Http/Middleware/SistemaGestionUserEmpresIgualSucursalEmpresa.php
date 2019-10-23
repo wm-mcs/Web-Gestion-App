@@ -15,7 +15,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
     public function handle($request, Closure $next)
     {
 
-        
+
         $UserEmpresaRepo = new UserEmpresaRepo();
         $User            = $request->get('user_desde_middleware');        
         $UserEmpresa     = $request->get('user_empresa_desde_middleware');
@@ -57,6 +57,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
                 }  
                 else
                 {
+                  $Validacion = false; 
                   $Mensaje    = 'No puede operar está sucursal';
                 }
 
