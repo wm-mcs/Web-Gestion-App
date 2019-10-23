@@ -17,7 +17,7 @@ methods:{
   probar:function(){
    alert('hola');
   },
-  abrir_contraseña:function(){
+  abrir_cambiar_pass:function(){
 
    
 
@@ -50,7 +50,7 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="probar" >
+                <div class="contraseña-titulo" v-on:click="abrir_cambiar_pass" >
                    Cambiar contraseña 
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
