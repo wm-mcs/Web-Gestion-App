@@ -48,7 +48,7 @@ class SocioRepo extends BaseRepo
 
        $array_de_ids          = array_unique(array_merge($array_de_ids,$array_de_ids2,$array_de_ids3,$array_de_ids4,$array_de_ids5)); 
 
-     
+       dd($array_de_ids);
 
        $Socios                = $this->getEntidad()->whereIn('id',$array_de_ids)->orderBy('name','desc')->get();
 
