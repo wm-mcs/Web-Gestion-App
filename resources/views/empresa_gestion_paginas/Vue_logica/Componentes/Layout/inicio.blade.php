@@ -55,9 +55,11 @@ template:'
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
-                <div v-show="contraseña">
-                  <input type="text" name="" placeholder="Esribe la nueva contraseña">
-                  <input type="text" name="" placeholder="Repite la nueva contraseña">
+                <div v-show="contraseña" class="contenedor-cambiar-contraseña-nav">
+                  <input type="text" class="form-control" name="" placeholder="Esribe la nueva contraseña">
+                  <input type="text" class="form-control" name="" placeholder="Repite la nueva contraseña">
+
+                  
                 </div>
 
 
