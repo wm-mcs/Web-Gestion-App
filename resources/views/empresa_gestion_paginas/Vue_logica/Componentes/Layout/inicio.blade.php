@@ -92,7 +92,7 @@ template:'
                 </div>
                 <div v-show="contraseña" class="contenedor-cambiar-contraseña-nav">
                   <div class="flex-row-center get_width_100" >
-                    <input type="text" class="form-control get_width_80" name="" placeholder="Esribe la nueva contraseña">
+                    <input type="text" class="form-control get_width_80" v-model="pass"  placeholder="Esribe la nueva contraseña">
                     <div class="flex-row-center get_width_20 flex-justifice-space-around">
                       <span  class="boton-acciones-editar" v-on:click="cambiar_pass">Cambiar</span> 
                     </div>
