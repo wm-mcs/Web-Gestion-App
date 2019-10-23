@@ -53,7 +53,7 @@ class SocioRepo extends BaseRepo
       }
       else
       {
-        $Socios               = $socios_base->orderBy('updated_at','desc')->get();
+        $Socios               = $socios_base->orderBy('name','desc')->get();
       }
 
 
