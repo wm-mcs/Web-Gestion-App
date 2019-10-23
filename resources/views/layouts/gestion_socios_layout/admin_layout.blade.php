@@ -59,13 +59,13 @@
    
   
 
-      <!-- Scripts -->
-     <script src="{{url()}}{{ elixir('js/admin.js')}} " ></script>  
+        <!-- Scripts -->
+        <script src="{{url()}}{{ elixir('js/admin.js')}} " ></script>  
 
         @if(Auth::guest())
              <script  src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script> 
         @else
-            @if(Auth::user()->role > 5)
+            @if(Auth::user()->role > 1)
              <script  src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script> 
             @else
              <script  src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script> 
