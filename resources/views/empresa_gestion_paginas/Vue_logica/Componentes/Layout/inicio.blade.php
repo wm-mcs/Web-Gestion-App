@@ -1,6 +1,6 @@
 Vue.component('nav-inicio' ,
 {
-props:[ 'empresa' ],
+
 data:function(){
     return {
      modal_nombre:'#modal-inicio-user',
