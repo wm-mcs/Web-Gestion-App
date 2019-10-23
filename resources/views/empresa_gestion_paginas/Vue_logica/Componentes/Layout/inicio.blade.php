@@ -16,7 +16,7 @@ methods:{
   abrir_contraseña:function(){
 
     alert('hola');
-    
+
     if(this.contraseña === false){
       this.contraseña = true;
     }
@@ -46,8 +46,8 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="abrir_contraseña">
-                  Cambiar contraseña 
+                <div class="contraseña-titulo" v-on:click="abrir_modal" >
+                   Cambiar contraseña 
                   <span v-if="!contraseña"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
