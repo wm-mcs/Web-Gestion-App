@@ -58,7 +58,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
             if($request->has('sucursal_id'))
             {
 
-                if(($UserEmpresa->sucursal_id == $request->get('sucursal_id')) || ($User->role > 3) )
+                if(($UserEmpresa->sucursal_id == $request->get('sucursal_id')) || ($User->role >= 3) )
                 { 
 
                   $Validacion = true;          
