@@ -33,7 +33,36 @@ checkSearchStr: _.debounce(function(string){
 
 	if(string != '')
 	{
-      alert(string);
+      
+      var url = '/buscar_socios_activos';
+
+      var data = {  busqueda: string,
+                    empresa_id: this.empresa.id       
+                 };  
+      var vue = this;           
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               vue.socios = response.data.Socios;              
+               
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+
+
+
 	}
     }, 800)
 },

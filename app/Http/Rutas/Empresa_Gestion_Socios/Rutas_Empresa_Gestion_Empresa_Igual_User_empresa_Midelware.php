@@ -27,6 +27,13 @@ Route::post('get_socios_activos',
   'as'         => 'get_socios_activos']);  
 
 
+//Para buscar los socios
+Route::post('buscar_socios_activos',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@buscar_socios_activos',
+  'as'         => 'buscar_socios_activos']);  
+
+
 
 
 

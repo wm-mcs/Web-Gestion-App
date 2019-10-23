@@ -190,6 +190,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        return ['socios' => $Socios];     
   }
 
+
+  public function buscar_socios_activos(Request $Request)
+  {
+       $User               = $Request->get('user_desde_middleware'); 
+       $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
+       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,$Request->get('busqueda'),null);
+
+       return ['socios' => $Socios];  
+  }
+
   //es el panel del socio para editar
   public function get_socio_panel(Request $Request)
   {
