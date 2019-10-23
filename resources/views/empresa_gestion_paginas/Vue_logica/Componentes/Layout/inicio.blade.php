@@ -14,7 +14,7 @@ methods:{
   app.abrirModal(this.modal_nombre);
   },
   abrir_contraseña:function(){
-    if(this.contraseña == false){
+    if(this.contraseña === false){
       this.contraseña = true;
     }
     else
