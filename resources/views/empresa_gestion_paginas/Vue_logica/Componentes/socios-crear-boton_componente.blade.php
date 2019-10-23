@@ -23,7 +23,7 @@ methods:{
 
  abrir_modal:function(){
 
-   $(modal).appendTo("body").modal('show');  
+   $(this.modal).appendTo("body").modal('show');  
 
  },
  crear_socio_post:function(){
