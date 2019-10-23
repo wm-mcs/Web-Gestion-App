@@ -123,7 +123,13 @@ class Admin_Users_Controllers extends Controller
                                                       $Texto_boton,
                                                       $Link_del_boton);
 
+        return ['Validacion'          => true,
+                'Validacion_mensaje'  => 'Cambiaste tú contraseña de forma exitosa'];
+
     }
+
+     return ['Validacion'          => false,
+             'Validacion_mensaje'  => 'Debes poner una contraseña válida'];
   }
 
   
