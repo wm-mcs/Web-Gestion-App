@@ -4,7 +4,7 @@ props:[ 'empresa' ],
 data:function(){
     return {
      modal_nombre:'#modal-inicio-user',
-     contraseña:false;
+     contraseña:false
 
     }
 },
