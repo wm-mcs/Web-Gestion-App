@@ -105,7 +105,7 @@ template:'
                 </div>
 
 
-                 <a href="{{route('logout')}}">Salir</a>
+                 <a href="{{route('logout')}}">Cambiar de cuenta</a>
 
                      
 
