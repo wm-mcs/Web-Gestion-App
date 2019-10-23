@@ -46,14 +46,14 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="abrir_contraseña" >
+                <div class="contraseña-titulo" v-on:click="abrir_modal" >
                    Cambiar contraseña 
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
                 <div v-if="contraseña">
-                  <input type="password" name="" placeholder="Esribe la nueva contraseña">
-                  <input type="password" name="" placeholder="Repite la nueva contraseña">
+                  <input type="text" name="" placeholder="Esribe la nueva contraseña">
+                  <input type="text" name="" placeholder="Repite la nueva contraseña">
                 </div>
 
 
