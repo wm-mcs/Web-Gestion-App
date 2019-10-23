@@ -15,7 +15,8 @@ methods:{
   },
   abrir_contraseña:function(){
 
-    alert('hola')
+    alert('hola');
+    
     if(this.contraseña === false){
       this.contraseña = true;
     }
