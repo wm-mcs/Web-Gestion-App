@@ -21,7 +21,7 @@ class SocioRepo extends BaseRepo
 
   public function getSociosBusqueda($empresa_id, $palabra_de_busqueda,$cantidad_de_resultados = null)
   {
-       $socios_base         = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->get() ;
+       
 
        $palabra_de_busqueda = trim($palabra_de_busqueda);
 
@@ -48,14 +48,14 @@ class SocioRepo extends BaseRepo
 
        $array_de_ids          = array_unique(array_merge($array_de_ids,$array_de_ids2,$array_de_ids3,$array_de_ids4,$array_de_ids5)); 
 
-       dd($array_de_ids);
+       
 
        $Socios                = $this->getEntidad()->whereIn('id',$array_de_ids)->orderBy('name','desc')->get();
 
       }
       else
       {
-        $Socios               = $socios_base->orderBy('name','desc')->get();
+        $Socios               = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->orderBy('name','desc')->get();
       }
 
 
