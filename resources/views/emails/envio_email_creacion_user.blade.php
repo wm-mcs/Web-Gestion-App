@@ -59,7 +59,7 @@
 
         <td align="center" valign="top">
 
-            <table class="rnb-del-min-width rnb-tmpl-width" width="100%" cellpadding="0" border="0" cellspacing="0" style="min-width:590px;" name="Layout_26" id="Layout_26">
+            <table class="rnb-del-min-width rnb-tmpl-width" width="100%" cellpadding="0" border="0" cellspacing="0" style="max-width:590px;" name="Layout_26" id="Layout_26">
                 <tbody><tr>
                     <td class="rnb-del-min-width" valign="top" align="center" style="min-width: 590px;">
                         <table width="100%" cellpadding="0" border="0" bgcolor="#f9fafc" align="center" cellspacing="0" style="background-color: rgb(249, 250, 252);">
@@ -67,11 +67,13 @@
                                 <td height="30" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>
                             </tr>
                              <tr>
-                              <a href="{{$Link_del_boton}}" style="text-decoration: none; ">
-                                <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; width: 150px; font-family:Arial,Helvetica,sans-serif; font-size: 16px;">
-                                  {{$Texto_boton}}
-                                </div>
-                              </a>
+                              <td align="center">  
+                                  <a href="{{$Link_del_boton}}" style="text-decoration: none; ">
+                                    <div style="padding: 20px; border-radius:6px; background-color:#ff5a5f; color:white; border-bottom:solid 3px #ff7377; width: 150px; font-family:Arial,Helvetica,sans-serif; font-size: 16px;">
+                                      {{$Texto_boton}}
+                                    </div>
+                                  </a>
+                              </td>
                             </tr>
                             <tr>
                                 <td height="30" style="font-size:1px; line-height:0px; mso-hide: all;">&nbsp;</td>

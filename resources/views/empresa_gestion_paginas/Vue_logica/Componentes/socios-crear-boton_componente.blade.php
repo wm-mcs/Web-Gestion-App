@@ -14,6 +14,7 @@ data:function(){
       form_socio_email:'',
       form_socio_celular:'',
       form_socio_cedula:'' ,
+      modal:'#modal-crear-socio'
       
     }
 },
@@ -22,7 +23,7 @@ methods:{
 
  abrir_modal:function(){
 
-   $('#modal-crear-socio').appendTo("body").modal('show');  
+   $(modal).appendTo("body").modal('show');  
 
  },
  crear_socio_post:function(){
@@ -35,6 +36,7 @@ methods:{
                     cedula:this.form_socio_cedula,
                     empresa_id: this.empresa.id       
                  };  
+      var vue = this;           
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -42,7 +44,9 @@ methods:{
 
             if(data.Validacion == true)
             {
-               app.socios = data.Socios; 
+               
+               vue.$emit('ActualizarSocios',response.data.Socio); 
+               app.cerrarModal(vue.modal);
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
