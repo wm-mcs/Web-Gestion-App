@@ -50,16 +50,16 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="abrir_cambiar_pass" >
+                <div class="contraseña-titulo simula_link" v-on:click="abrir_cambiar_pass" >
                    Cambiar contraseña 
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
                 <div v-show="contraseña" class="contenedor-cambiar-contraseña-nav">
-                  <div>
+                  <div class="flex-row-center get_width_100" >
                     <input type="text" class="form-control get_width_80" name="" placeholder="Esribe la nueva contraseña">
-                    <div>
-                      Cambiar
+                    <div class="flex-row-center get_width_20 flex-justifice-space-around">
+                      <span class="boton-acciones-editar">Cambiar</span> 
                     </div>
                   </div>
                   
