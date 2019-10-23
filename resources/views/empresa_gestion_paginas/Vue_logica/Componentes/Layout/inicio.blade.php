@@ -51,14 +51,10 @@ template:'
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
-                <div v-if="contraseña">
+                <div v-show="contraseña">
                   <input type="text" name="" placeholder="Esribe la nueva contraseña">
                   <input type="text" name="" placeholder="Repite la nueva contraseña">
                 </div>
-
-
-
-
 
 
                  <a href="{{route('logout')}}">Salir</a>
