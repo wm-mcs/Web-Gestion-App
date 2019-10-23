@@ -46,7 +46,7 @@ template:'
 
 
 
-                <div class="contraseña-titulo" v-on:click="abrir_modal" >
+                <div class="contraseña-titulo" v-on:click="abrir_contraseña" >
                    Cambiar contraseña 
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
