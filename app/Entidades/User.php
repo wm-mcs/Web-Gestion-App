@@ -24,15 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
 
-    /*public function empresas()
-    {
-      return $this->hasMany(UserEmpresa::class,'user_id','id');
-    } 
-
-     public function getEmpresasAsociadasAttribute()
-     {
-        return $this->empresas;
-     }*/
+   
 
 
 

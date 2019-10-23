@@ -3,7 +3,8 @@ Vue.component('nav-inicio' ,
 props:[ 'empresa' ],
 data:function(){
     return {
-     modal_nombre:'#modal-inicio-user'
+     modal_nombre:'#modal-inicio-user',
+     contraseña:false;
 
     }
 },
@@ -11,6 +12,15 @@ methods:{
   
   abrir_modal:function(){
   app.abrirModal(this.modal_nombre);
+  },
+  abrir_contraseña:function(){
+    if(this.contraseña == false){
+      this.contraseña = true;
+    }
+    else
+    {
+      this.contraseña = false;
+    }
   }
     
 
@@ -30,6 +40,23 @@ template:'
                 
               </div>
               <div class="modal-body text-center"> 
+
+
+
+                <div class="contraseña-titulo" >
+                  Cambiar contraseña 
+                  <span v-if="!contraseña"><i class="fas fa-chevron-down"></i></span>
+                  <span v-else> <i class="fas fa-chevron-up"></i></span>
+                </div>
+                <div v-if="contraseña">
+                  <input type="password" name="" placeholder="Esribe la nueva contraseña">
+                  <input type="password" name="" placeholder="Repite la nueva contraseña">
+                </div>
+
+
+
+
+
 
                  <a href="{{route('logout')}}">Salir</a>
 
