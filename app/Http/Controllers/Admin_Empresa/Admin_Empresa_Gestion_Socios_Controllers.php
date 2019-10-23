@@ -197,7 +197,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
        $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,$Request->get('busqueda'),null);
 
-       return ['socios' => $Socios];  
+       return ['Socios' => $Socios];  
   }
 
   //es el panel del socio para editar
