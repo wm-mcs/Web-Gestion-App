@@ -188,7 +188,7 @@ template:'
            <span :id="socio.id"></span>
            <div class="listado-socios-sub-name-email"> 
               <span class="simula_link"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
-              <span class="listado-socios-sub-name-email__email"> @{{socio.email}}</span>
+              <span class="listado-socios-sub-name-email__email"> <i class="fab fa-whatsapp"></i> @{{socio.celular}}</span>
            </div>
           
            {!! Form::close() !!} 

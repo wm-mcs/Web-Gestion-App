@@ -237,7 +237,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Socio->factura_con_iva  = 'no';
        $Socio->estado           = 'si';
 
-       $Propiedades = ['name','email','celular','cedula'];
+       $Propiedades = ['name','celular'];
 
        $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades);  
 

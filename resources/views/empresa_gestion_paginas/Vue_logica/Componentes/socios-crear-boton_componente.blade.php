@@ -67,7 +67,7 @@ methods:{
 },
 computed:{
  boton_crear_validation:function(){
- if(this.form_socio_name != '' & this.form_socio_email != '' & this.form_socio_celular != '' && this.form_socio_cedula != ''  ){
+ if(this.form_socio_name != ''  & this.form_socio_celular != ''  ){
   return true;
  }
  else{
@@ -101,16 +101,8 @@ template:'<span >
                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Nombres  </label>
                       <input type="text" class="form-control"  v-model="form_socio_name" placeholder="Nombre" required  />
-                  </div> 
+                  </div>                  
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Cedula  <span class="formulario-label-aclaracion"> (sin puntos ni guiones)</span> </label>
-                      <input type="text" class="form-control"  v-model="form_socio_cedula" placeholder="Cedula" required  />
-                  </div> 
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Email</label>
-                      <input type="text" class="form-control"  v-model="form_socio_email" placeholder="Email" required  />
-                  </div> 
-                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Celular</label>
                       <input type="text" class="form-control"  v-model="form_socio_celular" placeholder="Celular" required  />
                   </div> 
