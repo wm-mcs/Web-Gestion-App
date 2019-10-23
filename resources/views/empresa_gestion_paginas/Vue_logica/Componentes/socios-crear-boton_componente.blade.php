@@ -45,7 +45,7 @@ methods:{
             if(data.Validacion == true)
             {
                
-               app.empresa = data.empresa;
+               bus.$emit('socios-set', response.data.Socios); 
                app.cerrarModal(vue.modal);
                $.notify(response.data.Validacion_mensaje, "success");
             }

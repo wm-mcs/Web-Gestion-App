@@ -37,6 +37,12 @@ checkSearchStr: _.debounce(function(string){
 	}
     }, 800)
 },
+created() {
+    
+    bus.$on('socios-set', (socios) => {
+      this.socios = socios
+    })
+}
 template:'
 
   <div v-if="socios.length > 0" class="listado-socios-contenedor-lista">
