@@ -27,3 +27,31 @@
     background-color: white;
     color:$color-verde-texto-success ;
   }
+
+
+  .saldo-modal{
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
+    padding:8px;
+    background-color:$color-gris-background;
+  }
+
+     .saldo-modal-aclaracion{
+      font-size: 9px;
+      color:$Color-texto-gris-Mercadolibre;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 8px;
+     }
+
+     .saldo-modal-valor{
+      font-size: 22px;
+      color:$color-verde-texto-success;
+      text-align: center;
+      width: 100%;
+      
+     }
+
+
+

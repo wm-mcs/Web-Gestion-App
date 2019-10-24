@@ -80,7 +80,16 @@ template:'<div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Movimientos de caja pesos</h4>
+          <h4 class="modal-title" id="myModalLabel">
+
+            Movimientos de caja pesos:  
+            <div class="saldo-modal">
+              <div class="saldo-modal-aclaracion">Saldo</div>
+              <div class="saldo-modal-valor">@{{sucursal.saldo_de_caja_pesos}} </div>
+            </div>
+            
+
+          </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
