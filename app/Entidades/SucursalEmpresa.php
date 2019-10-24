@@ -34,7 +34,8 @@ class SucursalEmpresa extends Model
     public function movimientos_de_caja_relation()
     {
         return $this->hasMany(CajaEmpresa::class,'sucursal_id','id')
-                    ->where('borrado','no');
+                    ->where('borrado','no')
+                    ->orderBy('created_at', 'DESC');
     }
 
       public function getMovimientosDeCajaDolaresAttribute()
