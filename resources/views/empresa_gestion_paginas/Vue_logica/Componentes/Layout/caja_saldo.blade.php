@@ -40,9 +40,9 @@ methods:{
     abrir_modal_dolares:function(){
       app.abrirModal(this.modal_dolares);
     },
-    devuelve_valor_saldo:function(valor_que_viene){
+    devuelve_valor_saldo:function(valor_que_viene,index){
       
-      
+        console.log(index);
         this.valor_actual_pesos = (parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene));
 
         return parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene);
@@ -94,11 +94,11 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-          <div v-for="caja in sucursal.movimientos_de_caja_pesos">
+          <div v-for="(caja,index) in sucursal.movimientos_de_caja_pesos" :key="caja.id">
             <span>@{{caja.detalle}}</span>
             <span>@{{caja.moneda}}</span>            
             <span>@{{caja.valor}}</span>
-            <span>Saldo @{{ devuelve_valor_saldo(caja.valor) }}</span>
+            <span>Saldo @{{ devuelve_valor_saldo(caja.valor,index) }}</span>
           </div>
 
                   
