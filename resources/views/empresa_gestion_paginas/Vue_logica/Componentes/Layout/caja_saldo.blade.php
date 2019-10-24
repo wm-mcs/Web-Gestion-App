@@ -8,6 +8,7 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
+      valor_actual_pesos:0
 
     }
 },
@@ -38,6 +39,20 @@ methods:{
     },
     abrir_modal_dolares:function(){
       app.abrirModal(this.modal_dolares);
+    },
+    devuelve_valor_saldo:function(valor){
+      if(this.valor_actual_pesoo == 0)
+      {
+        let valor_a_dar         = thias.sucursal.saldo_de_caja_pesos;
+        this.valor_actual_pesos = saldo_final -valor;
+        return valor_a_dar;
+      }
+      else
+      {
+        let valor_a_dar = this.valor_actual_pesos - valor;
+        return valor_a_dar;
+      }
+
     }
 
 },
@@ -87,6 +102,7 @@ template:'<div>
             <span>@{{caja.detalle}}</span>
             <span>@{{caja.moneda}}</span>            
             <span>@{{caja.valor}}</span>
+            <span>Saldo @{{ devuelve_valor_saldo(caja.valor) }}</span>
           </div>
 
                   
