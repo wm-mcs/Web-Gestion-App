@@ -43,9 +43,9 @@ methods:{
     devuelve_valor_saldo:function(valor_que_viene){
       
       
-        this.valor_actual_pesos = parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene);
+        this.valor_actual_pesos = (parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene));
 
-        return parseFloat(this.valor_actual_pesos);
+        return parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene);
       
       
 
