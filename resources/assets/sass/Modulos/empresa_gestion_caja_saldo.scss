@@ -8,6 +8,7 @@
   @include flex-direction(row);
   @include align-items(center); 
   width: 100%;
+  cursor: pointer;
 }
 
   .saldo-aclaracion{

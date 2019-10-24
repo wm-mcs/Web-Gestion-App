@@ -6,7 +6,8 @@ Vue.component('caja-saldo' ,
 data:function(){
     return {
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
-      modal:'#modal-caja'
+      modal_pesos:'#modal-caja-pesos',
+      modal_dolares:'#modal-caja-pesos',
 
     }
 },
@@ -32,8 +33,11 @@ methods:{
         return true;
       }
     },
-    abrir_modal:function(){
-
+    abrir_modal_pesos:function(){
+      app.abrirModal(this.modal_pesos);
+    },
+    abrir_modal_dolares:function(){
+      app.abrirModal(this.modal_dolares);
     }
 
 },
@@ -45,7 +49,7 @@ created() {
 },
 template:'<div>
 
-  <div v-if="esDistintoACero(sucursal.saldo_de_caja_pesos)" class="contiene-saldo" >
+  <div v-if="esDistintoACero(sucursal.saldo_de_caja_pesos)" class="contiene-saldo" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
      <span class="saldo-aclaracion"> 
        Saldo caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
@@ -57,7 +61,7 @@ template:'<div>
      </div>
   </div> 
 
- <div v-if="esDistintoACero(sucursal.saldo_de_caja_dolares)" class="contiene-saldo">
+ <div v-if="esDistintoACero(sucursal.saldo_de_caja_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
      <span class="saldo-aclaracion"> 
        Saldo caja dolares sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
@@ -70,7 +74,7 @@ template:'<div>
  </div> 
 
 
-  <div class="modal fade" id="modal-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -88,6 +92,9 @@ template:'<div>
       </div>
     </div>
   </div>
+
+
+  
    
   
 
