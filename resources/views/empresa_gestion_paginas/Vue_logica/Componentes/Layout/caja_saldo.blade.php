@@ -49,7 +49,7 @@ methods:{
       }
       else
       {
-        this.valor_actual_pesos = this.valor_actual_pesos - valor
+        this.valor_actual_pesos = this.valor_actual_pesos - valor;
         let valor_a_dar = this.valor_actual_pesos - valor;
         return valor_a_dar;
       }
