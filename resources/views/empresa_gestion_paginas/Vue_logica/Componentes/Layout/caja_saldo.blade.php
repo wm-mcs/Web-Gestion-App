@@ -8,7 +8,7 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
-      valor_actual_pesos:''
+      valor_actual_pesos:this.sucursal.saldo_de_caja_pesos
 
     }
 },
@@ -41,18 +41,19 @@ methods:{
       app.abrirModal(this.modal_dolares);
     },
     devuelve_valor_saldo:function(valor){
-      if(this.valor_actual_pesos === '')
+      
+      if(this.valor_actual_pesos == this.sucursal.saldo_de_caja_pesos)
       {
-        
-        this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos;
-        return this.valor_actual_pesos - valor;
+        return this.valor_actual_pesos;
       }
       else
       {
         this.valor_actual_pesos = this.valor_actual_pesos - valor;
-         
         return this.valor_actual_pesos;
       }
+      
+      
+      
 
     }
 
