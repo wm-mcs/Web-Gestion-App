@@ -43,8 +43,8 @@ methods:{
     devuelve_valor_saldo:function(valor){
       if(this.valor_actual_pesoo == 0)
       {
-        let valor_a_dar         = thias.sucursal.saldo_de_caja_pesos;
-        this.valor_actual_pesos = saldo_final -valor;
+        let valor_a_dar         = this.sucursal.saldo_de_caja_pesos;
+        this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos -valor;
         return valor_a_dar;
       }
       else
