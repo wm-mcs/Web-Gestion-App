@@ -81,10 +81,9 @@ template:'<div>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title get_width_80" id="myModalLabel">
-
             Movimientos de caja pesos:  
             <div class="saldo-modal">              
-              <div class="saldo-modal-valor">Saldo $ @{{sucursal.saldo_de_caja_pesos}} </div>
+              Saldo $ <span class="saldo-modal-valor">@{{sucursal.saldo_de_caja_pesos}} </span>
             </div>
             
 
