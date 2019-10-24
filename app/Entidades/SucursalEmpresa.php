@@ -48,16 +48,14 @@ class SucursalEmpresa extends Model
       public function getMovimientosDeCajaDolaresAttribute()
       {
         return $this->movimientos_de_caja_relation
-                    ->where('moneda','U$S')                    
-                    ->orderBy('created_at', 'DESC');
+                    ->where('moneda','U$S');
       }
 
 
       public function getMovimientosDeCajaPesosAttribute()
       {
         return $this->movimientos_de_caja_relation
-                    ->where('moneda','$')                    
-                    ->orderBy('created_at', 'DESC');
+                    ->where('moneda','$')  ;
       }
 
 
