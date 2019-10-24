@@ -44,6 +44,7 @@ methods:{
       
       if(this.valor_actual_pesos == 0)
       {
+        console.log(this.valor_actual_pesos);
         var valor = this.sucursal.saldo_de_caja_pesos;
         this.valor_actual_pesos = valor ;
         return valor;
