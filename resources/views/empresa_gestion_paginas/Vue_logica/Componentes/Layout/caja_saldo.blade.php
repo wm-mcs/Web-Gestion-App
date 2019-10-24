@@ -83,8 +83,10 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-          <div>
-            
+          <div v-for="caja in sucursal.movimientos_de_caja_pesos">
+            <span>@{{caja.detalle}}</span>
+            <span>@{{caja.moneda}}</span>            
+            <span>@{{caja.valor}}</span>
           </div>
 
                   
