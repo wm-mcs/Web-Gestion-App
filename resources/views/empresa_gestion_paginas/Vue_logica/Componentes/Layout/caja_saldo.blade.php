@@ -41,7 +41,7 @@ methods:{
       app.abrirModal(this.modal_dolares);
     },
     devuelve_valor_saldo:function(valor){
-      if(this.valor_actual_pesoo == 0)
+      if(this.valor_actual_pesos == 0)
       {
         let valor_a_dar         = this.sucursal.saldo_de_caja_pesos;
         this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos -valor;
