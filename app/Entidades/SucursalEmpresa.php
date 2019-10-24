@@ -38,6 +38,13 @@ class SucursalEmpresa extends Model
                     ->orderBy('created_at', 'DESC');
     }
 
+
+      public function getMovimientosDeCajaAttribute()
+      {
+        return $this->movimientos_de_caja_relation;
+                    
+      }
+
       public function getMovimientosDeCajaDolaresAttribute()
       {
         return $this->movimientos_de_caja_relation
