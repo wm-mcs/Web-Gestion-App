@@ -45,7 +45,7 @@ methods:{
       {
         
         this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos;
-        return this.valor_actual_pesos;
+        return this.valor_actual_pesos - valor;
       }
       else
       {
