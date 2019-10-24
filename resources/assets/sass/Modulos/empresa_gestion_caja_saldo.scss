@@ -35,6 +35,8 @@
     @include align-items(center); 
     padding:8px;
     background-color:$color-gris-background;
+    border-radius:6px;
+    margin-left: 4px;
   }
 
      .saldo-modal-aclaracion{
@@ -42,7 +44,8 @@
       color:$Color-texto-gris-Mercadolibre;
       text-align: center;
       width: 100%;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+
      }
 
      .saldo-modal-valor{
