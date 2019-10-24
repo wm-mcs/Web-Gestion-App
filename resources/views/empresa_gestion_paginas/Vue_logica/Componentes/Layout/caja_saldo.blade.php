@@ -8,7 +8,7 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
-      valor_actual_pesos:0
+      valor_actual_pesos:'0'
 
     }
 },
@@ -45,7 +45,7 @@ methods:{
       
         this.valor_actual_pesos = parseFloat(this.valor_actual_pesos) + parseFloat(valor_que_viene);
 
-        return this.valor_actual_pesos;
+        return parseFloat(this.valor_actual_pesos);
       
       
 
