@@ -30,13 +30,8 @@
 
 
   .saldo-modal{
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(center); 
-    padding:0 2px;
-    
-    border-radius:6px;
-    margin-left: 4px;
+    font-size: 22px;
+    color:$Color-texto-gris-Mercadolibre;
   }
 
      .saldo-modal-aclaracion{
@@ -49,7 +44,7 @@
      }
 
      .saldo-modal-valor{
-      font-size: 22px;
+      
       color:$color-verde-texto-success;
       text-align: center;
       width: 100%;

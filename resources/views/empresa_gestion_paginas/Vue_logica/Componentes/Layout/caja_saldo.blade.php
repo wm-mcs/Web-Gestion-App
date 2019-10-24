@@ -80,12 +80,11 @@ template:'<div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title flex-row-center get_width_100" id="myModalLabel">
+          <h4 class="modal-title get_width_80" id="myModalLabel">
 
             Movimientos de caja pesos:  
-            <div class="saldo-modal">
-              <div class="saldo-modal-aclaracion">Saldo $</div>
-              <div class="saldo-modal-valor">@{{sucursal.saldo_de_caja_pesos}} </div>
+            <div class="saldo-modal">              
+              <div class="saldo-modal-valor">Saldo $ @{{sucursal.saldo_de_caja_pesos}} </div>
             </div>
             
 
