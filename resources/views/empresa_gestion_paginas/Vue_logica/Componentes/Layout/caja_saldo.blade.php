@@ -8,7 +8,7 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
-      valor_actual_pesos:0
+      valor_actual_pesos:''
 
     }
 },
@@ -41,7 +41,7 @@ methods:{
       app.abrirModal(this.modal_dolares);
     },
     devuelve_valor_saldo:function(valor){
-      if(this.valor_actual_pesos === 0)
+      if(this.valor_actual_pesos === '')
       {
         
         this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos;
