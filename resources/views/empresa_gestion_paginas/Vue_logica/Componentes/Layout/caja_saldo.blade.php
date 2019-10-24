@@ -78,7 +78,26 @@ template:'<div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Movimientos de caja</h4>
+          <h4 class="modal-title" id="myModalLabel">Movimientos de caja pesos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+          
+        </div>
+        <div class="modal-body text-center"> 
+
+
+                  
+                 
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-caja-dolares" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Movimientos de caja dolares</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
