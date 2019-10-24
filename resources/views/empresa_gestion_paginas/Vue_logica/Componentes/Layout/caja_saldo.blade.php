@@ -45,7 +45,7 @@ methods:{
       if(this.valor_actual_pesos == 0)
       {
         var valor = this.sucursal.saldo_de_caja_pesos;
-        this.valor_actual_pesos = valor - valor_que_viene;
+        this.valor_actual_pesos = valor + valor_que_viene;
         return valor;
       }
       else
