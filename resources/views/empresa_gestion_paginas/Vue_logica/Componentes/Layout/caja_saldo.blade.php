@@ -44,11 +44,12 @@ methods:{
       if(this.valor_actual_pesos == 0)
       {
         let valor_a_dar         = this.sucursal.saldo_de_caja_pesos;
-        this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos -valor;
+        this.valor_actual_pesos = this.sucursal.saldo_de_caja_pesos;
         return valor_a_dar;
       }
       else
       {
+        this.valor_actual_pesos = this.valor_actual_pesos - valor
         let valor_a_dar = this.valor_actual_pesos - valor;
         return valor_a_dar;
       }
