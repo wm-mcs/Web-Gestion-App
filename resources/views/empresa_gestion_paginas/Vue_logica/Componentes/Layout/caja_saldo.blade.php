@@ -8,7 +8,7 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal')) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
-      valor_actual_pesos:this.sucursal.saldo_de_caja_pesos
+      valor_actual_pesos:0
 
     }
 },
@@ -40,15 +40,17 @@ methods:{
     abrir_modal_dolares:function(){
       app.abrirModal(this.modal_dolares);
     },
-    devuelve_valor_saldo:function(valor){
+    devuelve_valor_saldo:function(valor_que_viene){
       
-      if(this.valor_actual_pesos == this.sucursal.saldo_de_caja_pesos)
+      if(this.valor_actual_pesos == 0)
       {
-        return this.valor_actual_pesos;
+        var valor = this.sucursal.saldo_de_caja_pesos;
+        this.valor_actual_pesos = valor - valor_que_viene;
+        return valor;
       }
       else
       {
-        this.valor_actual_pesos = this.valor_actual_pesos - valor;
+        this.valor_actual_pesos = this.valor_actual_pesos - valor_que_viene;
         return this.valor_actual_pesos;
       }
       
