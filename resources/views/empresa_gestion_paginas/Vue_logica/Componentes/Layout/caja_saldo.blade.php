@@ -42,19 +42,10 @@ methods:{
     },
     devuelve_valor_saldo:function(valor_que_viene){
       
-      if(this.valor_actual_pesos == 0)
-      {
-        console.log(this.valor_actual_pesos);
-        var valor = this.sucursal.saldo_de_caja_pesos;
-        this.valor_actual_pesos = valor ;
-        return valor;
-      }
-      else
-      {
-        this.valor_actual_pesos = this.valor_actual_pesos - valor_que_viene;
-        return this.valor_actual_pesos;
-      }
       
+        this.valor_actual_pesos = this.valor_actual_pesos + valor_que_viene;
+
+        return this.valor_actual_pesos;
       
       
 
