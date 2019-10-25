@@ -77,7 +77,7 @@ template:'<span >
          </div>
          <div v-else class="" class="contiene-ingreso-de-caja-opciones">
            <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                     :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
+                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
              @{{servicio.nombre}}
            </div>
          </div>
