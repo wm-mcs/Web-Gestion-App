@@ -356,7 +356,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
      $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
-     $this->TipoDeServicioRepo->destruir_esta_entidad($Entidad);
+     $this->TipoDeServicioRepo->destruir_esta_entidad_de_manera_logica($Entidad);
 
      $Validacion   = true;
 

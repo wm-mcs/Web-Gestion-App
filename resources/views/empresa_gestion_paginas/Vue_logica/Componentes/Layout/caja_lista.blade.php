@@ -21,9 +21,9 @@ computed:{
 template:'  <div class="contiene-lista-caja"> 
 
               <div :class="getClassLista">
-                <span>@{{caja.detalle}}</span>
-                <span>@{{caja.moneda}}</span>            
-                <span>@{{caja.valor}}</span>
+                <span>@{{caja.detalle}} @{{caja.moneda}} @{{caja.valor}}</span>
+                <span> Operador:  Fecha: </span>            
+                <span> </span>
               </div>             
               
             </div>'
