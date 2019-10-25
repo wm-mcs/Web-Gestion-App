@@ -29,7 +29,7 @@ class EmpresaConSocios extends Model
 
     public function servicios_relation()
     {
-      return $this->hasMany(TipoDeServicio::class,'empresa_id','id');
+      return $this->hasMany(TipoDeServicio::class,'empresa_id','id')->where('borrado','no');
     }
 
         public function getTipoServiciosAttribute()
