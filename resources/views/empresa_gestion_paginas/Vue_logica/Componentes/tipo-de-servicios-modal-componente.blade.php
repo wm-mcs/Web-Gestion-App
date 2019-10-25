@@ -147,7 +147,7 @@ methods:{
 },
 template:'
 <span>
- <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear" title="Agregar nuevo servicio" v-on:click="agregarServicioShoww" title="Crear un nuevo tipo de servicio">
+ <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear"  v-on:click="agregarServicioShoww" title="Crear un nuevo tipo de servicio">
        <i class="fas fa-plus"></i>  
        
  </div>
