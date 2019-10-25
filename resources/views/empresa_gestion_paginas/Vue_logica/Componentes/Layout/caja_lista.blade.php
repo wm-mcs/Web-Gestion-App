@@ -10,9 +10,10 @@ data:function(){
 computed:{
   getClassLista:function(){
     return {
-      'sub-contiene-lista-caja': this.mostrar ,
+      
       'sub-contiene-lista-caja-deudor': this.caja.tipo_saldo === 'deudor',
       'sub-contiene-lista-caja-acredor': this.caja.tipo_saldo === 'acredor',
+      'sub-contiene-lista-caja': this.mostrar 
     }
   }
     
