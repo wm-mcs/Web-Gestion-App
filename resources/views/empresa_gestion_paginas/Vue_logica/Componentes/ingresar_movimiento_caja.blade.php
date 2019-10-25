@@ -18,7 +18,23 @@ methods:{
  },
  cancelarIngreso:function(){
   this.servicio_elegido = '';
+ },
+ class_verificar_tipo_saldo:function(saldo){
+ if(saldo == 'deudor'){
+  return {
+      'contiene-ingreso-opciones':true ,
+      'sub-contiene-lista-caja-deudor': true
+    }
  }
+ else
+ {
+  return {
+      'contiene-ingreso-opciones':true ,
+      'sub-contiene-lista-caja-acredor': true
+    }
+ }
+ }
+
     
 
 },
@@ -61,7 +77,7 @@ template:'<span >
          </div>
          <div v-else class="" class="contiene-ingreso-de-caja-opciones">
            <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                     :class="{'contiene-ingreso-opciones':true, 'sub-contiene-lista-caja-deudor':(servicio.tipo_saldo === 'deudor'))}">
+                     :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
              @{{servicio.nombre}}
            </div>
          </div>
