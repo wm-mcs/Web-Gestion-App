@@ -22,15 +22,17 @@ methods:{
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
   return {
-      'contiene-ingreso-opciones':true ,
-      'sub-contiene-lista-caja-deudor': true
+      
+      'sub-contiene-lista-caja-deudor': true,
+      'contiene-ingreso-opciones':true 
     }
  }
  else
  {
   return {
-      'contiene-ingreso-opciones':true ,
-      'sub-contiene-lista-caja-acredor': true
+      
+      'sub-contiene-lista-caja-acredor': true,
+      'contiene-ingreso-opciones':true 
     }
  }
  }
