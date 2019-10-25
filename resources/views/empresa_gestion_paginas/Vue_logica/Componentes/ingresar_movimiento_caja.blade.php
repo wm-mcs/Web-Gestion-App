@@ -61,7 +61,7 @@ template:'<span >
          </div>
          <div v-else class="" class="contiene-ingreso-de-caja-opciones">
            <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                     :class="{'contiene-ingreso-opciones':true, 'sub-contiene-lista-caja-deudor':(servicio.tipo_saldo === ('deudor')))}">
+                     :class="{'contiene-ingreso-opciones':true, 'sub-contiene-lista-caja-deudor':(servicio.tipo_saldo === 'deudor'))}">
              @{{servicio.nombre}}
            </div>
          </div>
