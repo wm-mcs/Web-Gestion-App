@@ -453,6 +453,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->valor, 
                                                                  'Venta de servicio a socio '. $Socio->name, 
                                                                  Carbon::now('America/Montevideo'), 
+                                                                 'venta',
                                                                  $Entidad ) ;
             }         
              
@@ -502,7 +503,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'deudor', 
                                                                  $Entidad->moneda, 
                                                                  $Entidad->valor, 
-                                                                 'Venta de servicio a socio '. $Socio->name, 
+                                                                 'Venta de servicio a socio '. $Socio->name,
+                                                                 'venta',
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Entidad ) ;
 

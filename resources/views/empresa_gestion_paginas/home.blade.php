@@ -36,6 +36,7 @@
       
 
       <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
+      <ingresar-movimiento-caja :empresa="empresa"></ingresar-movimiento-caja>
       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
    
   </div>  
@@ -60,6 +61,7 @@
 
 
 <script type="text/javascript">
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.ingresar_movimiento_caja')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_lista')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_saldo')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')

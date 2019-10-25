@@ -23,7 +23,11 @@ class CajaEmpresa extends Model
     protected $fillable = ['name', 'description'];
 
 
-   
+   /**
+     * Tipo de movimientos: venta, retiro, pago , cobro
+     *
+     * @var array
+     */
 
 
 
