@@ -51,7 +51,7 @@ template:'<span >
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">Ingresar</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+          <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div class="modal-body text-center"> 
@@ -59,8 +59,9 @@ template:'<span >
            
            <div v-on:click="cancelarIngreso">Cancelar</div>
          </div>
-         <div v-else>
-           <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)">
+         <div v-else class="" class="contiene-ingreso-de-caja-opciones">
+           <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
+                     :class="{'contiene-ingreso-opciones':true, 'sub-contiene-lista-caja-deudor':(servicio.tipo_saldo === ('deudor')))}">
              @{{servicio.nombre}}
            </div>
          </div>
@@ -68,7 +69,7 @@ template:'<span >
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
         </div>
       </div>
     </div>
