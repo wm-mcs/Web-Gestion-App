@@ -3,12 +3,17 @@ Vue.component('ingresar-movimiento-caja' ,
 props:[ 'empresa' ],
 data:function(){
     return {
-     
+     modal:'#modal-ingreso-caja'
 
     }
 },
 methods:{
+ abrir_modal:function(){
 
+   $(this.modal).appendTo("body").modal('show'); 
+
+
+ },
     
 
 },
@@ -23,7 +28,7 @@ template:'<span >
        
   </div>
 
-         <div class="modal fade" id="modal-crear-socio" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="modal-ingreso-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
