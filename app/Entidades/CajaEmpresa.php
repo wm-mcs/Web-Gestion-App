@@ -15,28 +15,9 @@ class CajaEmpresa extends Model
 
     protected $table ='caja_empresas';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'description'];
-
-
-   /**
-     * Tipo de movimientos: venta, retiro, pago , cobro
-     *
-     * @var array
-     */
-
-
-
     
-
-
-    /**
-     * PAra busqueda por nombre
-     */
+    protected $fillable = ['name', 'description'];
+    
     public function scopeName($query, $name)
     {
         //si el paramatre(campo busqueda) esta vacio ejecutamos el codigo

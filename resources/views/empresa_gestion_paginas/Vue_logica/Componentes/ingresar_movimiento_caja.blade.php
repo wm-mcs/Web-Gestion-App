@@ -4,7 +4,7 @@ props:[ 'empresa' ],
 data:function(){
     return {
      modal:'#modal-ingreso-caja'
-
+     tipo_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!}
     }
 },
 methods:{
