@@ -3,7 +3,7 @@ Vue.component('caja-lista' ,
 props:[ 'caja','sucursal' ],
 data:function(){
     return {
-     mostrar:true;
+     mostrar:true
 
     }
 },
