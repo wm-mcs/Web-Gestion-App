@@ -83,7 +83,8 @@ template:'<div>
           <h4 class="modal-title get_width_80" id="myModalLabel">
             Movimientos de caja pesos:  
             <div class="saldo-modal">              
-              Saldo $ <span class="saldo-modal-valor">@{{sucursal.saldo_de_caja_pesos}} </span>
+              Saldo  
+              <span class="saldo-modal-valor">$ @{{sucursal.saldo_de_caja_pesos}} </span>
             </div>
             
 
@@ -92,11 +93,14 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-          <div v-for="(caja,index) in sucursal.movimientos_de_caja_pesos" :key="caja.id">
-            <span>@{{caja.detalle}}</span>
-            <span>@{{caja.moneda}}</span>            
-            <span>@{{caja.valor}}</span>
-          </div>
+          <caja-lista v-for="(caja,index) in sucursal.movimientos_de_caja_pesos" 
+                       :key="caja.id"
+                       :caja="caja"
+                       :sucursal="sucursal">
+            
+           
+            
+          </caja-lista>
 
                   
                  

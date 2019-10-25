@@ -36,8 +36,8 @@
 
 <script type="text/javascript">
 
-
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_saldo')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_lista')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_saldo')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.estado-de-cuenta-socio-componente') 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.entidad-servicio-socio-componente')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.agregar-al-socio-un-servicio-componente') 
