@@ -719,7 +719,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->valor, 
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                  'Anulacion Estado De Cuenta',
-                                                                 Carbon::now('America/Montevideo')
+                                                                 Carbon::now('America/Montevideo'),
                                                                  null);
           }
 
