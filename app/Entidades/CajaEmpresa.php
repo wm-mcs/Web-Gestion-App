@@ -28,7 +28,7 @@ class CajaEmpresa extends Model
       return $this->belongsTo(User::class,'user_id','id');
     }
 
-        public function getUserNmaeAttribute()
+        public function getUserNameAttribute()
         {
             return $this->user->first_name;
         }     
