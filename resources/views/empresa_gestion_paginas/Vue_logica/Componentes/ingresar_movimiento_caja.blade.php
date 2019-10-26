@@ -24,7 +24,7 @@ methods:{
  poner_valor_de_cero:function(){
   this.servicio_elegido = '';
   this.moneda = '$';
-  this.servicio_elegido = 0;
+  this.valor_ingresar = 0;
  },
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
