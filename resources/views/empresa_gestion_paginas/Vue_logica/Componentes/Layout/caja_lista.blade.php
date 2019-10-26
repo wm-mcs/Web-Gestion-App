@@ -44,7 +44,7 @@ template:'  <div class="contiene-lista-caja">
                 </span>
                 <span class="caja-lista-datos-secundarios"> 
 
-                   Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong>
+                   Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong> | Id: @{{caja.id}}
 
                 </span>            
                 <span> </span>

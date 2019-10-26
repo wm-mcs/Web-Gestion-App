@@ -664,6 +664,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $User              = $Request->get('user_desde_middleware');  
      $estado_de_cuenta  = json_decode(json_encode($Request->get('estado_de_cuenta')));     
      $Socio             = $Request->get('socio_desde_middleware'); 
+     $Sucursal          = $Request->get('sucursal_desde_middleware'); 
 
           //elimino a la entidad
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
@@ -674,6 +675,22 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
 
+          //me fijo se el estado es deudor (es decir que pagó) 
+          if($Entidad->tipo_saldo == 'deudor')
+          {
+            $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
+                                                                 $Sucursal->id, 
+                                                                 $User->id, 
+                                                                 'acredor', 
+                                                                 $Entidad->moneda, 
+                                                                 $Entidad->valor, 
+                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,
+                                                                 'Anulacion Estado De Cuenta',
+                                                                 Carbon::now('America/Montevideo'), 
+                                                                 $Entidad);
+          }
+
+
      
 
 
@@ -681,7 +698,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se eliminó el estado de cuentacorrectamente',
-               'Socio'               =>  $Socio];
+               'Socio'               =>  $Socio, 
+               'sucursal'            =>  $this->SucursalEmpresaRepo->find($Sucursal->id)];
      }
      
        
