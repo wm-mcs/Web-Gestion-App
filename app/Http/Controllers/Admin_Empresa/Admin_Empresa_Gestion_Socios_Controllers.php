@@ -601,15 +601,48 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
 
       foreach ($Estados_de_cuenta as $Estado) {
-        $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Estado);
+
+
+        /*$this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Estado);*/
+        if($Estado->tipo_saldo == 'deudor')
+        {
+          $Tipo_saldo = 'acredor';
+        }
+        else
+        {
+          $Tipo_saldo = 'deudor';
+        }
+        $this->MovimientoEstadoDeCuentaSocioRepo
+             ->setEstadoDeCuentaCuando($Socio->id, 
+                                       $Entidad->moneda,
+                                       $Entidad->valor,
+                                       'Anulación del estado de cuenta al eliminar servicio. Estado de cuenta Nº:'. $Entidad->id ,
+                                       $Tipo_saldo,
+                                       Carbon::now('America/Montevideo'),
+                                       null);
+
+          //me fijo se el estado es deudor (es decir que pagó) 
+          if($Entidad->tipo_saldo == 'deudor')
+          {
+            $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
+                                                                 $Sucursal->id, 
+                                                                 $User->id, 
+                                                                 'acredor', 
+                                                                 $Entidad->moneda, 
+                                                                 $Entidad->valor, 
+                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,
+                                                                 'Anulacion Estado De Cuenta',
+                                                                 Carbon::now('America/Montevideo'), 
+                                                                 $Entidad);
+          }
+          
+
       }
 
       //borrar los moviemiento de caja si es que hubo         
       $MovimeintosDeCaja = $this->CajaEmpresaRepo->getMovimeintosDeEstaSecursalYServicio($Request->get('servicio_id'),$Sucursal->id);
 
-      foreach ($MovimeintosDeCaja as $Caja) {
-        $this->CajaEmpresaRepo->destruir_esta_entidad_de_manera_logica($Caja);
-      }
+      
 
       //actualiza la session
       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
