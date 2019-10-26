@@ -42,5 +42,7 @@
     }
 
        .contiene-opcion-moneda{
-        
+        @include flexbox;       
+        @include flex-direction(row);
+        @include align-items(center); 
        }
