@@ -844,7 +844,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                       $Request->get('nombre'));
       return  ['Validacion'          => true,
                'Validacion_mensaje'  => 'Se ingresó correctamente: ' . $detalle,
-               'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id)   ]
+               'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id)   ];
     }
     else
     {
