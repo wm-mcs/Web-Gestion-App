@@ -33,7 +33,7 @@ class CajaEmpresaRepo extends BaseRepo
     $Entidad->moneda           = $moneda;
     $Entidad->valor            = $valor;
     $Entidad->detalle          = $detalle;
-    $Entidad->tipo_movimiento  = $tipo_movimeinto;
+    $Entidad->tipo_movimiento  = $tipo_movimiento;
     $Entidad->fecha_ingreso    = $fecha_ingreso;
 
     if($servicio != null)
