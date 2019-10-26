@@ -23,7 +23,7 @@ methods:{
  if(saldo == 'deudor'){
   return {
       
-      'sub-contiene-lista-caja-deudor': true,
+      'contiene-ingreso-opciones-duedor': true,
       'contiene-ingreso-opciones':true 
     }
  }
@@ -31,7 +31,7 @@ methods:{
  {
   return {
       
-      'sub-contiene-lista-caja-acredor': true,
+      'contiene-ingreso-opciones-acredor': true,
       'contiene-ingreso-opciones':true 
     }
  }
