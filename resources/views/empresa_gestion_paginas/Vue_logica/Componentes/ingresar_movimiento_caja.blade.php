@@ -5,7 +5,8 @@ data:function(){
     return {
      modal:'#modal-ingreso-caja',
      tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
-     servicio_elegido:''
+     servicio_elegido:'',
+     moneda: '$'
 
     }
 },
@@ -68,13 +69,22 @@ template:'<span >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Ingresar movimiento de caja de sucursal @{{sucursal.name}}</h4>
+          <h4 class="modal-title" id="myModalLabel">Ingresar movimiento en sucursal @{{sucursal.name}}</h4>
           <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div class="modal-body text-center"> 
-         <div v-if="servicio_elegido_comp">
-           
+         <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
+           <div class="titulo-fase-2">
+             Ingresa el monto
+           </div>
+           <div>
+              <input type="radio" value="$" v-model="moneda">
+              <label for="one">Pesos</label>
+              <br>
+              <input type="radio" value="U$S" v-model="moneda">
+              <label for="one">Dolares</label>
+           </div>
            <div v-on:click="cancelarIngreso">Cancelar</div>
          </div>
          <div v-else class="" class="contiene-ingreso-de-caja-opciones">

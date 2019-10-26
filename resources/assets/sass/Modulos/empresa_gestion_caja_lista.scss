@@ -23,3 +23,18 @@
       @include align-self(flex-end);
       border-color:$Color-Errors-BG;
      }
+
+  .contiene-fase-2-ingreso-de-caja{
+    width: 100%;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
+  }
+
+    .titulo-fase-2{
+      text-align: center;
+      padding:6px;
+      margin-bottom: 10px;
+
+
+    }
