@@ -36,7 +36,7 @@
       
 
       <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
-      <ingresar-movimiento-caja :empresa="empresa"></ingresar-movimiento-caja>
+      <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
    
   </div>  

@@ -1,6 +1,6 @@
 Vue.component('ingresar-movimiento-caja' ,
 {
-props:[ 'empresa' ],
+props:[ 'empresa','sucursal'],
 data:function(){
     return {
      modal:'#modal-ingreso-caja',
@@ -68,7 +68,7 @@ template:'<span >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Ingresar</h4>
+          <h4 class="modal-title" id="myModalLabel">Ingresar movimiento de caja de sucursal @{{sucursal.name}}</h4>
           <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
