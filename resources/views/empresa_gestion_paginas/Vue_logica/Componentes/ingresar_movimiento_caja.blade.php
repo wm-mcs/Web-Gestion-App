@@ -94,14 +94,14 @@ template:'<span >
 
            <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
-             Estás a punto de ingresar ésto: @{{servicio_elegido.nombre}} por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+             Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
            <div class="boton-simple">
              Ingresar
            </div>
 
-           <div v-on:click="cancelarIngreso" class="ingreso-caja-cancelar-la-operacion">Cancelar</div>
+           
          </div>
          <div v-else class="" class="contiene-ingreso-de-caja-opciones">
            <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
