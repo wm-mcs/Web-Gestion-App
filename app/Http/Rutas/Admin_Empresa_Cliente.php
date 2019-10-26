@@ -51,6 +51,14 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
 
 
 
+                //ingresar_movimiento_de_caja
+                Route::post('ingresar_movimiento_caja',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@ingresar_movimiento_caja',
+                  'as'         => 'ingresar_movimiento_caja']);
+
+
+
                  Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
                  {
                   require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';

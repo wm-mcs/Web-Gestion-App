@@ -42,6 +42,40 @@ methods:{
     
 
 },
+ingresa_movimiento:function(){
+      var url = '/ingresar_movimiento_caja';
+
+      var data = {  
+                    empresa_id: this.empresa.id,
+                        moneda: this.moneda,  
+                         valor: this.valor_ingresar,
+                    tipo_saldo: this.servicio_elegido.tipo_saldo,
+                        nombre: this.servicio_elegido.nombre  
+                 };  
+      var vue = this;           
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+              app.cerrarModal(vue.modal);
+              bus.$emit('sucursal-set', response.data.sucursal);  
+              $.notify(data.Validacion_mensaje, "success");          
+               
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+}
 computed:{
   servicio_elegido_comp:function(){
     if(this.servicio_elegido != '')

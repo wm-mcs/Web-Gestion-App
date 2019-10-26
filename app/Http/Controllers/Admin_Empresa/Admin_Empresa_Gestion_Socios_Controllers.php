@@ -13,6 +13,7 @@ use App\Guardianes\Guardian;
 use App\Repositorios\SocioRepo;
 use App\Managers\EmpresaGestion\CrearSocioModalManager;
 use App\Managers\EmpresaGestion\CrearSucursalManager;
+use App\Managers\EmpresaGestion\IngresarMovimientoCajaManager; 
 use App\Repositorios\TipoDeServicioRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
@@ -504,7 +505,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->moneda, 
                                                                  $Entidad->valor, 
                                                                  'Venta de servicio a socio '. $Socio->name,
-                                                                 'venta',
+                                                                 'Venta Servicio',
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Entidad ) ;
 
@@ -822,10 +823,34 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   }
 
-  //caja crear registro
-  public function crear_registro_de_caja(Request $Request)
+  //ingresar de caja
+  public function ingresar_movimiento_caja(Request $Request)
   {
-    
+    $User              = $Request->get('user_desde_middleware'); 
+    $Sucursal          = $Request->get('sucursal_desde_middleware');
+    $Manager           = new IngresarMovimientoCajaManager(null, $Request->all() );
+
+    if($Manager->isValid())
+    {
+      $detalle = $Request->get('nombre'); 
+      $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'), 
+                                                      $Sucursal->id, 
+                                                      $User->id, 
+                                                      $Request->get('tipo_saldo'), 
+                                                      $Request->get('moneda'), 
+                                                      $Request->get('valor'), 
+                                                      $detalle, 
+                                                      Carbon::now('America/Montevideo'), 
+                                                      $Request->get('nombre'));
+      return  ['Validacion'          => true,
+               'Validacion_mensaje'  => 'Se ingresó correctamente: ' . $detalle,
+               'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id)   ]
+    }
+    else
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puedo ingresar el movimiento: ' . $manager->getErrors()];
+    }
   }
 
 
