@@ -83,7 +83,9 @@ template:'<span >
                 <input type="radio" value="$" v-model="moneda">
                 <label for="$">Pesos</label>
               </div>
-              
+              <div class="get_width_20">
+                
+              </div>
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="U$S" v-model="moneda">
                 <label for="U$S">Dolares</label>
