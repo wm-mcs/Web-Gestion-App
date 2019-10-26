@@ -15,6 +15,13 @@ computed:{
       'sub-contiene-lista-caja-acredor': this.caja.tipo_saldo === 'acredor',
       'sub-contiene-lista-caja': this.mostrar 
     }
+  },
+  getClassListaNombreYValor:function(){
+    return {
+      
+      'color-text-success text-bold': this.caja.tipo_saldo === 'deudor',
+      'color-text-danger text-bold': this.caja.tipo_saldo === 'acredor'
+    }
   }
     
 
@@ -22,8 +29,22 @@ computed:{
 template:'  <div class="contiene-lista-caja"> 
 
               <div :class="getClassLista">
-                <span>@{{caja.detalle}} @{{caja.moneda}} @{{caja.valor}}</span>
-                <span> Operador:  Fecha: </span>            
+                <span class="caja-lista-nombre" >
+                 
+                 <span :class="getClassListaNombreYValor">
+                    @{{caja.detalle}}
+                 </span> 
+
+                  @{{caja.moneda}} 
+
+                  @{{caja.valor}}
+
+                </span>
+                <span class="caja-lista-datos-secundarios"> 
+
+                   Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong>
+
+                </span>            
                 <span> </span>
               </div>             
               

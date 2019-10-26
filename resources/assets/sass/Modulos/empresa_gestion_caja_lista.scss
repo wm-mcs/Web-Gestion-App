@@ -3,7 +3,8 @@
   @include flexbox;       
   @include flex-direction(column);
   @include align-items(center); 
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  font-size: 12px;
 }
 
    .sub-contiene-lista-caja{
@@ -24,60 +25,20 @@
       border-color:$Color-Errors-BG;
      }
 
-  .contiene-fase-2-ingreso-de-caja{
+
+  .caja-lista-nombre{
     width: 100%;
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(center); 
+    margin-bottom: 2px;
   }
 
-    .contiene-fase-2-moneda{
-      @include flexbox;       
-      @include flex-direction(row);
-      @include align-items(center); 
-      @include justify-content(space-around); 
-      width: 100%;
-      margin-bottom: 6px;
-
-    }
-
-       .contiene-opcion-moneda{
-        @include flexbox;       
-        @include flex-direction(row);
-        @include align-items(center); 
-       }
-
-         .moneda-label{
-          margin: 0 0 0 5px;
-         }
+  .caja-lista-datos-secundarios{
+    text-align: center;
+    width: 100%;
+    letter-spacing: 1.5px;
+    font-size: 9px;
+  }
 
 
-        .ingresar-input-valor{
-          padding:25px;
-          width: 50%;
-          text-align: center;
-          font-size: 35px;
-          color:$color-gris-text;   
-          border:solid 1px transparent;  
-          border-bottom:solid 3px $color-3;
-          margin-bottom: 25px;
-          margin-top: 10px;
-          border-radius:6px;
-        }
 
+ 
 
-        .ingreso-caja-aviso{
-          font-size: 12px;
-          margin-bottom:15px;
-          color:$color-gris-text;
-          padding:3px;
-
-        }
-
-
-        .ingreso-caja-cancelar-la-operacion{
-          color:$color-gris-text;
-          text-align: center;
-          font-size: 10px;
-          margin: 10px 0 20px 0;
-        }

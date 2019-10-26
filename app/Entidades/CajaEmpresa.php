@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Entidades\Marca_de_evento;
 use App\Entidades\Producto;
 use Illuminate\Support\Facades\Cache;
+use App\Entidades\User;
+use Carbon\Carbon;
 
 
 
@@ -17,6 +19,26 @@ class CajaEmpresa extends Model
 
     
     protected $fillable = ['name', 'description'];
+    protected $appends  = ['user_name','fecha'];
+
+
+
+    public function user()
+    {
+      return $this->belongsTo(User::class,'user_id','id');
+    }
+
+        public function getUserNmaeAttribute()
+        {
+            return $this->user->first_name;
+        }     
+
+
+     
+    public function getFechaAttribute()
+    {
+        return Carbon::parse($this->fecha_ingreso)->format('Y-m-d');
+    } 
     
     public function scopeName($query, $name)
     {
