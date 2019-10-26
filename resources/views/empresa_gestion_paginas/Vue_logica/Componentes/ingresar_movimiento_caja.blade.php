@@ -37,12 +37,8 @@ methods:{
       'contiene-ingreso-opciones':true 
     }
  }
- }
-
-    
-
-},
-ingresa_movimiento:function(){
+ },
+ ingresa_movimiento:function(){
       var url = '/ingresar_movimiento_caja';
 
       var data = {  
@@ -76,6 +72,11 @@ ingresa_movimiento:function(){
             
            });
 }
+
+    
+
+},
+
 computed:{
   servicio_elegido_comp:function(){
     if(this.servicio_elegido != '')
