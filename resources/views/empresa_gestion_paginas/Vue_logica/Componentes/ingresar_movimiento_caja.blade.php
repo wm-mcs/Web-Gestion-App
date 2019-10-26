@@ -132,7 +132,7 @@ template:'<span >
              Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
-           <div class="boton-simple">
+           <div class="boton-simple" v-on:click="ingresa_movimiento">
              Ingresar
            </div>
 
