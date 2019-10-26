@@ -21,6 +21,11 @@ methods:{
  cancelarIngreso:function(){
   this.servicio_elegido = '';
  },
+ poner_valor_de_cero:function(){
+  this.servicio_elegido = '';
+  this.moneda = '$';
+  this.servicio_elegido = 0;
+ },
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
   return {
@@ -58,7 +63,9 @@ methods:{
             {
               app.cerrarModal(vue.modal);
               bus.$emit('sucursal-set', response.data.sucursal);  
-              $.notify(data.Validacion_mensaje, "success");          
+              $.notify(data.Validacion_mensaje, "success");   
+
+              vue.poner_valor_de_cero();       
                
             }
             else
