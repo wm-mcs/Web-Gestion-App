@@ -614,26 +614,26 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         }
         $this->MovimientoEstadoDeCuentaSocioRepo
              ->setEstadoDeCuentaCuando($Socio->id, 
-                                       $Entidad->moneda,
-                                       $Entidad->valor,
-                                       'Anulación del estado de cuenta al eliminar servicio. Estado de cuenta Nº:'. $Entidad->id ,
+                                       $Estado->moneda,
+                                       $Estado->valor,
+                                       'Anulación del estado de cuenta al eliminar servicio. Estado de cuenta Nº:'. $Estado->id ,
                                        $Tipo_saldo,
                                        Carbon::now('America/Montevideo'),
                                        null);
 
           //me fijo se el estado es deudor (es decir que pagó) 
-          if($Entidad->tipo_saldo == 'deudor')
+          if($Estado->tipo_saldo == 'deudor')
           {
             $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
                                                                  $Sucursal->id, 
                                                                  $User->id, 
                                                                  'acredor', 
-                                                                 $Entidad->moneda, 
-                                                                 $Entidad->valor, 
+                                                                 $Estado->moneda, 
+                                                                 $Estado->valor, 
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                  'Anulacion Estado De Cuenta',
-                                                                 Carbon::now('America/Montevideo'), 
-                                                                 $Entidad);
+                                                                 Carbon::now('America/Montevideo'),null
+                                                                 );
           }
           
 
@@ -719,8 +719,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->valor, 
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                  'Anulacion Estado De Cuenta',
-                                                                 Carbon::now('America/Montevideo'), 
-                                                                 $Entidad);
+                                                                 Carbon::now('America/Montevideo')
+                                                                 null);
           }
 
 
