@@ -46,3 +46,7 @@
         @include flex-direction(row);
         @include align-items(center); 
        }
+
+         .moneda-label{
+          margin: 0 0 0 5px;
+         }

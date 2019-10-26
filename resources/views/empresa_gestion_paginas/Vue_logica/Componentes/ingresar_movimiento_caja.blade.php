@@ -78,15 +78,15 @@ template:'<span >
          <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
            
            <div class="contiene-fase-2-moneda">
-            <div class="flex-row-center flex-justifice-space-around">
+            <div class="flex-row-center flex-justifice-space-around get_width_40">
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="$" v-model="moneda">
-                <label for="$">Pesos</label>
+                <label class="moneda-label" for="$">Pesos</label>
               </div>
-              <div class="get_width_20"></div>
+              
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="U$S" v-model="moneda">
-                <label for="U$S">Dolares</label>
+                <label class="moneda-label" for="U$S">Dolares</label>
               </div>
             </div>
               
