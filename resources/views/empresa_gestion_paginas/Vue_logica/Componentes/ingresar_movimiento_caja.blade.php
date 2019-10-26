@@ -19,7 +19,7 @@ methods:{
   this.servicio_elegido = tipo_servicio;
  },
  cancelarIngreso:function(){
-  this.servicio_elegido = '';
+  this.poner_valor_de_cero();
  },
  poner_valor_de_cero:function(){
   this.servicio_elegido = '';
