@@ -21,7 +21,7 @@ class MovimientoEstadoDeCuentaSocio extends Model
      */
     protected $fillable = ['name'];
 
-    protected $appends  = ['fecha_formateada'];
+    protected $appends  = ['fecha_formateada','fecha'];
 
 
 
@@ -60,6 +60,12 @@ class MovimientoEstadoDeCuentaSocio extends Model
 
         return Carbon::parse($this->fecha_ingreso)->format('Y-m-d');
     }
+
+
+    public function getFechaAttribute()
+    {
+        return Carbon::parse($this->fecha_ingreso)->format('Y-m-d');
+    } 
 
 
 

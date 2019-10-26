@@ -353,7 +353,7 @@ template:'
 
                    <br>
                    <br>
-                   <div  class="simula_link" v-on:click="borrar_servicio(servicio)">
+                   <div v-if="esta_activo != true" class="simula_link" v-on:click="borrar_servicio(servicio)">
                      Eliminar el servicio <i class="fas fa-trash-alt"></i>
                    </div>
                   

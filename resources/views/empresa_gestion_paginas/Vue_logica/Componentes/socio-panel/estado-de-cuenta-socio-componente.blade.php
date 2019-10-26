@@ -91,6 +91,7 @@ template:'
                 <div class="estado-detalle" :class="tipoSaldoclassObject"> @{{estado_de_cuenta.detalle}}</div>
                 <div class="entidad-lista-servicio-fecha"> Por valor de  @{{estado_de_cuenta.moneda}} @{{estado_de_cuenta.valor}}</div>
                 <div class="entidad-lista-servicio-fecha">Registrado el @{{estado_de_cuenta.fecha_formateada}} </div>
+                <div class="entidad-lista-servicio-fecha">Estado de cuenta Nº @{{estado_de_cuenta.id}} </div>
               </div>
               <div class="get_width_10 flex-row-column">
 
