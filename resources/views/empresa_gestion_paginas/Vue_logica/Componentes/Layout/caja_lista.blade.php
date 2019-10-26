@@ -32,12 +32,14 @@ template:'  <div class="contiene-lista-caja">
                 <span class="caja-lista-nombre" >
                  
                  <span :class="getClassListaNombreYValor">
-                    @{{caja.detalle}}
+                     @{{caja.detalle}}
+
+                     @{{caja.moneda}} 
+
+                     @{{caja.valor}}
                  </span> 
 
-                  @{{caja.moneda}} 
-
-                  @{{caja.valor}}
+                 
 
                 </span>
                 <span class="caja-lista-datos-secundarios"> 

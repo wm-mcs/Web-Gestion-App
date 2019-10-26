@@ -19,6 +19,7 @@ class CajaEmpresa extends Model
 
     
     protected $fillable = ['name', 'description'];
+    protected $hidden   = ['user'];
     protected $appends  = ['user_name','fecha'];
 
 

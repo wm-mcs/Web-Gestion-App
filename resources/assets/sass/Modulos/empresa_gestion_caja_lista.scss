@@ -13,6 +13,11 @@
     border:solid 1px transparent;
     width: 70%;
     color:$color-gris-text;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
+
+
    }
 
     .sub-contiene-lista-caja-deudor{
