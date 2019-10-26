@@ -69,21 +69,28 @@ template:'<span >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Ingresar movimiento en sucursal @{{sucursal.name}}</h4>
+          <h4 class="modal-title" id="myModalLabel" v-if="servicio_elegido_comp">Ingresa el monto</h4>
+           <h4 class="modal-title" id="myModalLabel" v-else>Ingresar movimiento en sucursal @{{sucursal.name}}</h4>
           <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div class="modal-body text-center"> 
          <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
-           <div class="titulo-fase-2">
-             Ingresa el monto
-           </div>
-           <div>
-              <input type="radio" value="$" v-model="moneda">
-              <label for="one">Pesos</label>
-              <br>
-              <input type="radio" value="U$S" v-model="moneda">
-              <label for="one">Dolares</label>
+           
+           <div class="contiene-fase-2-moneda">
+            <div class="flex-row-center flex-justifice-space-around">
+              <div class="contiene-opcion-moneda">
+                <input type="radio" value="$" v-model="moneda">
+                <label for="$">Pesos</label>
+              </div>
+              
+              <div class="contiene-opcion-moneda">
+                <input type="radio" value="U$S" v-model="moneda">
+                <label for="U$S">Dolares</label>
+              </div>
+            </div>
+              
+
            </div>
            <div v-on:click="cancelarIngreso">Cancelar</div>
          </div>

@@ -31,10 +31,16 @@
     @include align-items(center); 
   }
 
-    .titulo-fase-2{
-      text-align: center;
-      padding:6px;
-      margin-bottom: 10px;
-
+    .contiene-fase-2-moneda{
+      @include flexbox;       
+      @include flex-direction(row);
+      @include align-items(center); 
+      @include justify-content(space-around); 
+      width: 100%;
+      margin-bottom: 6px;
 
     }
+
+       .contiene-opcion-moneda{
+        
+       }
