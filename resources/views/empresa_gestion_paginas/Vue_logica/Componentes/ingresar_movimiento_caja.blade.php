@@ -7,7 +7,7 @@ data:function(){
      tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
      servicio_elegido:'',
      moneda: '$',
-     valor_ingresar:0;
+     valor_ingresar:0
 
     }
 },
