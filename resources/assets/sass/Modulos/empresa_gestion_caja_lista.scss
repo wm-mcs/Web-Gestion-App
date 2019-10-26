@@ -50,3 +50,31 @@
          .moneda-label{
           margin: 0 0 0 5px;
          }
+
+
+        .ingresar-input-valor{
+          padding:25px;
+          width: 50%;
+          text-align: center;
+          font-size: 35px;
+          color:$color-gris-text;   
+          border:solid 1px transparent;  
+          border-bottom:solid 3px $color-3;
+        }
+
+
+        .ingreso-caja-aviso{
+          font-size: 8px;
+          margin-bottom:5px;
+          color:$color-gris-text;
+          padding:3px;
+
+        }
+
+
+        .ingreso-caja-cancelar-la-operacion{
+          color:$color-gris-text;
+          text-align: center;
+          font-size: 10px;
+          margin: 10px 0 20px 0;
+        }
