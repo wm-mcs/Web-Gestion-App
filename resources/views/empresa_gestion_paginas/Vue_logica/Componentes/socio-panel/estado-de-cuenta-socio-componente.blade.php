@@ -93,16 +93,7 @@ template:'
                 <div class="entidad-lista-servicio-fecha">Registrado el @{{estado_de_cuenta.fecha_formateada}} </div>
                 <div class="entidad-lista-servicio-fecha">Estado de cuenta Nº @{{estado_de_cuenta.id}} </div>
               </div>
-              <div class="get_width_10 flex-row-column">
-
-                   <span v-if="paga" class="estado-de-cuenta-saldo estado-pago-indication" title="Un pago de un servicio o un crédito a su favor">
-                     <i class="fas fa-money-bill-wave-alt"></i>
-                   </span>
-                   <span v-else class="estado-de-cuenta-saldo estado-debe-indication" title="Un crédito en su contra o un servicio contratado">
-                     <i class="fas fa-money-bill-wave-alt"></i>
-                   </span>
-                
-              </div>
+              
 
               <div class="get_width_10 flex-row-column">
 
