@@ -168,7 +168,7 @@ template:'<span>
   <div class="panel-socio-header-contenedor">
     <div class="panel-socio-name">
 
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.modal-editar-socio')    
+      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.modal-editar-socio')    
 
     </div>
     <div class="panel-socio-contiene-acciones"> 

@@ -1,5 +1,5 @@
  <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear" v-on:click="editSocioShow">
-        <i class="fas fa-user-edit"></i>
+        <i class="fas fa-user-edit"></i> @{{socio.name}}
        
  </div>
 
