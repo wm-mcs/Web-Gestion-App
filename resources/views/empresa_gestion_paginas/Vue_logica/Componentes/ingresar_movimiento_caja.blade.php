@@ -153,7 +153,7 @@ template:'<span >
              @{{servicio.nombre}}
            </div>
            <div v-if="user.role > 2" 
-               v-for="servicio in tipos_de_servicios" 
+               v-for="servicio in tipos_de_servicios_dueno" 
           v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
                        :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
              @{{servicio.nombre}}
