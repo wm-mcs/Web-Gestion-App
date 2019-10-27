@@ -5,9 +5,11 @@ data:function(){
     return {
      modal:'#modal-ingreso-caja',
      tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
+     tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"deudor"}] ,
      servicio_elegido:'',
      moneda: '$',
-     valor_ingresar:0
+     valor_ingresar:0,
+     user:  {!! json_encode(Auth::user()) !!}
 
     }
 },
@@ -149,6 +151,13 @@ template:'<span >
            <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
                        :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
              @{{servicio.nombre}}
+           </div>
+           <div v-if="user.role > 2" 
+               v-for="servicio in tipos_de_servicios" 
+          v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
+                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
+             @{{servicio.nombre}}
+             
            </div>
          </div>
                  

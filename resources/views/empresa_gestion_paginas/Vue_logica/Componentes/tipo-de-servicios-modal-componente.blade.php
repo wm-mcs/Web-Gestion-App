@@ -159,7 +159,7 @@ template:'
           <div class="">
               <h4 class="modal-title" id="myModalLabel"> Servicios</h4>
               <div class="modal-mensaje-aclarador">
-                Aquí van los servicios que más frecuentemente tú vas a vender. Pueden ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tu quieras.
+                Aquí van los servicios que más frecuentemente tú vas a vender. Puedén ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tú quieras.
 
 
               </div>
@@ -217,7 +217,7 @@ template:'
 
              </div>
              <div v-else>
-               Aun no hay servicios creados. Crea uno ;) 
+               Aún no hay servicios creados. Crea uno ahora !
              </div>
 
 
