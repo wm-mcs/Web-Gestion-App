@@ -24,17 +24,10 @@ elixir(function(mix) {
     mix.scripts([
         
         'Template_creative/jquery.js',
-        'Template_creative/bootstrap.bundle.js',
-        'Template_creative/jquery.easing.js',        
-        'Template_creative/scrollreveal.js',
-        'Template_creative/jquery.magnific-popup.js',
-        'Template_creative/creative.js',
-        'Template_creative/jquery.easing.compatibility.js',
-        'Plugins/Flickity.js',
-        'Plugins/Plug-lazyLoadXT.js',
-        'Customs/sliders.js',
-        'Customs/team.js',
-        'Customs/noticias_blog.js'
+         'Customs/helper_generales.js',
+         'Customs/admin_eventos.js'
+
+       
 
 
        ]);
@@ -45,7 +38,6 @@ elixir(function(mix) {
         'Template_creative/bootstrap.bundle.js',
         'Customs/helper_generales.js',
         'Plugins/Plug-Notify.js',
-        'Customs/mis-file_input.js',
         'Customs/admin_eventos.js'
        
 
