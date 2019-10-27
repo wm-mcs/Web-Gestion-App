@@ -5,7 +5,7 @@ data:function(){
     return {
      modal:'#modal-ingreso-caja',
      tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
-     tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"deudor"}] ,
+     tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"acredor"}] ,
      servicio_elegido:'',
      moneda: '$',
      valor_ingresar:0,
