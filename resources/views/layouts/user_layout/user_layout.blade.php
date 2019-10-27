@@ -37,6 +37,9 @@
            <span id="app">
              
              <div class="flex-row-column get_width_100{{-- wraper-content-principal-con-nav --}}">
+              <div class="mensaje-contenedor-layout-auth">
+                @include('layouts.gestion_socios_layout.mensajes.mensajes')   
+              </div>
                   @yield('content')  
              </div>           
              
