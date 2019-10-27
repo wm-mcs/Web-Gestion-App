@@ -156,12 +156,15 @@ template:'
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel"> Servicio</h4>
-          <div class="modal-mensaje-aclarador">
-            Aquí van los servicios que más frecuentemente tú vas a vender. Pueden ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tu quieras.
+          <div class="">
+              <h4 class="modal-title" id="myModalLabel"> Servicios</h4>
+              <div class="modal-mensaje-aclarador">
+                Aquí van los servicios que más frecuentemente tú vas a vender. Pueden ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tu quieras.
 
 
+              </div>
           </div>
+          
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>

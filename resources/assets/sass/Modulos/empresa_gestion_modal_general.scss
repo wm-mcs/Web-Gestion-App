@@ -1,0 +1,11 @@
+.contenedor-header-modal-cuando-hay-mensaje{
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+}
+.modal-mensaje-aclarador{
+  margin-top:20px;
+  letter-spacing: 1.5px;
+  color: $Color-texto-gris-Mercadolibre;
+  font-size: 8px;
+}
