@@ -921,7 +921,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     }
 
     //verifico d enuevo que no esté anulada ya
-    if($Caja_a_anular->estado_del_movimiento != 'anulado'  || $Caja_a_anular->estado_del_movimiento != 'anulador' )
+    if($Caja_a_anular->estado_del_movimiento != 'anulado'  && $Caja_a_anular->estado_del_movimiento != 'anulador' )
     {
        $CajaAnulador = $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'), 
                                                       $Sucursal->id, 

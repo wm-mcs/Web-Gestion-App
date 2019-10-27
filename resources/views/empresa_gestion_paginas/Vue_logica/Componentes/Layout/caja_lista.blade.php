@@ -66,7 +66,7 @@ computed:{
     }
   },
   sePuedeEliminar:function(){
-    if(this.caja.estado_del_movimiento != 'anulado' || this.caja.estado_del_movimiento != 'anulador' )
+    if(this.caja.estado_del_movimiento != 'anulado' && this.caja.estado_del_movimiento != 'anulador' )
     {
       return true;
     }
