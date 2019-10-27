@@ -23,7 +23,7 @@ anular_movimiento:function(){
        var vue = this;
 
        var data = {         caja_id:  this.caja.id,
-                         empresa_id: this.empresa.id};
+                         empresa_id:  this.caja.empresa_id};
 
        axios.post(url,data).then(function(response){ 
 
