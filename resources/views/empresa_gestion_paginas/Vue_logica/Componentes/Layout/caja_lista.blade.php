@@ -7,33 +7,9 @@ data:function(){
 
     }
 },
-computed:{
-  getClassLista:function(){
-    return {
-      
-      'sub-contiene-lista-caja-deudor': this.caja.tipo_saldo === 'deudor',
-      'sub-contiene-lista-caja-acredor': this.caja.tipo_saldo === 'acredor',
-      'sub-contiene-lista-caja': this.mostrar 
-    }
-  },
-  getClassListaNombreYValor:function(){
-    return {
-      
-      'color-text-success text-bold': this.caja.tipo_saldo === 'deudor',
-      'color-text-danger text-bold': this.caja.tipo_saldo === 'acredor'
-    }
-  },
-  sePuedeEliminar:function(){
-    if(this.caja.estado_del_movimiento != 'anulado' || this.caja.estado_del_movimiento != 'anulador' )
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  },
-  anular_movimiento:function(){
+methods:{
+
+anular_movimiento:function(){
 
        var validation = confirm("¿Quieres eliminar éste movimiento de caja?");
 
@@ -71,6 +47,35 @@ computed:{
             
            });
   }
+  
+},
+computed:{
+  getClassLista:function(){
+    return {
+      
+      'sub-contiene-lista-caja-deudor': this.caja.tipo_saldo === 'deudor',
+      'sub-contiene-lista-caja-acredor': this.caja.tipo_saldo === 'acredor',
+      'sub-contiene-lista-caja': this.mostrar 
+    }
+  },
+  getClassListaNombreYValor:function(){
+    return {
+      
+      'color-text-success text-bold': this.caja.tipo_saldo === 'deudor',
+      'color-text-danger text-bold': this.caja.tipo_saldo === 'acredor'
+    }
+  },
+  sePuedeEliminar:function(){
+    if(this.caja.estado_del_movimiento != 'anulado' || this.caja.estado_del_movimiento != 'anulador' )
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  },
+  
     
 
 },
