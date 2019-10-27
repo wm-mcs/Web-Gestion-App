@@ -42,7 +42,7 @@ class CajaEmpresaRepo extends BaseRepo
     }
     $Entidad->save();
 
-    
+    return $Entidad;
 
   }
 
@@ -53,6 +53,25 @@ class CajaEmpresaRepo extends BaseRepo
                 ->where('servicio_id',$servicio_id)  
                 ->where('sucursal_id',$sucursal_id )
                 ->get();
+  }
+
+  public function DevolverTipoDeSaldoOpuesto($SaldoQueViene)
+  {
+     if($SaldoQueViene == 'deudor')
+        {
+          $Saldo = 'acredor';
+        }
+        else
+        {
+          $Saldo = 'deudor';
+        }
+
+        return $Saldo;
+  }
+
+  public function getDetalleAlAnular($EntidadAAnular)
+  {
+    return 'Anulación del movimiento ' . $EntidadAAnular->id . ' : ' . $EntidadAAnular->detalle;
   }
 
 

@@ -57,6 +57,12 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@ingresar_movimiento_caja',
                   'as'         => 'ingresar_movimiento_caja']);
 
+                
+                 //eliminar el moviiento de caja
+                Route::post('eliminar_estado_de_caja',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@eliminar_estado_de_caja',
+                  'as'         => 'eliminar_estado_de_caja']);
 
 
                  Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()

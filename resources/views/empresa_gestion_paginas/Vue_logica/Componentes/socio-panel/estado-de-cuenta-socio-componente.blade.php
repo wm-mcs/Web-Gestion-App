@@ -23,7 +23,7 @@ methods:{
     eliminar_estado_de_cuenta:function()
     {
 
-       var validation = confirm("¿Quieres eliminar esté estado de cuenta?");
+       var validation = confirm("¿Quieres eliminar éste estado de cuenta?");
 
        if(!validation)
        {

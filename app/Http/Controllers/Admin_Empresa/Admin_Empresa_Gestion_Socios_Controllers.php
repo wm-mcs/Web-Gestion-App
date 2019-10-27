@@ -23,6 +23,7 @@ use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\VendedorEmpresaRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
+use App\Managers\EmpresaGestion\AnularCajaManager;
 
 
 
@@ -902,6 +903,53 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       return  ['Validacion'          => false,
                'Validacion_mensaje'  => 'No se puedo ingresar el movimiento: ' . $manager->getErrors()];
     }
+  }
+
+  //eliminar movimiento de caja
+  public function eliminar_estado_de_caja(Request $Request)
+  {
+    $User           = $Request->get('user_desde_middleware'); 
+    $Sucursal       = $Request->get('sucursal_desde_middleware');
+    $Caja_a_anular  = $this->CajaEmpresaRepo->find( $Request->get('caja_id') );   
+
+    $Manager  = new AnularCajaManager(null,$Request->all());
+
+    if(!$Manager->isValid())
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puedo anular: ' . $manager->getErrors()];
+    }
+
+    //verifico d enuevo que no esté anulada ya
+    if($Caja_a_anular->estado_del_movimiento != 'anulado'  || $Caja_a_anular->estado_del_movimiento != 'anulador' )
+    {
+       $CajaAnulador = $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'), 
+                                                      $Sucursal->id, 
+                                                      $User->id, 
+                                                      $this->CajaEmpresaRepo->DevolverTipoDeSaldoOpuesto($Caja_a_anular->tipo_saldo), 
+                                                      $Caja_a_anular->moneda, 
+                                                      $Caja_a_anular->valor, 
+                                                      $this->CajaEmpresaRepo->getDetalleAlAnular($Caja_a_anular), 
+                                                      Carbon::now('America/Montevideo'),
+                                                      'Anulacion');
+
+       //indico que se anuló
+       $this->CajaEmpresaRepo->setAtributoEspecifico($Caja_a_anular,'estado_del_movimiento','anulado');
+
+       //indico que es un movimiento anulador
+       $this->CajaEmpresaRepo->setAtributoEspecifico($CajaAnulador,'estado_del_movimiento','anulador');
+
+       return  ['Validacion'          => true,
+                'Validacion_mensaje'  => 'Se anuló correctamente',
+                'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id) ];
+
+    }
+    else
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puedo anular ésto debido a que previamente ya fue anulado. '];
+    }
+
   }
 
 
