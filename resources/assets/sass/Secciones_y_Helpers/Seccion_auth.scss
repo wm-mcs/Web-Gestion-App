@@ -1,7 +1,8 @@
 .mensaje-contenedor-layout-auth{
   width: 100%;
-  padding:8px;
+  
   border-radius:6px;
+  margin-bottom: 25px;
   margin-bottom: 25px;
   @include flexbox;       
   @include flex-direction(column);
