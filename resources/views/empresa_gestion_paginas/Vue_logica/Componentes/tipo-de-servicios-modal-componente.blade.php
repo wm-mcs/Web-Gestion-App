@@ -147,8 +147,8 @@ methods:{
 },
 template:'
 <span>
- <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear"  v-on:click="agregarServicioShoww" title="Crear un nuevo tipo de servicio">
-       <i class="fas fa-plus"></i>  
+ <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear"  v-on:click="agregarServicioShoww" title="Listado de servicios">
+        <i class="far fa-list-alt"></i>  <span class="" >Servicios</span> 
        
  </div>
 
@@ -156,7 +156,12 @@ template:'
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel"> Agregar servicio</h4>
+          <h4 class="modal-title" id="myModalLabel"> Servicio</h4>
+          <div class="modal-mensaje-aclarador">
+            Aquí van los servicios que más frecuentemente tú vas a vender. Pueden ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tu quieras.
+
+
+          </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
