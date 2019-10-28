@@ -628,7 +628,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Tipo_saldo = 'deudor';
         }
 
-        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User_id); 
+        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User->id); 
        
 
           //me fijo se el estado es deudor (es decir que pagó) 
@@ -711,7 +711,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
           
 
-          $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad,$User_id); 
+          $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad,$User->id); 
 
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
