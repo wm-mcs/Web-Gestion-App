@@ -111,7 +111,7 @@ computed:{
 },
 template:'
 <div class="flex-row-column get_width_100">
-<div class="class="flex-row-column get_width_80">
+<div class="flex-row-column get_width_80">
 
    <div class="contiene-lista-caja"> 
 
