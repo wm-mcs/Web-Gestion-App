@@ -335,8 +335,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
    
        $Entidad     = $this->TipoDeServicioRepo->getEntidad(); 
 
-       $Manager     = new CrearTipoServicioManager(null,$Request->all());
-        if(!$Manager->isValid())
+       $manager     = new CrearTipoServicioManager(null,$Request->all());
+        if(!$manager->isValid())
         {
           return  ['Validacion'          => false,
                    'Validacion_mensaje'  => 'No se puedó crear el servicio: ' . $manager->getErrors()];
@@ -413,8 +413,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Sucursal    = $Request->get('sucursal_desde_middleware');  
 
 
-        $Manager     = new AgregarAlSocioUnServicioManager(null,$Request->all());
-        if(!$Manager->isValid())
+        $manager     = new AgregarAlSocioUnServicioManager(null,$Request->all());
+        if(!$manager->isValid())
         {
           return  ['Validacion'          => false,
                    'Validacion_mensaje'  => 'No se puedó agregar el servicio: ' . $manager->getErrors()];
@@ -896,9 +896,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $User              = $Request->get('user_desde_middleware'); 
     $Sucursal          = $Request->get('sucursal_desde_middleware');
-    $Manager           = new IngresarMovimientoCajaManager(null, $Request->all() );
+    $manager           = new IngresarMovimientoCajaManager(null, $Request->all() );
 
-    if($Manager->isValid())
+    if($manager->isValid())
     {
       $detalle = $Request->get('nombre'); 
       $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'), 
@@ -928,9 +928,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $Sucursal       = $Request->get('sucursal_desde_middleware');
     $Caja_a_anular  = $this->CajaEmpresaRepo->find( $Request->get('caja_id') );   
 
-    $Manager  = new AnularCajaManager(null,$Request->all());
+    $manager  = new AnularCajaManager(null,$Request->all());
 
-    if(!$Manager->isValid())
+    if(!$manager->isValid())
     {
       return  ['Validacion'          => false,
                'Validacion_mensaje'  => 'No se puedo anular: ' . $manager->getErrors()];
