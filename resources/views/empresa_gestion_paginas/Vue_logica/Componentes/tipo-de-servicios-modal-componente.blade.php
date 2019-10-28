@@ -46,7 +46,7 @@ methods:{
 
               axios.post(url,data).then(function (response){  
               
-              
+               
 
               if(response.data.Validacion == true)
               {

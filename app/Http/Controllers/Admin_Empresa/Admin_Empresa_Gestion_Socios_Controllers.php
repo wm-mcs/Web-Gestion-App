@@ -24,7 +24,8 @@ use App\Repositorios\VendedorEmpresaRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AnularCajaManager;
-
+use App\Managers\EmpresaGestion\CrearTipoServicioManager; 
+use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 
 
 
@@ -334,6 +335,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
    
        $Entidad     = $this->TipoDeServicioRepo->getEntidad(); 
 
+       $Manager     = new CrearTipoServicioManager(null,$Request->all());
+        if(!$Manager->isValid())
+        {
+          return  ['Validacion'          => false,
+                   'Validacion_mensaje'  => 'No se puedó crear el servicio: ' . $manager->getErrors()];
+        }
+
        $Propiedades = ['name','tipo','empresa_id'];
 
        $Entidad->estado = 'si';
@@ -402,7 +410,15 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Validacion  = true;
      $User        = $Request->get('user_desde_middleware');  
      $Socio       = $Request->get('socio_desde_middleware'); 
-     $Sucursal    = $Request->get('sucursal_desde_middleware'); 
+     $Sucursal    = $Request->get('sucursal_desde_middleware');  
+
+
+        $Manager     = new AgregarAlSocioUnServicioManager(null,$Request->all());
+        if(!$Manager->isValid())
+        {
+          return  ['Validacion'          => false,
+                   'Validacion_mensaje'  => 'No se puedó agregar el servicio: ' . $manager->getErrors()];
+        }
 
     
        
