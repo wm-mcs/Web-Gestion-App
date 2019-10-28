@@ -727,9 +727,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->moneda, 
                                                                  $Entidad->valor, 
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
-                                                                 'Anulacion Estado De Cuenta',
                                                                  Carbon::now('America/Montevideo'),
-                                                                 'Anulacion',
+                                                                  'Anulacion Estado De Cuenta',
                                                                  null);
 
            //indico que es un movimiento anulador
