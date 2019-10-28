@@ -473,7 +473,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->valor, 
                                                                  'Venta de servicio a socio '. $Socio->name, 
                                                                  Carbon::now('America/Montevideo'), 
-                                                                 'venta',
+                                                                 'Venta Servicio ',
                                                                  $Entidad ) ;
             }         
              
@@ -526,8 +526,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Entidad->moneda, 
                                                                  $Entidad->valor, 
                                                                  'Venta de servicio a socio '. $Socio->name,
-                                                                 'Venta Servicio',
                                                                  Carbon::now('America/Montevideo'), 
+                                                                 'Venta Servicio',
                                                                  $Entidad ) ;
 
 
@@ -640,9 +640,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'acredor', 
                                                                  $Estado->moneda, 
                                                                  $Estado->valor, 
-                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,
-                                                                 'Anulacion Estado De Cuenta',
-                                                                 Carbon::now('America/Montevideo'),null
+                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,               
+                                                                 Carbon::now('America/Montevideo'),
+                                                                  'Anulacion Estado De Cuenta',
+                                                                  null
                                                                  );
           }
           
@@ -728,7 +729,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                  'Anulacion Estado De Cuenta',
                                                                  Carbon::now('America/Montevideo'),
-                                                                 'Anulacion');
+                                                                 'Anulacion',
+                                                                 null);
 
            //indico que es un movimiento anulador
            $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
