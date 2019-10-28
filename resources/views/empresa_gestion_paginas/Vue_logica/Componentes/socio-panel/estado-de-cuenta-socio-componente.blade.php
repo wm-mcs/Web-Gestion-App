@@ -80,41 +80,70 @@ computed:{
       'estado-pago-indication': this.paga,
       'estado-debe-indication': !this.paga
     }
-   }
+   },
+
+  getClassLista:function(){
+    return {
+      
+      'sub-contiene-lista-caja-deudor': this.estado_de_cuenta.tipo_saldo === 'deudor',
+      'sub-contiene-lista-caja-acredor': this.estado_de_cuenta.tipo_saldo === 'acredor',
+      'sub-contiene-lista-caja': true 
+    }
+  },
+  getClassListaNombreYValor:function(){
+    return {
+      
+      'color-text-success text-bold': this.estado_de_cuenta.tipo_saldo === 'deudor',
+      'color-text-danger text-bold': this.estado_de_cuenta.tipo_saldo === 'acredor'
+    }
+  },
+  sePuedeEliminar:function(){
+    if(this.estado_de_cuenta.estado_del_movimiento != 'anulado' && this.estado_de_cuenta.estado_del_movimiento != 'anulador' )
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  },
 
 },
 template:'
-           <div class="contiene-estado-de-cuenta">
-
-            <div class="get_width_100 flex-row-center flex-justifice-space-between">
-              <div class="get_width_70 ">
-                <div class="estado-detalle" :class="tipoSaldoclassObject"> @{{estado_de_cuenta.detalle}}</div>
-                <div class="entidad-lista-servicio-fecha"> Por valor de  @{{estado_de_cuenta.moneda}} @{{estado_de_cuenta.valor}}</div>
-                <div class="entidad-lista-servicio-fecha">Registrado el @{{estado_de_cuenta.fecha_formateada}} </div>
-                <div class="entidad-lista-servicio-fecha">Estado de cuenta Nº @{{estado_de_cuenta.id}} </div>
-              </div>
-              
-
-              <div class="get_width_10 flex-row-column">
-
-                 <span class="simula_link" v-on:click="eliminar_estado_de_cuenta" title="Eliminar esté estado de cuenta">
-
-                   <i class="fas fa-trash-alt"></i>
-
-                 </span>
-                
-              </div>
+          
 
 
+           <div class="contiene-lista-caja"> 
+
+              <div :class="getClassLista">
+                <span class="caja-lista-nombre" >
+                 
+                 <span :class="getClassListaNombreYValor">
+                     @{{estado_de_cuenta.detalle}}
+
+                     @{{estado_de_cuenta.moneda}} 
+
+                     @{{estado_de_cuenta.valor}}
+                 </span> 
+
+                 
+
+                </span>
+                <span class="caja-lista-datos-secundarios"> 
+
+                   Operador: <strong>@{{estado_de_cuenta.user_name}}</strong>  | Fecha:  <strong>@{{estado_de_cuenta.fecha}}</strong> | Id: @{{estado_de_cuenta.id}}  
+                   <span v-if="sePuedeEliminar"> 
+                    | <span v-on:click="eliminar_estado_de_cuenta" class="simula_link" title="Anular éste movimiento.">
+                        <i class="fas fa-trash-alt"></i> 
+                      </span>
+
+                      </span>
+
+                </span>            
+                <span> </span>
+              </div>             
               
             </div>
-
-
-             
-             
-
-            
-           </div>
   
 
 '
