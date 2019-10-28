@@ -743,7 +743,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se eliminó el estado de cuentacorrectamente',
-               'Socio'               =>  $Socio, 
+               'Socio'               =>  $this->SocioRepo->find($Socio->id), 
                'sucursal'            =>  $this->SucursalEmpresaRepo->find($Sucursal->id)];
      }
      
