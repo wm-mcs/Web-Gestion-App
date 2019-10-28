@@ -19,9 +19,13 @@
     border-radius:4px;    
     @include flexbox;       
     @include flex-direction(row);
-    @include align-items(center); 
-    @include justify-content(space-around);      
+    @include align-items(center);     
+
   }
+
+    .panel-socio-agrega-margin-left-boton{
+      margin-left: 15px;
+    }
 
 
 

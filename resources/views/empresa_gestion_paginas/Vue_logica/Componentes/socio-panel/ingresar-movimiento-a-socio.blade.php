@@ -100,8 +100,8 @@ computed:{
 }
 ,
 template:'<span >
-   <div  class="admin-user-boton-Crear" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
-       <i class="fas fa-cash-register"></i>
+   <div  class="admin-user-boton-Crear panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
+       <i class="fas fa-cash-register"></i> Cobrar
 
 
 
