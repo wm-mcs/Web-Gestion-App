@@ -628,7 +628,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Tipo_saldo = 'deudor';
         }
 
-        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User->id); 
+        
+        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User->id,Carbon::now('America/Montevideo')); 
        
 
           //me fijo se el estado es deudor (es decir que pagó) 
