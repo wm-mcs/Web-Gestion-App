@@ -16,11 +16,11 @@
 
   .panel-socio-contiene-acciones{
     padding:8px;
-    border-radius:4px;
-    
+    border-radius:4px;    
     @include flexbox;       
     @include flex-direction(row);
     @include align-items(center); 
+    @include justify-content(space-around);      
   }
 
 
