@@ -23,7 +23,7 @@ class MovimientoEstadoDeCuentaSocio extends Model
      */
     protected $fillable = ['name'];
 
-    protected $appends  = ['fecha_formateada','fecha'];
+    protected $appends  = ['fecha_formateada','fecha','user_name'];
 
 
 
