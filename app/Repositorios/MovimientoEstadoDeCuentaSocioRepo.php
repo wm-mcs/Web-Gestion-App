@@ -61,7 +61,7 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
   }
 
   //setters//////////////////////////////////////////////////////////////////////
-  public function AnularEsteEstadoDeCuenta($MovimientoAAnular,$User_id)
+  public function AnularEsteEstadoDeCuenta($MovimientoAAnular,$User_id,$Fecha)
   {
     //indico que se anuló
     $this->setAtributoEspecifico($MovimientoAAnular,'estado_del_movimiento','anulado');
@@ -71,6 +71,17 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
     $Detalle = $this->getDetalleAlAnular($MovimientoAAnular);
 
     $Movimeinto_anulador = $this->getEntidad();
+
+    $Movimeinto_anulador->socio_id              = $MovimientoAAnular->socio_id;
+    $Movimeinto_anulador->user_id               = $MovimientoAAnular->user_id;
+    $Movimeinto_anulador->tipo_saldo            = $Saldo;
+    $Movimeinto_anulador->moneda                = $MovimientoAAnular->moneda;
+    $Movimeinto_anulador->valor                 = $MovimientoAAnular->valor;
+    $Movimeinto_anulador->detalle               = $Detalle;
+    $Movimeinto_anulador->fecha_ingreso         = $Fecha;
+    $Movimeinto_anulador->servicio_id           = $MovimientoAAnular->servicio_id;
+    $Movimeinto_anulador->estado_del_movimiento = 'anulador';
+    $Movimeinto_anulador->save();
   }
  
 

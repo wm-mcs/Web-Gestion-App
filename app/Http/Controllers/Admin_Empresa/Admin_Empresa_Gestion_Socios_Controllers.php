@@ -712,12 +712,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
           
 
-          $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad,$User->id); 
+          $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad,$User->id,Carbon::now('America/Montevideo')); 
 
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
 
-          //me fijo se el estado es deudor (es decir que pagó) 
+          //me fijo si el estado es deudor (es decir que pagó) 
           if($Entidad->tipo_saldo == 'deudor')
           {
            $Caja = $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
