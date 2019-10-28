@@ -444,6 +444,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
              //Logica de estado de cuenta cuando compra
              $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                                            $User->id,
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -456,6 +457,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Entidad->socio_id, 
+                                            $User->id,
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -494,6 +496,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
              //Logica de estado de cuenta cuando compra
              $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Socio->id, 
+                                            $User->id,
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Compra de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -506,7 +509,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             if($Request->get('paga') == 'si') 
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Socio->id, 
+                  ->setEstadoDeCuentaCuando($Socio->id,
+                                            $User->id, 
                                             $Entidad->moneda,
                                             $Entidad->valor,
                                             'Pago de '.$Entidad->name . ' ' . $Entidad->id ,
@@ -607,20 +611,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Socio        = $Request->get('socio_desde_middleware'); 
      $Sucursal     = $Request->get('sucursal_desde_middleware'); 
 
-
-      
-
       $this->ServicioContratadoSocioRepo->destruir_esta_entidad_de_manera_logica($Servicio);
 
       //borrar los estados de cuenta
       $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadoDeCuentasDelSocioDeUnServicioEnParticular($Socio->id,$Request->get('servicio_id'));
 
-      
-
-      foreach ($Estados_de_cuenta as $Estado) {
-
-
-        /*$this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Estado);*/
+      foreach ($Estados_de_cuenta as $Estado)
+      {
+       
         if($Estado->tipo_saldo == 'deudor')
         {
           $Tipo_saldo = 'acredor';
@@ -629,14 +627,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         {
           $Tipo_saldo = 'deudor';
         }
-        $this->MovimientoEstadoDeCuentaSocioRepo
-             ->setEstadoDeCuentaCuando($Socio->id, 
-                                       $Estado->moneda,
-                                       $Estado->valor,
-                                       'Anulación del estado de cuenta al eliminar servicio. Estado de cuenta Nº:'. $Estado->id ,
-                                       $Tipo_saldo,
-                                       Carbon::now('America/Montevideo'),
-                                       null);
+
+        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User_id); 
+       
 
           //me fijo se el estado es deudor (es decir que pagó) 
           if($Estado->tipo_saldo == 'deudor')
@@ -658,8 +651,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       //borrar los moviemiento de caja si es que hubo         
       $MovimeintosDeCaja = $this->CajaEmpresaRepo->getMovimeintosDeEstaSecursalYServicio($Request->get('servicio_id'),$Sucursal->id);
-
-      
 
       //actualiza la session
       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
@@ -720,7 +711,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
           
 
-          $this->MovimientoEstadoDeCuentaSocioRepo->destruir_esta_entidad_de_manera_logica($Entidad);
+          $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad,$User_id); 
 
           $Socio = $this->SocioRepo->find($estado_de_cuenta->socio_id);
 
@@ -728,7 +719,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           //me fijo se el estado es deudor (es decir que pagó) 
           if($Entidad->tipo_saldo == 'deudor')
           {
-            $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
+           $Caja = $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
                                                                  $Sucursal->id, 
                                                                  $User->id, 
                                                                  'acredor', 
@@ -737,7 +728,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                  'Anulacion Estado De Cuenta',
                                                                  Carbon::now('America/Montevideo'),
-                                                                 null);
+                                                                 'Anulacion');
+
+           //indico que es un movimiento anulador
+           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
           }
 
 

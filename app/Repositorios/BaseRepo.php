@@ -380,6 +380,28 @@ abstract class BaseRepo
       }
       
     }
+
+    public function DevolverTipoDeSaldoOpuesto($SaldoQueViene)
+    {
+       if($SaldoQueViene == 'deudor')
+          {
+            $Saldo = 'acredor';
+          }
+          else
+          {
+            $Saldo = 'deudor';
+          }
+
+          return $Saldo;
+    }
+
+    /**
+     * Valido para movimiento de caja o estado de cuenta
+     */
+    public function getDetalleAlAnular($EntidadAAnular)
+    {
+      return 'Anulación del movimiento ' . $EntidadAAnular->id . ' : ' . $EntidadAAnular->detalle;
+    }
     
 
 }   

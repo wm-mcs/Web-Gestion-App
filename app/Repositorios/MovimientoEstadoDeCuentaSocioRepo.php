@@ -40,11 +40,12 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
 
   
   //Cuando agrego un servicio nuevo creo estado de cuenta
-  public function setEstadoDeCuentaCuando($Socio_id,$Moneda,$Valor,$Detalle,$Tipo_saldo,$Fecha,$Servicio_id)
+  public function setEstadoDeCuentaCuando($Socio_id,$User_id,$Moneda,$Valor,$Detalle,$Tipo_saldo,$Fecha,$Servicio_id)
   {
     $Entidad = $this->getEntidad();
 
     $Entidad->socio_id      = $Socio_id;
+    $Entidad->user_id       = $User_id;
     $Entidad->tipo_saldo    = $Tipo_saldo;
     $Entidad->moneda        = $Moneda;
     $Entidad->valor         = $Valor;
@@ -60,7 +61,17 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
   }
 
   //setters//////////////////////////////////////////////////////////////////////
+  public function AnularEsteEstadoDeCuenta($MovimientoAAnular,$User_id)
+  {
+    //indico que se anuló
+    $this->setAtributoEspecifico($MovimientoAAnular,'estado_del_movimiento','anulado');
 
+    //creo el movimiento opuesto
+    $Saldo   = $this->DevolverTipoDeSaldoOpuesto($MovimientoAAnular->tipo_saldo);
+    $Detalle = $this->getDetalleAlAnular($MovimientoAAnular);
+
+    $Movimeinto_anulador = $this->getEntidad();
+  }
  
 
  

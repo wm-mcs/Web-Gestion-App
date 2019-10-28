@@ -55,24 +55,9 @@ class CajaEmpresaRepo extends BaseRepo
                 ->get();
   }
 
-  public function DevolverTipoDeSaldoOpuesto($SaldoQueViene)
-  {
-     if($SaldoQueViene == 'deudor')
-        {
-          $Saldo = 'acredor';
-        }
-        else
-        {
-          $Saldo = 'deudor';
-        }
+  
 
-        return $Saldo;
-  }
-
-  public function getDetalleAlAnular($EntidadAAnular)
-  {
-    return 'Anulación del movimiento ' . $EntidadAAnular->id . ' : ' . $EntidadAAnular->detalle;
-  }
+ 
 
 
  
