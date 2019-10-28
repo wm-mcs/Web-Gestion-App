@@ -17,7 +17,7 @@
   .panel-socio-contiene-acciones{
     padding:8px;
     border-radius:4px;
-    background-color: $Color-Gris-Claro;
+    
     @include flexbox;       
     @include flex-direction(row);
     @include align-items(center); 
