@@ -931,7 +931,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     if(!$manager->isValid())
     {
       return  ['Validacion'          => false,
-               'Validacion_mensaje'  => 'No se puedo anular: ' . $manager->getErrors()];
+               'Validacion_mensaje'  => 'No se pudó anular: ' . $manager->getErrors()];
     }
 
     //verifico d enuevo que no esté anulada ya

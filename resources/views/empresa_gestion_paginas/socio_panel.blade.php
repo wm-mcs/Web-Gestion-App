@@ -24,7 +24,7 @@
     
   
 
-<socio-panel-componente  :empresa="empresa"></socio-panel-componente>
+<socio-panel-componente  :empresa="empresa" :sucursal="Sucursal"></socio-panel-componente>
 
    
 

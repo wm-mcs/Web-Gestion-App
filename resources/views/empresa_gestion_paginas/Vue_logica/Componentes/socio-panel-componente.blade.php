@@ -2,7 +2,7 @@ Vue.component('socio-panel-componente',
 {
 
 
-props:['empresa'],
+props:['empresa','sucursal'],
 
 data:function(){
     return {
@@ -172,6 +172,8 @@ template:'<span>
 
     </div>
     <div class="panel-socio-contiene-acciones"> 
+
+     <ingresar-movimiento-a-socio :empresa="empresa" :sucursal="sucursal" :socio="socio"></ingresar-movimiento-a-socio> 
       
      <agregar-al-socio-un-servicio :socio="socio"                                     
                                    :empresa="empresa"
