@@ -635,7 +635,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           //me fijo se el estado es deudor (es decir que pagó) 
           if($Estado->tipo_saldo == 'deudor')
           {
-            $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
+           $Caja = $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
                                                                  $Sucursal->id, 
                                                                  $User->id, 
                                                                  'acredor', 
@@ -645,7 +645,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  Carbon::now('America/Montevideo'),
                                                                   'Anulacion Estado De Cuenta',
                                                                   null
-                                                                 );
+                                                                 ); 
+            //indico que es un movimiento anulador
+           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
           }
           
 
