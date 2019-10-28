@@ -31,7 +31,9 @@ class CajaEmpresa extends Model
 
         public function getUserNameAttribute()
         {
-            return $this->user->first_name;
+            return  Cache::remember('UserCajaName'.$this->id, 100000, function() {
+                              return $this->user->first_name;
+                          }); 
         }     
 
 

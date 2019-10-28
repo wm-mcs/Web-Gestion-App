@@ -4,6 +4,8 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Entidades\User;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -26,7 +28,17 @@ class MovimientoEstadoDeCuentaSocio extends Model
 
 
 
-    
+     public function user()
+    {
+      return $this->belongsTo(User::class,'user_id','id');
+    }
+
+        public function getUserNameAttribute()
+        {
+            return  Cache::remember('UserMovimientoContableName'.$this->id, 100000, function() {
+                              return $this->user->first_name;
+                          }); 
+        }   
 
     
 
