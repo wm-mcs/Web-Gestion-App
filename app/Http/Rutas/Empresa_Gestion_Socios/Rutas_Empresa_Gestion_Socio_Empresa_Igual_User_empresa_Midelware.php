@@ -39,6 +39,12 @@ Route::post('eliminar_estado_de_cuenta',
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@eliminar_estado_de_cuenta',
   'as'         => 'eliminar_estado_de_cuenta']);  
 
+Route::post('ingresar_movimiento_a_socio',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@ingresar_movimiento_a_socio',
+  'as'         => 'ingresar_movimiento_a_socio']);  
+
+
 
 
 

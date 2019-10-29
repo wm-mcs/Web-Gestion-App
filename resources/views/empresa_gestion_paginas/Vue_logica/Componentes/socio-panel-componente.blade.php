@@ -173,7 +173,7 @@ template:'<span>
     </div>
     <div class="panel-socio-contiene-acciones"> 
 
-     <ingresar-movimiento-a-socio :empresa="empresa" :sucursal="sucursal" :socio="socio"></ingresar-movimiento-a-socio> 
+     <ingresar-movimiento-a-socio  @actualizar_socio="actualizar_socio" :empresa="empresa" :sucursal="sucursal" :socio="socio"></ingresar-movimiento-a-socio> 
      
      <agregar-al-socio-un-servicio :socio="socio"                                     
                                    :empresa="empresa"

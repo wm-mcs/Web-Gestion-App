@@ -26,6 +26,7 @@ use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AnularCajaManager;
 use App\Managers\EmpresaGestion\CrearTipoServicioManager; 
 use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
+use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
 
 
 
@@ -963,6 +964,80 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       return  ['Validacion'          => false,
                'Validacion_mensaje'  => 'No se puedo anular ésto debido a que previamente ya fue anulado. '];
     }
+
+  }
+
+
+
+  public function ingresar_movimiento_a_socio(Request $Request)
+  {
+     $User              = $Request->get('user_desde_middleware');       
+     $Socio             = $Request->get('socio_desde_middleware'); 
+     $Sucursal          = $Request->get('sucursal_desde_middleware'); 
+
+     $manager           = new AgregarAlSocioMovimientoManager(null,$Request->all() );
+     if(!$manager->isValid())
+     {
+       return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'No se pudó agregar éste movimiento: ' . $manager->getErrors()];
+     } 
+
+     $Valor      =  $Request->get('valor');
+     $Moneda     =  $Request->get('moneda');
+     $Tipo_saldo =  $Request->get('tipo_saldo');
+     $Nombre     =  $Request->get('nombre');
+
+
+          if($Tipo_saldo == 'acredor')
+          {
+            //Logica de estado de cuenta cuando compra
+             $this->MovimientoEstadoDeCuentaSocioRepo
+                  ->setEstadoDeCuentaCuando($Socio->socio_id, 
+                                            $User->id,
+                                            $Moneda,
+                                            $Valor,
+                                            $Nombre ,
+                                            'acredor',
+                                            Carbon::now('America/Montevideo'),
+                                            null);
+          }
+             
+
+            //si se paga ahora      
+            if($Request->get('paga') == 'si') 
+            {
+                $this->MovimientoEstadoDeCuentaSocioRepo
+                  ->setEstadoDeCuentaCuando($Socio->socio_id, 
+                                            $User->id,
+                                            $Moneda,
+                                            $Valor,
+                                            'Pago de '.$Nombre ,
+                                            'deudor',
+                                            Carbon::now('America/Montevideo'),
+                                            null);
+                //Movimiento de caja
+                $this->CajaEmpresaRepo->InresarMovimientoDeCaja( $Request->get('empresa_id'), 
+                                                                 $Sucursal->id, 
+                                                                 $User->id, 
+                                                                 'deudor', 
+                                                                $Moneda, 
+                                                                 $Valor, 
+                                                                 'Cobro a socio '. $Socio->name . ' por concepto de ' . $Nombre, 
+                                                                 Carbon::now('America/Montevideo'), 
+                                                                 $Nombre,
+                                                                 $Entidad ) ;
+            }  
+
+
+
+            return  ['Validacion'          => true,
+                     'Validacion_mensaje'  => 'Se ingresó correctamente',
+                     'Socio'               =>  $this->SocioRepo->find($Socio->id), 
+                     'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id) ];
+
+
+
+ 
 
   }
 

@@ -47,7 +47,7 @@ methods:{
  }
  },
  ingresa_movimiento:function(){
-      var url = '/ingresar_movimiento_caja';
+      var url = '/ingresar_movimiento_a_socio';
 
       var data = {  
                     empresa_id: this.empresa.id,
@@ -68,6 +68,7 @@ methods:{
             if(data.Validacion == true)
             {
               app.cerrarModal(vue.modal);
+              vue.$emit('actualizar_socio',response.data.Socio); 
               bus.$emit('sucursal-set', response.data.sucursal);  
               $.notify(data.Validacion_mensaje, "success");   
 
