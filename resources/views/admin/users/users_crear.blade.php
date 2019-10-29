@@ -29,8 +29,9 @@
                             'files' =>  true,
                             'id'    => 'form-admin-empresa-datos'
                           ])               !!}
+  <div class="wrpaer-formulario-contenedor">                        
    <div class="formulario-contenedor">
-
+     <div class="formulario-contenedor-columnas">
       {{-- datos corporativos --}}
       <div class="contenedor-grupo-datos">
         <div class="contenedor-grupo-datos-titulo"><span class="icon-person"></span> Identidad</div>
@@ -38,7 +39,9 @@
           @include('admin.users.formularios_partes.datos_user')
         </div>
       </div>
+    </div>
 
+     <div class="formulario-contenedor-columnas">
       {{-- imagenes corporativos --}}
       <div class="contenedor-grupo-datos">
         <div class="contenedor-grupo-datos-titulo"><span class="icon-person"></span> Estado y Rol</div>
@@ -46,6 +49,7 @@
           @include('admin.users.formularios_partes.datos_user_select')
         </div>
       </div>
+    </div>
 
       
 
@@ -54,6 +58,8 @@
    <div class="admin-boton-editar">
      Crear Usuario
    </div> 
+
+</div>
 
 
   {!! Form::close() !!}
