@@ -13,20 +13,7 @@
 
 @section('content')
 
- {{-- titulo --}}
- {{-- <div class="contenedor-admin-entidad-titulo-form-busqueda">
-    <div class="admin-entidad-titulo">   
-        {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
-                            'method'=> 'Post',
-                            'files' =>  true,
-                            'name'  => 'form1'
-                          ])               !!}   
-       <input type="hidden" name="empresa_id" :value="empresa.id">
-       <span class="admin-user-boton-Crear" onclick="javascript:document.form1.submit()">Vista de cliente</span>    
-
-       {!! Form::close() !!}  
-    </div>    
- </div>  --}}
+ 
 
  <div class="empresa-lista-user-contenedor">
         <div class="empresa-lista-user-header">
