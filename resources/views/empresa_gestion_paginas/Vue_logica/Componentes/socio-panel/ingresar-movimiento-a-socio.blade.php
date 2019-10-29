@@ -102,7 +102,7 @@ computed:{
     }
   },
   servicio_elegido_es_distinto_de_cobro:function(){
-    if(this.servicio_elegido != 'Cobro')
+    if(this.servicio_elegido.nombre != 'Cobro')
     {
       return true;
     }
