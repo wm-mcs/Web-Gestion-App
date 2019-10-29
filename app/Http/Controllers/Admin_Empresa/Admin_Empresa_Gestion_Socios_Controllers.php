@@ -1025,7 +1025,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Cobro a socio '. $Socio->name . ' por concepto de ' . $Nombre, 
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Nombre,
-                                                                 $Entidad ) ;
+                                                                 null ) ;
             }  
 
 
