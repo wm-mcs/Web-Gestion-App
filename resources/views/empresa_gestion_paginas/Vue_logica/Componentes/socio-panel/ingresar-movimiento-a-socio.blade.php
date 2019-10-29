@@ -1,12 +1,13 @@
 Vue.component('ingresar-movimiento-a-socio' ,
 {
-props:[ 'empresa','sucursal'],
+props:[ 'empresa','sucursal','socio'],
 data:function(){
     return {
      modal:'#modal-ingreso-caja',
-     tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
+     tipos_de_servicios: {!! json_encode(config('movimientos_a_socio')) !!},
      tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"acredor"}] ,
      servicio_elegido:'',
+     se_cobra:'si',
      moneda: '$',
      valor_ingresar:0,
      user:  {!! json_encode(Auth::user()) !!}
@@ -53,7 +54,10 @@ methods:{
                         moneda: this.moneda,  
                          valor: this.valor_ingresar,
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
-                        nombre: this.servicio_elegido.nombre  
+                        nombre: this.servicio_elegido.nombre,
+                      socio_id: this.socio.id,
+                          paga: this.se_cobra
+
                  };  
       var vue = this;           
 
@@ -115,7 +119,7 @@ template:'<span >
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel" v-if="servicio_elegido_comp">Ingresa el monto</h4>
-           <h4 class="modal-title" id="myModalLabel" v-else>Ingresar movimiento en sucursal @{{sucursal.name}}</h4>
+           <h4 class="modal-title" id="myModalLabel" v-else> Facturar o cobrar algo a @{{socio.name}}</h4>
           <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
@@ -136,9 +140,23 @@ template:'<span >
             </div>
            </div>
 
+            <div class="contiene-fase-2-moneda">
+            <div class="flex-row-center flex-justifice-space-around get_width_40">
+              <div class="contiene-opcion-moneda">
+                <input type="radio" value="si" v-model="se_cobra">
+                <label class="moneda-label" for="si">Paga ahora</label>
+              </div>
+              
+              <div class="contiene-opcion-moneda">
+                <input type="radio" value="no" v-model="se_cobra">
+                <label class="moneda-label" for="no">Queda debiendo</label>
+              </div>
+            </div>
+           </div>
+
            <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
-             Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+             Estás a punto de ingresar ésto al socio @{{socio.first_name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
            <div class="boton-simple" v-on:click="ingresa_movimiento">
