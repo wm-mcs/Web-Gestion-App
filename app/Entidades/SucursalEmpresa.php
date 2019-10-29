@@ -111,16 +111,26 @@ class SucursalEmpresa extends Model
               return false;
             }
 
+            $array = [];
             foreach($UserEmpresa as $Usuario)
             {
               if($Usuario->user_id == $User->id)
               {
-                  return true;
+                  array_push( $array,'true');
               }
               else
               {
-                  return false;
+                  array_push( $array,'false');
               }
+            }
+
+            if(in_array('true',$array))
+            {
+              return true;
+            }
+            else
+            {
+              return false;
             }
 
             
