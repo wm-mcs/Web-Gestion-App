@@ -207,7 +207,7 @@ template:'
 
 
    <div       class="admin-user-boton-Crear" 
-         v-on:click="getUserSegunRole(2)">
+         v-on:click="getUserSegunRole(1)">
         
         Vincular usuario a emrpesa <i class="fas fa-user-plus"></i>
    </div>
