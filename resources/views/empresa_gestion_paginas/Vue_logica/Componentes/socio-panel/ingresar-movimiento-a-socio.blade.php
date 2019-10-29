@@ -140,8 +140,12 @@ template:'<span >
             </div>
            </div>
 
-            <div class="contiene-fase-2-moneda">
-            <div class="flex-row-center flex-justifice-space-around get_width_40">
+          
+
+           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
+
+           <div class="contiene-fase-2-moneda">
+            <div class="flex-row-center flex-justifice-space-around get_width_80">
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="si" v-model="se_cobra">
                 <label class="moneda-label" for="si">Paga ahora</label>
@@ -154,7 +158,7 @@ template:'<span >
             </div>
            </div>
 
-           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
+
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
              Estás a punto de ingresar ésto al socio @{{socio.first_name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
