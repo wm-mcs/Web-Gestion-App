@@ -992,7 +992,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           {
             //Logica de estado de cuenta cuando compra
              $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Socio->socio_id, 
+                  ->setEstadoDeCuentaCuando($Socio->id, 
                                             $User->id,
                                             $Moneda,
                                             $Valor,
@@ -1007,7 +1007,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             if($Request->get('paga') == 'si') 
             {
                 $this->MovimientoEstadoDeCuentaSocioRepo
-                  ->setEstadoDeCuentaCuando($Socio->socio_id, 
+                  ->setEstadoDeCuentaCuando($Socio->id, 
                                             $User->id,
                                             $Moneda,
                                             $Valor,
