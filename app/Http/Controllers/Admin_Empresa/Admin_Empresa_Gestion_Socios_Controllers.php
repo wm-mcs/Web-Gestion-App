@@ -94,7 +94,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     elseif($User->role <= 3) //dueño
     {
       $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
-      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas); 
+
+      dd( $Empresas);
     }
 
     return view('empresa_gestion_paginas.home_general', compact('Empresas'));
