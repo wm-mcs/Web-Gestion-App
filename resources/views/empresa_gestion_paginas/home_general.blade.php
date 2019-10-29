@@ -8,12 +8,12 @@
 @section('content')
   
 <div class="admin-contiene-entidades-y-pagination">
- @if($Empresas->count() > 0)
+@if($Empresas->count() > 0)
 
  <div class="empresa-gestion-texto-gris-grande-de-aviso">
    
    @if($Empresas->count() == 1)
-     Clic para ingresar <i class="far fa-hand-point-down"></i>
+     Click para ingresar <i class="far fa-hand-point-down"></i>
 
    @endif
  </div>

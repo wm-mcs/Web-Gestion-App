@@ -104,7 +104,12 @@ class SucursalEmpresa extends Model
         else
         {
             $Repo        = new UserEmpresaRepo();
-            $UserEmpresa = $Repo->find($this->id);
+            $UserEmpresa = $Repo->getEntidad()->where('sucursal_id',$this->id)->get();
+
+            if($UserEmpresa->count() == 0) 
+            {
+              return false;
+            }
 
             if($UserEmpresa->user_id == $User->id)
             {
