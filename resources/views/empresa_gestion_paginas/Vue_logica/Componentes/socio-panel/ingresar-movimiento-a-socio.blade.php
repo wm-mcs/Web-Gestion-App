@@ -5,7 +5,7 @@ data:function(){
     return {
      modal:'#modal-ingreso-caja',
      tipos_de_servicios: {!! json_encode(config('movimientos_a_socio')) !!},
-     tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"acredor"}] ,
+    
      servicio_elegido:'',
      se_cobra:'si',
      moneda: '$',
@@ -100,7 +100,17 @@ computed:{
     {
       return false;
     }
-  }
+  },
+  servicio_elegido_es_distinto_de_cobro:function(){
+    if(this.servicio_elegido != 'Cobro')
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  },
 }
 ,
 template:'<span >
@@ -144,7 +154,7 @@ template:'<span >
 
            <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
 
-           <div class="contiene-fase-2-moneda">
+           <div v-if="servicio_elegido_es_distinto_de_cobro" class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_80">
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="si" v-model="se_cobra">
@@ -160,7 +170,7 @@ template:'<span >
 
 
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
-             Estás a punto de ingresar ésto al socio @{{socio.first_name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+             Estás a punto de ingresar ésto al socio @{{socio.name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
            <div class="boton-simple" v-on:click="ingresa_movimiento">
@@ -174,13 +184,7 @@ template:'<span >
                        :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
              @{{servicio.nombre}}
            </div>
-           <div v-if="user.role > 2" 
-               v-for="servicio in tipos_de_servicios_dueno" 
-          v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
-             @{{servicio.nombre}}
-             
-           </div>
+           
          </div>
                  
                  
