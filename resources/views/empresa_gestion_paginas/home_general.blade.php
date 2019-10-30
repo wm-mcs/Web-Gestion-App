@@ -27,6 +27,25 @@
           <div class="empresa-lista-user-contiene-img">
             <img src="{{$empresa->url_img}}" class="empresa-lista-user-img">
           </div>
+
+          @if(Auth::user()->role > 3)
+
+             {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
+                            'method'=> 'Post',
+                            'files' =>  true,
+                            'name'  => 'form1'
+                          ])               !!}   
+                 <input type="hidden" name="empresa_id" value="{{$empresa->id}}">
+                 
+                 <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >Entrar a admin</span>    
+
+                 {!! Form::close() !!}  
+
+
+          @endif
+
+
+
            @foreach($empresa->sucursuales_empresa as $sucursal)          
             @if($sucursal->puede_ver_el_user)
               <div class="empresa-lista-user-sucursal">
@@ -46,7 +65,7 @@
             @endif
            @endforeach
         </div>
-    </div> 
+      </div> 
    @endforeach
 
    </div>  

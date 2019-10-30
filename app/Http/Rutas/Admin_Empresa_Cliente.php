@@ -4,9 +4,7 @@
 Route::group(['middleware' => 'SistemaPaginaWeb'],function()
 {
     require __DIR__ . '/Empresa/Rutas_Empresa.php';
-
     
-
     require __DIR__ . '/Home/Rutas_Home.php'; 
 
     require __DIR__ . '/Productos/Rutas_Productos.php'; 
@@ -27,11 +25,28 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
  
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
+      Route::group(['middleware' => 'SistemaGestionEmpresaIgualVendedorEmpresa'],function()
+      {
+           Route::group(['middleware' => 'SistemaGestionUserGerarquia:4'], function()
+           {
+                Route::post('get_panel_admin_de_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@get_panel_admin_de_empresa',
+                  'as'         => 'get_panel_admin_de_empresa']); 
+
+           });
+
+      });  
+
 
 
       Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
       {
          require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php'; 
+
+
+
+
 
 
           Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
