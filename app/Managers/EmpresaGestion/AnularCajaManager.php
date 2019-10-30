@@ -15,18 +15,13 @@ class AnularCajaManager extends ManagerBase
   {
     $rules = [
       'empresa_id'    => 'required',
-      'moneda'        => 'required',
-      'valor'         => 'required',
-      'tipo_saldo'    => 'required',
-      'nombre'        => 'required',
-      'socio_id'      => 'required',
-      'paga'          => 'required'
+      'caja_id'       => 'required'
              ];
 
     return $rules;
   }
  
-  
+   
   
   
 }
