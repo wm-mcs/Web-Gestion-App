@@ -8,7 +8,7 @@
 @stop
 
 @section('sucursal')  
-  <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
+ 
 @stop
 
 @section('content')
@@ -16,15 +16,24 @@
 
     
   
-  {{-- Buscar Socio --}}
-  <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
+   <div class="panel-socio-header-contenedor">
+    <div class="panel-socio-name">
 
+        {{$Empresa->name}}
+
+    </div>
+    <div class="panel-socio-contiene-acciones"> 
+
+     <ingresar-movimiento-a-empresa  :empresa="empresa" ></ingresar-movimiento-a-empresa> 
+     
      
       
-
      
-   
-  </div>  
+
+    </div>
+
+
+  </div>
 
   
   
