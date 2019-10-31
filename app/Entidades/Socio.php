@@ -144,7 +144,7 @@ class Socio extends Model
                                                 ->where('moneda','$')
                                                 ->sum('valor');
 
-        dd($Debe,$Acredor);                                            
+                                               
 
         return round($Debe - $Acredor) ;                                    
     }
