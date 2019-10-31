@@ -50,14 +50,7 @@
           
 
 
-           <estado-de-cuenta-empresa v-for="estado in socio.estado_de_cuenta_socio" 
-                                   :estado_de_cuenta="estado" 
-                                   :empresa="empresa"
-                                   :socio="socio"
-                                   :key="estado.id"
-                                   @actualizar_socio="actualizar_socio">
-                                     
-           </estado-de-cuenta-empresa>
+         
 
           
             
