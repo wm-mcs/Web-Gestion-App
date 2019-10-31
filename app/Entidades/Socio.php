@@ -26,7 +26,12 @@ class Socio extends Model
 
 
 
-    protected $appends = ['estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares','servicios_contratados_del_socio','servicios_contratados_disponibles_tipo_clase','servicios_contratados_disponibles_tipo_mensual'];
+    protected $appends = ['estado_de_cuenta_socio',
+                          'saldo_de_estado_de_cuenta_pesos',
+                          'saldo_de_estado_de_cuenta_dolares',
+                          'servicios_contratados_del_socio',
+                          'servicios_contratados_disponibles_tipo_clase',
+                          'servicios_contratados_disponibles_tipo_mensual'];
 
 
     public function servicios_contratados()
@@ -128,15 +133,13 @@ class Socio extends Model
 
     public function getSaldoDeEstadoDeCuentaPesosAttribute()
     {
-        dd($this->estado_de_cuenta_socio);
+        
 
-        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
-                                                ->where('borrado','no')
+        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')                                                
                                                 ->where('moneda','$')                                                
                                                 ->sum('valor');
 
-        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor') 
-                                                ->where('borrado','no')                                 
+        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')          
                                                 ->where('moneda','$')
                                                 ->sum('valor');
 
@@ -149,13 +152,11 @@ class Socio extends Model
         
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
-                                                ->where('borrado','no')
                                                 ->where('moneda','U$S')                                                
                                                 ->sum('valor');
 
         $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')                                  
                                                 ->where('moneda','U$S')
-                                                ->where('borrado','no')
                                                 ->sum('valor');
 
 
