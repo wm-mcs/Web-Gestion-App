@@ -76,6 +76,65 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
 
 
+  //movimiento que mueve el estado de cuenta a empresas
+  public function ingresar_movimiento_a_empresa(Request $Request)
+  {
+     $User              = $Request->get('user_desde_middleware');     
+     $Empresa           = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+     
+
+     $manager           = new AgregarMovimientoALaEmpresaManager(null,$Request->all() );
+     if(!$manager->isValid())
+     {
+       return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'No se pudó agregar éste movimiento: ' . $manager->getErrors()];
+     } 
+
+     $Valor      =  $Request->get('valor');
+     $Moneda     =  $Request->get('moneda');
+     $Tipo_saldo =  $Request->get('tipo_saldo');
+     $Nombre     =  $Request->get('nombre');
+
+
+          if($Tipo_saldo == 'acredor')
+          {
+            //Logica de estado de cuenta cuando compra
+             $this->MovimientoEstadoDeCuentaEmpresaRepo
+                  ->setEstadoDeCuentaCuando($Empresa->id, 
+                                            $User->id,
+                                            $Moneda,
+                                            $Valor,
+                                            $Nombre ,
+                                            'acredor',
+                                            Carbon::now('America/Montevideo'),
+                                            null);
+          }
+             
+
+            //si se paga ahora      
+            if($Request->get('paga') == 'si') 
+            {
+                $this->MovimientoEstadoDeCuentaEmpresaRepo
+                  ->setEstadoDeCuentaCuando($Empresa->id, 
+                                            $User->id,
+                                            $Moneda,
+                                            $Valor,
+                                            'Pago de '.$Nombre ,
+                                            'deudor',
+                                            Carbon::now('America/Montevideo'),
+                                            null);
+              
+            }  
+
+
+
+            return  ['Validacion'          => true,
+                     'Validacion_mensaje'  => 'Se ingresó correctamente',
+                     'empresa'             => $this->EmpresaConSociosoRepo->find($Empresa->id) ];
+  }
+
+
+
 
 
 

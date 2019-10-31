@@ -32,7 +32,16 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                 Route::post('get_panel_admin_de_empresa',
                 [
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@get_panel_admin_de_empresa',
-                  'as'         => 'get_panel_admin_de_empresa']); 
+                  'as'         => 'get_panel_admin_de_empresa']);
+
+                Route::post('ingresar_movimiento_a_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@ingresar_movimiento_a_empresa',
+                  'as'         => 'ingresar_movimiento_a_empresa']); 
+
+
+
+                
 
            });
 

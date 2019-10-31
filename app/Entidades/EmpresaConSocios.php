@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Entidades\UserEmpresa;
 use App\Entidades\Socio;
 use App\Entidades\SucursalEmpresa;
+use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 
 
 
@@ -24,7 +25,14 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['tipo_servicios','socios_de_la_empresa','sucursuales_empresa','url_img','route_admin'];
+    protected $appends  = ['tipo_servicios',
+                           'socios_de_la_empresa',
+                           'sucursuales_empresa',
+                           'url_img',
+                           'route_admin',
+                           'movimientos_estado_de_cuenta_empresa',
+                           'estado_de_cuenta_saldo_pesos',
+                           'estado_de_cuenta_saldo_dolares'];
 
 
     public function servicios_relation()
@@ -56,8 +64,63 @@ class EmpresaConSocios extends Model
 
       public function getSucursualesEmpresaAttribute()
       {
-        return $this->sucursales;
+        return Cache::remember('sucursales_empresa'.$this->id, 60, function() {
+                              return $this->sucursales;
+                          }); 
       }
+
+    public function movimientos_estado_de_cuenta()
+    {
+        return $this->hasMany(MovimientoEstadoDeCuentaEmpresa::class,'empresa_id','id')->where('borrado','no');
+    }
+
+      public function getMovimientosEstadoDeCuentaEmpresaAttribute()
+      {
+        return $this->movimientos_estado_de_cuenta;
+      } 
+
+      
+
+    public function getEstadoDeCuentaSaldoPesosAttribute()
+    {
+        
+
+        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
+                                                ->where('moneda','$')                                                
+                                                ->sum('valor');
+
+        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor') 
+                                                ->where('borrado','no')                                 
+                                                ->where('moneda','$')
+                                                ->sum('valor');
+
+
+        return round($Debe - $Acredor) ;                                    
+    }
+
+     public function getEstadoDeCuentaSaldoDolaresAttribute()
+    {
+        
+
+        $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
+                                                ->where('borrado','no')
+                                                ->where('moneda','U$S')                                                
+                                                ->sum('valor');
+
+        $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')                                  
+                                                ->where('moneda','U$S')
+                                                ->where('borrado','no')
+                                                ->sum('valor');
+
+
+        return round($Debe - $Acredor) ;                                    
+    }
+
+
+
+
+
     
 
 

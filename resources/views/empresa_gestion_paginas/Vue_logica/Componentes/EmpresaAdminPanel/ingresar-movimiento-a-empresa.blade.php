@@ -4,7 +4,7 @@ props:[ 'empresa'],
 data:function(){
     return {
      modal:'#modal-ingreso-caja',
-     tipos_de_servicios: {!! json_encode(config('movimientos_a_socio')) !!},
+     tipos_de_servicios: {!! json_encode(config('tipo_movimiento_empresas')) !!},
     
      servicio_elegido:'',
      se_cobra:'si',
@@ -47,7 +47,7 @@ methods:{
  }
  },
  ingresa_movimiento:function(){
-      var url = '/ingresar_movimiento_a_socio';
+      var url = '/ingresar_movimiento_a_empresa';
 
       var data = {  
                     empresa_id: this.empresa.id,
@@ -168,7 +168,7 @@ template:'<span >
 
 
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
-             Estás a punto de ingresar ésto al socio @{{empresa.name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+             Estás a punto de ingresar ésto a la empresa @{{empresa.name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
            <div class="boton-simple" v-on:click="ingresa_movimiento">

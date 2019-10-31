@@ -3,10 +3,10 @@
 namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
 use App\Entidades\ServicioContratadoSocio;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use App\Entidades\MovimientoEstadoDeCuentaSocio;
 
 
 
@@ -26,7 +26,7 @@ class Socio extends Model
 
 
 
-    protected $appends = ['route', 'estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares','servicios_contratados_del_socio','servicios_contratados_disponibles_tipo_clase','servicios_contratados_disponibles_tipo_mensual'];
+    protected $appends = ['estado_de_cuenta_socio','saldo_de_estado_de_cuenta_pesos','saldo_de_estado_de_cuenta_dolares','servicios_contratados_del_socio','servicios_contratados_disponibles_tipo_clase','servicios_contratados_disponibles_tipo_mensual'];
 
 
     public function servicios_contratados()
@@ -108,25 +108,27 @@ class Socio extends Model
                 
     }
 
-
-
-    public function getRouteAttribute()
+    public function estados_de_cuenta_socio_relation()
     {
-        return route('get_socio_panel',$this->id);
+        $this->hasMany(MovimientoEstadoDeCuentaSocio::class,'socio_id','id')->where('borrado','no')
+                                                                                ->orderBy('fecha_ingreso', 'desc');
     }
 
 
-    public function getEstadoDeCuentaSocioAttribute()
-    {
-        $EstadosRepo = new MovimientoEstadoDeCuentaSocioRepo();
 
-        return $EstadosRepo->getEstadoDeCuentasDelSocio($this->id);
+   
+
+
+    public function getEstadoDeCuentaSocioAttribute()
+    {    
+
+        return $this->estados_de_cuenta_socio_relation;
     }
     
 
     public function getSaldoDeEstadoDeCuentaPesosAttribute()
     {
-        $EstadosRepo = new MovimientoEstadoDeCuentaSocioRepo();
+        
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
                                                 ->where('borrado','no')
@@ -144,7 +146,7 @@ class Socio extends Model
 
      public function getSaldoDeEstadoDeCuentaDolaresAttribute()
     {
-        $EstadosRepo = new MovimientoEstadoDeCuentaSocioRepo();
+        
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
                                                 ->where('borrado','no')
@@ -161,7 +163,7 @@ class Socio extends Model
     }
 
 
-
+    
     
     
 }
