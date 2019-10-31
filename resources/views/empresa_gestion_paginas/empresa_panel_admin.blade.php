@@ -57,7 +57,7 @@
 <script type="text/javascript">
      
 
-     
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.ingresar-movimiento-a-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
