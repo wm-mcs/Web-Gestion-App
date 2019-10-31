@@ -131,6 +131,7 @@
   @include align-items(center);
   @include flex-direction(row);   
   @include justify-content(space-around); 
+  margin: 30px auto;
 }
 
 .easy-text{
@@ -149,7 +150,7 @@
 
 
   .logo-easy-columna{
-    height: 50px;
+    height:60px;
     width: auto;
     margin-top: 20px;
     margin-bottom: 40px;
