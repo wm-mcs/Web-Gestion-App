@@ -111,7 +111,7 @@ class Socio extends Model
     public function estados_de_cuenta_socio_relation()
     {
       return  $this->hasMany(MovimientoEstadoDeCuentaSocio::class,'socio_id','id')->where('borrado','no')
-                                                                            ->orderBy('fecha_ingreso', 'desc');
+                                                                                  ->orderBy('fecha_ingreso', 'desc');
     }
 
 
@@ -128,7 +128,7 @@ class Socio extends Model
 
     public function getSaldoDeEstadoDeCuentaPesosAttribute()
     {
-        
+        dd($this->estado_de_cuenta_socio);
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
                                                 ->where('borrado','no')
