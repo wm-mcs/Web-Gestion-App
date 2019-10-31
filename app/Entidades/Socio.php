@@ -110,8 +110,8 @@ class Socio extends Model
 
     public function estados_de_cuenta_socio_relation()
     {
-        $this->hasMany(MovimientoEstadoDeCuentaSocio::class,'socio_id','id')->where('borrado','no')
-                                                                                ->orderBy('fecha_ingreso', 'desc');
+      return  $this->hasMany(MovimientoEstadoDeCuentaSocio::class,'socio_id','id')->where('borrado','no')
+                                                                            ->orderBy('fecha_ingreso', 'desc');
     }
 
 
