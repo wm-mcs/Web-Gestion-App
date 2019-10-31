@@ -33,6 +33,37 @@
     </div>
 
 
+   </div>
+
+   <div class="empresa-contendor-de-secciones">
+      <div class="estado-de-cuenta-titulo-saldo-contenedor ">
+
+          <span class="empresa-titulo-de-secciones">Estado de cuenta del socio</span>
+
+          <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
+      </div>
+      <div class="contiene-estados-de-cuenta-lista">
+        
+          
+
+
+          
+
+
+           <estado-de-cuenta-empresa v-for="estado in socio.estado_de_cuenta_socio" 
+                                   :estado_de_cuenta="estado" 
+                                   :empresa="empresa"
+                                   :socio="socio"
+                                   :key="estado.id"
+                                   @actualizar_socio="actualizar_socio">
+                                     
+           </estado-de-cuenta-empresa>
+
+          
+            
+          
+
+      </div>
   </div>
 
   

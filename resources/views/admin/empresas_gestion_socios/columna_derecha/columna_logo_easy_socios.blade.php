@@ -3,7 +3,7 @@
   {{-- imagen logo --}}
   <div class="admin-logo-contendor">
   	<a href="{{route('get_home')}}">
-      <span class="easy-text">Easy Socios</span>
+      <img class="logo-easy-columna" src="{{url()}}/imagenes/Empresa/logo rectangular.png">
     </a>
   </div>
   
