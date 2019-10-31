@@ -137,15 +137,14 @@ class Socio extends Model
         
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')                                                
-                                                ->where('moneda','$') 
-                                                ->get()                                               
+                                                ->where('moneda','$')                                                
                                                 ->sum('valor');
 
         $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')          
                                                 ->where('moneda','$')
-                                                ->get()
                                                 ->sum('valor');
 
+        dd($Debe,$Acredor);                                            
 
         return round($Debe - $Acredor) ;                                    
     }
@@ -155,13 +154,11 @@ class Socio extends Model
         
 
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
-                                                ->where('moneda','U$S')
-                                                ->get()                                                
+                                                ->where('moneda','U$S')                                                
                                                 ->sum('valor');
 
         $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')                                  
                                                 ->where('moneda','U$S')
-                                                ->get()
                                                 ->sum('valor');
 
 
