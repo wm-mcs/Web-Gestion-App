@@ -66,7 +66,8 @@ methods:{
 
             if(data.Validacion == true)
             {
-              app.cerrarModal(vue.modal);             
+              app.cerrarModal(vue.modal);      
+              app.empresa = data.empresa;       
               $.notify(data.Validacion_mensaje, "success");   
 
               vue.poner_valor_de_cero();       
