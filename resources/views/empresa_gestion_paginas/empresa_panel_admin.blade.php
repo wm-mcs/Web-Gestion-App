@@ -47,7 +47,13 @@
           
 
 
-          
+             <estado-de-cuenta-empresa-lista v-for="estado in socio.estado_de_cuenta_socio" 
+                                   :estado_de_cuenta="estado" 
+                                   :empresa="empresa"                                  
+                                   :key="estado.id"
+                                   >
+                                     
+             </estado-de-cuenta-empresa-lista>
 
 
          
