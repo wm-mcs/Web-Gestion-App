@@ -13,12 +13,9 @@ class EliminarMovimientoALaEmpresaManager extends ManagerBase
 
   public function getRules()
   {
-    $rules = [ 
+   $rules = [ 
       'empresa_id'         => 'required',
-      'name'               => 'required',
-      'moneda'             => 'required',
-      'valor'              => 'required',
-      'fecha_vencimiento'  => 'required'
+      'estado_de_cuenta'   => 'required'
              ];
 
     return $rules;
