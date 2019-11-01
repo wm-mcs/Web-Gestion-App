@@ -100,14 +100,14 @@ class Admin_Users_Controllers extends Controller
       $this->UserRepo->setAtributoEspecifico($User,'password',bcrypt($Contraseña));
       
       //variables para enviar email
-      $nombre_de_quien_envia    = 'EasySocios';
+      $nombre_de_quien_envia    = 'EasySocio';
       $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
-      $Texto                    = $User->first_name . '!, cambiaste tú contraseña en Easy Socios.';
+      $Texto                    = $User->first_name . '!, cambiaste tú contraseña en Easy Socio.';
       $User_name                = $User->email;
       $Contraseña               = $Contraseña;
       $email_a_enviar           = $User->email;
       $nombre_de_email_a_enviar = $User->name;
-      $titulo_email             = 'Cambiaste tú contraseña en Easy Socios';
+      $titulo_email             = 'Cambiaste tú contraseña en Easy Socio';
       $Texto_boton              = 'Incia sesión ahora!';
       $Link_del_boton           = route('auth_login_get');
 

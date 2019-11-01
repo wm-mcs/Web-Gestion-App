@@ -140,6 +140,13 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
       $this->MovimientoEstadoDeCuentaEmpresaRepo->AnularEsteEstadoDeCuenta($Entidad,$User->id,Carbon::now('America/Montevideo'));
 
       $Empresa           = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id')); 
+
+
+     
+       return ['Validacion'          =>  $Validacion,
+               'Validacion_mensaje'  =>  'Se eliminó el estado de cuenta correctamente',
+               'empresa'             =>  $Empresa, ];
+     
   }
 
 

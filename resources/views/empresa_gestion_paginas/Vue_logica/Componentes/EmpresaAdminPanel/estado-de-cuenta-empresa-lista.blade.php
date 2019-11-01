@@ -43,7 +43,7 @@ methods:{
           
           if(response.data.Validacion == true)
           {    
-             
+             app.empresa = response.data.empresa;
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
