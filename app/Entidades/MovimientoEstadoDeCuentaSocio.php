@@ -28,7 +28,7 @@ class MovimientoEstadoDeCuentaSocio extends Model
 
 
 
-     public function user()
+    public function user()
     {
       return $this->belongsTo(User::class,'user_id','id');
     }

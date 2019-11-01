@@ -3,6 +3,10 @@
 namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Entidades\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
+
 
 
 
@@ -23,7 +27,20 @@ class MovimientoEstadoDeCuentaEmpresa extends Model
 
 
 
-    
+    protected $appends ['fecha','user_name'];
+
+
+    public function user()
+    {
+      return $this->belongsTo(User::class,'user_id','id');
+    }
+
+        public function getUserNameAttribute()
+        {
+            return  Cache::remember('UserMovimientoContableName'.$this->id, 100000, function() {
+                              return $this->user->first_name;
+                          }); 
+        } 
 
     
 
@@ -50,6 +67,12 @@ class MovimientoEstadoDeCuentaEmpresa extends Model
            $query->where('estado', "si"); 
                 
     }
+
+
+    public function getFechaAttribute()
+    {
+        return Carbon::parse($this->fecha_ingreso)->format('Y-m-d');
+    } 
 
 
 
