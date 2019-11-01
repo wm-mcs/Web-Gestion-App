@@ -17,17 +17,8 @@ class MovimientoEstadoDeCuentaEmpresa extends Model
 
     protected $table ='movimientos_estado_de_cuenta_empresas';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['name'];
-
-
-
-
-    protected $appends ['fecha','user_name'];
+    protected $appends  = ['fecha','user_name'];
 
 
     public function user()
