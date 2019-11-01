@@ -14,7 +14,7 @@ use App\Repositorios\SocioRepo;
 use App\Repositorios\TipoDeServicioRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use Carbon\Carbon;
-use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
+use App\Repositorios\MovimientoEstadoDeCuentaEmpresaRepo;
 use App\Repositorios\UserRepo;
 use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\VendedorEmpresaRepo;
@@ -29,40 +29,29 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 {
 
   protected $EmpresaConSociosoRepo;
-  protected $Guardian;
-  protected $SocioRepo;
-  protected $TipoDeServicioRepo;
-  protected $ServicioContratadoSocioRepo;
-  protected $MovimientoEstadoDeCuentaSocioRepo;
+ 
+
+  protected $MovimientoEstadoDeCuentaEmpresaRepo;
   protected $UserRepo;
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
-  protected $SucursalEmpresaRepo;
-  protected $CajaEmpresaRepo;
+
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
-                              Guardian                          $Guardian,
-                              SocioRepo                         $SocioRepo, 
-                              TipoDeServicioRepo                $TipoDeServicioRepo,
-                              ServicioContratadoSocioRepo       $ServicioContratadoSocioRepo,
-                              MovimientoEstadoDeCuentaSocioRepo $MovimientoEstadoDeCuentaSocioRepo,
+                              
+                             
+                              MovimientoEstadoDeCuentaEmpresaRepo $MovimientoEstadoDeCuentaEmpresaRepo,
                               UserRepo                          $UserRepo, 
                               UserEmpresaRepo                   $UserEmpresaRepo,
                               VendedorEmpresaRepo               $VendedorEmpresaRepo,
-                              SucursalEmpresaRepo               $SucursalEmpresaRepo,
-                              CajaEmpresaRepo                   $CajaEmpresaRepo  )
+                               )
   {
-    $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
-    $this->Guardian                          = $Guardian;
-    $this->SocioRepo                         = $SocioRepo;
-    $this->TipoDeServicioRepo                = $TipoDeServicioRepo;
-    $this->ServicioContratadoSocioRepo       = $ServicioContratadoSocioRepo;
-    $this->MovimientoEstadoDeCuentaSocioRepo = $MovimientoEstadoDeCuentaSocioRepo;
-    $this->UserRepo                          = $UserRepo;
-    $this->UserEmpresaRepo                   = $UserEmpresaRepo;
-    $this->VendedorEmpresaRepo               = $VendedorEmpresaRepo;
-    $this->SucursalEmpresaRepo               = $SucursalEmpresaRepo;
-    $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
+    $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;       
+    $this->MovimientoEstadoDeCuentaEmpresaRepo = $MovimientoEstadoDeCuentaEmpresaRepo;
+    $this->UserRepo                            = $UserRepo;
+    $this->UserEmpresaRepo                     = $UserEmpresaRepo;
+    $this->VendedorEmpresaRepo                 = $VendedorEmpresaRepo;
+   
   }
 
 
