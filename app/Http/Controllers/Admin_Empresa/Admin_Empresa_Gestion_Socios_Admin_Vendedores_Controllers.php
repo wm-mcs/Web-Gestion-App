@@ -20,6 +20,7 @@ use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\VendedorEmpresaRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
+use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 
 
 
