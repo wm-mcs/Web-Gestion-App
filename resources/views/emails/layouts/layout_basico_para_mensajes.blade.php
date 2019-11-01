@@ -56,7 +56,7 @@
                                                         <td valign="middle" align="center" style="line-height: 1px;">
                                                             <div style="border-top:0px None #000;border-right:0px None #000;border-bottom:0px None #000;border-left:0px None #000;display:inline-block; " cellspacing="0" cellpadding="0" border="0">
                                                                 <div>                                                                  
-                                                                        <img ng-if="col.img.source != 'url'" width="150" vspace="0" hspace="0" border="0" alt="La Oferta Irresistible" style="float: left;max-width:150px;" class="rnb-logo-img" src="{{url()}}/imagenes/Empresa/simbionte-logo-A.png">
+                                                                        <img ng-if="col.img.source != 'url'" width="150" vspace="0" hspace="0" border="0" alt="La Oferta Irresistible" style="float: left;max-width:150px;" class="rnb-logo-img" src="{{url()}}/imagenes/Empresa/logo rectangular.png">
                                                                 </div>
                                                             </div></td>
                                                     </tr>
