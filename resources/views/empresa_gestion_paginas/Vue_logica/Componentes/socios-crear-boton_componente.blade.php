@@ -98,13 +98,13 @@ template:'<span >
         </div>
         <div class="modal-body text-center"> 
 
-                  <div class="form-group">
+                  <div class="formulario-label-fiel">
                       <label class="formulario-label" for="Nombre">Nombres  </label>
-                      <input type="text" class="form-control"  v-model="form_socio_name" placeholder="Nombre" required  />
+                      <input type="text" class="formulario-field"  v-model="form_socio_name" placeholder="Nombre" required  />
                   </div>                  
-                  <div class="form-group">
+                  <div class="formulario-label-fiel">
                       <label class="formulario-label" for="Nombre">Celular</label>
-                      <input type="text" class="form-control"  v-model="form_socio_celular" placeholder="Celular" required  />
+                      <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Celular" required  />
                   </div> 
                
 

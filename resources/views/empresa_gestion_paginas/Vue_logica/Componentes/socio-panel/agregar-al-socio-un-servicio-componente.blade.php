@@ -133,7 +133,7 @@ template:'<span>
 
               
 
-                 <div class="form-group">
+                 <div class="formulario-label-fiel">
                       <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
                      <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
                         <option></option>
@@ -143,14 +143,14 @@ template:'<span>
                       </select>
                   </div> 
 
-                  <div  class="form-group" v-if="servicio_data.name">
+                  <div  class="formulario-label-fiel" v-if="servicio_data.name">
                       <label class="formulario-label" >Nombre <span class="formulario-label-aclaracion"> Puedes cambiar este nombre si quieres</span></label>
-                      <input type="text" class="form-control"  v-model="servicio_data.name" placeholder="Nombre"   />
+                      <input type="text" class="formulario-field"  v-model="servicio_data.name" placeholder="Nombre"   />
                   </div> 
 
                   
 
-                    <div  class="form-group" v-if="servicio_data.moneda">
+                    <div  class="formulario-label-fiel" v-if="servicio_data.moneda">
                       <label class="formulario-label" >Moneda</label>
                       <select v-model="servicio_data.moneda" class="form-control">
                         <option>$</option>
@@ -161,23 +161,23 @@ template:'<span>
                       </select>
                     </div> 
 
-                     <div  class="form-group" v-if="servicio_data.cantidad_de_servicios >= 1">
+                     <div  class="formulario-label-fiel" v-if="servicio_data.cantidad_de_servicios >= 1">
                       <label class="formulario-label" >Cantidad de clases</label>
-                      <input type="number" class="form-control"  v-model="servicio_data.cantidad_de_servicios"   />
+                      <input type="number" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
                      </div>
 
-                     <div  class="form-group" v-if="servicio_data.valor">
+                     <div  class="formulario-label-fiel" v-if="servicio_data.valor">
                       <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
-                      <input type="text" class="form-control"  v-model="servicio_data.valor"   />
+                      <input type="text" class="formulario-field"  v-model="servicio_data.valor"   />
                      </div> 
 
 
-                     <div  class="form-group" v-if="servicio_data.name">
+                     <div  class="formulario-label-fiel" v-if="servicio_data.name">
                       <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un més</span></label>
-                      <input type="date" class="form-control"  v-model="servicio_data.fecha_vencimiento"    />
+                      <input type="date" class="formulario-field"  v-model="servicio_data.fecha_vencimiento"    />
                      </div> 
 
-                      <div  class="form-group" v-if="servicio_data.name">
+                      <div  class="formulario-label-fiel" v-if="servicio_data.name">
                       <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> puede que quede debiendo</span></label>
                       <div class="form-control">
                         <input type="radio" id="si" value="si" v-model="servicio_data.paga">
