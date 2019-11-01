@@ -29,21 +29,17 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 {
 
   protected $EmpresaConSociosoRepo;
- 
-
   protected $MovimientoEstadoDeCuentaEmpresaRepo;
   protected $UserRepo;
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
 
 
-  public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
-                              
-                             
-                              MovimientoEstadoDeCuentaEmpresaRepo $MovimientoEstadoDeCuentaEmpresaRepo,
-                              UserRepo                          $UserRepo, 
-                              UserEmpresaRepo                   $UserEmpresaRepo,
-                              VendedorEmpresaRepo               $VendedorEmpresaRepo,
+  public function __construct(EmpresaConSociosoRepo                $EmpresaConSociosoRepo, 
+                              MovimientoEstadoDeCuentaEmpresaRepo  $MovimientoEstadoDeCuentaEmpresaRepo,
+                              UserRepo                             $UserRepo, 
+                              UserEmpresaRepo                      $UserEmpresaRepo,
+                              VendedorEmpresaRepo                  $VendedorEmpresaRepo
                                )
   {
     $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;       
