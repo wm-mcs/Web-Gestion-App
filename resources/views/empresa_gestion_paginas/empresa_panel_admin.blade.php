@@ -47,7 +47,7 @@
           
 
 
-             <estado-de-cuenta-empresa-lista v-for="estado in socio.estado_de_cuenta_socio" 
+             <estado-de-cuenta-empresa-lista v-for="estado in empresa.movimientos_estado_de_cuenta_empresa" 
                                    :estado_de_cuenta="estado" 
                                    :empresa="empresa"                                  
                                    :key="estado.id"
@@ -85,8 +85,9 @@
 
 
 <script type="text/javascript">
-     
-
+       
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')  
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-lista')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.ingresar-movimiento-a-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
