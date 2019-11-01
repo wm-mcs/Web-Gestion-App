@@ -143,7 +143,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
 
      
-       return ['Validacion'          =>  $Validacion,
+       return ['Validacion'          =>  true,
                'Validacion_mensaje'  =>  'Se eliminó el estado de cuenta correctamente',
                'empresa'             =>  $Empresa, ];
      
