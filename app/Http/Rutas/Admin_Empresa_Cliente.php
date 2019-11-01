@@ -39,6 +39,14 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@ingresar_movimiento_a_empresa',
                   'as'         => 'ingresar_movimiento_a_empresa']); 
 
+                 Route::post('eliminar_estado_de_cuenta_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@eliminar_estado_de_cuenta_empresa',
+                  'as'         => 'eliminar_estado_de_cuenta_empresa']); 
+
+
+                
+
 
 
                 

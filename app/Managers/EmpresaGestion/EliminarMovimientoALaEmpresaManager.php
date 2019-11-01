@@ -7,7 +7,7 @@ use App\Managers\ManagerBase;
 /**
 * 
 */
-class AgregarAlSocioUnServicioManager extends ManagerBase 
+class EliminarMovimientoALaEmpresaManager extends ManagerBase 
 {
 
 
@@ -15,12 +15,15 @@ class AgregarAlSocioUnServicioManager extends ManagerBase
   {
     $rules = [ 
       'empresa_id'         => 'required',
-      'estado_de_cuenta'   => 'required'
+      'name'               => 'required',
+      'moneda'             => 'required',
+      'valor'              => 'required',
+      'fecha_vencimiento'  => 'required'
              ];
 
     return $rules;
   }
- 
+   
   
   
   

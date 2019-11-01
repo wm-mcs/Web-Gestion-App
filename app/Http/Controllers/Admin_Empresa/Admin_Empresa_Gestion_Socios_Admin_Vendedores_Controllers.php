@@ -21,6 +21,8 @@ use App\Repositorios\VendedorEmpresaRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
+use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
+
 
 
 
@@ -117,6 +119,27 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
             return  ['Validacion'          => true,
                      'Validacion_mensaje'  => 'Se ingresó correctamente',
                      'empresa'             => $this->EmpresaConSociosoRepo->find($Empresa->id) ];
+  }
+
+
+  public function eliminar_estado_de_cuenta_empresa(Request $Request)
+  {
+      $User              = $Request->get('user_desde_middleware');     
+     
+      $estado_de_cuenta  = json_decode(json_encode($Request->get('estado_de_cuenta')));   
+
+       $manager           = new EliminarMovimientoALaEmpresaManager(null,$Request->all() );
+       if(!$manager->isValid())
+       {
+         return  ['Validacion'          => false,
+                  'Validacion_mensaje'  => 'No se pudó agregar éste movimiento: ' . $manager->getErrors()];
+       } 
+
+     //elimino a la entidad
+      $Entidad = $this->MovimientoEstadoDeCuentaEmpresaRepo->find($estado_de_cuenta->id);
+      $this->MovimientoEstadoDeCuentaEmpresaRepo->AnularEsteEstadoDeCuenta($Entidad,$User->id,Carbon::now('America/Montevideo'));
+
+      $Empresa           = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id')); 
   }
 
 
