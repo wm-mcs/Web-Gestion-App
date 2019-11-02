@@ -23,9 +23,9 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
         $Validacion      = false;
 
 
-
+        $Session_nombre = 'sucursal' . $request->get('empresa_id');
         //verifico si la sesion tiene sucursal
-        if(Session::has('sucursal'))
+        if($Session_nombre)
         {            
            
             $Validacion      = true;
@@ -40,7 +40,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
 
                   $SucursalRepo = new SucursalEmpresaRepo();
 
-                  Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+                  Session::put($Session_nombre, $SucursalRepo->find($request->get('sucursal_id')) );
                 }  
                 else
                 {
@@ -49,7 +49,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
                 }
             }   
 
-            $request->attributes->add(['sucursal_desde_middleware' => Session::get('sucursal')]); 
+            $request->attributes->add(['sucursal_desde_middleware' => Session::get($Session_nombre)]); 
 
         }
         else
@@ -66,7 +66,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
 
                   $SucursalRepo = new SucursalEmpresaRepo();
 
-                  Session::put('sucursal', $SucursalRepo->find($request->get('sucursal_id')) );
+                  Session::put($Session_nombre, $SucursalRepo->find($request->get('sucursal_id')) );
                 }  
                 else
                 {
