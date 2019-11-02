@@ -36,11 +36,16 @@ class SistemaGestionEmpresaIgualUserEmpresa
         $UserEmpresa  = new UserEmpresaRepo();
         $User         = auth()->user();
         $Validacion   = false;
+        $request->attributes->add(['user_desde_middleware' => $User ]);
+
+        if($User->role > 6){
+            return $next($request);
+        }
 
        
 
         $Validacion_de_usuario_vinculado_empresa = 
-        Cache::remember('UserIgualEmpresa'.$User->id, 10, function() use($UserEmpresa,$User,$request)
+        Cache::remember('UserIgualEmpresa'.$User->id . 'empresa' $request->get('empresa_id'), 10, function() use($UserEmpresa,$User,$request)
                          {
                               return $UserEmpresa->verificarSiUserYEmpresaEstanVicnulados($User->id,$request->get('empresa_id'));
                          }
@@ -55,14 +60,14 @@ class SistemaGestionEmpresaIgualUserEmpresa
               $Validacion = true;
 
               //agrego al user desde aqui para no pedirlo en el controller
-              $request->attributes->add(['user_desde_middleware' => $User ]);
+             
               $request->attributes->add(['user_empresa_desde_middleware' => $UserEmpresa ]);
               
         }
-
-        if(!$Validacion_de_usuario_vinculado_empresa['Validacion']  || !$User->role > 6)
+        else
         {
-            
+
+                   
                 $Mensaje    = 'No tienes permiso para hacer éso:  no controlas a ésta empresa';
                 if($request->isJson())
                 {
