@@ -20,9 +20,10 @@
 
 
  
-
+      <img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo rectangular.png">
 
       <div class="contiene_auth_form">
+
          <h1 class="auth_titulo_h1">Inicio de sesión</h1>
          @include('formularios.auth.login_form')
       </div>

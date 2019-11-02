@@ -40,7 +40,11 @@
               <div class="mensaje-contenedor-layout-auth">
                 @include('layouts.gestion_socios_layout.mensajes.mensajes')   
               </div>
+                <div class="flex-row-column get_width_100">
                   @yield('content')  
+                </div>
+
+                  
              </div>           
              
         </span>
