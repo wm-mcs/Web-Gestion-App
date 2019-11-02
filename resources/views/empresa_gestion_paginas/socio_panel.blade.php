@@ -18,6 +18,10 @@
   <span>Panel de socio</span>
 @stop
 
+@section('sucursal')  
+  <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
+@stop
+
 @section('content')
   
 

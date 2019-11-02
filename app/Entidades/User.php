@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin'];
+    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin','first_name'];
 
 
 

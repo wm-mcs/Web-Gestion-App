@@ -9,6 +9,7 @@ use App\Entidades\UserEmpresa;
 use App\Entidades\Socio;
 use App\Entidades\SucursalEmpresa;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -185,6 +186,9 @@ class EmpresaConSocios extends Model
     {
         return route('get_empresa_panel_de_gestion',$this->id);
     }
+
+
+    
 
 
 
