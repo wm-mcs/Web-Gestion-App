@@ -66,7 +66,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     //Atributes////////////////////
     public function getFirstNameAttribute()
     {
-        $name = explode(" ", $this->name);
+
+        $name = trim($this->name);
+        $name = explode(" ", $name);
       
         return $name[0];
     }
