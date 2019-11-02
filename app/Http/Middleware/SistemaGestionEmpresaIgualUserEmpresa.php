@@ -45,7 +45,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
        
 
         $Validacion_de_usuario_vinculado_empresa = 
-        Cache::remember('UserIgualEmpresa'.$User->id . 'empresa' $request->get('empresa_id'), 10, function() use($UserEmpresa,$User,$request)
+        Cache::remember('UserIgualEmpresa'.$User->id . 'empresa'. $request->get('empresa_id'), 10, function() use($UserEmpresa,$User,$request)
                          {
                               return $UserEmpresa->verificarSiUserYEmpresaEstanVicnulados($User->id,$request->get('empresa_id'));
                          }
