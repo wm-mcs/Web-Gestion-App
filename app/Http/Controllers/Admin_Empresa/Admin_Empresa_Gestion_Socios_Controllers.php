@@ -268,7 +268,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creo correctamente '. $Socio->name,
                'Socio'               => $this->SocioRepo->find($Socio->id),
-               'Socios'              => $this->SocioRepo->getSociosDeEstaEmpresa($User->empresa_gestion_id)];
+               'Socios'              => $this->SocioRepo->getSociosDeEstaEmpresa($UserEmpresa->empresa_id)];
 
 
 
