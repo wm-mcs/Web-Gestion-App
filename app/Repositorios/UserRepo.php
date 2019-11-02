@@ -31,7 +31,7 @@ class UserRepo extends BaseRepo
 
   public function getPropiedades()
   {
-    return ['name','email','telefono','estado','role','contrato_pagina_web'];
+    return ['name','email','telefono','estado','role'];
   }
 
 
