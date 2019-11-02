@@ -72,7 +72,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function getPropiedades()
   {
-    return ['name','user_id','rut','razon_social','email','celular','direccion','factura_con_iva','estado'];
+    return ['name','rut','razon_social','email','celular','direccion','factura_con_iva','estado'];
   }
 
 
