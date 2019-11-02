@@ -48,7 +48,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
 
 
        
-        if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true  || $User->role > 6)
+        if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true )
         {
               //el usuario que vicnula
               $UserEmpresa = $Validacion_de_usuario_vinculado_empresa['UserEmpresa'];            
@@ -60,7 +60,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
               
         }
 
-        if(!$Validacion)
+        if(!$Validacion_de_usuario_vinculado_empresa['Validacion']  || !$User->role > 6)
         {
             
                 $Mensaje    = 'No tienes permiso para hacer éso:  no controlas a ésta empresa';
