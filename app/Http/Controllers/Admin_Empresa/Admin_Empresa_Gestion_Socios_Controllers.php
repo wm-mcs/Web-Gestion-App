@@ -243,6 +243,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $entidad = '';
         $manager = new CrearSocioModalManager($entidad,$Request->all());
         $Validacion = false;
+        $UserEmpresa     = $request->get('user_empresa_desde_middleware');
 
 
     if ($manager->isValid())
@@ -252,7 +253,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                        ->getEntidad();
 
 
-       $Socio->empresa_id       = $User->empresa_gestion_id;
+       $Socio->empresa_id       = $UserEmpresa->empresa_id; 
        $Socio->factura_con_iva  = 'no';
        $Socio->estado           = 'si';
 

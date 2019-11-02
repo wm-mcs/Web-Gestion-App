@@ -13,7 +13,7 @@
       @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!}
       @else
-Sucursal:''
+Sucursal:'' 
       @endif
 
 
