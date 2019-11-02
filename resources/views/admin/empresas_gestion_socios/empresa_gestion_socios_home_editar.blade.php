@@ -71,13 +71,13 @@
               </div>
             </div>
 
-            <div class="formulario-contenedor-columnas">
+            <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo">Usuarios</div>
               <div class="get_width_100 flex-row-column">
                 <vincular-user-empresa :empresa="empresa"></vincular-user-empresa>
               </div>
             </div>
-             <div class="formulario-contenedor-columnas">
+             <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo">Sucursales</div>
                <div class="get_width_100 flex-row-column">
                 <vincular-sucursal-empresa :empresa="empresa"></vincular-sucursal-empresa>
