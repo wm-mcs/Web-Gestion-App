@@ -84,13 +84,17 @@ class UserEmpresaRepo extends BaseRepo
                    ->where('empresa_id',$Empresa_id)
                    ->get(); 
 
-      dd($User_id,$Empresa_id,$User,$User->first());             
+                  
 
       $Validacion = false;             
 
       if($User->count() > 0)
       {
           $Validacion = true;
+      }
+      else
+      {
+          $Validacion = false;
       }
 
 

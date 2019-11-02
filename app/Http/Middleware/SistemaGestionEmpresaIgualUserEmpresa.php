@@ -47,7 +47,7 @@ class SistemaGestionEmpresaIgualUserEmpresa
                         ); 
 
 
-       dd($Validacion_de_usuario_vinculado_empresa);
+       
         if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true  || $User->role > 6)
         {
               //el usuario que vicnula
