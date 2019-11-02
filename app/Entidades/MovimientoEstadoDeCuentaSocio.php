@@ -36,9 +36,9 @@ class MovimientoEstadoDeCuentaSocio extends Model
         public function getUserNameAttribute()
         {
 
-            dd($this->user);
+
             return  Cache::remember('UserMovimientoContableName'.$this->id, 100000, function() {
-                              return $this->user->name;
+                              return $this->user->first_name;
                           }); 
         }   
 
