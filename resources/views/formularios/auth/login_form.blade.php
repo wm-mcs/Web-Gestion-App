@@ -37,12 +37,7 @@
               <button type="submit" class="btn btn-primary btn-lg btn-block">Ingresar</button>
             </div>
             
-<div class="checkbox">
-  <label>
-    <input type="checkbox" value="">
-    Recordar mi usuario
-  </label>
-</div>
+
 
     <hr>
    <div class="login-register">
@@ -52,7 +47,7 @@
 </div>
 </div>
 
-
+<br><br>
 
 {!! Form::close() !!}
 
