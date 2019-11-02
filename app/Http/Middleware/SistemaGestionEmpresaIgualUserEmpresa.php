@@ -38,9 +38,9 @@ class SistemaGestionEmpresaIgualUserEmpresa
         $Validacion   = false;
         $request->attributes->add(['user_desde_middleware' => $User ]);
 
-        if($User->role > 6){
+       /* if($User->role > 6){
             return $next($request);
-        }
+        }*/
 
        
 
