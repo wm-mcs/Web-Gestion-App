@@ -10,7 +10,11 @@
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
       busqueda:'',
+      @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!}
+      @else
+Sucursal:''
+      @endif
 
 
       
