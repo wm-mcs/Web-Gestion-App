@@ -5,7 +5,7 @@ Vue.component('caja-saldo' ,
 
 data:function(){
     return {
-      sucursal:{!! json_encode(Session::get('sucursal')) !!},
+      sucursal:{!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-pesos',
       valor_actual_pesos:'0'
