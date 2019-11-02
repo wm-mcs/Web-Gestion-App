@@ -20,7 +20,7 @@ class SistemaGestionUserEmpresIgualSucursalEmpresa
         $User            = $request->get('user_desde_middleware');        
         $UserEmpresa     = $request->get('user_empresa_desde_middleware');
 
-        dd($UserEmpresa);
+        
         
         $Validacion      = false;
 
