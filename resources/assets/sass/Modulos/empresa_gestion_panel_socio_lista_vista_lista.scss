@@ -50,11 +50,17 @@
  }
 
   .planes-mensuales-cotiene{
-    background-color:$Color-info;
-    padding: 5px;
-    border-radius:4px;
-    margin-right: 3px;
+   padding: 3px;
+    border-radius: 4px;
+    font-size: 11px;
+    text-align: center;
     color:white;
-    font-size: 10px;
+    width: 115px;
+    margin-right: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: $Color-info;
 
   }
+
+    
