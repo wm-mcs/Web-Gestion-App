@@ -109,7 +109,7 @@
 
    .listado-socio-tiene-mensual{
     padding: 2px;
-    border-radius:8px;
+    border-radius:4px;
     font-size: 11px;
     text-align: center;
     background-color: $Color-info;   
@@ -121,7 +121,7 @@
 
    .listado-socio-tiene-clases{    
     padding: 2px;
-    border-radius:8px;
+    border-radius:4px;
     font-size: 11px;
     text-align: center;
     background-color: $Color-clase;    
@@ -132,14 +132,16 @@
    }
 
    .listado-socio-no-tiene{
-    padding: 2px;
-    border-radius:8px;
+    padding: 3px;
+    border-radius: 4px;
     font-size: 11px;
-    text-align: center;      
+    text-align: center;
     color:$Color-texto-gris-Mercadolibre;
-    width: 49%;
-    margin-right:1%; 
-    cursor:pointer;
+    width: 115px;
+    margin-right: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #eff3f3;
    }
 
 
