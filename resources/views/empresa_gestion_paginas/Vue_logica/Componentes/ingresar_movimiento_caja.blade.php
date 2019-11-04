@@ -8,6 +8,7 @@ data:function(){
      tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"acredor"}] ,
      servicio_elegido:'',
      moneda: '$',
+     nombre_a_ingresar:'',
      valor_ingresar:0,
      user:  {!! json_encode(Auth::user()) !!}
 
@@ -19,6 +20,7 @@ methods:{
  },
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
   this.servicio_elegido = tipo_servicio;
+  this.nombre_a_ingresar = tipo_servicio.nombre;
  },
  cancelarIngreso:function(){
   this.poner_valor_de_cero();
@@ -27,6 +29,7 @@ methods:{
   this.servicio_elegido = '';
   this.moneda = '$';
   this.valor_ingresar = 0;
+  this.nombre_a_ingresar = '';
  },
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
@@ -53,7 +56,7 @@ methods:{
                         moneda: this.moneda,  
                          valor: this.valor_ingresar,
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
-                        nombre: this.servicio_elegido.nombre  
+                        nombre: this.nombre_a_ingresar  
                  };  
       var vue = this;           
 
@@ -121,6 +124,10 @@ template:'<span >
         </div>
         <div class="modal-body text-center"> 
          <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
+            <div class="formulario-label-fiel">
+                      <label class="formulario-label" for="Nombre"> Detalle a ingresar  </label>
+                      <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
+            </div> 
            
            <div class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_40">
