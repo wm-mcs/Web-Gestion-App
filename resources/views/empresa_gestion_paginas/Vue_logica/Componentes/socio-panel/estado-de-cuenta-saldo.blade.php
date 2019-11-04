@@ -76,6 +76,26 @@ computed:{
       {
         return false;
       }
+   },
+   saldoPesosMenorCero:function(){
+      if( this.socio.saldo_de_estado_de_cuenta_pesos < 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+   },
+   saldoDoalresMenorCero:function(){
+       if( this.socio.saldo_de_estado_de_cuenta_dolares < 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
    }
 
 },
@@ -91,7 +111,7 @@ template:'<span>
                 </span>
                 
               </div>
-              <div v-else class="estado-de-cuenta-saldo estado-debe-indication">
+              <div v-if="saldoPesosMenorCero" class="estado-de-cuenta-saldo estado-debe-indication">
                 Debe $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}}  <i class="far fa-frown-open"></i>
               </div>
 
@@ -102,7 +122,7 @@ template:'<span>
                 </span>
                 
               </div>
-              <div v-else class="estado-de-cuenta-saldo estado-debe-indication">
+              <div v-if="saldoDoalresMenorCero" class="estado-de-cuenta-saldo estado-debe-indication">
                 Debe U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}}  <i class="far fa-frown-open"></i>
               </div>
 
