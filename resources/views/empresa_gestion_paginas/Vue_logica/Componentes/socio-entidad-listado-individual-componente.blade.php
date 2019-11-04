@@ -193,7 +193,7 @@ computed:{
     return {      
       
       'contenedor-border-rojo': debe,
-      'contiene-socio-tipo-lista': true; 
+      'contiene-socio-tipo-lista': true 
     }
   }
 
