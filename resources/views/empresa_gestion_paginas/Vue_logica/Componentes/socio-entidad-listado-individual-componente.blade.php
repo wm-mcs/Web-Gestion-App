@@ -177,16 +177,16 @@ computed:{
   },
   getClassLista:function(){
 
-     let saldo_pesos   = this.socio.saldo_de_estado_de_cuenta_pesos;
-     let saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
+     var saldo_pesos   = this.socio.saldo_de_estado_de_cuenta_pesos;
+     var saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
 
      if(saldo_pesos < 0 || saldo_dolares < 0 )
      {
-       let debe = true;
+       var debe = true;
      }
      else
      {
-      let debe = false;
+      var debe = false;
      }
     
 
@@ -200,7 +200,7 @@ computed:{
 
 },
 template:'  
-<div v-if="app.vista_lista" :class="getClassLista">
+<div v-if="true" :class="getClassLista">
   <div class="flex-row-center">
    
        {!! Form::open(['route' => ['get_socio_panel'],
