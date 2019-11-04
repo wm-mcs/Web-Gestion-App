@@ -84,7 +84,7 @@ template:'<span>
  <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="flex-row-center">
             
          
-              <div v-if="es_mayor_que_sero(socio.saldo_de_estado_de_cuenta_pesos)" class="estado-de-cuenta-saldo estado-pago-indication">
+              <div v-if="saldoPesosMayorCero" class="estado-de-cuenta-saldo estado-pago-indication">
                 
                 <span v-if="saldoPesosMayorCero">
                   A favor $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}} <i class="fas fa-check-square"></i>
@@ -95,10 +95,10 @@ template:'<span>
                 Debe $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}}  <i class="far fa-frown-open"></i>
               </div>
 
-              <div v-if="es_mayor_que_sero(socio.saldo_de_estado_de_cuenta_dolares)" class="estado-de-cuenta-saldo estado-pago-indication">
+              <div v-if="saldoDoalresMayorCero" class="estado-de-cuenta-saldo estado-pago-indication">
                
                 <span v-if="saldoDoalresMayorCero">
-                  Tiene a favor U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}} <i class="fas fa-check-square"></i>
+                  A favor U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}} <i class="fas fa-check-square"></i>
                 </span>
                 
               </div>
