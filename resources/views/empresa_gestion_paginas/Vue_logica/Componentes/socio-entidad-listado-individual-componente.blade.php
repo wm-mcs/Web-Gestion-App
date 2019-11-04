@@ -200,7 +200,7 @@ computed:{
 
 },
 template:'  
-<div v-if="app.vista_lista" :class="getClassLista">
+<div v-if="$root.vista_lista" :class="getClassLista">
   <div class="flex-row-center">
    
        {!! Form::open(['route' => ['get_socio_panel'],
