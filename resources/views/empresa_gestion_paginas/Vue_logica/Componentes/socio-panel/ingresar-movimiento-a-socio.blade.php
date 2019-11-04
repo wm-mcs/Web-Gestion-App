@@ -10,6 +10,7 @@ data:function(){
      se_cobra:'si',
      moneda: '$',
      valor_ingresar:0,
+     nombre_a_ingresar:'',
      user:  {!! json_encode(Auth::user()) !!}
 
     }
@@ -28,6 +29,7 @@ methods:{
   this.servicio_elegido = '';
   this.moneda = '$';
   this.valor_ingresar = 0;
+  this.nombre_a_ingresar = '';
  },
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
@@ -54,7 +56,7 @@ methods:{
                         moneda: this.moneda,  
                          valor: this.valor_ingresar,
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
-                        nombre: this.servicio_elegido.nombre,
+                        nombre: this.servicio_elegido.tipo_saldo,
                       socio_id: this.socio.id,
                           paga: this.se_cobra
 
@@ -136,6 +138,11 @@ template:'<span >
         </div>
         <div class="modal-body text-center"> 
          <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
+
+          <div class="formulario-label-fiel">
+                      <label class="formulario-label" for="Nombre"> Detalle a ingresar  </label>
+                      <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
+            </div>
            
            <div class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_40">
