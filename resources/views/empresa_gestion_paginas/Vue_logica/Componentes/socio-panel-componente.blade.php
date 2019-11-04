@@ -186,7 +186,7 @@ template:'<span>
 
   </div>
 
-  <div class="empresa-contendor-de-secciones">
+  <div  v-if="servicios_disponibles.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Servicios que contrató <span class="color-text-success">disponibles</span> </div>
       <div class="panel-socio-contiene-servicios">
         
@@ -205,8 +205,11 @@ template:'<span>
 
       </div>
   </div>
+  <div v-else class="cuando-no-hay-socios">
+    No hay servicios disponibles <i class="far fa-frown"></i>
+  </div>
 
-   <div class="empresa-contendor-de-secciones">
+   <div v-if="servicios_no_disponibles.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Servicios que contrató el socio <span class="color-text-gris">No disponibles</span></div>
       <div class="panel-socio-contiene-servicios">
         
@@ -225,8 +228,9 @@ template:'<span>
 
       </div>
   </div>
+  
 
-  <div class="empresa-contendor-de-secciones">
+  <div v-if="socio.estado_de_cuenta_socio.length" class="empresa-contendor-de-secciones">
       <div class="estado-de-cuenta-titulo-saldo-contenedor ">
 
           <span class="empresa-titulo-de-secciones">Estado de cuenta del socio</span>
@@ -255,6 +259,9 @@ template:'<span>
           
 
       </div>
+  </div>
+  <div v-else class="cuando-no-hay-socios">
+    Aún no hay movimientos de estado de cuenta  <i class="far fa-frown"></i>
   </div>
  
 
