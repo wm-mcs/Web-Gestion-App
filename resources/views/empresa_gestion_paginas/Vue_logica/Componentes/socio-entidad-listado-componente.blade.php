@@ -74,7 +74,7 @@ created() {
 },
 template:'
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
-  <div class="empresa-titulo-de-secciones"><i class="fas fa-users"></i> Socios </div>
+  <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
   <div v-if="socios.length > 0" class="listado-socios-contenedor-lista">
 
