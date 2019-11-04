@@ -57,7 +57,7 @@ methods:{
                         moneda: this.moneda,  
                          valor: this.valor_ingresar,
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
-                        nombre: this.servicio_elegido.tipo_saldo,
+                        nombre: this.nombre_a_ingresar,
                       socio_id: this.socio.id,
                           paga: this.se_cobra
 
