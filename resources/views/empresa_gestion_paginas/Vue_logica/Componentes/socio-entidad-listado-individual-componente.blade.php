@@ -241,7 +241,7 @@ template:'
           </div>
         </div>
 
-          <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">
+          <div v-if="mensualDisponibles" class="flex-row-center">
           
           
               <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
