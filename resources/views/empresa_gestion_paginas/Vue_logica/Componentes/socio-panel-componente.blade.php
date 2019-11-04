@@ -199,7 +199,7 @@ template:'<span>
                           @actualizar_socio="actualizar_socio"
 
                            v-for="servicio in servicios_disponibles" :key="servicio.id"> 
-            </servicio-socio-lista>
+            </servicio-socio-lista>  
             
           
 

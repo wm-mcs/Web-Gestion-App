@@ -7,6 +7,7 @@ use App\Entidades\ServicioContratadoSocio;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use App\Entidades\MovimientoEstadoDeCuentaSocio;
+use App\Entidades\ServicioSocioRenovacion;
 
 
 
@@ -31,7 +32,8 @@ class Socio extends Model
                           'saldo_de_estado_de_cuenta_dolares',
                           'servicios_contratados_del_socio',
                           'servicios_contratados_disponibles_tipo_clase',
-                          'servicios_contratados_disponibles_tipo_mensual'];
+                          'servicios_contratados_disponibles_tipo_mensual',
+                          'servicios_renovacion_del_socio'];
 
 
     public function servicios_contratados()
@@ -40,13 +42,24 @@ class Socio extends Model
                                                                            ->orderBy('created_at', 'DESC');
     }
 
+        public function getServiciosContratadosDelSocioAttribute()
+        {
+            return $this->servicios_contratados; /*Cache::remember('tipoDeServicio'.$this->id, 2, function() {
+                                  return $this->servicios_contratados; 
+                              }); */
+        }
 
-    public function getServiciosContratadosDelSocioAttribute()
+    public function servicios_renovacion()
     {
-        return $this->servicios_contratados; /*Cache::remember('tipoDeServicio'.$this->id, 2, function() {
-                              return $this->servicios_contratados; 
-                          }); */
+      return $this->hasMany(ServicioSocioRenovacion::class,'socio_id','id')->orderBy('created_at', 'DESC');
     }
+
+        public function getServiciosRenovacionDelSocioAttribute()
+        {
+            return  Cache::remember('servicioRenovacionSocio'.$this->id, 30, function() {
+                                  return $this->servicios_renovacion;
+                              }); 
+        }
 
     public function servicio_contratados_tipo_clases()
     {

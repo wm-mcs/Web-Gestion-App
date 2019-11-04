@@ -1,0 +1,55 @@
+.contiene-socio-tipo-lista{
+   width: 95%;
+   padding: 8px;
+   border:solid 2px transparent;
+   background-color: white;
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include justify-content(space-between);
+
+
+}
+
+  .contenedor-border-rojo{
+   background-color: $Color-Errors-BG;
+  }
+
+
+.contiene-socio-lista_nombre-y-celular{
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+  margin-right: 10px;
+}
+
+  .contiene-socio-lista{
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .contiene-socio-celular{
+    font-size: 9px;
+    color: $color-gris-text;
+  }
+
+.contiene-planes-socio-lista{
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    margin-right: 5px;
+}
+
+ .socio-clases-contenedor{
+  width:200px;
+ }
+
+  .planes-mensuales-cotiene{
+    background-color:$Color-info;
+    padding: 5px;
+    border-radius:4px;
+    margin-right: 3px;
+    color:white;
+    font-size: 10px;
+
+  }

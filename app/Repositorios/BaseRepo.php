@@ -210,7 +210,7 @@ abstract class BaseRepo
           }
           elseif($request->input($Propiedad) == '')
           {
-            $Entidad->$Propiedad = $request->input($Propiedad);
+            $Entidad->$Propiedad = trim($request->input($Propiedad));
           }
          
         } 
@@ -375,7 +375,7 @@ abstract class BaseRepo
     {
       if($valor != '')
       {
-        $Entidad->$atributo = $valor;
+        $Entidad->$atributo = trim($valor);
         $Entidad->save();
       }
       

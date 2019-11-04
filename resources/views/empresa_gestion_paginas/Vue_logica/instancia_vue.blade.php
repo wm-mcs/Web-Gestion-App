@@ -13,7 +13,12 @@
       @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!}
       @else
-Sucursal:'' 
+      Sucursal:'', 
+      @endif 
+      @if(Session::has('vista_socios_lista'))
+      vista_lista:true,
+      @else
+      vista_lista:true
       @endif
 
 
