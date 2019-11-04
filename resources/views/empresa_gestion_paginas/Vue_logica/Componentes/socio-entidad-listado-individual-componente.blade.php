@@ -202,7 +202,7 @@ computed:{
 template:'  
 <div v-if="$root.vista_lista" :class="getClassLista">
   <div class="flex-row-center">
-   
+    
        {!! Form::open(['route' => ['get_socio_panel'],
                                 'method'=> 'Post',
                                 'files' =>  true,
@@ -212,11 +212,11 @@ template:'
            <input type="hidden" name="empresa_id" :value="empresa.id">
            <input type="hidden" name="socio_id" :value="socio.id">
            <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
-        {!! Form::close() !!} 
+       
       <div class="contiene-socio-celular">  
         <i class="fab fa-whatsapp"></i> @{{socio.celular}}    
       </div>
-    </div>
+     {!! Form::close() !!} 
     <div class="contiene-planes-socio-lista">
        <div v-if="nadaDisponible" class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i></div> 
        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases socio-clases-contenedor">
