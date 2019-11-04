@@ -16,7 +16,7 @@
       Sucursal:'', 
       @endif 
       @if(Session::has('vista_socios_lista'))
-      vista_lista:true,
+      vista_lista:true
       @else
       vista_lista:true
       @endif
