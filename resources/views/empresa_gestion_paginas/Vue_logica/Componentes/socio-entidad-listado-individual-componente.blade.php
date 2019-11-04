@@ -239,11 +239,13 @@ template:'
               </div>
             </div>
           </div>
+        </div>
 
           <div v-if="mensualDisponibles" class="listado-socio-tiene-mensual">
           
           
-              <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" class="planes-mensuales-cotiene" :key="servicio.id">              
+              <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
+                   class="planes-mensuales-cotiene" :key="servicio.id">              
                 @{{servicio.name}}           
                
               </div>
@@ -253,7 +255,7 @@ template:'
         </div>
 
 
-        </div>
+        
 
     </div>
     
