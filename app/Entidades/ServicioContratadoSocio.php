@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Entidades\SucursalEmpresa;
 use Illuminate\Support\Facades\Cache;
+use App\Entidades\TipoDeServicio;
 
 
 
@@ -29,7 +30,8 @@ class ServicioContratadoSocio extends Model
                            'esta_vencido',
                            'se_consumio',
                            'sucursal_donde_se_emitio',
-                           'sucursal_donde_se_uso'
+                           'sucursal_donde_se_uso',
+                           'tipo_de_servicio'
                           ];
 
 
@@ -47,6 +49,18 @@ class ServicioContratadoSocio extends Model
                               return $this->SucursalEmitio; 
                           }); 
         }  
+
+    public function tipo_servicio()
+    {
+      return  $this->belongsTo(TipoDeServicio::class,'tipo_servicio_id','id'); 
+    }    
+
+      public function getTipoDeServicioAttribute()
+      {
+          return Cache::remember('tipoServicio'.$this->id, 60, function() {
+                              return $this->tipo_servicio; 
+                          }); 
+      }
 
     public function SucursalUso()
     {

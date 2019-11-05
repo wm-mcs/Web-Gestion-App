@@ -432,7 +432,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
        
        //las porpiedades que se van a editar
-       $Propiedades = ['name','tipo','moneda','fecha_vencimiento'];
+       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','tipo_servicio_id'];
 
 
        //veo si son mas de uno
@@ -499,13 +499,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad->valor              = round($Request->get('valor'));     
           $Entidad->sucursal_emitio_id = $Sucursal->id; 
 
-          $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+          $Entidad = $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
           
           //ajusto el servicio de renovación
           $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
                                                                     $Socio->empresa_id,
-                                                                    $Entidad->tipo, 
+                                                                    $Entidad->tipo_de_servicio, 
                                                                     Carbon::now('America/Montevideo')       );
 
 

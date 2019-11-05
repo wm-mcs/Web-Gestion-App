@@ -16,7 +16,8 @@ data:function(){
                         empresa_id:this.empresa.id,
                         socio_id:this.socio.id,
                         socio_empresa_id:'',
-                        paga:'si'
+                        paga:'si',
+                        tipo_servicio_id:''
 
                     },
       tipo_servicio:'',              
@@ -91,6 +92,7 @@ methods:{
   this.servicio_data.tipo             = servicio.tipo;
   this.servicio_data.moneda           = servicio.moneda;
   this.servicio_data.valor            = servicio.valor;
+  this.tipo_servicio_id               = servicio.id;
 
   this.servicio_data.socio_id         = this.socio.id;
   this.servicio_data.socio_empresa_id = this.socio.empresa_id;

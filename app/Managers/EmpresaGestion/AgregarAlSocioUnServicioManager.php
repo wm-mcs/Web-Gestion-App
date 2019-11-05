@@ -20,7 +20,8 @@ class AgregarAlSocioUnServicioManager extends ManagerBase
       'name'               => 'required',
       'moneda'             => 'required',
       'valor'              => 'required',
-      'fecha_vencimiento'  => 'required'
+      'fecha_vencimiento'  => 'required',
+      'tipo_servicio_id'   => 'required'
              ];
 
     return $rules;
