@@ -1,0 +1,23 @@
+.contiene-se-renueva{
+    width: 200%;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
+    padding: 10px;
+    margin-top: 10px;
+    border:solid 1px $color-gris-lineas;
+}
+
+  .se-renueva-name{
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2px;
+
+  }
+
+  .se-renueva-ULTIMA{
+    font-size: 9px;
+    font-weight: bold;
+    margin-bottom: 2px;
+
+  }
