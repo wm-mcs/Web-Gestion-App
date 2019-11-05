@@ -27,6 +27,7 @@ use App\Managers\EmpresaGestion\AnularCajaManager;
 use App\Managers\EmpresaGestion\CrearTipoServicioManager; 
 use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
+use App\Repositorios\ServicioSocioRenovacionRepo;
 
 
 
@@ -44,6 +45,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $VendedorEmpresaRepo;
   protected $SucursalEmpresaRepo;
   protected $CajaEmpresaRepo;
+  protected $ServicioSocioRenovacionRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -55,7 +57,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               UserEmpresaRepo                   $UserEmpresaRepo,
                               VendedorEmpresaRepo               $VendedorEmpresaRepo,
                               SucursalEmpresaRepo               $SucursalEmpresaRepo,
-                              CajaEmpresaRepo                   $CajaEmpresaRepo  )
+                              CajaEmpresaRepo                   $CajaEmpresaRepo,
+                              ServicioSocioRenovacionRepo       $ServicioSocioRenovacionRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -68,6 +71,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->VendedorEmpresaRepo               = $VendedorEmpresaRepo;
     $this->SucursalEmpresaRepo               = $SucursalEmpresaRepo;
     $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
+    $this->ServicioSocioRenovacionRepo       = $ServicioSocioRenovacionRepo;
   }
 
   public function getPropiedades()
@@ -496,6 +500,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad->sucursal_emitio_id = $Sucursal->id; 
 
           $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+
+          
+          //ajusto el servicio de renovación
+          $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                    $Socio->empresa_id,
+                                                                    $Entidad->tipo, 
+                                                                    Carbon::now('America/Montevideo')       );
 
 
              //Logica de estado de cuenta cuando compra
