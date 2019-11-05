@@ -29,8 +29,8 @@
 }
 
   .contiene-socio-lista{
-    font-size: 16px;
-    margin-bottom: px;
+    font-size: 17px;
+    font-weight: bold;
   }
 
   .contiene-socio-celular{
@@ -56,11 +56,21 @@
     text-align: center;
     color:white;
     width: 115px;
+    font-weight: bold;
     margin-right: 5px;
     cursor: pointer;
     text-align: center;
     background-color: $Color-info;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
 
   }
+
+   .plan-mensual-fecha-vencimiento{
+    margin-top: 2px;
+    font-size: 8px;
+    font-weight: thin;
+   }
 
     

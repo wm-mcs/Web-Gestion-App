@@ -246,7 +246,8 @@ template:'
           
               <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
                    class="planes-mensuales-cotiene" :key="servicio.id">              
-                @{{servicio.name}}           
+                <span>@{{servicio.name}}</span>  
+                <span class="plan-mensual-fecha-vencimiento">Vence: @{{servicio.fecha_contratado_formateada}}</span>       
                
               </div>
            
