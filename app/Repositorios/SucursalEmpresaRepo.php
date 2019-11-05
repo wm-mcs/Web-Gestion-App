@@ -22,7 +22,7 @@ class SucursalEmpresaRepo extends BaseRepo
   public function actualizarSucursalSession($sucursal_id)
   {   
     $Sucursal = $this->find($sucursal_id);  
-    Session::set('sucursal',$Sucursal);
+    Session::set('sucursal'.$Sucursal->empresa_id,$Sucursal);
   }
 
 

@@ -752,6 +752,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
            //indico que es un movimiento anulador
            $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
+
+           //actualiza la session
+           $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
           }
 
 
@@ -924,6 +927,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                       $detalle, 
                                                       Carbon::now('America/Montevideo'), 
                                                       $Request->get('nombre'));
+
+      //actualiza la session
+      $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
+
       return  ['Validacion'          => true,
                'Validacion_mensaje'  => 'Se ingresó correctamente: ' . $detalle,
                'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id)   ];
@@ -968,6 +975,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        //indico que es un movimiento anulador
        $this->CajaEmpresaRepo->setAtributoEspecifico($CajaAnulador,'estado_del_movimiento','anulador');
+
+       //actualiza la session
+       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
 
        return  ['Validacion'          => true,
                 'Validacion_mensaje'  => 'Se anuló correctamente',
@@ -1041,6 +1051,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Nombre,
                                                                  null ) ;
+
+              //actualiza la session
+              $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
             }  
 
 
