@@ -1,5 +1,5 @@
 .contiene-se-renueva{
-    width: 200%;
+    width: 200px;
     @include flexbox;       
     @include flex-direction(column);
     @include align-items(center); 
@@ -22,7 +22,27 @@
 
   }
 
+ .sub-contiene-se-renueva{
+  padding:6px;
+  border-radius:4px;
+  @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(center); 
+    background-color: $Color-Gris-Claro;
+
+ }
   .se-renueva-automaticamente{
     font-size: 9px;
     font-weight: bold;
+
   }
+
+  .contiene-re-renueva-label-input{
+    @include flexbox;       
+      @include flex-direction(row);
+      @include align-items(center); 
+  }
+
+    .renueva-label{
+      font-size: 8px;
+    }

@@ -17,18 +17,22 @@ template:'<div class="contiene-se-renueva">
   
    <span class="se-renueva-name">@{{servicio_renovacion.servicio_tipo.name}} </span>
    <span class="se-renueva-ULTIMA">Última renovación: @{{servicio_renovacion.fecha_ultima_renovacion}} </span>
+
+   <div class="sub-contiene-se-renueva">
+     
+   
    <span class="se-renueva-automaticamente">Se renueva automáticamente </span>
    
-              <div class="contiene-opcion-moneda">
+              <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="si" v-model="servicio_renovacion.se_renueva_automaticamente">
-                <label class="moneda-label" for="si">Si</label>
+                <label class="renueva-label" for="si">Si</label>
               </div>
               
-              <div class="contiene-opcion-moneda">
+              <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="no" v-model="servicio_renovacion.se_renueva_automaticamente">
-                <label class="moneda-label" for="no">No</label>
+                <label class="renueva-label" for="no">No</label>
               </div>
-   
+   </div>
   
 
 </div>'
