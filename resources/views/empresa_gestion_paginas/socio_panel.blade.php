@@ -39,6 +39,8 @@
 
 
 <script type="text/javascript">
+
+   @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.servicio-renovacion-lista') 
       @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.ingresar-movimiento-a-socio') 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_lista')

@@ -185,6 +185,28 @@ template:'<span>
 
 
   </div>
+  <div  v-if="socio.servicios_renovacion_del_socio.length" class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para cargar de forma rápido o renovación automática </div>
+      <div class="panel-socio-contiene-servicios">
+        
+          
+
+
+            <servicio-renovacion-lista  
+                                  :empresa="empresa"
+                                  :servicio_renovacion="servicio_renovacion"
+                          @actualizar_socio="actualizar_socio"
+
+                           v-for="servicio_renovacion in socio.servicios_renovacion_del_socio" :key="servicio_renovacion.id"> 
+            </servicio-renovacion-lista>  
+            
+          
+
+      </div>
+  </div>
+  <div v-else class="cuando-no-hay-socios">
+    No hay servicios renovación creados <i class="far fa-frown"></i>
+  </div>
 
   <div  v-if="servicios_disponibles.length" class="empresa-contendor-de-secciones">
       <div class="empresa-titulo-de-secciones">Servicios que contrató <span class="color-text-success">disponibles</span> </div>
