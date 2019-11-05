@@ -26,8 +26,8 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['tipo_servicios',
-                           'socios_de_la_empresa',
+    protected $appends  = ['tipo_servicios',/*
+                           'socios_de_la_empresa',*/
                            'sucursuales_empresa',
                            'url_img',
                            'route_admin',
@@ -47,7 +47,7 @@ class EmpresaConSocios extends Model
         }
 
 
-    public function socios()
+    /*public function socios()
     {
       return $this->hasMany(Socio::class,'empresa_id','id')->orderBy('name','asc');
     }
@@ -55,7 +55,7 @@ class EmpresaConSocios extends Model
         public function getSociosDeLaEmpresaAttribute()
         {        
            return $this->socios;
-        }
+        }*/
 
 
     public function sucursales()
