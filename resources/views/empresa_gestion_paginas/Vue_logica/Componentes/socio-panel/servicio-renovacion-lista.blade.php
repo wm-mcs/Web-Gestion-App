@@ -22,8 +22,8 @@ template:'<div class="contiene-se-renueva">
      
    
               <span class="se-renueva-automaticamente">Se renueva automáticamente </span>
-   
-              <div class="contiene-re-renueva-label-input">
+        <div class="flex-row-center flex-justifice-space-around get_width_70">
+           <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="si" v-model="servicio_renovacion.se_renueva_automaticamente">
                 <label class="renueva-label" for="si">Si</label>
               </div>
@@ -32,6 +32,8 @@ template:'<div class="contiene-se-renueva">
                 <input type="radio" value="no" v-model="servicio_renovacion.se_renueva_automaticamente">
                 <label class="renueva-label" for="no">No</label>
               </div>
+        </div>
+             
    </div>
   
 
