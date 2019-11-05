@@ -5,20 +5,21 @@
     @include align-items(center); 
     padding: 10px;
     margin-top: 10px;
-    border:solid 1px $color-gris-lineas;
+    background-color: $Color-Gris-Claro;
 }
 
   .se-renueva-name{
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 2px;
+    color:$color-3;
 
   }
 
   .se-renueva-ULTIMA{
     font-size: 9px;
     font-weight: bold;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
 
   }
 
@@ -34,15 +35,17 @@
   .se-renueva-automaticamente{
     font-size: 9px;
     font-weight: bold;
+    margin-bottom: 8px;
 
   }
 
   .contiene-re-renueva-label-input{
-    @include flexbox;       
+      @include flexbox;       
       @include flex-direction(row);
       @include align-items(center); 
   }
 
     .renueva-label{
-      font-size: 8px;
+      font-size: 10px;
+      margin:0 0 0 4px;
     }

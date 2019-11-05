@@ -21,7 +21,7 @@ template:'<div class="contiene-se-renueva">
    <div class="sub-contiene-se-renueva">
      
    
-   <span class="se-renueva-automaticamente">Se renueva automáticamente </span>
+              <span class="se-renueva-automaticamente">Se renueva automáticamente </span>
    
               <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="si" v-model="servicio_renovacion.se_renueva_automaticamente">
