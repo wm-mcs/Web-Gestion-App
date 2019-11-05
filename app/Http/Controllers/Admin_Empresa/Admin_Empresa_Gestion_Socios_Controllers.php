@@ -702,7 +702,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        return ['Validacion'          =>  $Validacion,
                'Validacion_mensaje'  =>  'Se consumió la clase correctamente',
                'Socio'               =>  $Socio,
-               'Empresa'             =>  $Empresa];
+               'Socios'              =>  $this->SocioRepo->getSociosBusqueda($Empresa->id,null,30) ];
      }
      
   }
@@ -916,7 +916,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       return  ['Validacion'          => true,
                'Validacion_mensaje'  => 'Se ingresó correctamente: ' . $detalle,
                'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id)   ];
-    }
+    } 
     else
     {
       return  ['Validacion'          => false,

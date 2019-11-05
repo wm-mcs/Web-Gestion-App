@@ -79,7 +79,7 @@ consumir_esta_clase:function(servicio){
             
             
              
-             vue.$emit("ActualizarSocios", response.data.Empresa.socios_de_la_empresa);
+             vue.$emit("ActualizarSocios", response.data.Socios);
 
              $.notify(response.data.Validacion_mensaje, "success");
           }
