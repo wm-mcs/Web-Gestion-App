@@ -6,7 +6,7 @@ props:['empresa','palabra_busqueda']
 
 data:function(){
     return {
-         socios:this.empresa.socios_de_la_empresa
+         socios:{!! json_encode($Socios) !!}
 
     }
 }, 
