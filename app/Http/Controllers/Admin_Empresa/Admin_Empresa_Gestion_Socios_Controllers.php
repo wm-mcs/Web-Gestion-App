@@ -1072,7 +1072,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function editar_servicio_renovacion(Request $Request)
   {
-    $Socio             = $Request->get('socio_desde_middleware'); 
+    $Socio       = $Request->get('socio_desde_middleware'); 
 
     $manager     = new EditarRenovacionDeSocioManager(null,$Request->all());
     if(!$manager->isValid())
@@ -1090,8 +1090,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               'Validacion_mensaje'  => 'Se editó correctamente- En breve lo verás reflejado',
               'Socio'               => $Socio  ];
 
-
   }
+
+  public function cargar_servicios_recuerrentes_a_socio(Request $Request)
+  {
+    
+  }
+
+
 
 
 
