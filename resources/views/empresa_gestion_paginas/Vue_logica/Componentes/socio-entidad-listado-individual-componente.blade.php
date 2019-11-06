@@ -101,7 +101,48 @@ consumir_esta_clase:function(servicio){
 
 },
 cargar_servicios:function(){
-  alert('hola');
+       var mensaje    = "¿Seguro quieres renovar los servicios? (de " + this.socio.name + ' )' ;
+
+       var validation = confirm(mensaje);
+
+       if(!validation)
+       {
+        return '';
+       }
+
+
+       var url = '/cargar_servicios_recuerrentes_a_socio';
+
+       var vue = this;
+
+       var data = {
+                            socio_id:this.socio.id,                         
+                          empresa_id:this.empresa.id};
+
+       axios.post(url,data).then(function(response){ 
+
+
+          
+          if(response.data.Validacion == true)
+          {
+            
+            
+             
+             vue.$emit("ActualizarSocios", response.data.Socios);
+
+             $.notify(response.data.Validacion_mensaje, "success");
+          }
+          else
+          {
+            $.notify(response.data.Validacion_mensaje, "warn");
+          }    
+           
+           
+           }).catch(function (error){
+
+                     
+            
+           });
 
 }
 

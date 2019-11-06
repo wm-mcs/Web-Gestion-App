@@ -18,6 +18,17 @@ class ServicioSocioRenovacionRepo extends BaseRepo
 
 
 
+  public function getServiciosDeRenovacionDelSocioActivos($socio_id)
+  {
+    return $this->getEntidad()
+                ->where('borrado','no')
+                ->where('socio_id',$socio_id)
+                ->where('se_renueva_automaticamente','si')
+                ->get();
+  }
+
+
+
   public function setServicioRenovacion($socio_id,$empresa_id,$tipo_servicio,$fecha)
   {
 

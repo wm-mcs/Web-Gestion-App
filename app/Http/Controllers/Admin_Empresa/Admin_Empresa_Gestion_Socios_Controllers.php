@@ -27,7 +27,8 @@ use App\Managers\EmpresaGestion\AnularCajaManager;
 use App\Managers\EmpresaGestion\CrearTipoServicioManager; 
 use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
-use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager;
+use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager; 
+use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager; 
 use App\Repositorios\ServicioSocioRenovacionRepo;
 
 
@@ -1094,7 +1095,60 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function cargar_servicios_recuerrentes_a_socio(Request $Request)
   {
-    
+    $Socio                 = $Request->get('socio_desde_middleware');
+    $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id);   
+    $Sucursal              = $Request->get('sucursal_desde_middleware'); 
+    $User                  = $Request->get('user_desde_middleware');  
+
+     //primero me fijo el manager 
+     $manager           = new RenovarDeFormaAutomaticaManager(null,$Request->all() );
+     if(!$manager->isValid())
+     {
+       return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'No se pudo renovar automáticamente: ' . $manager->getErrors()];
+     } 
+
+    //primero me fijo que el socio no tenga deudas
+     if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
+     {
+        return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'El socio ' . $Socio->name . ' tiene deuda. Por esa razón no se puede renovar.'];
+     }
+         
+
+
+    //luego me fijo si tiene servicios de renovacion
+    if($Servicios_renovacion->count() == 0) 
+    {
+       ['Validacion'          => false,
+        'Validacion_mensaje'  => 'No tiene nada como para renovar '];
+    }
+
+    //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
+    foreach ($Servicios_renovacion as $Servicio_para_renovar)
+    {
+     //busco los servicios del socio
+     $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
+
+     //creo el nuevo servicio
+     $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+                                                                             $Sucursal->id, 
+                                                                             $Servicio->tipo_de_servicio, 
+                                                                             Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
+
+      //Logica de estado de cuenta cuando compra
+      $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+                                                                        $User->id,
+                                                                        $Nuevo_servicio->moneda,
+                                                                        $Nuevo_servicio->valor,
+                                                                        'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
+                                                                        'acredor',
+                                                                        Carbon::now('America/Montevideo'),
+                                                                        $Nuevo_servicio->id);
+
+    }
+
+    //los rodeno por fecha de vencimeinto y agarro el primero es decir el ultimo en vencer
   }
 
 

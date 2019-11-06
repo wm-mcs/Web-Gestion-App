@@ -51,6 +51,13 @@ Route::post('editar_servicio_renovacion',
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_servicio_renovacion',
   'as'         => 'editar_servicio_renovacion']);  
 
+Route::post('cargar_servicios_recuerrentes_a_socio',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@cargar_servicios_recuerrentes_a_socio',
+  'as'         => 'cargar_servicios_recuerrentes_a_socio']);  
+
+
+
 
 Route::group(['middleware' => 'SistemaGestionServicioSocioIdIgualSocioId'],function()
 {
