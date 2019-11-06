@@ -1099,6 +1099,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id);   
     $Sucursal              = $Request->get('sucursal_desde_middleware'); 
     $User                  = $Request->get('user_desde_middleware');  
+    $Hoy                   = Carbon::now('America/Montevideo');
 
      //primero me fijo el manager 
      $manager           = new RenovarDeFormaAutomaticaManager(null,$Request->all() );
@@ -1130,14 +1131,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      //busco los servicios del socio
      $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
 
-     //creo el nuevo servicio
-     $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+     //debería buscar servicio a socio y ver si en un mes hay alguno disponible
+     if($Hoy > Carbon::parse($Servicio->fecha_vencimiento) || $Hoy->addDays(7) > Carbon::parse($Servicio->fecha_vencimiento))
+     {
+       //creo el nuevo servicio
+       $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
                                                                              $Sucursal->id, 
                                                                              $Servicio->tipo_de_servicio, 
                                                                              Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
 
-      //Logica de estado de cuenta cuando compra
-      $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+       //Logica de estado de cuenta cuando compra
+       $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
                                                                         $User->id,
                                                                         $Nuevo_servicio->moneda,
                                                                         $Nuevo_servicio->valor,
@@ -1146,11 +1150,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                         Carbon::now('America/Montevideo'),
                                                                         $Nuevo_servicio->id);
 
-          //ajusto el servicio de renovación
-          $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+        //ajusto el servicio de renovación
+        $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
                                                                     $Socio->empresa_id,
                                                                     $Nuevo_servicio->tipo_de_servicio, 
                                                                     Carbon::now('America/Montevideo')       );
+     }
+     else
+     {
+       return ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puede agregar porque aún tiené algún servicio disponible'];
+     }
+
+     
 
     }
 
