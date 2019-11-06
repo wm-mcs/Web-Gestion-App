@@ -1146,9 +1146,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                         Carbon::now('America/Montevideo'),
                                                                         $Nuevo_servicio->id);
 
+          //ajusto el servicio de renovación
+          $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                    $Socio->empresa_id,
+                                                                    $Nuevo_servicio->tipo_de_servicio, 
+                                                                    Carbon::now('America/Montevideo')       );
+
     }
 
-    //los rodeno por fecha de vencimeinto y agarro el primero es decir el ultimo en vencer
+    return ['Validacion'          => true,
+            'Validacion_mensaje'  => 'Se renovó correctamente el servicio a ' . $Socio->name];
   }
 
 
