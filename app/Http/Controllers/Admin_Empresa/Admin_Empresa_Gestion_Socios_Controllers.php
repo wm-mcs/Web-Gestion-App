@@ -1060,7 +1060,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
             return  ['Validacion'          => true,
-                     'Validacion_mensaje'  => 'Se ingresó correctamente',
+                     'Validacion_mensaje'  => 'Se ingresó correctamente. En minutos ya lo verás reflejado.',
                      'Socio'               =>  $this->SocioRepo->find($Socio->id), 
                      'sucursal'            => $this->SucursalEmpresaRepo->find($Sucursal->id) ];
 
