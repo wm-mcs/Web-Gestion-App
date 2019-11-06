@@ -1087,7 +1087,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $Socio = $this->SocioRepo->find($Servicio_renovacion->socio_id); 
 
      return  ['Validacion'          => true,
-              'Validacion_mensaje'  => 'Se editó correctamente',
+              'Validacion_mensaje'  => 'Se editó correctamente- En breve lo verás reflejado',
               'Socio'               => $Socio  ];
 
 
