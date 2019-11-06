@@ -61,7 +61,7 @@ class ServicioContratadoSocioRepo extends BaseRepo
     $Entidad->tipo_servicio_id   = $Tipo_de_servicio_objeto->id;
     $Entidad->tipo               = $Tipo_de_servicio_objeto->tipo;
     $Entidad->name               = $Tipo_de_servicio_objeto->name;
-    $Entidad->valorvalor         = $Tipo_de_servicio_objeto->valor;
+    $Entidad->valor              = $Tipo_de_servicio_objeto->valor;
     $Entidad->moneda             = $Tipo_de_servicio_objeto->moneda;
     $Entidad->fecha_vencimiento  = $Fecha_vencimiento;
     $Entidad->save();
