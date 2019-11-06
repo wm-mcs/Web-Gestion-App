@@ -197,7 +197,7 @@ template:'<span>
                                   :servicio_renovacion="servicio_renovacion"
                           @actualizar_socio="actualizar_socio"
 
-                           v-for="servicio_renovacion in socio.servicios_renovacion" :key="servicio_renovacion.id"> 
+                           v-for="servicio_renovacion in socio.servicios_renovacion_del_socio" :key="servicio_renovacion.id"> 
             </servicio-renovacion-lista>  
             
           
