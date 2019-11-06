@@ -17,7 +17,7 @@ methods:{
       var url  = '/editar_servicio_renovacion';
 
       var data = {se_renueva_automaticamente:this.se_renueva,
-                                  empresa_id:this.empresa.id,
+                                  empresa_id:this.empresa_id,
                                     socio_id:this.servicio_renovacion.socio_id,
                       servicio_renovacion_id:this.servicio_renovacion.id};
 
