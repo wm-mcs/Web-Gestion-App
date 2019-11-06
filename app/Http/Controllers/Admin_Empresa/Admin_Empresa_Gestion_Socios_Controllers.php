@@ -1167,7 +1167,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     }
 
     return ['Validacion'          => true,
-            'Validacion_mensaje'  => 'Se renovó correctamente el servicio a ' . $Socio->name];
+            'Validacion_mensaje'  => 'Se renovó correctamente el servicio a ' . $Socio->name,
+            'Socio'               => $this->SocioRepo->find($Socio->id)];
   }
 
 
