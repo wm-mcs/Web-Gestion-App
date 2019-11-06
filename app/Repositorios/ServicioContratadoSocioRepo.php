@@ -45,7 +45,7 @@ class ServicioContratadoSocioRepo extends BaseRepo
                 ->where('tipo_servicio_id',$Tipo_id)
                 ->orderBy('fecha_vencimiento','desc')
                 ->get();
-    dd($servicios,$servicios->first() );
+    
                 return $servicios->first();
   }
 
