@@ -27,6 +27,7 @@ use App\Managers\EmpresaGestion\AnularCajaManager;
 use App\Managers\EmpresaGestion\CrearTipoServicioManager; 
 use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
+use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager;
 use App\Repositorios\ServicioSocioRenovacionRepo;
 
 
@@ -1066,6 +1067,29 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
  
+
+  }
+
+  public function editar_servicio_renovacion(Request $Request)
+  {
+    $Socio             = $Request->get('socio_desde_middleware'); 
+
+    $manager     = new EditarRenovacionDeSocioManager(null,$Request->all());
+    if(!$manager->isValid())
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puedó editar: ' . $manager->getErrors()];
+    }
+
+    $Servicio_renovacion = $this->ServicioSocioRenovacionRepo->find($Request->get('servicio_renovacion_id'));
+    $this->ServicioSocioRenovacionRepo->setAtributoEspecifico($Servicio_renovacion, 'se_renueva_automaticamente', $Request->get('se_renueva_automaticamente'));
+
+    $Socio = $this->SocioRepo->find($Servicio_renovacion->socio_id); 
+
+     return  ['Validacion'          => true,
+              'Validacion_mensaje'  => 'Se editó correctamente',
+              'Socio'               => $Socio  ];
+
 
   }
 

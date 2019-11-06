@@ -13,6 +13,32 @@ methods:{
 
       this.se_renueva = this.servicio_renovacion.se_renueva_automaticamente;
       alert(this.se_renueva);
+
+      var url  = '/editar_servicio_renovacion';
+
+      var data = {se_renueva_automaticamente:this.se_renueva,
+                                  empresa_id:this.empresa.id,
+                                    socio_id:this.servicio_renovacion.socio_id,
+                      servicio_renovacion_id:this.servicio_renovacion.id}
+
+      var vue = this;
+
+      axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+                
+              vue.$emit('actualizar_socio',response.data.Socio);  
+              $.notify(data.Validacion_mensaje, "success");      
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "warn");
+            }
+           
+      }).catch(function (error){}); 
     }
 
 },
