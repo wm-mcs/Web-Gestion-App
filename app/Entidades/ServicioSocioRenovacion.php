@@ -5,6 +5,7 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 
 
@@ -20,7 +21,7 @@ class ServicioSocioRenovacion extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['servicio_tipo'];
+    protected $appends  = ['servicio_tipo','fecha_de_la_ultima_renovacion'];
 
     
     public function tipo_servicio()
@@ -34,5 +35,11 @@ class ServicioSocioRenovacion extends Model
                               return $this->tipo_servicio; 
                           }); 
       }
+
+
+    public function getFechaDeLaUltimaRenovacionAttribute()
+    {
+        return Carbon::parse($this->fecha_ultima_renovacion)->format('Y-m-d');
+    } 
     
 }

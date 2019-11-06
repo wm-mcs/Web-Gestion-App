@@ -20,7 +20,7 @@ template:'<div class="contiene-se-renueva">
 
   
    <span class="se-renueva-name">@{{servicio_renovacion.servicio_tipo.name}} </span>
-   <span class="se-renueva-ULTIMA">Última renovación: @{{servicio_renovacion.fecha_ultima_renovacion}} </span>
+   <span class="se-renueva-ULTIMA">Última renovación: @{{servicio_renovacion.fecha_de_la_ultima_renovacion}} </span>
 
    <div class="sub-contiene-se-renueva">
      
