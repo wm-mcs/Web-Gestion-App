@@ -23,7 +23,4 @@ Route::post('indicar_que_se_uso_el_servicio_hoy',
   'as'         => 'indicar_que_se_uso_el_servicio_hoy']);  
 
 
-Route::post('editar_servicio_renovacion',
-[
-  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_servicio_renovacion',
-  'as'         => 'editar_servicio_renovacion']);  
+

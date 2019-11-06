@@ -46,7 +46,10 @@ Route::post('ingresar_movimiento_a_socio',
 
 
 
-
+Route::post('editar_servicio_renovacion',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_servicio_renovacion',
+  'as'         => 'editar_servicio_renovacion']);  
 
 
 Route::group(['middleware' => 'SistemaGestionServicioSocioIdIgualSocioId'],function()
