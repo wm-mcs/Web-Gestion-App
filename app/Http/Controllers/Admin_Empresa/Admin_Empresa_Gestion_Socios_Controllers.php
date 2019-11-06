@@ -1120,8 +1120,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     //luego me fijo si tiene servicios de renovacion
     if($Servicios_renovacion->count() == 0) 
     {
-       ['Validacion'          => false,
-        'Validacion_mensaje'  => 'No tiene nada como para renovar '];
+      return ['Validacion'          => false,
+              'Validacion_mensaje'  => 'No tiene nada como para renovar '];
     }
 
     //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
