@@ -194,7 +194,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
        $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 1350, function() use($Empresa,$User,$Sucursal) {
           
-            $Hoy                   = Carbon::now('America/Montevideo');
+            $Hoy                   = Carbon::now('America/Montevideo')format('d/m/Y H:i:s');
 
 
 
