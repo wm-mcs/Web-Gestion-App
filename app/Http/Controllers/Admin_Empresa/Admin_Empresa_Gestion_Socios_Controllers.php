@@ -31,6 +31,7 @@ use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager;
 use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager;
 use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager; 
 use App\Repositorios\ServicioSocioRenovacionRepo;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -189,6 +190,124 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
        $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
        $Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 30);
+       $Sucursal        = $Request->get('sucursal_desde_middleware'); 
+
+       $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 1350, function() use($Empresa,$User,$Sucursal) {
+          
+            $Hoy                   = Carbon::now('America/Montevideo');
+
+
+
+            $Array_resultados = [];
+
+            //primer me fijo se está activo esto
+            if($Empresa->actualizar_servicios_socios_automaticamente != 'si')  
+            {
+               $Array_resultados = 'no renueva' ;
+               return  $Array_resultados ;
+            }     
+
+            foreach($this->SocioRepo->getSociosBusqueda($Empresa->id, null,null) as $Socio)
+            {
+
+               $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id); 
+
+               //primero me fijo que el socio no tenga deudas
+               if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
+               {
+                  return array_push($Array_resultados, [ 'Socio'      => $Socio->name, 
+                                                         'Acutualizo' => 'no', 
+                                                         'Razon'      => 'debia plata',
+                                                         'Fecha'      =>  $Hoy]    );
+               }
+                   
+
+
+              //luego me fijo si tiene servicios de renovacion
+              if($Servicios_renovacion->count() == 0) 
+              {
+                return array_push($Array_resultados, [ 'Socio'      => $Socio->name, 
+                                                       'Acutualizo' => 'no', 
+                                                       'Razon'      => 'no tenía servicio con renovacion marcada en si',
+                                                         'Fecha'      =>  $Hoy ]    );
+              }
+
+              //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
+              foreach ($Servicios_renovacion as $Servicio_para_renovar)
+              {
+               //busco los servicios del socio
+               $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
+
+               //debería buscar servicio a socio y ver si en un mes hay alguno disponible
+               if($Hoy > Carbon::parse($Servicio->fecha_vencimiento) || $Hoy->addDays(7) > Carbon::parse($Servicio->fecha_vencimiento))
+               {
+                 //creo el nuevo servicio
+                 $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+                                                                                       $Sucursal->id, 
+                                                                                       $Servicio->tipo_de_servicio, 
+                                                                                       Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
+
+                 //Logica de estado de cuenta cuando compra
+                 $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+                                                                                  $User->id,
+                                                                                  $Nuevo_servicio->moneda,
+                                                                                  $Nuevo_servicio->valor,
+                                                                                  'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
+                                                                                  'acredor',
+                                                                                  Carbon::now('America/Montevideo'),
+                                                                                  $Nuevo_servicio->id);
+
+                  //ajusto el servicio de renovación
+                  $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                              $Socio->empresa_id,
+                                                                              $Nuevo_servicio->tipo_de_servicio, 
+                                                                              Carbon::now('America/Montevideo')       );
+
+                  array_push($Array_resultados, [ 'Socio'      => $Socio->name, 
+                                                 'Acutualizo'  => 'si', 
+                                                 'Razon'       => 'Se renovó correctamente' ,
+                                                         'Fecha'      =>  $Hoy]    );
+               }
+               else
+               {
+                 return array_push($Array_resultados, [ 'Socio'      => $Socio->name, 
+                                                       'Acutualizo'  => 'no', 
+                                                       'Razon'       => 'Aun tenía servicios disponibles',
+                                                         'Fecha'      =>  $Hoy ]    );
+               }
+
+
+               return $Array_resultados;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+        }); 
+
+
+        dd(Cache::get('ActualizarEmpresaSocios'.$Empresa->id));
       
 
        return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
