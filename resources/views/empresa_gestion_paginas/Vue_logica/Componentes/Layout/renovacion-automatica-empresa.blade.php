@@ -55,7 +55,7 @@ template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal
                @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
 
 
-               <div class="flex-row-center get_width_100 text-pequeno .margin-top-2px">
+               <div class="flex-row-center get_width_100 text-pequeno margin-top-2px">
                   <div class="get_width_30 text-left text-bold helper-aumenta-texto" > {{$Valor->Socio}} </div> 
 
                   <div class="get_width_10 helper-aumenta-texto text-center text-bold @if($Valor->Acutualizo == 'si') color-text-success @endif " > {{$Valor->Acutualizo}}  </div> 
