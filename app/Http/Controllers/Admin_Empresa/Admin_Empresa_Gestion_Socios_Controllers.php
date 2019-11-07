@@ -282,7 +282,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               }
         }
 
-        return json_encode($Array_resultados);
+        return $Array_resultados;
 
         }); 
 
