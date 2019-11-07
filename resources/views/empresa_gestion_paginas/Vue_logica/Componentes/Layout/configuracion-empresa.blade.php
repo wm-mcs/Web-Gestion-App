@@ -29,7 +29,7 @@ actualizar_datos:function(){
             if(data.Validacion == true)
             {
                 
-              app.empresa = data.emrpesa;  
+              app.empresa = data.empresa;  
               $.notify(data.Validacion_mensaje, "success");      
             }
             else
