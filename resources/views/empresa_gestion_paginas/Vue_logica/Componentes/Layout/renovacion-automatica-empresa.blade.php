@@ -27,7 +27,7 @@ computed:{
     return false;
   }
   }
-}
+},
 template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-cog"></i> Empresa
 
 
