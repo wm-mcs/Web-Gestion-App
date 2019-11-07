@@ -193,8 +193,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Sucursal        = $Request->get('sucursal_desde_middleware'); 
 
        $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 1350, function() use($Empresa,$User,$Sucursal) {
-          
-            $Hoy                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
+            $Hoy                         = Carbon::now('America/Montevideo');
+            $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
 
 
 
@@ -218,7 +218,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                    array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                          'Acutualizo' => 'no', 
                                                          'Razon'      => 'debia plata',
-                                                         'Fecha'      =>  $Hoy] )  ) );
+                                                         'Fecha'      =>  $Hoy_objet] )  ) );
                }
                    
 
@@ -229,7 +229,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                  array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                              'Acutualizo' => 'no', 
                                                              'Razon'      => 'no tenía servicio con renovacion marcada en si',
-                                                             'Fecha'      =>  $Hoy ] )  ) );
+                                                             'Fecha'      =>  $Hoy_objet ] )  ) );
               }
 
               //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
@@ -266,14 +266,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                  'Acutualizo'  => 'si', 
                                                  'Razon'       => 'Se renovó correctamente' ,
-                                                         'Fecha'      =>  $Hoy] ) )  );
+                                                         'Fecha'      =>  $Hoy_objet] ) )  );
                }
                else
                {
                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                        'Acutualizo'  => 'no', 
                                                        'Razon'       => 'Aun tenía servicios disponibles',
-                                                         'Fecha'      =>  $Hoy ])  )  );
+                                                         'Fecha'      =>  $Hoy_objet ])  )  );
                }
 
 
