@@ -34,7 +34,7 @@
             @if(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) != 'no renueva')
                @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
 
-
+                  
                <div class="flex-row-center get_width_100">
                   <div class="get_width_30" > {{$Valor->Socio}} </div> 
 

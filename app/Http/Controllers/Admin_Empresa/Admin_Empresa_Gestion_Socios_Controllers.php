@@ -227,9 +227,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               if($Servicios_renovacion->count() == 0) 
               {
                  array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
-                                                       'Acutualizo' => 'no', 
-                                                       'Razon'      => 'no tenía servicio con renovacion marcada en si',
-                                                         'Fecha'      =>  $Hoy ] )   );
+                                                             'Acutualizo' => 'no', 
+                                                             'Razon'      => 'no tenía servicio con renovacion marcada en si',
+                                                               'Fecha'    =>  $Hoy ] )   );
               }
 
               //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
