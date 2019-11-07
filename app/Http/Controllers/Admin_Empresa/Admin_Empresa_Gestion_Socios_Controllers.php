@@ -215,10 +215,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                //primero me fijo que el socio no tenga deudas
                if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
                {
-                   array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
+                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                          'Acutualizo' => 'no', 
                                                          'Razon'      => 'debia plata',
-                                                         'Fecha'      =>  $Hoy] )   );
+                                                         'Fecha'      =>  $Hoy] )  ) );
                }
                    
 
@@ -226,10 +226,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               //luego me fijo si tiene servicios de renovacion
               if($Servicios_renovacion->count() == 0) 
               {
-                 array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
+                 array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                              'Acutualizo' => 'no', 
                                                              'Razon'      => 'no tenía servicio con renovacion marcada en si',
-                                                             'Fecha'      =>  $Hoy ] )   );
+                                                             'Fecha'      =>  $Hoy ] )  ) );
               }
 
               //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
@@ -263,17 +263,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                               $Nuevo_servicio->tipo_de_servicio, 
                                                                               Carbon::now('America/Montevideo')       );
 
-                  array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
+                  array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                  'Acutualizo'  => 'si', 
                                                  'Razon'       => 'Se renovó correctamente' ,
-                                                         'Fecha'      =>  $Hoy] )   );
+                                                         'Fecha'      =>  $Hoy] ) )  );
                }
                else
                {
-                  array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
+                  array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                        'Acutualizo'  => 'no', 
                                                        'Razon'       => 'Aun tenía servicios disponibles',
-                                                         'Fecha'      =>  $Hoy ])    );
+                                                         'Fecha'      =>  $Hoy ])  )  );
                }
 
 
