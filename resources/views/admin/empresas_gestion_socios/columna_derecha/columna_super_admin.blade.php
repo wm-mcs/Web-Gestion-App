@@ -38,23 +38,15 @@
                <div class="flex-row-center get_width_100">
                   <div class="get_width_30" > {{$Valor->Socio}} </div> 
 
-                  <div class="get_width_10 text-center text-bold @if($Valor->Acutualizo == 'si') color-text-success@endif " > {{$Valor->Acutualizo}}  </div> 
+                  <div class="get_width_10 text-center text-bold @if($Valor->Acutualizo == 'si') color-text-success @endif " > {{$Valor->Acutualizo}}  </div> 
 
-                  <div class="get_width_40 text-bold" > @if($Valor->Acutualizo == 'no') <span class="color-text-danger">{{$Valor->Razon}}</span>  @endif </div> 
+                  <div class="get_width_40 text-bold" >
+                   @if($Valor->Acutualizo == 'no') <span class="color-text-danger">{{$Valor->Razon}}</span>  @endif </div> 
 
                   <div class="get_width_20 color-text-gris text-center">
                     {{$Valor->Fecha}} 
                   </div>
                </div>
-                
-
-               
-
-                 
-
-                 
-
-
 
                @endforeach
 
