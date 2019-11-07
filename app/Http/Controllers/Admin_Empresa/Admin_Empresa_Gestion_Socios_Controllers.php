@@ -279,30 +279,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
                return $Array_resultados;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-
+              }
+        }
 
         }); 
 
