@@ -218,7 +218,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                    array_push($Array_resultados, json_encode([ 'Socio'      => $Socio->name, 
                                                          'Acutualizo' => 'no', 
                                                          'Razon'      => 'debia plata',
-                                                         'Fecha'      =>  $Hoy]    );
+                                                         'Fecha'      =>  $Hoy] )   );
                }
                    
 
