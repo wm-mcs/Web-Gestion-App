@@ -71,7 +71,7 @@ template:'  <span class="contiene-sucursal" v-on:click="abrir_modal"> <i class="
               </div>
 
                Datos acá
-                     
+              </div>
 
                         
                        
