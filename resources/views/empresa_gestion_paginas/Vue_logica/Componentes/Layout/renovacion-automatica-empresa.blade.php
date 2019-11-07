@@ -28,7 +28,7 @@ computed:{
   }
   }
 },
-template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-cog"></i> Empresa
+template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-robot"></i> Automático
 
 
     @if(isset($Empresa))
@@ -55,13 +55,13 @@ template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal
                @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
 
 
-               <div class="flex-row-center get_width_100">
-                  <div class="get_width_30" > {{$Valor->Socio}} </div> 
+               <div class="flex-row-center get_width_100 text-pequeno .margin-top-2px">
+                  <div class="get_width_30 text-left text-bold helper-aumenta-texto" > {{$Valor->Socio}} </div> 
 
-                  <div class="get_width_10 text-center text-bold @if($Valor->Acutualizo == 'si') color-text-success @endif " > {{$Valor->Acutualizo}}  </div> 
+                  <div class="get_width_10 helper-aumenta-texto text-center text-bold @if($Valor->Acutualizo == 'si') color-text-success @endif " > {{$Valor->Acutualizo}}  </div> 
 
                   <div class="get_width_40 text-bold" >
-                   @if($Valor->Acutualizo == 'no') <span class="color-text-danger">{{$Valor->Razon}}</span>  @endif </div> 
+                   @if($Valor->Acutualizo == 'no') <span class="color-text-danger text-left">{{$Valor->Razon}}</span>  @endif </div> 
 
                   <div class="get_width_20 color-text-gris text-center">
                     {{$Valor->Fecha}} 

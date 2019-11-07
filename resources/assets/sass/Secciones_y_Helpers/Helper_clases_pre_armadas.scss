@@ -102,6 +102,10 @@ height: auto;
   text-align: center;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .text-bold{
   font-weight: bold;
 }
@@ -113,7 +117,9 @@ height: auto;
   color: $color-negro-para-textos;
 }
 
-
+.text-pequeno{
+  font-size: 8px;
+}
 
 .helper-aumenta-texto{
   font-size:1.2em;
@@ -199,7 +205,9 @@ height: auto;
   cursor:pointer;
 }
 
-
+.margin-top-2px{
+  margin-top: 2px;
+}
 
 .margin-left-4px{
   margin-left: 4px;
