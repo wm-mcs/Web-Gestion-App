@@ -14,7 +14,7 @@ abrir_modal:function(){
     
 
 },
-template:'  <span class="helper_cursor_pointer margin-right-4px" v-on:click="abrir_modal"> <i class="fas fa-cog"></i> Empresa
+template:'  <span class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-cog"></i> Empresa
 
 
      <div class="modal fade" id="modal-configurar-empresa" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
