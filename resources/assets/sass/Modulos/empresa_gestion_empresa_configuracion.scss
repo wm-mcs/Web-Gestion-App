@@ -1,0 +1,21 @@
+.contiene-linea-configuracion{
+  padding: 5px;
+  margin-top: 4px;
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+  width: 100%;
+
+}
+
+ .titulo-linea-seccion{
+  font-size: 12px;
+  font-weight: bold;
+  color: $color-3;
+  margin-bottom: 2px;
+ }
+
+ .aclaracion-linea-seccion{
+  color: $Color-texto-gris-Mercadolibre;
+  font-size: 11px;
+ }

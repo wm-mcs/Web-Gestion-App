@@ -57,8 +57,9 @@ template:'  <span class="contiene-sucursal" v-on:click="abrir_modal"> <i class="
               <div class="modal-body text-center"> 
 
 
-
-            <span class="se-renueva-automaticamente">¿Se renueva automáticamente? </span>
+          <div class="contiene-linea-configuracion">
+            <span class="titulo-linea-seccion">¿Los servicios se renuevan automáticamente? </span>
+            <span class="aclaracion-linea-seccion"></span>
             <div class="flex-row-center flex-justifice-space-around get_width_70">
               <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="si" v-on:change="actualizar_datos" v-model="empresa.actualizar_servicios_socios_automaticamente">
@@ -70,8 +71,10 @@ template:'  <span class="contiene-sucursal" v-on:click="abrir_modal"> <i class="
                 <label class="renueva-label" for="no">No</label>
               </div>
 
-               Datos acá
+               
               </div>
+          </div>
+
 
                         
                        
