@@ -18,7 +18,7 @@ actualizar_datos:function(){
       var url  = '/editar_empresa_renovacion_automatica';
 
       var data = {actualizar_servicios_socios_automaticamente:this.empresa.actualizar_servicios_socios_automaticamente,
-                                        empresa_id:this.empresa.id,};
+                                        empresa_id:this.empresa.id};
 
       var vue = this;
 

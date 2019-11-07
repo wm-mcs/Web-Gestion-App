@@ -377,6 +377,8 @@ abstract class BaseRepo
       {
         $Entidad->$atributo = trim($valor);
         $Entidad->save();
+
+        return $Entidad;
       }
       
     }
