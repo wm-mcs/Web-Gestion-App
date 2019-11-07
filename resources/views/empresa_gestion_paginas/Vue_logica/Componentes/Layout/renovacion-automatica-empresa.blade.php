@@ -17,7 +17,7 @@ abrir_modal:function(){
 
 },
 computed:{
-  se_ve:fucntion(){
+  se_ve:function(){
   if(empresa.actualizar_servicios_socios_automaticamente == 'si')
   {
     return true;
