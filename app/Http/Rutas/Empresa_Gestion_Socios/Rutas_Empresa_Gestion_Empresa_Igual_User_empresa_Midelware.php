@@ -52,9 +52,18 @@ Route::post('delet_servicio',
 Route::post('editar_servicio',
 [
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_servicio',
-  'as'         => 'editar_servicio']);  
+  'as'         => 'editar_servicio']);   
 
 
+//editar la empresa la parte de actualziacion automatica
+Route::post('editar_empresa_renovacion_automatica',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_empresa_renovacion_automatica',
+  'as'          => 'editar_empresa_renovacion_automatica',
+   'middleware' => 'SistemaGestionUserGerarquia:3']);   
+
+
+ 
 
 
 

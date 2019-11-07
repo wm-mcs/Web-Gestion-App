@@ -41,6 +41,9 @@
           ]);
 
 
+          
+
+
 
           
 
@@ -105,7 +108,7 @@
                 [
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delete_vendedor_a_empresa',
                   'as'         => 'delete_vendedor_a_empresa',                
-                ]);
+                ]); 
                 
 
            });

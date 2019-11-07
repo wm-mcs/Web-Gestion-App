@@ -12,7 +12,7 @@ methods:{
     actualizar_renovacion:function(){
 
       this.se_renueva = this.servicio_renovacion.se_renueva_automaticamente;
-      alert(this.se_renueva);
+      
 
       var url  = '/editar_servicio_renovacion';
 

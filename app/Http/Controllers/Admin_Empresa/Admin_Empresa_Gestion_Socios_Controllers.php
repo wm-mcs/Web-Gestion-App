@@ -28,7 +28,8 @@ use App\Managers\EmpresaGestion\CrearTipoServicioManager;
 use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
 use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager; 
-use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager; 
+use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager;
+use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager; 
 use App\Repositorios\ServicioSocioRenovacionRepo;
 
 
@@ -1169,6 +1170,29 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     return ['Validacion'          => true,
             'Validacion_mensaje'  => 'Se renovó correctamente el servicio a ' . $Socio->name,
             'Socios'              =>  $this->SocioRepo->getSociosBusqueda($Socio->empresa_id,null,30)];
+  }
+
+
+
+  //para editar la parte de empresa desde el modal
+  public function editar_empresa_renovacion_automatica(Request $Request)
+  {
+     $manager           = new EmpresaRenovacionModalManager(null,$Request->all() );
+
+     if(!$manager->isValid())
+     {
+       return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'No se pudo actualizar: ' . $manager->getErrors()];
+     } 
+
+     $Empresa = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+
+     $Empresa = $this->EmpresaConSociosoRepo->setAtributoEspecifico($Empresa,'actualizar_servicios_socios_automaticamente',$Request->get('actualizar_servicios_socios_automaticamente') );
+
+     return ['Validacion'          => true,
+            'Validacion_mensaje'   => 'Se actualizó correctamente',
+            'empresa'              =>  $Empresa]; 
+
   }
 
 
