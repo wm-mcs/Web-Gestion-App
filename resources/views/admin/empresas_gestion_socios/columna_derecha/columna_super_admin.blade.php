@@ -31,9 +31,9 @@
         <div class="modal-body text-center"> 
             @if(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) != 'no renueva')
                @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
-                
 
-               @endif
+
+               @endforeach
 
             @else
 
