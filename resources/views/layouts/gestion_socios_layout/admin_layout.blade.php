@@ -41,7 +41,7 @@
                 <div class="contiene-auth-y-sucursal">
                     <div class="navigation-auth-contenedor">
                      @if( Auth::user()->role >= 3)
-                     <configuracion-empresa :empresa="empresa"> </configuracion-empresa> 
+                      @yield('empresa-configuracion')
                      @endif
                      @yield('sucursal')
                      <nav-inicio></nav-inicio>

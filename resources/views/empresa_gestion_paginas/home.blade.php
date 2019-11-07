@@ -22,6 +22,10 @@
   <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
 @stop
 
+@section('empresa-configuracion')  
+<configuracion-empresa :empresa="empresa"> </configuracion-empresa> 
+@stop
+
 @section('content')
   
 
