@@ -22,6 +22,8 @@
   <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
 @stop
 @section('empresa-configuracion')  
+
+<renovacion-automatica-empresa :empresa="empresa"></renovacion-automatica-empresa>
 <configuracion-empresa :empresa="empresa"> </configuracion-empresa> 
 @stop
 @section('content')
@@ -41,7 +43,7 @@
 
 
 <script type="text/javascript">
-
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.servicio-renovacion-lista') 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')

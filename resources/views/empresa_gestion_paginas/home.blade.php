@@ -23,6 +23,7 @@
 @stop
 
 @section('empresa-configuracion')  
+<renovacion-automatica-empresa :empresa="empresa"></renovacion-automatica-empresa>
 <configuracion-empresa :empresa="empresa"> </configuracion-empresa> 
 @stop
 
@@ -65,6 +66,7 @@
 
 
 <script type="text/javascript">
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.ingresar_movimiento_caja')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_lista')
