@@ -282,12 +282,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               }
         }
 
-        return $Array_resultados;
+        return json_decode($Array_resultados);
 
         }); 
 
 
-        dd(Cache::get('ActualizarEmpresaSocios'.$Empresa->id));
+        dd(Cache::get('ActualizarEmpresaSocios'.$Empresa->id)) ;
       
 
        return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
