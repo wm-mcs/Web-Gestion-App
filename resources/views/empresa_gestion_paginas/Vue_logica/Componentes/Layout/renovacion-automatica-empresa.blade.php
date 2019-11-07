@@ -28,7 +28,7 @@ computed:{
   }
   }
 },
-template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-robot"></i> Automático
+template:' @if(Auth::user()->role >= 3) <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal"> <i class="fas fa-robot"></i> Automático
 
 
     @if(isset($Empresa))
@@ -94,7 +94,7 @@ template:'  <span v-if="se_ve" class="contiene-sucursal" v-on:click="abrir_modal
 
 
 
-    </span> '
+    </span>@endif '
 
 }
 
