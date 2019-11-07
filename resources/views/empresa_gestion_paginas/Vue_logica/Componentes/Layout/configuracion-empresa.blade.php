@@ -64,7 +64,7 @@ template:'  <span class="contiene-sucursal" v-on:click="abrir_modal"> <i class="
 
             </span>
             <br>
-            <br>
+            
             <div class="flex-row-center flex-justifice-space-around get_width_70">
               <div class="contiene-re-renueva-label-input">
                 <input type="radio" value="si" v-on:change="actualizar_datos" v-model="empresa.actualizar_servicios_socios_automaticamente">
