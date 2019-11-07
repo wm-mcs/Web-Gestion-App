@@ -287,7 +287,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         }); 
 
 
-        dd(Cache::get('ActualizarEmpresaSocios'.$Empresa->id)) ;
+        
       
 
        return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
