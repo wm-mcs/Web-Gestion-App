@@ -41,21 +41,27 @@ class SucursalEmpresa extends Model
 
       public function getMovimientosDeCajaAttribute()
       {
-        return $this->movimientos_de_caja_relation;
+        return Cache::remember('MovimientosCajaSucursal'.$this->id, 120, function() {
+                              return $this->movimientos_de_caja_relation; 
+                          });  
                     
       }
 
       public function getMovimientosDeCajaDolaresAttribute()
       {
-        return $this->movimientos_de_caja_relation
-                    ->where('moneda','U$S');
+        return Cache::remember('MovimientosCajaDolaresSucursal'.$this->id, 120, function() {
+                              return  $this->movimientos_de_caja_relation
+                                           ->where('moneda','U$S'); 
+                }); 
       }
 
 
       public function getMovimientosDeCajaPesosAttribute()
       {
-        return $this->movimientos_de_caja_relation
-                    ->where('moneda','$')  ;
+        return  Cache::remember('MovimientosCajaPesosSucursal'.$this->id, 120, function() {
+                              return $this->movimientos_de_caja_relation
+                                          ->where('moneda','$')  ;
+                }); 
       }
 
 
@@ -94,6 +100,7 @@ class SucursalEmpresa extends Model
 
     public function getPuedeVerElUserAttribute()
     {
+
         $User      = Auth::user();
         $Gerarquia = $User->role;
 
@@ -143,40 +150,48 @@ class SucursalEmpresa extends Model
     public function getSaldoDeCajaPesosAttribute()
     {
 
-        if($this->movimientos_de_caja->count() == 0)
-        {
-            return 0;
-        }
+      Cache::remember('SaldoCajaPesosSucursal'.$this->id, 120, function() {
+                        if($this->movimientos_de_caja->count() == 0)
+                        {
+                            return 0;
+                        }
 
-        $EstadosRepo = new CajaEmpresaRepo();
+                        $EstadosRepo = new CajaEmpresaRepo();
 
-        $Debe    = $this->movimientos_de_caja_pesos->where('tipo_saldo','deudor')          
-                                                   ->sum('valor');
+                        $Debe    = $this->movimientos_de_caja_pesos->where('tipo_saldo','deudor')          
+                                                                   ->sum('valor');
 
-        $Acredor = $this->movimientos_de_caja_pesos->where('tipo_saldo','acredor') 
-                                                   ->sum('valor');
+                        $Acredor = $this->movimientos_de_caja_pesos->where('tipo_saldo','acredor') 
+                                                                   ->sum('valor');
 
 
-        return round($Debe - $Acredor) ;                                    
+                        return round($Debe - $Acredor) ;  
+                }); 
+
+                                         
     }
 
     public function getSaldoDeCajaDolaresAttribute()
     {
 
-        if($this->movimientos_de_caja->count() == 0)
-        {
-            return 0;
-        }
-        $EstadosRepo = new CajaEmpresaRepo();
+       Cache::remember('SaldoCajaDolaresSucursal'.$this->id, 120, function() {
+              if($this->movimientos_de_caja->count() == 0)
+              {
+                  return 0;
+              }
+              $EstadosRepo = new CajaEmpresaRepo();
 
-        $Debe    = $this->movimientos_de_caja_dolares->where('tipo_saldo','deudor')         
-                                                     ->sum('valor');
+              $Debe    = $this->movimientos_de_caja_dolares->where('tipo_saldo','deudor')         
+                                                           ->sum('valor');
 
-        $Acredor = $this->movimientos_de_caja_dolares->where('tipo_saldo','acredor')
-                                                     ->sum('valor');
+              $Acredor = $this->movimientos_de_caja_dolares->where('tipo_saldo','acredor')
+                                                           ->sum('valor');
 
 
-        return round($Debe - $Acredor) ;                                    
+              return round($Debe - $Acredor) ;    
+      }); 
+
+                                        
     }
     
     
