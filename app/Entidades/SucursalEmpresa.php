@@ -150,7 +150,7 @@ class SucursalEmpresa extends Model
     public function getSaldoDeCajaPesosAttribute()
     {
 
-      Cache::remember('SaldoCajaPesosSucursal'.$this->id, 120, function() {
+     return Cache::remember('SaldoCajaPesosSucursal'.$this->id, 120, function() {
                         if($this->movimientos_de_caja->count() == 0)
                         {
                             return 0;
@@ -174,7 +174,7 @@ class SucursalEmpresa extends Model
     public function getSaldoDeCajaDolaresAttribute()
     {
 
-       Cache::remember('SaldoCajaDolaresSucursal'.$this->id, 120, function() {
+     return  Cache::remember('SaldoCajaDolaresSucursal'.$this->id, 120, function() {
               if($this->movimientos_de_caja->count() == 0)
               {
                   return 0;
