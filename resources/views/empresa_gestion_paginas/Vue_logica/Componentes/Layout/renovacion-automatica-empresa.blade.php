@@ -44,12 +44,14 @@ template:' @if(Auth::user()->role >= 3) <span v-if="se_ve" class="contiene-sucur
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <div class="">
           <h4 class="modal-title" id="myModalLabel">Acciones automáticas </h4>
           <div class="modal-mensaje-aclarador">
                 Está son las actividades automáticas que realiza el sistema con respecto a la <strong> actualización de los servicio de carácter mensual de los socios</strong>. Se realiza cada día apróximadamente
 
 
           </div>
+        </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
@@ -61,7 +63,7 @@ template:' @if(Auth::user()->role >= 3) <span v-if="se_ve" class="contiene-sucur
 
                   <div class="get_width_10  text-center text-bold  " > ¿Se actualizó? </div> 
 
-                  <div class="get_width_40text-center text-bold " >
+                  <div class="get_width_40 text-center text-bold " >
                    Detalle 
                    </div> 
 
