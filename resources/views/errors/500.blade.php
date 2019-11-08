@@ -36,7 +36,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                 <div class="title">Algo salió mal :( , pero ya estamos trabajando en eso. <a href="{{route('get_home')}}"> Volver a inicio </a></div>
             </div>
         </div>
     </body>
