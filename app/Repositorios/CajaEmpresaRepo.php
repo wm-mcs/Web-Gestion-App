@@ -70,10 +70,10 @@ class CajaEmpresaRepo extends BaseRepo
 
   public function getSaldoDeEstaSucursalEnPesos($sucursal_id)
   {
-      $Debe    = $this->getMovimientosDeEstaSucrsalEnPesos()->where('tipo_saldo','deudor')          
+      $Debe    = $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id)->where('tipo_saldo','deudor')          
                                                                 ->sum('valor');
 
-      $Acredor = $this->getMovimientosDeEstaSucrsalEnPesos()->where('tipo_saldo','acredor') 
+      $Acredor = $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id)->where('tipo_saldo','acredor') 
                                                                 ->sum('valor');
 
 
@@ -82,10 +82,10 @@ class CajaEmpresaRepo extends BaseRepo
 
   public function getSaldoDeEstaSucursalEnDolares($sucursal_id)
   {
-      $Debe    = $this->getMovimientosDeEstaSucrsalEnDolares()->where('tipo_saldo','deudor')          
+      $Debe    = $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id)->where('tipo_saldo','deudor')          
                                                                   ->sum('valor');
 
-      $Acredor = $this->getMovimientosDeEstaSucrsalEnDolares()->where('tipo_saldo','acredor') 
+      $Acredor = $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id)->where('tipo_saldo','acredor') 
                                                                   ->sum('valor');
 
 
