@@ -130,25 +130,29 @@ class CajaEmpresaRepo extends BaseRepo
       }
     } 
 
-   Cache::remember('MovimientosCajaSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
-        return  $this->getMovimientosDeEstaSucrsal($sucursal_id) ;
+   $MovimientosCajaSucursal =  $this->getMovimientosDeEstaSucrsal($sucursal_id);
+   Cache::remember('MovimientosCajaSucursal'.$sucursal_id, 120, function() use ($MovimientosCajaSucursal){
+        return  $MovimientosCajaSucursal ;
    });    
 
+   $MovimientosCajaSucursal =  $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id) ;
    Cache::remember('MovimientosCajaDolaresSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
-        return  $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id) ;
+        return  $MovimientosCajaSucursal ;
    });    
 
-   Cache::remember('MovimientosCajaPesosSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
-        return  $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id) ;
+   $MovimientosCajaPesosSucursal = $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id);
+   Cache::remember('MovimientosCajaPesosSucursal'.$sucursal_id, 120, function() use ($MovimientosCajaPesosSucursal){
+        return  $MovimientosCajaPesosSucursal ;
    });   
 
-
-   Cache::remember('SaldoCajaPesosSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
-        return  $this->getSaldoDeEstaSucursalEnPesos($sucursal_id) ;
+   $SaldoCajaPesosSucursal =  $this->getSaldoDeEstaSucursalEnPesos($sucursal_id);
+   Cache::remember('SaldoCajaPesosSucursal'.$sucursal_id, 120, function() use ($SaldoCajaPesosSucursal){
+        return  $SaldoCajaPesosSucursal ;
    });  
 
-    Cache::remember('SaldoCajaDolaresSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
-        return  $this->getSaldoDeEstaSucursalEnDolares($sucursal_id) ;
+   $SaldoCajaDolaresSucursal = $this->getSaldoDeEstaSucursalEnDolares($sucursal_id);
+    Cache::remember('SaldoCajaDolaresSucursal'.$sucursal_id, 120, function() use ($SaldoCajaDolaresSucursal){
+        return  $SaldoCajaDolaresSucursal ;
    });       
     
   }
