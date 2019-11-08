@@ -45,15 +45,32 @@ template:' @if(Auth::user()->role >= 3) <span v-if="se_ve" class="contiene-sucur
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">Acciones automáticas </h4>
+          <div class="modal-mensaje-aclarador">
+                Está son las actividades automáticas que realiza el sistema con respecto a la <strong> actualización de los servicio de carácter mensual de los socios</strong>. Se realiza cada día apróximadamente
+
+
+          </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div class="modal-body text-center"> 
             @if(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) != 'no renueva')
 
-           
-               @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
+             <div class="flex-row-center get_width_100 text-pequeno margin-top-2px">
+                  <div class="get_width_30 text-left text-bold " > Socio</div> 
 
+                  <div class="get_width_10  text-center text-bold  " > ¿Se actualizó? </div> 
+
+                  <div class="get_width_40text-center text-bold " >
+                   Detalle 
+                   </div> 
+
+                  <div class="get_width_20 text-center text-bold ">
+                   Fecha
+                  </div>
+               </div>
+               @foreach(Cache::get('ActualizarEmpresaSocios'.$Empresa->id) as $Valor)
+               
 
                <div class="flex-row-center get_width_100 text-pequeno margin-top-2px">
                   <div class="get_width_30 text-left text-bold helper-aumenta-texto" > {{$Valor->Socio}} </div> 
