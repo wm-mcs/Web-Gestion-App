@@ -100,7 +100,8 @@ class CajaEmpresaRepo extends BaseRepo
     return $this->getEntidad()->where('sucursal_id',$sucursal_id)
                               ->where('borrado','no')
                               ->where('moneda','$')
-                              ->orderBy('created_at', 'DESC');
+                              ->orderBy('created_at', 'DESC')
+                              ->get();
   }
 
   public function getMovimientosDeEstaSucrsalEnDolares($sucursal_id)
@@ -108,7 +109,8 @@ class CajaEmpresaRepo extends BaseRepo
     return $this->getEntidad()->where('sucursal_id',$sucursal_id)
                               ->where('borrado','no')
                               ->where('moneda','U$S')
-                              ->orderBy('created_at', 'DESC');
+                              ->orderBy('created_at', 'DESC')
+                              ->get();
   }
 
 
