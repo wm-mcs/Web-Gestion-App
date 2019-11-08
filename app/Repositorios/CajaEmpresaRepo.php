@@ -43,6 +43,9 @@ class CajaEmpresaRepo extends BaseRepo
     }
     $Entidad->save();
 
+    //actualizoElCache de todo lo que tiene que ver con Caja
+    $this->ActualizarCache($sucursal_id);
+
     return $Entidad;
 
   }
