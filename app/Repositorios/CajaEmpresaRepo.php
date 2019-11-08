@@ -5,6 +5,7 @@ namespace App\Repositorios;
 use App\Entidades\CajaEmpresa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -55,9 +56,106 @@ class CajaEmpresaRepo extends BaseRepo
                 ->get();
   }
 
+  public function getMovimientosDeEstaSucrsal($sucursal_id)
+  {
+    return $this->getEntidad()->where('sucursal_id',$sucursal_id)
+                              ->where('borrado','no')
+                              ->orderBy('created_at', 'DESC');
+  }
 
 
-  
+  public function getSaldoDeEstaSucursalEnPesos($sucursal_id)
+  {
+      $Debe    = $this->getMovimientosDeEstaSucrsalEnPesos->where('tipo_saldo','deudor')          
+                                                                ->sum('valor');
+
+      $Acredor = $this->getMovimientosDeEstaSucrsalEnPesos->where('tipo_saldo','acredor') 
+                                                                ->sum('valor');
+
+
+      return round($Debe - $Acredor) ;  
+  }
+
+  public function getSaldoDeEstaSucursalEnDolares($sucursal_id)
+  {
+      $Debe    = $this->getMovimientosDeEstaSucrsalEnDolares->where('tipo_saldo','deudor')          
+                                                                  ->sum('valor');
+
+      $Acredor = $this->getMovimientosDeEstaSucrsalEnDolares->where('tipo_saldo','acredor') 
+                                                                  ->sum('valor');
+
+
+      return round($Debe - $Acredor) ; 
+  }
+
+
+ 
+
+  public function getMovimientosDeEstaSucrsalEnPesos($sucursal_id)
+  {
+    return $this->getEntidad()->where('sucursal_id',$sucursal_id)
+                              ->where('borrado','no')
+                              ->where('moneda','$')
+                              ->orderBy('created_at', 'DESC');
+  }
+
+  public function getMovimientosDeEstaSucrsalEnDolares($sucursal_id)
+  {
+    return $this->getEntidad()->where('sucursal_id',$sucursal_id)
+                              ->where('borrado','no')
+                              ->where('moneda','U$S')
+                              ->orderBy('created_at', 'DESC');
+  }
+
+
+
+  public function ActualizarCache($sucursal_id)
+  {
+    $Array_cache = [
+                      'MovimientosCajaSucursal'.$sucursal_id, 
+                      'MovimientosCajaDolaresSucursal'.$sucursal_id,
+                      'MovimientosCajaPesosSucursal'.$sucursal_id,
+                      'SaldoCajaPesosSucursal'.$sucursal_id,
+                      'SaldoCajaDolaresSucursal'.$sucursal_id     
+                  ];
+
+    foreach ($Array_cache as $cache )
+    {
+      if (Cache::has($cache))
+      {
+       Cache::forget($cache);
+      }
+    } 
+
+   Cache::remember('MovimientosCajaSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+        return  $this->getMovimientosDeEstaSucrsal($sucursal_id) ;
+   });    
+
+   Cache::remember('MovimientosCajaDolaresSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+        return  $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id) ;
+   });    
+
+   Cache::remember('MovimientosCajaPesosSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+        return  $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id) ;
+   });   
+
+
+   Cache::remember('SaldoCajaPesosSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+        return  $this->getSaldoDeEstaSucursalEnPesos($sucursal_id) ;
+   });  
+
+    Cache::remember('SaldoCajaDolaresSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+        return  $this->getSaldoDeEstaSucursalEnDolares($sucursal_id) ;
+   });       
+    
+  }
+
+
+
+
+
+
+
 
   
 
