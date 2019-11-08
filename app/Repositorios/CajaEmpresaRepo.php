@@ -137,7 +137,7 @@ class CajaEmpresaRepo extends BaseRepo
    });    
 
    $MovimientosCajaSucursal =  $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id) ;
-   Cache::remember('MovimientosCajaDolaresSucursal'.$sucursal_id, 120, function() use ($sucursal_id){
+   Cache::remember('MovimientosCajaDolaresSucursal'.$sucursal_id, 120, function() use ($MovimientosCajaSucursal){
         return  $MovimientosCajaSucursal ;
    });    
 
