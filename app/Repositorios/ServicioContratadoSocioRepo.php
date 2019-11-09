@@ -105,12 +105,22 @@ class ServicioContratadoSocioRepo extends BaseRepo
         return $Servicos_tipo_mensual ;
   }
 
+  public function getServiciosContratadosDelSocio($socio_id)
+  {
+    return $this->getEntidad()
+                ->where('socio_id',$socio_id)
+                ->where('borrado','no')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+  }
+
 
   public function ActualizarCache($socio_id)
   {
      $Array_cache = [
                       'ServiciosContratadosDisponiblesTipoClaseSocio'.$socio_id, 
                       'ServiciosContratadosDisponiblesTipoMensualSocio'.$socio_id,
+                      'ServiciosContratadosDelSocio'.$socio_id
                     ];
 
     foreach ($Array_cache as $cache )
@@ -130,6 +140,11 @@ class ServicioContratadoSocioRepo extends BaseRepo
    $Servicos_tipo_mensual =  $this->getServiciosContratadosDisponiblesTipoMensual($socio_id);
    Cache::remember('ServiciosContratadosDisponiblesTipoMensualSocio'.$socio_id, 120, function() use ($Servicos_tipo_mensual){
         return  $Servicos_tipo_mensual ;
+   }); 
+
+   $Servicos =  $this->getServiciosContratadosDelSocio($socio_id);
+   Cache::remember('ServiciosContratadosDelSocio'.$socio_id, 120, function() use ($Servicos){
+        return  $Servicos ;
    }); 
   }
  

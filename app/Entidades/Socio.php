@@ -44,9 +44,9 @@ class Socio extends Model
 
         public function getServiciosContratadosDelSocioAttribute()
         {
-            return $this->servicios_contratados; /*Cache::remember('tipoDeServicio'.$this->id, 2, function() {
+            return  Cache::remember('ServiciosContratadosDelSocio'.$this->id, 120, function() {
                                   return $this->servicios_contratados; 
-                              }); */
+                              }); 
         }
 
     public function servicios_renovacion()
