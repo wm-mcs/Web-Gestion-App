@@ -5,6 +5,7 @@ namespace App\Repositorios;
 use App\Entidades\ServicioContratadoSocio;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 /**
 * Repositorio de consultas a la base de datos User
@@ -66,7 +67,69 @@ class ServicioContratadoSocioRepo extends BaseRepo
     $Entidad->fecha_vencimiento  = $Fecha_vencimiento;
     $Entidad->save();
 
+    $this->ActualizarCache($Socio_id);
+
     return $Entidad;
+  }
+
+
+  public function getServiciosContratadosDisponiblesTipoClase($socio_id)
+  {
+        $Hoy = Carbon::now('America/Montevideo');  
+
+        $Servicos_tipo_clase =  $this->getEntidad()
+                                     ->where('socio_id',$socio_id)
+                                     ->where('borrado','no')
+                                     ->where('tipo','clase')
+                                     ->where('esta_consumido','no')
+                                     ->where('fecha_vencimiento','>',$Hoy)
+                                     ->orderBy('created_at', 'DESC')
+                                     ->get();
+
+        return  $Servicos_tipo_clase;
+  }
+
+  public function getServiciosContratadosDisponiblesTipoMensual($socio_id)
+  {
+        $Hoy = Carbon::now('America/Montevideo');  
+
+        $Servicos_tipo_mensual = $this->getEntidad()
+                                      ->where('socio_id',$socio_id)
+                                      ->where('borrado','no')
+                                      ->where('tipo','mensual')
+                                      ->where('fecha_vencimiento','>',$Hoy)
+                                      ->orderBy('created_at', 'DESC')
+                                      ->get();
+
+        return $Servicos_tipo_mensual ;
+  }
+
+
+  public function ActualizarCache($socio_id)
+  {
+     $Array_cache = [
+                      'ServiciosContratadosDisponiblesTipoClaseSocio'.$socio_id, 
+                      'ServiciosContratadosDisponiblesTipoMensualSocio'.$socio_id,
+                    ];
+
+    foreach ($Array_cache as $cache )
+    {
+      if (Cache::has($cache))
+      {
+       Cache::forget($cache);
+      }
+    } 
+
+
+   $Servicos_tipo_clase =  $this->getServiciosContratadosDisponiblesTipoClase($socio_id);
+   Cache::remember('ServiciosContratadosDisponiblesTipoClaseSocio'.$socio_id, 120, function() use ($Servicos_tipo_clase){
+        return  $Servicos_tipo_clase ;
+   }); 
+
+   $Servicos_tipo_mensual =  $this->getServiciosContratadosDisponiblesTipoMensual($socio_id);
+   Cache::remember('ServiciosContratadosDisponiblesTipoMensualSocio'.$socio_id, 120, function() use ($Servicos_tipo_mensual){
+        return  $Servicos_tipo_mensual ;
+   }); 
   }
  
 

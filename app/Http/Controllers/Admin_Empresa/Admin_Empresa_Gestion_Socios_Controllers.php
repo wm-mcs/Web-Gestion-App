@@ -664,6 +664,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           
      $Sucursal = $this->SucursalEmpresaRepo->find($Sucursal->id);
 
+     //actualizo cache socio
+     $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
+
      if($Validacion)
      {
        return ['Validacion'          => $Validacion,
@@ -695,6 +698,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
            $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
 
            $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
+
+
+           //actualizo cache socio
+           $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
      if($Validacion)
      {
@@ -779,6 +786,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       $Sucursal = $this->SucursalEmpresaRepo->find($Sucursal->id);
 
+      //actualizo cache socio
+      $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
+
      if($Validacion)
      {
        return ['Validacion'          =>  $Validacion,
@@ -809,6 +819,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 
      $Empresa            = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
+
+     //actualizo cache socio
+     $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
     if($Validacion)
      {

@@ -77,7 +77,9 @@ class Socio extends Model
 
                public function getServiciosContratadosDisponiblesTipoClaseAttribute()
                {
-                    return $this->servicio_contratados_tipo_clases;
+                    return Cache::remember('ServiciosContratadosDisponiblesTipoClaseSocio'.$this->id, 200, function() {
+                                  return $this->servicio_contratados_tipo_clases;
+                    }); 
                }
 
 
@@ -96,7 +98,9 @@ class Socio extends Model
     }
                public function getServiciosContratadosDisponiblesTipoMensualAttribute()
                {
-                    return $this->servicio_contratados_tipo_mensual;
+                    return Cache::remember('ServiciosContratadosDisponiblesTipoMensualSocio'.$this->id, 200, function() {
+                                  return $this->servicio_contratados_tipo_mensual;
+                    }); 
                }
     
 
