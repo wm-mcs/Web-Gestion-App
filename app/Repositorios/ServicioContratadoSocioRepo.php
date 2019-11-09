@@ -6,6 +6,7 @@ use App\Entidades\ServicioContratadoSocio;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 /**
 * Repositorio de consultas a la base de datos User
