@@ -190,7 +190,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
        $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
        $Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 30);
-       $Sucursal        = $Request->get('sucursal_desde_middleware'); 
+       $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
 
        $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 1350, function() use($Empresa,$User,$Sucursal) {
             $Hoy                         = Carbon::now('America/Montevideo');
