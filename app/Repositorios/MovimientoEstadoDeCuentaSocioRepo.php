@@ -104,11 +104,11 @@ public function getEstadosDecuentaDeEsteSocio($socio_id)
 
 public function getSaldoPesos($socio_id)
 {
-        $Debe    = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','deudor')
+        $Debe    = $this->getEstadosDecuentaDeEsteSocio($socio_id)->where('tipo_saldo','deudor')
                                                        ->where('moneda','$')                      
                                                        ->sum('valor');
 
-        $Acredor = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','acredor')          
+        $Acredor = $this->getEstadosDecuentaDeEsteSocio($socio_id)->where('tipo_saldo','acredor')          
                                                        ->where('moneda','$')
                                                        ->sum('valor');
 
@@ -117,11 +117,11 @@ public function getSaldoPesos($socio_id)
 
 public function getSaldoDolares($socio_id)
 {
-        $Debe    = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','deudor')
+        $Debe    = $this->getEstadosDecuentaDeEsteSocio($socio_id)->where('tipo_saldo','deudor')
                                                        ->where('moneda','U$S')                      
                                                        ->sum('valor');
 
-        $Acredor = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','acredor')          
+        $Acredor = $this->getEstadosDecuentaDeEsteSocio($socio_id)->where('tipo_saldo','acredor')          
                                                        ->where('moneda','U$S')
                                                        ->sum('valor');
 
