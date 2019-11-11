@@ -57,6 +57,7 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
     
 
     $Entidad->save();
+    $this->ActualizarCache($Socio_id);
 
   }
 
@@ -85,7 +86,79 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
         $Movimeinto_anulador->servicio_id           = $MovimientoAAnular->servicio_id;
         $Movimeinto_anulador->estado_del_movimiento = 'anulador';
         $Movimeinto_anulador->save();
+
+        $this->ActualizarCache($MovimientoAAnular->socio_id);
    }
+}
+
+
+public function getEstadosDecuentaDeEsteSocio($socio_id)
+{
+  return $this->getEntidad()->where('socio_id',$socio_id)
+                            ->where('borrado','no') 
+                            ->orderBy('fecha_ingreso', 'desc')
+                            ->get();
+}
+
+
+public function getSaldoPesos($socio_id)
+{
+        $Debe    = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','deudor')
+                                                       ->where('moneda','$')                      
+                                                       ->sum('valor');
+
+        $Acredor = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','acredor')          
+                                                       ->where('moneda','$')
+                                                       ->sum('valor');
+
+        return round($Debe - $Acredor) ; 
+}
+
+public function getSaldoDolares($socio_id)
+{
+        $Debe    = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','deudor')
+                                                       ->where('moneda','U$S')                      
+                                                       ->sum('valor');
+
+        $Acredor = $this->getEstadosDecuentaDeEsteSocio->where('tipo_saldo','acredor')          
+                                                       ->where('moneda','U$S')
+                                                       ->sum('valor');
+
+        return round($Debe - $Acredor) ; 
+} 
+
+public function ActualizarCache($socio_id)
+{
+ 
+   $Array_cache = [
+                      'getEstadoDeCuentaSocio'.$socio_id, 
+                      'SaldoDoalresSocio'.$socio_id,
+                      'SaldoPesosSocio'.$socio_id
+                    ];
+
+    foreach ($Array_cache as $cache )
+    {
+      if (Cache::has($cache))
+      {
+       Cache::forget($cache);
+      }
+    } 
+
+
+   $EstadoDeCuentas =  $this->getEstadosDecuentaDeEsteSocio($socio_id);
+   Cache::remember('getEstadoDeCuentaSocio'.$socio_id, 120, function() use ($EstadoDeCuentas){
+        return  $EstadoDeCuentas ;
+   }); 
+
+   $SaldoDolares =  $this->getSaldoDolares($socio_id);
+   Cache::remember('SaldoDoalresSocio'.$socio_id, 120, function() use ($SaldoDolares){
+        return  $SaldoDolares ;
+   }); 
+
+   $SaldoPesos =  $this->getSaldoPesos($socio_id);
+   Cache::remember('SaldoPesosSocio'.$socio_id, 120, function() use ($SaldoPesos){
+        return  $SaldoPesos ;
+   }); 
 }
  
 

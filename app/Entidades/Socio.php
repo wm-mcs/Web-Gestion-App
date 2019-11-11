@@ -145,14 +145,16 @@ class Socio extends Model
     public function getEstadoDeCuentaSocioAttribute()
     {    
 
-        return $this->estados_de_cuenta_socio_relation;
+        return  Cache::remember('getEstadoDeCuentaSocio'.$this->id, 200, function() {
+                                  return $this->estados_de_cuenta_socio_relation;
+                    });  
     }
     
 
     public function getSaldoDeEstadoDeCuentaPesosAttribute()
     {
         
-
+       return  Cache::remember('SaldoDoalresSocio'.$this->id, 200, function() {
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')                                                
                                                 ->where('moneda','$')                                                
                                                 ->sum('valor');
@@ -160,16 +162,15 @@ class Socio extends Model
         $Acredor = $this->estado_de_cuenta_socio->where('tipo_saldo','acredor')          
                                                 ->where('moneda','$')
                                                 ->sum('valor');
+        return round($Debe - $Acredor) ;  
+        }); 
 
-                                               
-
-        return round($Debe - $Acredor) ;                                    
+                                        
     }
 
      public function getSaldoDeEstadoDeCuentaDolaresAttribute()
     {
-        
-
+         return  Cache::remember('SaldoPesosSocio'.$this->id, 200, function() {
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
                                                 ->where('moneda','U$S')                                                
                                                 ->sum('valor');
@@ -179,7 +180,10 @@ class Socio extends Model
                                                 ->sum('valor');
 
 
-        return round($Debe - $Acredor) ;                                    
+        return round($Debe - $Acredor) ;   
+        }); 
+
+                                          
     }
 
 
