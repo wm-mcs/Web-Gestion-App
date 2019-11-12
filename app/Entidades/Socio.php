@@ -154,7 +154,7 @@ class Socio extends Model
     public function getSaldoDeEstadoDeCuentaPesosAttribute()
     {
         
-       return  Cache::remember('SaldoPesosSocio'.$this->id, 200, function() {
+        return  Cache::remember('SaldoPesosSocio'.$this->id, 200, function() {
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')                                                
                                                 ->where('moneda','$')                                                
                                                 ->sum('valor');
@@ -170,7 +170,7 @@ class Socio extends Model
 
      public function getSaldoDeEstadoDeCuentaDolaresAttribute()
     {
-         return  Cache::remember('SaldoDoalresSocio'.$this->id, 200, function() {
+        return  Cache::remember('SaldoDoalresSocio'.$this->id, 200, function() {
         $Debe    = $this->estado_de_cuenta_socio->where('tipo_saldo','deudor')
                                                 ->where('moneda','U$S')                                                
                                                 ->sum('valor');
