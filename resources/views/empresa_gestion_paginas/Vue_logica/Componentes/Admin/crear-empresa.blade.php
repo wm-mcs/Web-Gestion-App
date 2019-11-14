@@ -34,8 +34,8 @@ methods:{
 template:'
 
 <span >
-   <div id="modal-crear-empresa" style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
-         <i class="fas fa-user-plus" title="Crear nuevo socio"></i>
+   <div  style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
+         Crear Empresa
 
 
 
@@ -44,7 +44,7 @@ template:'
        
   </div>
 
-         <div class="modal fade" id="modal-crear-socio" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="modal-crear-empresa" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
