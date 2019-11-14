@@ -2,7 +2,7 @@ Vue.component('crear-empresa' ,
 {
 
 
-,  
+ 
 
 data:function(){
     return {
