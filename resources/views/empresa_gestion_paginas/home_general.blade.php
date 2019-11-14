@@ -6,6 +6,11 @@
 @stop
 
 @section('content')
+
+
+<div>
+  <crear-empresa></crear-empresa>
+</div>
   
 <div class="admin-contiene-entidades-y-pagination">
 @if($Empresas->count() > 0)
@@ -16,6 +21,8 @@
      Click para ingresar <i class="far fa-hand-point-down"></i>
 
    @endif
+     Click para ingresar <i class="far fa-hand-point-down"></i>
+   @else
  </div>
   
  
@@ -95,8 +102,8 @@
 
 <script type="text/javascript">
 
-
-      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.crear-empresa')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')    
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')     
      
