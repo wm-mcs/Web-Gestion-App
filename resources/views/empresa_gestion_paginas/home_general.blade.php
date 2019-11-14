@@ -20,9 +20,9 @@
    @if($Empresas->count() == 1)
      Click para ingresar <i class="far fa-hand-point-down"></i>
 
-   @endif
-     Click para ingresar <i class="far fa-hand-point-down"></i>
    @else
+     Click para ingresar <i class="far fa-hand-point-down"></i>
+   @endif
  </div>
   
  
