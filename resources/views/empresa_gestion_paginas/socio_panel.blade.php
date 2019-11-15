@@ -74,7 +74,7 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
+  
 
   <caja-saldo></caja-saldo>
 @stop

@@ -66,6 +66,7 @@
 
 
 <script type="text/javascript">
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.ingresar_movimiento_caja')

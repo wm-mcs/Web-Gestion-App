@@ -102,6 +102,9 @@
 
 <script type="text/javascript">
 
+
+    
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.crear-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')    
@@ -120,7 +123,7 @@
 
   
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
-  
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
 
   
 @stop

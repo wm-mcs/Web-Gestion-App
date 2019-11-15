@@ -35,14 +35,8 @@ template:'
 
 <span >
    <div  style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
-         Crear Empresa
-
-
-
-
-
-       
-  </div>
+         Crear Empresa       
+   </div>
 
          <div class="modal fade" id="modal-crear-empresa" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
