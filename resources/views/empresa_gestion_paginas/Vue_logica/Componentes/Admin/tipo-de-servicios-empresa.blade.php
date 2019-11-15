@@ -5,7 +5,7 @@ Vue.component('tipo-de-servicios-empresa',
 
 data:function(){
     return { 
-     modal: '#modal-crear-tipo-servicio-empresa';
+     modal: '#modal-crear-tipo-servicio-empresa'
 
       }
 },
