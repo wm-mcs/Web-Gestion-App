@@ -166,6 +166,9 @@ template:'
                     </div>
                   </div>
                  </div>
+                 <div class="formulario-label-fiel">                   
+                 <input type="number" class="formulario-field"  v-model="plan.valor" placeholder="Valor"  />
+                </div>
                 <div class="formulario-label-fiel">                   
                  <input type="number" class="formulario-field"  v-model="plan.cantidad_socios" placeholder="Cantidad de socios"  />
                 </div> 
