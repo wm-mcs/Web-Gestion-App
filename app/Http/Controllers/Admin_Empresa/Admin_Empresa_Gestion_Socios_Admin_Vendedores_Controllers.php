@@ -22,7 +22,7 @@ use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
-use App\Managers\EmpresaGestion\CrearPalnManager;
+use App\Managers\EmpresaGestion\CrearPlanManager;
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
 
 
@@ -169,7 +169,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
   public function crear_plan(Request $Request)
   {
-       $manager           = new CrearPalnManager(null,$Request->all() );
+       $manager           = new CrearPlanManager(null,$Request->all() );
        if(!$manager->isValid())
        {
          return  ['Validacion'          => false,
