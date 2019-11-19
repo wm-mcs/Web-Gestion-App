@@ -19,6 +19,14 @@ class TipoDeServicioAEmpresaRepo extends BaseRepo
 
   //guetters/////////////////////////////////////////////////////////////////////
 
+  public function getServiciosActivosAEmpresas()
+  {
+    return $this->getEntidad()
+                ->where('borrado','no')
+                ->orderBy('valor', 'asc')
+                ->get();
+
+  }
   
 
 

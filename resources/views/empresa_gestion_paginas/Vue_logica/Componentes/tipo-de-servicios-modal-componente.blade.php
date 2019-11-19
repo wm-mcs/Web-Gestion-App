@@ -203,13 +203,13 @@ template:'
                  </div>
                 </div>
                 
-                 <div>
+                 
                    <div class="get_width_20 flex-row-center flex-justifice-space-around">
                       <div v-on:click="editarServicio(servicio)" title="Editar esté servicio" class="boton-simple-chico">
                         <i class="fas fa-edit"></i>
                      </div>    
                    </div>
-                 </div>
+                 
                </div>
 
              </div>

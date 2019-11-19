@@ -22,6 +22,8 @@ use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
+use App\Managers\EmpresaGestion\CrearPalnManager;
+use App\Repositorios\TipoDeServicioAEmpresaRepo;
 
 
 
@@ -35,13 +37,15 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   protected $UserRepo;
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
+  protected $TipoDeServicioAEmpresaRepo;
 
 
   public function __construct(EmpresaConSociosoRepo                $EmpresaConSociosoRepo, 
                               MovimientoEstadoDeCuentaEmpresaRepo  $MovimientoEstadoDeCuentaEmpresaRepo,
                               UserRepo                             $UserRepo, 
                               UserEmpresaRepo                      $UserEmpresaRepo,
-                              VendedorEmpresaRepo                  $VendedorEmpresaRepo
+                              VendedorEmpresaRepo                  $VendedorEmpresaRepo,
+                              TipoDeServicioAEmpresaRepo           $TipoDeServicioAEmpresaRepo 
                                )
   {
     $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;       
@@ -49,6 +53,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
     $this->UserRepo                            = $UserRepo;
     $this->UserEmpresaRepo                     = $UserEmpresaRepo;
     $this->VendedorEmpresaRepo                 = $VendedorEmpresaRepo;
+    $this->TipoDeServicioAEmpresaRepo          = $TipoDeServicioAEmpresaRepo;
    
   }
 
@@ -147,6 +152,63 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                'Validacion_mensaje'  =>  'Se eliminó el estado de cuenta correctamente',
                'empresa'             =>  $Empresa, ];
      
+  }
+
+
+
+  public function get_planes_empresa()
+  {
+    $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
+
+    return  ['Validacion'          => true,
+             'Validacion_mensaje'  => 'Planes agregados corectamente',
+             'planes'              =>  $planes];
+  }
+
+
+
+  public function crear_plan(Request $Request)
+  {
+       $manager           = new CrearPalnManager(null,$Request->all() );
+       if(!$manager->isValid())
+       {
+         return  ['Validacion'          => false,
+                  'Validacion_mensaje'  => 'No se pudó crear el plan: ' . $manager->getErrors()];
+       } 
+
+       $Propiedades = ['name','tipo','moneda','valor','cantidad_socios' ,'cantidad_sucursales'];
+
+       $this->TipoDeServicioAEmpresaRepo->setEntidadDato($this->TipoDeServicioAEmpresaRepo->getEntidad(),$Request,$Propiedades); 
+
+       $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
+
+       return  ['Validacion'          => true,
+                'Validacion_mensaje'  => 'Planes agregados corectamente',
+                'planes'              =>  $planes];
+
+       
+
+  }
+
+  public function editar_plan_empresa(Request $Request)
+  {
+       $Plan        = $Request->get('plan'); //me manda la data en array vue       
+       $Entidad     = $this->TipoDeServicioAEmpresaRepo->find($Plan['id']); 
+      
+       
+       //las porpiedades que se van a editar
+       $Propiedades = ['name','tipo','moneda','valor','cantidad_socios' ,'cantidad_sucursales'];
+
+       foreach($Propiedades as $Propiedad)
+       {
+        $Entidad->$Propiedad = $Plan[$Propiedad];
+       }
+
+       $Entidad->save();
+
+       return ['Validacion'          => true,
+               'Validacion_mensaje'  => 'Se editó correctamente ',
+                'planes'             =>  $planes];
   }
 
 
