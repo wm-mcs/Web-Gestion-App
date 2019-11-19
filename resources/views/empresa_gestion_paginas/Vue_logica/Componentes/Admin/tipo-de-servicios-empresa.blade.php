@@ -22,6 +22,7 @@ methods:{
  abrir_modal:function(){
 
    $(this.modal).appendTo("body").modal('show');  
+   this.getPlanes();
 
  },
  crear_plan:function(){
@@ -38,9 +39,7 @@ methods:{
             if(data.Validacion == true)
             {
 
-               bus.$emit('sucursal-set', response.data.Sucursal); 
-               app.Sucursal = data.Sucursal; 
-               app.cerrarModal('#'+ vue.modal_cambiar_sucursal );
+               vue.planes = data.planes;
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
