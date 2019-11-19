@@ -230,6 +230,9 @@ template:'
               </div>
             </div>
            </div>
+           <div class="formulario-label-fiel">                   
+                 <input type="number" class="formulario-field"  v-model="datos_a_enviar.valor" placeholder="Valor"  />
+                </div>
           <div class="formulario-label-fiel">                   
            <input type="number" class="formulario-field"  v-model="datos_a_enviar.cantidad_socios" placeholder="Cantidad de socios"  />
           </div> 
