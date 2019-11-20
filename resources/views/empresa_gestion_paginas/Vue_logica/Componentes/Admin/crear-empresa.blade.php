@@ -225,8 +225,8 @@ template:'
                  
                   <div class="crear-empresa-contiene-opciones-planes">
                     <div v-for="plan in planes" class="contiene-opcione-planes">
-                      <input type="radio" value="plan.id" v-model="data_post.plan_id">
-                      <label class="moneda-label" for="plan.id">
+                      <input type="radio" :value="plan.id" v-model="data_post.plan_id">
+                      <label class="moneda-label" >
 
                         <span>@{{plan.name}}</span> 
                         <span class="contiene-opcione-planes-aclaracion">P/m @{{plan.moneda}} @{{ get_valor_dependiendo_si_es_conIva(plan.valor)}} hasta @{{plan.cantidad_socios}} socios</span>
