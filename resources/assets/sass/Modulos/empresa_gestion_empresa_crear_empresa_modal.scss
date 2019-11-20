@@ -1,0 +1,18 @@
+.crear-empresa-contiene-opciones-planes{
+  width: 90%;
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+}
+
+ .contiene-opcione-planes{
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  margin-top: 4px;  
+ }
+
+  .contiene-opcione-planes-aclaracion{
+    font-size: 0.8em;
+    color:$Color-texto-gris-Mercadolibre;
+  }

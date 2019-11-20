@@ -137,12 +137,19 @@ template:'
             <div class="modal-mensaje-aclarador">
                 El plan con el cual va a iniciar. Al comienzo se le otorgara 15 días gratis. Luego si tendra que abonar.
             </div>
+
+                {!! Form::label('user_name', 'Elegir un plan', array('class' => 'formulario-label ')) !!}
                 <div class="contiene-fase-2-moneda">
-                  {!! Form::label('user_name', 'Elegir un plan', array('class' => 'formulario-label ')) !!}
-                  <div class="flex-row-center flex-justifice-space-around get_width_40">
-                    <div v-for="plan in planes" class="contiene-opcion-moneda">
+                 
+                  <div class="crear-empresa-contiene-opciones-planes">
+                    <div v-for="plan in planes" class="contiene-opcione-planes">
                       <input type="radio" value="plan.id" v-model="plan_id">
-                      <label class="moneda-label" for="plan.id">@{{plan.name}}</label>
+                      <label class="moneda-label" for="plan.id">
+
+                        <span>@{{plan.name}}</span> 
+                        <span class="contiene-opcione-planes-aclaracion">P/m @{{plan.moneda}} @{{plan.valor}} hasta @{{plan.cantidad_socios}} socios</span>
+
+                      </label>
                     </div>
                     
                     
