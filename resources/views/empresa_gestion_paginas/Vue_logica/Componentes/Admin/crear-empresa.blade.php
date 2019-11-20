@@ -229,7 +229,7 @@ template:'
                       <label class="moneda-label" >
 
                         <span>@{{plan.name}}</span> 
-                        <span class="contiene-opcione-planes-aclaracion">P/m @{{plan.moneda}} @{{ get_valor_dependiendo_si_es_conIva(plan.valor)}} hasta @{{plan.cantidad_socios}} socios</span>
+                        <span class="contiene-opcione-planes-aclaracion">Por mes @{{plan.moneda}} @{{ get_valor_dependiendo_si_es_conIva(plan.valor)}} hasta @{{plan.cantidad_socios}} socios</span>
 
                       </label>
                     </div>
