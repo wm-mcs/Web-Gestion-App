@@ -13,22 +13,50 @@ data:function(){
                empresa_email:'',
                user_name:'',
                user_email:'',
-               user_celular:''
-                 }
+               user_celular:'',
+               plan_id:''
+                 },
+      planes:''
 
     }
 }, 
-
+ 
 
 methods:{
 
  abrir_modal:function(){
-
+   this.getPlanes();
    $(this.modal).appendTo("body").modal('show');  
 
  },
  crear_empresa_post:function(){
  alert('hola');
+},
+getPlanes:function(){
+   var url  = '/get_planes_empresa';
+
+      
+      var vue  = this;
+
+     axios.get(url).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               vue.planes = data.planes;
+               $.notify(response.data.Validacion_mensaje, "success");
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
 }
 },
 template:'
@@ -102,13 +130,34 @@ template:'
                                                          'v-model' => 'data_post.user_celular' ]) !!}
                 </div>
             </div>
-          </div>     
+          </div>   
+          <br>  
+          <div class="contenedor-grupo-datos">
+            <div class="contenedor-grupo-datos-titulo"> Plan</div>
+            <div class="modal-mensaje-aclarador">
+                El plan con el cual va a iniciar. Al comienzo se le otorgara 15 días gratis. Luego si tendra que abonar.
+            </div>
+                <div class="contiene-fase-2-moneda">
+                  {!! Form::label('user_name', 'Elegir un plan', array('class' => 'formulario-label ')) !!}
+                  <div class="flex-row-center flex-justifice-space-around get_width_40">
+                    <div v-for="plan in planes" class="contiene-opcion-moneda">
+                      <input type="radio" value="plan.id" v-model="plan_id">
+                      <label class="moneda-label" for="plan.id">@{{plan.name}}</label>
+                    </div>
+                    
+                    
+                  </div>
+                 </div>
+
+          </div> 
+           <br>    
                
 
                   <div  v-on:click="crear_empresa_post" class="boton-simple">Crear</div>
                   
                  
         </div>
+        <br>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
         </div>
