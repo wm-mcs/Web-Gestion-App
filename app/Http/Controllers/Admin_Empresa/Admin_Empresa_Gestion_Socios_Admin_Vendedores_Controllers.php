@@ -23,6 +23,7 @@ use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\CrearPlanManager;
+use App\Managers\EmpresaGestion\CrearEmpresaManager; 
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
 
 
@@ -209,6 +210,18 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
        return ['Validacion'          => true,
                'Validacion_mensaje'  => 'Se editó correctamente ',
                 'planes'             =>  $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas()];
+  }
+
+
+  //creo empresa
+  public function crear_empresa_nueva(Request $Request)
+  {
+       $manager           = new CrearEmpresaManager(null,$Request->all() );
+       if(!$manager->isValid())
+       {
+         return  ['Validacion'          => false,
+                  'Validacion_mensaje'  => 'No se pudó crear: ' . $manager->getErrors()];
+       } 
   }
 
 

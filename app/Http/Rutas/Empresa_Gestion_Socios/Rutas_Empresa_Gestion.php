@@ -41,6 +41,13 @@
           ]);
 
 
+          Route::post('crear_empresa_nueva',
+          [
+            'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@crear_empresa_nueva',
+            'as'         => 'crear_empresa_nueva',                
+          ]); 
+
+
           
 
 
@@ -129,6 +136,12 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@editar_plan_empresa',
                   'as'         => 'editar_plan_empresa',                
                 ]); 
+
+
+
+
+
+                
 
 
                 

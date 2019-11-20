@@ -15,7 +15,9 @@ data:function(){
                user_email:'',
                user_celular:'',
                plan_id:'',
-               factura_con_iva:'no'
+               factura_con_iva:'no',
+               razon_social:'',
+               rut:''
                  },
       planes:''
 
@@ -31,6 +33,15 @@ methods:{
 
  },
  crear_empresa_post:function(){
+
+ var url = '/crear_empresa_nueva';
+
+
+
+
+
+
+
  alert('hola');
 },
 getPlanes:function(){
@@ -70,6 +81,18 @@ get_valor_dependiendo_si_es_conIva:function(valor)
     return parseFloat(valor*1.22).toFixed(1) + ' iva inc ';
   }
 }
+},
+computed:{
+  es_con_rut:function(){
+  if(this.data_post.factura_con_iva == 'si')
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+  }
 },
 template:'
 
@@ -175,6 +198,20 @@ template:'
                     
                   </div>
                  </div>
+
+             <div v-if="es_con_rut" class="contenedor-formulario-label-fiel">                       
+                <div class="formulario-label-fiel">
+                  {!! Form::label('user_name', 'Razon Social', array('class' => 'formulario-label ')) !!}
+                  {!! Form::text('user_name', null ,['class' => 'formulario-field',
+                                                  'v-model'  => 'data_post.razon_social' ]) !!}
+                </div>
+                <div class="formulario-label-fiel">
+                  {!! Form::label('user_email', 'Rut', array('class' => 'formulario-label ')) !!}
+                  {!! Form::number('user_email', null ,['class'    => 'formulario-field',
+                                                         'v-model' => 'data_post.rut' ]) !!}
+                </div>
+               
+            </div>
 
           </div>  
           <div class="contenedor-grupo-datos">
