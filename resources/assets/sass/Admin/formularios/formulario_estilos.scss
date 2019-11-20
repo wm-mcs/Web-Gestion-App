@@ -21,7 +21,7 @@
 }
 
  .contenedor-grupo-datos{
-    padding:6px;
+    padding:15px;
     @include flexbox;       
     @include flex-direction(column);
     @include align-items(flex-start); 

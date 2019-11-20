@@ -143,7 +143,7 @@ template:'
                  
                   <div class="crear-empresa-contiene-opciones-planes">
                     <div v-for="plan in planes" class="contiene-opcione-planes">
-                      <input type="radio" value="plan.id" v-model="plan_id">
+                      <input type="radio" value="plan.id" v-model="data_post.plan_id">
                       <label class="moneda-label" for="plan.id">
 
                         <span>@{{plan.name}}</span> 
