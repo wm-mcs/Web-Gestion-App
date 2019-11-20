@@ -14,7 +14,8 @@ data:function(){
                user_name:'',
                user_email:'',
                user_celular:'',
-               plan_id:''
+               plan_id:'',
+               factura_con_iva:'no'
                  },
       planes:''
 
@@ -57,6 +58,17 @@ getPlanes:function(){
                      
             
            });
+},
+get_valor_dependiendo_si_es_conIva:function(valor)
+{
+  if(this.data_post.factura_con_iva == 'no')
+  {
+    return valor;
+  }
+  else
+  {
+    return parseFloat(valor*1.22).toFixed(1);
+  }
 }
 },
 template:'
@@ -131,7 +143,40 @@ template:'
                 </div>
             </div>
           </div>   
-          <br>  
+           <div class="contenedor-grupo-datos">
+            <div class="contenedor-grupo-datos-titulo"> ¿Factura con Rut?</div>
+            <div class="modal-mensaje-aclarador">
+                Si el cleinte solciita factura con ruto marcar en si
+            </div>
+
+                {!! Form::label('user_name', 'Elegir opción', array('class' => 'formulario-label ')) !!}
+                <div class="contiene-fase-2-moneda">
+                 
+                  <div class="crear-empresa-contiene-opciones-planes">
+                    <div class="contiene-opcione-planes">
+                      <input type="radio" value="si" v-model="data_post.factura_con_iva">
+                      <label class="moneda-label" for="si">
+
+                        <span>Si</span> 
+                        
+
+                      </label>
+                    </div>
+                     <div class="contiene-opcione-planes">
+                      <input type="radio" value="no" v-model="data_post.factura_con_iva">
+                      <label class="moneda-label" for="no">
+
+                        <span>No</span> 
+                        
+
+                      </label>
+                    </div>
+                    
+                    
+                  </div>
+                 </div>
+
+          </div>  
           <div class="contenedor-grupo-datos">
             <div class="contenedor-grupo-datos-titulo"> Plan</div>
             <div class="modal-mensaje-aclarador">
@@ -147,7 +192,7 @@ template:'
                       <label class="moneda-label" for="plan.id">
 
                         <span>@{{plan.name}}</span> 
-                        <span class="contiene-opcione-planes-aclaracion">P/m @{{plan.moneda}} @{{plan.valor}} hasta @{{plan.cantidad_socios}} socios</span>
+                        <span class="contiene-opcione-planes-aclaracion">P/m @{{plan.moneda}} @{{ get_valor_dependiendo_si_es_conIva(plan.valor)}} hasta @{{plan.cantidad_socios}} socios</span>
 
                       </label>
                     </div>
