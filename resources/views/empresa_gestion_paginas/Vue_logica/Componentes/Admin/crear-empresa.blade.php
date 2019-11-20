@@ -67,7 +67,7 @@ get_valor_dependiendo_si_es_conIva:function(valor)
   }
   else
   {
-    return parseFloat(valor*1.22).toFixed(1);
+    return parseFloat(valor*1.22).toFixed(1) + ' iva inc ';
   }
 }
 },
@@ -146,10 +146,10 @@ template:'
            <div class="contenedor-grupo-datos">
             <div class="contenedor-grupo-datos-titulo"> ¿Factura con Rut?</div>
             <div class="modal-mensaje-aclarador">
-                Si el cleinte solciita factura con ruto marcar en si
+                Si el cliente solciita factura con ruto marcar en si
             </div>
 
-                {!! Form::label('user_name', 'Elegir opción', array('class' => 'formulario-label ')) !!}
+               
                 <div class="contiene-fase-2-moneda">
                  
                   <div class="crear-empresa-contiene-opciones-planes">
