@@ -166,7 +166,7 @@ class UserRepo extends BaseRepo
     $Contraseña     = $user->password;
 
     $user->password = bcrypt($user->password);
-    $
+    
 
     
     $user->name     = $name;

@@ -243,7 +243,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                                                                           $Request->get('factura_con_iva'), 
                                                                           $Request->get('rut'), 
                                                                           $Request->get('razon_social')
-                                                                        ); 
+                                                                        );  
 
        //creo al usuario
        $Usuario_creado = $this->UserRepo->setUserCuandoCreoEmpresa($Request->get('user_name'), 
