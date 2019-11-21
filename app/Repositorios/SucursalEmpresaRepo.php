@@ -46,6 +46,16 @@ class SucursalEmpresaRepo extends BaseRepo
   	$this->setEntidadDato($Entidad,$Request,$Propiedades);
   }
 
+  public function crearSucursalAlCrearEmpresa($name,$empresa_id)
+  {
+    $Entidad              = $this->getEntidad();
+    $Entidad->name        = $name; 
+    $Entidad->empresa_id  = $empresa_id;
+    $Entidad->save();
+
+    return $Entidad;
+  }
+
 
  
 

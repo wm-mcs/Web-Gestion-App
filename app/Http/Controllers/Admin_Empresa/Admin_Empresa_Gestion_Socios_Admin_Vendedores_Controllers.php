@@ -25,6 +25,9 @@ use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\CrearPlanManager;
 use App\Managers\EmpresaGestion\CrearEmpresaManager; 
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
+use App\Repositorios\ServicioEmpresaRenovacionRepo;
+use App\Repositorios\ServicioContratadoEmpresaRepo;
+
 
 
 
@@ -39,6 +42,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   protected $UserEmpresaRepo;
   protected $VendedorEmpresaRepo;
   protected $TipoDeServicioAEmpresaRepo;
+  protected $SucursalEmpresaRepo;
+  protected $ServicioEmpresaRenovacionRepo;
+  protected $ServicioContratadoEmpresaRepo;
 
 
   public function __construct(EmpresaConSociosoRepo                $EmpresaConSociosoRepo, 
@@ -46,7 +52,10 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                               UserRepo                             $UserRepo, 
                               UserEmpresaRepo                      $UserEmpresaRepo,
                               VendedorEmpresaRepo                  $VendedorEmpresaRepo,
-                              TipoDeServicioAEmpresaRepo           $TipoDeServicioAEmpresaRepo 
+                              TipoDeServicioAEmpresaRepo           $TipoDeServicioAEmpresaRepo,
+                              SucursalEmpresaRepo                  $SucursalEmpresaRepo, 
+                              ServicioEmpresaRenovacionRepo        $ServicioEmpresaRenovacionRepo,
+                              ServicioContratadoEmpresaRepo        $ServicioContratadoEmpresaRepo
                                )
   {
     $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;       
@@ -55,6 +64,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
     $this->UserEmpresaRepo                     = $UserEmpresaRepo;
     $this->VendedorEmpresaRepo                 = $VendedorEmpresaRepo;
     $this->TipoDeServicioAEmpresaRepo          = $TipoDeServicioAEmpresaRepo;
+    $this->SucursalEmpresaRepo                 = $SucursalEmpresaRepo;
+    $this->ServicioEmpresaRenovacionRepo       = $ServicioEmpresaRenovacionRepo;
+    $this->ServicioContratadoEmpresaRepo       = $ServicioContratadoEmpresaRepo;
    
   }
 
@@ -222,6 +234,73 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
          return  ['Validacion'          => false,
                   'Validacion_mensaje'  => 'No se pudó crear: ' . $manager->getErrors()];
        } 
+
+
+       //crear la empresa 
+       $Empresa = $this->EmpresaConSociosoRepo->CrearEmpresaComoVendedor( $Request->get('empresa_name'), 
+                                                                          $Request->get('empresa_email'), 
+                                                                          $Request->get('empresa_celular'), 
+                                                                          $Request->get('factura_con_iva'), 
+                                                                          $Request->get('rut'), 
+                                                                          $Request->get('razon_social')
+                                                                        ); 
+
+       //creo al usuario
+       $Usuario_creado = $this->UserRepo->setUserCuandoCreoEmpresa($Request->get('user_name'), 
+                                                                   $Request->get('user_email'), 
+                                                                   $Request->get('user_celular'));
+
+       
+       //creo la sucursal
+       $Sucursal = $this->SucursalEmpresaRepo->crearSucursalAlCrearEmpresa('Principal',$Empresa->id);
+
+
+       //asocio al uusario como empresa
+       $this->UserEmpresaRepo->setAsociarEmpresaYUser( $Empresa->id, 
+                                                       $Usuario_creado->id,
+                                                       3,
+                                                       $Usuario_creado,
+                                                       $Sucursal->id);
+
+
+
+       $UsuaioAuth = Auth::user();
+
+
+       //asocio al uusario vendedor como usuario también
+       $this->UserEmpresaRepo->setAsociarEmpresaYUser( $Empresa->id, 
+                                                       $UsuaioAuth->id,
+                                                       3,
+                                                       $UsuaioAuth,
+                                                       $Sucursal->id);
+
+
+       //asocio al vendedor que es el user auth 
+       $this->VendedorEmpresaRepo->setAsociarEmpresaYVendedor($Empresa->id,$UsuaioAuth->id,4,$UsuaioAuth); 
+
+
+
+       //Busco el tipo de plan de la empresa
+       $Plan = $this->TipoDeServicioAEmpresaRepo->find($Plan->id);
+
+       //creo el serivicio de renovación
+       $this->ServicioEmpresaRenovacionRepo->setServicioRenovacion($Empresa->id,$Plan,Carbon::now('America/Montevideo')); 
+
+       $Fecha_vencimiento = Carbon::now('America/Montevideo')->addDays(15)->endOfDay();
+
+       //creo el servicio en si
+       $this->ServicioContratadoEmpresaRepo->setServicioAEmpresa($Empresa,$Plan,$Fecha_vencimiento);
+
+
+       $empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
+       return  ['Validacion'          => true,
+                'Validacion_mensaje'  => 'Se agregó correctamente la empresa',
+                'empresas'            =>  $empresas];
+
+
+
+
+
   }
 
 

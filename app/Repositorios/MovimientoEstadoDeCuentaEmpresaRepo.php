@@ -34,7 +34,9 @@ class MovimientoEstadoDeCuentaEmpresaRepo extends BaseRepo
    
     
 
-    $Entidad->save();
+     $Entidad->save();
+
+     $this->ActualizarCache( $Empresa_id);
 
   }
 
@@ -63,7 +65,87 @@ class MovimientoEstadoDeCuentaEmpresaRepo extends BaseRepo
         $Movimeinto_anulador->servicio_id           = $MovimientoAAnular->servicio_id;
         $Movimeinto_anulador->estado_del_movimiento = 'anulador';
         $Movimeinto_anulador->save();
+
+        $this->ActualizarCache($MovimientoAAnular->empresa_id);
    }
+}
+
+
+
+public function getMovimientosDeEstadoDeCuenta($empresa_id)
+{
+  return $this->getEntidad()
+              ->where('empresa_id',$empresa_id)
+              ->where('borrado','no') 
+              ->orderBy('fecha_ingreso', 'desc')
+              ->get();
+} 
+
+
+public function getSaldoEnPesosDeEstaEmpresa($empresa_id)
+{
+        $Debe    = $this->getMovimientosDeEstadoDeCuenta($empresa_id)->where('tipo_saldo','deudor')
+                                                       ->where('moneda','$')                      
+                                                       ->sum('valor');
+
+        $Acredor = $this->getMovimientosDeEstadoDeCuenta($empresa_id)->where('tipo_saldo','acredor')          
+                                                       ->where('moneda','$')
+                                                       ->sum('valor');
+
+        return round($Debe - $Acredor) ; 
+}
+
+public function getSaldoEnDolaresDeEstaEmpresa($empresa_id)
+{
+        $Debe    = $this->getMovimientosDeEstadoDeCuenta($empresa_id)->where('tipo_saldo','deudor')
+                                                                     ->where('moneda','U$S')
+                                                                     ->sum('valor');
+
+        $Acredor = $this->getMovimientosDeEstadoDeCuenta($empresa_id)->where('tipo_saldo','acredor')        
+                                                                     ->where('moneda','U$S')
+                                                                     ->sum('valor');
+
+        return round($Debe - $Acredor) ; 
+}
+
+
+
+
+
+public function ActualizarCache($empresa_id)
+{
+ 
+   $Array_cache = [
+                      'MovimeintosEstadoDeCuentaEmpresa'.$empresa_id, 
+                      'SaldoPesosEmpresa'.$empresa_id,
+                      'SaldoDoalresEmpresa'.$empresa_id
+                    ];
+
+    foreach ($Array_cache as $cache )
+    {
+      if (Cache::has($cache))
+      {
+       Cache::forget($cache);
+      }
+    } 
+
+
+   $EstadoDeCuentas =  $this->getMovimientosDeEstadoDeCuenta($empresa_id);
+   Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$empresa_id, 8000, function() use ($EstadoDeCuentas){
+        return  $EstadoDeCuentas ;
+   }); 
+
+   $SaldoPesos =  $this->getSaldoEnPesosDeEstaEmpresa($empresa_id);
+   Cache::remember('SaldoPesosEmpresa'.$empresa_id, 8000, function() use ($SaldoPesos){
+        return  $SaldoPesos ;
+   }); 
+
+   $SaldoDolares =  $this->getSaldoEnDolaresDeEstaEmpresa($empresa_id);
+   Cache::remember('SaldoDoalresEmpresa'.$empresa_id, 8000, function() use ($SaldoDolares){
+        return  $SaldoDolares ;
+   }); 
+
+   
 }
 
  

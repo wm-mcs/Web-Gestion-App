@@ -24,7 +24,18 @@ class ServicioContratadoEmpresaRepo extends BaseRepo
 
   //setters//////////////////////////////////////////////////////////////////////
 
- 
+  public function setServicioAEmpresa($Empresa,$Servicio,$Fecha_vencimiento)
+  {
+    $Entidad                    = $this->getEntidad();
+    $Entidad->empresa_id        = $Empresa->id;
+    $Entidad->name              = $Servicio->name;
+    $Entidad->moneda            = $Servicio->moneda;
+    $Entidad->valor             = $this->getValorSiEsConIVAONO($Empresa->factura_con_iva, $Servicio->valor);
+    $Entidad->tipo_servicio_id  = $Servicio->id;
+    $Entidad->fecha_vencimiento = $Fecha_vencimiento;
+
+    return $Entidad;
+  }
 
  
 

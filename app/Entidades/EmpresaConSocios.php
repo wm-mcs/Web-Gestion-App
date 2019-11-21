@@ -10,6 +10,7 @@ use App\Entidades\Socio;
 use App\Entidades\SucursalEmpresa;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use Illuminate\Support\Facades\Session;
+use App\Repositorios\ServicioEmpresaRenovacionRepo;
 
 
 
@@ -33,7 +34,8 @@ class EmpresaConSocios extends Model
                            'route_admin',
                            'movimientos_estado_de_cuenta_empresa',
                            'estado_de_cuenta_saldo_pesos',
-                           'estado_de_cuenta_saldo_dolares'];
+                           'estado_de_cuenta_saldo_dolares',
+                           'servicios_de_renovacion_empresa'];
 
 
     public function servicios_relation()
@@ -77,43 +79,63 @@ class EmpresaConSocios extends Model
 
       public function getMovimientosEstadoDeCuentaEmpresaAttribute()
       {
-        return $this->movimientos_estado_de_cuenta;
+          return Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$this->id, 8000, function() {
+
+
+             $this->movimientos_estado_de_cuenta;
+          });
       } 
 
       
 
     public function getEstadoDeCuentaSaldoPesosAttribute()
     {
-        
+        return Cache::remember('SaldoPesosEmpresa'.$this->id, 8000, function() {
 
         $Debe    = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','deudor')
-                                                ->where('moneda','$')                                                
-                                                ->sum('valor');
+                                                              ->where('borrado','no')  
+                                                              ->where('moneda','$')                         
+                                                              ->sum('valor');
 
         $Acredor = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','acredor') 
-                                                ->where('borrado','no')                                 
-                                                ->where('moneda','$')
-                                                ->sum('valor');
+                                                              ->where('borrado','no')       
+                                                              ->where('moneda','$')
+                                                              ->sum('valor');
 
 
-        return round($Debe - $Acredor) ;                                    
+        return round($Debe - $Acredor) ;    
+
+      });                                
     }
 
-     public function getEstadoDeCuentaSaldoDolaresAttribute()
+    public function getEstadoDeCuentaSaldoDolaresAttribute()
     {
-        
+        return Cache::remember('SaldoDoalresEmpresa'.$this->id, 8000, function() {
 
         $Debe    = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','deudor')
-                                                ->where('moneda','U$S')                                                
-                                                ->sum('valor');
+                                                              ->where('moneda','U$S')   
+                                                              ->where('borrado','no')                    
+                                                              ->sum('valor');
 
-        $Acredor = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','acredor')                                  
-                                                ->where('moneda','U$S')
-                                                ->where('borrado','no')
-                                                ->sum('valor');
+        $Acredor = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','acredor')
+                                                              ->where('moneda','U$S')
+                                                              ->where('borrado','no')
+                                                              ->sum('valor');
 
 
-        return round($Debe - $Acredor) ;                                    
+        return round($Debe - $Acredor) ;   
+       });                                  
+    }
+
+
+    public function getServiciosDeRenovacionEmpresaAttribute()
+    {
+         return Cache::remember('ServiciosDerenovacionEmpresa'.$this->id, 8000, function() {
+
+         $Repo = new ServicioEmpresaRenovacionRepo();
+
+         return $Repo->getServiciosDeRenovacionDeLaEmpresaActivos($this->id);
+         });    
     }
 
 

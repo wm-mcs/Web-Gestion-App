@@ -145,6 +145,81 @@ class UserRepo extends BaseRepo
 
     return $array_id;               
   }
+
+
+  public function setUserCuandoCreoEmpresa($name,$email,$telefono)
+  {
+
+    if($this->verificarSiExisteElUser($email))
+    {
+      $user          = $this->getEntidad()->where('email',$email)->get()->first();
+    }
+    else
+    {
+      $user           = $this->getEntidad();
+      $user->role     = 3; //usuario dueño
+      $user->estado   = 'si'; //usuario dueño
+    }
+    
+    $user->password = str_random(8);
+
+    $Contraseña     = $user->password;
+
+    $user->password = bcrypt($user->password);
+    $
+
+    
+    $user->name     = $name;
+    $user->email    = $email ;
+    $user->telefono = $telefono;
+    $user->save();
+
+    
+
+    //variables para enviar email
+    $nombre_de_quien_envia    = 'EasySocio';
+    $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
+    $Texto                    = 'Bienvenido a Easy Socio!,  te hemos creado una cuenta.';
+    $User_name                = $user->email;
+    $Contraseña               = $Contraseña;
+    $email_a_enviar           = $user->email;
+    $nombre_de_email_a_enviar = $user->name;
+    $titulo_email             = 'Bienvenido a EasySocio';
+    $Texto_boton              = 'Incia sesión ahora!';
+    $Link_del_boton           = route('auth_login_get');
+
+    //enviar email con la info que se creo el usuario y que la contraseña es tal
+    $this->getEmailsRepo()->EnvioDeEmailAlCrearUser($nombre_de_quien_envia, 
+                                                    $email_de_quien_envia, 
+                                                    $Texto, 
+                                                    $User_name,
+                                                    $Contraseña,
+                                                    $email_a_enviar, 
+                                                    $nombre_de_email_a_enviar, 
+                                                    $titulo_email,
+                                                    $Texto_boton,
+                                                    $Link_del_boton);
+
+    $user->save(); 
+
+    return $user;
+
+  }
+
+
+  public function verificarSiExisteElUser($email)
+  {
+    $users = $this->getEntidad()->where('email',$email)->get()->count();
+
+    if($users > 0)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
   
 
   

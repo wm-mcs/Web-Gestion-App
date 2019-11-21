@@ -397,6 +397,32 @@ abstract class BaseRepo
           return $Saldo;
     }
 
+    public function getValorDeIVA()
+    {
+      return 22;
+    }
+
+    public function DarmeEsteValorMasIVA($valor)
+    {
+      $calculo = ( (float) $valor )* (1 + $this->getValorDeIVA()/100 );
+      return round($calculo,2);
+    }
+
+    /**
+     * $es_con_iva = a 'si', 'no'
+     */
+    public function getValorSiEsConIVAONO($es_con_iva,$valor)
+    {
+       if($es_con_iva == 'si')
+       {
+        return $this->DarmeEsteValorMasIVA($valor);
+       }
+       else
+       {
+        return $valor;
+       }
+    }
+
     /**
      * Valido para movimiento de caja o estado de cuenta
      */
