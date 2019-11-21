@@ -90,6 +90,11 @@ class EmpresaConSocios extends Model
 
     public function getEstadoDeCuentaSaldoPesosAttribute()
     {
+
+        if($this->movimientos_estado_de_cuenta_empresa->count() == 0)
+        {
+          return 0;
+        }
         return Cache::remember('SaldoPesosEmpresa'.$this->id, 8000, function() {
 
         $Debe    = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','deudor')
@@ -110,6 +115,11 @@ class EmpresaConSocios extends Model
 
     public function getEstadoDeCuentaSaldoDolaresAttribute()
     {
+
+        if($this->movimientos_estado_de_cuenta_empresa->count() == 0)
+        {
+          return 0;
+        }
         return Cache::remember('SaldoDoalresEmpresa'.$this->id, 8000, function() {
 
         $Debe    = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','deudor')
