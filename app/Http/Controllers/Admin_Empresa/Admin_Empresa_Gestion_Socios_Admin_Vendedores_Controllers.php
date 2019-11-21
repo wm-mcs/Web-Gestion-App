@@ -281,7 +281,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
 
        //Busco el tipo de plan de la empresa
-       $Plan = $this->TipoDeServicioAEmpresaRepo->find($Plan->id);
+       $Plan = $this->TipoDeServicioAEmpresaRepo->find($Request->get('plan_id'));
 
        //creo el serivicio de renovación
        $this->ServicioEmpresaRenovacionRepo->setServicioRenovacion($Empresa->id,$Plan,Carbon::now('America/Montevideo')); 
