@@ -34,7 +34,38 @@ methods:{
  },
  crear_empresa_post:function(){
 
- var url = '/crear_empresa_nueva';
+  var validation = confirm("¿Seguros quieres crear la empresa?");
+
+       if(!validation)
+       {
+        return '';
+       }
+
+ var url  = '/crear_empresa_nueva';
+ var vue  = this;
+ var data = this.data_post;
+
+  axios.post(url,data).then(function(response){ 
+
+
+          
+          if(response.data.Validacion == true)
+          {    
+             
+             bus_empresas.$emit('empresas-set', response.data.empresas);  
+             $.notify(response.data.Validacion_mensaje, "success");
+          }
+          else
+          {
+            $.notify(response.data.Validacion_mensaje, "warn");
+          }    
+           
+           
+           }).catch(function (error){
+
+                     
+            
+           });
 
 
 
@@ -42,7 +73,7 @@ methods:{
 
 
 
- alert('hola');
+ 
 },
 getPlanes:function(){
    var url  = '/get_planes_empresa';

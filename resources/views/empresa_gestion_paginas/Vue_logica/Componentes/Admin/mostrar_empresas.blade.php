@@ -1,3 +1,5 @@
+var bus_empresas = new Vue();
+
 Vue.component('mostrar-empresas' ,
 {
 
@@ -13,6 +15,12 @@ data:function(){
 
 
 methods:{
+},
+created() {
+    
+    bus_empresas.$on('empresas-set', (empresas) => {
+      this.Empresas = empresas
+    })
 },
 template:'
 
