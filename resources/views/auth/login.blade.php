@@ -20,7 +20,7 @@
 
 
  
-      <img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo rectangular.png">
+      <img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
 
       <div class="contiene_auth_form">
 

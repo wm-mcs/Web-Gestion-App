@@ -22,7 +22,7 @@
 
 
 
-
+<img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
 
       <div class="contiene_auth_form">
          <h1 class="auth_titulo_h1">Recuperar contraseña  </h1>
