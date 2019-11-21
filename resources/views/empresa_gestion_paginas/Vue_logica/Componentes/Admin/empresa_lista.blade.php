@@ -19,7 +19,7 @@ template:'
        <div class="empresa-lista-user-contenedor">
         <div class="empresa-lista-user-header">
           <div class="empresa-lista-user-contiene-img">
-            <img src="{{$empresa->url_img}}" class="empresa-lista-user-img">
+            <img :src="empresa.url_img" class="empresa-lista-user-img">
           </div>
            <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{empresa.name}}</span> 
 
