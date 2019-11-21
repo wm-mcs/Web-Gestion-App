@@ -28,7 +28,18 @@ class VendedorEmpresaRepo extends BaseRepo
 
     if($User->role >= $Gerarqui)
     {
+        $YaTieneVendedor = $this->getEntidad()
+                                ->where('empresa_id',$Empresa_id)
+                                ->get()
+                                ->count();
 
+        if($YaTieneVendedor > 0)
+        {
+          return [  
+                 'Validacion'          =>  false,
+                 'Validacion_mensaje'  =>  'ya tiene un vendedor'     
+               ];
+        }                        
     
         $Existe = $this->getEntidad()
                        ->where('user_id',$User_id)

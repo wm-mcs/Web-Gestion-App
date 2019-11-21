@@ -3,6 +3,7 @@
 namespace App\Repositorios;
 
 use App\Entidades\ServicioSocioRenovacion;
+use Illuminate\Support\Facades\Cache;
 
 
 /**
