@@ -24,6 +24,7 @@ class EmpresaConSociosoRepo extends BaseRepo
     $Entidad = $this->getEntidad();
 
     $Entidad->name            = $nombre ;
+    $Entidad->estado          = 'si';
     $Entidad->email           = $email;
     $Entidad->celular         = $celular;
     $Entidad->factura_con_iva = $factura_con_iva;
