@@ -71,7 +71,7 @@ class ServicioEmpresaRenovacionRepo extends BaseRepo
 
 
   public function ActualizarCache($empresa_id)
-{
+  {
  
    $Array_cache = [
                       'ServiciosDerenovacionEmpresa'.$empresa_id, 
@@ -90,6 +90,7 @@ class ServicioEmpresaRenovacionRepo extends BaseRepo
    Cache::remember('ServiciosDerenovacionEmpresa'.$empresa_id, 8000, function() use ($Servicios){
         return  $Servicios ;
    }); 
+  }
 
  
 
