@@ -82,7 +82,7 @@ class EmpresaConSocios extends Model
           return Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$this->id, 8000, function() {
 
 
-             $this->movimientos_estado_de_cuenta;
+           return  $this->movimientos_estado_de_cuenta;
           });
       } 
 
