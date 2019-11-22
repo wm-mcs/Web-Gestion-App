@@ -8,9 +8,11 @@
 @section('content')
 
 
-<div>
+@if(Auth::user()->role > 3)
+<div class="contenedor-admin-entidad-titulo-form-busqueda">
   <crear-empresa></crear-empresa>
 </div>
+@endif
   
 <div class="admin-contiene-entidades-y-pagination">
 @if($Empresas->count() > 0)
