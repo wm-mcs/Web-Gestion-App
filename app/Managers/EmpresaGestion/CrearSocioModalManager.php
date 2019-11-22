@@ -17,7 +17,7 @@ class CrearSocioModalManager extends ManagerBase
       'name'               => 'required',
       'email'              => 'email',
       'celular'            => 'required',
-      'cedula'             => 'numeric|unique:socios'
+      'cedula'             => 'numeric'
           
              ];
 
