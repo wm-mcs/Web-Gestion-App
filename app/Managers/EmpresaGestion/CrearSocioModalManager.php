@@ -15,8 +15,8 @@ class CrearSocioModalManager extends ManagerBase
   {
     $rules = [
       'name'               => 'required',
-      'email'              => 'email|unique:socios',
-      'celular'            => 'required|unique:socios',
+      'email'              => 'email',
+      'celular'            => 'required',
       'cedula'             => 'numeric|unique:socios'
           
              ];
