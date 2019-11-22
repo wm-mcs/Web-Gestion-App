@@ -1,6 +1,6 @@
 .contiene-socio-tipo-lista{
-   width: 80%;
-   padding: 2px 8px;
+   width: 90%;
+   padding: 2px 10px;
    border:solid 2px transparent;
    background-color: white;
     @include flexbox;       
@@ -31,7 +31,7 @@
   .contiene-socio-lista{
     font-size: 17px;
     font-weight: bold;
-    width: 100px;
+    width: 180px;
   }
 
   .contiene-socio-celular{
