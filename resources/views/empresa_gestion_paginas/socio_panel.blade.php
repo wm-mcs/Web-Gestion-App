@@ -11,7 +11,8 @@
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
                   <img class="miga-imagen" src="{{$Empresa->url_img}}">
-                 </span>   
+                 </span> 
+                 <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>  
                  <span class="simula_link">
                    {{$Empresa->name}}
                  </span> 
