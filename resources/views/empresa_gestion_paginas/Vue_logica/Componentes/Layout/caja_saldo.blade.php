@@ -7,7 +7,7 @@ data:function(){
     return {
       sucursal:{!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
       modal_pesos:'#modal-caja-pesos',
-      modal_dolares:'#modal-caja-pesos',
+      modal_dolares:'#modal-caja-dolares',
       valor_actual_pesos:'0'
 
     }
