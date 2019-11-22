@@ -6,7 +6,8 @@
   {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                             'method'=> 'Post',
                             'files' =>  true,
-                            'name'  => 'form1'
+                            'name'  => 'form1',
+                            'class' => 'flex-row-start'
                           ])               !!}   
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >

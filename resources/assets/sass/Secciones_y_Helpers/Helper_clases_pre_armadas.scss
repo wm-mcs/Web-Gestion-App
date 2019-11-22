@@ -4,6 +4,12 @@
   @include align-items(center); 
 }
 
+.flex-row-start{
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(flex-start); 
+}
+
 .flex-row-column{
   @include flexbox;       
   @include flex-direction(column);
