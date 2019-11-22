@@ -27,9 +27,10 @@ template:'
 
  
 
-   <div class="admin-entidad-contenedor-entidades">
+   <div class="listado-socios-contenedor-lista">
       <empresa-lista v-for="Empresa in  Empresas" :empresa="Empresa"> </empresa-lista>
    </div>
+  
   
  
 

@@ -11,6 +11,7 @@ use App\Entidades\SucursalEmpresa;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use Illuminate\Support\Facades\Session;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
+use App\Repositorios\ServicioContratadoEmpresaRepo;
 
 
 
@@ -35,7 +36,8 @@ class EmpresaConSocios extends Model
                            'movimientos_estado_de_cuenta_empresa',
                            'estado_de_cuenta_saldo_pesos',
                            'estado_de_cuenta_saldo_dolares',
-                           'servicios_de_renovacion_empresa'];
+                           'servicios_de_renovacion_empresa',
+                           'servicios_contratados_a_empresas_activos'];
 
 
     public function servicios_relation()
@@ -49,16 +51,7 @@ class EmpresaConSocios extends Model
         }
 
 
-    /*public function socios()
-    {
-      return $this->hasMany(Socio::class,'empresa_id','id')->orderBy('name','asc');
-    }
-
-        public function getSociosDeLaEmpresaAttribute()
-        {        
-           return $this->socios;
-        }*/
-
+    
 
     public function sucursales()
     {
@@ -146,6 +139,20 @@ class EmpresaConSocios extends Model
 
          return $Repo->getServiciosDeRenovacionDeLaEmpresaActivos($this->id);
          });    
+    } 
+
+
+
+    public function getServiciosContratadosAEmpresasActivosAttribute()
+    {
+
+         return Cache::remember('ServiciosActivosEmpresa'.$this->id, 8000, function() {
+
+         $Repo = new ServicioContratadoEmpresaRepo();
+
+         return $Repo->getServiciosActivosDeEstaEmpresa($this->id);
+         }); 
+
     }
 
 
