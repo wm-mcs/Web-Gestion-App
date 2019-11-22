@@ -115,6 +115,11 @@ template:'<div>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">Movimientos de caja dolares</h4>
+           Movimientos de caja pesos:  
+            <div class="saldo-modal">              
+              Saldo  
+              <span class="saldo-modal-valor">U$S @{{sucursal.saldo_de_caja_dolares}} </span>
+            </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
