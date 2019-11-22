@@ -43,24 +43,28 @@ template:'
         <img :src="empresa.url_img" class="empresa-lista-user-img">
       </div>
       <div class="contiene-socio-lista_nombre-y-celular"> 
-            <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{empresa.name}}
-              @if(Auth::user()->role > 3)
 
-               {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
-                              'method'=> 'Post',
-                              'files' =>  true,
-                              'name'  => 'form1'
-                            ])               !!}   
-                   <input type="hidden" name="empresa_id" :value="empresa.id">
-                   
-                   <span class="simula_link disparar-este-form" ><i class="fas fa-edit"></i></span>    
+             <div class="flex-row-center">
+                <span class="simula_link contiene-socio-lista" >@{{empresa.name}}
+                @if(Auth::user()->role > 3)
 
-                   {!! Form::close() !!}  
+                 {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
+                                'method'=> 'Post',
+                                'files' =>  true,
+                                'name'  => 'form1'
+                              ])               !!}   
+                     <input type="hidden" name="empresa_id" :value="empresa.id">
+                     
+                     <span class="simula_link disparar-este-form" ><i class="fas fa-edit"></i></span>    
 
-               @endif
-            </span>       
+                     {!! Form::close() !!}  
+
+                 @endif
+              </span>   
+             </div>
+                
             <div class="contiene-socio-celular">  
-              <i class="fab fa-whatsapp"></i> @{{empresa.telefono}}    
+              <i class="fab fa-whatsapp"></i> @{{empresa.celular}}    
             </div>
       </div> 
        <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
