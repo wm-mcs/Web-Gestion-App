@@ -55,7 +55,7 @@ template:'
                               ])               !!}   
                      <input type="hidden" name="empresa_id" :value="empresa.id">
                      
-                     <span class="simula_link disparar-este-form" ><i class="fas fa-edit"></i></span>    
+                     <span class="simula_link disparar-este-form margin-left-4px" ><i class="fas fa-edit"></i></span>    
 
                      {!! Form::close() !!}  
 
@@ -87,7 +87,7 @@ template:'
 
 
 
-     
+    @if(Auth::user()->role > 3)
     <div class="contiene-planes-socio-lista">
       
        
@@ -107,17 +107,19 @@ template:'
         
 
     </div>
+    @endif
     
 
   </div>
   <div class="flex-row-center">
+      @if(Auth::user()->role > 8)
+      <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
+
+    @endif
     <div class="simula_link margin-right-4px"  title="Se agregaran los servicios de carácter mensual que usualmente contrata el socio. La fecha de vencimiento será a un mes posterior al vencimiento del último servicio que había contratado.  Si el usuario tiene deuda actualmente no se podrá generar hasta que quede al día. No se renovaran los servicios que son tipo clases, solo los mensuales."><i class="fas fa-cog"></i></div>
     <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
 
-    @if(Auth::user()->role > 8)
-      <a :href="empresa.route_admin"> <i class="fas fa-users-cog"></i></a>
-
-    @endif
+  
   </div>
 
 
