@@ -14,7 +14,7 @@
                   <img class="miga-imagen" src="{{$Empresa->url_img}}">
                  </span> 
                  <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>  
-                 <span class="simula_link">
+                 <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
                  </span> 
  
