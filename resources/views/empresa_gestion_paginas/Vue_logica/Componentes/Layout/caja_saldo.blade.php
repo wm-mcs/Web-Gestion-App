@@ -119,7 +119,14 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-
+          <caja-lista v-for="(caja,index) in sucursal.movimientos_de_caja_dolares" 
+                       :key="caja.id"
+                       :caja="caja"
+                       :sucursal="sucursal">
+            
+           
+            
+          </caja-lista>
 
                   
                  
