@@ -45,7 +45,7 @@ template:'
       <div class="contiene-socio-lista_nombre-y-celular"> 
 
              <div class="flex-row-center">
-                <span class="simula_link contiene-socio-lista" >@{{empresa.name}} </span> 
+                <span class="contiene-socio-lista" >@{{empresa.name}} </span> 
                 @if(Auth::user()->role > 3)
 
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
