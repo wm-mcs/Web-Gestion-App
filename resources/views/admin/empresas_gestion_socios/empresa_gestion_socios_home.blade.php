@@ -34,7 +34,7 @@
 <script type="text/javascript">
 
 
-    
+@include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')     
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')    
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')        
 @include('empresa_gestion_paginas.Vue_logica.instancia_vue')   
