@@ -14,8 +14,8 @@
     @include align-items(center);
     @include flex-direction(row);
     @include justify-content(space-between);
-    padding: 5px 2px;
-    border-bottom: solid 1px $Color-Gris-Claro;
+    padding: 5px 10px;
+    
 
  }
 
@@ -49,6 +49,7 @@
      padding:6px;
      border-radius: 4px;
      background-color: $color-grey0;
+     margin-bottom: 20px;
 
    }
 
