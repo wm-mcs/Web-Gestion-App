@@ -51,7 +51,7 @@ methods:{
           
           if(response.data.Validacion == true)
           {    
-             
+             app.cerrarModal('#modal-crear-empresa');
              bus_empresas.$emit('empresas-set', response.data.empresas);  
              $.notify(response.data.Validacion_mensaje, "success");
           }

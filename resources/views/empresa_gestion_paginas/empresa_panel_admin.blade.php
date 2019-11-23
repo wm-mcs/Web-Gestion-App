@@ -30,7 +30,7 @@
      <ingresar-movimiento-a-empresa  :empresa="empresa" ></ingresar-movimiento-a-empresa> 
      
      
-      
+    <agregar-servicio-a-empresa :empresa="empresa"></agregar-servicio-a-empresa>
      
 
     </div>
@@ -122,6 +122,9 @@
 <script type="text/javascript">
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
+
+     
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.agregar-servicio-a-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-renovacion-empresa-lista')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-lista')
