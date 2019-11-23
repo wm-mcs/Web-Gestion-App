@@ -24,7 +24,6 @@ class ServicioEmpresaRenovacionRepo extends BaseRepo
     return $this->getEntidad()
                 ->where('borrado','no')
                 ->where('empresa_id',$empresa_id)
-                ->where('se_renueva_automaticamente','si')
                 ->get();
   }
 
