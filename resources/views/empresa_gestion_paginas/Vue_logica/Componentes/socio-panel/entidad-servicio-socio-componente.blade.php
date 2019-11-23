@@ -246,7 +246,7 @@ template:'
 
   <div class="contiene-entidad-lista-servicio">
 
-       <div class="flex-row-center get_width_100 flex-justifice-space-between">
+       <div class="flex-row-start get_width_100 flex-justifice-space-between">
         
         <div class="flex-column-start get_width_50">
           
@@ -258,16 +258,14 @@ template:'
                   </span>
               </div>
               <div class="flex-row-center entidad-lista-servicio-fecha">
-                @{{servicio.moneda}} @{{servicio.valor}} 
+               Precio: @{{servicio.moneda}} @{{servicio.valor}} 
               </div>
                   
 
               <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">                
                 <i class="far fa-check-square"></i> Usar
               </span>
-              <div v-show="esta_activo" class="lista-estado-activo" > 
-                <i class="fas fa-check"></i> Disponible
-              </div>
+              
 
               <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>
 
@@ -298,6 +296,10 @@ template:'
 
                 <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
                 <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha" >@{{donde_se_uso}}</span> 
+            </div>
+
+            <div v-show="esta_activo" class="lista-estado-activo" > 
+                <i class="fas fa-check"></i> Disponible
             </div>
             
         
