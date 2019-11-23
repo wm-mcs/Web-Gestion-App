@@ -22,6 +22,7 @@ use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
+use App\Managers\EmpresaGestion\EditarRenovacionDeEmpresaManager;
 use App\Managers\EmpresaGestion\CrearPlanManager;
 use App\Managers\EmpresaGestion\CrearEmpresaManager; 
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
@@ -301,6 +302,29 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
 
 
+  }
+
+  public function editar_servicio_renovacion_empresa(Request $Request)
+  {
+
+
+    $manager     = new EditarRenovacionDeEmpresaManager(null,$Request->all());
+    if(!$manager->isValid())
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se puedó editar: ' . $manager->getErrors()];
+    }
+
+    $Servicio_renovacion = $this->ServicioEmpresaRenovacionRepo->find($Request->get('servicio_renovacion_id'));
+    $this->ServicioEmpresaRenovacionRepo->setAtributoEspecifico($Servicio_renovacion, 'se_renueva_automaticamente', $Request->get('se_renueva_automaticamente'));
+
+    $this->ServicioEmpresaRenovacionRepo->ActualizarCache($Request->get('empresa_id'));
+
+    
+
+     return  ['Validacion'          => true,
+              'Validacion_mensaje'  => 'Se editó correctamente- En breve lo verás reflejado',
+              'empresa'             => $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))  ];
   }
 
 

@@ -37,6 +37,35 @@
 
 
    </div>
+    <div  v-if="empresa.servicios_de_renovacion_empresa.length" class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para cargar de forma rápido o renovación automática </div>
+      <div class="panel-socio-contiene-servicios">
+        
+          
+
+
+            <servicio-renovacion-empresa-lista  
+                                  
+                                  :servicio_renovacion="servicio_renovacion"
+                         
+
+                           v-for="servicio_renovacion in empresa.servicios_de_renovacion_empresa" :key="servicio_renovacion.id"> 
+            </servicio-renovacion-empresa-lista>  
+            
+          
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
    <div class="empresa-contendor-de-secciones">
       <div class="estado-de-cuenta-titulo-saldo-contenedor ">
@@ -90,6 +119,7 @@
 <script type="text/javascript">
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-renovacion-empresa-lista')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-lista')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.ingresar-movimiento-a-empresa')
