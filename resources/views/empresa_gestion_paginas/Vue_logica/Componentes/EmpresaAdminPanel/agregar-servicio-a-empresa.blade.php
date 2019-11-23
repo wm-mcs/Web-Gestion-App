@@ -17,7 +17,8 @@ data:function(){
                         tipo_servicio_id:''
 
                     },
-      tipo_servicio:'',              
+      tipo_servicio:'',     
+      planes:''         
 
     }
 },
@@ -40,8 +41,36 @@ methods:{
 
        this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0,10);
  },
+ getPlanes:function(){
+   var url  = '/get_planes_empresa';
+
+      
+      var vue  = this;
+
+     axios.get(url).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               vue.planes = data.planes;
+               $.notify(response.data.Validacion_mensaje, "success");
+            }
+            else
+            {
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+},
 
  abrir_modal:function(){
+
+   this.getPlanes();
 
    $('#modal-agregar-servicio-socio').appendTo("body").modal('show');  
    
@@ -121,11 +150,11 @@ template:'<span>
 
               
 
-                 <div class="formulario-label-fiel">
+                 <div v-if="planes.length" class="formulario-label-fiel">
                       <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
                      <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
                         <option></option>
-                        <option v-for="servicio in empresa.tipo_servicios">@{{servicio.name}}</option>
+                        <option v-for="servicio in planes">@{{servicio.name}}</option>
                        
                         
                       </select>
