@@ -38,7 +38,7 @@
 
    </div>
     <div  v-if="empresa.servicios_de_renovacion_empresa.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para cargar de forma rápido o renovación automática </div>
+      <div class="empresa-titulo-de-secciones">Planes más frecuentemente comprados. Se usan para cargar de forma rápido o renovación automática </div>
       <div class="panel-socio-contiene-servicios">
         
           

@@ -239,7 +239,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
 
                //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-               if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(7) > Carbon::parse($Servicio->fecha_vencimiento))
+               if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
                {
                  //creo el nuevo servicio
                  $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
@@ -1245,7 +1245,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
 
      //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-     if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(7) > Carbon::parse($Servicio->fecha_vencimiento))
+     if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(3) > Carbon::parse($Servicio->fecha_vencimiento))
      {
        //creo el nuevo servicio
        $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
