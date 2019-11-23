@@ -56,6 +56,9 @@
 
       </div>
   </div>
+   <div v-else class="cuando-no-hay-socios">
+    No hay servicios renovación creados <i class="far fa-frown"></i>
+  </div>
 
 
 
