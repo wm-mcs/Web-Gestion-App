@@ -24,7 +24,8 @@ use App\Managers\EmpresaGestion\AgregarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EliminarMovimientoALaEmpresaManager;
 use App\Managers\EmpresaGestion\EditarRenovacionDeEmpresaManager;
 use App\Managers\EmpresaGestion\CrearPlanManager;
-use App\Managers\EmpresaGestion\CrearEmpresaManager; 
+use App\Managers\EmpresaGestion\CrearEmpresaManager;
+use App\Managers\EmpresaGestion\CrearServicioAEmpresaManager; 
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
@@ -329,7 +330,12 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
   public function agregar_servicio_a_empresa(Request $Request)
   {
-    //seguir con está logica
+    $manager     = new CrearServicioAEmpresaManager(null,$Request->all());
+    if(!$manager->isValid())
+    {
+      return  ['Validacion'          => false,
+               'Validacion_mensaje'  => 'No se pudó crear: ' . $manager->getErrors()];
+    }
   }
 
 
