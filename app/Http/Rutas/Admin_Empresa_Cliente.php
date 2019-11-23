@@ -49,6 +49,14 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@editar_servicio_renovacion_empresa',
                   'as'         => 'editar_servicio_renovacion_empresa']); 
 
+                Route::post('agregar_servicio_a_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@agregar_servicio_a_empresa',
+                  'as'         => 'agregar_servicio_a_empresa']); 
+
+
+                 
+
 
                  
 

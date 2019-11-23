@@ -327,6 +327,11 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
               'empresa'             => $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))  ];
   }
 
+  public function agregar_servicio_a_empresa(Request $Request)
+  {
+    //seguir con está logica
+  }
+
 
 
 
