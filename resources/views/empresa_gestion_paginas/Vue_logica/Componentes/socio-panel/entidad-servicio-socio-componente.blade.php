@@ -247,26 +247,34 @@ template:'
   <div class="contiene-entidad-lista-servicio">
 
        <div class="flex-row-center get_width_100 flex-justifice-space-between">
-        <div class="entidad-lista-name" >
+        
+        <div class="flex-column-start get_width_50">
+          
+       
+              <div class="entidad-lista-name" >
+                  @{{servicio.name}} 
+                  <span class="margin-left-8px simula_link" v-on:click="abrir_modal_editar" title="Editar el servicio">              
+                   <i class="fas fa-pen"></i>
+                  </span>
+              </div>
+                  
+
+              <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">                
+                <i class="far fa-check-square"></i> Usar
+              </span>
+              <div v-show="esta_activo" class="lista-estado-activo" > 
+                <i class="fas fa-check"></i> Disponible
+              </div>
+
+              <div  class="lista-estado-consumido" > ID: @{{servicio.id}}</div>
+
+
+
+        </div>   
             
-            @{{servicio.name}} 
-
-
-            <span class="margin-left-8px simula_link" v-on:click="abrir_modal_editar" title="Editar el servicio">              
-             <i class="fas fa-pen"></i>
-            </span>
-            
-
-            <span  v-show="!servicio.se_consumio && es_clase"  class="margin-left-8px simula_link" v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">
-              
-              <i class="far fa-check-square"></i>
-            </span>
-
-
-
-            
-            
-         </div>
+        <div class="flex-column-end get_width_50 padding-4px">
+          
+        
          <div v-if="es_clase" class="lista-estado-por-clase">
            <i class="fas fa-undo"></i> Tipo @{{servicio.tipo}}
          </div>
@@ -282,7 +290,7 @@ template:'
                
 
                 <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
-                <div v-show="esta_activo" class="lista-estado-activo" > <i class="fas fa-check"></i> Disponible</div>
+               
                 <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}}</div>
 
                 <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
@@ -291,7 +299,7 @@ template:'
             
         </div>
 
-        
+        </div>
 
              
 

@@ -16,6 +16,18 @@
   @include align-items(center); 
 }
 
+.flex-column-start{
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+}
+
+.flex-column-end{
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-end); 
+}
+
 .flex-justifice-space-around{
   @include justify-content(space-around);
 }
@@ -229,4 +241,8 @@ height: auto;
 
 .margin-right-4px{
   margin-right:  4px;
+}
+
+.padding-4px{
+  padding:4px;
 }

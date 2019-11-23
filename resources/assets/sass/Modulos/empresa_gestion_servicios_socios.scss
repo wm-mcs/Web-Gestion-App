@@ -12,11 +12,8 @@
 
 
 .entidad-lista-name{
-  font-size: 18px;
-  @include flexbox;       
-  @include flex-direction(row);
-  @include align-items(center); 
-  font-weight: bold;
+  font-size: 18px;   
+  font-weight: bold; 
 
 }
 
