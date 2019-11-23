@@ -90,6 +90,7 @@ methods:{
 
             if(data.Validacion == true)
             {
+              app.empresa = data.empresa;
                
               app.cerrarModal('#modal-agregar-servicio-socio');
               

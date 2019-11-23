@@ -336,6 +336,21 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
       return  ['Validacion'          => false,
                'Validacion_mensaje'  => 'No se pudó crear: ' . $manager->getErrors()];
     }
+
+    $Empresa           = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+    $Servicio          = $this->TipoDeServicioAEmpresaRepo->find($Request->get('tipo_servicio_id'));
+    $Fecha_vencimiento = $Request->get('fecha_vencimiento');
+
+
+    $this->ServicioContratadoEmpresaRepo->setServicioAEmpresa($Empresa, $Servicio, $Fecha_vencimiento);
+
+    $this->ServicioEmpresaRenovacionRepo->setServicioRenovacion($Empresa->id, $Servicio, Carbon::now('America/Montevideo'));
+
+    return  ['Validacion'          => true,
+             'Validacion_mensaje'  => 'Se creó correctamente',
+             'empresa'             => $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))];
+
+
   }
 
 
