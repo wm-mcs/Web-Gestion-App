@@ -16,7 +16,9 @@ class CrearTipoServicioManager extends ManagerBase
     $rules = [
       'empresa_id'      => 'required',
       'name'            => 'required',
-      'tipo'            => 'required'
+      'tipo'            => 'required',
+      'moneda'          => 'required',
+      'valor'           => 'required'
              ];
 
     return $rules;

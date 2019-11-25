@@ -6,7 +6,9 @@ props:['empresa'],
 data:function(){
     return { 
       crear_service_name:'',
-      crear_service_tipo:''
+      crear_service_tipo:'',
+      valor:'',
+      moneda:'$'
 
       }
 },
@@ -24,7 +26,12 @@ computed: {
 
 },
 methods:{
-
+     valores_a_cero:function(){
+      this.crear_service_name = '';
+      this.crear_service_tipo = '';
+                  this.moneda = '$';
+                   this.valor = '';
+     },
     
 
      agregarServicioShoww:function(){
@@ -41,7 +48,9 @@ methods:{
 
        var data = {    name:this.crear_service_name,
                        tipo:this.crear_service_tipo ,
-                 empresa_id:this.empresa.id
+                 empresa_id:this.empresa.id,
+                     moneda:this.moneda,
+                      valor:this.valor
                    }; 
 
               axios.post(url,data).then(function (response){  
@@ -52,9 +61,8 @@ methods:{
               {
                  vue.empresa = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
-
-                 vue.crear_service_name = '';
-                 vue.crear_service_tipo = '';
+                 vue.valores_a_cero();
+                 
               }
               else
               {
@@ -92,7 +100,7 @@ methods:{
               {
                  vue.empresa = response.data.empresa;
                  
-                 $.notify(response.data.Validacion_mensaje, "warn");
+                 $.notify(response.data.Validacion_mensaje, "success");
                  
               }
               else
@@ -125,7 +133,7 @@ methods:{
               if(response.data.Validacion == true)
               {
                  vue.empresa = response.data.empresa;
-                 $.notify(response.data.Validacion_mensaje, "warn");
+                 $.notify(response.data.Validacion_mensaje, "success");
                  
               }
               else
@@ -165,7 +173,7 @@ template:'
               </div>
           </div>
           
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+          <button v-on:click="valores_a_cero" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div class="modal-body text-center"> 
@@ -238,6 +246,20 @@ template:'
                       </select>
                   </div>   
 
+                  <div class="get_width_50 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">¿Cuánto cuesta?</label>
+                   <input type="text" class="form-control" v-model="valor" step="any">
+                 </div>
+                 <div class="get_width_50 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">¿Pesos o Dolares?</label>
+                   <select v-model="moneda" class="form-control">
+                        
+                        <option>$</option>
+                        <option>U$S</option>
+                        
+                    </select>
+                 </div>
+
 
 
                
@@ -247,7 +269,7 @@ template:'
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="valores_a_cero">Cerrar</button>        
         </div>
       </div>
     </div>

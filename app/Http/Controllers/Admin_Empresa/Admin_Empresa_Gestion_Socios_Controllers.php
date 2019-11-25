@@ -453,7 +453,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                    'Validacion_mensaje'  => 'No se puedó crear el servicio: ' . $manager->getErrors()];
         }
 
-       $Propiedades = ['name','tipo','empresa_id'];
+       $Propiedades = ['name','tipo','empresa_id','moneda','valor'];
 
        $Entidad->estado = 'si';
        $Entidad->moneda = '$';
@@ -1235,7 +1235,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     if($Servicios_renovacion->count() == 0) 
     {
       return ['Validacion'          => false,
-              'Validacion_mensaje'  => 'No tiene nada como para renovar '];
+              'Validacion_mensaje'  => 'No tiene servicios renovables.'];
     }
 
     //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
