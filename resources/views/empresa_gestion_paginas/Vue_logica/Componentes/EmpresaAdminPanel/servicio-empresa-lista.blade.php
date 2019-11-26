@@ -1,4 +1,4 @@
-Vue.component('servicio-socio-lista' ,
+Vue.component('servicio-empresa-lista' ,
 {
 props:['servicio','empresa'],  
 
@@ -50,8 +50,7 @@ methods:{
           if(response.data.Validacion == true)
           {
 
-            var id_modal = '#'+vue.open_modal;
-            bus.$emit('sucursal-set', response.data.sucursal);
+            var id_modal = '#'+vue.open_modal;           
             app.cerrarModal(id_modal);  
             vue.$emit('actualizar_socio',response.data.Socio);    
             
@@ -83,7 +82,6 @@ methods:{
        var vue = this;
 
        var data = {servicio_a_editar:this.servicio,
-                  socio_id:this.servicio.socio_id,
                 servicio_id:this.servicio.id,
                  empresa_id:this.servicio.empresa_id };
 
@@ -95,7 +93,7 @@ methods:{
           {
             
             
-            vue.$emit('actualizar_socio',response.data.Socio);  
+            
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
