@@ -59,6 +59,14 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@editar_servicio_a_empresa',
                   'as'         => 'editar_servicio_a_empresa']); 
 
+                Route::post('borrar_servicio_de_empresa',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@borrar_servicio_de_empresa',
+                  'as'         => 'borrar_servicio_de_empresa']); 
+
+
+                
+
 
                 
 

@@ -52,7 +52,7 @@ methods:{
 
             var id_modal = '#'+vue.open_modal;           
             app.cerrarModal(id_modal);  
-            vue.$emit('actualizar_socio',response.data.Socio);    
+            app.empresa = response.data.empresa; 
             
 
             
@@ -92,7 +92,8 @@ methods:{
           if(response.data.Validacion == true)
           {
             
-            
+              var id_modal = '#'+vue.open_modal;           
+              app.cerrarModal(id_modal); 
              app.empresa = response.data.empresa;
              $.notify(response.data.Validacion_mensaje, "success");
           }

@@ -81,6 +81,16 @@ public function getMovimientosDeEstadoDeCuenta($empresa_id)
               ->get();
 } 
 
+public function getMovimientosDeEstadoDeCuentaDeEsteServicio($empresa_id,$servicio_id)
+{
+  return $this->getEntidad()
+              ->where('empresa_id',$empresa_id)
+              ->where('servicio_id',$servicio_id)
+              ->where('borrado','no') 
+              ->orderBy('fecha_ingreso', 'desc')
+              ->get();
+} 
+
 
 public function getSaldoEnPesosDeEstaEmpresa($empresa_id)
 {

@@ -413,6 +413,39 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
      }
   }
 
+  public function borrar_servicio_de_empresa(Request $Request)
+  {
+     $Validacion   = true;
+     $User         = $Request->get('user_desde_middleware'); 
+     $Servicio     = $this->ServicioContratadoEmpresaRepo->find($Request->get('servicio_id'));
+     
+
+
+      $this->ServicioContratadoEmpresaRepo->destruir_esta_entidad_de_manera_logica($Servicio);
+
+      //borrar los estados de cuenta
+      $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaEmpresaRepo->getMovimientosDeEstadoDeCuentaDeEsteServicio($Request->get('empresa_id'),$Request->get('servicio_id'));
+
+      foreach ($Estados_de_cuenta as $Estado)
+      {      
+        
+        $this->MovimientoEstadoDeCuentaEmpresaRepo->AnularEsteEstadoDeCuenta($Estado,$User->id,Carbon::now('America/Montevideo'));  
+          
+
+      }
+
+
+      //actualizo cache socio
+      $this->ServicioContratadoEmpresaRepo->ActualizarCache($Request->get('empresa_id'));
+
+     if($Validacion)
+     {
+       return ['Validacion'          =>  $Validacion,
+               'Validacion_mensaje'  =>  'Se eliminó correctamente',
+               'empresa'             =>  $this->EmpresaConSociosoRepo->find($Request->get('empresa_id')) ];
+     }
+  }
+
 
 
 

@@ -32,6 +32,7 @@ class ServicioContratadoEmpresaRepo extends BaseRepo
     $Entidad->estado            = 'si';
     $Entidad->empresa_id        = $Empresa->id;
     $Entidad->name              = $Servicio->name;
+    $Entidad->tipo              = $Servicio->tipo;
     $Entidad->moneda            = $Servicio->moneda;
     $Entidad->valor             = $this->getValorSiEsConIVAONO($Empresa->factura_con_iva, $Servicio->valor);
     $Entidad->tipo_servicio_id  = $Servicio->id;
