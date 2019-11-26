@@ -164,9 +164,9 @@ template:'
               </div>
                   
 
-              <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">                
-                <i class="far fa-check-square"></i> Usar
-              </span>
+                              
+               
+             
               
 
               <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>
