@@ -337,20 +337,80 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                'Validacion_mensaje'  => 'No se pudó crear: ' . $manager->getErrors()];
     }
 
+    $User              = $Request->get('user_desde_middleware'); 
+
     $Empresa           = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
     $Servicio          = $this->TipoDeServicioAEmpresaRepo->find($Request->get('tipo_servicio_id'));
     $Fecha_vencimiento = $Request->get('fecha_vencimiento');
 
 
-    $this->ServicioContratadoEmpresaRepo->setServicioAEmpresa($Empresa, $Servicio, $Fecha_vencimiento);
+    $ServicioAEmrpesa = $this->ServicioContratadoEmpresaRepo->setServicioAEmpresa($Empresa, $Servicio, $Fecha_vencimiento);
 
     $this->ServicioEmpresaRenovacionRepo->setServicioRenovacion($Empresa->id, $Servicio, Carbon::now('America/Montevideo'));
+
+
+    //estado de cuenta 
+    $this->MovimientoEstadoDeCuentaEmpresaRepo->setEstadoDeCuentaCuando($Empresa->id , 
+                                                                        $User->id, 
+                                                                        $ServicioAEmrpesa->moneda, 
+                                                                        $ServicioAEmrpesa->valor, 
+                                                                        'Cargos por: '.$ServicioAEmrpesa->name, 
+                                                                        'acredor', 
+                                                                        Carbon::now('America/Montevideo'), 
+                                                                        $ServicioAEmrpesa->id); 
+
+
+    if($Request->get('paga') == 'si')
+    {
+      $this->MovimientoEstadoDeCuentaEmpresaRepo->setEstadoDeCuentaCuando($Empresa->id , 
+                                                                        $User->id, 
+                                                                        $ServicioAEmrpesa->moneda, 
+                                                                        $ServicioAEmrpesa->valor, 
+                                                                        'Pago de cargos por: '.$ServicioAEmrpesa->name, 
+                                                                        'deudor', 
+                                                                        Carbon::now('America/Montevideo'), 
+                                                                        $ServicioAEmrpesa->id); 
+
+    } 
 
     return  ['Validacion'          => true,
              'Validacion_mensaje'  => 'Se creó correctamente',
              'empresa'             => $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))];
 
 
+  }
+
+
+  public function editar_servicio_a_empresa(Request $Request)
+  {
+     $User              = $Request->get('user_desde_middleware');
+     $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
+     
+
+       
+           $Validacion  = true;
+
+           $Servicio = $this->ServicioContratadoEmpresaRepo->find($Servicio_a_editar->id);
+       
+           //las porpiedades que se van a editar
+           $Propiedades = ['name','tipo','moneda','fecha_vencimiento'];
+
+
+           $this->ServicioContratadoEmpresaRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
+           $this->ServicioContratadoEmpresaRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
+
+           
+
+
+           //actualizo cache socio
+           $this->ServicioContratadoEmpresaRepo->ActualizarCache($Request->get('empresa_id'));
+
+     if($Validacion)
+     {
+       return ['Validacion'          => $Validacion,
+               'Validacion_mensaje'  => 'Se editó correctamente ',
+               'empresa'             => $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'))];
+     }
   }
 
 

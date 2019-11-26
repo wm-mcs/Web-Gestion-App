@@ -93,7 +93,7 @@ methods:{
           {
             
             
-            
+             app.empresa = response.data.empresa;
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
@@ -137,18 +137,7 @@ computed:{
     open_modal:function(){
       
       return   'modal-editar-servicio-socio-'+ String(this.servicio.id);
-    },
-    donde_se_emitio:function(){
-     if(this.servicio.sucursal_donde_se_emitio != null)
-     {
-      return 'Se compró en sucursal ' + this.servicio.sucursal_donde_se_emitio.name;
-     } 
-     else
-     {
-      return false;
-     }     
-      
-    },
+    }
     
 
 
@@ -203,11 +192,8 @@ template:'
                 <span v-show="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >Se vence el @{{servicio.fecha_vencimiento_formateada}}</span> 
                
 
-                <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
-               
+                <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>  
                 
-
-                <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
                 
             </div>
 
