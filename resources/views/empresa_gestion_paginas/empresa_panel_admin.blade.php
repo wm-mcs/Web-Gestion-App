@@ -61,8 +61,28 @@
   </div>
 
 
+    <div  v-if="empresa.servicios_contratados_a_empresas_activos.length" class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios que contrató <span class="color-text-success">disponibles</span> </div>
+      <div class="panel-socio-contiene-servicios">
+        
+          
 
 
+            <servicio-empresa-lista :servicio="servicio" 
+                                     :empresa="empresa"           
+                         
+
+                           v-for="servicio in empresa.servicios_contratados_a_empresas_activos" :key="servicio.id"> 
+            </servicio-empresa-lista>  
+            
+          
+
+      </div>
+  </div>
+  <div v-else class="cuando-no-hay-socios">
+    No hay servicios disponibles <i class="far fa-frown"></i>
+  </div>
+  
 
 
 
@@ -124,6 +144,7 @@
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
 
      
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-empresa-lista')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.agregar-servicio-a-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-renovacion-empresa-lista')  
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')  
