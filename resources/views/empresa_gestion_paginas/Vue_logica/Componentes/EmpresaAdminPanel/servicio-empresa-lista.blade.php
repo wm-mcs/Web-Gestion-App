@@ -225,14 +225,7 @@ template:'
                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Nombres  </label>
                       <input type="text" class="form-control"  v-model="servicio.name" placeholder="Nombre" required  />
-                  </div> 
-                   <div  class="form-group">
-                      <label class="formulario-label" for="Nombre">¿Es por clase o mensual?  </label>
-                      <select v-model="servicio.tipo" class="form-control">
-                        <option>clase</option>
-                        <option>mensual</option>
-                      </select>
-                  </div> 
+                  </div>                    
                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Fecha de vencimiento  </label>
                       <input type="date" class="form-control"  v-model="servicio.fecha_vencimiento_formateada"  required  />
