@@ -1,6 +1,6 @@
 Vue.component('servicio-empresa-lista' ,
 {
-props:['servicio','empresa'],  
+props:['servicio'],  
 
 data:function(){
     return {
