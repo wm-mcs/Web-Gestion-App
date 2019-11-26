@@ -178,10 +178,8 @@ template:'
         <div class="flex-column-end get_width_50 padding-4px">
           
         
-         <div v-if="es_clase" class="lista-estado-por-clase">
-           <i class="fas fa-undo"></i> Tipo @{{servicio.tipo}}
-         </div>
-         <div v-else class="lista-estado-por-mensual">
+        
+         <div  class="lista-estado-por-mensual">
            <i class="fas fa-hourglass-start"></i> Tipo @{{servicio.tipo}}
          </div>
 
