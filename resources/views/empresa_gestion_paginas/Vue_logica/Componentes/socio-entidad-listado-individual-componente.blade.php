@@ -261,6 +261,16 @@ computed:{
     {
       return true;
     }
+  },
+  tieneServiciosRenovacion:function(){
+    if(this.socio.servicios_renovacion_del_socio.length)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
 
@@ -325,8 +335,8 @@ template:'
     
 
   </div>
-  <div class="flex-row-center">
-    <div class="simula_link margin-right-4px" v-on:click="cargar_servicios" title="Se agregaran los servicios de carácter mensual que usualmente contrata el socio. La fecha de vencimiento será a un mes posterior al vencimiento del último servicio que había contratado.  Si el usuario tiene deuda actualmente no se podrá generar hasta que quede al día. No se renovaran los servicios que son tipo clases, solo los mensuales."><i class="fas fa-cog"></i></div>
+  <div class="flex-row-center" >
+    <div v-if="tieneServiciosRenovacion" class="simula_link margin-right-4px" v-on:click="cargar_servicios" title="Se agregaran los servicios de carácter mensual que usualmente contrata el socio. La fecha de vencimiento será a un mes posterior al vencimiento del último servicio que había contratado.  Si el usuario tiene deuda actualmente no se podrá generar hasta que quede al día. No se renovaran los servicios que son tipo clases, solo los mensuales."><i class="fas fa-redo"></i></div>
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
   </div>
 
