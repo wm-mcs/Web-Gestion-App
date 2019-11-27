@@ -244,7 +244,21 @@ computed:{
       
       'contiene-socio-tipo-lista': true 
     }
+  },
+  mostrarEstadoDeCuenta:function(){
+    if(this.nadaDisponible)
+    {
+      if(this.socio.saldo_de_estado_de_cuenta_dolares != 0 || this.socio.saldo_de_estado_de_cuenta_pesos != 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
   }
+
 
 
 },
@@ -339,7 +353,7 @@ template:'
           
            {!! Form::close() !!} 
         </div>
-        <estado-de-cuenta-socio-saldo :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
+        <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
       </div>
 
      
