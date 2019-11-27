@@ -357,7 +357,10 @@ template:'
           
            {!! Form::close() !!} 
         </div>
-        <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
+        <span v-if="mostrarEstadoDeCuenta">          
+          <estado-de-cuenta-socio-saldo  :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
+        </span>
+        
       </div>
 
      
