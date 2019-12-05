@@ -56,6 +56,17 @@ class ServicioContratadoEmpresaRepo extends BaseRepo
                 ->get();
   }
 
+  public function getServiciosDesactivosDeEstaEmpresa($empresa_id)
+  {
+    $Hoy = Carbon::now('America/Montevideo');  
+    return $this->getEntidad()
+                ->where('empresa_id',$empresa_id)
+                ->where('borrado','no')
+                ->where('fecha_vencimiento','<', $Hoy )
+                ->orderBy('created_at', 'DESC')
+                ->get();
+  }
+
 
 
 
@@ -65,6 +76,7 @@ class ServicioContratadoEmpresaRepo extends BaseRepo
   {
      $Array_cache = [
                       'ServiciosActivosEmpresa'.$empresa_id,
+                      'ServiciosDesactivosEmpresa'.$empresa_id,
                     ];
 
     foreach ($Array_cache as $cache )
@@ -79,6 +91,11 @@ class ServicioContratadoEmpresaRepo extends BaseRepo
    $Servicos_activos =  $this->getServiciosActivosDeEstaEmpresa($empresa_id);
    Cache::remember('ServiciosActivosEmpresa'.$empresa_id, 8000, function() use ($Servicos_activos){
         return  $Servicos_activos ;
+   }); 
+
+   $Servicos_desactivos =  $this->getServiciosDesactivosDeEstaEmpresa($empresa_id);
+   Cache::remember('ServiciosDesactivosEmpresa'.$empresa_id, 8000, function() use ($Servicos_desactivos){
+        return  $Servicos_desactivos ;
    }); 
 
    

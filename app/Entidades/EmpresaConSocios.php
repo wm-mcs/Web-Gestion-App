@@ -37,7 +37,8 @@ class EmpresaConSocios extends Model
                            'estado_de_cuenta_saldo_pesos',
                            'estado_de_cuenta_saldo_dolares',
                            'servicios_de_renovacion_empresa',
-                           'servicios_contratados_a_empresas_activos'];
+                           'servicios_contratados_a_empresas_activos',
+                           'servicios_contratados_a_empresas_desactivos'];
 
 
     public function servicios_relation()
@@ -153,6 +154,17 @@ class EmpresaConSocios extends Model
          return $Repo->getServiciosActivosDeEstaEmpresa($this->id);
          }); 
 
+    }
+
+    public function getServiciosContratadosAEmpresasDesactivosAttribute()
+    {
+
+         return Cache::remember('ServiciosDesactivosEmpresa'.$this->id, 8000, function() {
+
+         $Repo = new ServicioContratadoEmpresaRepo();
+
+         return $Repo->getServiciosDesactivosDeEstaEmpresa($this->id);
+         }); 
     }
 
 

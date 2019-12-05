@@ -82,6 +82,29 @@
   <div v-else class="cuando-no-hay-socios">
     No hay servicios disponibles <i class="far fa-frown"></i>
   </div>
+
+   <div  v-if="empresa.servicios_contratados_a_empresas_desactivos.length" class="empresa-contendor-de-secciones">
+      <div class="empresa-titulo-de-secciones">Servicios que contrató No disponibles </div>
+      <div class="panel-socio-contiene-servicios">
+        
+          
+
+
+            <servicio-empresa-lista :servicio="servicio" 
+                                     :empresa="empresa"           
+                         
+
+                           v-for="servicio in empresa.servicios_contratados_a_empresas_desactivos" :key="servicio.id"> 
+            </servicio-empresa-lista>  
+            
+          
+
+      </div>
+  </div>
+  <div v-else class="cuando-no-hay-socios">
+   Nada aún 
+  </div>
+  
   
 
 
