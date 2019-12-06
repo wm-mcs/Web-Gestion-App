@@ -37,6 +37,11 @@
 </div>
 
 <div class="formulario-label-fiel">
+  {!! Form::label('codigo_pais_whatsapp', 'Código de celular del país', array('class' => 'formulario-label ')) !!}
+  {!! Form::text('codigo_pais_whatsapp', null ,['class' => 'formulario-field']) !!}
+</div>
+
+<div class="formulario-label-fiel">
   {!! Form::label('estado', 'Estado', array('class' => 'formulario-label ')) !!}
   {!! Form::select('estado',['si' => 'Si',
                              'no' => 'No'] , null )          !!}

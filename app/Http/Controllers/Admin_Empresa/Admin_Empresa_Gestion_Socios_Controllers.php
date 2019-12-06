@@ -80,7 +80,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function getPropiedades()
   {
-    return ['name','rut','razon_social','email','celular','direccion','factura_con_iva','estado'];
+    return ['name','rut','razon_social','email','celular','direccion','factura_con_iva','estado','codigo_pais_whatsapp'];
   }
 
 
@@ -401,7 +401,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Socio      = $this->SocioRepo->find($Request->get('id'));
     
 
-       $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota'];
+       $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota','celular_internacional'];
 
        $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades); 
 

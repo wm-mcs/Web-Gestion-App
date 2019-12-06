@@ -101,7 +101,8 @@ methods:{
          nota:this.socio.nota ,
          estado:this.socio.estado,
          socio_id: this.socio.id,
-       empresa_id: this.empresa.id
+       empresa_id: this.empresa.id,
+       celular_internacional:this.socio.celular_internacional
 
       };
 
