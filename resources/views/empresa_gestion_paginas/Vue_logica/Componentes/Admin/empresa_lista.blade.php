@@ -26,7 +26,9 @@ computed:{
     }
   },
   whatsapp:function(){
-   return 'https://wa.me/' +this.empresa.celular+'?text=Hola';
+    let url = 'https://wa.me/' + this.empresa.celular +'?text=Hola';
+    console.log(url);
+    return url;
   }
 },
 
