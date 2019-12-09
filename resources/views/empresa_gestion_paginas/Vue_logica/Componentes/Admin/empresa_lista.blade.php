@@ -27,7 +27,7 @@ computed:{
     }
   },
   whatsappNumero:function(){
-    var url = "'https://wa.me/' + this.empresa.celular +'?text=Hola'";
+    var url = 'https://wa.me/' + this.empresa.celular +'?text=Hola';
     
     return url;
   }
