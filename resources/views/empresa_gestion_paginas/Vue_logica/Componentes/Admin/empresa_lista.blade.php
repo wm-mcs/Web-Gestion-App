@@ -26,7 +26,7 @@ computed:{
       return false;
     }
   },
-  whatsapp:function(){
+  whatsappNumero:function(){
     let url = 'https://wa.me/' + this.empresa.celular +'?text=Hola';
     console.log(url);
     return url;
@@ -72,7 +72,7 @@ template:'
              </div>
                 
             <div class="contiene-socio-celular">  
-              <i class="fab fa-whatsapp"></i> <a :href="empresa.whatsapp" target="_blank">@{{empresa.celular}}</a> 
+              <i class="fab fa-whatsapp"></i> <a :href="empresa.whatsappNumero" target="_blank">@{{empresa.celular}}</a> 
             </div>
       </div> 
       <div class="flex-row-center margin-right-4px">
