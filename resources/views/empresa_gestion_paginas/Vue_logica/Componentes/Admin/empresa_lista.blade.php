@@ -73,7 +73,7 @@ template:'
                 
             <div class="contiene-socio-celular">  
               <i class="fab fa-whatsapp"></i> <a :href="empresa.whatsappNumero" >@{{empresa.celular}}</a> 
-              
+              <div>@{{empresa.whatsappNumero}}</div>
             </div>
       </div> 
       <div class="flex-row-center margin-right-4px">
