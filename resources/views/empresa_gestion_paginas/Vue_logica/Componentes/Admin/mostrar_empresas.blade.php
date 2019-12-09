@@ -28,7 +28,7 @@ template:'
  
 
    <div class="listado-socios-contenedor-lista">
-      <empresa-lista v-for="Empresa in  Empresas" :empresa="Empresa"> </empresa-lista>
+      <empresa-lista v-for="Empresa in  Empresas" :empresa="Empresa" :key="Empresa.id"> </empresa-lista>
    </div>
   
   
