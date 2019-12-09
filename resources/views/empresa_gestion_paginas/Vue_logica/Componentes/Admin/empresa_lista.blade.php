@@ -13,11 +13,7 @@ data:function(){
 
 
 methods:{
-whatsapp:function(){
-    let url = 'https://wa.me/' + this.empresa.celular +'?text=Hola';
-    console.log(url);
-    return url;
-  }
+
 },
 computed:{
     ServiciosDisponibles:function(){
@@ -29,6 +25,11 @@ computed:{
     {
       return false;
     }
+  },
+  whatsapp:function(){
+    let url = 'https://wa.me/' + this.empresa.celular +'?text=Hola';
+    console.log(url);
+    return url;
   }
   
 },
