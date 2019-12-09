@@ -25,7 +25,7 @@ computed:{
       return false;
     }
   },
-  whatsapp:function{
+  whatsapp:function(){
    return 'https://wa.me/' +this.empresa.celular+'?text=Hola';
   }
 },
