@@ -287,7 +287,7 @@ computed:{
      
       var url     = 'https://api.whatsapp.com/send?phone=' + celular + '&text=Hola';
 
-      return      =  url;
+      return        url;
 
 
   },
