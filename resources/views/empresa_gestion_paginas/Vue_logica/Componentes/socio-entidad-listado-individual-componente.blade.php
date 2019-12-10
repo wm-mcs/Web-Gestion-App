@@ -275,13 +275,13 @@ computed:{
   whatsAppLink:function(){
 
 
-    if(this.socio.celular_internacional != '' || this.socio.celular_internacional != null)
+    if(this.socio.celular_internacional == '' || this.socio.celular_internacional == null)
     {
-      var celular = this.socio.celular_internacional;
+      var celular = this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1);
     }
     else
     {
-      var celular =  this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1); 
+      var celular =  this.socio.celular_internacional;  
     }
 
      
@@ -294,13 +294,15 @@ computed:{
   whatsAppnumero:function(){
 
 
-    if(this.socio.celular_internacional != '' || this.socio.celular_internacional != null)
+    if(this.socio.celular_internacional == '' || this.socio.celular_internacional == null)
     {
-      return this.socio.celular_internacional;
+       return this.socio.celular;
     }
     else
     {
-      return this.socio.celular;
+
+      return this.socio.celular_internacional;
+      
     }
 
   }
