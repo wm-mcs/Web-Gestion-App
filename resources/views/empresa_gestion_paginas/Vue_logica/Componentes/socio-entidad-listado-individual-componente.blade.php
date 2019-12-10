@@ -271,6 +271,38 @@ computed:{
     {
       return false;
     }
+  },
+  whatsAppLink:function(){
+
+
+    if(this.socio.celular_internacional != '' || this.socio.celular_internacional != null)
+    {
+      var celular = this.socio.celular_internacional;
+    }
+    else
+    {
+      var celular =  this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1); 
+    }
+
+    
+    var url     = 'https://api.whatsapp.com/send?phone='+ celular +'&text=Hola';
+
+    return      =  url;
+
+
+  },
+  whatsAppnumero:function(){
+
+
+    if(this.socio.celular_internacional != '' || this.socio.celular_internacional != null)
+    {
+      return this.socio.celular_internacional;
+    }
+    else
+    {
+      return this.socio.celular;
+    }
+
   }
 
 
@@ -292,7 +324,7 @@ template:'
            <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
        
       <div class="contiene-socio-celular">  
-        <i class="fab fa-whatsapp"></i> @{{socio.celular}}    
+        <i class="fab fa-whatsapp"></i> <a :href="whatsAppLink">@{{whatsAppnumero}}</a>     
       </div>
      {!! Form::close() !!} 
     <div class="contiene-planes-socio-lista">
