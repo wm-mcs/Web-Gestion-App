@@ -30,7 +30,7 @@
 @section('content')
   
 
-    
+  <avisos-empresa :empresa="empresa"></avisos-empresa>
   
   {{-- Buscar Socio --}}
   <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
@@ -66,6 +66,10 @@
 
 
 <script type="text/javascript">
+
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
+
+
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
