@@ -284,10 +284,10 @@ computed:{
       var celular =  this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1); 
     }
 
-    
-    var url     = 'https://api.whatsapp.com/send?phone='+ celular +'&text=Hola';
+     
+      var url     = 'https://api.whatsapp.com/send?phone=' + celular + '&text=Hola';
 
-    return      =  url;
+      return      =  url;
 
 
   },
@@ -312,7 +312,7 @@ template:'
 <div v-if="$root.vista_lista" :class="getClassLista">
   <div class="flex-row-center">
     
-       {!! Form::open(['route' => ['get_socio_panel'],
+       {!! Form::open([         'route' => ['get_socio_panel'],
                                 'method'=> 'Post',
                                 'files' =>  true,
                                 'class' => 'contiene-socio-lista_nombre-y-celular'
