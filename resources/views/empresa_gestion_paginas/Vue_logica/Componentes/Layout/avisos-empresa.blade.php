@@ -9,10 +9,20 @@ data:function(){
 },
 methods:{
 
-    
+    tiene_algo_activo:function(){
+     if(this.empresa.servicios_contratados_a_empresas_activos.length)
+     {
+     	return true;
+     }
+     else
+     {
+        return false;
+     }
+    }
 
 },
-template:'<div class="mensajes-contenedor ocultar-esto">
+template:'
+<div class="mensajes-contenedor ocultar-esto">
 
     <span class="mensaje-cerrar-icono">
        <i class="fas fa-times"></i>
@@ -20,7 +30,8 @@ template:'<div class="mensajes-contenedor ocultar-esto">
   
     avisos
 
-</div>'
+</div>
+'
 
 }
 
