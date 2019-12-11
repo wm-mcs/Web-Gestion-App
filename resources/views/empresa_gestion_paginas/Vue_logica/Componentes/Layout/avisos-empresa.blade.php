@@ -18,17 +18,29 @@ methods:{
      {
         return false;
      }
+    },
+    debe_plata:function(){
+     if(this.empresa.estado_de_cuenta_saldo_pesos < 0)
+     {
+     	return true;
+     }
+     else
+     {
+        return false;
+     }
     }
 
 },
 template:'
-<div class="mensajes-contenedor ocultar-esto">
+<div v-if="debe_plata" class="mensajes-contenedor ocultar-esto contiene-mensaje-empresa-top">
 
     <span class="mensaje-cerrar-icono">
        <i class="fas fa-times"></i>
     </span> 
+
+    <i class="fas fa-exclamation"></i> 
   
-    avisos
+    Hay al día de hoy un saldo pendiente de pago de $ @{{this.empresa.estado_de_cuenta_saldo_pesos}}
 
 </div>
 '
