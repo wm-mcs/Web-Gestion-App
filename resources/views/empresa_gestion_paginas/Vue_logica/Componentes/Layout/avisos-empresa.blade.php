@@ -20,7 +20,7 @@ methods:{
      }
     },
     debe_plata_pesos:function(){
-     if(this.empresa.estado_de_cuenta_saldo_pesos <= 0)
+     if(this.empresa.estado_de_cuenta_saldo_pesos < 0)
      {
      	return true;
      }
@@ -30,7 +30,7 @@ methods:{
      }
     },
     debe_plata_dolares:function(){
-     if(this.empresa.estado_de_cuenta_saldo_dolares <= 0)
+     if(this.empresa.estado_de_cuenta_saldo_dolares < 0)
      {
      	return true;
      }
