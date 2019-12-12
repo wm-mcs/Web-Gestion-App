@@ -32,7 +32,7 @@ methods:{
 
 },
 template:'
-<div v-if="debe_plata" class="mensajes-contenedor ocultar-esto contiene-mensaje-empresa-top">
+<div v-if="debe_plata" class="ocultar-esto contiene-mensaje-empresa-top">
 
     <span class="mensaje-cerrar-icono">
        <i class="fas fa-times"></i>
