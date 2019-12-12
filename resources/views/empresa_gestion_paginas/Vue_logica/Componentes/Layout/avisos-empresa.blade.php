@@ -53,7 +53,7 @@ computed:{
      	return false;
      }
     }
-}
+},
 template:'
 <div  class="ocultar-esto contiene-mensaje-empresa-top">
 
