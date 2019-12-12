@@ -9,7 +9,11 @@ data:function(){
 },
 methods:{
 
-    tiene_algo_activo:function(){
+   
+
+},
+computed:{
+	 tiene_algo_activo:function(){
      if(this.empresa.servicios_contratados_a_empresas_activos.length)
      {
      	return true;
@@ -49,10 +53,9 @@ methods:{
      	return false;
      }
     }
-
-},
+}
 template:'
-<div v-if="debe_plata_pesos" class="ocultar-esto contiene-mensaje-empresa-top">
+<div  class="ocultar-esto contiene-mensaje-empresa-top">
 
     <span class="mensaje-cerrar-icono">
        <i class="fas fa-times"></i>
