@@ -34,8 +34,6 @@
                       <label class="formulario-label" for="Nombre">Celular internacional</label>
                       <div class="modal-mensaje-aclarador">
                        Rellená este campo solo si el socio tiene un celular distinto al de tu país. Debes agregar el celular completo sin el simbolo de +. Es para que puedas comunicarte por Whatsapp con un solo click.
-
-
                       </div>
                       <input type="text" class="form-control"  v-model="socio.celular_internacional" placeholder="Celular" required  />
                    </div>

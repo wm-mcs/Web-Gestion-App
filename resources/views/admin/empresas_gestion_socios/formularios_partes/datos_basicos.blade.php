@@ -42,8 +42,21 @@
 </div>
 
 <div class="formulario-label-fiel">
+  {!! Form::label('mensaje_aviso_especial', 'Aviso Especial', array('class' => 'formulario-label ')) !!}
+  <div class="modal-mensaje-aclarador">
+    Aquí iría un mensaje de caracter muy especial para que le aparezca cuando inicia.
+  </div>
+  {!! Form::text('mensaje_aviso_especial', null ,['class' => 'formulario-field']) !!}
+</div>
+
+<div class="formulario-label-fiel">
   {!! Form::label('estado', 'Estado', array('class' => 'formulario-label ')) !!}
   {!! Form::select('estado',['si' => 'Si',
                              'no' => 'No'] , null )          !!}
 </div>
+
+
+
+
+
 
