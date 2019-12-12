@@ -52,10 +52,20 @@ computed:{
      {
      	return false;
      }
+    },
+    mostrar_contenedor_avisos:function(){
+    if(this.tiene_mensaje_personalizado || this.debe_plata_pesos || this.debe_plata_dolares)
+    {
+    return true;
+    }
+    else
+    {
+     retrun false;
+    }
     }
 },
 template:'
-<div  class="ocultar-esto contiene-mensaje-empresa-top">
+<div  v-if="mostrar_contenedor_avisos" class="ocultar-esto contiene-mensaje-empresa-top">
 
     <span class="mensaje-cerrar-icono">
        <i class="fas fa-times"></i>
