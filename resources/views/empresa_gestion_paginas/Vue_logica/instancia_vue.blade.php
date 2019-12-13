@@ -43,12 +43,15 @@
     },   
     abrirModal:function(id_modal){
     $(id_modal).appendTo("body").modal('show');
+    }
+    
+    
     },
-    whatsappContactoPagos:function(){
+    computed:{
+     whatsappContactoPagos:function(){
      var url = 'https://api.whatsapp.com/send?phone=59892336388&text=Hola';
      return url;
     }
-    
     }
 
      
