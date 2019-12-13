@@ -71,9 +71,18 @@ template:'
        <i class="fas fa-times"></i>
     </span> 
 
-    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de $ @{{this.empresa.estado_de_cuenta_saldo_pesos}} 
+    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de $ @{{this.empresa.estado_de_cuenta_saldo_pesos}} . 
+    <br> Si se trata de algún error te pido que te comuniques. 
+    <br> Si estás atrasado en el pago aquí te dejo los datos para puedas quedar al día: Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556). Puedes hacer el dopósito en Abitab o Red Pagos. Luego que lo hagas envia el comprobante al Whatsapp que te dejo aquí abajo.
+    <br>
+    <a :href="$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> enviar mensaje</a>
+    
     </div>
-    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de U$S @{{this.empresa.estado_de_cuenta_saldo_dolares}} 
+    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de U$S @{{this.empresa.estado_de_cuenta_saldo_dolares}} . 
+    <br> Si se trata de algún error te pido que te comuniques. 
+    <br> Si estás atrasado en el pago aquí te dejo los datos para puedas quedar al día: Caja Ahorro BROU DOLARES 00156513100001 (viejo: 177 0633012). Puedes hacer el dopósito en Abitab o Red Pagos. Luego que lo hagas envia el comprobante al Whatsapp que te dejo aquí abajo.
+    <br>
+    <a :href="$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> enviar mensaje</a>
     </div>
 
 
