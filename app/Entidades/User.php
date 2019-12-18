@@ -102,6 +102,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function getFotoDePerfilAttribute()
     {
-        return return url().'/imagenes/UserPerfil/fotoPerfil_'.$this->id.'.jpg';
+         return url().'/imagenes/UserPerfil/fotoPerfil_'.$this->id.'.jpg';
     }
 }
