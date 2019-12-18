@@ -12,6 +12,8 @@ use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use Illuminate\Support\Facades\Session;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
+use App\Repositorios\VendedorEmpresaRepo;
+use App\Repositorios\UserRepo;
 
 
 
@@ -38,7 +40,8 @@ class EmpresaConSocios extends Model
                            'estado_de_cuenta_saldo_dolares',
                            'servicios_de_renovacion_empresa',
                            'servicios_contratados_a_empresas_activos',
-                           'servicios_contratados_a_empresas_desactivos'];
+                           'servicios_contratados_a_empresas_desactivos',
+                           'vendedor_de_esta_empresa'];
 
 
     public function servicios_relation()
@@ -165,6 +168,22 @@ class EmpresaConSocios extends Model
 
          return $Repo->getServiciosDesactivosDeEstaEmpresa($this->id);
          }); 
+    }
+
+
+
+    public function getVendedorDeEstaEmpresaAttribute()
+    {
+        return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 8000, function() {
+
+         $VendedorRepo = new VendedorEmpresaRepo();
+         $UserRepo     = new UserRepo(); 
+
+         $VendedorId = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
+         $VendedorId = $VendedorId->first()->user_id;
+
+         return $UserRepo->find($VendedorId);
+         });  
     }
 
 

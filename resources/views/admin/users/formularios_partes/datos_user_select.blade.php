@@ -15,5 +15,28 @@
 
 
 
+<div class="formulario-label-fiel">
+{!! Form::label('img', 'Foto de perfil', array('class' => 'formulario-label ')) !!}
+{!! Form::file('img',['class' => 'formulario-field']) !!}   
+</div>
+
+
+
+
+
+@if(isset($user))
+<div class="admin-img-section-contenedor" >
+  <div class="admin-img-section-text">Foto de perfil</div>
+  <div class="modal-mensaje-aclarador">
+                Imagen de formato <strong>cuadrado</strong> ejemplo 200px x 200px.
+
+
+  </div>
+  <img class="admin-img-section-img" src="{{$user->foto_de_perfil}}"> 
+</div>
+@endif
+
+
+
 
 
