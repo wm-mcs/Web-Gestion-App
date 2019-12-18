@@ -55,7 +55,7 @@ class UserRepo extends BaseRepo
                      'img',
                      'UserPerfil/',
                      'fotoPerfil_'. $user->id,
-                     'jpg', 
+                     '.jpg', 
                      100);
 
     //variables para enviar email
@@ -99,7 +99,7 @@ class UserRepo extends BaseRepo
                      'img',
                      'UserPerfil/',
                      'fotoPerfil_'. $user->id,
-                     'jpg', 
+                     '.jpg', 
                      100);
 
     $user->save(); 
