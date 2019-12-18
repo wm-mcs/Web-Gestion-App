@@ -94,6 +94,14 @@ class UserRepo extends BaseRepo
 
     $this->setEntidadDato($user,$request,$Propiedades);
 
+    $this->setImagen($user, 
+                     $request,
+                     'img',
+                     'UserPerfil/',
+                     'fotoPerfil_'. $user->id,
+                     'jpg', 
+                     100);
+
     $user->save(); 
 
   }
