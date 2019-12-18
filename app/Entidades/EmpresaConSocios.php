@@ -173,11 +173,11 @@ class EmpresaConSocios extends Model
 
 
     public function getVendedorDeEstaEmpresaAttribute()
-    {
+    {/*
          $VendedorRepo = new VendedorEmpresaRepo();
          $UserRepo     = new UserRepo(); 
 
-         /*return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 8000, function() use($VendedorRepo , $UserRepo) {*/
+         return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 8000, function() use($VendedorRepo , $UserRepo) {
 
          
          $VendedorId   =  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
@@ -186,7 +186,7 @@ class EmpresaConSocios extends Model
 
        
          return $User ;
-         /*}); */ 
+         });  */
     }
 
 
