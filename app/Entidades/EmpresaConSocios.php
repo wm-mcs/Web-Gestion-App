@@ -183,7 +183,7 @@ class EmpresaConSocios extends Model
          $VendedorId   = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
          $User         =  $UserRepo->find($VendedorId->first()->user_id);    
 
-         dd($User)    ;
+        
        
          return $User ;
          /*}); */ 
