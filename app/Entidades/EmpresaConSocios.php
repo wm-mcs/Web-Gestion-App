@@ -177,7 +177,10 @@ class EmpresaConSocios extends Model
 
     public function getVendedorDeEstaEmpresaAttribute()
     {
-         return $this->vendedor;
+         return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 600, function() {
+
+            return  $this->vendedor;
+         }); 
     }
 
 

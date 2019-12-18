@@ -1,0 +1,58 @@
+
+
+ .contacto-whatsapp-contenedor{
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  padding:8px;
+  border-radius:8px;
+  background-color: white;
+  border:solid 4px transparent;
+  position:relative;
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+
+}
+.contacto-whatsapp-contenedor:hover{
+  border-color: $color-3;
+}
+
+
+.contacto-whatsapp-img{
+  width: 100px;
+  height: auto;
+  border-radius:100%;
+  margin-right: 40px;
+}
+
+.contiene-aclaracio-y-resouesta{
+  @include flexbox;       
+  @include flex-direction(column);
+  @include align-items(flex-start); 
+  width: 170px;
+}
+
+.aclaracion-de-respuesta{
+  color: rgba(0, 0, 0, .50);
+  font-size: 8pt;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  width: 130px;
+  
+}
+
+.contacto-whatsapp-texto{
+  
+  color: $Color-texto-gris-Mercadolibre;
+  padding: 8px 12px; 
+  border-radius:8px;
+  font-size: 12px;
+  width: 130px;
+  background-color: #f1f0f0;
+}
+
+.contacto-whatsapp-icono{
+  font-size: 38px; 
+  padding:8px; 
+}
