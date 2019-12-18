@@ -180,13 +180,15 @@ class EmpresaConSocios extends Model
          return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 8000, function() use($VendedorRepo , $UserRepo) {
 
          
-         $VendedorId   =  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
-         $User         =  $UserRepo->find($VendedorId->first()->user_id);    
+         $VendedorId   =  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id)->first()->user_id; 
+         $User         =  $UserRepo->find($VendedorId);    
 
 
        
          return $User ;
          });  */
+
+         return  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id)->first()->user_id; 
     }
 
 
