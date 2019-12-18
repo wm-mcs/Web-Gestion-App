@@ -187,7 +187,7 @@ class EmpresaConSocios extends Model
        
          return $User ;
          });  */
-
+         $VendedorRepo = new VendedorEmpresaRepo();
          return  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id)->first()->user_id; 
     }
 
