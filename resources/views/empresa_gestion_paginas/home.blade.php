@@ -9,7 +9,13 @@
                           ])               !!}   
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
-                  <img class="miga-imagen" src="{{$Empresa->url_img}}">
+                  @if(file_exists($Empresa->path_url_img))              
+                   <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
+                    <img class="miga-imagen" src="{{$Empresa->url_img}}">
+                   </span> 
+                 @else
+                   <span> <i class="fas fa-home"></i></span>
+                 @endif
                  </span>    
  
   {!! Form::close() !!} 
@@ -97,10 +103,7 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
   
 
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
+
 
   <caja-saldo></caja-saldo>
   <atencion-al-cliente :empresa="empresa"></atencion-al-cliente>

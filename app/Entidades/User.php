@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin','first_name','foto_de_perfil'];
+    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin','first_name','foto_de_perfil','path_foto_de_perfil'];
 
 
 
@@ -103,5 +103,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getFotoDePerfilAttribute()
     {
          return url().'/imagenes/UserPerfil/fotoPerfil_'.$this->id.'.jpg';
+    }
+
+
+    public function getPathFotoDePerfilAttribute()
+    {
+        return public_path().'/imagenes/UserPerfil/fotoPerfil_'.$this->id.'.jpg';
     }
 }

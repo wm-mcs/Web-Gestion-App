@@ -38,7 +38,8 @@ class EmpresaConSocios extends Model
                            'servicios_de_renovacion_empresa',
                            'servicios_contratados_a_empresas_activos',
                            'servicios_contratados_a_empresas_desactivos',
-                           'vendedor_de_esta_empresa'];
+                           'vendedor_de_esta_empresa',
+                           'path_url_img'];
 
 
     public function servicios_relation()
@@ -217,6 +218,11 @@ class EmpresaConSocios extends Model
     {
         
         return url().'/imagenes/Empresa/'.$this->id.'-logo_empresa_socios'.'.png';
+    }
+
+    public function getPathUrlImgAttribute()
+    {
+        return public_path().'/imagenes/Empresa/'.$this->id.'-logo_empresa_socios'.'.png';
     }
 
 

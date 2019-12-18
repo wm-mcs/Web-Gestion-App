@@ -9,11 +9,13 @@
                             'name'  => 'form1',
                             'class' => 'flex-row-start'
                           ])               !!}   
-                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
+                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">   
+                 @if(file_exists($Empresa->path_url_img))              
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
                   <img class="miga-imagen" src="{{$Empresa->url_img}}">
                  </span> 
                  <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>  
+                 @endif
                  <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
                  </span> 
@@ -78,9 +80,7 @@
 
   
 
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
+
   
 
   <caja-saldo></caja-saldo>
