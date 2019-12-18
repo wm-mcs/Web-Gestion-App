@@ -50,7 +50,7 @@ class UserRepo extends BaseRepo
     $Propiedades    = $this->getPropiedades();
 
     $user = $this->setEntidadDato($user,$request,$Propiedades);
-    $this->setImagen($user, 
+    $this->setImagen(null, 
                      $request,
                      'img',
                      'UserPerfil/',
@@ -94,7 +94,7 @@ class UserRepo extends BaseRepo
 
     $this->setEntidadDato($user,$request,$Propiedades);
 
-    $this->setImagen($user, 
+    $this->setImagen(null, 
                      $request,
                      'img',
                      'UserPerfil/',
