@@ -68,7 +68,7 @@
 <script type="text/javascript">
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
-
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
@@ -103,4 +103,5 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
 
   <caja-saldo></caja-saldo>
+  <atencion-al-cliente :empresa="empresa"></atencion-al-cliente>
 @stop

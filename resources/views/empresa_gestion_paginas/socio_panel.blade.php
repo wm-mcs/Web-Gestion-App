@@ -49,6 +49,7 @@
 
 
 <script type="text/javascript">
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.servicio-renovacion-lista') 
@@ -83,4 +84,6 @@
   
 
   <caja-saldo></caja-saldo>
+
+  <atencion-al-cliente :empresa="empresa"></atencion-al-cliente>
 @stop
