@@ -179,12 +179,12 @@ class EmpresaConSocios extends Model
          $VendedorRepo = new VendedorEmpresaRepo();
          $UserRepo     = new UserRepo(); 
 
-         $VendedorId = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
+         $VendedorId   = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
 
-         dd($VendedorId->first()->user_id);
-         $VendedorId = $VendedorId->first()->user_id;
-
-         return $UserRepo->find($VendedorId);
+         $User         =  $UserRepo->find($VendedorId->first()->user_id);
+         
+         dd($User);
+         return $User ;
          /*}); */ 
     }
 
