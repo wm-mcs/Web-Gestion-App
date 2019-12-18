@@ -5,15 +5,12 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
-use App\Entidades\UserEmpresa;
-use App\Entidades\Socio;
 use App\Entidades\SucursalEmpresa;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use Illuminate\Support\Facades\Session;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
-use App\Repositorios\VendedorEmpresaRepo;
-use App\Repositorios\UserRepo;
+use App\Entidades\User;
 
 
 
@@ -171,23 +168,16 @@ class EmpresaConSocios extends Model
     }
 
 
+    public function vendedor()
+    {
+
+      return $this->belongsTo(User::class,'vendedor_user_id','id');
+    
+    }
 
     public function getVendedorDeEstaEmpresaAttribute()
-    {/*
-         $VendedorRepo = new VendedorEmpresaRepo();
-         $UserRepo     = new UserRepo(); 
-
-         return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 8000, function() use($VendedorRepo , $UserRepo) {
-
-         
-         $VendedorId   =  $VendedorRepo->getVendedoresDeEstaEmpresa($this->id)->first()->user_id; 
-         $User         =  $UserRepo->find($VendedorId);    
-
-
-       
-         return $User ;
-         });  */
-         return 2;
+    {
+         return $this->vendedor;
     }
 
 

@@ -107,7 +107,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
     }
 
-    
+
 
     return view('empresa_gestion_paginas.home_general', compact('Empresas'));
 
@@ -952,6 +952,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
         //traigo la empresa
         $Empresa      = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+
+        //le marco el id de vendedor
+        $this->EmpresaConSociosoRepo->setAtributoEspecifico($Empresa, 'vendedor_user_id', $Request->get('user_id') );
 
         $UsersEmpresa = $this->VendedorEmpresaRepo->getVendedoresDeEstaEmpresa($Empresa->id);
 
