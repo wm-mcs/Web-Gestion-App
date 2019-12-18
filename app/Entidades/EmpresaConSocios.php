@@ -181,7 +181,7 @@ class EmpresaConSocios extends Model
 
          $VendedorId = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
 
-         dd($VendedorId);
+         dd($VendedorId->first());
          $VendedorId = $VendedorId->first()->user_id;
 
          return $UserRepo->find($VendedorId);
