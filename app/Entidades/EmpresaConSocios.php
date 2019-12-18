@@ -172,7 +172,7 @@ class EmpresaConSocios extends Model
 
 
 
-     public function getVendedorDeEstaEmpresaAttribute()
+    public function getVendedorDeEstaEmpresaAttribute()
     {
          $VendedorRepo = new VendedorEmpresaRepo();
          $UserRepo     = new UserRepo(); 
@@ -181,7 +181,9 @@ class EmpresaConSocios extends Model
 
          
          $VendedorId   = $VendedorRepo->getVendedoresDeEstaEmpresa($this->id); 
-         $User         =  $UserRepo->find($VendedorId->first()->user_id);        
+         $User         =  $UserRepo->find($VendedorId->first()->user_id);    
+
+         dd($User)    ;
        
          return $User ;
          /*}); */ 
