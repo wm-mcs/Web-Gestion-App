@@ -107,6 +107,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
     }
 
+    dd($Empresas);
+
     return view('empresa_gestion_paginas.home_general', compact('Empresas'));
 
 
