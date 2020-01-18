@@ -204,7 +204,7 @@ template:'<span>
 
 
                
-                  <div v-if="$root.cargadno">Procesado...</div>
+                  <div v-if="$root.cargando">Procesado...</div>
                   <div v-else v-on:click="crear_servicio_a_socio" class="boton-simple">Agregar</div>
                   
                  
