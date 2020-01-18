@@ -49,7 +49,14 @@ class UserRepo extends BaseRepo
     //propiedades para crear
     $Propiedades    = $this->getPropiedades();
 
-    $this->setEntidadDato($user,$request,$Propiedades);
+    $user = $this->setEntidadDato($user,$request,$Propiedades);
+    $this->setImagen(null, 
+                     $request,
+                     'img',
+                     'UserPerfil/',
+                     'fotoPerfil_'. $user->id,
+                     '.jpg', 
+                     100);
 
     //variables para enviar email
     $nombre_de_quien_envia    = 'EasySocio';
@@ -86,6 +93,14 @@ class UserRepo extends BaseRepo
     $Propiedades = $this->getPropiedades();
 
     $this->setEntidadDato($user,$request,$Propiedades);
+
+    $this->setImagen(null, 
+                     $request,
+                     'img',
+                     'UserPerfil/',
+                     'fotoPerfil_'. $user->id,
+                     '.jpg', 
+                     100);
 
     $user->save(); 
 
