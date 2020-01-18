@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
    
     protected $hidden   = ['password', 'remember_token'];
 
-    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin','first_name','foto_de_perfil','path_foto_de_perfil'];
+    protected $appends  = ['name_para_select','gerarqui_con_nombre','route_admin','first_name','foto_de_perfil','path_foto_de_perfil','link_whatsapp_send'];
 
 
 
@@ -110,4 +110,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return public_path().'/imagenes/UserPerfil/fotoPerfil_'.$this->id.'.jpg';
     }
+
+
+    public function getLinkWhatsappSendAttribute()
+    {
+
+        $numero  = '598'. substr(trim( str_replace(' ' ,'', $this->celular) ),1);
+        $mensaje = 'Hola';
+        $url = 'https://api.whatsapp.com/send?phone='. $numero .'&text='. $mensaje;
+
+        return $url;
+    }
+
+    
 }
