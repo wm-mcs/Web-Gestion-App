@@ -20,6 +20,10 @@
    
    <div id="app" class="admin-contiene-columna-y-content">
 
+   <div v-if="cargando" class="cargando-style-contenedor">
+     <div class="cargando-text-style">Procesando...</div>
+   </div>
+
    <div class="admin-columna-contenedor">
      <div class="admin-columna-wraper">
        @yield('columna')

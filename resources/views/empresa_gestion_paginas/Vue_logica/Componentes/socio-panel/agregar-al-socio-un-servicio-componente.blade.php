@@ -52,11 +52,13 @@ methods:{
  },
  crear_servicio_a_socio:function(){  
 
-     var url  = '/agregar_servicio_a_socio';
+      var url  = '/agregar_servicio_a_socio';
 
       var data = this.servicio_data;
 
       var vue = this;
+
+      app.cargando = true;
 
       axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -64,6 +66,8 @@ methods:{
 
             if(data.Validacion == true)
             {
+
+              app.cargando = false;
               vue.$emit('actualizar_servicios_de_socios',response.data.servicios);   
               vue.$emit('actualizar_socio',response.data.Socio);   
               app.cerrarModal('#modal-agregar-servicio-socio');
@@ -72,6 +76,8 @@ methods:{
             }
             else
             {
+
+              app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            

@@ -9,6 +9,7 @@
       servicios:[],
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
+      cargando:false,
       busqueda:'',
       @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},

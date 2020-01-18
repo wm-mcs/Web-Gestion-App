@@ -7,7 +7,7 @@
     el: '#app',    
     data:{     
       
-
+    cargando:false,
 
       
 
