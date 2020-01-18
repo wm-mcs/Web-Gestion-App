@@ -62,7 +62,9 @@ methods:{
                           paga: this.se_cobra
 
                  };  
-      var vue = this;           
+      var vue = this;    
+
+     app.cargando = true;        
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -70,6 +72,8 @@ methods:{
 
             if(data.Validacion == true)
             {
+
+              app.cargando = false;
               app.cerrarModal(vue.modal);
               vue.$emit('actualizar_socio',response.data.Socio); 
               bus.$emit('sucursal-set', response.data.sucursal);  
@@ -80,6 +84,7 @@ methods:{
             }
             else
             {
+              app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
@@ -182,7 +187,10 @@ template:'<span >
              Estás a punto de ingresar ésto al socio @{{socio.name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
-           <div class="boton-simple" v-on:click="ingresa_movimiento">
+
+
+           <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+           <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
              Ingresar
            </div>
 

@@ -70,6 +70,9 @@ consumir_esta_clase:function(servicio){
                          servicio_id:servicio.id,
                           empresa_id:this.empresa.id};
 
+
+       app.cargando = true;                   
+
        axios.post(url,data).then(function(response){ 
 
 
@@ -77,7 +80,7 @@ consumir_esta_clase:function(servicio){
           if(response.data.Validacion == true)
           {
             
-            
+             app.cargando = false;
              
              vue.$emit("ActualizarSocios", response.data.Socios);
 
@@ -85,6 +88,7 @@ consumir_esta_clase:function(servicio){
           }
           else
           {
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -342,7 +346,8 @@ template:'
             <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase" :key="servicio.id">
               <div class="listado-socio-lista-servicio-disponible">
                 <span class="listado-socio-lista-servicio-disponible-servicio"> @{{servicio.name}}</span>
-                <span class="listado-socio-lista-servicio-disponible-accion "  v-on:click="consumir_esta_clase(servicio)" title="Indicar que el socio va a usar la clase ahora."> Usar</span>
+                <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                <span v-else class="listado-socio-lista-servicio-disponible-accion "  v-on:click="consumir_esta_clase(servicio)" title="Indicar que el socio va a usar la clase ahora."> Usar</span>
               </div>
             </div>
           </div>
