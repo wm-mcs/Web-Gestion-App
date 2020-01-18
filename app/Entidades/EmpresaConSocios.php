@@ -5,13 +5,12 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Entidades\TipoDeServicio;
 use Illuminate\Support\Facades\Cache;
-use App\Entidades\UserEmpresa;
-use App\Entidades\Socio;
 use App\Entidades\SucursalEmpresa;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use Illuminate\Support\Facades\Session;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
+use App\Entidades\User;
 
 
 
@@ -38,7 +37,9 @@ class EmpresaConSocios extends Model
                            'estado_de_cuenta_saldo_dolares',
                            'servicios_de_renovacion_empresa',
                            'servicios_contratados_a_empresas_activos',
-                           'servicios_contratados_a_empresas_desactivos'];
+                           'servicios_contratados_a_empresas_desactivos',
+                           'vendedor_de_esta_empresa',
+                           'path_url_img'];
 
 
     public function servicios_relation()
@@ -168,6 +169,22 @@ class EmpresaConSocios extends Model
     }
 
 
+    public function vendedor()
+    {
+
+      return $this->belongsTo(User::class,'vendedor_user_id','id');
+    
+    }
+
+    public function getVendedorDeEstaEmpresaAttribute()
+    {
+         return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 600, function() {
+
+            return  $this->vendedor;
+         }); 
+    }
+
+
 
 
 
@@ -201,6 +218,11 @@ class EmpresaConSocios extends Model
     {
         
         return url().'/imagenes/Empresa/'.$this->id.'-logo_empresa_socios'.'.png';
+    }
+
+    public function getPathUrlImgAttribute()
+    {
+        return public_path().'/imagenes/Empresa/'.$this->id.'-logo_empresa_socios'.'.png';
     }
 
 
