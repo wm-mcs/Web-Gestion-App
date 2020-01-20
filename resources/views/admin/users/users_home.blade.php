@@ -62,7 +62,7 @@
 <script type="text/javascript">
 
    
-@include('empresa_gestion_paginas.Vue_logica.instancia_vue')   
+@include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')   
 
 
 
