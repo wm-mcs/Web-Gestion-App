@@ -1,7 +1,7 @@
 <div class="admin-columna-contenedor">
 
  {{-- imagen logo --}}
- <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa_gestion->url_img}}"></a>
+ <a href="{{route('get_home')}}" class="get_width_100 flex-row-column"><img class="admin-header-logo" src="{{$Empresa_gestion->url_img}}"></a>
 
  <ul>
    @if(Auth::user()->role == '10')

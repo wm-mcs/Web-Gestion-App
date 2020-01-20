@@ -81,3 +81,18 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
 @stop
+
+
+@section('vue-logica')
+
+
+<script type="text/javascript">
+
+   
+@include('empresa_gestion_paginas.Vue_logica.instancia_vue')   
+
+
+
+</script>
+
+@stop

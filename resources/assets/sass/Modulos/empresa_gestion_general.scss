@@ -2,7 +2,7 @@
 .cargando-style-contenedor{
   position:absolute;
   width:100%;
-  height:100vh;
+  height:200vh;
   background-color:#D5D5D5;
   opacity: 0.3;
   @include flexbox;       
@@ -21,7 +21,7 @@
 
  .Procesando-text{
   padding:8px;
-  color:$color-grey1;
+  color:$color-3;
   font-weight:bold;
  }
 
