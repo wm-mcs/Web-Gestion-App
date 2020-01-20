@@ -126,7 +126,7 @@
 .admin-logo-contendor{
   width:100%;
   height:90px;
-  padding:10px 0;
+  padding:10px 8px;
   @include flexbox;
   @include align-items(center);
   @include flex-direction(row);   
