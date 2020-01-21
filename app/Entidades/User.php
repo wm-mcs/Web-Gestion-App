@@ -115,7 +115,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getLinkWhatsappSendAttribute()
     {
 
-        $numero  = '598'. substr(trim( str_replace(' ' ,'', $this->celular) ),1);
+        $numero  = '598'. substr(trim( str_replace(' ' ,'', $this->telefono) ),1);
         $mensaje = 'Hola';
         $url = 'https://api.whatsapp.com/send?phone='. $numero .'&text='. $mensaje;
 
