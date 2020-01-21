@@ -4,13 +4,21 @@
   width:100%;
   height:200vh;
   background-color:#D5D5D5;
-  opacity: 0.2;
+  opacity: 0.9;
   @include flexbox;       
   @include flex-direction(row);
-  @include align-items(center); 
+  @include align-items(flex-start); 
   @include justify-content(space-around);
   z-index:999;
 
+}
+
+.cargando-style-contenedor-sub{
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center); 
+  height:100vh;
+  @include justify-content(space-around);
 }
 
  .cargando-text-style{

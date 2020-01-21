@@ -21,7 +21,10 @@
    <div id="app" class="admin-contiene-columna-y-content">
 
    <div v-if="cargando" class="cargando-style-contenedor">
-     <div class="cargando-text-style">Procesando...</div>
+   <div class="cargando-style-contenedor-sub">
+      <div class="cargando-text-style">Procesando...</div>
+   </div>
+     
    </div>
 
    <div class="admin-columna-contenedor">
