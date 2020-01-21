@@ -4,7 +4,7 @@
   width:100%;
   height:200vh;
   background-color:#D5D5D5;
-  opacity: 0.9;
+  opacity: 0.5;
   @include flexbox;       
   @include flex-direction(row);
   @include align-items(flex-start); 
@@ -24,12 +24,12 @@
  .cargando-text-style{
   font-size:14px;
   text-align:center;
-  color:$color-3;
+  color:$color-gris-text;
  }
 
  .Procesando-text{
   padding:8px;
-  color:$color-3;
+  color:$color-gris-text;
   font-weight:bold;
  }
 
