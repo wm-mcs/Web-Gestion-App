@@ -128,6 +128,11 @@ Route::group(['middleware' => 'SistemaPaginaWeb'],function()
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@eliminar_estado_de_caja',
                   'as'         => 'eliminar_estado_de_caja']);
 
+                Route::post('get_movimientos_de_caja_de_sucursal',
+                [
+                 'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_movimientos_de_caja_de_sucursal',
+                 'as'         => 'get_movimientos_de_caja_de_sucursal']);   
+
 
                  Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
                  {
