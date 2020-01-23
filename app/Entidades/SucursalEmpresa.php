@@ -26,7 +26,7 @@ class SucursalEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['movimientos_de_caja','saldo_de_caja_pesos','saldo_de_caja_dolares','puede_ver_el_user'];
+    protected $appends  = ['saldo_de_caja_pesos','saldo_de_caja_dolares','puede_ver_el_user'];
     
 
  
