@@ -1032,6 +1032,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   }
 
+  //obtiene los movimientos de caja
+  public function get_movimientos_de_caja_de_sucursal(Request $Request)
+  {
+    $User              = $Request->get('user_desde_middleware'); 
+    $Sucursal          = $Request->get('sucursal_desde_middleware');
+
+    return  ['Validacion'                    =>  true,
+               'Validacion_mensaje'          =>  'Movimientos de caja cargados correctamente',
+               'movimientos_de_caja_pesos'   =>  $this->CajaEmpresaRepo->getMovimientosDeEstaSucrsalEnPesos($Sucursal->id) ,
+               'movimientos_de_caja_dolares' =>  $this->CajaEmpresaRepo->getMovimientosDeEstaSucrsalEnDolares($Sucursal->id) ];
+  }
+
   //ingresar de caja
   public function ingresar_movimiento_caja(Request $Request)
   {

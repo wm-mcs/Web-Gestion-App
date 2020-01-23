@@ -8,11 +8,58 @@ data:function(){
       sucursal:{!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-dolares',
-      valor_actual_pesos:'0'
+      valor_actual_pesos:'0',
+      movimientos_de_caja_pesos:0,
+      movimientos_de_caja_dolares:0
 
     }
 },
 methods:{
+
+    getMovimientosDeCaja:function(){
+
+      var url = '/get_movimientos_de_caja_de_sucursal';
+
+      var data = {    
+                       empresa_id:  this.sucursal.empresa_id, 
+                      sucursal_id:  this.sucursal.id,    
+                 };  
+      var vue = this; 
+
+      app.cargando = true;          
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               
+               app.cargando = false;
+               if(data.movimientos_de_caja_pesos.length)
+               {
+                vue.movimientos_de_caja_pesos = data.movimientos_de_caja_pesos;
+               }
+               if(data.movimientos_de_caja_dolares.length)
+               {
+                vue.movimientos_de_caja_dolares = data.movimientos_de_caja_dolares;
+               }
+               
+               $.notify(response.data.Validacion_mensaje, "success");
+            }
+            else
+            { app.cargando = false;
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+
+    },
+   
 
     esMatoyIgualACero:function(valor){
         if(valor < 0 )
@@ -35,9 +82,11 @@ methods:{
       }
     },
     abrir_modal_pesos:function(){
+      this.getMovimientosDeCaja();
       app.abrirModal(this.modal_pesos);
     },
     abrir_modal_dolares:function(){
+      this.getMovimientosDeCaja();
       app.abrirModal(this.modal_dolares);
     }
     
@@ -76,7 +125,7 @@ template:'<div>
  </div> 
 
 
- <div class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+ <div v-if="esDistintoACero(movimientos_de_caja_pesos)" class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -93,7 +142,7 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-          <caja-lista v-for="(caja,index) in sucursal.movimientos_de_caja_pesos" 
+          <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos" 
                        :key="caja.id"
                        :caja="caja"
                        :sucursal="sucursal">
@@ -110,7 +159,7 @@ template:'<div>
     </div>
   </div>
 
-  <div class="modal fade" id="modal-caja-dolares" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+  <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal fade" id="modal-caja-dolares" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -125,7 +174,7 @@ template:'<div>
           
         </div>
         <div class="modal-body text-center"> 
-          <caja-lista v-for="(caja,index) in sucursal.movimientos_de_caja_dolares" 
+          <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares" 
                        :key="caja.id"
                        :caja="caja"
                        :sucursal="sucursal">

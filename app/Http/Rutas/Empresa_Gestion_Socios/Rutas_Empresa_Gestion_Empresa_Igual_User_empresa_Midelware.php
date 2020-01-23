@@ -63,6 +63,12 @@ Route::post('editar_empresa_renovacion_automatica',
    'middleware' => 'SistemaGestionUserGerarquia:3']);   
 
 
+Route::post('get_movimientos_de_caja_de_sucursal',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_movimientos_de_caja_de_sucursal',
+  'as'         => 'get_movimientos_de_caja_de_sucursal']);   
+
+
  
 
 

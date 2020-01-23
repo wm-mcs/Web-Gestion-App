@@ -117,10 +117,10 @@ class CajaEmpresaRepo extends BaseRepo
 
   public function ActualizarCache($sucursal_id)
   {
-    $Array_cache = [
+    $Array_cache = [/*
                       'MovimientosCajaSucursal'.$sucursal_id, 
                       'MovimientosCajaDolaresSucursal'.$sucursal_id,
-                      'MovimientosCajaPesosSucursal'.$sucursal_id,
+                      'MovimientosCajaPesosSucursal'.$sucursal_id,*/
                       'SaldoCajaPesosSucursal'.$sucursal_id,
                       'SaldoCajaDolaresSucursal'.$sucursal_id     
                   ];
@@ -133,7 +133,7 @@ class CajaEmpresaRepo extends BaseRepo
       }
     } 
 
-   $MovimientosCajaSucursal =  $this->getMovimientosDeEstaSucrsal($sucursal_id);
+/*   $MovimientosCajaSucursal =  $this->getMovimientosDeEstaSucrsal($sucursal_id);
    Cache::remember('MovimientosCajaSucursal'.$sucursal_id, 120, function() use ($MovimientosCajaSucursal){
         return  $MovimientosCajaSucursal ;
    });    
@@ -146,7 +146,7 @@ class CajaEmpresaRepo extends BaseRepo
    $MovimientosCajaPesosSucursal = $this->getMovimientosDeEstaSucrsalEnPesos($sucursal_id);
    Cache::remember('MovimientosCajaPesosSucursal'.$sucursal_id, 120, function() use ($MovimientosCajaPesosSucursal){
         return  $MovimientosCajaPesosSucursal ;
-   });   
+   });   */
 
    $SaldoCajaPesosSucursal =  $this->getSaldoDeEstaSucursalEnPesos($sucursal_id);
    Cache::remember('SaldoCajaPesosSucursal'.$sucursal_id, 120, function() use ($SaldoCajaPesosSucursal){
