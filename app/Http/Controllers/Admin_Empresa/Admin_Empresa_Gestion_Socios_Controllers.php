@@ -1028,7 +1028,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
       return [ 'Validacion'               =>  true,
                'Validacion_mensaje'       =>  'Se cambió la sucursal correctamente',
-               'Sucursal'                  => $Sucursal   ];
+               'Sucursal'                 => $Sucursal   ];
 
   }
 

@@ -22,7 +22,7 @@ methods:{
 
       var data = {    
                        empresa_id:  this.sucursal.empresa_id, 
-                      sucursal_id:  this.sucursal.id,    
+                      sucursal_id:  this.sucursal.id   
                  };  
       var vue = this; 
 
