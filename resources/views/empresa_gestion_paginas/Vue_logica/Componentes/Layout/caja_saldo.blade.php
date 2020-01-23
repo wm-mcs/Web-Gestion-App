@@ -125,7 +125,7 @@ template:'<div>
  </div> 
 
 
- <div v-if="esDistintoACero(movimientos_de_caja_pesos)" class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+ <div class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -141,7 +141,7 @@ template:'<div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
-        <div class="modal-body text-center"> 
+        <div v-if="esDistintoACero(movimientos_de_caja_pesos)"  class="modal-body text-center"> 
           <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos" 
                        :key="caja.id"
                        :caja="caja"
@@ -159,7 +159,7 @@ template:'<div>
     </div>
   </div>
 
-  <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal fade" id="modal-caja-dolares" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+  <div  class="modal fade" id="modal-caja-dolares" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -173,7 +173,7 @@ template:'<div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
-        <div class="modal-body text-center"> 
+        <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal-body text-center"> 
           <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares" 
                        :key="caja.id"
                        :caja="caja"
