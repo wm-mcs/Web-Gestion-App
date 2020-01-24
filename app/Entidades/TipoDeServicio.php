@@ -19,6 +19,7 @@ class TipoDeServicio extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+    protected $appends  = ['es_clase'];
 
 
 
@@ -49,6 +50,19 @@ class TipoDeServicio extends Model
                                
            $query->where('estado', "si"); 
                 
+    }
+
+
+    public function getEsClaseAttribute()
+    {
+        if($this->tipo == 'clase')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 

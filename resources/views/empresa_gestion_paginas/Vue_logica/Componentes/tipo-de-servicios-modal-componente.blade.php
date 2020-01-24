@@ -8,7 +8,8 @@ data:function(){
       crear_service_name:'',
       crear_service_tipo:'',
       valor:'',
-      moneda:'$'
+      moneda:'$',
+      cantidad_clases:0
 
       }
 },
@@ -20,9 +21,19 @@ mounted: function mounted () {
 
 },
 computed: {
-  listaDeServicios:function(){
+ listaDeServicios:function(){
     return this.empresa.tipo_servicios.sort();
-  }
+ },
+ tipo_clase:function(){
+   if(this.crear_service_tipo == 'clase')
+   {
+    return true;
+   }
+   else
+   {
+    return false
+   }
+ }
 
 },
 methods:{
@@ -31,6 +42,7 @@ methods:{
       this.crear_service_tipo = '';
                   this.moneda = '$';
                    this.valor = '';
+         this.cantidad_clases = 0; 
      },
     
 
@@ -50,7 +62,8 @@ methods:{
                        tipo:this.crear_service_tipo ,
                  empresa_id:this.empresa.id,
                      moneda:this.moneda,
-                      valor:this.valor
+                      valor:this.valor,
+            cantidad_clases:this.cantidad_clases   
                    }; 
 
       app.cargando = true;
@@ -203,6 +216,10 @@ template:'
                         
                     </select>
                  </div>
+                 <div v-if="servicio.es_clase" class="get_width_50 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Cantidad de clases</label>
+                   <input type="number" class="form-control" v-model="servicio.cantidad_clases" step="any">
+                 </div>
                  <div class="get_width_50 formulario-label-fiel-sin-width">
                    <label class="formulario-label">¿Cuánto cuesta?</label>
                    <input type="text" class="form-control" v-model="servicio.valor" step="any">
@@ -252,6 +269,10 @@ template:'
                         
                       </select>
                   </div>   
+                  <div v-if="tipo_clase" class="get_width_50 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Cantidad de clases</label>
+                   <input type="number" class="form-control" v-model="cantidad_clases" step="any">
+                 </div>
 
                   <div class="get_width_50 formulario-label-fiel-sin-width">
                    <label class="formulario-label">¿Cuánto cuesta?</label>
