@@ -103,7 +103,10 @@ template:'  <div class="contiene-lista-caja">
 
                    Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong> | Id: @{{caja.id}}  
                    <span v-if="sePuedeEliminar"> 
-                    | <span v-on:click="anular_movimiento" class="simula_link" title="Anular éste movimiento.">
+
+                      |
+                      <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                     <span v-else v-on:click="anular_movimiento" class="simula_link" title="Anular éste movimiento.">
                         <i class="fas fa-trash-alt"></i> 
                       </span>
 
