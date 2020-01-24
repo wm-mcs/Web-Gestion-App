@@ -203,12 +203,12 @@ template:'
                <div v-for="servicio in empresa.tipo_servicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between">
                  
                 <div class="get_width_70 flex-wrap flex-row-center">
-                 <div class="get_width_40 formulario-label-fiel-sin-width">
+                 <div class="get_width_100 formulario-label-fiel-sin-width">
                    <label class="formulario-label">Nombre</label>
                    <input type="text" class="form-control" v-model="servicio.name">
                  </div> 
-                 <div class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">¿Por clase o mensual?</label>
+                 <div class="get_width_30 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Tipo</label>
                    <select v-model="servicio.tipo" class="form-control">
                         
                         <option>clase</option>
@@ -216,16 +216,16 @@ template:'
                         
                     </select>
                  </div>
-                 <div v-if="servicio.es_clase" class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">Cantidad de clases</label>
+                 <div v-if="servicio.es_clase" class="get_width_30 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Cantidad</label>
                    <input type="number" class="form-control" v-model="servicio.cantidad_clases" step="any">
                  </div>
-                 <div class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">¿Cuánto cuesta?</label>
+                 <div class="get_width_30 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Valor</label>
                    <input type="text" class="form-control" v-model="servicio.valor" step="any">
                  </div>
-                 <div class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">¿Pesos o Dolares?</label>
+                 <div class="get_width_20 formulario-label-fiel-sin-width">
+                   <label class="formulario-label">Moneda</label>
                    <select v-model="servicio.moneda" class="form-control">
                         
                         <option>$</option>
