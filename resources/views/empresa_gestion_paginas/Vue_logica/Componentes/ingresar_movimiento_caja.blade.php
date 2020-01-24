@@ -150,7 +150,8 @@ template:'<span >
              Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
-           <div class="boton-simple" v-on:click="ingresa_movimiento">
+           <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+           <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
              Ingresar
            </div>
 
