@@ -330,7 +330,7 @@ template:'
            <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
        
       <div class="contiene-socio-celular">  
-        <i class="fab fa-whatsapp"></i> <a :href="whatsAppLink">@{{whatsAppnumero}}</a>     
+        <i class="fab fa-whatsapp"></i> <a :href="whatsAppLink" target="_blank">@{{whatsAppnumero}}</a>     
       </div>
      {!! Form::close() !!} 
     <div class="contiene-planes-socio-lista">
