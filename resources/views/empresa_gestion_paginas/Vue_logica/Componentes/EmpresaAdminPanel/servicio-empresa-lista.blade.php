@@ -38,6 +38,8 @@ methods:{
 
        var vue  = this;
 
+       app.cargando = true;
+
        var data = {
                    socio_id:this.servicio.socio_id,
                 servicio_id:this.servicio.id,
@@ -49,7 +51,7 @@ methods:{
           
           if(response.data.Validacion == true)
           {
-
+            app.cargando = false;
             var id_modal = '#'+vue.open_modal;           
             app.cerrarModal(id_modal);  
             app.empresa = response.data.empresa; 
@@ -62,7 +64,8 @@ methods:{
 
           }
           else
-          {
+          { 
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");  
           }    
            

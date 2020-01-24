@@ -106,6 +106,8 @@ methods:{
 
       };
 
+      app.cargando = true;
+
       var vue = this;
 
       axios.post(url,data).then(function (response){  
@@ -114,13 +116,15 @@ methods:{
 
             if(data.Validacion == true)
             {
+
+              app.cargando = false;
               $.notify(data.Validacion_mensaje, "success");
               
               vue.socio = response.data.Socio;
               
             }
             else
-            {
+            { app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            

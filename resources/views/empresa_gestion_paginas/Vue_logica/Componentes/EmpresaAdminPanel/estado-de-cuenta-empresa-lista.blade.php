@@ -37,17 +37,23 @@ methods:{
        var data = {estado_de_cuenta:this.estado_de_cuenta,
                          empresa_id: this.empresa.id};
 
+
+       app.cargando = true;                  
+
        axios.post(url,data).then(function(response){ 
 
 
           
           if(response.data.Validacion == true)
-          {    
+          {   
+             app.cargando = false; 
              app.empresa = response.data.empresa;
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
           {
+
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            

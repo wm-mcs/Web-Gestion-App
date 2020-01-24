@@ -53,12 +53,15 @@ methods:{
                       valor:this.valor
                    }; 
 
+      app.cargando = true;
+
               axios.post(url,data).then(function (response){  
               
                
 
               if(response.data.Validacion == true)
               {
+                 app.cargando = false;
                  vue.empresa = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
                  vue.valores_a_cero();
@@ -66,6 +69,7 @@ methods:{
               }
               else
               {
+                app.cargando = false;
                 $.notify(response.data.Validacion_mensaje, "error");
               }
              
@@ -92,12 +96,14 @@ methods:{
                        
                    }; 
 
+        app.cargando = true;
+
               axios.post(url,data).then(function (response){  
               
               
 
               if(response.data.Validacion == true)
-              {
+              {  app.cargando = false;
                  vue.empresa = response.data.empresa;
                  
                  $.notify(response.data.Validacion_mensaje, "success");
@@ -105,6 +111,7 @@ methods:{
               }
               else
               {
+                app.cargando = false;
                 $.notify(response.data.Validacion_mensaje, "error");
               }
              

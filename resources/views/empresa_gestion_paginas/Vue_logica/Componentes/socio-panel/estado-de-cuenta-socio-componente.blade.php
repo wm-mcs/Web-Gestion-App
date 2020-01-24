@@ -38,18 +38,23 @@ methods:{
                            socio_id: this.socio.id,
                          empresa_id: this.empresa.id};
 
+      app.cargando = true;
+
        axios.post(url,data).then(function(response){ 
 
 
           
           if(response.data.Validacion == true)
           {    
+
+             app.cargando = false;
              vue.$emit('actualizar_socio',response.data.Socio); 
              bus.$emit('sucursal-set', response.data.sucursal);
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
           {
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            

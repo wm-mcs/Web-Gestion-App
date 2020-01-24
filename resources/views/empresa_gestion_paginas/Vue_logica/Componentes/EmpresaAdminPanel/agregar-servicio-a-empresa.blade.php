@@ -84,12 +84,16 @@ methods:{
 
       var vue = this;
 
+      app.cargando = true;
+
       axios.post(url,data).then(function (response){  
             var data = response.data;  
             
 
             if(data.Validacion == true)
             {
+
+              app.cargando = false;
               app.empresa = data.empresa;
                
               app.cerrarModal('#modal-agregar-servicio-socio');
@@ -97,7 +101,8 @@ methods:{
               $.notify(data.Validacion_mensaje, "success");      
             }
             else
-            {
+            { 
+              app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "warn");
             }
            
