@@ -91,7 +91,7 @@ methods:{
  cambioTipoDeServicio:function(){
 
   
-  var servicio = this.seleccionarUnObjetoSegunAtributo( this.empresa.tipo_servicios,'name',this.tipo_servicio);
+  var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'name',this.tipo_servicio);
                   
 
   this.servicio_data.name             = servicio.name;
@@ -105,7 +105,7 @@ methods:{
 
   if(servicio.tipo != 'mensual')
   {
-    this.servicio_data.cantidad_de_servicios = 1;
+    this.servicio_data.cantidad_de_servicios = servicio.cantidad_clases;
   } 
   else
   {
