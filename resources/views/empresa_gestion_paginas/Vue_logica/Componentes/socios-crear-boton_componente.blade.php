@@ -36,7 +36,8 @@ methods:{
                     cedula:this.form_socio_cedula,
                     empresa_id: this.empresa.id       
                  };  
-      var vue = this;           
+      var vue = this;
+      app.cargando = true;           
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -44,13 +45,14 @@ methods:{
 
             if(data.Validacion == true)
             {
-               
+               app.cargando = false;
                bus.$emit('socios-set', response.data.Socios); 
                app.cerrarModal(vue.modal);
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
             {
+              app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
@@ -107,9 +109,9 @@ template:'<span >
                       <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Celular" required  />
                   </div> 
                
-
-                  <div v-if="boton_crear_validation" v-on:click="crear_socio_post" class="boton-simple">Crear</div>
-                  <div v-else class="recuadro-validacion-pendiente">Debes completar todos los campos para crear</div>
+                  <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                  <div v-else v-on:click="crear_socio_post" class="boton-simple">Crear socio</div>
+                 
                  
         </div>
         <div class="modal-footer">
