@@ -99,7 +99,7 @@ created() {
     });
 
     bus.$on('actualizar-movimientos-de-caja', () => {
-      getMovimientosDeCaja();
+      this.getMovimientosDeCaja();
     })
 },
 template:'<div>
