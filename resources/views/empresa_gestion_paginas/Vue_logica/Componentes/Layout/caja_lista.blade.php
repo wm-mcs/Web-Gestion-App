@@ -25,18 +25,21 @@ anular_movimiento:function(){
        var data = {         caja_id:  this.caja.id,
                          empresa_id:  this.caja.empresa_id};
 
+
+       app.cargando = true;                  
+
        axios.post(url,data).then(function(response){ 
 
 
           
           if(response.data.Validacion == true)
           {    
-             
+             app.cargando = false;
              bus.$emit('sucursal-set', response.data.sucursal);
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
-          {
+          { app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
