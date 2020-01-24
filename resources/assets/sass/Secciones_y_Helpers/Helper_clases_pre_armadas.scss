@@ -40,6 +40,10 @@
   @include flex-wrap(wrap); 
 }
 
+.align-self-end{
+  @include align-self(flex-end); 
+}
+
 
 
 /* CLASES DE TAMAÑO */

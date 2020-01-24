@@ -235,7 +235,7 @@ template:'
                  </div>
 
 
-                  <div class="get_width_10 flex-row-center flex-justifice-space-around">
+                  <div class="get_width_10 flex-row-center flex-justifice-space-around align-self-en">
                       <div v-on:click="editarServicio(servicio)" title="Editar esté servicio" class="boton-simple-chico">
                         <i class="fas fa-edit"></i>
                      </div>    
