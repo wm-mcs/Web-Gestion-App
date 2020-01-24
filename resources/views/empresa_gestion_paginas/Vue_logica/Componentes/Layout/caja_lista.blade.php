@@ -36,6 +36,7 @@ anular_movimiento:function(){
           {    
              app.cargando = false;
              bus.$emit('sucursal-set', response.data.sucursal);
+             bus.$emit('actualizar-movimientos-de-caja');
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else

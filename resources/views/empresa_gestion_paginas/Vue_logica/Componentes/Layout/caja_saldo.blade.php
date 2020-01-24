@@ -96,6 +96,10 @@ created() {
     
     bus.$on('sucursal-set', (sucursal) => {
       this.sucursal = sucursal
+    });
+
+    bus.$on('actualizar-movimientos-de-caja', () => {
+      getMovimientosDeCaja();
     })
 },
 template:'<div>
