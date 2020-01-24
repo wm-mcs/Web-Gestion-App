@@ -62,7 +62,7 @@ methods:{
               if(response.data.Validacion == true)
               {
                  app.cargando = false;
-                 vue.empresa = response.data.empresa;
+                 app.empresa = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
                  vue.valores_a_cero();
                  
@@ -270,8 +270,8 @@ template:'
 
 
                
-
-                  <div v-on:click="agregarServicioCreat" class="boton-simple">Crear nuevo</div>
+                  <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                  <div v-else v-on:click="agregarServicioCreat" class="boton-simple">Crear nuevo</div>
                   
                  
         </div>
