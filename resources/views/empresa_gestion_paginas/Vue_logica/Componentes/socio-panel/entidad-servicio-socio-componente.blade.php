@@ -139,6 +139,8 @@ methods:{
                          servicio_id:this.servicio.id,
                           empresa_id:this.empresa.id};
 
+       app.cargando = true;
+
        axios.post(url,data).then(function(response){ 
 
 
@@ -146,12 +148,12 @@ methods:{
           if(response.data.Validacion == true)
           {
             
-            
+            app.cargando = false;
             vue.$emit('actualizar_socio',response.data.Socio);  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
-          {
+          { app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -261,10 +263,13 @@ template:'
                Precio: @{{servicio.moneda}} @{{servicio.valor}} 
               </div>
                   
-
-              <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">                
-                <i class="far fa-check-square"></i> Usar
+              <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+              <span v-else>                
+                 <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">
+                   <i class="far fa-check-square"></i> Usar
+                 </span>
               </span>
+             
               
 
               <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>

@@ -58,7 +58,8 @@ methods:{
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
                         nombre: this.nombre_a_ingresar  
                  };  
-      var vue = this;           
+      var vue = this;  
+      app.cargando = true;         
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -66,6 +67,7 @@ methods:{
 
             if(data.Validacion == true)
             {
+              app.cargando = false;
               app.cerrarModal(vue.modal);
               bus.$emit('sucursal-set', response.data.sucursal);  
               $.notify(data.Validacion_mensaje, "success");   
@@ -74,7 +76,7 @@ methods:{
                
             }
             else
-            {
+            { app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
@@ -171,7 +173,8 @@ template:'<span >
                  
         </div>
         <div class="modal-footer">
-          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+          <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+          <button v-else v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
         </div>
       </div>
     </div>

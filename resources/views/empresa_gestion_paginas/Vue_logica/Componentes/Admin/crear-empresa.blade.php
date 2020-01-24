@@ -45,18 +45,20 @@ methods:{
  var vue  = this;
  var data = this.data_post;
 
+ app.cargando = true;
+
   axios.post(url,data).then(function(response){ 
 
 
           
           if(response.data.Validacion == true)
-          {    
+          {  app.cargando = false;  
              app.cerrarModal('#modal-crear-empresa');
              bus_empresas.$emit('empresas-set', response.data.empresas);  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
-          {
+          { app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -272,8 +274,8 @@ template:'
           </div> 
            <br>    
                
-
-                  <div  v-on:click="crear_empresa_post" class="boton-simple">Crear</div>
+                  <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                  <div  v-else v-on:click="crear_empresa_post" class="boton-simple">Crear</div>
                   
                  
         </div>
