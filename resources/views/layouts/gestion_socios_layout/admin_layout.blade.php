@@ -22,7 +22,7 @@
 
    <div v-if="cargando" class="cargando-style-contenedor">
    <div class="cargando-style-contenedor-sub">
-      <div class="cargando-text-style loader">Procesando...</div>
+      <div class="cargando-text-style "> <span class="loader">Procesando...</span> </div>
    </div>
      
    </div>
