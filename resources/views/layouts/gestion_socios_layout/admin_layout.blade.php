@@ -22,7 +22,7 @@
 
    <div v-if="cargando" class="cargando-style-contenedor">
    <div class="cargando-style-contenedor-sub">
-      <div class="cargando-text-style"> <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      <div class="cargando-text-style"> <div class="lds-ellipsis"></div></div>
    </div>
      
    </div>
