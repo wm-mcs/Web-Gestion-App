@@ -280,6 +280,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
        //asocio al vendedor que es el user auth 
        $this->VendedorEmpresaRepo->setAsociarEmpresaYVendedor($Empresa->id,$UsuaioAuth->id,4,$UsuaioAuth); 
 
+       //le marco el id de vendedor
+       $this->EmpresaConSociosoRepo->setAtributoEspecifico($Empresa, 'vendedor_user_id',$UsuaioAuth->id );
+
 
 
        //Busco el tipo de plan de la empresa

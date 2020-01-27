@@ -23,13 +23,14 @@ class EmpresaConSociosoRepo extends BaseRepo
   {
     $Entidad = $this->getEntidad();
 
-    $Entidad->name            = $nombre ;
-    $Entidad->estado          = 'si';
-    $Entidad->email           = $email;
-    $Entidad->celular         = $celular;
-    $Entidad->factura_con_iva = $factura_con_iva;
-    $Entidad->rut             = $rut;
-    $Entidad->razon_social    = $razon_social; 
+    $Entidad->name                 = $nombre ;
+    $Entidad->estado               = 'si';
+    $Entidad->codigo_pais_whatsapp = '598';
+    $Entidad->email                = $email;
+    $Entidad->celular              = $celular;
+    $Entidad->factura_con_iva      = $factura_con_iva;
+    $Entidad->rut                  = $rut;
+    $Entidad->razon_social         = $razon_social; 
     $Entidad->save();
     return $Entidad;
   }
