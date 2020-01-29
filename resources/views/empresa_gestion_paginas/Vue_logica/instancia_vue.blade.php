@@ -62,19 +62,19 @@
      return url;
     },
     esResolucionDeCelular:function(){
-      if(windowWidth <= this.resolucion_celular)
+      if(this.windowWidth <= this.resolucion_celular)
       {
         return true;
       }
     },
     esResolucionDeTablet:function(){
-      if(windowWidth <= this.resolucion_tablet)
+      if(this.windowWidth <= this.resolucion_tablet)
       {
         return true;
       }
     },
     esResolucionDePc:function(){
-      if(windowWidth > this.resolucion_tablet)
+      if(this.windowWidth > this.resolucion_tablet)
       {
         return true;
       }
