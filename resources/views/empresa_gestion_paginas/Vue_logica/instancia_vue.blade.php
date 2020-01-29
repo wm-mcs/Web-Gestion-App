@@ -9,6 +9,10 @@
       servicios:[],
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
+      windowWidth: window.innerWidth,
+      resolucion_celular: 320,
+      resolucion_tablet: 640,
+      menu_abierto:false,
       cargando:false,
       busqueda:'',
       @if( $Empresa != '')
@@ -28,7 +32,11 @@
     },
     mounted: function mounted () {        
 
-     
+      this.$nextTick(() => {
+        window.addEventListener('resize', () => {
+          this.windowWidth = window.innerWidth
+        });
+      });
 
 
     },
@@ -52,6 +60,39 @@
      whatsappContactoPagos:function(){
      var url = 'https://api.whatsapp.com/send?phone=59892336388&text=Hola';
      return url;
+    },
+    esResolucionDeCelular:function(){
+      if(windowWidth <= this.resolucion_celular)
+      {
+        return true;
+      }
+    },
+    esResolucionDeTablet:function(){
+      if(windowWidth <= this.resolucion_tablet)
+      {
+        return true;
+      }
+    },
+    esResolucionDePc:function(){
+      if(windowWidth > this.resolucion_tablet)
+      {
+        return true;
+      }
+    },
+    mostrar_menu:function(){
+      if(this.menu_abierto)
+      {
+        return true;
+      }
+      if(this.esResolucionDePc)
+      {
+        return true;
+      }
+
+      if(!this.menu_abierto)
+      {
+        return false;
+      }
     }
     }
 
