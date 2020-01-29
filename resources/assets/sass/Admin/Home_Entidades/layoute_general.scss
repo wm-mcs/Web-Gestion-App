@@ -93,19 +93,8 @@
     }
 
 
-
-   
-
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * *
- *    N A V I G A T I O N   S L I D E   B A R (Admin)*
- *        (la "columna" de la izquierda)            *
- * * * * * * * * * * * * * * * * * * * * * * * * * */
- // columna
  .admin-columna-contenedor{
-  width: 20%;  
+  min-width: 20%;  
   background-color: $Color-Gris-CasiBlanco;
   @include flexbox;
   @include align-items(center);
@@ -115,13 +104,10 @@
 }
 
 .admin-columna-wraper{
-
-  width: 80%; 
-  
+  width: 80%;   
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);
-
 }
 
 .admin-logo-contendor{
