@@ -26,7 +26,7 @@
           </div>     
        </div>
 
-       <div class="admin-columna-contenedor">
+       <div v-if="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            @yield('columna')
          </div>
