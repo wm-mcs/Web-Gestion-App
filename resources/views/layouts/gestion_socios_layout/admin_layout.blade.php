@@ -20,27 +20,22 @@
    
    <div id="app" class="admin-contiene-columna-y-content">
 
-   <div v-if="cargando" class="cargando-style-contenedor">
-   <div class="cargando-style-contenedor-sub">
-      <div class="cargando-text-style">Procesando...</div>
-   </div>
-     
-   </div>
+       <div v-if="cargando" class="cargando-style-contenedor">
+          <div class="cargando-style-contenedor-sub">
+            <div class="cargando-text-style">Procesando...</div>
+          </div>     
+       </div>
 
-   <div class="admin-columna-contenedor">
-     <div class="admin-columna-wraper">
-       @yield('columna')
-     </div>
-      
-   </div>
+       <div class="admin-columna-contenedor">
+         <div class="admin-columna-wraper">
+           @yield('columna')
+         </div>
+       </div>
    
-   <div class="get_width_20"></div>
+   
       
-      <div class="admin-contiene-content">
-        
-                        
+       <div class="admin-contiene-content">                        
              @include('layouts.gestion_socios_layout.mensajes.mensajes')   
-         
               <div class="contiene-miga-y-auth">
                 <div class="admin-contnedor-navegacion-miga">           
                  @yield('miga-de-pan')                

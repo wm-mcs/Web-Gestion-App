@@ -29,16 +29,17 @@
   @include flex-direction(row);
   @include justify-content(space-between);
   margin: 0 auto;
-  position:absolute;
+  /*position:absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 1000;*/
   font-family: $font-primary;
+  position:relative;
  
 }
 
   .admin-contiene-content{
-    width: 80%;    
+       
     @include flexbox;
     @include align-items(center);
     @include flex-direction(column);  
