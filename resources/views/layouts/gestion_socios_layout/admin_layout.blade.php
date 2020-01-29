@@ -28,7 +28,10 @@
 
        <div v-if="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
-           @yield('columna')
+           <div class="get_width_80 flex-row-column">
+             @yield('columna')
+           </div>
+           
          </div>
        </div>
    
