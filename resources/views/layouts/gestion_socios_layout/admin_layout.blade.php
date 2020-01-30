@@ -25,7 +25,7 @@
             <div class="cargando-text-style">Procesando...</div>
           </div>     
        </div>
-
+       <div v-if="mostrar_menu" class="get_width_20"></div>
        <div v-if="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
