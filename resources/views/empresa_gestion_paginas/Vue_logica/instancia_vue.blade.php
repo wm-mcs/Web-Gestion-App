@@ -12,6 +12,7 @@
       windowWidth: window.innerWidth,
       resolucion_celular: 320,
       resolucion_tablet: 640,
+      resolucion_pc: 1024,
       menu_abierto:false,
       cargando:false,
       busqueda:'',
@@ -74,7 +75,7 @@
       }
     },
     esResolucionDePc:function(){
-      if(this.windowWidth > this.resolucion_tablet)
+      if(this.windowWidth > this.resolucion_pc)
       {
         return true;
       }
