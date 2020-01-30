@@ -1,6 +1,6 @@
 .contiene-socio-tipo-lista{
    width: 100%;
-   padding: 2px 10px;
+   padding: 4px 10px;
    border:solid 2px transparent;
    background-color: white;
     @include flexbox;       
@@ -9,7 +9,7 @@
     @include justify-content(space-between);
     @include flex-wrap(wrap); 
     box-shadow: 0 1px 2px rgba(0,0,0,.26);
-    margin-top: 7px;
+    margin-top: 10px;
 
 
 }
@@ -49,7 +49,7 @@
 }
 
  .socio-clases-contenedor{
-  width:150px;
+  padding:6px;
  }
 
   .planes-mensuales-cotiene{
@@ -98,15 +98,26 @@
 
    @media (min-width: $BrackPoint-Secundario){
  
+ .contiene-socio-tipo-lista{
+   width: 85%;
+   padding: 3px 10px;
+   margin-top: 7px;
+  }
 
   .contiene-socio-lista{
-    width: 150px;    
+    width: 160px;    
   }
+
+ .socio-clases-contenedor{
+  padding:5px;
+  width: 160px; 
+ }
   .planes-mensuales-cotiene{
     padding: 5px;    
     text-align: center;    
-    width: 140px;    
+    width: 160px;    
     margin-right: 5px;
+    margin-top: 0;
     @include align-items(center); 
     
   }
