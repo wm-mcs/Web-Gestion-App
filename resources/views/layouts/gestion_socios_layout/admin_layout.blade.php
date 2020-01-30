@@ -25,7 +25,7 @@
             <div class="cargando-text-style">Procesando...</div>
           </div>     
        </div>
-       <div v-if="mostrar_menu" class="get_width_20"></div>
+       <div v-if="esResolucionDePc" class="get_width_20"></div>
        <div v-if="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
@@ -37,7 +37,7 @@
    
    
       
-       <div class="admin-contiene-content">                        
+       <div :style="contenido_style_width" class="admin-contiene-content">                        
              @include('layouts.gestion_socios_layout.mensajes.mensajes')   
               <div class="contiene-miga-y-auth">
                 <div class="admin-contnedor-navegacion-miga">           

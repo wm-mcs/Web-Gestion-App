@@ -93,6 +93,20 @@
       {
         return false;
       }
+    },
+    contenido_style_width:function(){
+      if(this.esResolucionDePc)
+      {
+        return {
+                  width: '80%',
+               }
+      }
+      else
+      {
+        return {
+                  width: '100%',
+               }
+      }
     }
     }
 

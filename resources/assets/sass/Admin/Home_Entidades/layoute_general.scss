@@ -109,9 +109,7 @@
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);
-  min-height: 100vh;
-  
-   
+  min-height: 100vh; 
 }
 
 .admin-logo-contendor{
