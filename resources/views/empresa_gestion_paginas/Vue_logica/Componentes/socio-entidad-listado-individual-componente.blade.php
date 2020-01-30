@@ -339,9 +339,9 @@ template:'
        <div v-if="nadaDisponible" class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i></div> 
        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases socio-clases-contenedor">
           <span>
-             Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  
-             <span v-if="clases_desplegadas" v-on:click="abrir_cerrar_clases"><i class="fas fa-chevron-up"></i>  </span>  
-             <span v-else v-on:click="abrir_cerrar_clases"> <i class="fas fa-chevron-down"></i></span>            
+             
+             <span v-if="clases_desplegadas" v-on:click="abrir_cerrar_clases"> Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  <i class="fas fa-chevron-up"></i>  </span>  
+             <span v-else v-on:click="abrir_cerrar_clases"> Tiene <strong>@{{cantidadDeClasesDisponibles}}</strong>  <i class="fas fa-chevron-down"></i></span>            
           </span> 
 
           <div v-if="clases_desplegadas" class="listado-socio-contiene-clases-o-mensuales" >

@@ -1,9 +1,9 @@
 .estado-de-cuenta-saldo{
-  padding: 4px;
+  padding: 3px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
-  margin-left: 4px;
+  margin-top: 4px;
   font-weight: bold;
 }
 
@@ -77,4 +77,15 @@
 
 
 
-@media (min-width: $BrackPoint-Tercer){}
+@media (min-width: $BrackPoint-Tercer){
+
+.estado-de-cuenta-saldo{
+  padding: 4px;
+  
+  font-size: 14px;
+  
+  margin-left: 0px;
+  
+}
+
+}
