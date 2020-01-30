@@ -325,7 +325,7 @@ template:'
                               ])               !!}   
 
            <input type="hidden" name="empresa_id" :value="empresa.id">
-           <span :id="socio.id"></span>
+           <span :id="socio.id" class="no-mostrar"></span>
            <input type="hidden" name="socio_id" :value="socio.id">
            <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
        
