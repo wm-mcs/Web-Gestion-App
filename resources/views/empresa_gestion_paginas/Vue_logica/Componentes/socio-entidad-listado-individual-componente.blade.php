@@ -333,6 +333,8 @@ template:'
         <i class="fab fa-whatsapp"></i> <a :href="whatsAppLink" target="_blank">@{{whatsAppnumero}}</a>     
       </div>
      {!! Form::close() !!} 
+
+   </div>
     <div class="contiene-planes-socio-lista">
        <div v-if="nadaDisponible" class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i></div> 
        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases socio-clases-contenedor">
@@ -373,7 +375,7 @@ template:'
     </div>
     
 
-  </div>
+  
   <div class="flex-row-center" >
     
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
