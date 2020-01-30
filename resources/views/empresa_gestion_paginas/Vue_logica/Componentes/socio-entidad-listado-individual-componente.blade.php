@@ -316,7 +316,7 @@ computed:{
 },
 template:'  
 <div v-if="$root.vista_lista" :class="getClassLista">
-  <div class="flex-row-center">
+  
     
        {!! Form::open([         'route' => ['get_socio_panel'],
                                 'method'=> 'Post',
@@ -334,7 +334,7 @@ template:'
       </div>
      {!! Form::close() !!} 
 
-   </div>
+   
     <div class="contiene-planes-socio-lista">
        <div v-if="nadaDisponible" class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i></div> 
        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases socio-clases-contenedor">
