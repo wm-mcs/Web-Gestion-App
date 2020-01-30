@@ -176,7 +176,7 @@ methods:{
 template:'
 <span>
  <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear"  v-on:click="agregarServicioShoww" title="Listado de servicios">
-        <i class="far fa-list-alt"></i>  <span class="" >Servicios</span> 
+        <i class="far fa-list-alt"></i>  
        
  </div>
 
