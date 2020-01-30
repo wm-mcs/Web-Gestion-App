@@ -29,6 +29,8 @@
        <div v-if="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
+
+             <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu">Cerrar menú</div> 
              @yield('columna')
            </div>
            
@@ -40,7 +42,10 @@
        <div :style="contenido_style_width" class="admin-contiene-content">                        
              @include('layouts.gestion_socios_layout.mensajes.mensajes')   
               <div class="contiene-miga-y-auth">
-                <div class="admin-contnedor-navegacion-miga">           
+                <div class="admin-contnedor-navegacion-miga"> 
+
+                 <div v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu"><i class="fas fa-bars"></i></div> 
+
                  @yield('miga-de-pan')                
                 </div>
                 <div class="contiene-auth-y-sucursal">

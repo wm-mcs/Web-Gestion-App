@@ -53,6 +53,16 @@
     },   
     abrirModal:function(id_modal){
     $(id_modal).appendTo("body").modal('show');
+    },
+    abrir_menu_cerrar_principal:function(){
+      if(this.menu_abierto)
+      {
+        this.menu_abierto = false;
+      }
+      else
+      {
+        this.menu_abierto = true;
+      }
     }
     
     
