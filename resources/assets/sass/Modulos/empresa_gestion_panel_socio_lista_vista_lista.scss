@@ -49,7 +49,7 @@
 }
 
  .socio-clases-contenedor{
-  padding:6px;
+  max-width: 200px;
  }
 
   .planes-mensuales-cotiene{
@@ -109,8 +109,9 @@
   }
 
  .socio-clases-contenedor{
-  padding:5px;
+  padding:6px;
   width: 160px; 
+  max-width: 160px;
  }
   .planes-mensuales-cotiene{
     padding: 5px;    
@@ -128,6 +129,7 @@
     @include flex-direction(column);
     @include align-items(flex-end); 
     width: 200px;
+    margin-top: 0;
 
    }
 
