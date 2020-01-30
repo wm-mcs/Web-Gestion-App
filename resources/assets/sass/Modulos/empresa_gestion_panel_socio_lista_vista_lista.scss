@@ -46,6 +46,7 @@
     @include align-items(center); 
     @include flex-wrap(wrap); 
     margin-right: 5px;
+    width: 100%;
 }
 
  .socio-clases-contenedor{
@@ -108,6 +109,12 @@
     width: 160px;    
   }
 
+
+  .contiene-planes-socio-lista{
+    
+    width: 50%;
+}
+
  .socio-clases-contenedor{
   padding:6px;
   width: 160px; 
@@ -128,10 +135,12 @@
     @include flexbox;       
     @include flex-direction(column);
     @include align-items(flex-end); 
-    width: 200px;
+    width: 20%;
     margin-top: 0;
 
    }
+
+
 
 
 
