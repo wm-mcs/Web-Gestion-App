@@ -42,9 +42,8 @@
 
 .contiene-planes-socio-lista{
     @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
-    @include flex-wrap(wrap); 
+    @include flex-direction(column);
+    @include align-items(flex-start);     
     margin-right: 5px;
     width: 100%;
 }
@@ -106,13 +105,15 @@
   }
 
   .contiene-socio-lista{
-    width: 160px;    
+    width: 20%;    
   }
 
 
   .contiene-planes-socio-lista{
-    
-    width: 50%;
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include flex-wrap(wrap); 
+    width: 60%;
 }
 
  .socio-clases-contenedor{
