@@ -34,6 +34,7 @@
   left: 0;
   z-index: 1000;*/
   font-family: $font-primary;
+  position:relative;
   
  
 }
@@ -94,22 +95,22 @@
 
 
  .admin-columna-contenedor{
-  min-width: 20%;  
+  min-width: 240px; 
   background-color: $Color-Gris-CasiBlanco;
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);   
   min-height: 100vh;
-  position: relative;  
+  position: fixed;  
 }
 
 .admin-columna-wraper{
-  width: 80%;   
+  width: 230px;   
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);
   min-height: 100vh;
-  position:fixed;
+  
    
 }
 
