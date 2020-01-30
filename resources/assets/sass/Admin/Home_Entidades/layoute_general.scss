@@ -71,11 +71,20 @@
 
 
   .miga-de-pan-boton-abrir-cerra-menu{
-    padding: 8px;
+    padding: 0 8px;
     border-radius:6px;
-    font-size: 28px;
-    margin-right: 10px;
+    font-size: 24px;    
     color:$Color-texto-gris-Mercadolibre;
+    cursor: pointer;
+  }
+
+  .miga-de-pan-boton-abrir-cerra-menu-texto{
+    padding: 8px 8px;
+    border-radius:6px;
+    font-size: 24px;    
+    color:$Color-texto-gris-Mercadolibre;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
 
 

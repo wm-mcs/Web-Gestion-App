@@ -30,7 +30,7 @@
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
 
-             <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu">Cerrar menú</div> 
+             <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div> 
              @yield('columna')
            </div>
            
