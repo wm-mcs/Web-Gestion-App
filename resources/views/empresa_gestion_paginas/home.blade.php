@@ -21,7 +21,7 @@
   {!! Form::close() !!} 
   <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>
 
-  <span> Panel general de {{$Empresa->name}}</span>
+  @if(!file_exists($Empresa->path_url_img)) <span> {{$Empresa->name}}</span>@endif
 @stop
 
 @section('sucursal')  
