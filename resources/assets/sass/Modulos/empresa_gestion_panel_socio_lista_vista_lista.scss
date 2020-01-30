@@ -130,6 +130,10 @@
     color: white;
   }
 
+    .link-celular:hover{
+      color: white;
+    }
+
 
   .contiene-planes-socio-lista{
     @include flex-direction(row);
