@@ -27,7 +27,7 @@
   @include flexbox;
   @include align-items(flex-start);
   @include flex-direction(row);
-  @include justify-content(space-between);
+  @include justify-content(space-around);
   margin: 0 auto;
   /*position:absolute;
   top: 0;
