@@ -95,7 +95,7 @@
 
 
  .admin-columna-contenedor{
-  min-width: 240px; 
+  min-width: 20%; 
   background-color: $Color-Gris-CasiBlanco;
   @include flexbox;
   @include align-items(center);
@@ -104,7 +104,7 @@
   position: fixed;  
   top: 0;
   left: 0;
-  right: 0;
+  
 }
 
 .admin-columna-wraper{

@@ -99,13 +99,13 @@
       if(this.esResolucionDePc)
       {
         return {
-                  width: '100%',
+                  width: '80%',
                }
       }
       else
       {
         return {
-                  width: '80%',
+                  width: '100%',
                }
       }
     }
