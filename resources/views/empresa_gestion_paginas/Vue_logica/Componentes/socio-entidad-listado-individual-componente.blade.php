@@ -353,7 +353,7 @@ template:'
           </div>
         </div>
 
-          <div v-if="mensualDisponibles" class="flex-row-center">
+          <div v-if="mensualDisponibles" class="flex-row-center flex-wrap">
           
           
               <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
