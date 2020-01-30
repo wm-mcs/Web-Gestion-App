@@ -46,12 +46,16 @@
                 <div class="contiene-auth-y-sucursal">
                     <div class="navigation-auth-contenedor">
 
-                     <span v-show="!esResolucionDeCelular"> 
+                     
                      @if( Auth::user()->role >= 3)
+                     <span v-show="!esResolucionDeCelular"> 
                       @yield('empresa-configuracion')
+                     </span> 
                      @endif
+                     <span v-show="!esResolucionDeCelular"> 
                      @yield('sucursal')
                      </span>
+                     
                      <nav-inicio></nav-inicio>
                     </div>
                    
