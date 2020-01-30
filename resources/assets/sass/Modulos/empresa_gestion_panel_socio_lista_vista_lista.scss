@@ -78,6 +78,18 @@
 
 
 
+   .socio-lista-contiene-estado-de-cuenta{
+
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start); 
+    width: 100%;
+    margin-top: 5px;
+
+   }
+
+
+
 
 
 
@@ -98,6 +110,15 @@
     @include align-items(center); 
     
   }
+
+   .socio-lista-contiene-estado-de-cuenta{
+
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-end); 
+    width: 200px;
+
+   }
 
 
 

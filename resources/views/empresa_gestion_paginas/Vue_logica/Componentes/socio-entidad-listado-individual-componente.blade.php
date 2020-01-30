@@ -376,7 +376,7 @@ template:'
     
 
   
-  <div class="flex-row-center" >
+  <div class="socio-lista-contiene-estado-de-cuenta" >
     
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
   </div>
