@@ -4,7 +4,7 @@
   width:100%;
   height:100vh;
   background-color:#D5D5D5;
-  opacity: 0.3;
+  opacity: 0.5;
   @include flexbox;       
   @include flex-direction(row);
   @include align-items(flex-start); 
@@ -19,6 +19,58 @@
   @include align-items(center); 
   height:100vh;
   @include justify-content(space-around);
+}
+
+.cssload-container {
+  width: 100%;
+  height: 45px;
+  text-align: center;
+}
+
+.cssload-tube-tunnel {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  border: 4px solid;
+  border-radius: 50%;
+  border-color: $color-3;
+  animation: cssload-scale 1035ms infinite linear;
+    -o-animation: cssload-scale 1035ms infinite linear;
+    -ms-animation: cssload-scale 1035ms infinite linear;
+    -webkit-animation: cssload-scale 1035ms infinite linear;
+    -moz-animation: cssload-scale 1035ms infinite linear;
+}
+
+
+
+@keyframes cssload-scale {
+  0% { transform: scale(0); transform: scale(0); }
+  90% { transform: scale(0.7); transform: scale(0.7); }
+  100% { transform: scale(1); transform: scale(1); }
+}
+
+@-o-keyframes cssload-scale {
+  0% { -o-transform: scale(0); transform: scale(0); }
+  90% { -o-transform: scale(0.7); transform: scale(0.7); }
+  100% { -o-transform: scale(1); transform: scale(1); }
+}
+
+@-ms-keyframes cssload-scale {
+  0% { -ms-transform: scale(0); transform: scale(0); }
+  90% { -ms-transform: scale(0.7); transform: scale(0.7); }
+  100% { -ms-transform: scale(1); transform: scale(1); }
+}
+
+@-webkit-keyframes cssload-scale {
+  0% { -webkit-transform: scale(0); transform: scale(0); }
+  90% { -webkit-transform: scale(0.7); transform: scale(0.7); }
+  100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@-moz-keyframes cssload-scale {
+  0% { -moz-transform: scale(0); transform: scale(0); }
+  90% { -moz-transform: scale(0.7); transform: scale(0.7); }
+  100% { -moz-transform: scale(1); transform: scale(1); }
 }
 
  .cargando-text-style{

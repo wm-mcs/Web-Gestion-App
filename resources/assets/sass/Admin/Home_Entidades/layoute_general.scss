@@ -120,7 +120,7 @@
   @include align-items(center);
   @include flex-direction(column);   
   height: 100%;
-  z-index: 1000;
+  z-index: 998;
   position: fixed;  
   top: 0;
   left: 0;

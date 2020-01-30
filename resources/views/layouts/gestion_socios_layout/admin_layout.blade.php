@@ -21,9 +21,13 @@
    <div id="app" class="admin-contiene-columna-y-content">
 
        <div v-if="cargando" class="cargando-style-contenedor">
-          <div class="cargando-style-contenedor-sub">
+
+        <div class="cssload-container">
+          <div class="cssload-tube-tunnel"></div>
+        </div>
+          {{-- <div class="cargando-style-contenedor-sub">
             <div class="cargando-text-style">Procesando...</div>
-          </div>     
+          </div>  --}}    
        </div>
        <div v-if="esResolucionDePc" class="get_width_20"></div>
        <div v-if="mostrar_menu" class="admin-columna-contenedor">
