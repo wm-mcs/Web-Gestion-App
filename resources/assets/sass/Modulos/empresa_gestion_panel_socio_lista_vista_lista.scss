@@ -105,15 +105,15 @@
   }
 
   .contiene-socio-lista{
-    width: 20%;    
+    width: 30%;    
   }
 
 
   .contiene-planes-socio-lista{
     @include flex-direction(row);
     @include align-items(center); 
-    @include flex-wrap(wrap); 
-    width: 60%;
+    margin-right: 0;
+    width: 50%;
 }
 
  .socio-clases-contenedor{
