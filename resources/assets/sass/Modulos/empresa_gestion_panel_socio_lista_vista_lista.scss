@@ -36,7 +36,7 @@
   }
 
   .contiene-socio-celular{
-    font-size: 9px;
+    font-size: 11px;
     color: $color-gris-text;
   }
 
@@ -57,8 +57,7 @@
     border-radius: 4px;
     font-size: 11px;
     text-align: left;
-    color:white;
-    width: 250px;
+    color:white;    
     font-weight: bold;
     margin-right: 0px;
     margin-top: 5px;
@@ -88,6 +87,9 @@
    @media (min-width: $BrackPoint-Secundario){
  
 
+  .contiene-socio-lista{
+    width: 150px;    
+  }
   .planes-mensuales-cotiene{
     padding: 3px;    
     text-align: center;    
