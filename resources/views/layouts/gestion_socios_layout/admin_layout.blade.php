@@ -44,7 +44,7 @@
               <div class="contiene-miga-y-auth">
                 <div class="admin-contnedor-navegacion-miga"> 
 
-                 <div v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu"><i class="fas fa-bars"></i></div> 
+                 <div v-if="!esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu"><i class="fas fa-bars"></i></div> 
 
                  @yield('miga-de-pan')                
                 </div>
