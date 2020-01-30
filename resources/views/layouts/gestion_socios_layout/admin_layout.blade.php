@@ -48,11 +48,11 @@
 
                      
                      @if( Auth::user()->role >= 3)
-                     <span v-show="!esResolucionDeCelular"> 
+                     <span v-show="!esResolucionDeTablet"> 
                       @yield('empresa-configuracion')
                      </span> 
                      @endif
-                     <span v-show="!esResolucionDeCelular"> 
+                     <span v-show="!esResolucionDeTablet"> 
                      @yield('sucursal')
                      </span>
                      
