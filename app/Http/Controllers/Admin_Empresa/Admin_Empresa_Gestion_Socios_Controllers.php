@@ -361,6 +361,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     if ($manager->isValid())
     {
+
+       $ExisteElSocio = $this->SocioRepo->ExisteElSocio($UserEmpresa->empresa_id,$Request->get('celular'));
+
+       if($ExisteElSocio)
+       {
+        return  ['Validacion'          => false,
+                 'Validacion_mensaje'  => 'Ya existe un socio con ese celular'];
+       }
+
+
      
        $Socio                   = $this->SocioRepo
                                        ->getEntidad();
@@ -371,6 +381,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Socio->estado           = 'si';
 
        $Propiedades = ['name','celular'];
+
+
 
        $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades);  
 

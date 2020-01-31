@@ -104,5 +104,24 @@ class SocioRepo extends BaseRepo
   }
 
 
+  public function ExisteElSocio($Empresa_id,$Celular)
+  {
+    $Socio = $this->getEntidad()
+                  ->active()
+                  ->where('empresa_id',$Empresa_id)
+                  ->where('celular',$Celular)
+                  ->get();
+
+    if($Socio->count() > 0)    
+    {
+      return true;
+    }    
+    else
+    {
+      return false;
+    }      
+  }
+
+
   
 }
