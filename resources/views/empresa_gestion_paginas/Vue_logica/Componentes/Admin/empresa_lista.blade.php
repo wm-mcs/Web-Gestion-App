@@ -60,7 +60,7 @@ template:'
                                 'class' => 'contiene-socio-lista_nombre-y-celular'
                               ])               !!}   
                      <input type="hidden" name="empresa_id" :value="empresa.id">                     
-                     <span class="simula_link contiene-socio-lista" >@{{empresa.name}} </span> 
+                     <span class=" contiene-socio-lista  @if(Auth::user()->role > 3) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
                      <a :href="whatsappNumero"  target="_blank">
                         <div class="contiene-socio-celular">  
                           <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
