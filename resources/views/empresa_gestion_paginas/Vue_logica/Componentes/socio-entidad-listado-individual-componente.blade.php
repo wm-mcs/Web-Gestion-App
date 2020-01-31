@@ -353,12 +353,15 @@ template:'
               </div>
             </div>
           </div>
+
+
+
         </div>
 
-          <div v-if="mensualDisponibles" class="contiene-planes-mensuales">
+         
           
           
-              <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
+              <div v-if="mensualDisponibles" v-for="servicio in socio.servicios_contratados_disponibles_tipo_mensual" 
                    class="planes-mensuales-cotiene" :key="servicio.id">              
                 <span>@{{servicio.name}}</span>  
                 <span class="plan-mensual-fecha-vencimiento">Vence: @{{servicio.fecha_vencimiento_formateada}}</span>       
@@ -367,7 +370,7 @@ template:'
            
             
 
-         </div>
+        
 
 
         
