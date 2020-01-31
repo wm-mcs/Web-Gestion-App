@@ -86,8 +86,8 @@
     text-align: center;
     background-color: $Color-info;
     @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
+    @include flex-direction(row);
+    @include align-items(center); 
 
   }
 
@@ -163,13 +163,14 @@
     @include flex-direction(row);
     @include align-items(center); 
   }
-  
+
   .planes-mensuales-cotiene{
     padding: 5px;    
     text-align: center;    
     width: 160px;    
     margin-right: 5px;
     margin-top: 0;
+    @include flex-direction(column);
     @include align-items(center); 
     
   }
