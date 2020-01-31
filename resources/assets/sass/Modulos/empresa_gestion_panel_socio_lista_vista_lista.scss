@@ -93,8 +93,9 @@
 
    .plan-mensual-fecha-vencimiento{
     
-    font-size: 10px;
+    font-size: 11px;
     font-weight: thin;
+    margin-left:5px;
    }
 
 
@@ -174,6 +175,12 @@
     @include align-items(center); 
     
   }
+
+      .plan-mensual-fecha-vencimiento{
+        margin-left:0;
+      }
+
+
 
    .socio-lista-contiene-estado-de-cuenta{
 
