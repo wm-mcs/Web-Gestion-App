@@ -33,7 +33,7 @@
 }
 
   .contiene-socio-lista{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     
   }
@@ -131,7 +131,11 @@
     @include align-items(flex-start);   
   }
 
- 
+  .contiene-socio-lista{
+    font-size: 16px;
+    font-weight: bold;
+    
+  }
 
   .contiene-socio-celular{
     font-size: 12px;
