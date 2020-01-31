@@ -67,6 +67,12 @@
   max-width: 200px;
  }
 
+  .contiene-planes-mensuales{
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start); 
+  }
+
   .planes-mensuales-cotiene{
     padding: 4px;
     border-radius: 4px;
@@ -106,7 +112,7 @@
 
 
 
-
+  
 
 
 
@@ -150,6 +156,13 @@
   width: 160px; 
   max-width: 160px;
  }
+
+
+ .contiene-planes-mensuales{
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+  }
   .planes-mensuales-cotiene{
     padding: 5px;    
     text-align: center;    
