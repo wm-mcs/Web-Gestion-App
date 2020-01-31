@@ -20,3 +20,14 @@
               </span> 
             </div>
 @endif 
+
+@if(Session::has('status'))
+            <div class="mensajes-contenedor ocultar-esto alert-info">
+
+               {{ Session::get('status') }} 
+              
+             <span class="mensaje-cerrar-icono">
+                 <i class="fas fa-times"></i>
+              </span> 
+            </div>
+@endif 
