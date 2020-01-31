@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'prueba@simbionte.com', 'name' => 'Simbionte Develpoer'],
+    'from' => ['address' => 'noresponder@gestionsocios.com.uy', 'name' => 'EasySocio'],
 
     /*
     |--------------------------------------------------------------------------
