@@ -22,12 +22,13 @@
 
 
 
-<img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
-
-      <div class="contiene_auth_form">
-         <h1 class="auth_titulo_h1">Recuperar contraseña  </h1>
-           @include('formularios.auth.reset_password_form')
-      </div>
+<a href="{{route('get_home')}}">
+ <img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
+</a>
+<div class="contiene_auth_form">
+ <h1 class="auth_titulo_h1">Recuperar contraseña  </h1>
+  @include('formularios.auth.reset_password_form')
+</div>
 
      
 
