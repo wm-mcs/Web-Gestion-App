@@ -51,7 +51,7 @@ template:'
       
 
             
-                @if(Auth::user()->role > 3)
+               
 
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
                                 'method'=> 'Post',
@@ -60,16 +60,23 @@ template:'
                                 'class' => 'contiene-socio-lista_nombre-y-celular'
                               ])               !!}   
                      <input type="hidden" name="empresa_id" :value="empresa.id">                     
-                     <span class=" contiene-socio-lista  @if(Auth::user()->role > 3) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
+                     <span class=" contiene-socio-lista  @if(Auth::user()->role > 4) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
+                     @if(Auth::user()->role > 3)
                      <a :href="whatsappNumero"  target="_blank">
                         <div class="contiene-socio-celular">  
                           <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
                         </div>
                       </a>   
+                      @else
+                       <div class="contiene-socio-celular">  
+                          <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
+                        </div>
 
-                     {!! Form::close() !!}  
+                      @endif
 
-                 @endif
+                 {!! Form::close() !!}  
+
+                
                 
             
                 
@@ -118,6 +125,7 @@ template:'
     
 
   </div>
+  @if(Auth::user()->role > 3)
   <div class="socio-lista-contiene-estado-de-cuenta">
       @if(Auth::user()->role > 8)
        <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
@@ -127,6 +135,7 @@ template:'
 
   
   </div>
+  @endif
 
 
 
