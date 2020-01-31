@@ -45,13 +45,12 @@ template:'
 
 
 <div  class="contiene-socio-tipo-lista">
-  <div class="flex-row-center">
+  
     
       
       
 
-             <div class="flex-row-center">
-                <span class="contiene-socio-lista" >@{{empresa.name}} </span> 
+            
                 @if(Auth::user()->role > 3)
 
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
@@ -72,7 +71,7 @@ template:'
 
                  @endif
                 
-             </div>
+            
                 
             
       
@@ -92,7 +91,7 @@ template:'
 
              {!! Form::close() !!} 
       </div>   
-      </div>               
+                   
 
 
 
