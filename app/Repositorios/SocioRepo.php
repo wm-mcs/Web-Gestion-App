@@ -55,7 +55,7 @@ class SocioRepo extends BaseRepo
       }
       else
       {
-        $Socios               = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->orderBy('name','desc')->get();
+        $Socios               = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->orderBy('crated_at','desc')->get();
       }
 
 
