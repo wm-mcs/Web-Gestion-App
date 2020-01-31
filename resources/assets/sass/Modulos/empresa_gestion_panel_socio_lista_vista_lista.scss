@@ -47,13 +47,11 @@
   }
 
   .contiene-socio-celular:hover {
-    background-color: #00bb2d;
+    background-color:$color-3;
     color: white;
   }
 
-    .link-celular:hover{
-      color: white;
-    }
+   
 
 .contiene-planes-socio-lista{
     @include flexbox;       
