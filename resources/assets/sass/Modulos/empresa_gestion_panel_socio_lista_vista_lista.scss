@@ -33,11 +33,11 @@
 }
 
   .contiene-socio-lista{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     padding:8px;
-    color:white;
-    background-color:$color-3;
+    color:$color-3;
+    border:solid 1px $Color-Gris-Claro;
     cursor:pointer;
     border-radius:4px;
     margin-bottom:5px;
@@ -45,6 +45,7 @@
   }
   .contiene-socio-lista:hover{
     background-color:$color-3-primary_hover;
+    color:white;
   }
 
   .contiene-socio-celular{
@@ -148,6 +149,7 @@
     padding:6px;
     color:$color-3;
     background-color:transparent;
+    border:solid 1px transparent;
     
     margin-bottom:0px;
     
