@@ -381,7 +381,7 @@ template:'
                              <div class="cssload-tube-tunnel"></div>
                        </div>
                   </div>
-                  <div v-else v-on:click="EditarServicio(servicio)" class="boton-simple">Editar</div>
+                  <div v-else v-on:click="EditarServicio(servicio)" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
 
 
                    <br>
@@ -398,10 +398,10 @@ template:'
                  
         </div>
         <div v-else>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>           
+          <button type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>           
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>
