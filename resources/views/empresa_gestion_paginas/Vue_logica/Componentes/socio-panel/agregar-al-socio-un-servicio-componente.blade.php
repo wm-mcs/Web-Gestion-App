@@ -34,6 +34,19 @@ mounted: function mounted () {
     this.setFecha();
 
 },
+computed:{
+  es_clase:function(){
+
+  if(this.tipo_servicio != '')
+  {
+    if(this.tipo_servicio.tipo == 'clase')
+    {
+      return true;
+    }
+  }
+  
+  }
+},
 methods:{
 
  setFecha:function()
@@ -169,23 +182,23 @@ template:'<span>
                       </select>
                     </div> 
 
-                     <div  class="formulario-label-fiel" v-if="servicio_data.cantidad_de_servicios >= 1">
+                     <div  class="formulario-label-fiel" v-if="es_clase">
                       <label class="formulario-label" >Cantidad de clases</label>
                       <input type="number" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
                      </div>
 
-                     <div  class="formulario-label-fiel" v-if="servicio_data.valor">
+                     <div  class="formulario-label-fiel" >
                       <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
                       <input type="text" class="formulario-field"  v-model="servicio_data.valor"   />
                      </div> 
 
 
-                     <div  class="formulario-label-fiel" v-if="servicio_data.name">
-                      <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un més</span></label>
+                     <div  class="formulario-label-fiel" >
+                      <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un mes</span></label>
                       <input type="date" class="formulario-field"  v-model="servicio_data.fecha_vencimiento"    />
                      </div> 
 
-                      <div  class="formulario-label-fiel" v-if="servicio_data.name">
+                      <div  class="formulario-label-fiel">
                       <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> puede que quede debiendo</span></label>
                       <div class="form-control">
                         <input type="radio" id="si" value="si" v-model="servicio_data.paga">
