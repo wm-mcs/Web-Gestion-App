@@ -45,6 +45,12 @@ computed:{
     }
   }
   
+  },
+  se_puede_mostrar:function(){
+  if(this.tipo_servicio != '')
+  {
+   return true;
+  }
   }
 },
 methods:{
@@ -164,14 +170,14 @@ template:'<span>
                       </select>
                   </div> 
 
-                  <div  class="formulario-label-fiel" v-if="servicio_data.name">
+                  <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
                       <label class="formulario-label" >Nombre <span class="formulario-label-aclaracion"> Puedes cambiar este nombre si quieres</span></label>
                       <input type="text" class="formulario-field"  v-model="servicio_data.name" placeholder="Nombre"   />
                   </div> 
 
                   
 
-                    <div  class="formulario-label-fiel" v-if="servicio_data.moneda">
+                    <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
                       <label class="formulario-label" >Moneda</label>
                       <select v-model="servicio_data.moneda" class="form-control">
                         <option>$</option>
@@ -187,18 +193,18 @@ template:'<span>
                       <input type="number" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
                      </div>
 
-                     <div  class="formulario-label-fiel" v-if="servicio_data.name" >
+                     <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
                       <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
                       <input type="text" class="formulario-field"  v-model="servicio_data.valor"   />
                      </div> 
 
 
-                     <div  class="formulario-label-fiel" v-if="servicio_data.name" >
+                     <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
                       <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un mes</span></label>
                       <input type="date" class="formulario-field"  v-model="servicio_data.fecha_vencimiento"    />
                      </div> 
 
-                      <div  class="formulario-label-fiel" v-if="servicio_data.name">
+                      <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
                       <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> puede que quede debiendo</span></label>
                       <div class="form-control">
                         <input type="radio" id="si" value="si" v-model="servicio_data.paga">
