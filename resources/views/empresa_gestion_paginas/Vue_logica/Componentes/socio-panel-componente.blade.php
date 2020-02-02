@@ -118,7 +118,8 @@ methods:{
             {
 
               app.cargando = false;
-              $.notify(data.Validacion_mensaje, "success");
+              app.cerrarModal('#modal-editar-socio');
+              $.notify(data.Validacion_mensaje, "success"); 
               
               vue.socio = response.data.Socio;
               

@@ -18,7 +18,7 @@
                       <input type="text" class="form-control"  v-model="socio.name" placeholder="Nombre" required  />
                   </div> 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Cedula  <span class="formulario-label-aclaracion"> (sin puntos ni guiones)</span> </label>
+                      <label class="formulario-label" for="Nombre">Cédula  <span class="formulario-label-aclaracion"> (sin puntos ni guiones)</span> </label>
                       <input type="text" class="form-control"  v-model="socio.cedula" placeholder="Cedula" required  />
                   </div> 
                   <div class="form-group">
@@ -51,7 +51,7 @@
                   </div> 
 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Razon social  <span class="formulario-label-aclaracion"> (solo si aplica)</span></label>
+                      <label class="formulario-label" for="Nombre">Razón social  <span class="formulario-label-aclaracion"> (solo si aplica)</span></label>
                       <input type="text" class="form-control"  v-model="socio.razon_social" placeholder="Razon social" required  />
                   </div> 
                   <div class="form-group">
