@@ -62,7 +62,7 @@
                       @yield('empresa-configuracion')
                      </span> 
                      @endif
-                     <span v-show="!esResolucionDeTablet"> 
+                     <span > 
                      @yield('sucursal')
                      </span>
                      
