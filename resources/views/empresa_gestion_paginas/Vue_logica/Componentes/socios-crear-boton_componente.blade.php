@@ -110,12 +110,12 @@ template:'<span >
                   </div> 
                
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
-                  <div v-else v-on:click="crear_socio_post" class="boton-simple">Crear socio</div>
+                  <div v-else v-on:click="crear_socio_post" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
                  
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>

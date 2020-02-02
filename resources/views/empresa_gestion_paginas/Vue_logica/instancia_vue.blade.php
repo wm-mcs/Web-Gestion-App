@@ -15,6 +15,8 @@
       resolucion_pc: 1024,
       menu_abierto:false,
       cargando:false,
+      boton_aceptar_texto:'Aceptar',
+      boton_cancelar_texto:'Cancelar'
       busqueda:'',
       @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},

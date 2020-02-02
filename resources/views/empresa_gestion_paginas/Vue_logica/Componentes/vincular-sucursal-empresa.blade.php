@@ -179,12 +179,12 @@ template:'
                
 
                   <div v-if="!sucursal_id_condition" v-on:click="crear_editar_sucursal(url_crear)" class="boton-simple">Crear</div>
-                  <div v-else v-on:click="crear_editar_sucursal(url_editar)" class="boton-simple">Editar</div>
+                  <div v-else v-on:click="crear_editar_sucursal(url_editar)" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
                   
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>

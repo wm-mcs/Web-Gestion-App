@@ -305,12 +305,12 @@ template:'
 
                
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
-                  <div v-else v-on:click="agregarServicioCreat" class="boton-simple">Crear nuevo</div>
+                  <div v-else v-on:click="agregarServicioCreat" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
                   
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="valores_a_cero">Cerrar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="valores_a_cero">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>
