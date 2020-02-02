@@ -14,19 +14,14 @@
                     <img class="miga-imagen" src="{{$Empresa->url_img}}">
                    </span> 
                  @else
-                   <span> <i class="fas fa-home"></i></span>
+                   <span> {{$Empresa->name}}</span>
                  @endif
                  </span>    
  
   {!! Form::close() !!} 
   
 
-  @if(!file_exists($Empresa->path_url_img))
-   
-
-   <span> {{$Empresa->name}}</span>
-
-  @endif
+ 
 @stop
 
 @section('sucursal')  
