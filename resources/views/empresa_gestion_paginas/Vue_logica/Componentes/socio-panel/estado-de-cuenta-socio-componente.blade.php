@@ -137,14 +137,22 @@ template:'
                 <span class="caja-lista-datos-secundarios"> 
 
                    Operador: <strong>@{{estado_de_cuenta.user_name}}</strong>  | Fecha:  <strong>@{{estado_de_cuenta.fecha}}</strong> | Id: @{{estado_de_cuenta.id}}  
-                   <span v-if="sePuedeEliminar"> 
+                   
+
+                  <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
+
+                   <span v-if="sePuedeEliminar && !$root.cargando"> 
                     | <span v-on:click="eliminar_estado_de_cuenta" class="simula_link" title="Anular éste movimiento.">
                         <i class="fas fa-trash-alt"></i> 
                       </span>
 
                       </span>
 
-                </span>            
+                   </span>            
                 <span> </span>
               </div>             
               

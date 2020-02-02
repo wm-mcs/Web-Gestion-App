@@ -77,8 +77,12 @@
 
 
                
-
-                  <div v-on:click="editSocioPost" class="boton-simple">Editar</div>
+                  <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
+                  <div v-else v-on:click="editSocioPost" class="boton-simple">Editar</div>
                   
                  
         </div>

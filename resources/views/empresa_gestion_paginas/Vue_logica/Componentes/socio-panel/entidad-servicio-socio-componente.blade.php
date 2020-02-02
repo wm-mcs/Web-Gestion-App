@@ -38,6 +38,8 @@ methods:{
 
        var vue  = this;
 
+       app.cargando = true;
+
        var data = {
                    socio_id:this.servicio.socio_id,
                 servicio_id:this.servicio.id,
@@ -52,6 +54,7 @@ methods:{
 
             var id_modal = '#'+vue.open_modal;
             bus.$emit('sucursal-set', response.data.sucursal);
+            app.cargando = false;
             app.cerrarModal(id_modal);  
             vue.$emit('actualizar_socio',response.data.Socio);    
             
@@ -64,6 +67,8 @@ methods:{
           }
           else
           {
+
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");  
           }    
            
@@ -87,6 +92,8 @@ methods:{
                 servicio_id:this.servicio.id,
                  empresa_id:this.empresa.id };
 
+       app.cargando = true;
+
        axios.post(url,data).then(function(response){ 
 
 
@@ -96,10 +103,12 @@ methods:{
             
             
             vue.$emit('actualizar_socio',response.data.Socio);  
+            app.cargando = false;
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
           {
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -367,13 +376,22 @@ template:'
 
 
                
-
-                  <div v-on:click="EditarServicio(servicio)" class="boton-simple">Editar</div>
+                  <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
+                  <div v-else v-on:click="EditarServicio(servicio)" class="boton-simple">Editar</div>
 
 
                    <br>
                    <br>
-                   <div v-if="esta_activo" class="simula_link" v-on:click="borrar_servicio(servicio)">
+                  <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
+                   <div v-if="esta_activo && !$root.cargando" class="simula_link" v-on:click="borrar_servicio(servicio)">
                      Eliminar el servicio <i class="fas fa-trash-alt"></i>
                    </div>
                   
