@@ -190,12 +190,12 @@ template:'<span>
 
                      <div  class="formulario-label-fiel" v-if="es_clase">
                       <label class="formulario-label" >Cantidad de clases</label>
-                      <input type="number" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
+                      <input type="number" min="1" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
                      </div>
 
                      <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
                       <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
-                      <input type="text" class="formulario-field"  v-model="servicio_data.valor"   />
+                      <input type="number" min="1" class="formulario-field"  v-model="servicio_data.valor"   />
                      </div> 
 
 
