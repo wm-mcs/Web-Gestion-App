@@ -104,7 +104,7 @@ methods:{
             
             vue.$emit('actualizar_socio',response.data.Socio);  
             app.cargando = false;
-            app.cerrarModal('#'+'modal-editar-servicio-socio-'+ String(servicio.id);
+            app.cerrarModal('#'+'modal-editar-servicio-socio-'+ String(servicio.id));
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
