@@ -39,7 +39,7 @@ computed:{
 
   if(this.tipo_servicio != '')
   {
-    if(this.tipo_servicio.tipo == 'clase')
+    if(this.tipo_servicio == 'clase')
     {
       return true;
     }
@@ -187,18 +187,18 @@ template:'<span>
                       <input type="number" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
                      </div>
 
-                     <div  class="formulario-label-fiel" >
+                     <div  class="formulario-label-fiel" v-if="servicio_data.name" >
                       <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
                       <input type="text" class="formulario-field"  v-model="servicio_data.valor"   />
                      </div> 
 
 
-                     <div  class="formulario-label-fiel" >
+                     <div  class="formulario-label-fiel" v-if="servicio_data.name" >
                       <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un mes</span></label>
                       <input type="date" class="formulario-field"  v-model="servicio_data.fecha_vencimiento"    />
                      </div> 
 
-                      <div  class="formulario-label-fiel">
+                      <div  class="formulario-label-fiel" v-if="servicio_data.name">
                       <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> puede que quede debiendo</span></label>
                       <div class="form-control">
                         <input type="radio" id="si" value="si" v-model="servicio_data.paga">
