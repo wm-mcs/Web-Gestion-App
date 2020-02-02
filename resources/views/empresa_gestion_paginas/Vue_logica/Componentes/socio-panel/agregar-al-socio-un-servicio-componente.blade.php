@@ -39,7 +39,7 @@ computed:{
 
   if(this.tipo_servicio != '')
   {
-    if(this.tipo_servicio == 'clase')
+    if(this.servicio_data.tipo == 'clase')
     {
       return true;
     }
