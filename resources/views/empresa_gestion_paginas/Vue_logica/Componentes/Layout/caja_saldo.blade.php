@@ -145,7 +145,11 @@ template:'<div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
-        <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+        <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
         <div v-if="esDistintoACero(movimientos_de_caja_pesos)"  class="modal-body text-center"> 
           <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos" 
                        :key="caja.id"
@@ -178,7 +182,11 @@ template:'<div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
-        <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+        <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
         <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal-body text-center"> 
           <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares" 
                        :key="caja.id"

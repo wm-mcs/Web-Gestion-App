@@ -189,7 +189,11 @@ template:'<span >
 
 
 
-           <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+            <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
            <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
              @{{$root.boton_aceptar_texto}}
            </div>
