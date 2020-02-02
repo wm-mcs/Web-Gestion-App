@@ -72,21 +72,31 @@ template:'
     </span> 
 
     <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay un saldo pendiente de pago de $ @{{Math.abs(this.empresa.estado_de_cuenta_saldo_pesos)}} . 
-    <br> <strong>Si se trata de algún error te pido que te comuniques. </strong> 
-    <br> Si estás atrasado en el pago aquí te dejo los datos para puedas quedar al día: <strong>Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556)</strong> . Puedes hacer el dopósito en <strong> Abitab o Red Pagos </strong>. Luego que lo hagas <strong> envia el comprobante al Whatsapp </strong> que te dejo aquí abajo.
-    <br>
-    <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> enviar mensaje</a>
+    <br> Si se trata de algún error por favor reportarlo a  <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong> </a>
+    <br> Datos para realizar el pago: <strong>Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556)</strong> . Luego de efectuar el pago enviar comprobante <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong></a>
+.
+    
     
     </div>
-    <div v-if="debe_plata_dolares" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de U$S @{{this.empresa.estado_de_cuenta_saldo_dolares}} . 
-    <br> Si se trata de algún error te pido que te comuniques. 
-    <br> Si estás atrasado en el pago aquí te dejo los datos para puedas quedar al día: Caja Ahorro BROU DOLARES 00156513100001 (viejo: 177 0633012). Puedes hacer el dopósito en Abitab o Red Pagos. Luego que lo hagas envia el comprobante al Whatsapp que te dejo aquí abajo.
+    <div v-if="debe_plata_dolares" class="linea-de-aviso-individual">
     <br>
-    <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> enviar mensaje</a>
-    </div>
+    <br>
+
+    <i class="fas fa-exclamation"></i> Hay un saldo pendiente de pago de US$ @{{Math.abs(this.empresa.estado_de_cuenta_saldo_dolares)}} . 
+    <br> Si se trata de algún error por favor reportarlo a  <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong> </a>
+    <br> Datos para realizar el pago: <strong>Caja Ahorro BROU DOLARES 00156513100001 (viejo: 177 0633012)</strong> . Luego de efectuar el pago enviar comprobante <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong></a>
+.
 
 
-    <div v-if="tiene_mensaje_personalizado" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i>  
+
+   
+
+
+    <div v-if="tiene_mensaje_personalizado" class="linea-de-aviso-individual">
+
+    <br>
+    <br>
+    <i class="fas fa-exclamation"></i>  
      <strong>@{{this.empresa.mensaje_aviso_especial}}</strong> 
     </div>
 
