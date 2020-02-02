@@ -71,7 +71,7 @@ template:'
        <i class="fas fa-times"></i>
     </span> 
 
-    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay al día de hoy un saldo pendiente de pago de $ @{{this.empresa.estado_de_cuenta_saldo_pesos}} . 
+    <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay un saldo pendiente de pago de $ @{{Math.abs(this.empresa.estado_de_cuenta_saldo_pesos)}} . 
     <br> <strong>Si se trata de algún error te pido que te comuniques. </strong> 
     <br> Si estás atrasado en el pago aquí te dejo los datos para puedas quedar al día: <strong>Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556)</strong> . Puedes hacer el dopósito en <strong> Abitab o Red Pagos </strong>. Luego que lo hagas <strong> envia el comprobante al Whatsapp </strong> que te dejo aquí abajo.
     <br>
