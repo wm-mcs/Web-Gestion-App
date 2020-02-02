@@ -141,6 +141,9 @@ methods:{
 
         var vue = this;
 
+
+        app.cargando = true;
+
         var data = {   servicio:servicio,
                      empresa_id:this.empresa.id
                        
@@ -152,12 +155,14 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 vue.empresa = response.data.empresa;
+                 app.cargando = false;
+                 vue.empresa  = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
                  
               }
               else
               {
+                app.cargando = false;
                 $.notify(response.data.Validacion_mensaje, "error");
               }
              
@@ -200,7 +205,7 @@ template:'
 
 
              <div v-if="empresa.tipo_servicios.length > 0">
-               <div v-for="servicio in empresa.tipo_servicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between">
+               <div v-for="servicio in empresa.tipo_servicios" class="empresa-gestion-listado-contenedor flex-justifice-space-between border-bottom-claro">
                  
                 <div class="get_width_100 flex-wrap flex-row-center">
                  <div class="get_width_100 formulario-label-fiel-sin-width">
@@ -236,7 +241,11 @@ template:'
 
 
                   <div class="get_width_100 flex-row-center flex-justifice-space-around align-self-end formulario-label-fiel-sin-width">
-                      <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                      <div v-if="$root.cargando" class="Procesando-text">
+                         <div class="cssload-container">
+                           <div class="cssload-tube-tunnel"></div>
+                         </div>
+                      </div>
                       <div v-else v-on:click="editarServicio(servicio)" title="Editar este servicio" class="boton-simple-chico">
                         <i class="fas fa-edit"></i> Editar @{{servicio.name}}
                      </div>    
