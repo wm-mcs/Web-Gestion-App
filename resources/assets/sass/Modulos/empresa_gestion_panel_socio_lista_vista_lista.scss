@@ -35,7 +35,14 @@
   .contiene-socio-lista{
     font-size: 18px;
     font-weight: bold;
+    padding:6px;
+    color:white;
+    background-color:color-3;
+    cursor:pointer;
     
+  }
+  .contiene-socio-lista:hover{
+    background-color:$color-3-primary_hover;
   }
 
   .contiene-socio-celular{

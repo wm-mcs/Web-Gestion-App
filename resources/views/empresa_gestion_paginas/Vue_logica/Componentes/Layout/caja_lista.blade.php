@@ -26,6 +26,8 @@ anular_movimiento:function(){
                          empresa_id:  this.caja.empresa_id};
 
 
+
+
        app.cargando = true;                  
 
        axios.post(url,data).then(function(response){ 
@@ -105,7 +107,11 @@ template:'  <div class="contiene-lista-caja">
                    <span v-if="sePuedeEliminar"> 
 
                       |
-                      <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                      <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                      </div>
                      <span v-else v-on:click="anular_movimiento" class="simula_link" title="Anular éste movimiento.">
                         <i class="fas fa-trash-alt"></i> 
                       </span>

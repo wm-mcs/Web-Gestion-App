@@ -327,7 +327,7 @@ template:'
            <input type="hidden" name="empresa_id" :value="empresa.id">
            <span :id="socio.id" class="no-mostrar"></span>
            <input type="hidden" name="socio_id" :value="socio.id">
-           <span class="simula_link contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+           <span class="contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
       <a :href="whatsAppLink"  target="_blank">
         <div class="contiene-socio-celular">  
           <i class="fab fa-whatsapp"></i> @{{whatsAppnumero}}    
