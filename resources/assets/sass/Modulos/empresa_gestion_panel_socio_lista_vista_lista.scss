@@ -35,10 +35,11 @@
   .contiene-socio-lista{
     font-size: 18px;
     font-weight: bold;
-    padding:6px;
+    padding:8px;
     color:white;
-    background-color:color-3;
+    background-color:$color-3;
     cursor:pointer;
+    border-radius:4px;
     
   }
   .contiene-socio-lista:hover{
