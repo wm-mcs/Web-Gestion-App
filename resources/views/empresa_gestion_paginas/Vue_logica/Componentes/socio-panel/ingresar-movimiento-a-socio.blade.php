@@ -191,7 +191,7 @@ template:'<span >
 
            <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
            <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
-             Ingresar
+             @{{$root.boton_aceptar_texto}}
            </div>
 
            
@@ -207,7 +207,7 @@ template:'<span >
                  
         </div>
         <div class="modal-footer">
-          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>

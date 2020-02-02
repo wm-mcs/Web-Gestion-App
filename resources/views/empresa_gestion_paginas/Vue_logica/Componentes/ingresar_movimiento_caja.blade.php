@@ -150,9 +150,13 @@ template:'<span >
              Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
 
-           <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+           <div v-if="$root.cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>
            <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
-             Ingresar
+             @{{$root.boton_aceptar_texto}}
            </div>
 
            
@@ -174,8 +178,8 @@ template:'<span >
                  
         </div>
         <div class="modal-footer">
-          <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
-          <button v-else v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+          
+          <button v-else v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>

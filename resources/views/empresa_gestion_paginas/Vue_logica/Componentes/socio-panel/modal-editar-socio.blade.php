@@ -82,12 +82,12 @@
                              <div class="cssload-tube-tunnel"></div>
                        </div>
                   </div>
-                  <div v-else v-on:click="editSocioPost" class="boton-simple">Aceptar</div>
+                  <div v-else v-on:click="editSocioPost" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
                   
                  
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+          <button type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>

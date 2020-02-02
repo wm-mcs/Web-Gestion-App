@@ -40,6 +40,7 @@
     background-color:$color-3;
     cursor:pointer;
     border-radius:4px;
+    margin-bottom:5px;
     
   }
   .contiene-socio-lista:hover{
@@ -139,11 +140,23 @@
     @include align-items(flex-start);   
   }
 
-  .contiene-socio-lista{
+  
+
+   .contiene-socio-lista{
     font-size: 16px;
     font-weight: bold;
+    padding:6px;
+    color:$color-3;
+    background-color:transparent;
+    
+    margin-bottom:0px;
     
   }
+  .contiene-socio-lista:hover{
+    background-color:$color-3-primary_hover;
+    color:white;
+  }
+
 
   .contiene-socio-celular{
     font-size: 12px;
