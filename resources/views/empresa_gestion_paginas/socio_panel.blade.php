@@ -22,8 +22,7 @@
  
   {!! Form::close() !!} 
 
-  <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>
-  <span>Panel de socio</span>
+  
 @stop
 
 @section('sucursal')  
