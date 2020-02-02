@@ -166,7 +166,7 @@ template:'<span >
 
           
 
-           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
+           <input type="number" name="" min="1" v-model="valor_ingresar" class="ingresar-input-valor">
 
            <div v-if="servicio_elegido_es_distinto_de_cobro" class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_80">
