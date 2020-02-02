@@ -187,7 +187,7 @@ template:'
           <div class="">
               <h4 class="modal-title" id="myModalLabel"> Servicios</h4>
               <div class="modal-mensaje-aclarador">
-                Aquí van los servicios que más frecuentemente tú vas a vender. Puedén ser por <strong>clase</strong>  (sería para el caso que vendes cuponeras de clases) o <strong>mensual</strong>  (ejemplo: un pase libre). En lo que se refiere a mensual es simplemente nuestra distinción, perfectamente puedes vender un pase libre e indicar que se vence en los meses que tú quieras.
+                Existen dos tipos de servicios: periódicos (mensual, semestral y anual) y por clase (cuponeras)
 
 
               </div>
@@ -235,9 +235,10 @@ template:'
                  </div>
 
 
-                  <div class="get_width_10 flex-row-center flex-justifice-space-around align-self-end">
-                      <div v-on:click="editarServicio(servicio)" title="Editar esté servicio" class="boton-simple-chico">
-                        <i class="fas fa-edit"></i>
+                  <div class="get_width_100 flex-row-center flex-justifice-space-around align-self-end formulario-label-fiel-sin-width">
+                      <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+                      <div v-else v-on:click="editarServicio(servicio)" title="Editar este servicio" class="boton-simple-chico">
+                        <i class="fas fa-edit"></i> Editar @{{servicio.name}}
                      </div>    
                    </div>
                 </div>
