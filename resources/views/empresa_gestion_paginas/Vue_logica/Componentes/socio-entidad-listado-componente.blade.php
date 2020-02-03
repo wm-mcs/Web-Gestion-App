@@ -7,13 +7,13 @@ props:['empresa','palabra_busqueda']
 data:function(){
     return {
          socios:'',
-         cargando:false;
+         cargando:false
 
     }
 }, 
 
 mounted:{
-  
+  this.get_socios();
 },
 
 watch:{ 
@@ -51,13 +51,13 @@ get_socios:function(){
 
             if(data.Validacion == true)
             {
-               this.cargando = false; 
+               vue.cargando = false; 
                vue.socios = response.data.Socios;              
                
             }
             else
             {
-              this.cargando = false; 
+              vue.cargando = false; 
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
