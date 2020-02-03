@@ -206,7 +206,7 @@ computed:{
   }
 
 },
-template:'<span v-if="cargando">
+template:'<span v-if="!cargando">
 
 
   <div class="panel-socio-header-contenedor">
