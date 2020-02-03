@@ -179,7 +179,7 @@ template:'<span >
         </div>
         <div class="modal-footer">
           
-          <button v-else v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
+          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
         </div>
       </div>
     </div>
