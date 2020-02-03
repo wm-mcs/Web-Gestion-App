@@ -112,7 +112,7 @@ created() {
     })
 },
 template:'
-<div v-if="socios.length && !cargando" class="empresa-contendor-de-secciones">
+<div v-if="socios.length " class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
   <div v-if="socios.length > 0 && !cargando" class="listado-socios-contenedor-lista">
@@ -137,7 +137,15 @@ template:'
   </div>
 </div>  
 <div v-else class="cuando-no-hay-socios">
-  No hay socios <i class="far fa-frown"></i>
+<div v-if="cargando" class="Procesando-text get_width_100">
+     
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  
+    
+  </div>
+ <span v-else>No hay socios <i class="far fa-frown"></i></span> 
 </div>
 
 '
