@@ -12,8 +12,8 @@ data:function(){
     }
 }, 
 
-mounted:{
-  get_socios();
+mounted: function mounted () {
+  this.get_socios();
 },
 
 watch:{ 
