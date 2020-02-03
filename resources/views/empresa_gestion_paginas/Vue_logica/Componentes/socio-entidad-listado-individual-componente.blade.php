@@ -350,7 +350,11 @@ template:'
             <div v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase" :key="servicio.id">
               <div class="listado-socio-lista-servicio-disponible">
                 <span class="listado-socio-lista-servicio-disponible-servicio"> @{{servicio.name}}</span>
-                <div v-if="cargando" class="Procesando-text">Procesado...</div>
+                <div v-if="cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                </div>
                 <span v-else class="listado-socio-lista-servicio-disponible-accion "  v-on:click="consumir_esta_clase(servicio)" title="Indicar que el socio va a usar la clase ahora."> Usar</span>
               </div>
             </div>
