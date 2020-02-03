@@ -328,11 +328,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function get_socio_panel(Request $Request)
   {
        $User            = $Request->get('user_desde_middleware'); 
-       $Socio           = $Request->get('socio_desde_middleware'); 
+       $Socio_id        = $Request->get('socio_desde_middleware')->id; 
        $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
        $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
-       return view('empresa_gestion_paginas.socio_panel', compact('Socio','Empresa'));      
+       return view('empresa_gestion_paginas.socio_panel', compact('Socio_id','Empresa'));      
   }
 
   //devulve el socio
@@ -343,7 +343,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
-                  'Socio_id'                => $Socio->id
+                  'Socio'                => $Socio 
                  ];
        
       
