@@ -41,7 +41,7 @@ methods:{
             if(data.Validacion == true)
             {
                vue.cargando = false; 
-               vue.socio = response.data.Socio;              
+               vue.socio = data.Socio;              
                
             }
             else
@@ -343,10 +343,10 @@ template:'<span v-if="cargando">
   
 
 </span>
-<div v-else class="Procesando-text get_width_100">
+<span v-else class="Procesando-text get_width_100">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
-                  </div>'
+                  </span>'
 
 });
