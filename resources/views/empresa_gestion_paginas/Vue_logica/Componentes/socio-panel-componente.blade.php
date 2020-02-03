@@ -6,19 +6,57 @@ props:['empresa','sucursal'],
 
 data:function(){
     return {
-      socio:{!! json_encode($Socio) !!}
+      socio:{!! json_encode($Socio) !!},
+      cargando:false
 
     }
 }, 
 mounted: function mounted () {        
 
        
-       
+       this.get_socio();
       
 
 
 },
 methods:{  
+
+
+
+      get_socio:function(){
+
+         var url = '/get_socio';
+
+      var data = {  
+                    empresa_id: this.empresa.id,
+                    socio_id:  this.socio.id     
+                 };  
+      var vue = this;  
+      this.cargando = true;         
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               vue.cargando = false; 
+               vue.socio = response.data.Socio;              
+               
+            }
+            else
+            {
+              vue.cargando = false; 
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+
+      },
 
     
      
@@ -168,7 +206,7 @@ computed:{
   }
 
 },
-template:'<span>
+template:'<span v-if="cargando">
 
 
   <div class="panel-socio-header-contenedor">
@@ -304,6 +342,11 @@ template:'<span>
 
   
 
-</span>'
+</span>
+<div v-else class="Procesando-text get_width_100">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  </div>'
 
 });
