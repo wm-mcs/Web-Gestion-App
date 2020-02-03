@@ -14,11 +14,14 @@
                  <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
                   <img class="miga-imagen" src="{{$Empresa->url_img}}">
                  </span> 
+
+                 @else
                  <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>  
-                 @endif
-                 <span class="simula_link disparar-este-form">
+                  <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
                  </span> 
+                 @endif
+                
  
   {!! Form::close() !!} 
 

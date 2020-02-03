@@ -123,7 +123,7 @@ computed:{
 }
 ,
 template:'<span >
-   <div  class="admin-user-boton-Crear panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
+   <div  class="admin-user-boton-Crear text-center panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
        <i class="fas fa-cash-register"></i> Cobrar
 
 
