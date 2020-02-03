@@ -127,7 +127,7 @@ template:'
 
   
   </div> 
-  <div v-else class="Procesando-text">
+  <div v-else class="Procesando-text get_width_100">
      
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
