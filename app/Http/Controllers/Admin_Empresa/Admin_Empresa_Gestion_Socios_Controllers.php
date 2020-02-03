@@ -191,7 +191,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $User            =  $Request->get('user_desde_middleware');  
        $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
        $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
-       $Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);
+       /*$Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);*/
        $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
 
        $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 86400, function() use($Empresa,$User,$Sucursal) {
@@ -296,7 +296,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         
       
 
-       return view('empresa_gestion_paginas.home', compact('Empresa','Socios')); 
+       return view('empresa_gestion_paginas.home', compact('Empresa')); 
   }
 
 
