@@ -343,7 +343,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
-                  'Socio'                => $Socio 
+                  'Socio_id'                => $Socio->id
                  ];
        
       

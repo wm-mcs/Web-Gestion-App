@@ -6,8 +6,9 @@ props:['empresa','sucursal'],
 
 data:function(){
     return {
-      socio:{!! json_encode($Socio) !!},
-      cargando:false
+      socio:'',
+      cargando:false,
+      socio_id:{!! json_encode($Socio_id) !!}
 
     }
 }, 
@@ -29,7 +30,7 @@ methods:{
 
       var data = {  
                     empresa_id: this.empresa.id,
-                    socio_id:  this.socio.id     
+                    socio_id:  this.socio_id     
                  };  
       var vue = this;  
       this.cargando = true;         
