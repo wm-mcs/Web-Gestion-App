@@ -5,6 +5,7 @@ props:['servicio','empresa'],
 data:function(){
     return {
       destroy_modal:false,
+      cargando:false
     }
 },
 mounted: function mounted () {        
@@ -38,7 +39,7 @@ methods:{
 
        var vue  = this;
 
-       app.cargando = true;
+       this.cargando = true;
 
        var data = {
                    socio_id:this.servicio.socio_id,
@@ -54,7 +55,7 @@ methods:{
 
             var id_modal = '#'+vue.open_modal;
             bus.$emit('sucursal-set', response.data.sucursal);
-            app.cargando = false;
+            vue.cargando = false;
             app.cerrarModal(id_modal);  
             vue.$emit('actualizar_socio',response.data.Socio);    
             
@@ -68,7 +69,7 @@ methods:{
           else
           {
 
-            app.cargando = false;
+            vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");  
           }    
            
@@ -92,7 +93,7 @@ methods:{
                 servicio_id:this.servicio.id,
                  empresa_id:this.empresa.id };
 
-       app.cargando = true;
+       this.cargando = true;
 
        axios.post(url,data).then(function(response){ 
 
@@ -103,13 +104,13 @@ methods:{
             
             
             vue.$emit('actualizar_socio',response.data.Socio);  
-            app.cargando = false;
+            vue.cargando = false;
             app.cerrarModal('#'+'modal-editar-servicio-socio-'+ String(servicio.id));
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
           {
-            app.cargando = false;
+            vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -149,7 +150,7 @@ methods:{
                          servicio_id:this.servicio.id,
                           empresa_id:this.empresa.id};
 
-       app.cargando = true;
+       this.cargando = true;
 
        axios.post(url,data).then(function(response){ 
 
@@ -158,12 +159,12 @@ methods:{
           if(response.data.Validacion == true)
           {
             
-            app.cargando = false;
+            vue.cargando = false;
             vue.$emit('actualizar_socio',response.data.Socio);  
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
-          { app.cargando = false;
+          { vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -273,7 +274,11 @@ template:'
                Precio: @{{servicio.moneda}} @{{servicio.valor}} 
               </div>
                   
-              <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
+              <div v-if="cargando" class="Procesando-text">
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                      </div>
               <span v-else>                
                  <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">
                    <i class="far fa-check-square"></i> Usar
@@ -377,22 +382,22 @@ template:'
 
 
                
-                  <div v-if="$root.cargando" class="Procesando-text">
+                 <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
-                  </div>
+                      </div>
                   <div v-else v-on:click="EditarServicio(servicio)" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
 
 
                    <br>
                    <br>
-                  <div v-if="$root.cargando" class="Procesando-text">
+                  <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
-                  </div>
-                   <div v-if="esta_activo && !$root.cargando" class="simula_link" v-on:click="borrar_servicio(servicio)">
+                      </div>
+                   <div v-if="esta_activo && !cargando" class="simula_link" v-on:click="borrar_servicio(servicio)">
                      Eliminar el servicio <i class="fas fa-trash-alt"></i>
                    </div>
                   

@@ -3,7 +3,8 @@ Vue.component('caja-lista' ,
 props:[ 'caja','sucursal' ],
 data:function(){
     return {
-     mostrar:true
+     mostrar:true,
+     cargando:false
 
     }
 },
@@ -28,7 +29,7 @@ anular_movimiento:function(){
 
 
 
-       app.cargando = true;                  
+       this.cargando = true;                  
 
        axios.post(url,data).then(function(response){ 
 
@@ -36,13 +37,13 @@ anular_movimiento:function(){
           
           if(response.data.Validacion == true)
           {    
-             app.cargando = false;
+             vue.cargando = false;
              bus.$emit('sucursal-set', response.data.sucursal);
              bus.$emit('actualizar-movimientos-de-caja');
              $.notify(response.data.Validacion_mensaje, "success");
           }
           else
-          { app.cargando = false;
+          { vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }    
            
@@ -107,7 +108,7 @@ template:'  <div class="contiene-lista-caja">
                    <span v-if="sePuedeEliminar"> 
 
                       |
-                      <div v-if="$root.cargando" class="Procesando-text">
+                      <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
