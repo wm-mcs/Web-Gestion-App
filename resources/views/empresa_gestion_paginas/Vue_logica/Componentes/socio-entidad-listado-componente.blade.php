@@ -13,7 +13,7 @@ data:function(){
 }, 
 
 mounted:{
-  this.get_socios();
+  get_socios();
 },
 
 watch:{ 
