@@ -87,7 +87,7 @@ template:'
     <br> Datos para realizar el pago: <strong>Caja Ahorro BROU DOLARES 00156513100001 (viejo: 177 0633012)</strong> . Luego de efectuar el pago enviar comprobante <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong></a>
 .
 
-
+    </div>
 
    
 
