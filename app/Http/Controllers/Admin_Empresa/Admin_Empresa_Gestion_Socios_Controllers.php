@@ -236,46 +236,53 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
                     foreach ($Servicios_renovacion as $Servicio_para_renovar)
                     {
+
+
                      //busco los servicios del socio
-                     $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId( $Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
+                     $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
 
-                     //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-                     if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                     if($Servicio != null)
                      {
-                       //creo el nuevo servicio
-                       $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
-                                                                                             $Sucursal->id, 
-                                                                                             $Servicio->tipo_de_servicio, 
-                                                                                             Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
+                        
+                           //debería buscar servicio a socio y ver si en un mes hay alguno disponible
+                           if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                           {
+                             //creo el nuevo servicio
+                             $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+                                                                                                   $Sucursal->id, 
+                                                                                                   $Servicio->tipo_de_servicio, 
+                                                                                                   Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
 
-                       //Logica de estado de cuenta cuando compra
-                       $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
-                                                                                        $User->id,
-                                                                                        $Nuevo_servicio->moneda,
-                                                                                        $Nuevo_servicio->valor,
-                                                                                        'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
-                                                                                        'acredor',
-                                                                                        Carbon::now('America/Montevideo'),
-                                                                                        $Nuevo_servicio->id);
+                             //Logica de estado de cuenta cuando compra
+                             $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+                                                                                              $User->id,
+                                                                                              $Nuevo_servicio->moneda,
+                                                                                              $Nuevo_servicio->valor,
+                                                                                              'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
+                                                                                              'acredor',
+                                                                                              Carbon::now('America/Montevideo'),
+                                                                                              $Nuevo_servicio->id);
 
-                        //ajusto el servicio de renovación
-                        $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
-                                                                                    $Socio->empresa_id,
-                                                                                    $Nuevo_servicio->tipo_de_servicio, 
-                                                                                    Carbon::now('America/Montevideo')       );
+                              //ajusto el servicio de renovación
+                              $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                                          $Socio->empresa_id,
+                                                                                          $Nuevo_servicio->tipo_de_servicio, 
+                                                                                          Carbon::now('America/Montevideo')       );
 
-                        array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                       'Acutualizo'  => 'si', 
-                                                       'Razon'       => 'Se renovó correctamente' ,
-                                                               'Fecha'      =>  $Hoy_objet] ) )  );
+                              array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                             'Acutualizo'  => 'si', 
+                                                             'Razon'       => 'Se renovó correctamente' ,
+                                                                     'Fecha'      =>  $Hoy_objet] ) )  );
+                           }
+                           else
+                           {
+                              array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                                   'Acutualizo'  => 'no', 
+                                                                   'Razon'       => 'Aun tenía servicios disponibles',
+                                                                     'Fecha'      =>  $Hoy_objet ])  )  );
+                           }
                      }
-                     else
-                     {
-                        array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                             'Acutualizo'  => 'no', 
-                                                             'Razon'       => 'Aun tenía servicios disponibles',
-                                                               'Fecha'      =>  $Hoy_objet ])  )  );
-                     }
+
 
 
                      
