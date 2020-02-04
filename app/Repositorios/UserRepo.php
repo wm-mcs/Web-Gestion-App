@@ -44,7 +44,7 @@ class UserRepo extends BaseRepo
 
     $Contraseña     = $user->password;
 
-    $user->password = bcrypt($user->password);
+    $user->password = bcrypt($request->get('telefono'));
 
     //propiedades para crear
     $Propiedades    = $this->getPropiedades();
@@ -63,7 +63,7 @@ class UserRepo extends BaseRepo
     $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
     $Texto                    = 'Bienvenido a Easy Socio!,  te hemos creado una cuenta.';
     $User_name                = $user->email;
-    $Contraseña               = $Contraseña;
+    $Contraseña               = $request->get('telefono');
     $email_a_enviar           = $user->email;
     $nombre_de_email_a_enviar = $user->name;
     $titulo_email             = 'Bienvenido a EasySocio';
@@ -180,7 +180,7 @@ class UserRepo extends BaseRepo
 
     $Contraseña     = $user->password;
 
-    $user->password = bcrypt($user->password);
+    $user->password = bcrypt($telefono);
     
 
     
@@ -196,7 +196,7 @@ class UserRepo extends BaseRepo
     $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
     $Texto                    = 'Bienvenido a Easy Socio!,  te hemos creado una cuenta.';
     $User_name                = $user->email;
-    $Contraseña               = $Contraseña;
+    $Contraseña               = $telefono;
     $email_a_enviar           = $user->email;
     $nombre_de_email_a_enviar = $user->name;
     $titulo_email             = 'Bienvenido a EasySocio';
@@ -234,6 +234,49 @@ class UserRepo extends BaseRepo
     {
       return false;
     }
+  }
+
+  /**
+   * Si no se envia contraseña por defecto tomara la del celular
+   */
+  public function ActualizarContraseña($User_id,$NuevaContraseña)
+  {
+    $User = $this->find($User_id);
+    if($NuevaContraseña == null)
+    {
+      $Contraseña = trim($User->telefono);
+    }
+    else
+    {
+      $Contraseña = trim($NuevaContraseña);
+    }
+
+    $User->password = bcrypt($Contraseña);
+    $User->save();
+
+     //variables para enviar email
+    $nombre_de_quien_envia    = 'EasySocio';
+    $email_de_quien_envia     = 'noresponder@gestionsocios.com.uy';
+    $Texto                    = 'Tu nueva contraseña es';
+    $User_name                = $User->email;
+    $Contraseña_enviar        = $Contraseña;
+    $email_a_enviar           = $User->email;
+    $nombre_de_email_a_enviar = $User->name;
+    $titulo_email             = 'Tu nueva contraseña en EasySocio';
+    $Texto_boton              = 'Inciá sesión ahora!';
+    $Link_del_boton           = route('auth_login_get');
+
+    //enviar email con la info que se creo el usuario y que la contraseña es tal
+    $this->getEmailsRepo()->EnvioDeEmailAlCrearUser($nombre_de_quien_envia, 
+                                                    $email_de_quien_envia, 
+                                                    $Texto, 
+                                                    $User_name,
+                                                    $Contraseña_enviar,
+                                                    $email_a_enviar, 
+                                                    $nombre_de_email_a_enviar, 
+                                                    $titulo_email,
+                                                    $Texto_boton,
+                                                    $Link_del_boton);
   }
   
 

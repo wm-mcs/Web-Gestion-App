@@ -34,6 +34,10 @@
   </div>
   <img class="admin-img-section-img" src="{{$user->foto_de_perfil}}"> 
 </div>
+
+<div class="formulario-label-fiel">
+<a href="{{route('cambiar_contraseña_user_desde_admin',$user->id)}}">Nueva contraseña = a su celular</a>
+</div>
 @endif
 
 

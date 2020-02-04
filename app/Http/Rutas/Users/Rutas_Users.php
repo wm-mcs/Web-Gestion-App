@@ -29,3 +29,10 @@ Route::patch('set_admin_users_editar{id}',
   'uses'  => 'Admin_Empresa\Admin_Users_Controllers@set_admin_users_editar',
   'as'    => 'set_admin_users_editar'
 ]);
+
+
+Route::get('cambiar_contraseña_user_desde_admin{id}',
+[
+  'uses'  => 'Admin_Empresa\Admin_Users_Controllers@cambiar_contraseña_user_desde_admin',
+  'as'    => 'cambiar_contraseña_user_desde_admin'
+]);

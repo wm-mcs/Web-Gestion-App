@@ -132,5 +132,13 @@ class Admin_Users_Controllers extends Controller
              'Validacion_mensaje'  => 'Debes poner una contraseña válida'];
   }
 
+
+  public function cambiar_contraseña_user_desde_admin($id)
+  {
+    $this->UserRepo->ActualizarContraseña(  $id, null );
+
+    return redirect()->back()->with('alert','Se cambió la contraseña');
+  }
+
   
 }
