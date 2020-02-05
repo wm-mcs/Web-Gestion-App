@@ -5,6 +5,7 @@
   @include flex-direction(row);
   @include align-items(center); 
   @include justify-content(space-around);
+  padding:30px 10px;
 }
 
   .sub-contiene-errores-general{
@@ -27,12 +28,14 @@
       font-size: 12px;
       margin-bottom: 20px;
       color:$Color-texto-gris-Mercadolibre;
+      width: 70%;
      }
 
    .error-404-img{
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 30px;
+    max-width: 500px;
+height: auto;
+margin-bottom: 30px;
+width: 100%;
    }  
 
    .error-404-contiene-boton{
@@ -53,7 +56,7 @@
 
    .error-404-img-logo{
     width:auto;
-    height: 80px;
+    height: 70px;
     margin-bottom: 30px;
    }  
 
