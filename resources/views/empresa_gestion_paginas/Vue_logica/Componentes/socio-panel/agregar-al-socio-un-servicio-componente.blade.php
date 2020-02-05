@@ -111,6 +111,8 @@ methods:{
 
   
   var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'name',this.tipo_servicio);
+
+  console.log(servicio);
                   
 
   this.servicio_data.name             = servicio.name;
