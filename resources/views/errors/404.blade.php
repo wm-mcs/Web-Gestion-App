@@ -26,8 +26,9 @@
           <a href="{{route('get_home')}}"><img class="error-404-img-logo" src="{{url()}}/imagenes/Empresa/logo_rectangular.png"></a>
           <br>
           <div class="error-404-titulo">Ups! </div>
-          <div class="error-404-aclaracion">Nos confundimos :-( simplemente regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong>  </div>
           <img class="error-404-img" src="{{url()}}/imagenes/Errores/desechufe.png">
+          <div class="error-404-aclaracion">Nos confundimos :-( simplemente regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong>  </div>
+          
           
           <a href="{{route('get_home')}}" class="error-404-contiene-boton">            
             Voler al panel administrador
