@@ -19,7 +19,7 @@
 {{--*/ $PalabrasClaves        = '' /*--}}
 {{--*/ $UrlDeLaPagina         = url() /*--}}
 
-@section('og-tags')
+
  <meta property="og:type"               content="website" />
  <meta property="og:title"              content="{{ $Titulo}} " />
  <meta property="og:description"        content="{{$DescriptionEtiqueta}}" />
@@ -29,7 +29,7 @@
  <meta property="og:image:height" content="250">
 
 
-@stop 
+
   </head>
 
   <body>

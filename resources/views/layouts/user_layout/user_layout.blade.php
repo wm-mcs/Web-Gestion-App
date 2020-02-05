@@ -11,14 +11,22 @@
 
       @yield('og-tags')
 
-      {{-- <meta property="og:title" content="Global Target">
-      <meta property="og:description" content="Agencia de modelos, eventos y promociones.">
-      <meta property="og:image" content="https://www.globaltarget.com.uy/thumbnail.jpg">
-      <meta property="og:url" content="https://www.globaltarget.com.uy/"> --}}
+      <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}"> 
+{{--*/ $ImagenParaTaG         = url() . '/imagenes/EasySocio/easy-socio-el-software-para-administrar-gimnasios-academias-de-baile-institutos-de-ingles-y-mucho-más.jpg'/*--}}
+{{--*/ $Titulo                = 'Bienvenido a una nueva forma de administrar emprendimiento' /*--}}
+{{--*/ $DescriptionEtiqueta   = 'Si tienes un gimnsasio, una academia de baile, centro/escuela de danzas y quieres un sistema que te ayude a administrar tu negocio, estás en el lugar correcto porque te voy a contar de qué trata EasySocio' /*--}}
+{{--*/ $PalabrasClaves        = '' /*--}}
+{{--*/ $UrlDeLaPagina         = url() /*--}}
+ <meta property="og:type"               content="website" />
+ <meta property="og:title"              content="{{ $Titulo}} " />
+ <meta property="og:description"        content="{{$DescriptionEtiqueta}}" />
+ <meta property="og:image"             content="{{$ImagenParaTaG }}" />
+ <meta property="og:image:secure_url"  content="{{$ImagenParaTaG }}" /> 
+ <meta property="og:image:width" content="250">
       
       
 
-      <title> @yield('title')</title>
+      <title> @yield('title') | EasySocio</title>
       <meta name="Description" CONTENT="@yield('MetaContent')">      
       <META name="robots" content="@yield('MetaRobot')">
       <meta name="Keywords"  content="@yield('palabras-claves')">
