@@ -49,12 +49,12 @@
             <div class="cargando-text-style">Procesando...</div>
           </div>  --}}    
        </div>
-       <div v-if="esResolucionDePc" class="get_width_20"></div>
-       <div v-if="mostrar_menu" class="admin-columna-contenedor">
+       <div v-show="esResolucionDePc" class="get_width_20"></div>
+       <div v-show="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
 
-             <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div> 
+             <div v-show="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div> 
              @yield('columna')
            </div>
            
