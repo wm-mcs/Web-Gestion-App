@@ -115,11 +115,11 @@ methods:{
   console.log(this.empresa.tipo_servicios,servicio,this.tipo_servicio);
                   
 
-  this.servicio_data.name             = servicio.name;
-  this.servicio_data.tipo             = servicio.tipo;
-  this.servicio_data.moneda           = servicio.moneda;
-  this.servicio_data.valor            = servicio.valor;
-  this.servicio_data.tipo_servicio_id               = servicio.id;
+  this.servicio_data.name               = servicio.name;
+  this.servicio_data.tipo               = servicio.tipo;
+  this.servicio_data.moneda             = servicio.moneda;
+  this.servicio_data.valor              = servicio.valor;
+  this.servicio_data.tipo_servicio_id   = servicio.id;
 
   this.servicio_data.socio_id         = this.socio.id;
   this.servicio_data.socio_empresa_id = this.socio.empresa_id;
@@ -135,7 +135,7 @@ methods:{
 }, 
 seleccionarUnObjetoSegunAtributo:function(lista,atributo,valor){
         return lista.find(function(element) {
-        return element.name == valor;
+        return element.id == valor;
       });
 },
 
