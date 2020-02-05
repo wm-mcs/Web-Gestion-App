@@ -315,8 +315,9 @@ template:'
         
             <div class="entidad-lista-servicio-contiene-fecha">
                 <span class="entidad-lista-servicio-fecha" >Contratado el @{{servicio.fecha_contratado_formateada}}  
-                  <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > vendido por @{{servicio.creado_por}}</span>
-                </span>                
+                  
+                </span>    
+                <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > Vendido por @{{servicio.creado_por}}</span>            
                 <span v-show="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >
                 Se vence el @{{servicio.fecha_vencimiento_formateada}}
                 </span> 
