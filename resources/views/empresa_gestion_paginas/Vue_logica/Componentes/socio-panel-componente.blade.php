@@ -204,10 +204,16 @@ computed:{
   return this.socio.servicios_contratados_del_socio.filter(function(servicio) {
       return servicio.esta_vencido == true || servicio.se_consumio == true;
     });
+  },
+  socio_cargado:function(){
+  if(this.socio != '')
+  {
+  return true;
+  }
   }
 
 },
-template:'<span v-if="!cargando">
+template:'<span v-if="!cargando && socio_cargado">
 
 
   <div class="panel-socio-header-contenedor">
