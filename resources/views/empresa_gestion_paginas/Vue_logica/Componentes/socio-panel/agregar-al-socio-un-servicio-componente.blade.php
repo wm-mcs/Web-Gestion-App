@@ -110,7 +110,7 @@ methods:{
  cambioTipoDeServicio:function(){
 
   
-  var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'name',this.tipo_servicio);
+  var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'id',this.tipo_servicio);
 
   console.log(this.empresa.tipo_servicios,servicio,this.tipo_servicio);
                   
@@ -166,7 +166,7 @@ template:'<span>
                       <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
                      <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
                         <option></option>
-                        <option v-for="servicio in empresa.tipo_servicios">@{{servicio.name}}</option>
+                        <option v-for="servicio in empresa.tipo_servicios" v-bind:value="servicio.id">@{{servicio.name}}</option>
                        
                         
                       </select>
