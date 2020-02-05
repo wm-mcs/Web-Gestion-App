@@ -121,7 +121,7 @@ class ServicioContratadoSocio extends Model
 
     public function getFechaEditadaFormateadaAttribute()
     {
-        return $this->editado_at->format('Y-m-d'); 
+        return Carbon::parse($this->editado_at)->format('Y-m-d'); 
     }
 
     public function getEstaVencidoAttribute()
