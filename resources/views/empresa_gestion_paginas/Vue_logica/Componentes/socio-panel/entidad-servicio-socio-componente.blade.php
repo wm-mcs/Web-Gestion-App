@@ -326,7 +326,8 @@ template:'
                 <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
                
                 <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}} 
-                  <span v-if="servicio.quien_marco_que_se_uso != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
+                 
+                 <span v-show="servicio.quien_marco_que_se_uso  != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
 
                 </div>
 
