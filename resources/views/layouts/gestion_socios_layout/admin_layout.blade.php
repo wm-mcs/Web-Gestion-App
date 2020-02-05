@@ -4,13 +4,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administrador Panel</title>
+    <title>EasySocio</title>
     <link rel="stylesheet" type="text/css" href="{{url()}}{{ elixir('css/admin.css') }}">  
     <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}"> 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
     
     <META name="robots" content="NOINDEX,NOFOLLOW">
+
+
+{{--*/ $ImagenParaTaG         = url() . '/imagenes/EasySocio/easy-socio-el-software-para-administrar-gimnasios-academias-de-baile-institutos-de-ingles-y-mucho-más.jpg'/*--}}
+{{--*/ $Titulo                = 'Bienvenido a una nueva forma de administrar emprendimiento' /*--}}
+{{--*/ $DescriptionEtiqueta   = 'Si tienes un gimnsasio, una academia de baile, centro/escuela de danzas y quieres un sistema que te ayude a administrar tu negocio, estás en el lugar correcto porque te voy a contar de qué trata EasySocio' /*--}}
+{{--*/ $PalabrasClaves        = '' /*--}}
+{{--*/ $UrlDeLaPagina         = url() /*--}}
+
+@section('og-tags')
+ <meta property="og:type"               content="website" />
+ <meta property="og:title"              content="{{ $Titulo}} " />
+ <meta property="og:description"        content="{{$DescriptionEtiqueta}}" />
+ <meta property="og:image"             content="{{$ImagenParaTaG }}" />
+ <meta property="og:image:secure_url"  content="{{$ImagenParaTaG }}" /> 
+ <meta property="og:image:width" content="250">
+ <meta property="og:image:height" content="250">
+
+
+@stop 
   </head>
 
   <body>
