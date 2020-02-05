@@ -242,12 +242,14 @@ computed:{
     donde_se_uso:function(){
      if(this.servicio.sucursal_donde_se_uso != null)
      {
+
       return 'Se usó en sucursal ' + this.servicio.sucursal_donde_se_uso.name;
      } 
      else
      {
       return false;
-     }     
+     },
+
       
     },
 
@@ -288,6 +290,12 @@ template:'
               
 
               <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>
+             
+              <div  v-if="servicio.editado_por != null" class="entidad-lista-servicio-fecha" > Editado por @{{servicio.editado_por}} el @{{servicio.fecha_editada_formateada}}
+
+              </div>
+
+               
 
 
 
@@ -306,13 +314,20 @@ template:'
         
         
             <div class="entidad-lista-servicio-contiene-fecha">
-                <span class="entidad-lista-servicio-fecha" >Contratado el @{{servicio.fecha_contratado_formateada}}</span>                
-                <span v-show="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >Se vence el @{{servicio.fecha_vencimiento_formateada}}</span> 
+                <span class="entidad-lista-servicio-fecha" >Contratado el @{{servicio.fecha_contratado_formateada}}  
+                  <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > vendido por @{{servicio.creado_por}}</span>
+                </span>                
+                <span v-show="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >
+                Se vence el @{{servicio.fecha_vencimiento_formateada}}
+                </span> 
                
 
                 <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
                
-                <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}}</div>
+                <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}} 
+                  <span v-if="servicio.quien_marco_que_se_uso != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
+
+                </div>
 
                 <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
                 <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha" >@{{donde_se_uso}}</span> 

@@ -27,6 +27,7 @@ class ServicioContratadoSocio extends Model
                            'fecha_vencimiento_formateada',
                            'fecha_contratado_formateada',
                            'fecha_consumido_formateada',
+                           'fecha_editada_formateada',
                            'esta_vencido',
                            'se_consumio',
                            'sucursal_donde_se_emitio',
@@ -116,6 +117,11 @@ class ServicioContratadoSocio extends Model
     public function getFechaContratadoFormateadaAttribute()
     {
         return $this->created_at->format('Y-m-d'); 
+    }
+
+    public function getFechaEditadaFormateadaAttribute()
+    {
+        return $this->editado_at->format('Y-m-d'); 
     }
 
     public function getEstaVencidoAttribute()

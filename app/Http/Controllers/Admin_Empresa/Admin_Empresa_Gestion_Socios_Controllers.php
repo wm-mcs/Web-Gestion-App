@@ -576,6 +576,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Entidad->socio_id           = $Request->get('socio_id');
             $Entidad->estado             = 'si' ;
             $Entidad->sucursal_emitio_id = $Sucursal->id;
+            $Entidad->creado_por         = $User->first_name;
             $Entidad->valor              = round($Request->get('valor')/$Request->get('cantidad_de_servicios'));
             $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
@@ -627,6 +628,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Entidad->estado             = 'si' ;
           $Entidad->valor              = round($Request->get('valor'));     
           $Entidad->sucursal_emitio_id = $Sucursal->id; 
+          $Entidad->creado_por         = $User->first_name;
 
           $Entidad = $this->ServicioContratadoSocioRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
@@ -716,6 +718,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
            $Validacion  = true;
 
            $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
+
+           $Servicio->editado_por = $User->first_name;
+           $Servicio->editado_at  = Carbon::now('America/Montevideo');
        
            //las porpiedades que se van a editar
            $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido'];
@@ -842,6 +847,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
      //indico la sucursal donde se usó
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'sucursal_uso_id', $Sucursal->id );
+
+     $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'quien_marco_que_se_uso', $User->first_name );
 
      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'esta_consumido', 'si' );
 
