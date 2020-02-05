@@ -31,7 +31,7 @@
           
           
           <a href="{{route('get_home')}}" class="error-404-contiene-boton">            
-            Voler al panel administrador
+            Volver al panel administrador
           </a>
 
           
