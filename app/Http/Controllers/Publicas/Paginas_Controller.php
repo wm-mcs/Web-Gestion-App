@@ -182,5 +182,10 @@ class Paginas_Controller extends Controller
         return view('paginas.proyecto.proyecto_individual',compact('Proyecto'));
     }
 
+    public function get_error_404()
+    {
+        return  view('errors.404');
+    }
+
 
 }

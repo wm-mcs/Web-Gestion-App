@@ -32,6 +32,11 @@ Route::get('/Servicios' , [
 );
 
 
+Route::get('/get_error_404' , [                    
+  'uses' => 'Publicas\Paginas_Controller@get_error_404',
+  'as'   => 'get_error_404']
+);
+
 
 
 
