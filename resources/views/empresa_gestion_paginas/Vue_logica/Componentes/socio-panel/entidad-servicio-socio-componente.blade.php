@@ -248,7 +248,7 @@ computed:{
      else
      {
       return false;
-     },
+     }
 
       
     },
