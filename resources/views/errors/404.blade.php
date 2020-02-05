@@ -25,7 +25,7 @@
         <div class="sub-contiene-errores-general">
           <div class="error-404-titulo">Ups! </div>
           <div class="error-404-aclaracion">Nos confundimos :-( simplemente regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong>  </div>
-          <img src="{{url()}}/imagenes/Errores/desechufe.png">
+          <img class="error-404-img" src="{{url()}}/imagenes/Errores/desechufe.png">
           
           <a href="{{route('get_home')}}" class="error-404-contiene-boton">            
             Voler al panel administrador
