@@ -13,7 +13,7 @@
 
       <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}"> 
 {{--*/ $ImagenParaTaG         = url() . '/imagenes/EasySocio/easy-socio-el-software-para-administrar-gimnasios-academias-de-baile-institutos-de-ingles-y-mucho-más.jpg'/*--}}
-{{--*/ $Titulo                = 'Bienvenido a una nueva forma de administrar emprendimiento' /*--}}
+{{--*/ $Titulo                = 'Bienvenido a una nueva forma de administrar tu emprendimiento' /*--}}
 {{--*/ $DescriptionEtiqueta   = 'Si tienes un gimnsasio, una academia de baile, centro/escuela de danzas y quieres un sistema que te ayude a administrar tu negocio, estás en el lugar correcto porque te voy a contar de qué trata EasySocio' /*--}}
 {{--*/ $PalabrasClaves        = '' /*--}}
 {{--*/ $UrlDeLaPagina         = url() /*--}}
