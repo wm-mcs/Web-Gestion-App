@@ -33,7 +33,8 @@ class Socio extends Model
                           'servicios_contratados_del_socio',
                           'servicios_contratados_disponibles_tipo_clase',
                           'servicios_contratados_disponibles_tipo_mensual',
-                          'servicios_renovacion_del_socio'];
+                          'servicios_renovacion_del_socio',
+                          'fecha_creado_formateada'];
 
 
     public function servicios_contratados()
@@ -184,6 +185,11 @@ class Socio extends Model
         }); 
 
                                           
+    }
+
+    public function getFechaCreadoFormateadaAttribute()
+    {
+        return $this->created_at->format('Y-m-d'); 
     }
 
 

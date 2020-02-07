@@ -8,6 +8,11 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel"> Editar a @{{socio.name}}</h4>
+          <div class="modal-mensaje-aclarador">
+                Creado el @{{socio.fecha_creado_formateada}}
+
+
+          </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
@@ -65,7 +70,7 @@
                   </div> 
 
                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo?</span></label>
+                      <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo? IMPORTANTE: si cambias a "no" el socio desaparecerá del listado</span></label>
                      <select v-model="socio.estado" class="form-control">
                         
                         <option>si</option>
