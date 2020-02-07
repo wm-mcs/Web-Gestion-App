@@ -332,9 +332,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Mensaje = "No hay socios inactivos";
        }
        return [
-       'Validacion'  => true,
-       'Validacion_mensaje' = $Mensaje,
-       'Socios'      => $Socios];     
+       'Validacion'         => true,
+       'Validacion_mensaje' => $Mensaje,
+       'Socios'             => $Socios];     
   }
 
 
