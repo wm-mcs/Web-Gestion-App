@@ -104,7 +104,7 @@ created() {
 },
 template:'<div>
 
-  <div v-if="esDistintoACero(sucursal.saldo_de_caja_pesos)" class="contiene-saldo" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
+  <div  class="contiene-saldo" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
      <span class="saldo-aclaracion"> 
        Saldo caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
