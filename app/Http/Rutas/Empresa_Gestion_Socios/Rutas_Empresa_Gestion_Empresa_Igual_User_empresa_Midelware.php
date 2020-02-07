@@ -24,7 +24,14 @@ Route::post('post_editar_socio_desde_modal',
 Route::post('get_socios_activos',
 [
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socios_activos',
-  'as'         => 'get_socios_activos']);  
+  'as'         => 'get_socios_activos']); 
+
+Route::post('get_socios_inactivos',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socios_inactivos',
+  'as'         => 'get_socios_inactivos']);   
+
+
 
 
 //Para buscar los socios

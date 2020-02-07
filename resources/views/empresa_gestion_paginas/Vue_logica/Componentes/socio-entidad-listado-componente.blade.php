@@ -7,7 +7,9 @@ props:['empresa','palabra_busqueda']
 data:function(){
     return {
          socios:'',
-         cargando:false
+         cargando:false,
+         cargando_inactivos:false,
+         socios_inactivos:''
 
     }
 }, 
@@ -58,6 +60,39 @@ get_socios:function(){
             else
             {
               vue.cargando = false; 
+              $.notify(response.data.Validacion_mensaje, "error");
+            }
+           
+           }).catch(function (error){
+
+                     
+            
+           });
+  
+},
+get_socios_inactivos:function(){
+
+  var url = '/get_socios_inactivos';
+
+      var data = {  
+                    empresa_id: this.empresa.id       
+                 };  
+      var vue = this;  
+      this.cargando_inactivos = true;         
+
+     axios.post(url,data).then(function (response){  
+            var data = response.data;  
+            
+
+            if(data.Validacion == true)
+            {
+               vue.cargando_inactivos = false; 
+               vue.socios_inactivos = response.data.Socios;              
+               
+            }
+            else
+            {
+              vue.cargando_inactivos = false; 
               $.notify(response.data.Validacion_mensaje, "error");
             }
            

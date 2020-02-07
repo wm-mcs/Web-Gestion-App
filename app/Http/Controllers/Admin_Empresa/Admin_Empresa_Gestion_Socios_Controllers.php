@@ -318,6 +318,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        'Socios'      => $Socios];     
   }
 
+  public function get_socios_inactivos(Request $Request)   
+  {
+       $User               = $Request->get('user_desde_middleware'); 
+       $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
+       $Socios             = $this->SocioRepo->getSociosInactivos($UserEmpresa->empresa_id);
+       return [
+       'Validacion'  => true,
+       'Socios'      => $Socios];     
+  }
+
+
+  
+
 
   public function buscar_socios_activos(Request $Request)
   {

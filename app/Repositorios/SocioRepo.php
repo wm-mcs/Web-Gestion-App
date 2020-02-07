@@ -31,19 +31,19 @@ class SocioRepo extends BaseRepo
 
        
 
-       $colecciones_separado  = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->where('name', "LIKE","%$palabra_de_busqueda%")->get();  
+       $colecciones_separado  = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('name', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids          = $this->traer_poner_ids($colecciones_separado);
 
-       $colecciones_separado2 = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->where('rut', "LIKE","%$palabra_de_busqueda%")->get();  
+       $colecciones_separado2 = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('rut', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids2         = $this->traer_poner_ids($colecciones_separado2);
 
-       $colecciones_separado3 = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->where('razon_social', "LIKE","%$palabra_de_busqueda%")->get();  
+       $colecciones_separado3 = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('razon_social', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids3          = $this->traer_poner_ids($colecciones_separado3);
 
-       $colecciones_separado4 = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->where('email', "LIKE","%$palabra_de_busqueda%")->get();  
+       $colecciones_separado4 = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('email', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids4         = $this->traer_poner_ids($colecciones_separado4);
 
-       $colecciones_separado5  = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->where('celular', "LIKE","%$palabra_de_busqueda%")->get();  
+       $colecciones_separado5  = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('celular', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids5          = $this->traer_poner_ids($colecciones_separado5);
 
        $array_de_ids          = array_unique(array_merge($array_de_ids,$array_de_ids2,$array_de_ids3,$array_de_ids4,$array_de_ids5)); 
@@ -55,7 +55,7 @@ class SocioRepo extends BaseRepo
       }
       else
       {
-        $Socios               = $this->getEntidad()->active()->where('empresa_id',$empresa_id)->orderBy('created_at','desc')->get();
+        $Socios               = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->orderBy('created_at','desc')->get();
       }
 
 
@@ -78,6 +78,12 @@ class SocioRepo extends BaseRepo
 
 
      
+  }
+
+
+  public function getSociosInactivos($empresa_id)
+  {
+     return $this->getEntidad()->noborrado()->where('empresa_id',$empresa_id)->orderBy('created_at','desc')->get();
   }
 
 
@@ -108,6 +114,7 @@ class SocioRepo extends BaseRepo
   {
     $Socio = $this->getEntidad()
                   ->active()
+                  ->noborrado()
                   ->where('empresa_id',$Empresa_id)
                   ->where('celular',$Celular)
                   ->get();

@@ -131,6 +131,13 @@ class Socio extends Model
                 
     }
 
+    public function scopeNoborrado($query)
+    {
+                               
+           $query->where('borrado', "no"); 
+                
+    }
+
     public function estados_de_cuenta_socio_relation()
     {
       return  $this->hasMany(MovimientoEstadoDeCuentaSocio::class,'socio_id','id')
