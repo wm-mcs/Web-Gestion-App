@@ -237,7 +237,7 @@ template:'<span v-if="!cargando && socio_cargado">
 
   </div>
   <div  v-if="socio.servicios_renovacion_del_socio.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para cargar de forma rápido o renovación automática </div>
+      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para renovar de forma automática </div>
       <div class="panel-socio-contiene-servicios">
         
           
