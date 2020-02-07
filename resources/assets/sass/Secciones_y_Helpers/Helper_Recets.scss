@@ -36,6 +36,12 @@ a:hover, a:focus, a>p:hover, a>p:focus{
     outline: 0 none !important;
 }
 
+
+.form-control{
+  color:$color-3;
+  font-weight: bold;
+}
+
 .form-control:focus { 
   border:solid 3px $color-3 !important;
   box-shadow: none !important;
