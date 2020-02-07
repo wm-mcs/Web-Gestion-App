@@ -73,7 +73,10 @@
                   </div> 
 
                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo? IMPORTANTE: si cambias a "no" el socio desaparecerá del listado</span></label>
+                      <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo? </span></label>
+                      <div class="modal-mensaje-aclarador">
+                       Si cambias a "no" el socio desaparecerá del listado.
+                      </div>
                      <select v-model="socio.estado" class="form-control">
                         
                         <option>si</option>
