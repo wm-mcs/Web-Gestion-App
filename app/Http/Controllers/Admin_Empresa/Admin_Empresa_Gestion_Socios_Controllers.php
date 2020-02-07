@@ -323,8 +323,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $User               = $Request->get('user_desde_middleware'); 
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
        $Socios             = $this->SocioRepo->getSociosInactivos($UserEmpresa->empresa_id);
+
+       if($Socios->count() > 0)
+       {
+         $Mensaje = "Socios inactivos cargados correctamente";
+       }
+       else{
+        $Mensaje = "No hay socios inactivos";
+       }
        return [
        'Validacion'  => true,
+       'Validacion_mensaje' = $Mensaje,
        'Socios'      => $Socios];     
   }
 

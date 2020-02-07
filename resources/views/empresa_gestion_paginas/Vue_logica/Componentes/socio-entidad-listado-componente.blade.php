@@ -9,7 +9,7 @@ data:function(){
          socios:'',
          cargando:false,
          cargando_inactivos:false,
-         socios_inactivos:''
+         socios_inactivos:[]
 
     }
 }, 
@@ -87,7 +87,8 @@ get_socios_inactivos:function(){
             if(data.Validacion == true)
             {
                vue.cargando_inactivos = false; 
-               vue.socios_inactivos = response.data.Socios;              
+               vue.socios_inactivos = response.data.Socios;    
+               $.notify(response.data.Validacion_mensaje, "success");            
                
             }
             else
@@ -121,7 +122,8 @@ checkSearchStr: _.debounce(function(string){
 
             if(data.Validacion == true)
             {
-               vue.socios = response.data.Socios;              
+               vue.socios = response.data.Socios;  
+
                
             }
             else
@@ -147,7 +149,7 @@ created() {
     })
 },
 template:'
-<div v-if="socios.length " class="empresa-contendor-de-secciones">
+<div v-if="socios.length" class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
   <div v-if="socios.length > 0 && !cargando" class="listado-socios-contenedor-lista">
@@ -170,6 +172,33 @@ template:'
                   
     
   </div>
+
+  <div v-if="socios_inactivos.length" class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios inactivos <i class="far fa-hand-point-down"></i></div>
+  <div v-else class="simula_link" v-on:click="get_socios_inactivos">
+    Ver si hay socios inactivos
+  </div>
+   <div v-if="socios_inactivos.length > 0 && !cargando_inactivos" class="listado-socios-contenedor-lista">
+
+    <socio-list 
+
+    v-for="socio in socios" 
+                 :key="socio.id" 
+               :socio="socio" 
+             :empresa="empresa"
+              v-on:ActualizarSocios="actualizar_socios" ></socio-list>
+
+  
+  </div> 
+  <div v-else class="Procesando-text get_width_100">
+     
+                       <div class="cssload-container">
+                             <div class="cssload-tube-tunnel"></div>
+                       </div>
+                  
+    
+  </div>
+
+
 </div>  
 <div v-else class="cuando-no-hay-socios">
 <div v-if="cargando" class="Procesando-text get_width_100">
