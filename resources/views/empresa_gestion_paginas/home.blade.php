@@ -14,7 +14,9 @@
                     <img class="miga-imagen" src="{{$Empresa->url_img}}">
                    </span> 
                  @else
-                   <span> {{$Empresa->name}}</span>
+                   <span class="simula_link disparar-este-form">
+                   {{$Empresa->name}}
+                 </span> 
                  @endif
                  </span>    
  
