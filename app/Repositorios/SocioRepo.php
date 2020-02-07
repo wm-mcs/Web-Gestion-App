@@ -83,7 +83,8 @@ class SocioRepo extends BaseRepo
 
   public function getSociosInactivos($empresa_id)
   {
-     return $this->getEntidad()->where('estado','no')->noborrado()->where('empresa_id',$empresa_id)->orderBy('created_at','desc')->get();
+     return $this->getEntidad()
+                 ->noborrado()->where('estado','<>','si')->where('empresa_id',$empresa_id)->orderBy('created_at','desc')->get();
   }
 
 
