@@ -7,12 +7,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+
+        <div class="">
           <h4 class="modal-title" id="myModalLabel"> Editar a @{{socio.name}}</h4>
           <div class="modal-mensaje-aclarador">
-                Creado el @{{socio.fecha_creado_formateada}}
+                Socio desde el @{{socio.fecha_creado_formateada}}
 
 
           </div>
+        </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
