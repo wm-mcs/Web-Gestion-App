@@ -75,6 +75,14 @@ computed:{
          return socios.sort(this.comparar_valor('name','desc'));
     
     break;
+    case "nuevos":
+         return socios.sort(this.comparar_valor('created_at','asc'));
+    
+    break;
+    case "viejos":
+         return socios.sort(this.comparar_valor('created_at','desc'));
+    
+    break;
 
     default:
         return socios;
