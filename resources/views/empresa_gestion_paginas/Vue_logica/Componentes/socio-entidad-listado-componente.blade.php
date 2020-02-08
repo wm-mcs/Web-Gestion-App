@@ -11,6 +11,7 @@ data:function(){
          cargando_inactivos:false,
          socios_inactivos:[],
          filtro_busqueda:'',
+         filtros_busqueda:[{nombre:'Deudores',value:'deudores'},{nombre:'Sin nada contratado',value:'sin_nada'}],
          opcion_ordenar:'',
          opciones_ordenar:[{
                             nombre:'Alfabético creciente', 
@@ -55,9 +56,28 @@ watch:{
 computed:{
   socios_filtrados:function(){
     var socios = this.socios;
-    if(this.filtro_busqueda == '')
-    {
-     
+    switch(this.filtro_busqueda){
+    case "deudores":
+         socios = socios.filter(function (el) {
+          return el.saldo_de_estado_de_cuenta_pesos < 0 ||
+                 el.saldo_de_estado_de_cuenta_dolares < 0 
+
+        });
+    
+    break;
+
+    case "sin_nada":
+         socios = socios.filter(function (el) {
+          return el.servicios_contratados_disponibles_tipo_clase.length == 0 &&
+                 el.servicios_contratados_disponibles_tipo_mensual.length == 0 
+
+        });
+    
+    break;
+    
+
+    default:
+        return socios;
     }
 
 
@@ -249,6 +269,16 @@ template:'
                      <select v-model="opcion_ordenar" class="form-control" >
                         
                         <option v-for="option in opciones_ordenar" :value="option.value">@{{option.nombre}}</option>
+                        
+                        
+                      </select>
+    </div> 
+    <div class="form-group">
+                      <label class="formulario-label" for="Nombre">Filtrar</label>
+                      
+                     <select v-model="filtro_busqueda" class="form-control" >
+                        
+                        <option v-for="option in filtros_busqueda" :value="option.value">@{{option.nombre}}</option>
                         
                         
                       </select>
