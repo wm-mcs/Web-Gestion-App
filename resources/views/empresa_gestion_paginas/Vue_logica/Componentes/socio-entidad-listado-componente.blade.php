@@ -68,12 +68,12 @@ computed:{
     switch (this.opcion_ordenar){
     case "abc":
          return socios.sort((a, b) => { return b.name - a.name;});
-    });
+    
     break;
 
     case "cbd":
          return socios.sort((a, b) => { return b.name - a.name;});
-    });
+    
     break;
 
     default:
