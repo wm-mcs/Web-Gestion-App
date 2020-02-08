@@ -67,15 +67,13 @@ computed:{
     {
     return socios;
     }
-
-    if(this.opcion_ordenar == 'abc')
+    elseif(this.opcion_ordenar == 'abc')
     {
       return socios.sort(function (a, b) {
         return a[name] > b[name];
       });
     }
-
-    if(this.opcion_ordenar == 'cbd')
+    elseif(this.opcion_ordenar == 'cbd')
     {
       return socios.sort(function (a, b) {
         return a[name] < b[name];
