@@ -77,7 +77,7 @@ computed:{
     
 
     default:
-        return socios;
+        socios = socios;
     }
 
 
@@ -87,25 +87,25 @@ computed:{
 
     switch(this.opcion_ordenar){
     case "asc":
-         return socios.sort(this.comparar_valor('name','asc'));
+         socios = socios.sort(this.comparar_valor('name','asc'));
     
     break;
 
     case "desc":
-         return socios.sort(this.comparar_valor('name','desc'));
+         socios = socios.sort(this.comparar_valor('name','desc'));
     
     break;
     case "nuevos":
-         return socios.sort(this.comparar_valor('created_at','asc'));
+         socios = socios.sort(this.comparar_valor('created_at','asc'));
     
     break;
     case "viejos":
-         return socios.sort(this.comparar_valor('created_at','desc'));
+         socios = socios.sort(this.comparar_valor('created_at','desc'));
     
     break;
 
     default:
-        return socios;
+        socios = socios;
     }
     
 
