@@ -74,7 +74,7 @@ computed:{
         });
     
     break;
-    case "sin_filtro"
+    case "sin_filtro":
     socios = socios;
 
     break;
