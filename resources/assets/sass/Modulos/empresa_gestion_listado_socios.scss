@@ -10,6 +10,25 @@
 }
 
 
+//filtros y ordenar por
+.contiene-filtros{
+  width:100%;
+  margin-bottom:20px;
+  @include flexbox;       
+  @include flex-direction(row);
+  @include align-items(center);
+  @include justify-content(space-around); 
+}
+
+  .contenedor-select-filtros{
+    width:48%;
+    @include flexbox;       
+    @include flex-direction(column);
+    @include align-items(flex-start);
+
+  }
+
+
  .listado-socios-contenedor-individual{
    width: 100%;
    padding: 4px;

@@ -9,7 +9,28 @@ data:function(){
          socios:'',
          cargando:false,
          cargando_inactivos:false,
-         socios_inactivos:[]
+         socios_inactivos:[],
+         filtro_busqueda:'',
+         opcion_ordenar:'',
+         opciones_ordenar:[{
+                            nombre:'Alfabético creciente', 
+                             value:'abc'
+                           },
+                           {
+                            nombre:'Alfabético decreciente', 
+                             value:'cba'
+                           },
+                           {
+                            nombre:'Fecha de creación creciente', 
+                             value:'nuevos'
+                           },
+                           {
+                            nombre:'Fecha de creación decreciente', 
+                             value:'viejos'
+                           },
+
+
+                          ]
 
     }
 }, 
@@ -30,6 +51,43 @@ watch:{
 
 
    
+},
+computed:{
+  socios_filtrados:function(){
+    var socios = this.socios;
+    if(this.filtro_busqueda == '')
+    {
+     return socios ;
+    }
+
+
+
+
+    if(this.opcion_ordenar)
+    {
+    return socios;
+    }
+
+    if(this.opcion_ordenar == 'abc')
+    {
+      return socios.sort(function (a, b) {
+        return a[name] > b[name];
+      });
+    }
+
+    if(this.opcion_ordenar == 'cbd')
+    {
+      return socios.sort(function (a, b) {
+        return a[name] < b[name];
+      });
+    }
+
+
+
+
+
+
+  }
 },
 methods:{
          
@@ -152,11 +210,28 @@ template:'
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
+
+
+  <div class="contiene-filtros">
+    <div class="form-group">
+                      <label class="formulario-label" for="Nombre">Ordenar</label>
+                      
+                     <select v-model="opcion_ordenar" class="form-control" >
+                        
+                        <option v-for="option in opciones_ordenar" :value="option.value">@{{option.nombre}}</option>
+                        
+                        
+                      </select>
+    </div> 
+  </div>
+
+
+
   <div v-if="socios.length > 0 && !cargando" class="listado-socios-contenedor-lista">
 
     <socio-list 
 
-    v-for="socio in socios" 
+    v-for="socio in socios_filtrados" 
                  :key="socio.id" 
                :socio="socio" 
              :empresa="empresa"
