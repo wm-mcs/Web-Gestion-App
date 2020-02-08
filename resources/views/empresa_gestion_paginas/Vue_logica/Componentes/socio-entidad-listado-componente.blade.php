@@ -65,7 +65,7 @@ computed:{
  
    
 
-    switch (this.opcion_ordenar){
+    switch(this.opcion_ordenar){
     case "asc":
          return socios.sort(this.comparar_valor('name','asc'));
     
@@ -92,7 +92,7 @@ methods:{
 comparar_valor:function(key, order = 'asc') {
   return function innerSort(a, b) {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-      // property doesn't exist on either object
+      
       return 0;
     }
 
