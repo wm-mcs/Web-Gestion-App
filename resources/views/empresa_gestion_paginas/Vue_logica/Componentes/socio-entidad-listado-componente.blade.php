@@ -10,9 +10,9 @@ data:function(){
          cargando:false,
          cargando_inactivos:false,
          socios_inactivos:[],
-         filtro_busqueda:'',
-         filtros_busqueda:[{nombre:'Deudores',value:'deudores'},{nombre:'Sin nada contratado',value:'sin_nada'}],
-         opcion_ordenar:'',
+         filtro_busqueda:'sin_filtro',
+         filtros_busqueda:[{nombre:'Sin filtro',value:'sin_filtro'},{nombre:'Deudores',value:'deudores'},{nombre:'Sin nada contratado',value:'sin_nada'}],
+         opcion_ordenar:'nuevos',
          opciones_ordenar:[{
                             nombre:'Alfabético creciente', 
                              value:'asc'
@@ -73,6 +73,10 @@ computed:{
 
         });
     
+    break;
+    case "sin_filtro"
+    socios = socios;
+
     break;
     
 
