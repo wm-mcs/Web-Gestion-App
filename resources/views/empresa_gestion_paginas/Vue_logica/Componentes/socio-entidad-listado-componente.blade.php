@@ -63,23 +63,30 @@ computed:{
 
 
 
-    if(this.opcion_ordenar == '' )
+    if( == '' )
     {
-    return socios;
-    }
-    elseif(this.opcion_ordenar == 'abc')
-    {
-      return socios.sort(function (a, b) {
-        return a[name] > b[name];
-      });
-    }
-    elseif(this.opcion_ordenar == 'cbd')
-    {
-      return socios.sort(function (a, b) {
-        return a[name] < b[name];
-      });
+    
     }
 
+    switch (this.opcion_ordenar){
+    case "abc":
+        return socios.sort(function (a, b) {
+        return a[name] > b[name];
+      });
+        break;
+
+    case "cbd":
+        return socios.sort(function (a, b) {
+        return a[name] < b[name];
+      });
+        break;
+
+    
+
+    default:
+        return socios;
+}
+    
 
 
 
