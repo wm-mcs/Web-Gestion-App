@@ -177,7 +177,7 @@ template:'
   <div v-else class="simula_link get_width_100 text-center" v-on:click="get_socios_inactivos">
     Ver si hay socios inactivos
   </div>
-   <div v-if="socios_inactivos.length > 0 && !cargando_inactivos" class="listado-socios-contenedor-lista">
+   <div v-if=" !cargando_inactivos" class="listado-socios-contenedor-lista">
 
     <socio-list 
 
