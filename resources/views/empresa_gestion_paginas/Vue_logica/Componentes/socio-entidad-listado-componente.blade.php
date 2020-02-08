@@ -63,7 +63,7 @@ computed:{
 
 
 
-    if(this.opcion_ordenar)
+    if(this.opcion_ordenar == '' )
     {
     return socios;
     }
