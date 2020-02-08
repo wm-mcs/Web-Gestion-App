@@ -172,6 +172,8 @@ template:'
                   
     
   </div>
+  <br>
+  <br>
 
   <div v-if="socios_inactivos.length" class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios inactivos <i class="far fa-hand-point-down"></i></div>
   <div v-else class="simula_link get_width_100 text-center" v-on:click="get_socios_inactivos">

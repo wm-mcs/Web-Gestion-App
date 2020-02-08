@@ -312,7 +312,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
        $User               = $Request->get('user_desde_middleware'); 
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
-       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,40);
+       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,150);
        return [
        'Validacion'  => true,
        'Socios'      => $Socios];     
