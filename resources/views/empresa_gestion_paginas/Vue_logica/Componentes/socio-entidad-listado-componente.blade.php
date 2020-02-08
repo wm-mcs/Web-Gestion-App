@@ -57,7 +57,7 @@ computed:{
     var socios = this.socios;
     if(this.filtro_busqueda == '')
     {
-     return socios ;
+     
     }
 
 
