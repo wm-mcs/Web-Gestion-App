@@ -63,23 +63,20 @@ computed:{
 
 
 
-    if( == '' )
-    {
-    
-    }
+   
 
     switch (this.opcion_ordenar){
     case "abc":
         return socios.sort(function (a, b) {
         return a[name] > b[name];
       });
-        break;
+    break;
 
     case "cbd":
         return socios.sort(function (a, b) {
         return a[name] < b[name];
       });
-        break;
+    break;
 
     
 
