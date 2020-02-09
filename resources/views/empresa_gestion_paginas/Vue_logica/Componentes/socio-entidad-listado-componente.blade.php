@@ -100,11 +100,11 @@ computed:{
     
     break;
     case "nuevos":
-         socios = socios.sort(this.comparar_valor('created_at','asc'));
+         socios = socios.sort(this.comparar_valor('created_at','desc'));
     
     break;
     case "viejos":
-         socios = socios.sort(this.comparar_valor('created_at','desc'));
+         socios = socios.sort(this.comparar_valor('created_at','asc'));
     
     break;
 
