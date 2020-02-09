@@ -23,11 +23,11 @@ data:function(){
                            },
                            {
                             nombre:'Fecha de creación creciente', 
-                             value:'nuevos'
+                             value:'viejos'
                            },
                            {
                             nombre:'Fecha de creación decreciente', 
-                             value:'viejos'
+                             value:'nuevos'
                            },
 
 
