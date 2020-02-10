@@ -13,9 +13,7 @@
 
 
 }
-.contiene-socio-tipo-lista:hover{
-  background-color: $Color-Gris-Claro;
-}
+
 
   .contenedor-border-rojo{
    background-color: $Color-Errors-BG;
@@ -133,6 +131,10 @@
    padding: 3px 10px;
    margin-top: 7px;
   }
+
+  .contiene-socio-tipo-lista:hover{
+  background-color: $Color-Gris-Claro;
+}
 
   .contiene-socio-lista_nombre-y-celular{
     width: 20%;  

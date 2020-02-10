@@ -101,7 +101,7 @@ computed:{
 },
 template:'<span>
   
- <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="flex-row-center">
+ <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="contiene-estado-de-cuenta">
             
          
               <div v-if="saldoPesosMayorCero" class="estado-de-cuenta-saldo estado-pago-indication">

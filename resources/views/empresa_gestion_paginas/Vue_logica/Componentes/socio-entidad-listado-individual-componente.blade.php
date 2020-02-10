@@ -155,6 +155,17 @@ cargar_servicios:function(){
 
 },
 computed:{
+
+  desactivado:function(){
+    if(this.socio.estado != 'si')
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  },
   
   clasesDisponibles:function(){
     if(this.socio.servicios_contratados_disponibles_tipo_clase.length > 0)
@@ -384,6 +395,7 @@ template:'
     </div>
     
 
+  <div v-if="desactivado"></div>
   
   <div class="socio-lista-contiene-estado-de-cuenta" >
     
