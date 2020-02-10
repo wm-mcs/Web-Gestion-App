@@ -99,7 +99,7 @@ computed:{
    }
 
 },
-template:'<span>
+template:'
   
  <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="contiene-estado-de-cuenta">
             
@@ -134,7 +134,7 @@ template:'<span>
 
 
 
-</span>
+
 '
 }
 
