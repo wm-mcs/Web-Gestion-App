@@ -1105,7 +1105,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'movimientos_de_caja_dolares' =>  $Dolares['Movimientos'],
                'Saldo_pesos'                 =>  $Pesos['Saldo'],
                'Saldo_dolares'               =>  $Dolares['Saldo'],
-               'Fecha_saldo'                 =   $Fecha_saldo ];
+               'Fecha_saldo'                 =>  $Fecha_saldo ];
   }
 
   //ingresar de caja
