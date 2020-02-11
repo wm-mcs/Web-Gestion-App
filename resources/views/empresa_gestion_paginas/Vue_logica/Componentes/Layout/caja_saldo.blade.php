@@ -20,7 +20,22 @@ data:function(){
 
     }
 },
+mounted: function mounted () {        
+      
+    this.setFecha();
+
+},
 methods:{
+
+
+     setFecha:function()
+     {
+       var fecha =  new Date();
+       fecha.setMonth(fecha.getMonth());
+
+       this.fecha_inicio = fecha.toISOString().slice(0,10);
+       this.fecha_fin = fecha.toISOString().slice(0,10);
+     },
 
      mostrar_busqueda:function(){
      if(this.buscar_entre_fechas_mostrar) 
