@@ -31,20 +31,14 @@
 
   .contiene-buscar-entre-fechas{
     width:100%;
-    @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
-    @include justify-content(space-around);
-    @include flex-wrap(wrap); 
-    
-    margin-bottom:10px;
-    border:solid 1px $color-grey0;
+    margin-bottom:4px;
+    border-top:solid 2px $color-grey0;
   }
 
     .fecha_input_caja_busqueda{
-      width:70%;
-      max-width:300px;
+      width:200px;
       margin-bottom:10px;
+      margin-right:10px;
     }
 
     .fechas-buscar-texto{
@@ -53,6 +47,7 @@
       font-size: 12px;
       text-align: left;
       width:100%;
+      padding:5px;
 
     }
 
