@@ -43,9 +43,9 @@ methods:{
        var fecha =  new Date();
        fecha.setMonth(fecha.getMonth());
 
-       this.fecha_inicio = fecha.toISOString().slice(0,10);
-       this.fecha_fin = fecha.toISOString().slice(0,10);
-       this.fecha_de_arqueo = fecha.toISOString().slice(0,10);;
+       this.fecha_inicio    = fecha.toISOString().slice(0,10);
+       this.fecha_fin       = fecha.toISOString().slice(0,10);
+       this.fecha_de_arqueo = fecha.toISOString().slice(0,10);
      },
 
      mostrar_busqueda:function(){
@@ -61,16 +61,16 @@ methods:{
 
     getMovimientosDeCaja:function(){
 
-      var url = '/get_movimientos_de_caja_de_sucursal';
+       var url = '/get_movimientos_de_caja_de_sucursal';
 
       var data = {    
-                       empresa_id:  this.sucursal.empresa_id, 
-                      sucursal_id:  this.sucursal.id,
-                     fecha_inicio:  this.fecha_inicio,
-                        fecha_fin:  this.fecha_fin,
-                 tipo_de_consulta:  this.tipo_de_consulta
-                      
-                       
+                       empresa_id : this.sucursal.empresa_id, 
+                      sucursal_id : this.sucursal.id,
+                     fecha_inicio : this.fecha_inicio,
+                        fecha_fin : this.fecha_fin,
+                  fecha_de_arqueo : this.fecha_de_arqueo,
+                 tipo_de_consulta : this.tipo_de_consulta
+                 
                  };  
       var vue = this; 
 

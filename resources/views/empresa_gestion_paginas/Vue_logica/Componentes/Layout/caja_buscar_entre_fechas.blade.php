@@ -4,7 +4,7 @@
 		<div class="fechas-buscar-texto">
 			Buscar los movimientos entre fechas.
 		</div>
-		<div class="flex-row-column ">
+		<div class="flex-row-column get_width_100">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
 		</div>
@@ -14,7 +14,7 @@
 		<div class="fechas-buscar-texto">
 			Ver los movimientos de ese día y el saldo a ese día.
 		</div>
-		<div class="flex-row-column ">
+		<div class="flex-row-column get_width_100">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
 			
 		</div>
