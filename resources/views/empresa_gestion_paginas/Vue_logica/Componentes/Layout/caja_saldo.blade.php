@@ -140,7 +140,7 @@ template:'<div>
      <div v-else class="color-text-danger saldo-valor ">
        $ @{{saldo_pesos}}
      </div>
-     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
+     
   </div> 
 
  <div v-if="esDistintoACero(saldo_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
@@ -166,7 +166,7 @@ template:'<div>
               Saldo al día @{{fecha_de_saldo}}
               <span class="saldo-modal-valor">$ @{{saldo_pesos}} </span>
             </div>
-            
+            @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
 
           </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
