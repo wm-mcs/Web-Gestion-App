@@ -1088,27 +1088,30 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $User              = $Request->get('user_desde_middleware'); 
     $Sucursal          = $Request->get('sucursal_desde_middleware');
 
-    if($Fecha_inicio != $Fecha_fin)
-    {
+    
+    /**
+     * Desde el front envio esto ..['arqueo','inicial','entre_fechas']
+     */
+    $TipoDeConsulta = $Request->get('tipo_de_consulta');
+    
+      
+     if($TipoDeConsulta == 'arqueo')
+     {
+      
+     }
       $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio')->startOfDay());
-      $Fecha_fin         = Carbon::parse($Request->get('fecha_fin')->endOfDay());
-    }
-    else
-    {
-       $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'));
-       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'));
-    }
+      $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo')->endOfDay());
+   
 
     
 
 
-    $Fecha_saldo       = $Fecha_fin->format('Y-m-d');
+     $Fecha_saldo       = $Fecha_fin->format('Y-m-d');
 
     
 
       $Pesos           = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
       $Dolares         = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
-      
     
 
     return  ['Validacion'                    =>  true,
@@ -1119,6 +1122,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Saldo_dolares'               =>  $Dolares['Saldo'],
                'Fecha_saldo'                 =>  $Fecha_saldo ];
   }
+
+ 
 
   //ingresar de caja
   public function ingresar_movimiento_caja(Request $Request)

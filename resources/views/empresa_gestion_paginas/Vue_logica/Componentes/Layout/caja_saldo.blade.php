@@ -16,7 +16,12 @@ data:function(){
       saldo_dolares:{!! json_encode(Session::get('sucursal'.$Empresa->id)->saldo_de_caja_dolares) !!},
       fecha_inicio:new Date(),
       fecha_fin:new Date(),
+      fecha_de_arqueo:'',
       buscar_entre_fechas_mostrar:false,  
+      tipo_de_consulta:'inicial',
+      inicial:'inicial',
+      arqueo:'arqueo',
+      entre_fechas:'entre_fechas'
 
     }
 },
@@ -27,6 +32,11 @@ mounted: function mounted () {
 },
 methods:{
 
+    disparador:function(tipo_de_consulta)  
+    {
+      this.tipo_de_consulta = tipo_de_consulta;
+      this.getMovimientosDeCaja();
+    },  
 
      setFecha:function()
      {
@@ -35,6 +45,7 @@ methods:{
 
        this.fecha_inicio = fecha.toISOString().slice(0,10);
        this.fecha_fin = fecha.toISOString().slice(0,10);
+       this.fecha_de_arqueo = fecha.toISOString().slice(0,10);;
      },
 
      mostrar_busqueda:function(){
@@ -56,7 +67,8 @@ methods:{
                        empresa_id:  this.sucursal.empresa_id, 
                       sucursal_id:  this.sucursal.id,
                      fecha_inicio:  this.fecha_inicio,
-                        fecha_fin:  this.fecha_fin
+                        fecha_fin:  this.fecha_fin,
+                 tipo_de_consulta:  this.tipo_de_consulta
                       
                        
                  };  

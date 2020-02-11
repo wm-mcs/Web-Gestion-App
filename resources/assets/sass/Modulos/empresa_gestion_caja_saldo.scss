@@ -35,9 +35,27 @@
     @include flex-direction(row);
     @include align-items(center); 
     @include justify-content(space-around);
-    margin-top:10px;
+    @include flex-wrap(wrap); 
+    
     margin-bottom:10px;
+    border:solid 1px $color-grey0;
   }
+
+    .fecha_input_caja_busqueda{
+      width:70%;
+      max-width:300px;
+      margin-bottom:10px;
+    }
+
+    .fechas-buscar-texto{
+      margin-top:10px;  
+      color: $Color-texto-gris-Mercadolibre;
+      font-size: 12px;
+      text-align: left;
+
+    }
+
+
 
   .contiene-buscar-entre-fechas-texto{
     width:100%;
