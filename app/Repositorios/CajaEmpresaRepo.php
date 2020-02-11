@@ -6,6 +6,7 @@ use App\Entidades\CajaEmpresa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 
 
@@ -65,6 +66,63 @@ class CajaEmpresaRepo extends BaseRepo
                               ->where('borrado','no')
                               ->orderBy('created_at', 'DESC')
                               ->get();
+  }
+
+  public function getMovimientoYSaldoEntreFechas($sucursal_id,$Moneda,$Fecha_inicio = null, $Fecha_fin =  null)
+  {
+      if($Fecha_inicio == $Fecha_fin) 
+      {
+        $Movimientos = $this->getEntidad()
+                            ->where('sucursal_id',$sucursal_id)
+                            ->where('borrado','no')
+                            ->where('moneda',$Moneda)
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
+
+                         
+      }
+      else
+      {
+        $Movimientos = $this->getEntidad()
+                            ->where('sucursal_id',$sucursal_id)
+                            ->where('borrado','no')
+                            ->where('moneda',$Moneda)
+                            ->whereBetween('created_at',[$Fecha_inicio,$Fecha_fin])
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
+
+        
+      }
+
+        $Saldo = $this->getSaldoSegunMonedaYFechaFin($sucursal_id,$Moneda,$Fecha_fin);  
+
+      return [
+              'Movimientos' => $Movimientos,
+              'Saldo'       => $Saldo
+             ];
+
+
+  }
+
+  public function getSaldoSegunMonedaYFechaFin($sucursal_id,$Moneda,$Fecha_fin)
+  {
+    $Movimientos = $this->getEntidad()
+                        ->where('sucursal_id',$sucursal_id)
+                        ->where('borrado','no')
+                        ->where('moneda',$Moneda)
+                        ->where('created_at','<=',$Fecha_fin)
+                        ->orderBy('created_at', 'DESC')
+                        ->get();
+
+
+      $Debe    = $Movimientos->where('tipo_saldo','deudor')          
+                             ->sum('valor');
+
+      $Acredor = $Movimientos->where('tipo_saldo','acredor') 
+                             ->sum('valor');
+
+
+      return round($Debe - $Acredor) ;  
   }
 
 

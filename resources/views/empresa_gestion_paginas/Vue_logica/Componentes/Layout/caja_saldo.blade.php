@@ -9,8 +9,14 @@ data:function(){
       modal_pesos:'#modal-caja-pesos',
       modal_dolares:'#modal-caja-dolares',
       valor_actual_pesos:'0',
+      fecha_de_saldo:'',
       movimientos_de_caja_pesos:0,
-      movimientos_de_caja_dolares:0
+      movimientos_de_caja_dolares:0,
+      saldo_pesos:0,
+      saldo_dolares:0,
+      fecha_inicio:new Date(),
+      fecha_fin:new Date(),
+      buscar_entre_fechas_mostrar:false,  
 
     }
 },
@@ -22,7 +28,11 @@ methods:{
 
       var data = {    
                        empresa_id:  this.sucursal.empresa_id, 
-                      sucursal_id:  this.sucursal.id   
+                      sucursal_id:  this.sucursal.id,
+                     fecha_inicio:  this.fecha_inicio,
+                        fecha_fin:  this.fecha_fin
+                      
+                       
                  };  
       var vue = this; 
 
@@ -108,23 +118,23 @@ template:'<div>
      <span class="saldo-aclaracion"> 
        Saldo caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
-     <div v-if="esMatoyIgualACero(sucursal.saldo_de_caja_pesos)" class="saldo-valor">
-       $ @{{sucursal.saldo_de_caja_pesos}}
+     <div v-if="esMatoyIgualACero(saldo_pesos)" class="saldo-valor">
+       $ @{{saldo_pesos}}
      </div>
      <div v-else class="color-text-danger saldo-valor ">
-       $ @{{sucursal.saldo_de_caja_pesos}}
+       $ @{{saldo_pesos}}
      </div>
   </div> 
 
- <div v-if="esDistintoACero(sucursal.saldo_de_caja_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
+ <div v-if="esDistintoACero(saldo_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
      <span class="saldo-aclaracion"> 
        Saldo caja dolares sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
-     <div v-if="esMatoyIgualACero(sucursal.saldo_de_caja_dolares)" class="saldo-valor">
-       U$S @{{sucursal.saldo_de_caja_dolares}}
+     <div v-if="esMatoyIgualACero(saldo_dolares)" class="saldo-valor">
+       U$S @{{saldo_dolares}}
      </div>
      <div v-else class="color-text-danger saldo-valor">
-       U$S @{{sucursal.saldo_de_caja_dolares}}
+       U$S @{{saldo_dolares}}
      </div>
  </div> 
 
@@ -136,8 +146,8 @@ template:'<div>
           <h4 class="modal-title get_width_80" id="myModalLabel">
             Movimientos de caja pesos:  
             <div class="saldo-modal">              
-              Saldo  
-              <span class="saldo-modal-valor">$ @{{sucursal.saldo_de_caja_pesos}} </span>
+              Saldo al día @{{fecha_de_saldo}}
+              <span class="saldo-modal-valor">$ @{{saldo_pesos}} </span>
             </div>
             
 
@@ -175,8 +185,8 @@ template:'<div>
           <h4 class="modal-title" id="myModalLabel">Movimientos de caja dolares
            
             <div class="saldo-modal">              
-              Saldo  
-              <span class="saldo-modal-valor">U$S @{{sucursal.saldo_de_caja_dolares}} </span>
+              Saldo al día @{{fecha_de_saldo}}
+              <span class="saldo-modal-valor">U$S @{{saldo_dolares}}  </span>
             </div>
           </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>

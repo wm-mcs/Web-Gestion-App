@@ -1088,10 +1088,24 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $User              = $Request->get('user_desde_middleware'); 
     $Sucursal          = $Request->get('sucursal_desde_middleware');
 
+    $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'));
+    $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'));
+    $Fecha_saldo       = $Fecha_fin->format('Y-D-M');
+
+    
+
+      $Pesos           = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
+      $Dolares         = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
+      
+    
+
     return  ['Validacion'                    =>  true,
                'Validacion_mensaje'          =>  'Movimientos de caja cargados correctamente',
-               'movimientos_de_caja_pesos'   =>  $this->CajaEmpresaRepo->getMovimientosDeEstaSucrsalEnPesos($Sucursal->id) ,
-               'movimientos_de_caja_dolares' =>  $this->CajaEmpresaRepo->getMovimientosDeEstaSucrsalEnDolares($Sucursal->id) ];
+               'movimientos_de_caja_pesos'   =>  $Pesos['Movimientos'],
+               'movimientos_de_caja_dolares' =>  $Dolares['Movimientos'],
+               'Saldo_pesos'                 =>  $Pesos['Saldo'],
+               'Saldo_dolares'               =>  $Dolares['Saldo'],
+               'Fecha_saldo'                 =   $Fecha_saldo ];
   }
 
   //ingresar de caja
