@@ -64,7 +64,7 @@ class CajaEmpresaRepo extends BaseRepo
   {
     return $this->getEntidad()->where('sucursal_id',$sucursal_id)
                               ->where('borrado','no')
-                              ->orderBy('created_at', 'DESC')
+                              ->orderBy('fecha_ingreso', 'DESC')
                               ->get();
   }
 
@@ -76,7 +76,7 @@ class CajaEmpresaRepo extends BaseRepo
                             ->where('sucursal_id',$sucursal_id)
                             ->where('borrado','no')
                             ->where('moneda',$Moneda)
-                            ->orderBy('created_at', 'DESC')
+                            ->orderBy('fecha_ingreso', 'DESC')
                             ->get();
 
                          
@@ -87,8 +87,9 @@ class CajaEmpresaRepo extends BaseRepo
                             ->where('sucursal_id',$sucursal_id)
                             ->where('borrado','no')
                             ->where('moneda',$Moneda)
-                            ->whereBetween('created_at',[$Fecha_inicio,$Fecha_fin])
-                            ->orderBy('created_at', 'DESC')
+                            ->where('fecha_ingreso','>=',$Fecha_inicio)
+                            ->where('fecha_ingreso','<=',$Fecha_fin)
+                            ->orderBy('fecha_ingreso', 'DESC')
                             ->get();
 
         
@@ -110,8 +111,8 @@ class CajaEmpresaRepo extends BaseRepo
                         ->where('sucursal_id',$sucursal_id)
                         ->where('borrado','no')
                         ->where('moneda',$Moneda)
-                        ->where('created_at','<=',$Fecha_fin)
-                        ->orderBy('created_at', 'DESC')
+                        ->where('fecha_ingreso','<=',$Fecha_fin)
+                        ->orderBy('fecha_ingreso', 'DESC')
                         ->get();
 
 
@@ -158,7 +159,7 @@ class CajaEmpresaRepo extends BaseRepo
     return $this->getEntidad()->where('sucursal_id',$sucursal_id)
                               ->where('borrado','no')
                               ->where('moneda','$')
-                              ->orderBy('created_at', 'DESC')
+                              ->orderBy('fecha_ingreso', 'DESC')
                               ->get();
   }
 
@@ -167,7 +168,7 @@ class CajaEmpresaRepo extends BaseRepo
     return $this->getEntidad()->where('sucursal_id',$sucursal_id)
                               ->where('borrado','no')
                               ->where('moneda','U$S')
-                              ->orderBy('created_at', 'DESC')
+                              ->orderBy('fecha_ingreso', 'DESC')
                               ->get();
   }
 
