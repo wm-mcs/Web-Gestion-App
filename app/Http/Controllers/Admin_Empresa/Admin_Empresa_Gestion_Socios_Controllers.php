@@ -1090,7 +1090,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'));
     $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'));
-    $Fecha_saldo       = $Fecha_fin->format('Y-D-M');
+    $Fecha_saldo       = $Fecha_fin->format('y-m-d');
 
     
 
