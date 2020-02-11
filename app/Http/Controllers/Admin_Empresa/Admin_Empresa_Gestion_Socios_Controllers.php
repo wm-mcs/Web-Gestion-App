@@ -1097,18 +1097,18 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       
      if($TipoDeConsulta == 'arqueo')
      {
-        $Fecha_inicio = Carbon::parse($Request->get('fecha_de_arqueo')->endOfDay());
-        $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo')->endOfDay());
+        $Fecha_inicio = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
+        $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
      }
      elseif($TipoDeConsulta == 'entre_fechas')
      {
-       $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio')->startOfDay());
-       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin')->endOfDay());
+       $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'))->startOfDay();
+       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'))->endOfDay();
      }
      else
      {
-       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin')->endOfDay());
-       $Fecha_inicio      = $Fecha_fin->subDays(14)->startOfDay();
+       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'))->endOfDay();
+       $Fecha_inicio      = $Fecha_fin->subDays(14)->startOfDay());
        
      
      }
