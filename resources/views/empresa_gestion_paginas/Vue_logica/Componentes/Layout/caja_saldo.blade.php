@@ -22,6 +22,17 @@ data:function(){
 },
 methods:{
 
+     mostrar_busqueda:fucntion(){
+     if(this.buscar_entre_fechas_mostrar) 
+     {
+      this.buscar_entre_fechas_mostrar = false;
+     }
+     else
+     {
+      this.buscar_entre_fechas_mostrar = true;
+     }
+     },
+
     getMovimientosDeCaja:function(){
 
       var url = '/get_movimientos_de_caja_de_sucursal';
@@ -129,6 +140,7 @@ template:'<div>
      <div v-else class="color-text-danger saldo-valor ">
        $ @{{saldo_pesos}}
      </div>
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
   </div> 
 
  <div v-if="esDistintoACero(saldo_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
@@ -194,6 +206,7 @@ template:'<div>
               <span class="saldo-modal-valor">U$S @{{saldo_dolares}}  </span>
             </div>
           </h4>
+          @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>

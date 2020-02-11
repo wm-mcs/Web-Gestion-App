@@ -29,6 +29,29 @@
   }
 
 
+  .contiene-buscar-entre-fechas{
+    width:100%;
+    @include flexbox;       
+    @include flex-direction(row);
+    @include align-items(center); 
+    @include justify-content(space-around);
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+
+  .contiene-buscar-entre-fechas-texto{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align:center;
+    border:solid 1px $color-3;
+    color:$color-3;
+    cursor:pointer;
+  }
+
+
+
   .saldo-modal{
     font-size: 22px;
     color:$Color-texto-gris-Mercadolibre;
