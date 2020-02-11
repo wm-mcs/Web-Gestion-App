@@ -1088,10 +1088,20 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $User              = $Request->get('user_desde_middleware'); 
     $Sucursal          = $Request->get('sucursal_desde_middleware');
 
-    $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'));
-    $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'));
+    if($Fecha_inicio != $Fecha_fin)
+    {
+      $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio')->startOfDay());
+      $Fecha_fin         = Carbon::parse($Request->get('fecha_fin')->endOfDay());
+    }
+    else
+    {
+       $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'));
+       $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'));
+    }
 
-    dd($Fecha_inicio,$Fecha_fin, $Sucursal->created_at);
+    
+
+
     $Fecha_saldo       = $Fecha_fin->format('Y-m-d');
 
     
