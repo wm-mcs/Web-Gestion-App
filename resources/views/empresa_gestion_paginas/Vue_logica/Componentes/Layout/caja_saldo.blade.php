@@ -22,7 +22,7 @@ data:function(){
 },
 methods:{
 
-     mostrar_busqueda:fucntion(){
+     mostrar_busqueda:function(){
      if(this.buscar_entre_fechas_mostrar) 
      {
       this.buscar_entre_fechas_mostrar = false;
