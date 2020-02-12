@@ -1099,6 +1099,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      {
         $Fecha_inicio = Carbon::parse($Request->get('fecha_de_arqueo'))->startOfDay();
         $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
+
+        dd($Fecha_inicio,$Fecha_fin);
      }
      elseif($TipoDeConsulta == 'entre_fechas')
      {
@@ -1107,7 +1109,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      }
      elseif($TipoDeConsulta == 'inicial')
      {
-      
+
        $Fecha_fin         = Carbon::now('America/Montevideo');
        $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
      }
