@@ -207,6 +207,11 @@ template:'<div>
                        </div>
                   </div>
         <div v-if="esDistintoACero(movimientos_de_caja_pesos)"  class="modal-body text-center"> 
+        <div class="fechas-buscar-texto text-center">
+          Estás viendo los movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> $ @{{saldo_pesos}} </strong> . 
+        </div>
+
+
           <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos" 
                        :key="caja.id"
                        :caja="caja"
@@ -218,6 +223,9 @@ template:'<div>
 
                   
                  
+        </div>
+        <div  v-else class="fechas-buscar-texto text-center">
+          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> 
         </div>
        
       </div>
@@ -245,6 +253,9 @@ template:'<div>
                        </div>
                   </div>
         <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal-body text-center"> 
+        <div class="fechas-buscar-texto text-center">
+          Estás viendo los movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> U$S @{{saldo_dolares}} </strong> . 
+        </div>
           <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares" 
                        :key="caja.id"
                        :caja="caja"
@@ -253,10 +264,12 @@ template:'<div>
            
             
           </caja-lista>
-
-                  
-                 
         </div>
+         <div  v-else class="fechas-buscar-texto text-center">
+          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> 
+        </div>
+
+
        
       </div>
     </div>
