@@ -87,12 +87,12 @@ methods:{
 
                vue.fecha_de_saldo = data.Fecha_saldo;
             
-               if(data.movimientos_de_caja_pesos.length)
+               if(data.movimientos_de_caja_pesos)
                {
                 vue.movimientos_de_caja_pesos = data.movimientos_de_caja_pesos;
                 vue.saldo_pesos =  data.Saldo_pesos;
                }
-               if(data.movimientos_de_caja_dolares.length)
+               if(data.movimientos_de_caja_dolares)
                {
                 vue.movimientos_de_caja_dolares = data.movimientos_de_caja_dolares;
                 vue.saldo_dolares = data.Saldo_dolares;
