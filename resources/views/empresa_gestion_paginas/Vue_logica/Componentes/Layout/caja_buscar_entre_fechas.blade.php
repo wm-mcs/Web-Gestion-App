@@ -18,13 +18,14 @@
 			Ver los movimientos de ese día y el saldo a ese día.
 		</div>
 		<div class="get_width_100 flex-row-center">
-		<div class="flex-row-column get_width_100">
+		<div class="flex-row-column ">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
 			
 		</div>
 		<div class="admin-user-boton-Crear" v-on:click="disparador(arqueo)"> <i class="fas fa-search"></i> </div>
 		</div>
 	</div>
+	<div v-on:click="mostrar_busqueda">Cerrar búsqueda</div>
 </div>
 <div v-else  v-on:click="mostrar_busqueda" class="contiene-buscar-entre-fechas-texto">
 	Filtrar por fechas
