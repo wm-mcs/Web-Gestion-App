@@ -70,31 +70,17 @@ class CajaEmpresaRepo extends BaseRepo
 
   public function getMovimientoYSaldoEntreFechas($sucursal_id,$Moneda,$Fecha_inicio = null, $Fecha_fin =  null)
   {
-      if($Fecha_inicio == $Fecha_fin) 
-      {
         $Movimientos = $this->getEntidad()
                             ->where('sucursal_id',$sucursal_id)
                             ->where('borrado','no')
                             ->where('moneda',$Moneda)
+                            ->whereBettween('fecha_ingreso',[$Fecha_inicio,$Fecha_fin])
+                            
                             ->orderBy('fecha_ingreso', 'DESC')
                             ->get();
 
         
-                         
-      }
-      else
-      {
-        $Movimientos = $this->getEntidad()
-                            ->where('sucursal_id',$sucursal_id)
-                            ->where('borrado','no')
-                            ->where('moneda',$Moneda)
-                            ->where('fecha_ingreso','>=',$Fecha_inicio)
-                            ->where('fecha_ingreso','<=',$Fecha_fin)
-                            ->orderBy('fecha_ingreso', 'DESC')
-                            ->get();
-
-        
-      }
+      
 
         $Saldo = $this->getSaldoSegunMonedaYFechaFin($sucursal_id,$Moneda,$Fecha_fin);  
 
