@@ -1100,7 +1100,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Fecha_inicio = Carbon::parse($Request->get('fecha_de_arqueo'))->startOfDay();
         $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
 
-        dd($Fecha_inicio,$Fecha_fin);
+
      }
      elseif($TipoDeConsulta == 'entre_fechas')
      {
@@ -1131,6 +1131,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
 
       $Pesos           = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
+
+       dd($Fecha_inicio,$Fecha_fin,$Pesos);
       $Dolares         = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
     
 
