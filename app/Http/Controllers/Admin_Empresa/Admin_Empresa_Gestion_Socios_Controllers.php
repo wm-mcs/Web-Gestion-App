@@ -1132,7 +1132,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
       $Pesos           = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
 
-       
+
       $Dolares         = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
     
 
@@ -1142,7 +1142,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'movimientos_de_caja_dolares' =>  $Dolares['Movimientos'],
                'Saldo_pesos'                 =>  $Pesos['Saldo'],
                'Saldo_dolares'               =>  $Dolares['Saldo'],
-               'Fecha_saldo'                 =>  $Fecha_saldo ];
+               'Fecha_saldo'                 =>  $Fecha_saldo,
+               'Fecha_inicio'                =>  $Fecha_inicio,
+               'Fecha_fin'                   =>  $Fecha_fin  ];
   }
 
  

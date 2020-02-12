@@ -43,8 +43,7 @@ methods:{
        var fecha =  new Date();
        fecha.setMonth(fecha.getMonth());
 
-       this.fecha_inicio    = fecha.toISOString().slice(0,10);
-       this.fecha_fin       = fecha.toISOString().slice(0,10);
+       
        this.fecha_de_arqueo = fecha.toISOString().slice(0,10);
      },
 
@@ -86,6 +85,8 @@ methods:{
                app.cargando = false;
 
                vue.fecha_de_saldo = data.Fecha_saldo;
+               this.fecha_inicio    = data.Fecha_inicio;
+               this.fecha_fin       = data.Fecha_fin;
             
                if(data.movimientos_de_caja_pesos)
                {
