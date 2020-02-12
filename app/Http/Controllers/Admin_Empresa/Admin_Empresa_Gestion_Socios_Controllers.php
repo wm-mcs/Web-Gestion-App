@@ -1143,8 +1143,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                'Saldo_pesos'                 =>  $Pesos['Saldo'],
                'Saldo_dolares'               =>  $Dolares['Saldo'],
                'Fecha_saldo'                 =>  $Fecha_saldo,
-               'Fecha_inicio'                =>  $Fecha_inicio,
-               'Fecha_fin'                   =>  $Fecha_fin  ];
+               'Fecha_inicio'                =>  $Fecha_inicio->format('Y-m-d'),
+               'Fecha_fin'                   =>  $Fecha_fin->format('Y-m-d')  ];
   }
 
  

@@ -85,9 +85,9 @@ methods:{
                app.cargando = false;
 
                vue.fecha_de_saldo = data.Fecha_saldo;
-               vue.fecha_inicio    = data.Fecha_inicio.date;
-               vue.fecha_fin       = data.Fecha_fin.date;
-               vue.fecha_de_arqueo = data.Fecha_fin.date;
+               vue.fecha_inicio    = data.Fecha_inicio;
+               vue.fecha_fin       = data.Fecha_fin;
+               vue.fecha_de_arqueo = data.Fecha_fin;
             
                if(data.movimientos_de_caja_pesos)
                {
