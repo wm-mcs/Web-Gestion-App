@@ -1108,7 +1108,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      else
      {
        $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'))->endOfDay();
-       $Fecha_inicio      = $Fecha_fin->subDays(14)->startOfDay());
+       $Fecha_inicio      = $Fecha_fin->subDays(14)->startOfDay();
        
      
      }
