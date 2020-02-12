@@ -27,7 +27,7 @@ data:function(){
 },
 mounted: function mounted () {        
       
-    this.setFecha();
+    
 
 },
 methods:{
@@ -85,8 +85,9 @@ methods:{
                app.cargando = false;
 
                vue.fecha_de_saldo = data.Fecha_saldo;
-               this.fecha_inicio    = data.Fecha_inicio;
-               this.fecha_fin       = data.Fecha_fin;
+               vue.fecha_inicio    = data.Fecha_inicio;
+               vue.fecha_fin       = data.Fecha_fin;
+               vue.fecha_de_arqueo = data.Fecha_fin;
             
                if(data.movimientos_de_caja_pesos)
                {
