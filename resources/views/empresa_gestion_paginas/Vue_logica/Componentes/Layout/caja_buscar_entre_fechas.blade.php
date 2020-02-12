@@ -2,7 +2,7 @@
 	<div class="contiene-buscar-entre-fechas">
 
 		<div class="fechas-buscar-texto">
-			Buscar los movimientos entre fechas.
+			Buscar movimientos entre fechas. Para hacer arqueos elegir la misma fecha en ambos campos. De esa manera se veran los movimientos de ese día y el saldo a ese día.
 		</div>
 		<div class="get_width_100 flex-row-center">
 			<div class="flex-row-column">
@@ -13,7 +13,7 @@
 		</div>
 		
 	</div>
-	<div class="contiene-buscar-entre-fechas">
+	{{-- <div class="contiene-buscar-entre-fechas">
 		<div class="fechas-buscar-texto">
 			Ver los movimientos de ese día y el saldo a ese día.
 		</div>
@@ -24,7 +24,7 @@
 		</div>
 		<div class="admin-user-boton-Crear" v-on:click="disparador(arqueo)"> <i class="fas fa-search"></i> </div>
 		</div>
-	</div>
+	</div> --}}
 	<div v-on:click="mostrar_busqueda">Cerrar búsqueda</div>
 </div>
 <div v-else  v-on:click="mostrar_busqueda" class="contiene-buscar-entre-fechas-texto">
