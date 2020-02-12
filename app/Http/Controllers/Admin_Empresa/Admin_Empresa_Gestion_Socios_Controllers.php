@@ -1105,10 +1105,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Fecha_inicio      = Carbon::parse($Request->get('fecha_inicio'))->startOfDay();
        $Fecha_fin         = Carbon::parse($Request->get('fecha_fin'))->endOfDay();
      }
+     elseif($TipoDeConsulta == 'inicial')
+     {
+      
+       $Fecha_fin         = Carbon::now('America/Montevideo');
+       $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
+     }
      else
      {
-       $Fecha_fin         = Carbon::now('America/Montevideo')->endOfDay();
-       $Fecha_inicio      = $Fecha_fin->subDays(30)->startOfDay();
+       $Fecha_fin         = Carbon::now('America/Montevideo');
+       $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
        
      
      }
