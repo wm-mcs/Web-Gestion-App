@@ -19,7 +19,7 @@
 		</div>
 		<div class="get_width_100 flex-row-center">
 		<div class="flex-row-column ">
-			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
+			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_de_arqueo" name="">
 			
 		</div>
 		<div class="admin-user-boton-Crear" v-on:click="disparador(arqueo)"> <i class="fas fa-search"></i> </div>
