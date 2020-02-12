@@ -74,7 +74,7 @@ class CajaEmpresaRepo extends BaseRepo
                             ->where('sucursal_id',$sucursal_id)
                             ->where('borrado','no')
                             ->where('moneda',$Moneda)
-                            ->whereBettween('fecha_ingreso',[$Fecha_inicio,$Fecha_fin])
+                            ->whereBetween('fecha_ingreso',[$Fecha_inicio,$Fecha_fin])
                             
                             ->orderBy('fecha_ingreso', 'DESC')
                             ->get();
