@@ -37,6 +37,7 @@ class CajaEmpresaRepo extends BaseRepo
     $Entidad->detalle          = $detalle;
     $Entidad->tipo_movimiento  = $tipo_movimiento;
     $Entidad->fecha_ingreso    = $fecha_ingreso;
+    $Entidad->borrado          = 'no';
 
     if($servicio != null)
     {
@@ -98,8 +99,8 @@ class CajaEmpresaRepo extends BaseRepo
                         ->where('sucursal_id',$sucursal_id)
                         ->where('borrado','no')
                         ->where('moneda',$Moneda)
-                        ->where('fecha_ingreso','<=',$Fecha_fin)
-                        ->orderBy('fecha_ingreso', 'DESC')
+                        ->where('fecha_ingreso','<',$Fecha_fin)
+                        
                         ->get();
 
 
