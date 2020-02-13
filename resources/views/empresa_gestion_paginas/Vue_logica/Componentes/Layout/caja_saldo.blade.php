@@ -242,9 +242,9 @@ template:'<div>
               Saldo al día @{{fecha_de_saldo}}
               <span class="saldo-modal-valor">U$S @{{saldo_dolares}}  </span>
             </div>
+            @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
           </h4>
-          @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
           
         </div>
         <div v-if="$root.cargando" class="Procesando-text">
