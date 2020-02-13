@@ -46,8 +46,7 @@ template:' @if(Auth::user()->role >= 3) <span v-if="se_ve" class="contiene-sucur
         <div class="modal-header">
           <div class="">
           <h4 class="modal-title" id="myModalLabel">Acciones automáticas </h4>
-          <div class="modal-mensaje-aclarador">
-                Está son las actividades automáticas que realiza el sistema con respecto a la <strong> actualización de los servicio de carácter mensual de los socios</strong>. Se realiza cada día apróximadamente
+          <div class="modal-mensaje-aclarador">A continuación se presentan las actividades automáticas que realiza el sistema con respecto a la actualización de los servicios de caracter mensual de los socios. Se realizan una vez al día
 
 
           </div>

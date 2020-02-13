@@ -259,7 +259,7 @@ template:'
 
              </div>
              <div v-else>
-               Aún no hay servicios creados. Crea uno ahora !
+               Aún no hay servicios creados. ¡Crea uno ahora!
              </div>
 
 
@@ -268,8 +268,8 @@ template:'
                   </div>
 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Nombres  </label>
-                      <input type="text" class="form-control"  v-model="crear_service_name" placeholder="Nombre" required  />
+                      <label class="formulario-label" for="Nombre">Nombre del servicio  </label>
+                      <input type="text" class="form-control"  v-model="crear_service_name" placeholder="Nombre del servicio" required  />
                   </div> 
                  
 

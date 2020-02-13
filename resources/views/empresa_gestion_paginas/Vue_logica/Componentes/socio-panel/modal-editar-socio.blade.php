@@ -22,26 +22,25 @@
         <div class="modal-body text-center"> 
 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Nombres  </label>
-                      <input type="text" class="form-control"  v-model="socio.name" placeholder="Nombre" required  />
+                      <label class="formulario-label" for="Nombre">Nombres y apellidos  </label>
+                      <input type="text" class="form-control"  v-model="socio.name" placeholder="Nombres y apellidos" required  />
                   </div> 
                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Cédula  <span class="formulario-label-aclaracion"> (sin puntos ni guiones)</span> </label>
-                      <input type="text" class="form-control"  v-model="socio.cedula" placeholder="Cedula" required  />
+                      <input type="text" class="form-control"  v-model="socio.cedula" placeholder="Cédula" required  />
                   </div> 
                   <div class="form-group">
                       <label class="formulario-label" for="Nombre">Email</label>
                       <input type="text" class="form-control"  v-model="socio.email" placeholder="Email" required  />
                   </div> 
                    <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Celular</label>
-                      <input type="text" class="form-control"  v-model="socio.celular" placeholder="Celular" required  />
+                      <label class="formulario-label" for="Nombre">Número de celular</label>
+                      <input type="text" class="form-control"  v-model="socio.celular" placeholder="Número de celular" required  />
                    </div> 
 
                    <div class="form-group">
                       <label class="formulario-label" for="Nombre">Celular internacional</label>
-                      <div class="modal-mensaje-aclarador">
-                       Rellená este campo solo si el socio tiene un celular distinto al de tu país. Debes agregar el celular completo sin el simbolo de +. Es para que puedas comunicarte por Whatsapp con un solo click.
+                      <div class="modal-mensaje-aclarador">Rellenar este campo únicamente si el socio tiene un celular distinto al de tu país. Agregar el celular completo sin el símbolo de +. Esto es para que puedas comunicarte por Whatsapp con un solo click.
                       </div>
                       <input type="text" class="form-control"  v-model="socio.celular_internacional" placeholder="Celular" required  />
                    </div>
@@ -54,16 +53,16 @@
                   </div> 
 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Rut  <span class="formulario-label-aclaracion"> (solo si aplica)</span></label>
-                      <input type="text" class="form-control"  v-model="socio.rut" placeholder="Rut" required  />
+                      <label class="formulario-label" for="Nombre">RUT  </label>
+                      <input type="text" class="form-control"  v-model="socio.rut" placeholder="RUT" required  />
                   </div> 
 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Razón social  <span class="formulario-label-aclaracion"> (solo si aplica)</span></label>
-                      <input type="text" class="form-control"  v-model="socio.razon_social" placeholder="Razon social" required  />
+                      <label class="formulario-label" for="Nombre">Razón social </label>
+                      <input type="text" class="form-control"  v-model="socio.razon_social" placeholder="Razón social" required  />
                   </div> 
                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Mutualista  <span class="formulario-label-aclaracion"> (solo si aplica)</span></label>
+                      <label class="formulario-label" for="Nombre">Mutualista</label>
                       <input type="text" class="form-control"  v-model="socio.mutualista" placeholder="Mutualista" required  />
                   </div> 
 
@@ -75,7 +74,7 @@
                  <div class="form-group">
                       <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo? </span></label>
                       <div class="modal-mensaje-aclarador">
-                       Si cambias a "no" el socio desaparecerá del listado.
+                       Si cambias a "No" no podrás realizar acciones con el socio (cobrar, vender, etc) y el mismo no se mostrará en los listados.
                       </div>
                      <select v-model="socio.estado" class="form-control">
                         

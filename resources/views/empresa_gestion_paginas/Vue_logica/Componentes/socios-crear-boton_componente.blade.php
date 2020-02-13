@@ -101,12 +101,12 @@ template:'<span >
         <div class="modal-body text-center"> 
 
                   <div class="formulario-label-fiel">
-                      <label class="formulario-label" for="Nombre">Nombres  </label>
-                      <input type="text" class="formulario-field"  v-model="form_socio_name" placeholder="Nombre" required  />
+                      <label class="formulario-label" for="Nombre">Nombres y apellidos  </label>
+                      <input type="text" class="formulario-field"  v-model="form_socio_name" placeholder="Nombres y apellidos" required  />
                   </div>                  
                   <div class="formulario-label-fiel">
-                      <label class="formulario-label" for="Nombre">Celular</label>
-                      <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Celular" required  />
+                      <label class="formulario-label" for="Nombre">Número de celular</label>
+                      <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
                   </div> 
                
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
