@@ -102,7 +102,7 @@ template:'
 
 
 
-    @if(Auth::user()->role > 3)
+    
     <div class="contiene-planes-socio-lista">
       
        
@@ -121,11 +121,11 @@ template:'
         
 
     </div>
-    @endif
+    
     
 
   </div>
-  @if(Auth::user()->role > 3)
+  
   <div class="socio-lista-contiene-estado-de-cuenta">
       @if(Auth::user()->role > 8)
        <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
@@ -135,7 +135,7 @@ template:'
 
   
   </div>
-  @endif
+  
 
 
 
