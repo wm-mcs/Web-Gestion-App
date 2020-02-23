@@ -170,7 +170,6 @@ compara_valor_de_vencimiento:function(a,b)
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
-
 get_socios:function(){
 
   var url = '/get_socios_activos';
