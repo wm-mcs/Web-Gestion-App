@@ -111,7 +111,7 @@ computed:{
          socios = socios.sort(this.comparar_valor('created_at','asc'));
     
     break;
-    case "se_vence:
+    case "se_vence":
        socios = socios.sort(this.compara_valor_de_vencimiento);
 
     break;
