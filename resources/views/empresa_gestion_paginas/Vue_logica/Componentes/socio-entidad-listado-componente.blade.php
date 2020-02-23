@@ -162,10 +162,10 @@ compara_valor_de_vencimiento:function(a,b){
 
   var order = 'asc';
 
-  const varA = (typeof a['servicios_contratados_del_socio'][0]['fecha_vencimiento'] === 'string')
-      ? a['servicios_contratados_del_socio'][0]['fecha_vencimiento'].toUpperCase() : a['servicios_contratados_del_socio'][0]['fecha_vencimiento'];
-    const varB = (typeof b['servicios_contratados_del_socio'][0] === 'string')
-      ? b['servicios_contratados_del_socio'][0]['fecha_vencimiento'].toUpperCase() : b['servicios_contratados_del_socio'][0]['fecha_vencimiento'];
+  const varA = (typeof a['servicios_contratados_del_socio'][0].fecha_vencimiento === 'string')
+      ? a['servicios_contratados_del_socio'][0].fecha_vencimiento.toUpperCase() : a['servicios_contratados_del_socio'][0].fecha_vencimiento;
+    const varB = (typeof b['servicios_contratados_del_socio'][0].fecha_vencimiento === 'string')
+      ? b['servicios_contratados_del_socio'][0].fecha_vencimiento.toUpperCase() : b['servicios_contratados_del_socio'][0].fecha_vencimiento;
 
     let comparison = 0;
     if (varA > varB) {
