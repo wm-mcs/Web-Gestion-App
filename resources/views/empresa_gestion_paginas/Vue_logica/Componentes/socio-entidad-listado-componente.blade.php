@@ -167,6 +167,8 @@ compara_valor_de_vencimiento:function(a,b){
     const varB = (typeof b['servicios_contratados_del_socio'][0].fecha_vencimiento === 'string')
       ? b['servicios_contratados_del_socio'][0].fecha_vencimiento.toUpperCase() : b['servicios_contratados_del_socio'][0].fecha_vencimiento;
 
+      console.log(a,b);
+
     let comparison = 0;
     if (varA > varB) {
       comparison = 1;
