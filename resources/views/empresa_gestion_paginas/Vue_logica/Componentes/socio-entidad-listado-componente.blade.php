@@ -159,13 +159,24 @@ compara_valor_de_vencimiento:function(a,b){
   {
     return 0;
   }
-  if( a.servicios_contratados_del_socio[0].fecha_vencimiento > b.servicios_contratados_del_socio[0].fecha_vencimiento ){
-    return -1;
-  }
-  else
-  {
-   return 1;
-  }
+
+  var order = 'asc';
+
+  const varA = (typeof a['servicios_contratados_del_socio'][0] === 'string')
+      ? a['servicios_contratados_del_socio'][0].toUpperCase() : a['servicios_contratados_del_socio'][0];
+    const varB = (typeof b['servicios_contratados_del_socio'][0] === 'string')
+      ? b['servicios_contratados_del_socio'][0].toUpperCase() : b['servicios_contratados_del_socio'][0];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return (
+      (order === 'desc') ? (comparison * -1) : comparison
+    );
+  
   
 },
 actualizar_socios:function(socios){
