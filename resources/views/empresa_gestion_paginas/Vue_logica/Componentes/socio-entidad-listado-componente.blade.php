@@ -152,13 +152,12 @@ comparar_valor:function(key, order = 'asc') {
     );
   };
 },
-compara_valor_de_vencimiento:function(a,b)
-{
-  if(!a.servicios_contratados.length)
+compara_valor_de_vencimiento:function(a,b){
+  if(a.servicios_contratados.length == 0)
   {
     return 0;
   }
-  if ( a.servicios_contratados[0].fecha_vencimiento < b.servicios_contratados[0].fecha_vencimiento ){
+  if( a.servicios_contratados[0].fecha_vencimiento < b.servicios_contratados[0].fecha_vencimiento ){
     return -1;
   }
   else
