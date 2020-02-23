@@ -175,6 +175,7 @@ compara_valor_de_vencimiento:function(a,b){
     } else if (varA < varB) {
       comparison = -1;
     }
+    console.log(varA,varB,comparison);
     return (
       (order === 'desc') ? (comparison * -1) : comparison
     );
