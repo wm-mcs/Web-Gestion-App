@@ -29,6 +29,10 @@ data:function(){
                             nombre:'Recién creados', 
                              value:'nuevos'
                            },
+                           {
+                            nombre:'Por vencer servicio',
+                             value:'se_vence'
+                           }
 
 
                           ]
@@ -107,6 +111,10 @@ computed:{
          socios = socios.sort(this.comparar_valor('created_at','asc'));
     
     break;
+    case "se_vence:
+       socios = socios.sort(this.compara_valor_de_vencimiento);
+
+    break;
 
     default:
         socios = socios;
@@ -144,7 +152,21 @@ comparar_valor:function(key, order = 'asc') {
     );
   };
 },
-         
+compara_valor_de_vencimiento:function(a,b)
+{
+  if(!a.servicios_contratados.length)
+  {
+    return 0;
+  }
+  if ( a.servicios_contratados[0].fecha_vencimiento < b.servicios_contratados[0].fecha_vencimiento ){
+    return -1;
+  }
+  else
+  {
+   return 1;
+  }
+  
+},
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
