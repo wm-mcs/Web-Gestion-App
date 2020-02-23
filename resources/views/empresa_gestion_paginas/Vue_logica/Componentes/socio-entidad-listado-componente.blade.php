@@ -157,9 +157,9 @@ compara_valor_de_vencimiento:function(a,b){
   console.log(a,b);
   if(a.servicios_contratados_del_socio.length == 0 || b.servicios_contratados_del_socio.length == 0)
   {
-    return 0;
+    return -2;
   }
-  if( a.servicios_contratados_del_socio[0].fecha_vencimiento < b.servicios_contratados_del_socio[0].fecha_vencimiento ){
+  if( a.servicios_contratados_del_socio[0].fecha_vencimiento > b.servicios_contratados_del_socio[0].fecha_vencimiento ){
     return -1;
   }
   else
