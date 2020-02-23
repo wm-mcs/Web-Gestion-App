@@ -155,7 +155,7 @@ comparar_valor:function(key, order = 'asc') {
 compara_valor_de_vencimiento:function(a,b){
 
   console.log(a,b);
-  if(a.servicios_contratados.length == 0)
+  if(a.servicios_contratados.length == 0 || b.servicios_contratados.length == 0)
   {
     return 0;
   }
