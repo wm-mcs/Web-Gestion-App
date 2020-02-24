@@ -162,8 +162,8 @@ compara_valor_de_vencimiento:function(a,b){
 
   
 
-    const varA =  new Date(a.servicios_contratados_del_socio.[0].fecha_vencimiento);
-    const varB = new Date(b.servicios_contratados_del_socio.[0].fecha_vencimiento);
+    const varA =  new Date(a.servicios_contratados_del_socio[0].fecha_vencimiento);
+    const varB =  new Date(b.servicios_contratados_del_socio[0].fecha_vencimiento);
 
       
 
