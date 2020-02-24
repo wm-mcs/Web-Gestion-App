@@ -81,7 +81,7 @@ computed:{
 
         });
 
-    break
+    break;
 
     case "sin_nada":
          socios = socios.filter(function (el) {
