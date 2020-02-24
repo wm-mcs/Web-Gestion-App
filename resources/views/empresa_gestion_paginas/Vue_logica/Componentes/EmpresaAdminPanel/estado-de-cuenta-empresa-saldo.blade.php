@@ -72,8 +72,8 @@ template:'<span>
               </div>
 
            </div>   
-           <div v-else class="estado-de-cuenta-saldo estado-pago-indication"">
-                  Está al día <i class="far fa-grin"></i> 
+           <div v-else class="flex-row-center" >
+                 <div class="estado-de-cuenta-saldo estado-pago-indication">Está al día <i class="far fa-grin"></i> </div> 
            </div>
 
 
