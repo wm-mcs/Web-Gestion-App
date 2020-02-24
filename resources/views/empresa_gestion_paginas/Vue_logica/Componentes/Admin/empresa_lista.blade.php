@@ -86,22 +86,25 @@ template:'
         
      
        <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
-            <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
+            
              {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                         'method'=> 'Post',
                         'files' =>  true,
-                        'name'  => 'form1'
+                        'name'  => 'form1',
+                        'class' => 'empresa-lista-entrar-y-sucursal'
                       ])               !!}   
+             <div class="empresa-lista-user-sucursal-entrar disparar-este-form">Entrar a sucursal <i class="fas fa-hand-point-right"></i></div>
              <input type="hidden" name="empresa_id" :value="empresa.id">
              <input type="hidden" name="sucursal_id" :value="sucursal.id">
              <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{sucursal.name}}</span>    
 
-             {!! Form::close() !!} 
+             {!! Form::close() !!}     
+
       </div>   
                    
 
 
-
+    </div>
     
     <div class="contiene-planes-socio-lista">
       
@@ -110,12 +113,12 @@ template:'
                  
               <div  v-if="ServiciosDisponibles" class="planes-mensuales-cotiene" v-for="servicio in empresa.servicios_contratados_a_empresas_activos" 
                     :key="servicio.id">              
-                <span>@{{servicio.name}}</span>  
-                <span class="plan-mensual-fecha-vencimiento">Vence: @{{servicio.fecha_vencimiento_formateada}}</span>      
+              <span>@{{servicio.name}}</span>  
+              <span class="plan-mensual-fecha-vencimiento">Vence: @{{servicio.fecha_vencimiento_formateada}}</span>      
                
               </div>         
-               <div v-else class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i>
-               </div> 
+              <div v-else class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i>
+              </div> 
 
 
         
@@ -124,7 +127,7 @@ template:'
     
     
 
-  </div>
+  
   
   <div class="socio-lista-contiene-estado-de-cuenta">
       @if(Auth::user()->role > 8)
