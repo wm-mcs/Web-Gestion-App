@@ -35,10 +35,10 @@
 
     .empresa-lista-user-sucursal{
       @include flexbox;       
-      @include flex-direction(column);
+      @include flex-direction(row);
       @include align-items(center); 
       padding:4px;
-      border-radius:4px;
+      
       } 
     
 
