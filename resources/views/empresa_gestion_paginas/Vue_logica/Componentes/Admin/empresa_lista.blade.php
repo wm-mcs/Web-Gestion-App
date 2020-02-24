@@ -83,7 +83,7 @@ template:'
                     <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
                  
 
-                  <div class="contiene-planes-socio-lista">
+                  
         
      
                    <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
@@ -110,7 +110,7 @@ template:'
                 
                 
             
-                </div>
+                
             
       
      
