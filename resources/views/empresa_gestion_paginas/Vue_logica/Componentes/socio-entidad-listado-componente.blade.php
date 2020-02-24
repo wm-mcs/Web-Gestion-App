@@ -157,10 +157,10 @@ compara_valor_de_vencimiento:function(a,b){
   let comparison = 0;
   if(a.servicios_contratados_del_socio.length == 0 && b.servicios_contratados_del_socio.length != 0 )
   {
-    comparison = -1;
+    return -1;
   }
   else if(a.servicios_contratados_del_socio.length != 0 && b.servicios_contratados_del_socio.length == 0){
-    comparison = 1;
+    return 1;
   }
 
   
