@@ -113,7 +113,7 @@ computed:{
     break;
     case "se_vence":
        socios = socios.filter(function (el) {
-          return el.servicios_contratados_disponibles_tipo_clase.length > 0 !!
+          return el.servicios_contratados_disponibles_tipo_clase.length > 0 ||
                  el.servicios_contratados_disponibles_tipo_mensual.length > 0 
 
         }).sort(this.compara_valor_de_vencimiento);
