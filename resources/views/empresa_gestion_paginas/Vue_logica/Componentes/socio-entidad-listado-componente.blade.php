@@ -162,6 +162,9 @@ compara_valor_de_vencimiento:function(a,b){
   else if(a.servicios_contratados_del_socio.length != 0 && b.servicios_contratados_del_socio.length == 0){
     return 1;
   }
+  else if(a.servicios_contratados_del_socio.length == 0 && b.servicios_contratados_del_socio.length == 0){
+    return 0;
+  }
 
   
 
