@@ -44,7 +44,7 @@ template:'
 
 
 
-<div  class="contiene-socio-tipo-lista">
+<div  class="empresa-lista-user-contenedor">
   
     
       
@@ -52,7 +52,7 @@ template:'
 
             
                
-                <div>
+                
                   
                
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
@@ -65,25 +65,23 @@ template:'
                      <span class=" contiene-socio-lista  @if(Auth::user()->role > 4) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
                      @if(Auth::user()->role > 3)
                      <a :href="whatsappNumero"  target="_blank">
-                        <div class="contiene-socio-celular">  
+                         
                           <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
-                        </div>
+                        
                       </a>   
                       @else
-                       <div class="contiene-socio-celular">  
-                          <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
-                        </div>
+                      
 
                       @endif
 
                  {!! Form::close() !!}  
 
-                 <div class="socio-lista-contiene-estado-de-cuenta">
+                 
                     @if(Auth::user()->role > 8)
-                     <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
+                     <a :href="empresa.route_admin" class="margin-right-4px"> Admin</a>
                     @endif
                     <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
-                 </div>
+                 
 
                   <div class="contiene-planes-socio-lista">
         
@@ -107,7 +105,7 @@ template:'
                    
 
 
-                 </div>
+                 
 
                 
                 
