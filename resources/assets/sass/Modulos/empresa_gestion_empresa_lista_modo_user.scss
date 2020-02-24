@@ -37,14 +37,8 @@
       @include align-items(center); 
       padding:4px;
       border-radius:4px;
-      
-      
-      width: 100px;
-      
-    } 
-    .empresa-lista-user-sucursal:hover{
-      border-color:$color-3;
-    }
+      } 
+    
 
     .empresa-lista-entrar-y-sucursal{
       @include flexbox;       
