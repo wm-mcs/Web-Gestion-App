@@ -11,7 +11,10 @@ data:function(){
          cargando_inactivos:false,
          socios_inactivos:[],
          filtro_busqueda:'sin_filtro',
-         filtros_busqueda:[{nombre:'Sin filtro',value:'sin_filtro'},{nombre:'Deudores',value:'deudores'},{nombre:'Sin nada contratado',value:'sin_nada'}],
+         filtros_busqueda:[{nombre:'Sin filtro',value:'sin_filtro'},
+                           {nombre:'Deudores',value:'deudores'},
+                           {nombre:'Sin nada contratado',value:'sin_nada'},
+                           {nombre:'Al día',value:'al_dia'},],
          opcion_ordenar:'nuevos',
          opciones_ordenar:[{
                             nombre:'Alfabético creciente', 
@@ -69,6 +72,16 @@ computed:{
         });
     
     break;
+
+    case "al_dia":
+
+    socios = socios.filter(function (el) {
+          return el.saldo_de_estado_de_cuenta_pesos >= 0 &&
+                 el.saldo_de_estado_de_cuenta_dolares >= 0 
+
+        });
+
+    break
 
     case "sin_nada":
          socios = socios.filter(function (el) {
