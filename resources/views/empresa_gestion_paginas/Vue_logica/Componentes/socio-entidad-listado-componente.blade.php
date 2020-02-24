@@ -154,10 +154,13 @@ comparar_valor:function(key, order = 'asc') {
 },
 compara_valor_de_vencimiento:function(a,b){
 
-  
-  if(a.servicios_contratados_del_socio.length == 0 || b.servicios_contratados_del_socio.length == 0)
+  let comparison = 0;
+  if(a.servicios_contratados_del_socio.length == 0 && b.servicios_contratados_del_socio.length != 0 )
   {
-    return 0;
+    comparison = -1;
+  }
+  else if(a.servicios_contratados_del_socio.length != 0 && b.servicios_contratados_del_socio.length == 0){
+    comparison = 1;
   }
 
   
@@ -167,7 +170,7 @@ compara_valor_de_vencimiento:function(a,b){
 
       
 
-    let comparison = 0;
+    
     if (varA > varB) {
       comparison = 1;
     } else if (varA < varB) {
