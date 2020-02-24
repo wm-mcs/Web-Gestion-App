@@ -52,7 +52,9 @@ template:'
 
             
                
-
+                <div>
+                  
+               
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
                                 'method'=> 'Post',
                                 'files' =>  true,
@@ -76,35 +78,44 @@ template:'
 
                  {!! Form::close() !!}  
 
-                
-                
-            
-                
-            
-      
-      <div class="contiene-planes-socio-lista">
+                 <div class="socio-lista-contiene-estado-de-cuenta">
+                    @if(Auth::user()->role > 8)
+                     <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
+                    @endif
+                    <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
+                 </div>
+
+                  <div class="contiene-planes-socio-lista">
         
      
-       <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
-            
-             {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
-                        'method'=> 'Post',
-                        'files' =>  true,
-                        'name'  => 'form1',
-                        'class' => 'empresa-lista-entrar-y-sucursal'
-                      ])               !!}   
-             <div class="empresa-lista-user-sucursal-entrar disparar-este-form">Entrar a sucursal <i class="fas fa-hand-point-right"></i></div>
-             <input type="hidden" name="empresa_id" :value="empresa.id">
-             <input type="hidden" name="sucursal_id" :value="sucursal.id">
-             <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{sucursal.name}}</span>    
+                   <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
+                        
+                         {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
+                                    'method'=> 'Post',
+                                    'files' =>  true,
+                                    'name'  => 'form1',
+                                    'class' => 'empresa-lista-entrar-y-sucursal'
+                                  ])               !!}   
+                         <div class="empresa-lista-user-sucursal-entrar disparar-este-form">Entrar a sucursal <i class="fas fa-hand-point-right"></i></div>
+                         <input type="hidden" name="empresa_id" :value="empresa.id">
+                         <input type="hidden" name="sucursal_id" :value="sucursal.id">
+                         <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{sucursal.name}}</span>    
 
-             {!! Form::close() !!}     
+                         {!! Form::close() !!}     
 
-      </div>   
+                  </div>   
                    
 
 
-    </div>
+                 </div>
+
+                
+                
+            
+                </div>
+            
+      
+     
     
     <div class="contiene-planes-socio-lista">
       
@@ -129,15 +140,7 @@ template:'
 
   
   
-  <div class="socio-lista-contiene-estado-de-cuenta">
-      @if(Auth::user()->role > 8)
-       <a :href="empresa.route_admin" class="margin-right-4px"> <i class="fas fa-users-cog"></i></a>
-      @endif
-   
-      <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
-
   
-  </div>
   
 
 
