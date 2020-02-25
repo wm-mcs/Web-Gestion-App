@@ -6,7 +6,7 @@
     box-shadow: 0 1px 4px rgba(0,0,0,.26);
     background-color: #fff;
     margin-top:6px;
-    width:60%;
+    width:100%;
     
 }
 
@@ -49,6 +49,18 @@
     }
 
 
+    .empresa-lista-datos{
+     line-height: 1.5px;
+     color: $Color-texto-gris-Mercadolibre;
+     font-size: 10px;
+    }
+
+    .color-letra-servicio-disponible{
+      color:$Color-info;
+    }
+
+
+
       .empresa-lista-user-sucursal-entrar{
         font-size: 8px; 
         color: $Color-texto-gris-Mercadolibre;
@@ -69,4 +81,20 @@
         background-color:$color-3;
         color:white;
       }
+
+
+
+
+
+
+@media (min-width: $BrackPoint-Secundario){
+
+
+.empresa-lista-user-contenedor{
+    
+    width:60%;
+    
+}
+  
+}
 

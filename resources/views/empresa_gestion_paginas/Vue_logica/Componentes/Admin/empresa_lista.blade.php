@@ -58,35 +58,16 @@ template:'
                  {!! Form::open(['route' => ['get_panel_admin_de_empresa'],
                                 'method'=> 'Post',
                                 'files' =>  true,
-                                'name'  => 'form1',                                
-                                'class' => 'contiene-socio-lista_nombre-y-celular'
+                                'name'  => 'form1', 
                               ])               !!}   
                      <input type="hidden" name="empresa_id" :value="empresa.id">                     
-                     <span class=" contiene-socio-lista  @if(Auth::user()->role > 4) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
-                     @if(Auth::user()->role > 3)
-                     <a :href="whatsappNumero"  target="_blank">
-                         
-                          <i class="fab fa-whatsapp"></i> @{{empresa.celular}}   
-                        
-                      </a>   
-                      @else
-                      
-
-                      @endif
+                     <span class="contiene-socio-lista  @if(Auth::user()->role > 4) simula_link disparar-este-form @endif" >@{{empresa.name}} </span> 
+                     
 
                  {!! Form::close() !!}  
 
-                 
-                    @if(Auth::user()->role > 8)
-                     <a :href="empresa.route_admin" class="margin-right-4px"> Admin</a>
-                    @endif
-                    <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
-                 
 
-                  
-        
-     
-                   <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
+                 <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
                         
                          {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                                     'method'=> 'Post',
@@ -102,6 +83,29 @@ template:'
                          {!! Form::close() !!}     
 
                   </div>   
+
+
+
+
+
+                 @if(Auth::user()->role > 3)
+                  <a :href="whatsappNumero" class="empresa-lista-datos" target="_blank">
+                       <i class="fab fa-whatsapp"></i> @{{empresa.celular}}
+                   </a>
+                 @endif
+
+                 
+                @if(Auth::user()->role > 8)
+                 <a :href="empresa.route_admin" class="empresa-lista-datos"> Admin</a>
+                @endif
+
+                <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
+                 
+
+                  
+        
+     
+                   
                    
 
 
@@ -115,24 +119,25 @@ template:'
       
      
     
-    <div class="contiene-planes-socio-lista">
+   
       
        
 
                  
-              <div  v-if="ServiciosDisponibles" class="planes-mensuales-cotiene" v-for="servicio in empresa.servicios_contratados_a_empresas_activos" 
+              <div  v-if="ServiciosDisponibles" class="empresa-lista-datos color-letra-servicio-disponible" v-for="servicio in empresa.servicios_contratados_a_empresas_activos" 
                     :key="servicio.id">              
-              <span>@{{servicio.name}}</span>  
-              <span class="plan-mensual-fecha-vencimiento">Vence: @{{servicio.fecha_vencimiento_formateada}}</span>      
+              <span>@{{servicio.name}}</span>
+
+              <span class="plan-mensual-fecha-vencimiento">vence: @{{servicio.fecha_vencimiento_formateada}}</span>      
                
               </div>         
-              <div v-else class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i>
+              <div v-else class="empresa-lista-datos " >  No tiene servicio disponible <i class="far fa-meh"></i>
               </div> 
 
 
         
 
-    </div>
+    
     
     
 
