@@ -75,10 +75,14 @@ template:'
                                     'name'  => 'form1',
                                     'class' => 'empresa-lista-entrar-y-sucursal'
                                   ])               !!}   
-                         <div class="empresa-lista-user-sucursal-entrar disparar-este-form">Entrar a sucursal <i class="fas fa-hand-point-right"></i></div>
+                         
                          <input type="hidden" name="empresa_id" :value="empresa.id">
                          <input type="hidden" name="sucursal_id" :value="sucursal.id">
-                         <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >@{{sucursal.name}}</span>    
+                         <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >
+
+                           <i class="fas fa-sign-in-alt"></i> Ingresar a sucursal @{{sucursal.name}}
+
+                         </span>    
 
                          {!! Form::close() !!}     
 
@@ -99,7 +103,7 @@ template:'
                  <a :href="empresa.route_admin" class="empresa-lista-datos"> Admin</a>
                 @endif
 
-                <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
+               
                  
 
                   
@@ -125,14 +129,16 @@ template:'
 
                  
               <div  v-if="ServiciosDisponibles" class="empresa-lista-datos color-letra-servicio-disponible" v-for="servicio in empresa.servicios_contratados_a_empresas_activos" 
-                    :key="servicio.id">              
-              <span>@{{servicio.name}}</span>
+                    :key="servicio.id">   
 
-              <span class="plan-mensual-fecha-vencimiento">vence: @{{servicio.fecha_vencimiento_formateada}}</span>      
+              Servicio @{{servicio.name}} disponible hasta el @{{servicio.fecha_vencimiento_formateada}}    
                
               </div>         
               <div v-else class="empresa-lista-datos " >  No tiene servicio disponible <i class="far fa-meh"></i>
               </div> 
+
+
+              <estado-de-cuenta-empresa-saldo :empresa="empresa" > </estado-de-cuenta-empresa-saldo>
 
 
         
