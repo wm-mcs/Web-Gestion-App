@@ -66,6 +66,8 @@ template:'
 
                  {!! Form::close() !!}  
 
+                 <br>
+
 
                  <div v-for="sucursal in empresa.sucursuales_empresa" v-if="sucursal.puede_ver_el_user" class="empresa-lista-user-sucursal">
                         
@@ -87,7 +89,7 @@ template:'
                          {!! Form::close() !!}     
 
                   </div>   
-
+                  <br>
 
 
 
