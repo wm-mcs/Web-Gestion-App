@@ -136,8 +136,7 @@ template:'
               Servicio @{{servicio.name}} disponible hasta el @{{servicio.fecha_vencimiento_formateada}}    
                
               </div>         
-              <div v-else class="empresa-lista-datos" >  No tiene servicio disponible <i class="far fa-meh"></i>
-              </div> 
+              
 
 
               <br>
