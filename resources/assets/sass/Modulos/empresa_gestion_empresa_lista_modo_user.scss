@@ -39,7 +39,7 @@
       @include flexbox;       
       @include flex-direction(row);
       @include align-items(center); 
-      padding:4px;
+      margin-top: 8px;
       
       } 
     
@@ -52,7 +52,7 @@
 
 
     .empresa-lista-datos{
-     line-height: 1.5px;
+     margin-top: 4px;
      color: $Color-texto-gris-Mercadolibre;
      font-size: 12px;
      margin-left: 4px;
@@ -95,7 +95,7 @@
 
 .empresa-lista-user-contenedor{
     
-    width:60%;
+    width:300px;
     
 }
   
