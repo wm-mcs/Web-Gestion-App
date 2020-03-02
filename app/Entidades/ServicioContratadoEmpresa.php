@@ -26,7 +26,9 @@ class ServicioContratadoEmpresa extends Model
     protected $appends  = [
                            'fecha_vencimiento_formateada',
                            'fecha_contratado_formateada',                           
-                           'tipo_de_servicio'
+                           'tipo_de_servicio',
+                           'esta_vencido',
+                           'se_consumio'
                           ];
 
 
@@ -77,6 +79,40 @@ class ServicioContratadoEmpresa extends Model
 public function getFechaContratadoFormateadaAttribute()
     {
         return $this->created_at->format('Y-m-d'); 
+    }
+
+    public function getEstaVencidoAttribute()
+    {
+
+        if(Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_vencimiento))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public function getSeConsumioAttribute()
+    {
+
+        if($this->esta_consumido == 'no')
+        {
+          return false;
+        }
+        
+
+        if(Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_consumido))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
 
