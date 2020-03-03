@@ -72,8 +72,11 @@ template:'
     </span> 
 
     <div v-if="debe_plata_pesos" class="linea-de-aviso-individual"><i class="fas fa-exclamation"></i> Hay un saldo pendiente de pago de $ @{{Math.abs(this.empresa.estado_de_cuenta_saldo_pesos)}} . 
-    <br> Si se trata de algún error por favor reportarlo  <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong> </a>
-    <br> Datos para realizar el pago: <strong>Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556)</strong> . Luego de efectuar el pago enviar comprobante <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong></a>
+    <br> Si se trata de algún error por favor reportarlo  <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong> </a>.
+    <br> Datos para realizar el pago: <strong>Caja Ahorro BROU PESOS 00156513100002 (viejo: 177 0469556)</strong>.
+    <br> Se puede realizar en: Abitab, Red Pagos, Sucursales del Brou y por transferencia bancaria.
+    <br>
+     Luego de efectuar el pago enviar comprobante <a :href="this.$root.whatsappContactoPagos"><i class="fab fa-whatsapp-square"></i> <strong>aquí  </strong></a>.
 .
     
     
