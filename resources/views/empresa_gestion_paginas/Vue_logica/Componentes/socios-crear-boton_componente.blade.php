@@ -108,6 +108,14 @@ template:'<span >
                       <label class="formulario-label" for="Nombre">Número de celular</label>
                       <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
                   </div> 
+                  <div class="formulario-label-fiel">
+                      <label class="formulario-label" for="Nombre">Email (opcional)</label>
+                      <input type="text" class="formulario-field"  v-model="form_socio_email" placeholder="Email (opcional)" required  />
+                  </div> 
+                  <div class="formulario-label-fiel">
+                      <label class="formulario-label" for="Nombre">Cédula (opcional) sin puntos ni guión</label>
+                      <input type="text" class="formulario-field"  v-model="form_socio_cedula" placeholder="Número de cédula (opcional)" required  />
+                  </div> 
                
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
                   <div v-else v-on:click="crear_socio_post" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
