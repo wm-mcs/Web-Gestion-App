@@ -319,7 +319,7 @@ created() {
 template:'
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
-  <div class="se-muestran-socios-texto"> Se están mostrando <strong>@{{socios.length}}</strong> socios</div>
+  <div class="se-muestran-socios-texto"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
 
 
 
