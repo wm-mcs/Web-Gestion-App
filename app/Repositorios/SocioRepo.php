@@ -26,12 +26,31 @@ class SocioRepo extends BaseRepo
        $palabra_de_busqueda = trim($palabra_de_busqueda);
 
        if($palabra_de_busqueda != null)
-       {        
-       
+       {       
+
+        $Socios = $this->getEntidad()
+             ->noborrado()
+             ->active()
+             ->where('empresa_id',$empresa_id)
+             ->where(function($q) use($palabra_de_busqueda)
+                       {                          
+                           $q->where('name',"LIKE","%$palabra_de_busqueda%");                           
+                           $q->orWhere('rut',"LIKE","%$palabra_de_busqueda%");
+                           $q->orWhere('razon_social',"LIKE","%$palabra_de_busqueda%");
+                           $q->orWhere('email',"LIKE","%$palabra_de_busqueda%");
+                           $q->orWhere('celular',"LIKE","%$palabra_de_busqueda%");
+                           $q->orWhere('cedula',"LIKE","%$palabra_de_busqueda%");
+                           
+
+                       })
+             ->orderBy('created_at','desc')->get();;
+
 
        
 
-       $colecciones_separado  = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('name', "LIKE","%$palabra_de_busqueda%")->get();  
+       
+
+      /* $colecciones_separado  = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('name', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids          = $this->traer_poner_ids($colecciones_separado);
 
        $colecciones_separado2 = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('rut', "LIKE","%$palabra_de_busqueda%")->get();  
@@ -46,7 +65,7 @@ class SocioRepo extends BaseRepo
        $colecciones_separado5  = $this->getEntidad()->noborrado()->active()->where('empresa_id',$empresa_id)->where('celular', "LIKE","%$palabra_de_busqueda%")->get();  
        $array_de_ids5          = $this->traer_poner_ids($colecciones_separado5);
 
-       $array_de_ids          = array_unique(array_merge($array_de_ids,$array_de_ids2,$array_de_ids3,$array_de_ids4,$array_de_ids5)); 
+       $array_de_ids          = array_unique(array_merge($array_de_ids,$array_de_ids2,$array_de_ids3,$array_de_ids4,$array_de_ids5)); */
 
        
 
