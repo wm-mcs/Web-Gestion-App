@@ -48,7 +48,15 @@
       text-align: center;
       width: 100%;
       padding:8px;
-      margin-bottom: 20px;
+      margin-bottom:4px;
+      
+    }
+
+   .se-muestran-socios-texto{
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+    color:$color-gris-text;
     }
 
     .cuando-no-hay-socios{
