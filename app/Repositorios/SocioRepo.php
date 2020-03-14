@@ -69,7 +69,7 @@ class SocioRepo extends BaseRepo
 
        
 
-       $Socios                = $this->getEntidad()->whereIn('id',$array_de_ids)->orderBy('name','desc')->get();
+      /* $Socios                = $this->getEntidad()->whereIn('id',$array_de_ids)->orderBy('name','desc')->get();*/
 
       }
       else
