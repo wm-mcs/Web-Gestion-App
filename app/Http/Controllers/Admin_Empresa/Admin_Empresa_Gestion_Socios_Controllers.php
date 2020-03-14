@@ -92,7 +92,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
     if($User->role == 10) //admin
     {
-      $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
+      $Empresas = $this->EmpresaConSociosoRepo->all();
     }
     elseif($User->role == 4) //vendedor
     {
