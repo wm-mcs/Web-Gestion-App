@@ -24,22 +24,33 @@ methods:{
    this.getPaises();
 
  },
- getImage:function(){
-    this.datos_a_enviar.imagen = event.target.files[0];
- },
+ onImageChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+          return;
+      this.createImage(files[0]);
+},
+createImage(file) {
+      let reader = new FileReader();
+      let vm = this;
+      reader.onload = (e) => {
+          vm.imagen = e.target.result;
+      };
+      reader.readAsDataURL(file);
+},
  crear_plan:function(){
 
       var url  = '/crear_pais';
 
       var data = this.datos_a_enviar; 
-      let formData = new FormData();
+      
 
       
       formData.append("imagen", this.imagen);
 
       var vue  = this;
 
-     axios.post(url,formData).then(function (response){  
+     axios.post(url,data).then(function (response){  
             var data = response.data;  
             
 
