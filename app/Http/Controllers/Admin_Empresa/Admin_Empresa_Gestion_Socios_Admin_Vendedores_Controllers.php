@@ -467,6 +467,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
        } 
 
+       return $Request->all();
+
        $Propiedades      = ['name','code','currencyCode','estado'];
 
        $Entidad          = $this->PaisRepo->getEntidad();
@@ -477,7 +479,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
  
        $Paises           = $this->PaisRepo->getEntidadActivas();
 
-       return  ['Validacion'          => false,
+
+
+       return  ['Validacion'          => true,
                 'Validacion_mensaje'  => 'Se creo correctamente el país',
                 'Paises'              =>  $Paises];
   }
