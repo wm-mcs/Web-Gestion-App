@@ -32,9 +32,14 @@ methods:{
       var url  = '/crear_pais';
 
       var data = this.datos_a_enviar; 
+      let formData = new FormData();
+
+      
+      formData.append("imagen", this.imagen);
+
       var vue  = this;
 
-     axios.post(url,data).then(function (response){  
+     axios.post(url,formData).then(function (response){  
             var data = response.data;  
             
 
