@@ -458,6 +458,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   public function crear_pais(Request $Request)
   {
        $manager           = new PaisManager(null,$Request->all() );
+
+       return $Request->all();
        
 
        if(!$manager->isValid())
@@ -467,7 +469,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
        } 
 
-       return $Request->all();
+
 
        $Propiedades      = ['name','code','currencyCode','estado'];
 
