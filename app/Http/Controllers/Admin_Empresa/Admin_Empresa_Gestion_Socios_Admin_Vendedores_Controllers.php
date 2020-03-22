@@ -459,7 +459,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   {
        $manager           = new PaisManager(null,$Request->all() );
 
-       return $Request->all();
+
        
 
        if(!$manager->isValid())
@@ -477,7 +477,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
        $Entidad->borrado = 'no';
 
        $Entidad          = $this->PaisRepo->setEntidadDato($Entidad,$Request,$Propiedades);
-       $this->PaisRepo->setImagen($Entidad,$Request,'imagen','Paises/',str_replace(' ' ,'-', $Request->get('name')),'.png',100);
+       $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ' ,'-', $Request->get('name')),'.png', 100);
+
+       
  
        $Paises           = $this->PaisRepo->getEntidadActivas();
 
