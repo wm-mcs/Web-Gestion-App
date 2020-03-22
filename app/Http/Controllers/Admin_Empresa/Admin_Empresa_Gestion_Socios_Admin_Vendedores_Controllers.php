@@ -497,6 +497,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
     //crear un tokrn y guardarlo en la base de datos
 
     //se exige a las url externas que lo usen para acceder
+    $Paises = $this->PaisRepo->getEntidadActivas();
+    return [$Paises, $Request->header()];
 
 
   }

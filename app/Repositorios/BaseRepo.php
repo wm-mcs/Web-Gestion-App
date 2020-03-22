@@ -60,7 +60,7 @@ abstract class BaseRepo
     public function getEntidadActivas()
     {
       return $this->entidad                  
-                  ->active()               
+                  ->where('estado','si')              
                   ->orderBy('id','desc')
                   ->get();
     }
@@ -72,7 +72,7 @@ abstract class BaseRepo
     {
       return $this->entidad
                   ->name($request->get('name')) 
-                  ->active()               
+                  ->where('estado','si')               
                   ->orderBy('id','desc')
                   ->paginate($paginacion);
     }
@@ -84,7 +84,7 @@ abstract class BaseRepo
     {
       return $this->entidad
                   ->name($request->get('name')) 
-                  ->active()               
+                  ->where('estado','si')               
                   ->orderBy($OrdenadasSegunAtributo,$Orden)
                   ->paginate($paginacion);
     }
@@ -119,7 +119,7 @@ abstract class BaseRepo
        $array = array_unique($ids);
 
        return  $this->entidad
-                    ->active() 
+                    ->where('estado','si') 
                     ->whereIn('id',$array)
                     ->get();
     }

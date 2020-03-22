@@ -9,6 +9,15 @@ Route::get('email_simples' , [
      'as'   => 'email_simples']
     );
 
+
+/**
+ * Routas para compartir data entre webs
+ */
+Route::group(['middleware' => 'ApiPublica'],function()
+{  
+    require __DIR__ . '/Rutas/Api.php';
+});
+
 /**
  * Grupo de Rutas con middleware
  */
