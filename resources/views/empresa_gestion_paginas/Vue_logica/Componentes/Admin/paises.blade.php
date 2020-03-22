@@ -7,11 +7,10 @@ data:function(){
      modal: '#modal-paises',
      datos_a_enviar:{
                       name:'',
-                      tipo:'',
-                      moneda:'',
-                      valor:'',
-                      cantidad_socios:'',
-                      cantidad_sucursales:''
+                      code:'',
+                      currencyCode:'',
+                      estado:'',
+                      borrado:''
                     },
     planes:[]
       }
@@ -21,12 +20,12 @@ methods:{
  abrir_modal:function(){
 
    $(this.modal).appendTo("body").modal('show');  
-   this.getPlanes();
+   this.getPaises();
 
  },
  crear_plan:function(){
 
-      var url  = '/crear_plan';
+      var url  = '/crear_pais';
 
       var data = this.datos_a_enviar; 
       var vue  = this;
@@ -54,7 +53,7 @@ methods:{
  
 },
 editarServicio:function(plan){
-      var url  = '/editar_plan_empresa';
+      var url  = '/editar_pais';
 
       var data = {plan:plan};
       var vue  = this;
@@ -80,8 +79,8 @@ editarServicio:function(plan){
             
            });
 },
-getPlanes:function(){
-      var url  = '/get_planes_empresa';
+getPaises:function(){
+      var url  = '/get_paises';
       var vue  = this;
 
      axios.get(url).then(function (response){  

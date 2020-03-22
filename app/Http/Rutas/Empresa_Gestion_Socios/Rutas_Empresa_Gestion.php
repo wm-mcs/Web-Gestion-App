@@ -140,6 +140,21 @@
                   'as'         => 'editar_plan_empresa',                
                 ]); 
 
+                Route::post('crear_pais',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@crear_pais',
+                  'as'         => 'crear_pais',                
+                ]); 
+
+                Route::post('editar_pais',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@editar_pais',
+                  'as'         => 'editar_pais',                
+                ]); 
+
+
+                
+
 
 
 

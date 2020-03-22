@@ -29,6 +29,8 @@ use App\Managers\EmpresaGestion\CrearServicioAEmpresaManager;
 use App\Repositorios\TipoDeServicioAEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
+use App\Repositorios\PaisRepo;
+use App\Managers\EmpresaGestion\PaisManager;
 
 
 
@@ -47,6 +49,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   protected $SucursalEmpresaRepo;
   protected $ServicioEmpresaRenovacionRepo;
   protected $ServicioContratadoEmpresaRepo;
+  protected $PaisRepo;
 
 
   public function __construct(EmpresaConSociosoRepo                $EmpresaConSociosoRepo, 
@@ -57,7 +60,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                               TipoDeServicioAEmpresaRepo           $TipoDeServicioAEmpresaRepo,
                               SucursalEmpresaRepo                  $SucursalEmpresaRepo, 
                               ServicioEmpresaRenovacionRepo        $ServicioEmpresaRenovacionRepo,
-                              ServicioContratadoEmpresaRepo        $ServicioContratadoEmpresaRepo
+                              ServicioContratadoEmpresaRepo        $ServicioContratadoEmpresaRepo,
+                              PaisRepo                             $PaisRepo
                                )
   {
     $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;       
@@ -69,6 +73,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
     $this->SucursalEmpresaRepo                 = $SucursalEmpresaRepo;
     $this->ServicioEmpresaRenovacionRepo       = $ServicioEmpresaRenovacionRepo;
     $this->ServicioContratadoEmpresaRepo       = $ServicioContratadoEmpresaRepo;
+    $this->PaisRepo                            = $PaisRepo;
    
   }
 
@@ -448,6 +453,38 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
                'empresa'             =>  $this->EmpresaConSociosoRepo->find($Request->get('empresa_id')) ];
      }
   }
+
+
+  public function crear_pais(Request $Request)
+  {
+       $manager           = new PaisManager(null,$Request->all() );
+       if(!$manager->isValid())
+       {
+         return  ['Validacion'          => false,
+                  'Validacion_mensaje'  => 'No se pudo crear: ' . $manager->getErrors()];
+       } 
+  }
+
+  public function editar_pais(Request $Request)
+  {
+       $manager           = new PaisManager(null,$Request->all() );
+       if(!$manager->isValid())
+       {
+         return  ['Validacion'          => false,
+                  'Validacion_mensaje'  => 'No se pudo editar: ' . $manager->getErrors()];
+       } 
+  }
+
+  public function get_paises(Request $Request)
+  {
+    //crear un tokrn y guardarlo en la base de datos
+
+    //se exige a las url externas que lo usen para acceder
+
+
+  }
+
+
 
 
 
