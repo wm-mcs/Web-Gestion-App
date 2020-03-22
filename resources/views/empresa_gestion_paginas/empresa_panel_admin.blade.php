@@ -164,9 +164,8 @@
 
 <script type="text/javascript">
 
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.paises')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
-
-     
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-empresa-lista')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.agregar-servicio-a-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.servicio-renovacion-empresa-lista')  
