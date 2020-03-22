@@ -234,7 +234,7 @@ abstract class BaseRepo
     }
 
 
-       public function setImagen($Entidad,$request,$nombreDelCampoForm,$carpetaDelArchivo,$nombreDelArchivo,$ExtensionDelArchivo,$redimencionar_a = null,$file = null)
+    public function setImagen($Entidad,$request,$nombreDelCampoForm,$carpetaDelArchivo,$nombreDelArchivo,$ExtensionDelArchivo,$redimencionar_a = null,$file = null)
     {
       //nombre del Archico / Carpeta Incluido
       $nombre = $carpetaDelArchivo.$nombreDelArchivo.$ExtensionDelArchivo;
@@ -289,6 +289,32 @@ abstract class BaseRepo
 
          
        }
+    }
+
+
+    public function setImagenDesdeVue($File, $carpeta,$nombre,$extens,$redimencionar_a = null)
+    {
+
+       $nombre = $carpeta.$nombre.$extens;
+       if($File == '' )
+       {
+        return '';
+       }
+
+       if($redimencionar_a != null)
+        {
+            $imagen_insert = Image::make($File)->resize($redimencionar_a, null, function ($constraint) {
+                                                                           $constraint->aspectRatio();
+                                                                       })->save('imagenes/'.$nombre,70);
+        }
+        else
+        {
+           $imagen_insert = Image::make($File); 
+
+           $imagen_insert->save('imagenes/'.$nombre,70);   
+
+        }
+      
     }
 
      /**
