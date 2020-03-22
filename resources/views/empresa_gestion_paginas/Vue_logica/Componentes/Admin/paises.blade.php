@@ -34,7 +34,7 @@ createImage(file) {
       let reader = new FileReader();
       let vm = this;
       reader.onload = (e) => {
-          vm.imagen = e.target.result;
+          vm.datos_a_enviar.imagen = e.target.result;
       };
       reader.readAsDataURL(file);
 },
@@ -46,7 +46,7 @@ createImage(file) {
       
 
       
-      formData.append("imagen", this.imagen);
+      
 
       var vue  = this;
 
