@@ -12,7 +12,7 @@ class PaisManager extends ManagerBase
 {
 
 
-['name','code','currencyCode','estado'];
+
 
   public function getRules()
   {
