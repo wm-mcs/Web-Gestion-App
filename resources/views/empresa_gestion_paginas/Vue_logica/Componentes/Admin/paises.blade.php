@@ -201,7 +201,7 @@ template:'
            <input type="text" class="formulario-field"  v-model="datos_a_enviar.currencyCode" placeholder="Código del moneda"  />
           </div>
           <div class="formulario-label-fiel">                   
-           <input type="file" name="image" v-on:change="getImage" accept="image/*">
+           <input type="file" name="image" v-on:change="onImageChange" accept="image/*">
           </div>
           
            
