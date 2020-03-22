@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pais extends Model
 {
 
-    protected $table ='pises';
+    protected $table ='paises';
 
     /**
      * The attributes that are mass assignable.
