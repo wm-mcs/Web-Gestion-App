@@ -17,12 +17,13 @@ class Pais extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description'];
+    protected $fillable  = ['name', 'description'];
+    protected $appends   = ['url_img'];
 
     
     public function getUrlImgAttribute()
     { 
-        return url().'/imagenes/'.$this->img;
+        return url().'/imagenes/Paises/'. str_replace(' ' ,'-', $this->name). '.png';
     }
     
 }

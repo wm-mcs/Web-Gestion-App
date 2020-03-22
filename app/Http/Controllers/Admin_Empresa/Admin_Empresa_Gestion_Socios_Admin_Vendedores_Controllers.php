@@ -458,11 +458,28 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
   public function crear_pais(Request $Request)
   {
        $manager           = new PaisManager(null,$Request->all() );
+       
+
        if(!$manager->isValid())
        {
          return  ['Validacion'          => false,
                   'Validacion_mensaje'  => 'No se pudo crear: ' . $manager->getErrors()];
+
        } 
+
+       $Propiedades      = ['name','code','currencyCode','estado'];
+
+       $Entidad          = $this->PaisRepo->getEntidad();
+       $Entidad->borrado = 'no';
+
+       $Entidad          = $this->PaisRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+       $this->PaisRepo->setImagen($Entidad,$request,'imagen','Paises/',str_replace(' ' ,'-', $Request->get('name')),'.png',100);
+ 
+       $Paises           = $this->PaisRepo->getEntidadActivas();
+
+       return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'Se creo correctamente el país',
+                'Paises'              =>  $Paises];
   }
 
   public function editar_pais(Request $Request)

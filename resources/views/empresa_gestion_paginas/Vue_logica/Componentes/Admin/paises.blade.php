@@ -41,7 +41,7 @@ methods:{
             if(data.Validacion == true)
             {
 
-               vue.planes = data.planes;
+               vue.paises = data.Paises;
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
@@ -56,7 +56,7 @@ methods:{
            });
  
 },
-editarServicio:function(plan){
+editarPais:function(pais){
       var url  = '/editar_pais';
 
       var data = {plan:plan};
@@ -113,7 +113,7 @@ template:'
 
 <span >
    <div  class="simula_link columna-lista-texto" v-on:click="abrir_modal">
-         Planes       
+         Paises       
    </div>
 
          <div class="modal fade" id="modal-paises" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
@@ -121,7 +121,7 @@ template:'
       <div class="modal-content">
         <div class="modal-header">
          <div class=""> 
-          <h4 class="modal-title" id="myModalLabel">Planes a empresas</h4>
+          <h4 class="modal-title" id="myModalLabel">Paises</h4>
           <div class="modal-mensaje-aclarador">
                 Los paises donde vamos a vender Easysocio
           </div>
@@ -137,36 +137,18 @@ template:'
               <div class="get_width_80">
 
                 <div class="formulario-label-fiel">                   
-                 <input type="text" class="formulario-field"  v-model="plan.name" placeholder="Nombre del país"  />
+                 <input type="text" class="formulario-field"  v-model="pais.name" placeholder="Nombre del país"  />
                 </div> 
                  <div class="formulario-label-fiel">                   
-                 <input type="text" class="formulario-field"  v-model="plan.code" placeholder="Código del país"  />
+                 <input type="text" class="formulario-field"  v-model="pais.code" placeholder="Código del país"  />
                 </div>
                  <div class="contiene-fase-2-moneda">
-                  
+                 <div class="formulario-label-fiel"> 
+                  <img :src="pais.url_img"  >
                  </div>
-                  <div class="contiene-fase-2-moneda">
-                  <div class="flex-row-center flex-justifice-space-around get_width_40">
-                    <div class="contiene-opcion-moneda">
-                      <input type="radio" value="$" v-model="plan.moneda">
-                      <label class="moneda-label" for="$">Pesos</label>
-                    </div>
-                    
-                    <div class="contiene-opcion-moneda">
-                      <input type="radio" value="U$S" v-model="plan.moneda">
-                      <label class="moneda-label" for="U$S">Dolares</label>
-                    </div>
-                  </div>
                  </div>
-                 <div class="formulario-label-fiel">                   
-                 <input type="number" class="formulario-field"  v-model="plan.valor" placeholder="Valor"  />
-                </div>
-                <div class="formulario-label-fiel">                   
-                 <input type="number" class="formulario-field"  v-model="plan.cantidad_socios" placeholder="Cantidad de socios"  />
-                </div> 
-                 <div class="formulario-label-fiel">                   
-                 <input type="number" class="formulario-field"  v-model="plan.cantidad_sucursales" placeholder="Cantidad de sucursales"  />
-                </div>
+                 
+                
 
 
 
@@ -178,7 +160,7 @@ template:'
 
 
               <div class="get_width_20 flex-row-center flex-justifice-space-around">
-                      <div v-on:click="editarServicio(plan)" title="Editar esté servicio" class="boton-simple-chico">
+                      <div v-on:click="editarPais(pais)" title="Editar esté país" class="boton-simple-chico">
                         <i class="fas fa-edit"></i>
                      </div>    
               </div>

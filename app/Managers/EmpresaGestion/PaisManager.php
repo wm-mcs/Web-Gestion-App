@@ -12,12 +12,15 @@ class PaisManager extends ManagerBase
 {
 
 
+['name','code','currencyCode','estado'];
+
   public function getRules()
   {
     $rules = [
-      'empresa_id'                => 'required',
-      'se_renueva_automaticamente'=> 'required',
-      'servicio_renovacion_id'    => 'required'
+      'name'                => 'required',
+      'code'                => 'required',
+      'currencyCode'        => 'required',
+      'estado'              => 'required'
 
              ];
 
