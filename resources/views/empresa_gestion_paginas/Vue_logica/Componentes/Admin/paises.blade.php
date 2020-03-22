@@ -132,8 +132,8 @@ template:'
         <div class="modal-body text-center">  
 
 
-          <div v-if="planes.length">
-            <div v-for="plan in planes" class="empresa-gestion-listado-contenedor flex-justifice-space-between" >
+          <div v-if="paises.length">
+            <div v-for="pais in paises" class="empresa-gestion-listado-contenedor flex-justifice-space-between" >
               <div class="get_width_80">
 
                 <div class="formulario-label-fiel">                   
