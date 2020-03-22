@@ -182,6 +182,9 @@ template:'
            <input type="text" class="formulario-field"  v-model="datos_a_enviar.code" placeholder="Código del país"  />
           </div>
           <div class="formulario-label-fiel">                   
+           <input type="text" class="formulario-field"  v-model="datos_a_enviar.currencyCode" placeholder="Código del moneda"  />
+          </div>
+          <div class="formulario-label-fiel">                   
            <input type="file" name="image" v-on:change="getImage" accept="image/*">
           </div>
           
@@ -199,15 +202,7 @@ template:'
               </div>
             </div>
            </div>
-           <div class="formulario-label-fiel">                   
-                 <input type="number" class="formulario-field"  v-model="datos_a_enviar.valor" placeholder="Valor"  />
-                </div>
-          <div class="formulario-label-fiel">                   
-           <input type="number" class="formulario-field"  v-model="datos_a_enviar.cantidad_socios" placeholder="Cantidad de socios"  />
-          </div> 
-           <div class="formulario-label-fiel">                   
-           <input type="number" class="formulario-field"  v-model="datos_a_enviar.cantidad_sucursales" placeholder="Cantidad de sucursales"  />
-          </div>
+         
                
 
           <div  v-on:click="crear_plan" class="boton-simple">Crear</div>
