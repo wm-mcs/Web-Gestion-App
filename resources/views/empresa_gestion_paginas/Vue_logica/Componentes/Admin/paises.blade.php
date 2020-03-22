@@ -9,11 +9,12 @@ data:function(){
                       name:'',
                       code:'',
                       currencyCode:'',
-                      estado:'',
-                      borrado:''
+                      estado:'si',
+                      imagen:''
                     },
-    planes:[]
-      }
+    paises:[],
+
+    }
 },
 methods:{
 
@@ -22,6 +23,9 @@ methods:{
    $(this.modal).appendTo("body").modal('show');  
    this.getPaises();
 
+ },
+ getImage:function(){
+    this.datos_a_enviar.imagen = event.target.files[0];
  },
  crear_plan:function(){
 
@@ -133,20 +137,13 @@ template:'
               <div class="get_width_80">
 
                 <div class="formulario-label-fiel">                   
-                 <input type="text" class="formulario-field"  v-model="plan.name" placeholder="Nombre"  />
+                 <input type="text" class="formulario-field"  v-model="plan.name" placeholder="Nombre del país"  />
                 </div> 
+                 <div class="formulario-label-fiel">                   
+                 <input type="text" class="formulario-field"  v-model="plan.code" placeholder="Código del país"  />
+                </div>
                  <div class="contiene-fase-2-moneda">
-                  <div class="flex-row-center flex-justifice-space-around get_width_40">
-                    <div class="contiene-opcion-moneda">
-                      <input type="radio" value="principal" v-model="plan.tipo">
-                      <label class="moneda-label" for="principal">Principal</label>
-                    </div>
-                    
-                    <div class="contiene-opcion-moneda">
-                      <input type="radio" value="mejora" v-model="plan.tipo">
-                      <label class="moneda-label" for="mejora">Mejora</label>
-                    </div>
-                  </div>
+                  
                  </div>
                   <div class="contiene-fase-2-moneda">
                   <div class="flex-row-center flex-justifice-space-around get_width_40">
@@ -197,31 +194,26 @@ template:'
           </div>
 
           <div class="formulario-label-fiel">                   
-           <input type="text" class="formulario-field"  v-model="datos_a_enviar.name" placeholder="Nombre"  />
+           <input type="text" class="formulario-field"  v-model="datos_a_enviar.name" placeholder="Nombre del país"  />
           </div> 
-           <div class="contiene-fase-2-moneda">
-            <div class="flex-row-center flex-justifice-space-around get_width_40">
-              <div class="contiene-opcion-moneda">
-                <input type="radio" value="principal" v-model="datos_a_enviar.tipo">
-                <label class="moneda-label" for="principal">Principal</label>
-              </div>
-              
-              <div class="contiene-opcion-moneda">
-                <input type="radio" value="mejora" v-model="datos_a_enviar.tipo">
-                <label class="moneda-label" for="mejora">Mejora</label>
-              </div>
-            </div>
-           </div>
+          <div class="formulario-label-fiel">                   
+           <input type="text" class="formulario-field"  v-model="datos_a_enviar.code" placeholder="Código del país"  />
+          </div>
+          <div class="formulario-label-fiel">                   
+           <input type="file" name="image" v-on:change="getImage" accept="image/*">
+          </div>
+          
+           
             <div class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_40">
               <div class="contiene-opcion-moneda">
-                <input type="radio" value="$" v-model="datos_a_enviar.moneda">
-                <label class="moneda-label" for="$">Pesos</label>
+                <input type="radio" value="si" v-model="datos_a_enviar.estado">
+                <label class="moneda-label" >Activo</label>
               </div>
               
               <div class="contiene-opcion-moneda">
-                <input type="radio" value="U$S" v-model="datos_a_enviar.moneda">
-                <label class="moneda-label" for="U$S">Dolares</label>
+                <input type="radio" value="no" v-model="datos_a_enviar.estado">
+                <label class="moneda-label">Inactivo</label>
               </div>
             </div>
            </div>
