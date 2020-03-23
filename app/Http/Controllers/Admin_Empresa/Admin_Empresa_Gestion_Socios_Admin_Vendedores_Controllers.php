@@ -500,13 +500,30 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
        } 
   }
 
+  //api public paises
   public function get_paises(Request $Request)
   {
-    //crear un tokrn y guardarlo en la base de datos
+    
+    if(Auth::guest())
+    {
+      //crear un tokrn y guardarlo en la base de datos
+      //crear un tokrn y guardarlo en la base de datos
+    }
+    else
+    {
 
-    //se exige a las url externas que lo usen para acceder
+    }
+
     $Paises = $this->PaisRepo->getEntidadActivas();
-    return [$Paises, $Request->header()];
+
+    
+
+    return  ['Validacion'          => true,
+             'Validacion_mensaje'  => 'Países cargados correctamente',
+             'Paises'              => $Paises, 
+             'Header'              => $Request->header()];
+    
+   
 
 
   }

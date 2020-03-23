@@ -109,7 +109,7 @@ getPaises:function(){
 
             if(data.Validacion == true)
             {
-               vue.planes = data.planes;
+               vue.paises = data.Paises;
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
@@ -129,7 +129,7 @@ template:'
 
 <span >
    <div  class="simula_link columna-lista-texto" v-on:click="abrir_modal">
-         Paises       
+         Países       
    </div>
 
          <div class="modal fade" id="modal-paises" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
@@ -137,9 +137,9 @@ template:'
       <div class="modal-content">
         <div class="modal-header">
          <div class=""> 
-          <h4 class="modal-title" id="myModalLabel">Paises</h4>
+          <h4 class="modal-title" id="myModalLabel">Países</h4>
           <div class="modal-mensaje-aclarador">
-                Los paises donde vamos a vender Easysocio
+                Los países donde vamos a vender Easysocio
           </div>
           </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
@@ -157,6 +157,9 @@ template:'
                 </div> 
                  <div class="formulario-label-fiel">                   
                  <input type="text" class="formulario-field"  v-model="pais.code" placeholder="Código del país"  />
+                </div>
+                <div class="formulario-label-fiel">                   
+                 <input type="text" class="formulario-field"  v-model="pais.currencyCode" placeholder="Código de la moneda"  />
                 </div>
                  <div class="contiene-fase-2-moneda">
                  <div class="formulario-label-fiel"> 
