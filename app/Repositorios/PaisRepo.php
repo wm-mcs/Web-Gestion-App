@@ -18,6 +18,8 @@ class PaisRepo extends BaseRepo
 
   public function ActualizarCache()
   {
+
+    Cache::forget('Paises');
     Cache::remember('Paises', 10000, function() {
             return  $this->getEntidadActivasOrdenadasSegun('name','asc');
     });   
