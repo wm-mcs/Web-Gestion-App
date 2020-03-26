@@ -12,6 +12,8 @@ class ApiPublica
     public function handle($request, Closure $next)
     {
         $ip = $request->header('ip_del_que_navega');
+
+
         if($ip != null)
         {
           $nombre = 'ip_del_consultante_'.$ip;
@@ -33,7 +35,7 @@ class ApiPublica
           }
         }
 
-
+        dd($ip,Cache::get($nombre));
 
         return $next($request);
     }
