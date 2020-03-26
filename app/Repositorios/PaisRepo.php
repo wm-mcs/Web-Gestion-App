@@ -3,8 +3,7 @@
 namespace App\Repositorios;
 
 use App\Entidades\Pais;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 /**
 * Repositorio de consultas a la base de datos User
@@ -16,6 +15,14 @@ class PaisRepo extends BaseRepo
   {
     return new Pais();
   }
+
+  public function ActualizarCache()
+  {
+    Cache::remember('Paises', 10000, function() {
+            return  $this->getEntidadActivasOrdenadasSegun('name','asc');
+    });   
+  }
+    
 
    
   

@@ -66,6 +66,18 @@ abstract class BaseRepo
     }
 
     /**
+     * Entidades Activas 
+     */
+    public function getEntidadActivasOrdenadasSegun($Order_by,$Asc_desc)
+    {
+      return $this->entidad                  
+                  ->where('estado','si')  
+                  ->where('borrado','no')            
+                  ->orderBy($Order_by,$Asc_desc)
+                  ->get();
+    }
+
+    /**
      * Entidades Activas Paginadas
      */
     public function getEntidadActivasPaginadas($request,$paginacion)

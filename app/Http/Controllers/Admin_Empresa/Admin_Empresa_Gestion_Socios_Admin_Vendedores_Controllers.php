@@ -31,6 +31,8 @@ use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Repositorios\PaisRepo;
 use App\Managers\EmpresaGestion\PaisManager;
+use Illuminate\Support\Facades\Cache;
+
 
 
 
@@ -486,18 +488,45 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
 
        return  ['Validacion'          => true,
-                'Validacion_mensaje'  => 'Se creo correctamente el país',
+                'Validacion_mensaje'  => 'Se creó correctamente el país',
                 'Paises'              =>  $Paises];
   }
 
   public function editar_pais(Request $Request)
   {
-       $manager           = new PaisManager(null,$Request->all() );
+       $manager = new PaisManager(null,$Request->all() );
+       $Pais    = json_decode(json_encode($Request->get('pais')));
+     
+
+       
+           $Validacion  = true;
+
+           $PaisBuscado = $this->PaisRepo->find($Pais->id);
+       
+           //las porpiedades que se van a editar
+           $Propiedades      = ['name','code','currencyCode','estado'];
+
+
+           $this->PaisRepo->setEntidadDatoObjeto($PaisBuscado,$Pais,$Propiedades );
+           
+
+           $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ' ,'-',$PaisBuscado->name,'.png', 100);
+
+           
+
+
+           //actualizo cache socio
+           $this->PaisRepo->ActualizarCache();
+
        if(!$manager->isValid())
        {
          return  ['Validacion'          => false,
                   'Validacion_mensaje'  => 'No se pudo editar: ' . $manager->getErrors()];
        } 
+
+       return  ['Validacion'          => true,
+                'Validacion_mensaje'  => 'Se ceditó correctamente el país',
+                'Paises'              =>  $Paises];
   }
 
   //api public paises
@@ -514,7 +543,9 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
     }
 
-    $Paises = $this->PaisRepo->getEntidadActivas();
+    $Paises =  Cache::remember('Paises', 10000, function() {
+               return  $this->PaisRepo->getEntidadActivasOrdenadasSegun('name','asc');
+               });  
 
     
 
