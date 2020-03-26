@@ -26,7 +26,7 @@ class ApiPublica
             Cache::put($nombre,1,Carbon::now('America/Montevideo')->addMinutes(5));
           }
 
-          if(Cache::get($nombre) > 5)
+          if(Cache::get($nombre) > 2)
           {
              return ['Validacion'          => false,
                      'Validacion_mensaje'  => 'Muchas solicitudes.'];
