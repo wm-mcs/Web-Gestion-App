@@ -33,9 +33,13 @@ class ApiPublica
              return ['Validacion'          => false,
                      'Validacion_mensaje'  => 'Muchas solicitudes.'];
           }
+
+           $request->attributes->add(['ip'  => $ip,'cache' => Cache::get($nombre) ]);
         }
 
-        dd($ip,Cache::get($nombre));
+       
+
+       
 
         return $next($request);
     }
