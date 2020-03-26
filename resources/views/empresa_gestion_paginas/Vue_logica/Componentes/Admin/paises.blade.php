@@ -86,7 +86,7 @@ editarPais:function(pais){
             if(data.Validacion == true)
             {
 
-               vue.planes = data.planes;
+               vue.paises = data.Paises;
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
