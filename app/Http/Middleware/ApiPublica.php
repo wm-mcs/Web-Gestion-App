@@ -12,7 +12,7 @@ class ApiPublica
     public function handle($request, Closure $next)
     {
         $ip = $request->header('ip_del_que_navega');
-
+        $nombre = 'ip_del_consultante_'.$ip;
 
         if($ip != null)
         {
