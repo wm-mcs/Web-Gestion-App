@@ -75,7 +75,8 @@ createImage(file) {
 editarPais:function(pais){
       var url  = '/editar_pais';
 
-      var data = {pais:pais};
+      var data = {pais:pais,
+                imagen:this.datos_a_enviar.imagen};
       var vue  = this;
 
      axios.post(url,data).then(function (response){  
