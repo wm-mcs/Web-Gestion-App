@@ -12,7 +12,7 @@ class ApiPublica
     public function handle($request, Closure $next)
     {
         $ip = strval($request->header('Ip'));
-        /*$nombre = 'ip_del_consultante_'.$ip;
+        $nombre = 'ip_del_consultante_'.$ip;
 
         if($ip != null)
         {
@@ -35,9 +35,9 @@ class ApiPublica
           }
 
            $request->attributes->add(['ip'  => $ip,'cache' => Cache::get($nombre) ]);
-        }*/
+        }
 
-       $request->attributes->add(['ip'  => $ip ]);
+      
 
        
 

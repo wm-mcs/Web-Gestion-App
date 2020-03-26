@@ -552,7 +552,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
              'Paises'              => $Paises, 
              'Header'              => $Request->header('Ip'),
               'Header2'            => $Request->header('Maurico'),
-             'cache'               => 2];
+             'cache'               => $Request->get('cache')];
     
    
 
