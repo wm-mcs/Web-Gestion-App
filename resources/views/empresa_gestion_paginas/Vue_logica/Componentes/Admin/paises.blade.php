@@ -161,6 +161,9 @@ template:'
                 <div class="formulario-label-fiel">                   
                  <input type="text" class="formulario-field"  v-model="pais.currencyCode" placeholder="Código de la moneda"  />
                 </div>
+                <div class="formulario-label-fiel">                   
+                 <input type="file" name="image" v-on:change="onImageChange" accept="image/*">
+                </div>
                  <div class="contiene-fase-2-moneda">
                  <div class="formulario-label-fiel"> 
                   <img :src="pais.url_img"  >
