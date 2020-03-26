@@ -494,7 +494,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
   public function editar_pais(Request $Request)
   {
-       $manager = new PaisManager(null,$Request->all() );
+      
        $Pais    = json_decode(json_encode($Request->get('pais')));
      
 
@@ -518,11 +518,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
            //actualizo cache socio
            $this->PaisRepo->ActualizarCache();
 
-       if(!$manager->isValid())
-       {
-         return  ['Validacion'          => false,
-                  'Validacion_mensaje'  => 'No se pudo editar: ' . $manager->getErrors()];
-       } 
+     
 
        return  ['Validacion'          => true,
                 'Validacion_mensaje'  => 'Se ceditó correctamente el país',
