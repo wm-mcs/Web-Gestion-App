@@ -510,7 +510,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
            $this->PaisRepo->setEntidadDatoObjeto($PaisBuscado,$Pais,$Propiedades );
            
 
-           $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ' ,'-',$PaisBuscado->name,'.png', 100);
+           $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ' ,'-',$PaisBuscado->name),'.png', 100);
 
            
 
