@@ -489,7 +489,7 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
 
        return  ['Validacion'          => true,
                 'Validacion_mensaje'  => 'Se creó correctamente el país',
-                'Paises'              =>  $Paises];
+                'Paises'              => $Paises];
   }
 
   public function editar_pais(Request $Request)
