@@ -1463,6 +1463,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
       $Movimientos_de_caja = $this->CajaEmpresaRepo->getMovimientosDeCajaDeEstaEmpresa($Empresa->id);
+      foreach($Movimientos_de_caja as $Caja)
+      {
+        $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'borrado','si');
+      }
       $Socios              = $this->SocioRepo->getSociosDeEstaEmpresa($Empresa->id);
 
       foreach($Socios as $Socio)
