@@ -25,5 +25,7 @@ class Pais extends Model
     { 
         return url().'/imagenes/Paises/'. str_replace(' ' ,'-', $this->name). '.png';
     }
+
+    
     
 }

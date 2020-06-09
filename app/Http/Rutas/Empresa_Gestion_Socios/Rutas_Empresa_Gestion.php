@@ -153,6 +153,19 @@
                 ]); 
 
 
+                // R u t a s   s o l o   p a r a   U s u a r i o   S u p e r   A d m i n 
+                Route::group(['middleware' => 'SistemaGestionUserGerarquia:9'], function()
+                {
+
+                  Route::get('/borrar_todos_los_datos_de_esta_empresa_{id}' ,
+                   [                    
+                    'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@borrar_todos_los_datos_de_esta_empresa',
+                    'as'   => 'borrar_todos_los_datos_de_esta_empresa']
+                   );
+
+                });
+
+
                 
 
 

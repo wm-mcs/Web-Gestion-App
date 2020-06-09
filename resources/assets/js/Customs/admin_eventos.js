@@ -55,3 +55,8 @@
      var form  = $(this).parents();  
      form.submit();
   }); 
+
+  $('body').on('click','.super-confirmacion',function(e)
+  {
+     return confirm('¿Estás seguro que quieres hacer esto?');
+  }); 

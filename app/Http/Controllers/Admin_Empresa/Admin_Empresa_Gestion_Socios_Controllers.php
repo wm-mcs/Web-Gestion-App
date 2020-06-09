@@ -1456,6 +1456,33 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
 
+    public function borrar_todos_los_datos_de_esta_empresa($id)
+    {
+      $Empresa = $this->EmpresaConSociosoRepo->find($id);
+
+
+
+      $Movimientos_de_caja = $this->CajaEmpresaRepo->getMovimientosDeCajaDeEstaEmpresa($Empresa->id);
+      $Socios              = $this->SocioRepo->getSociosDeEstaEmpresa($Empresa->id);
+
+      foreach($Socios as $Socio)
+      {
+        //Borro los servisio
+        $Servicios_de_socio = $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Socio->id);
+        foreach($Servicios_de_socio as $Servicio)
+        {
+          $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'borrado','si');
+        }
+
+        $Estado_de_cuenta_del_socio = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadosDecuentaDeEsteSocio($Socio->id);
+        foreach($Estado_de_cuenta_del_socio as $Estado_de_cuenta)
+        {
+          $this->MovimientoEstadoDeCuentaSocioRepo->setAtributoEspecifico($Estado_de_cuenta,'borrado','si');
+        }
+      }
+    }
+
+
 
   
 }

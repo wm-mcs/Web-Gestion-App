@@ -58,6 +58,9 @@
               <div class="contenedor-grupo-datos-titulo"> Datos</div>
               <div class="contenedor-formulario-label-fiel">                       
                @include('admin.empresas_gestion_socios.formularios_partes.datos_basicos')
+               <div>
+                <a href="{{route('borrar_todos_los_datos_de_esta_empresa',$Empresa->id)}}" class="super-confirmacion"> Eliminar los datos de caja, servicios, socios y estado de cuenta socios (Todos)</a>
+              </div>
               </div>
             </div>
           </div>

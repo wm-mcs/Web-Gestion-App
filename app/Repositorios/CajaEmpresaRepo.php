@@ -22,6 +22,15 @@ class CajaEmpresaRepo extends BaseRepo
   }
 
 
+  public function getMovimientosDeCajaDeEstaEmpresa($empresa_id)
+  {
+    return $this->getEntidad()
+                ->where('empresa_id',$empresa_id)
+                ->where('borrado','no')
+                ->get();
+  }
+
+
   
 
 

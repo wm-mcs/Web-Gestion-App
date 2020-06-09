@@ -551,13 +551,14 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
              'Validacion_mensaje'  => 'Países cargados correctamente',
              'Paises'              => $Paises, 
              'Header'              => $Request->header('Ip'),
-              'Header2'            => $Request->header('Maurico'),
-             'cache'               => $Request->get('cache')];
-    
-   
+             'Header2'            => $Request->header('Maurico'),
+             'cache'               => $Request->get('cache')];   
 
 
   }
+
+
+
 
 
 
