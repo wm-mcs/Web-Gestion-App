@@ -27,7 +27,11 @@ computed:{
     }
   },
   whatsappNumero:function(){
-    var url = 'https://api.whatsapp.com/send?phone='+this.empresa.celular.substr(1)+'&text=Hola';
+
+    var prefijo_pais      = '598';
+    var celular_completo = '+' +prefijo_pais + this.empresa.celular.substr(1);
+
+    var url = 'https://api.whatsapp.com/send?phone='+ celular_completo +'&text=Hola';
     
     return url;
   }
