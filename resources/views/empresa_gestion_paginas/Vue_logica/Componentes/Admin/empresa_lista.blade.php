@@ -27,7 +27,7 @@ computed:{
     }
   },
   whatsappNumero:function(){
-    var url = 'https://api.whatsapp.com/send?phone='+this.empresa.celular+'&text=Hola';
+    var url = 'https://api.whatsapp.com/send?phone='+this.empresa.celular.substr(1)+'&text=Hola';
     
     return url;
   }
