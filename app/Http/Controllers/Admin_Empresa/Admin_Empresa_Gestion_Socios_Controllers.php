@@ -124,7 +124,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     
     $Empresa  = '';
-    //mostrar marcas de la a a la z (orden)
+    
 
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home', compact('Empresas','Empresa'));
   }

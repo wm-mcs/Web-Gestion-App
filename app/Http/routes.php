@@ -1,7 +1,7 @@
 <?php
 
 
-// Authentication routes...
+// A u t h  
 require __DIR__ . '/Rutas/Auth.php';
 
 Route::get('email_simples' , [                    
@@ -18,9 +18,7 @@ Route::group(['middleware' => 'ApiPublica'],function()
     require __DIR__ . '/Rutas/Api.php';
 });
 
-/**
- * Grupo de Rutas con middleware
- */
+
 Route::group(['middleware' => 'auth'],function()
 {
 
@@ -29,8 +27,6 @@ Route::group(['middleware' => 'auth'],function()
      'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_home',
      'as'   => 'get_home']
     );
-
-
     
         //user cambio de contraseña
         Route::post('cambiarContraseñaUser',
@@ -39,26 +35,17 @@ Route::group(['middleware' => 'auth'],function()
           'as'    => 'cambiarContraseñaUser'
         ]);
 
-    
+        //admin_empresa_clientes
+        Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
+        {
+             require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
 
-
-
-    
-    
-       
-
-
-         //admin_empresa_clientes
-         Route::group(['middleware' => 'SistemaGestionUserGerarquia:2'], function()
-         {
-                 require __DIR__ . '/Rutas/Admin_Empresa_Cliente.php';
-
-                 //admin_nuestro
-                 Route::group(['middleware' => 'SistemaGestionUserGerarquia:10'], function()
-                 {
-                   require __DIR__ . '/Rutas/Admin_Supremo.php';
-                 });
-         });
+             //admin_nuestro
+             Route::group(['middleware' => 'SistemaGestionUserGerarquia:10'], function()
+             {
+               require __DIR__ . '/Rutas/Admin_Supremo.php';
+             });
+        });
     
 });
 
