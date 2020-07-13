@@ -5,15 +5,8 @@ namespace App\Entidades\Traits;
 
 
 trait entidadesScopesComunes{
+
     
-
-   
-
-     
-
-
-
-
     /* S c o p e s */
     public function scopeName($query, $name)
     {        
