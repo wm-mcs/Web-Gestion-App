@@ -11,31 +11,20 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
+elixir(function(mix) {    
+
+        
+  mix.sass('admin.scss','public/css'); 
+     
+     
+
+     
     
 
-     mix.sass('mixer.scss','public/css');
-     mix.sass('creative_template_mixer.scss','public/css'); 
-     mix.sass('admin.scss','public/css'); 
-     mix.sass('appGestionPublic.scss','public/css'); 
-     
-
-     
     mix.scripts([
         
-        'Template_creative/jquery.js',
-         'Customs/helper_generales.js',
-         'Customs/admin_eventos.js'
-
-       
-
-
-       ]);
-
-    mix.scripts([
-        
-        'Template_creative/jquery.js',
-        'Template_creative/bootstrap.bundle.js',
+        'Plugins/Plug-jquery.js',
+        'Plugins/Plug-bootstrap.js',
         'Customs/helper_generales.js',
         'Plugins/Plug-Notify.js',
         'Customs/admin_eventos.js'
@@ -43,16 +32,11 @@ elixir(function(mix) {
 
        ],'public/js/admin.js');
 
-     mix.scripts([
-        
-        'Vue/main-vue.js',
-       
-
-       ],'public/js/vue.js');
+    
 
 
     elixir(function(mix) {
-            mix.version(['css/mixer.css','css/creative_template_mixer.css','css/admin.css','css/appGestionPublic.css' ,'js/all.js','js/admin.js','js/vue.js']); 
+            mix.version(['css/admin.css','js/admin.js']); 
     });
 
     

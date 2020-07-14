@@ -1,9 +1,4 @@
 {
   "css/admin.css": "css/admin-52b06a3419.css",
-  "css/appGestionPublic.css": "css/appGestionPublic-49fd00d7d7.css",
-  "css/creative_template_mixer.css": "css/creative_template_mixer-6f05034ee4.css",
-  "css/mixer.css": "css/mixer-d41d8cd98f.css",
-  "js/admin.js": "js/admin-a01e62e27a.js",
-  "js/all.js": "js/all-285fd2219a.js",
-  "js/vue.js": "js/vue-7ee7ae9275.js"
+  "js/admin.js": "js/admin-be020047e2.js"
 }
