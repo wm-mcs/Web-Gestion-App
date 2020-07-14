@@ -16,7 +16,7 @@ class CajaEmpresa extends Model
 
     use entidadesScopesComunes;
 
-    protected $table    ='caja_empresas';    
+    protected $table    = 'caja_empresas';    
     protected $fillable = ['name', 'description'];
     protected $hidden   = ['user'];
     protected $appends  = ['user_name','fecha'];

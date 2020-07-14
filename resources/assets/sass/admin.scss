@@ -1,43 +1,20 @@
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_colores_y_fuentes";
-
-@import "resources/assets/sass/template_Creative/bootstrap";
-@import "resources/assets/sass/template_Creative/bootstrap-grid";
-@import "resources/assets/sass/template_Creative/bootstrap-reboot";
-
-@import "resources/assets/sass/template_Creative/_variables";
-@import "resources/assets/sass/template_Creative/_mixins";
-@import "resources/assets/sass/template_Creative/_global";
-@import "resources/assets/sass/template_Creative/_navbar";
-@import "resources/assets/sass/template_Creative/_masthead";
-@import "resources/assets/sass/template_Creative/_services";
-@import "resources/assets/sass/template_Creative/_portfolio";
-@import "resources/assets/sass/template_Creative/_bootstrap-overrides";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_colores_y_fuentes";
+@import "resources/assets/sass/Plugins/bootstrap/bootstrap";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helpers___mixer";
 
 
 
 
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_botones";
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_mediCueris";
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_Plug-flex"; 
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_clases_pre_armadas";
-@import "resources/assets/sass/Secciones_y_Helpers/Helper_Recets";
-@import "resources/assets/sass/Secciones_y_Helpers/Error_404"; 
 
 
 
 
-@import "resources/assets/sass/Admin/formularios/formulario_estilos";
-@import "resources/assets/sass/Admin/Home_Entidades/layoute_general";
-@import "resources/assets/sass/Admin/Home_Entidades/Empresa";
-@import "resources/assets/sass/Admin/Home_Entidades/home";
-/*@import "resources/assets/sass/Admin/Home_Entidades/marcas";*/
-@import "resources/assets/sass/Admin/Home_Entidades/principal";
-@import "resources/assets/sass/Admin/Home_Entidades/Users";
+
 
 
 
 //layout de los paneles de empresa gestion
-@import "resources/assets/sass/Modulos/empresa_gestion_general";
+/*@import "resources/assets/sass/Modulos/empresa_gestion_general";
 @import "resources/assets/sass/Modulos/empresa_gestion_listado_socios";
 @import "resources/assets/sass/Modulos/empresa_gestion_formularios";
 @import "resources/assets/sass/Modulos/empresa_gestion_panel_spcio"; 
@@ -61,7 +38,7 @@
 @import "resources/assets/sass/Modulos/empresa_gestion_avisos_atencion";  
 
 @import "resources/assets/sass/Modulos/empresa_gestion_atencion_al_cleinte"; 
-@import "resources/assets/sass/Secciones_y_Helpers/Error_404"; 
+@import "resources/assets/sass/Secciones_y_Helpers/Error_404"; */
 
 
 

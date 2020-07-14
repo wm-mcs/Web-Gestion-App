@@ -1,0 +1,68 @@
+
+@import "resources/assets/sass/Plugins/Plug-flex"; 
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_mediCueris";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_AJUSTES_Y_MIXIN_GENERALES";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_botones";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_Textos_Estilos";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_Inputs_Estilos";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_Imagenes_background";
+
+
+
+
+
+
+
+
+/* C L A S E S   D E   T A M A Ñ O  */
+.get_width_100{
+  width:100%;
+}
+
+.get_height_100{
+  height:100%;
+}
+
+/* C L A S E S   D E   L I S T A S  */
+.lista-class{
+    width: 100%;
+    margin-top: 4px;    
+    font-size: 14px;
+    letter-spacing: 1.4px;  
+    padding-left:20px;
+    line-height:1.7;
+    font-family:$font-secondary;
+      
+}
+
+.lista-class::before{
+    content: "\025cf";    
+    color:$color-3;  
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+
+/* S i m u l a   u n   l i n k */
+.simula-link{
+  cursor:pointer;
+  color:$color-3;
+}
+.simula-link:hover{    
+  color:$color-3-primary_hover;
+}
+
+/* C u r s o r   p o i n t e r */
+.cursor-pointer{
+  cursor: pointer;
+}
+
+/* C a r g a d o r*/
+.lazy-hidden {
+    background: $color-3 url('loading.gif') no-repeat 50% 50%;
+}
+
+
+

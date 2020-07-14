@@ -1,0 +1,99 @@
+
+
+@mixin Boton-base()
+{
+  padding: 10px 14px;
+  
+  border: solid 1px transparent;
+  border-radius: $Border-radius;
+  width:100%;
+  cursor:pointer;
+  letter-spacing: 1.4px;
+  text-align: center;
+  display: block;
+  font-family:$font-secondary;
+  
+}
+
+
+/* B O T O N E S */
+.Boton-Fuente-Muy-Chica{
+  font-size: 12px;
+}
+.Boton-Fuente-Chica{
+  font-size: 14px;
+}
+
+.Boton-Fuente-Grande{
+  font-size: 20px;
+}
+
+
+.Boton-Primario-Relleno{
+  @include Boton-base;
+  color:$color-white;
+  background-color: $color-3;
+  border-color:darken( $color-3, 10% );
+}
+.Boton-Primario-Relleno:hover{
+  background-color: darken( $color-3, 10% );
+  color:$color-white;
+}
+
+.Boton-Primario-Sin-Relleno{
+  @include Boton-base;
+  color:$color-3;
+  background-color: transparent;
+  border-color:$color-3;
+}
+.Boton-Primario-Sin-Relleno:hover{
+  background-color: $color-3;
+  color:$color-white;
+}
+
+.Boton-Primario-Sin-Relleno-Ni-Borde{
+  @include Boton-base;
+  color:$color-3;
+  background-color: transparent;
+  border-color:transparent;
+}
+.Boton-Primario-Sin-Relleno-Ni-Borde:hover{
+  background-color: $color-3;
+  color:$color-white;
+}
+
+
+
+.Boton-Blanco{
+  @include Boton-base;
+  color:$color-white;
+  background-color: transparent;
+  border-color:$color-white;
+}
+.Boton-Blanco:hover{
+  background-color:  lighten( $color-3, 10% );
+  border-color:darken( $color-3, 10% );
+  color:$color-white;
+}
+
+.Boton-Disable{
+  cursor: not-allowed;
+}
+
+
+
+
+
+@media (min-width: $BrackPoint-Secundario){
+
+.Boton-Fuente-Chica{
+  font-size: 18px;
+}
+.Boton-Fuente-Grande{
+  font-size: 28px;
+}
+
+
+
+
+}  

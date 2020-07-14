@@ -1,0 +1,62 @@
+
+/* C O L O R E S   P R I N C I P A L E S */
+
+$color-3:#ff5a5f; 
+$color-3-primary_hover: lighten( $color-3, 5% );
+$color-2:darken( $color-3, 10% );
+
+
+/* C O L O R E S   G E N E R A L E S  */
+
+$color-white:white; 
+$color-black:black; 
+
+$color-grey-2:darken($color-white, 1% );
+$color-grey-1:darken($color-white, 5% );
+$color-grey0:darken($color-white, 10% ); 
+$color-grey1:darken($color-white, 25% ); 
+$color-grey2:darken($color-white, 50% ); 
+$color-grey3:darken($color-white, 75% ); 
+$color-grey4:darken($color-white, 85% ); 
+
+/* C O L O R   T E X T O */
+
+$color-gris-text: $color-grey2;
+$color-negro-para-textos: lighten($color-black,5%);
+
+/* V E R D E S */
+
+$color-verde-texto-success:#4BB543;
+
+/* R O J O S */
+
+$Color-Rojo-Cancelar: #FF0000;
+$Color-Rojo-Texto-Error: #B40404;
+$Color-Errors-BG: #FCB6B6;
+$Color-Rosado-Active-Cancelar-Bg:#FDB6BF ;
+$Color-Verde-Super-Claro:#DFF2BF ;
+
+/* F U E N T E S */
+
+$font-primary:'Roboto', sans-serif ;
+$font-secondary: 'Roboto', sans-serif;
+
+/* B O R D E   R A D I U S */
+
+$Border-radius: 8px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

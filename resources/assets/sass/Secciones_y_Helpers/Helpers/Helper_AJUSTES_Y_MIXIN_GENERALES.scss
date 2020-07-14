@@ -1,0 +1,41 @@
+/* M i x i n s   y   r e c e t s */
+@mixin Parrafo_Style()
+{
+  font-size:16px !important;
+  letter-spacing:1.2px;  
+  line-height: 1.7;
+  font-family:$font-secondary;
+}
+
+@mixin H1_Titulo_Style()
+{
+  font-size:48px !important;
+  letter-spacing:1px;
+  font-weight:bold;
+  line-height: 1;
+  font-family:$font-secondary;
+}
+
+
+p{
+ @include Parrafo_Style;
+}
+
+
+@mixin Parrafo_Titulo_Style()
+{
+  font-size:26px !important;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  font-family:$font-secondary;
+}
+
+
+ a{
+  color: $color-3;
+  font-weight: bold;
+ }
+
+ a:hover{
+  color: $color-2;
+ }
