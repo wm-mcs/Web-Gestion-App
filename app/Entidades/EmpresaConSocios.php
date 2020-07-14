@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Entidades\User;
+use App\Entidades\Traits\entidadesScopesComunes;
 
 
 
@@ -19,6 +20,7 @@ use App\Entidades\User;
 class EmpresaConSocios extends Model
 {
 
+    use entidadesScopesComunes;
     protected $table ='empresa_con_socios';
 
     /**
@@ -52,34 +54,29 @@ class EmpresaConSocios extends Model
            return $this->servicios_relation;
         }
 
-
-    
-
     public function sucursales()
     {
         return $this->hasMany(SucursalEmpresa::class,'empresa_id','id');
     }
 
-      public function getSucursualesEmpresaAttribute()
-      {
-        return Cache::remember('sucursales_empresa'.$this->id, 60, function() {
-                              return $this->sucursales;
-                          }); 
-      }
+        public function getSucursualesEmpresaAttribute()
+        {
+           return Cache::remember('sucursales_empresa'.$this->id, 60, function() {
+                                return $this->sucursales;
+                            }); 
+        }
 
     public function movimientos_estado_de_cuenta()
     {
         return $this->hasMany(MovimientoEstadoDeCuentaEmpresa::class,'empresa_id','id')->where('borrado','no');
     }
 
-      public function getMovimientosEstadoDeCuentaEmpresaAttribute()
-      {
-          return Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$this->id, 8000, function() {
-
-
-           return  $this->movimientos_estado_de_cuenta;
-          });
-      } 
+        public function getMovimientosEstadoDeCuentaEmpresaAttribute()
+        {
+            return Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$this->id, 8000, function() {
+               return  $this->movimientos_estado_de_cuenta;
+            });
+        } 
 
       
 
@@ -115,6 +112,7 @@ class EmpresaConSocios extends Model
         {
           return 0;
         }
+
         return Cache::remember('SaldoDoalresEmpresa'.$this->id, 8000, function() {
 
         $Debe    = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo','deudor')
@@ -179,40 +177,10 @@ class EmpresaConSocios extends Model
     public function getVendedorDeEstaEmpresaAttribute()
     {
          return Cache::remember('VendedorDeEstaEmpresa'.$this->id, 600, function() {
-
             return  $this->vendedor;
          }); 
     }
 
-
-
-
-
-    
-
-
-    /**
-     * PAra busqueda por nombre
-     */
-    public function scopeName($query, $name)
-    {
-        //si el paramatre(campo busqueda) esta vacio ejecutamos el codigo
-        /// trim() se utiliza para eliminar los espacios.
-        ////Like se usa para busqueda incompletas
-        /////%% es para los espacios adelante y atras
-        if (trim($name) !="")
-        {                        
-           $query->where('name', "LIKE","%$name%"); 
-        }
-        
-    }
-
-    public function scopeActive($query)
-    {
-                               
-           $query->where('estado', "si"); 
-                
-    }
 
     public function getUrlImgAttribute()
     {
@@ -249,9 +217,8 @@ class EmpresaConSocios extends Model
 
 
     public function getRouteAdminAttribute()
-    {
-        
-        return route('get_admin_empresas_gestion_socios_editar', $this->id);
+    {        
+       return route('get_admin_empresas_gestion_socios_editar', $this->id);
     }
 
 
