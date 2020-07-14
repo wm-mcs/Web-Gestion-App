@@ -143,7 +143,7 @@ seleccionarUnObjetoSegunAtributo:function(lista,atributo,valor){
 
 },
 template:'<span>
- <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear text-center panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal">
+ <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear " v-on:click="abrir_modal">
         <i class="fas fa-cash-register"></i> Vender servicio
        
  </div>

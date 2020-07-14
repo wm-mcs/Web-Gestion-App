@@ -105,7 +105,7 @@ computed:{
 }
 ,
 template:'<span >
-   <div  class="admin-user-boton-Crear" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
+   <div  class="admin-user-boton-Crear mr-lg-2" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
        <i class="fas fa-cash-register"></i>
 
 
