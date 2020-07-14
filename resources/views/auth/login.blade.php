@@ -17,7 +17,7 @@
 
 
 @section('content') 
-      <img class="auth-logo-easy" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
+      <img class="img-fluid p-2 p-lg-5 mb-2" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
       <div class="contiene_auth_form">  
          <h1 class="auth_titulo_h1">Inicio de sesión</h1>      
          @include('formularios.auth.login_form')
