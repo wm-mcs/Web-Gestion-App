@@ -3,23 +3,10 @@
 namespace App\Repositorios\Emails;
 
 use Illuminate\Support\Facades\Mail;
-use App\Repositorios\EmpresaRepo;
-
 
 
 class EmailsRepo 
 {
-
-
-
-
-
-    
-    
-
-
-
-
 
      /**
      * Envio de un email simple
