@@ -55,5 +55,5 @@ elixir(function(mix) {
             mix.version(['css/mixer.css','css/creative_template_mixer.css','css/admin.css','css/appGestionPublic.css' ,'js/all.js','js/admin.js','js/vue.js']); 
     });
 
-    /*mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/','public/build/fonts/bootstrap');*/
+    
 });
