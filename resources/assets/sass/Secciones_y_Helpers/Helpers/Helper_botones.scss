@@ -12,30 +12,31 @@
   text-align: center;
   display: block;
   font-family:$font-secondary;
+  font-size: 12px;
   
 }
 
 
 /* B O T O N E S */
 .Boton-Fuente-Muy-Chica{
-  font-size: 12px;
+  font-size: 12px !important;
 }
 .Boton-Fuente-Chica{
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .Boton-Fuente-Grande{
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 
-.Boton-Primario-Relleno,.boton-simple{
+.Boton-Primario-Relleno,.boton-simple,.boton-simple-chico{
   @include Boton-base;
   color:$color-white;
   background-color: $color-3;
   border-color:darken( $color-3, 10% );
 }
-.Boton-Primario-Relleno:hover,.boton-simple:hover{
+.Boton-Primario-Relleno:hover,.boton-simple:hover,.boton-simple-chico:hover{
   background-color: lighten( $color-3, 5% );
   color:$color-white;
 }

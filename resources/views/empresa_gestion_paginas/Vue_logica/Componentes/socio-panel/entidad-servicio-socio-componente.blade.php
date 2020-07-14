@@ -314,20 +314,24 @@ template:'
         
         
             <div class="entidad-lista-servicio-contiene-fecha">
-                <span class="entidad-lista-servicio-fecha" >Contratado el @{{servicio.fecha_contratado_formateada}}  
-                  
+                <span class="entidad-lista-servicio-fecha" >
+                  Contratado el @{{servicio.fecha_contratado_formateada}}                    
                 </span>    
-                <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > Vendido por @{{servicio.creado_por}}</span>            
-                <span v-show="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >
-                Se vence el @{{servicio.fecha_vencimiento_formateada}}
-                </span> 
-               
+                <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > 
+                  Vendido por @{{servicio.creado_por}}
+                </span>            
+                <span v-if="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >
+                  Se vence el @{{servicio.fecha_vencimiento_formateada}}
+                </span>                
 
-                <div v-show="servicio.esta_vencido" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}</div>
+                <div v-if="servicio.esta_vencido" class="lista-estado-consumido" >
+                 <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}
+                </div>
                
-                <div v-show="servicio.se_consumio" class="lista-estado-consumido" > <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}} 
+                <div v-if="servicio.se_consumio" class="lista-estado-consumido" > 
+                  <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}} 
                  
-                 <span v-show="servicio.quien_marco_que_se_uso  != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
+                  <span v-if="servicio.quien_marco_que_se_uso  != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
 
                 </div>
 
@@ -335,7 +339,7 @@ template:'
                 <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha" >@{{donde_se_uso}}</span> 
             </div>
 
-            <div v-show="esta_activo" class="lista-estado-activo" > 
+            <div v-if="esta_activo" class="lista-estado-activo" > 
                 <i class="fas fa-check"></i> Disponible
             </div>
             
