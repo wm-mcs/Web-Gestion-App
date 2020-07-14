@@ -29,7 +29,7 @@
     border: 0;
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,.26);
-    background-color: #fff;    
+    background-color: $color-white;    
     width: 100%;
 
    }
@@ -86,7 +86,7 @@
               .formulario-field{
                 padding: 6px;
                 border-radius: 4px;
-                border:solid 1px $Color-Gris-Claro-Para-Bordes;
+                border:solid 1px $color-grey0;
                 font-size: 14px;     
                 font-weight:bold;           
                 color: $color-3;
@@ -95,10 +95,15 @@
 
 
               .admin-boton-editar{
-                @include Boton-Normal($color-3)
+                @include Boton-base;
+                font-size: 14px;
+                color:$color-white;
+                background-color: $color-3;
+                border-color:darken( $color-3, 10% );
               }
               .admin-boton-editar:hover{
-                background-color:$color-3light;
+               background-color: darken( $color-3, 10% );
+               color:$color-white;
               }
 
               .admin-img-section-contenedor{

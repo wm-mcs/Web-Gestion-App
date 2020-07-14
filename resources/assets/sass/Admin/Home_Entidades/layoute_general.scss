@@ -15,7 +15,7 @@
 
   .admi-header-titulo{
     font-size: 16px;
-    color: $Color-texto-gris-Mercadolibre;
+    color: $color-gris-text;
     margin-left: 5px; 
   }
 
@@ -74,7 +74,7 @@
     padding: 0 8px;
     border-radius:6px;
     font-size: 24px;    
-    color:$Color-texto-gris-Mercadolibre;
+    color:$color-gris-text;
     cursor: pointer;
     margin-right: 30px;
   }
@@ -83,7 +83,7 @@
     padding: 8px 8px;
     border-radius:6px;
     font-size: 24px;    
-    color:$Color-texto-gris-Mercadolibre;
+    color:$color-gris-text;
     cursor: pointer;
     margin-bottom: 10px;
   }
@@ -92,7 +92,7 @@
 
   .admin-contnedor-navegacion-miga{    
     padding: 8px;
-    color: $Color-texto-gris-Mercadolibre;
+    color: $color-gris-text;
     font-size: 10px;
     letter-spacing: 1.2px;  
     @include flexbox;
@@ -102,7 +102,7 @@
   }
     .spam-separador{
       margin: 0 4px;  
-      color: $Color-texto-gris-Mercadolibre ;
+      color: $color-gris-text ;
       font-size: 8px;
     }
 
@@ -115,7 +115,7 @@
 
  .admin-columna-contenedor{
   min-width: 20%; 
-  background-color: $Color-Gris-CasiBlanco;
+  background-color: $color-grey-2;
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);   

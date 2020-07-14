@@ -8,12 +8,12 @@
 
 
 
+/* C l a s e s   g e n e r a l e s   d e l   p a n e l   a d m i n */
+@import "resources/assets/sass/Admin/formularios/formulario_estilos";
+@import "resources/assets/sass/Admin/Home_Entidades/layoute_general";
 
 
-
-
-
-//layout de los paneles de empresa gestion
+/* L a y o u t   d e   l o s   p a n e l e s   d e   e m p r e s a   g e s t i ó n */
 @import "resources/assets/sass/Modulos/empresa_gestion_general";
 @import "resources/assets/sass/Modulos/empresa_gestion_listado_socios";
 @import "resources/assets/sass/Modulos/empresa_gestion_formularios";
