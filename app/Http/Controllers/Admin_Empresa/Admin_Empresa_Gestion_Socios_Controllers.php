@@ -232,7 +232,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     {
                        array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
                                                                    'Acutualizo' => 'no', 
-                                                                   'Razon'      => 'no tenía servicio con renovacion marcada en si',
+                                                                   'Razon'      => 'no tenía servicio con renovación marcada en si',
                                                                    'Fecha'      =>  $Hoy_objet ] )  ) );
                     }
 
@@ -425,7 +425,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
 
        return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Se creo correctamente '. $Socio->name,
+               'Validacion_mensaje'  => 'Se creó correctamente '. $Socio->name,
                'Socio'               => $this->SocioRepo->find($Socio->id),
                'Socios'              => $this->SocioRepo->getSociosDeEstaEmpresa($UserEmpresa->empresa_id)];
 
@@ -502,7 +502,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         if(!$manager->isValid())
         {
           return  ['Validacion'          => false,
-                   'Validacion_mensaje'  => 'No se puedó crear el servicio: ' . $manager->getErrors()];
+                   'Validacion_mensaje'  => 'No se pudo crear el servicio: ' . $manager->getErrors()];
         }
 
        $Propiedades = ['name','tipo','empresa_id','moneda','valor','cantidad_clases'];
@@ -580,7 +580,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         if(!$manager->isValid())
         {
           return  ['Validacion'          => false,
-                   'Validacion_mensaje'  => 'No se puedó agregar el servicio: ' . $manager->getErrors()];
+                   'Validacion_mensaje'  => 'No se pudo agregar el servicio: ' . $manager->getErrors()];
         }
 
     

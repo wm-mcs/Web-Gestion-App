@@ -1,14 +1,4 @@
 <?php
-
-
-
-
-
-
-
-
- 
-
  
       require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion.php';
 
@@ -59,12 +49,7 @@
 
       Route::group(['middleware' => 'SistemaGestionEmpresaIgualUserEmpresa'],function()
       {
-         require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php'; 
-
-
-
-
-
+          require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Empresa_Igual_User_empresa_Midelware.php'; 
 
           Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSucursalEmpresa'],function()
           {     
@@ -74,21 +59,17 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_empresa_panel_de_gestion',
                   'as'         => 'get_empresa_panel_de_gestion']);  
 
-
                 //cambiar de sucursal
                 Route::post('cambiar_de_sucursal',
                 [
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@cambiar_de_sucursal',
                   'as'         => 'cambiar_de_sucursal']);  
 
-
-
                 //ingresar_movimiento_de_caja
                 Route::post('ingresar_movimiento_caja',
                 [
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@ingresar_movimiento_caja',
                   'as'         => 'ingresar_movimiento_caja']);
-
                 
                  //eliminar el moviiento de caja
                 Route::post('eliminar_estado_de_caja',
@@ -101,11 +82,10 @@
                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_movimientos_de_caja_de_sucursal',
                  'as'         => 'get_movimientos_de_caja_de_sucursal']);   
 
-
-                 Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
-                 {
-                   require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
-                 });
+                Route::group(['middleware' => 'SistemaGestionUserEmpresIgualSociaEmpresa'],function()
+                {
+                  require __DIR__ . '/Empresa_Gestion_Socios/Rutas_Empresa_Gestion_Socio_Empresa_Igual_User_empresa_Midelware.php';
+                });
           });
          
 
