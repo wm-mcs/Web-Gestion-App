@@ -34,9 +34,12 @@
   left: 0;
   z-index: 1000;*/
   font-family: $font-primary;
-  position:relative;
-  
- 
+  position:relative;  
+}
+
+/*Wrapper de 20%*/
+.column-wraper-cuando-esta-fixed{
+  width: 20%;
 }
 
   .admin-contiene-content{

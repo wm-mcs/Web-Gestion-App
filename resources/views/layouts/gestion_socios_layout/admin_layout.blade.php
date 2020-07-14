@@ -49,7 +49,7 @@
             <div class="cargando-text-style">Procesando...</div>
           </div>  --}}    
        </div>
-       <div v-show="esResolucionDePc" class="get_width_20"></div>
+       <div v-show="esResolucionDePc" class="column-wraper-cuando-esta-fixed"></div>
        <div v-show="mostrar_menu" class="admin-columna-contenedor">
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">

@@ -1,4 +1,4 @@
- <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear text-center" v-on:click="editSocioShow">
+ <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear mb-3 mb-lg-0 " v-on:click="editSocioShow">
         <i class="fas fa-user-edit"></i> @{{socio.name}}
        
  </div>

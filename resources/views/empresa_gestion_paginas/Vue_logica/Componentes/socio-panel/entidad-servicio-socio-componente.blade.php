@@ -261,9 +261,9 @@ template:'
 
   <div class="contiene-entidad-lista-servicio">
 
-       <div class="flex-row-start get_width_100 flex-justifice-space-between">
+       <div class="d-flex flex-row w-100 justify-content-between">
         
-        <div class="flex-column-start get_width_50">
+        <div class="d-flex flex-column w-50">
           
        
               <div class="entidad-lista-name" >
@@ -301,7 +301,7 @@ template:'
 
         </div>   
             
-        <div class="flex-column-end get_width_50 padding-4px">
+        <div class="d-flex flex-column align-items-end w-50 p-3">
           
         
          <div v-if="es_clase" class="lista-estado-por-clase">

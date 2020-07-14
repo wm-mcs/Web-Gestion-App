@@ -29,14 +29,14 @@
 }
 
 
-.Boton-Primario-Relleno{
+.Boton-Primario-Relleno,.boton-simple{
   @include Boton-base;
   color:$color-white;
   background-color: $color-3;
   border-color:darken( $color-3, 10% );
 }
-.Boton-Primario-Relleno:hover{
-  background-color: darken( $color-3, 10% );
+.Boton-Primario-Relleno:hover,.boton-simple:hover{
+  background-color: lighten( $color-3, 5% );
   color:$color-white;
 }
 

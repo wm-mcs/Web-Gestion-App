@@ -80,6 +80,6 @@
            border-color:darken( $color-3, 10% );
          }
          .boton-acciones-editar:hover{
-           background-color: darken( $color-3, 10% );
+           background-color:lighten( $color-3, 5% );
            color:$color-white;
          }
