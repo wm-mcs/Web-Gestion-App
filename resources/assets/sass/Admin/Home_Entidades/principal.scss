@@ -63,17 +63,17 @@
       margin:15px auto;
       padding:6px;
       border-radius:4px;
-      background-color:$Color-Gris-Claro;
+      background-color:$color-grey-1;
       width: 800px;
      }
 
     
 
      .admin-entidad-proyecto-img-adicionales-contenedor{
-        border-color: $Color-Gris-Claro-Para-Bordes;
+        border-color: $color-grey0;
         position: relative;
         
-        border: solid 1px $Color-Gris-Claro;
+        border: solid 1px $color-grey-1;
         margin-right: 4px;
         margin-top: 5px;
      }
@@ -95,7 +95,7 @@
           top: 1px;
           padding:1px;
           border-radius:2px;
-          color:$color-grey2 ;
+          color:$color-gris-text ;
         }
         .icono-eleminar-imagen:hover{
           background-color: $Color-Errors-BG;
@@ -123,14 +123,7 @@
  
 
 
-         .boton-subir-img{
-          @include Boton-Chico($color-3);
-          margin: 5px ;
-         }
-
-         .boton-subir-img:hover{
-          background-color:$color-3light ;
-         }
+        
 
    .admin-entidad-buscador-contenedor{
      @include flexbox;
@@ -183,6 +176,6 @@
         .Entidad-listada-name{
           width:130px;
           font-size: 10px;
-          color: $color-grey2;
+          color: $color-gris-text;
         }
 

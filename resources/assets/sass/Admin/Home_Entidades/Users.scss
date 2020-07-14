@@ -1,19 +1,23 @@
 
 
 .admin-user-boton-Crear{
- @include Boton-Normal($Color-Gris-Plata);
- display: inline-block;
+ @include Boton-base;
+ font-size: 14px;
+ color:$color-white;
+ background-color: $color-3;
+ border-color:darken( $color-3, 10% );
 }
 .admin-user-boton-Crear:hover{
-  background-color:$color-3;
+  background-color: darken( $color-3, 10% );
+  color:$color-white;
 }
 
 
   .admin-user-lista-contenedor{
     padding: 4px;
     border-radius:4px;
-    background-color:$Color-Gris-CasiBlanco ;
-    border: solid 1px $Color-Gris-Claro-Para-Bordes;
+    background-color:$color-grey-2 ;
+    border: solid 1px$color-grey0;
     margin-top: 3px;
     width: 300px;
     @include flexbox;
@@ -25,7 +29,7 @@
 
     .admin-user-lista-icono{
       font-size: 20px;
-      color:$Color-texto-gris-Mercadolibre;
+      color:$color-gris-text;
       padding:3px;
       min-width: 30px;
       text-align: center;
@@ -38,7 +42,7 @@
       @include flex-direction(row);
       @include justify-content(space-between);
       padding: 4px;
-      border-left:solid 1px $Color-Gris-Claro-Para-Bordes;
+      border-left:solid 1px $color-grey0;
 
     }
 
@@ -51,7 +55,7 @@
         .admin-lista-dato-primario{
           font-size: 13px;
           padding:1px;
-          border-bottom: solid 1px $Color-Gris-Claro-Para-Bordes;
+          border-bottom: solid 1px $color-grey0;
           font-weight: bold;
         }
 
@@ -60,7 +64,7 @@
         .admin-lista-dato-secundario{
           font-size: 10px;
           padding:1px;
-          color:$Color-texto-gris-Mercadolibre;
+          color:$color-gris-text;
         }
 
 
@@ -69,8 +73,13 @@
        }
 
          .boton-acciones-editar{
-          @include Boton-Chico($color-3);
+           @include Boton-base;
+           font-size: 14px;
+           color:$color-white;
+           background-color: $color-3;
+           border-color:darken( $color-3, 10% );
          }
          .boton-acciones-editar:hover{
-          background-color:$color-3light;
+           background-color: darken( $color-3, 10% );
+           color:$color-white;
          }
