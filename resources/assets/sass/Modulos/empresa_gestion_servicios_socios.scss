@@ -2,12 +2,12 @@
   padding: 10px;
   border-radius: 6px;
   margin-top: 3px;
-  background-color: $Color-Gris-Claro;  
+  background-color: $color-grey-1;  
   width: 98%;
 }
 
 .contiene-entidad-lista-servicio:hover{
-  background-color: $Color-Gris-Claro-Para-Bordes;  
+  background-color: $color-grey0;  
 }
 
 
@@ -49,7 +49,7 @@
     border-radius:8px;
     font-size: 18px;
     text-align: center;
-    background-color: $Color-Gris-Claro;
+    background-color: $color-grey-1;
     font-weight: bold;
     color: $color-verde-texto-success;
     margin-top: 3px;

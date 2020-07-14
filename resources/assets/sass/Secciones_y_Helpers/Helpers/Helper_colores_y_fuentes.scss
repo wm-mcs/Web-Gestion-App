@@ -20,30 +20,36 @@ $color-grey3:darken($color-white, 75% );
 $color-grey4:darken($color-white, 85% ); 
 
 /* C O L O R   T E X T O */
-
 $color-gris-text: $color-grey2;
 $color-negro-para-textos: lighten($color-black,5%);
 
 /* V E R D E S */
-
 $color-verde-texto-success:#4BB543;
+$Color-Verde-Super-Claro:  lighten($color-verde-texto-success,50%);
+
+/* C O L O R   A M A R I L L O   W A R N I N G */
+$Color-Amarill-warning: #ffffa3;
+$Color-Texto-Warning:darken($Color-Amarill-warning, 50% ); 
 
 /* R O J O S */
-
-$Color-Rojo-Cancelar: #FF0000;
-$Color-Rojo-Texto-Error: #B40404;
 $Color-Errors-BG: #FCB6B6;
+$Color-Rojo-Texto-Error:darken($Color-Errors-BG, 50% ); 
 $Color-Rosado-Active-Cancelar-Bg:#FDB6BF ;
-$Color-Verde-Super-Claro:#DFF2BF ;
+
 
 /* F U E N T E S */
-
 $font-primary:'Roboto', sans-serif ;
 $font-secondary: 'Roboto', sans-serif;
 
 /* B O R D E   R A D I U S */
 
 $Border-radius: 8px;
+
+
+
+/* C O L O R E S   C U S T O M S */
+ $Color-clase:#ff561c; /*Se usa para los servicios tipo clases*/
+ $Color-info:#7e91ff; /*Se usa para los servicios mensuales*/
 
 
 

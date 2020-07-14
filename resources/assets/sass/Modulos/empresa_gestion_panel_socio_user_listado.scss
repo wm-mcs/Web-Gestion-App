@@ -2,7 +2,7 @@
 	padding:6px;
 	border-radius:6px;
 	margin-top:3px;
-	background-color: $Color-Gris-Claro;
+	background-color: $color-grey-1;
 	@include flexbox;       
     @include flex-direction(row);
     @include align-items(center);     
@@ -40,7 +40,7 @@
    }
 
    .component-user-list-dato-email{
-   	color:  $Color-texto-gris-Mercadolibre;
+   	color:  $color-gris-text;
    	font-size:10px;
    	margin-bottom:2px;
    	

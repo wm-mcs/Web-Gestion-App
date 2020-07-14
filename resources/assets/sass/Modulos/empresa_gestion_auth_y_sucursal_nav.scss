@@ -6,7 +6,7 @@
 
     .navigation-auth-contenedor{
       padding: 8px;
-      color: $Color-texto-gris-Mercadolibre;
+      color: $color-gris-text;
       font-size: 10px;
       letter-spacing: 1.2px;  
       @include flexbox;
@@ -15,9 +15,8 @@
     }
 
 
-    .contiene-sucursal{
-      
-      color: $Color-texto-gris-Mercadolibre;
+    .contiene-sucursal{      
+      color: $color-gris-text;
       font-size: 10px;
       cursor: pointer;
       margin-right: 40px;

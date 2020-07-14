@@ -35,7 +35,7 @@
     font-weight: bold;
     padding:8px;
     color:$color-3;
-    border:solid 1px $Color-Gris-Claro;
+    border:solid 1px $color-grey-1;
     cursor:pointer;
     border-radius:4px;
     margin-bottom:5px;
@@ -50,7 +50,7 @@
     font-size: 12px;
     color: $color-gris-text;
     padding: 8px;
-    border:solid 1px $Color-Gris-Claro;
+    border:solid 1px $color-grey-1;
     border-radius: 4px;
   }
 
@@ -133,7 +133,7 @@
   }
 
   .contiene-socio-tipo-lista:hover{
-  background-color: $Color-Gris-Claro;
+  background-color: $color-grey-1;
 }
 
   .contiene-socio-lista_nombre-y-celular{

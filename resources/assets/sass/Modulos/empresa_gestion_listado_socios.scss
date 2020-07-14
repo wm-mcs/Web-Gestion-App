@@ -33,7 +33,7 @@
    width: 100%;
    padding: 4px;
    
-   background-color:$Color-Gris-CasiBlanco ;
+   background-color:$color-grey-2 ;
    margin-top: 6px;
    @include flexbox;       
    @include flex-direction(column);
@@ -41,7 +41,7 @@
    border:solid 2px transparent;
  }
  .listado-socios-contenedor-individual:hover{
-  background-color: $Color-Gris-Claro;
+  background-color: $color-grey-1;
   
  }
 
@@ -53,7 +53,7 @@
     width: 100%;
     @include justify-content(space-between); 
     margin-bottom: 3px;
-    border-bottom:solid 1px $Color-Gris-Claro;
+    border-bottom:solid 1px $color-grey-1;
     padding:6px;
   }
 
@@ -77,7 +77,7 @@
        }
 
       .listado-socios-sub-name-whatsapp{
-        color:$Color-texto-gris-Mercadolibre;
+        color:$color-gris-text;
         margin-top: 1px;
         font-size: 10px;
       }
@@ -90,7 +90,7 @@
 
        .listado-socio-icono{
         font-size: 30px;
-        color: $Color-Gris-Claro ;
+        color: $color-grey-1 ;
         margin-right: 5px;
        }
 
@@ -104,7 +104,7 @@
     padding: 3px;
     border-radius: 4px;   
     font-size: 10px;
-    color: $Color-texto-gris-Mercadolibre;
+    color: $color-gris-text;
     width: 100%;
   }
 
@@ -112,7 +112,7 @@
     margin-top: 1px;
     width: 49%;
     padding:4px;    
-    background-color: $Color-Gris-Claro;
+    background-color:  $color-grey-1;
     overflow: hidden;
     text-align: center;
     border-radius:8px;
@@ -156,7 +156,7 @@
     border-radius: 4px;
     font-size: 11px;
     text-align: center;
-    color:$Color-texto-gris-Mercadolibre;
+    color:$color-gris-text;
     width: 115px;
     margin-right: 5px;
     cursor: pointer;
@@ -184,7 +184,7 @@
           width: 100%;
         }
         .listado-socio-lista-servicio-disponible:hover{
-          background-color: $Color-Gris-Claro;
+          background-color: $color-grey-1;
         }
 
           .listado-socio-lista-servicio-disponible-servicio{
