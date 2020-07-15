@@ -237,12 +237,10 @@ template:'<span v-if="!cargando && socio_cargado">
 
   </div>
   <div  v-if="socio.servicios_renovacion_del_socio.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios más frecuentemente comprados. Se usan para renovar de forma automática </div>
+      <div class="empresa-titulo-de-secciones mb-3">
+        Servicios más frecuentemente comprados. Se usan para renovar de forma automática 
+      </div>
       <div class="panel-socio-contiene-servicios">
-        
-          
-
-
             <servicio-renovacion-lista  
                                   :empresa="empresa"
                                   :servicio_renovacion="servicio_renovacion"
@@ -250,9 +248,6 @@ template:'<span v-if="!cargando && socio_cargado">
 
                            v-for="servicio_renovacion in socio.servicios_renovacion_del_socio" :key="servicio_renovacion.id"> 
             </servicio-renovacion-lista>  
-            
-          
-
       </div>
   </div>
   <div v-else class="cuando-no-hay-socios">
@@ -260,22 +255,15 @@ template:'<span v-if="!cargando && socio_cargado">
   </div>
 
   <div  v-if="servicios_disponibles.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios que contrató <span class="color-text-success">disponibles</span> </div>
+      <div class="empresa-titulo-de-secciones mb-3">
+         Servicios que contrató <span class="color-text-success">disponibles</span>
+      </div>
       <div class="panel-socio-contiene-servicios">
-        
-          
-
-
-            <servicio-socio-lista :servicio="servicio" 
-                                  :empresa="empresa"
-            
-                          @actualizar_socio="actualizar_socio"
-
-                           v-for="servicio in servicios_disponibles" :key="servicio.id"> 
-            </servicio-socio-lista>  
-            
-          
-
+        <servicio-socio-lista :servicio="servicio" 
+                              :empresa="empresa"        
+                      @actualizar_socio="actualizar_socio"
+                       v-for="servicio in servicios_disponibles" :key="servicio.id"> 
+        </servicio-socio-lista>  
       </div>
   </div>
   <div v-else class="cuando-no-hay-socios">
@@ -283,7 +271,9 @@ template:'<span v-if="!cargando && socio_cargado">
   </div>
 
    <div v-if="servicios_no_disponibles.length" class="empresa-contendor-de-secciones">
-      <div class="empresa-titulo-de-secciones">Servicios que contrató el socio <span class="color-text-gris">No disponibles</span></div>
+      <div class="empresa-titulo-de-secciones mb-3">
+        Servicios que contrató el socio <span class="color-text-gris">No disponibles</span>
+      </div>
       <div class="panel-socio-contiene-servicios">
         
           
@@ -304,7 +294,7 @@ template:'<span v-if="!cargando && socio_cargado">
   
 
   <div v-if="socio.estado_de_cuenta_socio.length" class="empresa-contendor-de-secciones">
-      <div class="estado-de-cuenta-titulo-saldo-contenedor ">
+      <div class="estado-de-cuenta-titulo-saldo-contenedor mb-3">
 
           <span class="empresa-titulo-de-secciones">Estado de cuenta del socio</span>
 
@@ -350,10 +340,10 @@ template:'<span v-if="!cargando && socio_cargado">
   
 
 </span>
-<span v-else class="Procesando-text get_width_100">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
-                  </span>'
+<span v-else class="Procesando-text w-100">
+ <div class="cssload-container">
+       <div class="cssload-tube-tunnel"></div>
+ </div>
+</span>'
 
 });
