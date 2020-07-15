@@ -263,89 +263,63 @@ template:'
 
        <div class="d-flex flex-row w-100 justify-content-between">
         
-        <div class="d-flex flex-column w-50">
-          
-       
-              <div class="entidad-lista-name" >
+          <div class="d-flex flex-column w-50 p-1">       
+                <div class="entidad-lista-name" >
                   @{{servicio.name}} 
                   <span class="margin-left-8px simula_link" v-on:click="abrir_modal_editar" title="Editar el servicio">              
-                   <i class="fas fa-pen"></i>
+                    <i class="fas fa-pen"></i>
                   </span>
-              </div>
-              <div class="flex-row-center entidad-lista-servicio-fecha">
-               Precio: @{{servicio.moneda}} @{{servicio.valor}} 
-              </div>
-                  
-              <div v-if="cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
-                      </div>
-              <span v-else>                
-                 <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">
-                   <i class="far fa-check-square"></i> Usar
-                 </span>
-              </span>
-             
+                </div>
+                <div class="flex-row-center entidad-lista-servicio-fecha">
+                  Precio: @{{servicio.moneda}} @{{servicio.valor}} 
+                </div>                  
+                <div v-if="cargando" class="Procesando-text">
+                  <div class="cssload-container">
+                    <div class="cssload-tube-tunnel"></div>
+                  </div>
+                </div>
+                <span v-else>                
+                  <span  v-show="!servicio.se_consumio && es_clase"  class="listado-socio-lista-servicio-disponible-accion helper_cursor_pointer " v-on:click="indicar_que_se_uso_hoy" title="Marcar el servicio como ya usado">
+                    <i class="far fa-check-square"></i> Usar
+                  </span>
+                </span>     
+                <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>             
+                <div  v-if="servicio.editado_por != null" class="entidad-lista-servicio-fecha" > 
+                  Editado por @{{servicio.editado_por}} el @{{servicio.fecha_editada_formateada}}
+                </div>
+          </div>   
               
-
-              <div  class="entidad-lista-servicio-fecha" > ID: @{{servicio.id}}</div>
-             
-              <div  v-if="servicio.editado_por != null" class="entidad-lista-servicio-fecha" > Editado por @{{servicio.editado_por}} el @{{servicio.fecha_editada_formateada}}
-
-              </div>
-
-               
-
-
-
-        </div>   
-            
-        <div class="d-flex flex-column align-items-end w-50 p-3">
-          
-        
-         <div v-if="es_clase" class="lista-estado-por-clase">
-           <i class="fas fa-undo"></i> Tipo @{{servicio.tipo}}
-         </div>
-         <div v-else class="lista-estado-por-mensual">
-           <i class="fas fa-hourglass-start"></i> Tipo @{{servicio.tipo}}
-         </div>
-
-        
-        
+          <div class="d-flex flex-column align-items-end w-50 p-1">
+             <div v-if="es_clase" class="lista-estado-por-clase">
+               <i class="fas fa-undo"></i> Tipo @{{servicio.tipo}}
+             </div>
+             <div v-else class="lista-estado-por-mensual">
+               <i class="fas fa-hourglass-start"></i> Tipo @{{servicio.tipo}}
+             </div>        
             <div class="entidad-lista-servicio-contiene-fecha">
-                <span class="entidad-lista-servicio-fecha" >
-                  Contratado el @{{servicio.fecha_contratado_formateada}}                    
-                </span>    
-                <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha" > 
-                  Vendido por @{{servicio.creado_por}}
-                </span>            
-                <span v-if="!servicio.esta_vencido" class="entidad-lista-servicio-fecha" >
-                  Se vence el @{{servicio.fecha_vencimiento_formateada}}
-                </span>                
-
-                <div v-if="servicio.esta_vencido" class="lista-estado-consumido" >
-                 <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}
-                </div>
-               
-                <div v-if="servicio.se_consumio" class="lista-estado-consumido" > 
-                  <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}} 
-                 
-                  <span v-if="servicio.quien_marco_que_se_uso  != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
-
-                </div>
-
-                <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha" >@{{donde_se_emitio}}</span> 
-                <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha" >@{{donde_se_uso}}</span> 
+              <span class="entidad-lista-servicio-fecha" >
+                Contratado el @{{servicio.fecha_contratado_formateada}}                    
+              </span>    
+              <span  v-if="servicio.creado_por  != null" class="entidad-lista-servicio-fecha text-right" > 
+                Vendido por @{{servicio.creado_por}}
+              </span>            
+              <span v-if="!servicio.esta_vencido" class="entidad-lista-servicio-fecha text-right" >
+                Se vence el @{{servicio.fecha_vencimiento_formateada}}
+              </span>  
+              <div v-if="servicio.esta_vencido" class="lista-estado-consumido" >
+               <i class="fas fa-exclamation-circle"></i> Se venció el @{{servicio.fecha_vencimiento_formateada}}
+              </div>           
+              <div v-if="servicio.se_consumio" class="lista-estado-consumido" > 
+                <i class="fas fa-exclamation-circle"></i> Se consumió el @{{servicio.fecha_consumido_formateada}}              
+                <span v-if="servicio.quien_marco_que_se_uso  != null"> marcó su uso @{{servicio.quien_marco_que_se_uso}}</span>
+              </div>
+              <span v-if="donde_se_emitio" class="entidad-lista-servicio-fecha text-right" >@{{donde_se_emitio}}</span> 
+              <span v-if="donde_se_uso" class="entidad-lista-servicio-fecha text-right" >@{{donde_se_uso}}</span> 
             </div>
-
             <div v-if="esta_activo" class="lista-estado-activo" > 
                 <i class="fas fa-check"></i> Disponible
             </div>
-            
-        
-
-        </div>
+          </div>
 
       </div>
 
@@ -354,7 +328,7 @@ template:'
 
 
 
-         <div class="modal fade" :id="open_modal" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" :id="open_modal" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div v-if="!destroy_modal" class="modal-header">
@@ -381,7 +355,7 @@ template:'
                   </div> 
 
                   <div v-show="se_consumio" class="form-group">
-                      <label class="formulario-label" for="Nombre">¿ya se usó?  </label>
+                      <label class="formulario-label" for="Nombre">¿Ya se usó?  </label>
                       <select v-model="servicio.esta_consumido" class="form-control">
                         <option>si</option>
                         <option>no</option>
@@ -393,15 +367,6 @@ template:'
                       <input type="date" class="form-control"  v-model="servicio.fecha_consumido_formateada"  required  />
 
                   </div> 
-                
-                  
-
-                 
-               
-
-                
-
-
                
                  <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
