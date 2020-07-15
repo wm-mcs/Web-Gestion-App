@@ -37,10 +37,11 @@ class SistemaGestionEmpresaIgualVendedorEmpresa
 
         if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true  || $User->role > 6)
         {
-            //el usuario que vicnula
+            // E l   u s u a r i o   q u e   v i n c u l a 
             $UserEmpresa = $Validacion_de_usuario_vinculado_empresa['UserEmpresa'];            
-            $Validacion  = true
-            //agrego al user desde aqui para no pedirlo en el controller              
+            $Validacion  = true;
+
+            // A g r e g o   a l   r e q u e s t              
             $request->attributes->add(['user_empresa_desde_middleware' => $UserEmpresa ]);              
         }
         else
