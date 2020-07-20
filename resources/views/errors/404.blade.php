@@ -20,23 +20,31 @@
   <body>  
 
 
-     <div class="contiene-errores-general">
+     <div class="w-100 " style="height: 100vh;">
 
-        <div class="sub-contiene-errores-general">
-          <a href="{{route('get_home')}}"><img class="error-404-img-logo" src="{{url()}}/imagenes/Empresa/logo_rectangular.png"></a>
-          <br>
-          <div class="error-404-titulo">Ups! </div>
-          <img class="error-404-img" src="{{url()}}/imagenes/Errores/desechufe.png">
-          <div class="error-404-aclaracion">Nos confundimos. Regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong>  </div>
+      <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+         <div class="d-flex flex-column align-items-center col-11 col-lg-7">
+          <a class="d-block col-10 col-lg-6 mb-5" href="{{route('get_home')}}">
+            <img class="img-fluid" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
+          </a>
+          
+          <div class="color-text-gris titulos-class text-center mb-4">Ups! </div>
+          <div class="col-10 col-lg-6 mb-5" >
+            <img class="img-fluid" src="{{url()}}/imagenes/Errores/desechufe.png">
+          </div>
+          
+          <div class="color-text-gris parrafo-class text-center mb-5">Nos confundimos. Regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong>  </div>
           
           
-          <a href="{{route('get_home')}}" class="error-404-contiene-boton">            
-            Volver al panel administrador
+          <a  href="{{route('get_home')}}" class="Boton-Fuente-Chica Boton-Primario-Relleno">            
+            Volver al panel administrador <i class="fas fa-angle-double-right"></i>
           </a>
 
           
 
         </div>
+      </div>
+       
        
      </div>
   
