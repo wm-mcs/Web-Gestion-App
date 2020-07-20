@@ -8,13 +8,7 @@ use Closure;
 
 class SistemaGestionEmpresaIgualVendedorEmpresa
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */                           
+                         
     public function handle($request, Closure $next)
     {
         $UserEmpresa  = new VendedorEmpresaRepo();
@@ -32,8 +26,6 @@ class SistemaGestionEmpresaIgualVendedorEmpresa
                               return $UserEmpresa->verificarSiUserYEmpresaEstanVicnulados($User->id,$request->get('empresa_id'));
                          }
                         ); 
-
-
 
         if($Validacion_de_usuario_vinculado_empresa['Validacion'] == true  || $User->role > 6)
         {
