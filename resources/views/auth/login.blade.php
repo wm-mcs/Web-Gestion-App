@@ -24,7 +24,7 @@
 		</div>
 		
 		<div class="col-11 col-lg-5">  
-         <h1 class="titulos-class font-secondary text-color-black text-center mb-5">Inicio de sesión</h1>      
+         <h1 class="sub-titulos-class font-secondary text-color-black text-center mb-5">Inicio de sesión</h1>      
          @include('formularios.auth.login_form')
       </div>
 	</div>
