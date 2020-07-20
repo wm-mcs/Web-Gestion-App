@@ -11,7 +11,7 @@
     <META name="robots" content="NOINDEX,NOFOLLOW">
   </head>
   <body>  
-    <div class="w-100 " style="height: 100vh;">
+    <div class="w-100 " style="min-height: 100vh;">
       <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
          <div class="d-flex flex-column align-items-center col-11 col-lg-7">
           <div class="col-10 col-lg-6 mb-5">
