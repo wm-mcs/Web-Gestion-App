@@ -29,7 +29,7 @@
   </head>
   <body> 
     <span id="app">
-       <div style="height: 100vh;" class="w-100 d-flex flex-column align-items-center">        
+       <div style="height: 100vh;" class="w-100 d-flex flex-row align-items-center justify-content-center">        
         <div class="w-100 d-flex flex-column align-items-center">
           <div class="mensaje-contenedor-layout-auth">
             @include('layouts.gestion_socios_layout.mensajes.mensajes')   
