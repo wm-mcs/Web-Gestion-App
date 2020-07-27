@@ -17,9 +17,9 @@
 
 
 @section('content') 
-<div class="row d-flex flex-row align-items-center justify-content-center">
+<div class="d-flex flex-row align-items-center justify-content-center">
 	<div class="d-flex flex-column align-items-center p-2 py-lg-4 ">
-		<div class="col-3 col-lg-4 p-2 p-lg-5 my-2">
+		<div class="col-6 col-lg-4 p-2 p-lg-5 my-3">
 			<img class=" img-fluid " src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
 		</div>
 		
