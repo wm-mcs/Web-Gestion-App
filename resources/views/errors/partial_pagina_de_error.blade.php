@@ -14,14 +14,14 @@
     <div class="w-100 d-flex flex-row align-items-center justify-content-center" style="height: 100vh;">
      
          <div class="p-5 d-flex flex-column align-items-center w-75">
-          <div class="w-75 mb-5">
+          <div class="w-75 d-flex flex-column align-items-center mb-5">
             <a class="" href="{{route('get_home')}}">
              <img class="img-fluid" src="{{url()}}/imagenes/Empresa/logo_rectangular.png">
             </a>  
           </div>
                   
           <div class="color-text-gris titulos-class text-center mb-0">Ups!!! </div>
-          <div class="w-75 mb-0" >
+          <div class="w-75 d-flex flex-column align-items-center mb-0" >
             <img class="img-fluid" src="{{url()}}/imagenes/Errores/desechufe.png">
           </div>          
           <div class="color-text-gris parrafo-class text-center mb-5">Nos confundimos. Regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong> 
