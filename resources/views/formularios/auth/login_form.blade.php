@@ -29,7 +29,7 @@
       </div>
      <hr>
      <div class="login-register">
-       <p class="text-center"><a href="{{route('password_recet_get')}}">Olvidé mi contraseña</a></p>
+       <p class="text-center m-0"><a href="{{route('password_recet_get')}}">Olvidé mi contraseña</a></p>
      </div>   
   </div>
 </div>
