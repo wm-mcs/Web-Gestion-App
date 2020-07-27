@@ -21,7 +21,7 @@
           </div>
                   
           <div class="color-text-gris titulos-class text-center mb-0">Ups!!! </div>
-          <div class="w-100 mb-0" >
+          <div class="w-75 mb-0" >
             <img class="img-fluid" src="{{url()}}/imagenes/Errores/desechufe.png">
           </div>          
           <div class="color-text-gris parrafo-class text-center mb-5">Nos confundimos. Regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong> 
