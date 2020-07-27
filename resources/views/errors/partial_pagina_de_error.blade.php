@@ -26,9 +26,13 @@
           </div>          
           <div class="color-text-gris parrafo-class text-center mb-5">Nos confundimos. Regresá dando <strong><a href="{{route('get_home')}}">click aquí</a></strong> 
            </div>  
-          <a  href="{{route('get_home')}}" class="Boton-Fuente-Chica Boton-Primario-Relleno">            
-            Volver al panel administrador <i class="fas fa-angle-double-right"></i>
-          </a>    
+
+           <div class="col-12 col-lg-8">
+              <a  href="{{route('get_home')}}" class="Boton-Fuente-Chica Boton-Primario-Relleno">            
+                Volver al panel administrador <i class="fas fa-angle-double-right"></i>
+              </a> 
+           </div>
+            
         </div>
            
     </div>      
