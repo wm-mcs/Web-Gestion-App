@@ -197,7 +197,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        /*$Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);*/
        $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
 
-       $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 1390, function() use($Empresa,$User,$Sucursal) {
+       $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
             $Hoy                         = Carbon::now('America/Montevideo');
             $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
 
@@ -1101,9 +1101,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      if($TipoDeConsulta == 'arqueo')
      {
         $Fecha_inicio = Carbon::parse($Request->get('fecha_de_arqueo'))->startOfDay();
-        $Fecha_fin         = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
-
-
+        $Fecha_fin    = Carbon::parse($Request->get('fecha_de_arqueo'))->endOfDay();
      }
      elseif($TipoDeConsulta == 'entre_fechas')
      {
@@ -1112,31 +1110,20 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
      }
      elseif($TipoDeConsulta == 'inicial')
      {
-
        $Fecha_fin         = Carbon::now('America/Montevideo');
        $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
      }
      else
      {
        $Fecha_fin         = Carbon::now('America/Montevideo');
-       $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
-       
-     
+       $Fecha_inicio      = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();   
      }
-      
-   
 
-    
+     $Fecha_saldo         = $Fecha_fin->format('Y-m-d');
 
+     $Pesos               = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
 
-     $Fecha_saldo       = $Fecha_fin->format('Y-m-d');
-
-    
-
-      $Pesos           = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'$',$Fecha_inicio,$Fecha_fin);
-
-
-      $Dolares         = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
+     $Dolares             = $this->CajaEmpresaRepo->getMovimientoYSaldoEntreFechas($Sucursal->id,'U$S',$Fecha_inicio,$Fecha_fin);
     
 
     return  ['Validacion'                    =>  true,

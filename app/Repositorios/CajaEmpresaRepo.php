@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use App\Helpers\Traits\contabilidadTrait;
 
 
 
-/**
-* Repositorio de consultas a la base de datos User
-*/
+
 class CajaEmpresaRepo extends BaseRepo
 {
+  
+
+  use contabilidadTrait;
   
   public function getEntidad()
   {
