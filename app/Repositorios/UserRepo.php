@@ -5,14 +5,17 @@ namespace App\Repositorios;
 use App\Entidades\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Repositorios\Traits\imagenesTrait;
 
 
-/**
-* Repositorio de consultas a la base de datos User
-*/
+
 class UserRepo extends BaseRepo
 {
   
+
+
+
+  use imagenesTrait;
   public function getEntidad()
   {
     return new User();
