@@ -1,0 +1,13 @@
+* 
+*
+* 
+
+Cadena y gerarquia de entidades
+
+
+Movimiento. Este será el el movimiento padré. El mismo tiene un Id y se usará en todos los demas entidades como referencia. 
+
+ * Movimiento contable a empresa
+ * Movimiento de caja
+ * Movimiento de estado de cuenta del socio
+ *  
