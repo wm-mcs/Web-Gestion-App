@@ -4,12 +4,13 @@ namespace App\Repositorios;
 
 use App\Entidades\Pais;
 use Illuminate\Support\Facades\Cache;
+use App\Repositorios\Traits\imagenesTrait;
 
-/**
-* Repositorio de consultas a la base de datos User
-*/
+
 class PaisRepo extends BaseRepo
 {
+
+  use imagenesTrait;
   
   public function getEntidad()
   {
@@ -18,7 +19,6 @@ class PaisRepo extends BaseRepo
 
   public function ActualizarCache()
   {
-
     Cache::forget('Paises');
     Cache::remember('Paises', 10000, function() {
             return  $this->getEntidadActivasOrdenadasSegun('name','asc');

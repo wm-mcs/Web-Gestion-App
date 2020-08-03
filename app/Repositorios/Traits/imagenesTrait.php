@@ -57,4 +57,34 @@ trait imagenesTrait{
     }	
 
 
+    /**
+     * Aún no se porque está esta función. La diferecia creo que es es que no le envio el request.
+     *
+     * @return void
+     */
+    public function setImagenDesdeVue($File, $carpeta,$nombre,$extens,$redimencionar_a = null)
+    {
+
+       $nombre = $carpeta.$nombre.$extens;
+       if($File == '' )
+       {
+        return '';
+       }
+
+        if($redimencionar_a != null)
+        {
+            $imagen_insert = Image::make($File)->resize($redimencionar_a, null, function ($constraint) {
+                                                                           $constraint->aspectRatio();
+                                                                       })->save('imagenes/'.$nombre,70);
+        }
+        else
+        {
+           $imagen_insert = Image::make($File); 
+
+           $imagen_insert->save('imagenes/'.$nombre,70);   
+
+        }      
+    }
+
+
 }
