@@ -25,7 +25,7 @@ methods:{
             if(data.Validacion == true)
             {
                vue.cargando  = false; 
-               vue.tipo_de_movimientos = response.data.Socios;    
+               vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;    
                $.notify(response.data.Validacion_mensaje, "success"); 
             }
             else
