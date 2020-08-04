@@ -21,8 +21,11 @@ mounted: function () {
 },
 
 template:'
+
+<span>
 <div class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
   Crear un tipo de movimiento <i class="fas fa-plus"></i>
+</div>  
 
   <transition name="modal" v-if="showModal">
     <div class="modal-mask " @click="showModal = false">
@@ -48,9 +51,9 @@ template:'
       </div>
     </div>
   </transition>
+</span>
 
 
-</div>
 
 '
 }
