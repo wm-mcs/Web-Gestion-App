@@ -16,19 +16,15 @@ class TipoDeMovimientosTest extends TestCase
     {
     	$Repo = new TipoDeMovimientoRepo();
 
-    	$TipoDeMovimientos = $Repo->getEntidadActivasOrdenadasSegun('name','asc');
+    	$TipoDeMovimientos = $Repo->getEntidadActivasOrdenadasSegun('name','asc');    	
 
-    	dd($TipoDeMovimientos->count());
-
-    	if( is_array($TipoDeMovimientos))
+    	if( $TipoDeMovimientos->count() > 0)
     	{
     	  $this->assertTrue(true);
     	}
     	else
     	{
     	  $this->assertTrue(false);
-    	}
-
-        
+    	}        
     }
 }
