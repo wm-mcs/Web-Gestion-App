@@ -13,13 +13,13 @@ methods:{
 
   get_tipo_de_movimientos:function(){
 
-       var url = '/get_tipo_de_movimientos';     
-       var vue = this; 
+       let url = '/get_tipo_de_movimientos';     
+       let vue = this; 
 
        this.cargando = true;         
 
      axios.get(url).then(function (response){  
-            var data = response.data;  
+            let data = response.data;  
             
 
             if(data.Validacion == true)
