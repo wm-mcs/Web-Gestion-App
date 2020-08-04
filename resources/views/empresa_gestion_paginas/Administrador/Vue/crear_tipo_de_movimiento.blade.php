@@ -28,7 +28,7 @@ template:'
 </div>  
 
   <transition name="modal" v-if="showModal">
-    <div class="modal-mask " @click="showModal = false">
+    <div class="modal-mask ">
       <div class="modal-wrapper">
         <div class="modal-container">
 

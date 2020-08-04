@@ -16,6 +16,7 @@
 }
 
 .modal-container {
+  
   width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
@@ -25,6 +26,14 @@
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
+
+ @media (min-width: $BrackPoint-Secundario){
+
+  .modal-container {    
+    width: 600px;
+   
+  }
+ } 
 
 .modal-header h3 {
   margin-top: 0;
