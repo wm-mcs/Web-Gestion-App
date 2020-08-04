@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin_Empresa;
 use Illuminate\Http\Request;
 use App\Repositorios\TipoDeMovimientoRepo;
+use App\Http\Controllers\Controller;
 
 
 
-
-class TipoDeMovimientoController 
+class TipoDeMovimientoController extends Controller
 {
   protected $TipoDeMovimientoRepo;
 
