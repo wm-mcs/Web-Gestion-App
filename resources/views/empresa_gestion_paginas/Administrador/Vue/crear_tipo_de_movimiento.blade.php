@@ -24,7 +24,7 @@ template:'
 <div class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
   Crear un tipo de movimiento <i class="fas fa-plus"></i>
 
-  <transition name="modal">
+  <transition name="modal" v-if="showModal">
     <div class="modal-mask " @click="showModal = false">
       <div class="modal-wrapper">
         <div class="modal-container">
