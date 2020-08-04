@@ -7,17 +7,17 @@
     </p> 
     <li class="parrafo-class mb-1">
      <a href="{{route('get_admin_users')}}" >
-       Usuarios
+       <small>Usuarios</small> 
      </a>
     </li>
     <li class="parrafo-class mb-1">
      <a href="{{route('get_admin_empresas_gestion_socios')}}" >
-       Empresas
+       <small>Empresas</small> 
      </a>
     </li>
     <li class="parrafo-class mb-1">
      <a href="{{route('get_tipo_de_movimeintos_index')}}" >
-       Tipos de movimientos
+       <small>Tipos de movimientos</small> 
      </a>
     </li>
    
