@@ -8,6 +8,8 @@
 @section('content')
 
 
+
+<crear-tipo-de-movimientos></crear-tipo-de-movimientos>
 <tipo-de-movimientos></tipo-de-movimientos>
 
 
