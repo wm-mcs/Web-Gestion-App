@@ -17,8 +17,28 @@ class TipoDeMovimientoController extends Controller
   }
 
 
+  /**
+   * Me manda a la vista para gestionar todo esto
+   *
+   * @return void
+   */
   public function getIndex()
   {
     return view('empresa_gestion_paginas.Administrador.tipo_de_movimientos');
+  }
+
+  /**
+   * Me da los movimientos. La llamo desde el componente de Vue.
+   *
+   * @return 
+   */
+  public function get_tipo_de_movimientos()
+  {
+
+  	$Tipo_de_movimientos = $this->TipoDeMovimientoRepo->getEntidadActivasOrdenadasSegun('name','asc');
+  	
+  	return ['Validacion'           => true,
+            'Validacion_mensaje'   => 'Se cargaron correctamente los movimientos',
+            'Tipo_de_movimientos'  =>  $Tipo_de_movimientos]; 
   }
 }
