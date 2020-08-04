@@ -18,6 +18,8 @@ class TipoDeMovimientosTest extends TestCase
 
     	$TipoDeMovimientos = $Repo->getEntidadActivasOrdenadasSegun('name','asc');
 
+    	dd($TipoDeMovimientos);
+
     	if( is_array($TipoDeMovimientos))
     	{
     	  $this->assertTrue(true);
