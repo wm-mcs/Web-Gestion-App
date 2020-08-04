@@ -36,6 +36,7 @@ methods:{
            
            }).catch(function (error){
                 
+               vue.cargando = false;  
                $.notify(error, "error");      
             
            });
