@@ -3,8 +3,6 @@
 namespace App\Repositorios;
 
 use App\Entidades\EmpresaConSocios;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use App\Repositorios\Traits\imagenesTrait;
 
 
