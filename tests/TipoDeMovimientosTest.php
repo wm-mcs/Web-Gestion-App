@@ -18,7 +18,7 @@ class TipoDeMovimientosTest extends TestCase
 
     	$TipoDeMovimientos = $Repo->getEntidadActivasOrdenadasSegun('name','asc');
 
-    	dd($TipoDeMovimientos);
+    	dd($TipoDeMovimientos->count());
 
     	if( is_array($TipoDeMovimientos))
     	{
