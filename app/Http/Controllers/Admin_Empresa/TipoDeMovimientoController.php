@@ -12,7 +12,7 @@ class TipoDeMovimientoController extends Controller
 {
 
 
-  use vvalidatorMesaagesTrait;
+  use validatorMesaagesTrait;
 
   protected $TipoDeMovimientoRepo;
 
