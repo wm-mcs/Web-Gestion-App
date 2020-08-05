@@ -78,12 +78,12 @@
 
 
               .formulario-label{                
-                padding:2px 4px;                
+                padding:2px 2px;                
                 color: black; 
                 font-size: 12px;
               }
               .formulario-label-aclaracion{
-                color: $color-gris-text;
+                color: $color-gris-text !important;
               }
 
               .formulario-field{
@@ -101,7 +101,7 @@
               .formulario-field::focus {    
                 box-shadow: none !important;
                 outline: 0 none !important;
-                border-color:$color-3;
+                border-color:$color-3 !important;
               }
 
 
