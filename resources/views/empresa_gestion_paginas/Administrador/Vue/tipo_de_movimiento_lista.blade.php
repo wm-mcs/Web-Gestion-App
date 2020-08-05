@@ -1,47 +1,33 @@
-Vue.component('crear-tipo-de-movimientos' ,
+Vue.component('tipo_de_movimiento_lista' ,
 {
-
+props['tipo_de_movimiento'],
 data:function(){
     return {
      
      showModal: false,
      cargando:false,
-     data_crear:{
-                  name:'',
-                  tipo_saldo:'',
-                  movimiento_de_empresa_a_socio:'',
-                  movimiento_de_la_empresa:'',
-                }
+     data_crear:''
 
     }
 },
 methods:{
-
-  limpiar_data_crear:function()
-  {
-    this.data_crear = {
-                        name:'',
-                        tipo_saldo:'',
-                        movimiento_de_empresa_a_socio:'',
-                        movimiento_de_la_empresa:'',
-                      };
-  },
-  agregar:function(){
-    
+  editar:function(){
+    alert('agregar');
+    bus.$emit('sucursal-set', response.data.sucursal); 
   }
  
 
 },
 mounted: function () {
-	
-
+  
+ this.data_crear = this.tipo_de_movimiento;
 },
 
 template:'
 
 <span>
-<div class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
-  Crear un tipo de movimiento <i class="fas fa-plus"></i>
+<div class="col-6 col-lg-4 p-4 mb-3 background-gris-1" @click="showModal = true">
+  Editar un tipo de movimiento <i class="fas fa-plus"></i>
 </div>  
 
   <transition name="modal" v-if="showModal">
@@ -89,7 +75,7 @@ template:'
                 
               </div>
 
-              <div @click="agregar" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+              <div @click="editar" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
               </div>
             </div>
@@ -100,7 +86,7 @@ template:'
 
           <div class="modal-footer">
            
-              <button class="modal-default-button" @click="limpiar_data_crear" @click="showModal = false">
+              <button class="modal-default-button"  @click="showModal = false">
                 Cancelar
               </button>
            

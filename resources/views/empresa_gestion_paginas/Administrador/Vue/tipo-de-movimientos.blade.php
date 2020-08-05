@@ -47,6 +47,15 @@ mounted: function () {
 	this.get_tipo_de_movimientos();
 
 },
+created() {
+    
+    bus.$on('se-creo-un-movimiento', (data) => {
+      this.get_tipo_de_movimientos();
+    });
+
+
+    
+}
 
 template:'
 <div  v-if="cargando" class="w-100 d-flex flex-column align-items-center p-5">
@@ -55,8 +64,12 @@ template:'
    </div>
 </div>
 <div v-else class="p-5">
-	<div v-if="tipo_de_movimientos.length" class="">
-		
+	<div v-if="tipo_de_movimientos.length" class="row">
+		<tipo_de_movimiento_lista 
+     v-for="tipo_movimiento in tipo_de_movimientos"
+     :tipo_de_movimiento="tipo_movimiento"
+     :key="tipo_movimiento.id"
+    ></tipo_de_movimiento_lista>
 	</div>
 	<div v-else class="text-center sub-titulos-class color-text-gris" >Aún no hay tipos de movimientos cargados.</div>
 </div>

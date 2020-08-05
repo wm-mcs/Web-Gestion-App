@@ -4,13 +4,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Managers\ManagerBase;
 
-/**
-* 
-*/
+
 class CrearSocioModalManager extends ManagerBase 
 {
-
-
   public function getRules()
   {
     $rules = [
@@ -22,9 +18,5 @@ class CrearSocioModalManager extends ManagerBase
              ];
 
     return $rules;
-  }
- 
-  
-  
-  
+  }  
 }

@@ -104,6 +104,11 @@ abstract class BaseRepo
   //setters
   public function setEntidadDato($Entidad,$request,$Propiedades)
   {
+      if($Entidad === null)
+      {
+        $Entidad = $this->getEntidad();
+      }
+
       foreach ($Propiedades as $Propiedad) 
       {
         if($request->input($Propiedad) != null)
@@ -124,14 +129,14 @@ abstract class BaseRepo
   //setters recibe un objeto en lugar del reques
   public function setEntidadDatoObjeto($Entidad,$objeto,$Propiedades)
   {
-      foreach ($Propiedades as $Propiedad) 
-      {         
-         $Entidad->$Propiedad = $objeto->$Propiedad; 
-      } 
+    foreach($Propiedades as $Propiedad) 
+    {         
+      $Entidad->$Propiedad = $objeto->$Propiedad; 
+    } 
 
-      $Entidad->save();     
+    $Entidad->save();     
 
-      return $Entidad;
+    return $Entidad;
   }
 
   /**
