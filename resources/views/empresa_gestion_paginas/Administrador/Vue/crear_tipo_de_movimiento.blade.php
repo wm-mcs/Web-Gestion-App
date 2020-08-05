@@ -27,7 +27,8 @@ methods:{
                       };
   },
   agregar:function(){
-    
+
+    bus.$emit('se-creo-un-movimiento', 'hola'); 
   }
  
 
