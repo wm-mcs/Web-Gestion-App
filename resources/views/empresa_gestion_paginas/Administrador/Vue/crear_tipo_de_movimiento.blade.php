@@ -41,7 +41,7 @@ template:'
             <div class="row">
               <div class="col-lg-6 formulario-label-fiel">
               <label class="formulario-label">Cantidad de clases</label> 
-                <input type="text" min="1" class="formulario-field">
+                <input type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">Cantidad de clases</label> 

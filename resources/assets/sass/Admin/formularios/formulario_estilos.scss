@@ -98,7 +98,7 @@
               .formulario-field::placeholder{
                 color: lighten( $color-3, 20% );
               }
-              .formulario-field::focus {    
+              .formulario-field:focus {    
                 box-shadow: none !important;
                 outline: 0 none !important;
                 border-color:$color-3 !important;
