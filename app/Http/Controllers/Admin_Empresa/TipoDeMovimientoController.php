@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Repositorios\TipoDeMovimientoRepo;
 use App\Http\Controllers\Controller;
 use App\Managers\EmpresaGestion\TipoMovimiento\TipoDeMovimientoManager;
-use App\Http\Controllers\Traits\vvalidatorMesaagesTrait;
+use App\Http\Controllers\Traits\validatorMesaagesTrait;
 
 
 class TipoDeMovimientoController extends Controller
