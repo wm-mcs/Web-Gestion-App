@@ -38,14 +38,17 @@ template:'
 
           <div class="modal-body">
             
-            <div class="formulario-label-fiel">
+            <div class="row">
+              <div class="col-lg-6 formulario-label-fiel">
               <label class="formulario-label">Cantidad de clases</label> 
-              <input type="text" min="1" class="formulario-field">
+                <input type="text" min="1" class="formulario-field">
+              </div>
+              <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">Cantidad de clases</label> 
+                <input type="number" min="1" class="formulario-field">
+              </div>
             </div>
-            <div class="formulario-label-fiel">
-              <label class="formulario-label">Cantidad de clases</label> 
-              <input type="number" min="1" class="formulario-field">
-            </div>
+            
 
 
           </div>
