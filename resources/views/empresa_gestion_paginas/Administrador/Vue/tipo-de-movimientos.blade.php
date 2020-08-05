@@ -47,13 +47,11 @@ mounted: function () {
 	this.get_tipo_de_movimientos();
 
 },
-created() {
+created(){
     
-    bus.$on('se-creo-un-movimiento', (data) => {
-      this.get_tipo_de_movimientos();
-    });
-
-
+  bus.$on('se-creo-un-movimiento', (data) => {
+    this.get_tipo_de_movimientos();
+  });
     
 },
 
