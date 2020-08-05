@@ -55,7 +55,7 @@ created() {
 
 
     
-}
+},
 
 template:'
 <div  v-if="cargando" class="w-100 d-flex flex-column align-items-center p-5">

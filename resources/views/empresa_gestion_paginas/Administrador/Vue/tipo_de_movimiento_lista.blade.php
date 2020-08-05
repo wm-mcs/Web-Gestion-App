@@ -13,7 +13,7 @@ data:function(){
 methods:{
   editar:function(){
     alert('agregar');
-    bus.$emit('sucursal-set', response.data.sucursal); 
+    
   }
  
 
