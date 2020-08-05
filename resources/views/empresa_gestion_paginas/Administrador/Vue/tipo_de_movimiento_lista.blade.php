@@ -25,12 +25,10 @@ mounted: function () {
 
 template:'
 
-<span class="w-100">
-  <div class="col-6 col-lg-4 p-4 mb-3 background-gris-1" @click="showModal = true">
-    Editar un tipo de movimiento <i class="fas fa-plus"></i>
-  </div>  
 
-  <transition name="modal" v-if="showModal">
+  <div class="col-6 col-lg-4 p-4 mb-3 background-gris-1">
+    Editar un tipo de movimiento <i   @click="showModal = true" class="fas fa-plus"></i>
+      <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -95,7 +93,10 @@ template:'
       </div>
     </div>
   </transition>
-</span>
+  </div>  
+
+
+
 
 
 
