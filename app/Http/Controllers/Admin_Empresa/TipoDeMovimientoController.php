@@ -80,5 +80,8 @@ class TipoDeMovimientoController extends Controller
     }
 
     $this->TipoDeMovimientoRepo->setEntidadDato(null,$Request,$this->getPropiedades());
+
+    return ['Validacion'           => true,
+            'Validacion_mensaje'   => 'Se creó correctamente']; 
   }
 }
