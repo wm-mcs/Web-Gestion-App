@@ -5,13 +5,30 @@ data:function(){
     return {
      
      showModal: false,
-     cargando:false
+     cargando:false,
+     data_crear:{
+                  name:'',
+                  tipo_saldo:'',
+                  movimiento_de_empresa_a_socio:'',
+                  movimiento_de_la_empresa:'',
+                }
 
     }
 },
 methods:{
 
-  
+  limpiar_data_crear:function()
+  {
+    this.data_crear = {
+                        name:'',
+                        tipo_saldo:'',
+                        movimiento_de_empresa_a_socio:'',
+                        movimiento_de_la_empresa:'',
+                      };
+  },
+  agregar:function(){
+    alert('agregar');
+  }
  
 
 },
@@ -40,12 +57,40 @@ template:'
             
             <div class="row">
               <div class="col-lg-6 formulario-label-fiel">
-              <label class="formulario-label">Cantidad de clases</label> 
-                <input type="text" min="1" class="formulario-field" placeholder="hola">
+              <label class="formulario-label">Nombre</label> 
+                <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
               <div class="col-lg-6 formulario-label-fiel">
-                <label class="formulario-label">Cantidad de clases</label> 
-                <input type="number" min="1" class="formulario-field">
+                <label class="formulario-label">¿Movimiento qué interactua con un socio?</label> 
+                <div class="formulario-label-aclaracion">
+                  ¿Es un movimiento que tiene que ver con algo de un socio?
+                </div>                
+                <select v-model="data_crear.movimiento_de_empresa_a_socio" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+              </div>
+              <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">¿Movimiento de la propia empresa?</label> 
+                <div class="formulario-label-aclaracion">
+                  ¿Es un movimiento de la empresa por ejemplo cómo agregar un gasto al sistema?
+                </div>                
+                <select v-model="data_crear.movimiento_de_la_empresa" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+              </div>
+              <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">¿Tipo de saldo?</label> 
+                <select v-model="data_crear.tipo_saldo" class="formulario-field">
+                  <option>deudor</option>
+                  <option>acredor</option>
+                </select>
+                
+              </div>
+
+              <div @click="agregar" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+                 Confirmar
               </div>
             </div>
             
@@ -55,8 +100,8 @@ template:'
 
           <div class="modal-footer">
            
-              <button class="modal-default-button" @click="showModal = false">
-                OK
+              <button class="modal-default-button" @click="limpiar_data_crear" @click="showModal = false">
+                Cancelar
               </button>
            
           </div>
