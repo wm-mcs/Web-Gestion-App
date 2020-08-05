@@ -61,9 +61,9 @@ template:'
                 <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
               <div class="col-lg-6 formulario-label-fiel">
-                <label class="formulario-label">¿Movimiento qué interactua con un socio?</label> 
+                <label class="formulario-label">¿Interactua con un socio?</label> 
                 <div class="formulario-label-aclaracion">
-                  ¿Es un movimiento que tiene que ver con algo de un socio?
+                  ¿Tiene que ver con algo de un socio? Ejemplo: ingresar pago de cuota.
                 </div>                
                 <select v-model="data_crear.movimiento_de_empresa_a_socio" class="formulario-field">
                   <option>si</option>
@@ -73,7 +73,7 @@ template:'
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Movimiento de la propia empresa?</label> 
                 <div class="formulario-label-aclaracion">
-                  ¿Es un movimiento de la empresa por ejemplo cómo agregar un gasto al sistema?
+                  Agregar un gasto de tarifas estatales sería un ejemplo.
                 </div>                
                 <select v-model="data_crear.movimiento_de_la_empresa" class="formulario-field">
                   <option>si</option>
