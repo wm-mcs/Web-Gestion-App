@@ -82,6 +82,9 @@
                 color: black; 
                 font-size: 12px;
               }
+              .formulario-label-aclaracion{
+                color: $color-gris-text;
+              }
 
               .formulario-field{
                 padding: 6px;
@@ -91,6 +94,14 @@
                 font-weight:bold;           
                 color: $color-3;
                 width: 100%;
+              }
+              .formulario-field::placeholder{
+                color: lighten( $color-3, 20% );
+              }
+              .formulario-field::focus {    
+                box-shadow: none !important;
+                outline: 0 none !important;
+                border-color:$color-3;
               }
 
 
