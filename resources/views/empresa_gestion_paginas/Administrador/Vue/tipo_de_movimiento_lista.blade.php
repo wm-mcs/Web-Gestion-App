@@ -1,6 +1,6 @@
 Vue.component('tipo_de_movimiento_lista' ,
 {
-props['tipo_de_movimiento'],
+props:['tipo_de_movimiento'],
 data:function(){
     return {
      
