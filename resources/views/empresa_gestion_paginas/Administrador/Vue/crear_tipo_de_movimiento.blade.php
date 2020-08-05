@@ -33,11 +33,21 @@ template:'
         <div class="modal-container">
 
           <div class="modal-header">
-            
+            <h3></h3>
           </div>
 
           <div class="modal-body">
-            Hola
+            
+            <div class="formulario-label-fiel">
+              <label class="formulario-label">Cantidad de clases</label> 
+              <input type="text" min="1" class="formulario-field">
+            </div>
+            <div class="formulario-label-fiel">
+              <label class="formulario-label">Cantidad de clases</label> 
+              <input type="number" min="1" class="formulario-field">
+            </div>
+
+
           </div>
 
           <div class="modal-footer">
