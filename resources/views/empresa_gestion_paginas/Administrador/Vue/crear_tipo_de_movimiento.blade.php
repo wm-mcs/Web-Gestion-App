@@ -137,7 +137,7 @@ template:'
                 
               </div>
 
-              <div class="col-12 formulario-label-fiel">
+              <div class="col-6 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label> 
                 <select v-model="data_crear.estado" class="formulario-field">
                   <option>si</option>

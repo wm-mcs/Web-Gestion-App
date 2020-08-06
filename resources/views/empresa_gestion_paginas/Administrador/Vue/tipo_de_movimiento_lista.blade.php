@@ -90,34 +90,51 @@ template:'
             
             <div class="row">
               <div class="col-lg-6 formulario-label-fiel">
-              <label class="formulario-label">Nombre</label> 
-                <input v-model="data_editar.name" type="text" min="1" class="formulario-field" placeholder="hola">
+               <label class="formulario-label">Nombre</label> 
+               <input v-model="data_editar.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
+
+              <div class="col-lg-12 formulario-label-fiel">
+               <label class="formulario-label">Breve descripción</label> 
+               <input v-model="data_editar.descripcion_breve" type="text"  class="formulario-field" placeholder="Algo que explique">                
+              </div>
+              
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Interactua con un socio?</label> 
-                <div class="formulario-label-aclaracion">
-                  ¿Tiene que ver con algo de un socio? Ejemplo: ingresar pago de cuota.
-                </div>                
+                               
                 <select v-model="data_editar.movimiento_de_empresa_a_socio" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
+                <div class="formulario-label-aclaracion">
+                  ¿Tiene que ver con algo de un socio? Ejemplo: ingresar pago de cuota.
+                </div> 
               </div>
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Movimiento de la propia empresa?</label> 
-                <div class="formulario-label-aclaracion">
-                  Agregar un gasto de tarifas estatales sería un ejemplo.
-                </div>                
+                              
                 <select v-model="data_editar.movimiento_de_la_empresa" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
+                <div class="formulario-label-aclaracion">
+                  Agregar un gasto de tarifas estatales sería un ejemplo.
+                </div>  
               </div>
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Tipo de saldo?</label> 
                 <select v-model="data_editar.tipo_saldo" class="formulario-field">
                   <option>deudor</option>
                   <option>acredor</option>
+                </select>
+                
+              </div>
+
+              <div class="col-6 formulario-label-fiel">
+                <label class="formulario-label">¿Activo?</label> 
+                <select v-model="data_editar.estado" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
                 </select>
                 
               </div>
