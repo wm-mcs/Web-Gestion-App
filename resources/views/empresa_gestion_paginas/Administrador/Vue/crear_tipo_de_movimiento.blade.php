@@ -103,7 +103,7 @@ template:'
               </div>
               <div class="col-lg-6 formulario-label-fiel">
               <label class="formulario-label">Breve descripción</label> 
-              <textarea v-model="data_crear.descripcion_breve" rows="3" class="formulario-field" placeholder="Breve descripción"></textarea>
+              <textarea rows="3" class="formulario-field" placeholder="Breve descripción"></textarea>
                 
               </div>
               <div class="col-lg-6 formulario-label-fiel">

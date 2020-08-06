@@ -143,12 +143,6 @@ template:'
     </div>
   </transition>
   </div>  
-
-
-
-
-
-
 '
 }
 
