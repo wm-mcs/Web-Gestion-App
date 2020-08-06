@@ -12,7 +12,35 @@ data:function(){
 },
 methods:{
   editar:function(){
-    alert('agregar');    
+     let url = '/edit_un_tipo_de_movimiento';     
+     let vue = this; 
+
+     this.cargando = true;         
+
+     axios.post(url,this.data_crear).then(function (response){  
+      let data = response.data;        
+
+      if(data.Validacion == true)
+      {
+         vue.cargando  = false; 
+         bus.$emit('se-creo-un-movimiento', 'hola'); 
+         vue.showModal = false;
+         
+          
+         $.notify(response.data.Validacion_mensaje, "success"); 
+      }
+      else
+      {
+        vue.cargando = false; 
+        $.notify(response.data.Validacion_mensaje, "error");
+      }
+     
+     }).catch(function (error){
+          
+         vue.cargando = false;  
+         $.notify(error, "error");      
+      
+     });    
   }  
 },
 computed:{
