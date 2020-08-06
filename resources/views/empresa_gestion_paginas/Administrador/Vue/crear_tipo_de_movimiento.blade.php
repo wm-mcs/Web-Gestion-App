@@ -102,6 +102,11 @@ template:'
                 <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
               <div class="col-lg-6 formulario-label-fiel">
+              <label class="formulario-label">Breve descripción</label> 
+                <textarea v-model="data_crear.descripcion_breve" rows="3" class="formulario-field" placeholder="Breve descripción"></textarea>
+                
+              </div>
+              <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Interactua con un socio?</label> 
                                
                 <select v-model="data_crear.movimiento_de_empresa_a_socio" class="formulario-field">
