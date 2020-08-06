@@ -7,6 +7,8 @@
 @import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_Inputs_Estilos";
 @import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_Imagenes_background";
 @import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_modal_vue";
+@import "resources/assets/sass/Secciones_y_Helpers/Helpers/Helper_bordes";
+
 
 
 
@@ -26,7 +28,6 @@
 }
 
 /* C L A S E S   D E   L I S T A S  */
-
 .lista-class::before{
     content: "\025cf";    
     color:$color-3;  
@@ -51,9 +52,9 @@
   cursor: pointer;
 }
 
-/* C a r g a d o r*/
+/* C a r g a d o r */
 .lazy-hidden {
-    background: $color-3 url('loading.gif') no-repeat 50% 50%;
+  background: $color-3 url('loading.gif') no-repeat 50% 50%;
 }
 
 

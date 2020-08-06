@@ -6,7 +6,7 @@ data:function(){
      
      showModal: false,
      cargando:false,
-     data_crear:''
+     data_editar:''
 
     }
 },
@@ -15,19 +15,41 @@ methods:{
     alert('agregar');
     
   }
- 
-
+},
+computed:{
+  class_saldo:function(){
+    
+    return {
+            'color-text-success':this.tipo_de_movimiento === 'deudor',
+            'color-text-error':this.tipo_de_movimiento === 'acredor'     
+           }
+  }
 },
 mounted: function () {
   
- this.data_crear = this.tipo_de_movimiento;
+ this.data_editar = this.tipo_de_movimiento;
 },
 
 template:'
 
 
-  <div class="col-6 col-lg-4 p-4 mb-3 background-gris-1">
-    Editar un tipo de movimiento <i   @click="showModal = true" class="fas fa-plus"></i>
+  <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris">
+    <div class="row">
+     <p class="col-10 mb-2">
+      @{{tipo_de_movimiento.name}}
+     </p>
+     <p class="col-2 text-center simula-link">
+      <i  @click="showModal = true" class="far fa-edit"></i>
+     </p>
+     <p class="col-12 mb-2" :class="class_saldo">
+       Tipo de saldo @{{tipo_de_movimiento.tipo_saldo}}
+     </p>
+     <p class="col-12 mb color-text-gris" >
+       <small>@{{tipo_de_movimiento.descripcion_breve}}</small>
+     </p>     
+    </div>
+   
+     
       <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">

@@ -15,7 +15,8 @@ class TipoDeMovimientoManager extends ManagerBase
       'name'                          => 'required',
       'tipo_saldo'                    => 'required',
       'movimiento_de_empresa_a_socio' => 'required',
-      'movimiento_de_la_empresa'      => 'required'
+      'movimiento_de_la_empresa'      => 'required',
+      'descripcion_breve'             => 'required'
     ];
 
     return $rules;

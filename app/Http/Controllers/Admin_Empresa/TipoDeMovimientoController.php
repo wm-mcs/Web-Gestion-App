@@ -24,7 +24,7 @@ class TipoDeMovimientoController extends Controller
 
   public function getPropiedades()
   {
-    return ['name','tipo_saldo','movimiento_de_empresa_a_socio','movimiento_de_la_empresa'];
+    return ['name','tipo_saldo','movimiento_de_empresa_a_socio','movimiento_de_la_empresa','descripcion_breve'];
   }
 
   /**

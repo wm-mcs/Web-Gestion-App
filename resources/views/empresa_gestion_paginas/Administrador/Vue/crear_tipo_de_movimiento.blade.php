@@ -11,6 +11,8 @@ data:function(){
                   tipo_saldo:'',
                   movimiento_de_empresa_a_socio:'',
                   movimiento_de_la_empresa:'',
+                  descripcion_breve:'',
+                  estado:'si'
                 }
 
     }
@@ -24,6 +26,8 @@ methods:{
                         tipo_saldo:'',
                         movimiento_de_empresa_a_socio:'',
                         movimiento_de_la_empresa:'',
+                        descripcion_breve:'',
+                        estado:'si'
                       };
   },
   agregar:function(){
@@ -119,6 +123,15 @@ template:'
                 <select v-model="data_crear.tipo_saldo" class="formulario-field">
                   <option>deudor</option>
                   <option>acredor</option>
+                </select>
+                
+              </div>
+
+              <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">¿Activo?</label> 
+                <select v-model="data_crear.estado" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
                 </select>
                 
               </div>
