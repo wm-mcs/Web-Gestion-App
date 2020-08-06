@@ -96,10 +96,10 @@ class TipoDeMovimientoController extends Controller
 
 
 
-    if(!$manager->isValid())
+    /*if(!$manager->isValid())
     {
       return $this->getErroresCuandoNoPasaValidator($manager);
-    }
+    }*/
 
     // Tiene la estructura de un objeto
     $Objeto_desde_vue = json_decode(json_encode($Request->all()));
