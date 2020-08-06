@@ -62,9 +62,9 @@ template:'
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
     <div class="row">
-     <p class="col-10 mb-1">
+     <h3 class="col-10 mb-1 text-color-primary sub-titulos-class">
       <b>@{{tipo_de_movimiento.name}}</b> 
-     </p>
+     </h3>
      <p class="col-2 text-center simula-link">
       <i  @click="showModal = true" class="far fa-edit"></i>
      </p>
