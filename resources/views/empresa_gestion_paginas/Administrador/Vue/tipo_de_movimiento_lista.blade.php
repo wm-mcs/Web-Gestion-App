@@ -12,9 +12,8 @@ data:function(){
 },
 methods:{
   editar:function(){
-    alert('agregar');
-    
-  }
+    alert('agregar');    
+  }  
 },
 computed:{
   class_saldo:function(){
@@ -33,18 +32,18 @@ mounted: function () {
 template:'
 
 
-  <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris">
+  <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
     <div class="row">
-     <p class="col-10 mb-2">
-      @{{tipo_de_movimiento.name}}
+     <p class="col-10 mb-1">
+      <b>@{{tipo_de_movimiento.name}}</b> 
      </p>
      <p class="col-2 text-center simula-link">
       <i  @click="showModal = true" class="far fa-edit"></i>
      </p>
-     <p class="col-12 mb-2" :class="class_saldo">
-       Tipo de saldo @{{tipo_de_movimiento.tipo_saldo}}
+     <p class="col-12 mb-1" :class="class_saldo">
+       Saldo <b>@{{tipo_de_movimiento.tipo_saldo}}</b> 
      </p>
-     <p class="col-12 mb color-text-gris" >
+     <p class="col-12 mb-0 color-text-gris" >
        <small>@{{tipo_de_movimiento.descripcion_breve}}</small>
      </p>     
     </div>
@@ -64,14 +63,14 @@ template:'
             <div class="row">
               <div class="col-lg-6 formulario-label-fiel">
               <label class="formulario-label">Nombre</label> 
-                <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
+                <input v-model="data_editar.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Interactua con un socio?</label> 
                 <div class="formulario-label-aclaracion">
                   ¿Tiene que ver con algo de un socio? Ejemplo: ingresar pago de cuota.
                 </div>                
-                <select v-model="data_crear.movimiento_de_empresa_a_socio" class="formulario-field">
+                <select v-model="data_editar.movimiento_de_empresa_a_socio" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
@@ -81,14 +80,14 @@ template:'
                 <div class="formulario-label-aclaracion">
                   Agregar un gasto de tarifas estatales sería un ejemplo.
                 </div>                
-                <select v-model="data_crear.movimiento_de_la_empresa" class="formulario-field">
+                <select v-model="data_editar.movimiento_de_la_empresa" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
               </div>
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Tipo de saldo?</label> 
-                <select v-model="data_crear.tipo_saldo" class="formulario-field">
+                <select v-model="data_editar.tipo_saldo" class="formulario-field">
                   <option>deudor</option>
                   <option>acredor</option>
                 </select>

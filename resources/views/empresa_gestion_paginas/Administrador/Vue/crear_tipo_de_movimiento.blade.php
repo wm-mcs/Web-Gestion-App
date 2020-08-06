@@ -30,6 +30,11 @@ methods:{
                         estado:'si'
                       };
   },
+  cancelar:function(){
+    this.limpiar_data_crear();
+    this.showModal = false;
+
+  },
   agregar:function(){
 
        let url = '/set_un_tipo_de_movimiento';     
@@ -147,7 +152,7 @@ template:'
 
           <div class="modal-footer">
            
-              <button class="modal-default-button" @click="limpiar_data_crear" @click="showModal = false">
+              <button class="modal-default-button" @click="cancelar" >
                 Cancelar
               </button>
            
