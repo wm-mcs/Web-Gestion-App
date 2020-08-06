@@ -43,8 +43,7 @@ methods:{
        this.cargando = true;         
 
      axios.post(url,this.data_crear).then(function (response){  
-            let data = response.data;  
-            
+            let data = response.data;              
 
             if(data.Validacion == true)
             {
@@ -103,7 +102,7 @@ template:'
               </div>
               <div class="col-lg-6 formulario-label-fiel">
               <label class="formulario-label">Breve descripción</label> 
-              <textarea rows="3" class="formulario-field" placeholder="Breve descripción"></textarea>
+              
                 
               </div>
               <div class="col-lg-6 formulario-label-fiel">
