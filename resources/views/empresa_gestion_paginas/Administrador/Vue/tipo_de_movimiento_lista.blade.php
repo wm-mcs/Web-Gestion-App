@@ -62,13 +62,13 @@ template:'
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
     <div class="row">
-     <h3 class="col-10 mb-1 text-color-black sub-titulos-class">
+     <p class="col-10 mb-1 text-color-black ">
       <b>@{{tipo_de_movimiento.name}}</b> 
-     </h3>
+     </p>
      <p class="col-2 sub-titulos-class text-center simula-link">
       <i  @click="showModal = true" class="far fa-edit"></i>
      </p>
-     <p class="col-12 mb-1 py-3 px-2" :class="class_saldo">
+     <p class="col-12 mb-1 py-1 px-2" :class="class_saldo">
        <small>Saldo <b>@{{tipo_de_movimiento.tipo_saldo}}</b></small> 
      </p>
      <p class="col-12 mb-0 color-text-gris" >
