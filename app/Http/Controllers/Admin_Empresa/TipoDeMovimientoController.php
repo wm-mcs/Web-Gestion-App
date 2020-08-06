@@ -94,23 +94,16 @@ class TipoDeMovimientoController extends Controller
   {
     $manager = $this->getValidatorData($Request);
 
-
-
-    /*if(!$manager->isValid())
+    if(!$manager->isValid())
     {
       return $this->getErroresCuandoNoPasaValidator($manager);
-    }*/
+    }    
 
-    // Tiene la estructura de un objeto
-    $Objeto_desde_vue = json_decode(json_encode($Request->all()));
+    $Entidad = $this->TipoDeMovimientoRepo->find($Request->get('id'));
 
-    dd($Objeto_desde_vue);
-
-    $this->TipoDeMovimientoRepo->setEntidadDatoObjeto($Servicio,$Objeto_desde_vue,$this->getPropiedades() );
-
-    $this->TipoDeMovimientoRepo->setEntidadDato(null,$Request,$this->getPropiedades());
+    $this->TipoDeMovimientoRepo->setEntidadDato($Entidad,$Request,$this->getPropiedades());
 
     return ['Validacion'          => true,
-            'Validacion_mensaje'  => 'Se creó correctamente']; 
+            'Validacion_mensaje'  => 'Se editó correctamente']; 
   }
 }
