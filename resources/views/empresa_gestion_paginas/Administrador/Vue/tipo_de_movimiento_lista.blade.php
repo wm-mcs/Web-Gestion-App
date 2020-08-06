@@ -17,7 +17,7 @@ methods:{
 
      this.cargando = true;         
 
-     axios.post(url,this.data_crear).then(function (response){  
+     axios.post(url,this.data_editar).then(function (response){  
       let data = response.data;        
 
       if(data.Validacion == true)
