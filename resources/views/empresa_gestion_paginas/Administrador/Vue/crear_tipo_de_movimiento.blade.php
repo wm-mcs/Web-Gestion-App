@@ -97,14 +97,15 @@ template:'
             
             <div class="row">
               <div class="col-lg-6 formulario-label-fiel">
-              <label class="formulario-label">Nombre</label> 
-                <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
+               <label class="formulario-label">Nombre</label> 
+               <input v-model="data_crear.name" type="text" min="1" class="formulario-field" placeholder="hola">
               </div>
-              <div class="col-lg-6 formulario-label-fiel">
-              <label class="formulario-label">Breve descripción</label> 
-              <textarea v-model="data_crear.descripcion_breve" class="formulario-field" ></textarea>
-                
+
+              <div class="col-lg-12 formulario-label-fiel">
+               <label class="formulario-label">Breve descripción</label> 
+               <input v-model="data_crear.descripcion_breve" type="text"  class="formulario-field" placeholder="Algo que explique">                
               </div>
+              
               <div class="col-lg-6 formulario-label-fiel">
                 <label class="formulario-label">¿Interactua con un socio?</label> 
                                
@@ -136,7 +137,7 @@ template:'
                 
               </div>
 
-              <div class="col-lg-6 formulario-label-fiel">
+              <div class="col-12 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label> 
                 <select v-model="data_crear.estado" class="formulario-field">
                   <option>si</option>
