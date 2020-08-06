@@ -47,8 +47,8 @@ computed:{
   class_saldo:function(){
     
     return {
-            'color-text-success':this.tipo_de_movimiento.tipo_saldo == 'deudor',
-            'color-text-error':this.tipo_de_movimiento.tipo_saldo == 'acredor'     
+            'color-text-success background-success':this.tipo_de_movimiento.tipo_saldo == 'deudor',
+            'color-text-error background-error':this.tipo_de_movimiento.tipo_saldo == 'acredor'     
            }
   }
 },
@@ -62,14 +62,14 @@ template:'
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
     <div class="row">
-     <h3 class="col-10 mb-1 text-color-primary sub-titulos-class">
+     <h3 class="col-10 mb-1 text-color-black sub-titulos-class">
       <b>@{{tipo_de_movimiento.name}}</b> 
      </h3>
-     <p class="col-2 text-center simula-link">
+     <p class="col-2 sub-titulos-class text-center simula-link">
       <i  @click="showModal = true" class="far fa-edit"></i>
      </p>
-     <p class="col-12 mb-1" :class="class_saldo">
-       Saldo <b>@{{tipo_de_movimiento.tipo_saldo}}</b> 
+     <p class="col-12 mb-1 py-3 px-2" :class="class_saldo">
+       <small>Saldo <b>@{{tipo_de_movimiento.tipo_saldo}}</b></small> 
      </p>
      <p class="col-12 mb-0 color-text-gris" >
        <small>@{{tipo_de_movimiento.descripcion_breve}}</small>

@@ -85,3 +85,11 @@ $altura-imagen-miniaturas:150px; /*Defino la altura*/
 .background-black-transparent{
   background-color: rgba($color-black,.2);
 }
+
+.background-success{
+  background-color: $Color-Verde-Super-Claro;
+}
+
+.background-error{
+  background-color:$Color-Errors-BG;
+}

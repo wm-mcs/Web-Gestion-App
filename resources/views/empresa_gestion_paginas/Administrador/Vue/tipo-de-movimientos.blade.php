@@ -61,7 +61,7 @@ created(){
     this.get_tipo_de_movimientos();
   });
     
-},
+}, 
 
 template:'
 <div  v-if="cargando" class="w-100 d-flex flex-column align-items-center p-5">
@@ -70,8 +70,8 @@ template:'
    </div>
 </div>
 <div v-else class="p-5">
-	<div v-if="get_movimientos_a_empresa.length" class="row mb-4 p-2 background-gris-0">
-    <h2 class="col-12 mb-3 sub-titulos-class color-text-gris"><b>Tipo de movimientos de la empresa</b></h2>
+	<div v-if="get_movimientos_a_empresa.length" class="row mb-4 p-2 ">
+    <h2 class="col-12 mb-4 parrafo-class color-text-gris"><b>Tipo de movimientos de la empresa</b></h2>
 		<tipo_de_movimiento_lista 
      v-for="tipo_movimiento in get_movimientos_a_empresa"
      :tipo_de_movimiento="tipo_movimiento"
@@ -79,8 +79,8 @@ template:'
     ></tipo_de_movimiento_lista>
 	</div>
   <div v-else class="text-center sub-titulos-class color-text-gris" >Aún no hay tipos de movimientos para la empresa.</div>
-  <div v-if="get_movimientos_a_socios.length" class="row mb-0 p-2 background-gris-1">
-    <h2 class="col-12 mb-3 sub-titulos-class color-text-gris"><b>Tipo de movimientos de los socios</b></h2>
+  <div v-if="get_movimientos_a_socios.length" class="row mb-0 p-2 ">
+    <h2 class="col-12 mb-4 parrafo-class color-text-gris"><b>Tipo de movimientos de los socios</b></h2>
     <tipo_de_movimiento_lista 
      v-for="tipo_movimiento in get_movimientos_a_socios"
      :tipo_de_movimiento="tipo_movimiento"
