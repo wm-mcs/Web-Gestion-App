@@ -47,8 +47,8 @@ computed:{
   class_saldo:function(){
     
     return {
-            'color-text-success':this.tipo_de_movimiento === 'deudor',
-            'color-text-error':this.tipo_de_movimiento === 'acredor'     
+            'color-text-success':this.tipo_de_movimiento.tipo_saldo == 'deudor',
+            'color-text-error':this.tipo_de_movimiento.tipo_saldo == 'acredor'     
            }
   }
 },
