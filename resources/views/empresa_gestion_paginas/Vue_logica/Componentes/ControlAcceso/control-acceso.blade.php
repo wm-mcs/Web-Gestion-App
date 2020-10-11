@@ -17,6 +17,8 @@ methods:{
         this.$refs.celular.focus();
     },
     verificar_celular:function(celular){
+        
+        console.log(celular);
         if(celular.length == 9)
         {
 
