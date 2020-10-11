@@ -79,7 +79,6 @@
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
-
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')
@@ -105,7 +104,7 @@
 
   
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
-  
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_control_access')
 
 
 

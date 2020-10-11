@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin_Empresa;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+
 use App\Http\Controllers\Controller;
 use App\Repositorios\EmpresaConSociosoRepo;
 use Illuminate\Http\Request;
@@ -88,7 +86,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   public function get_home()
   {
     $User = Auth::user();
-
     
     if($User->role == 10) //admin
     {
@@ -102,16 +99,21 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     elseif($User->role <= 3) //dueño
     {
       $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
-      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas); 
-
-      
+      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);       
     }
 
-
-
     return view('empresa_gestion_paginas.home_general', compact('Empresas'));
+  }
 
+  /**
+   *  La página del control de acceso
+   *  */ 
+  public function get_control_access_view(Request $Request)
+  {
+    $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
+    $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
+    return view('admin.empresas_gestion_socios.control_de_acceso', compact('Empresa'));
   }
 
   //home admin User
@@ -121,26 +123,21 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                      ->getEntidad()
                      ->orderBy('id','desc')
                      ->get();
-
     
-    $Empresa  = '';
-    
+    $Empresa  = '';    
 
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home', compact('Empresas','Empresa'));
   }
 
   //get Crear admin User
   public function get_admin_empresas_gestion_socios_crear()
-  {  
-    
+  {      
     return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_crear',compact('Empresa'));
   }
 
   //set Crear admin User
   public function set_admin_empresas_gestion_socios_crear(Request $Request)
-  {     
-
-
+  {    
       //propiedades para crear
       $Propiedades = $this->getPropiedades();
 
@@ -153,8 +150,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       //para la imagen
       $this->EmpresaConSociosoRepo->setImagen( null ,$Request , 'img', 'Empresa/',  $Entidad->id.'-logo_empresa_socios'   ,'.png',250);
 
-     return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Creado Correctamente');
-    
+      return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Creado Correctamente');    
   }
 
   //get edit admin marca
@@ -312,8 +308,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //me devulve los oscios activos
   public function get_socios_activos(Request $Request)   
-  {
-       $User               = $Request->get('user_desde_middleware'); 
+  {      
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
        $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,null);  
        return [
@@ -322,8 +317,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
   public function get_socios_inactivos(Request $Request)   
-  {
-       $User               = $Request->get('user_desde_middleware'); 
+  {      
        $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
        $Socios             = $this->SocioRepo->getSociosInactivos($UserEmpresa->empresa_id);
 

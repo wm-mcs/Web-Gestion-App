@@ -2,8 +2,7 @@
 
 
  Route::group(['middleware' => 'SistemaGestionUserGerarquia:3'], function()
- {
-         
+ {       
 
           //llana mmo a los usuarios con el rol para asiganr a una empresa
           Route::post('get_user_rol_panel_gestion',
@@ -46,7 +45,6 @@
             'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@crear_empresa_nueva',
             'as'         => 'crear_empresa_nueva',                
           ]); 
-
 
       
           Route::get('get_planes_empresa',
@@ -124,9 +122,6 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delete_vendedor_a_empresa',
                   'as'         => 'delete_vendedor_a_empresa',                
                 ]); 
-
-
-              
 
                 Route::post('crear_plan',
                 [

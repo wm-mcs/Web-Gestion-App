@@ -1,5 +1,10 @@
 <?php
 
+Route::post('get_control_access_view',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_control_access_view',
+  'as'         => 'get_control_access_view']);  
+
 
 //Para ir al panel del socio
 Route::post('get_socio',
@@ -19,11 +24,6 @@ Route::post('get_servicios_de_socio',
 [
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_servicios_de_socio',
   'as'         => 'get_servicios_de_socio']);  
-
-
-
-
-
 
 Route::post('agregar_servicio_a_socio',
 [
