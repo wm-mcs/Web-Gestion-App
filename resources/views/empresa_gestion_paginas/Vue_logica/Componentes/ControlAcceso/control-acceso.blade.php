@@ -8,9 +8,14 @@ data:function(){
 
     }
 },
+mounted() {
+    this.focusInput();
+},
 methods:{
 
-   
+    focusInput() {
+        this.$refs.celular.$el.focus();
+    }   
 
 },
 template:`
@@ -33,7 +38,7 @@ template:`
     
    
 
-    <input class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <input ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
 
    </div> 
    
