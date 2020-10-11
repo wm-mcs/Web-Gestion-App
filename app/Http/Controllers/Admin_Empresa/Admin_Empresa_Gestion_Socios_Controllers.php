@@ -113,7 +113,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
     $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
-    return view('admin.empresas_gestion_socios.control_de_acceso', compact('Empresa'));
+    return view('empresas_gestion_socios.control_de_acceso', compact('Empresa'));
   }
 
   //home admin User
