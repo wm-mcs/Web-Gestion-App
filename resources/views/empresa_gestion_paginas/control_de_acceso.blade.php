@@ -13,7 +13,7 @@
 
 <div class="controll-access-contenedor d-flex flex-row align-items-center justify-content-center ">
      
-     <img class="controll-access-easy-socio-logo" src="{{$Empresa_gestion->url_img}}" alt="EasySocio">
+     <img class="controll-access-easy-socio-logo" src="/imagenes/Empresa/logo_rectangular.png" alt="EasySocio">
      
      <div class="w-100 d-flex flex-column align-items-center">
           
