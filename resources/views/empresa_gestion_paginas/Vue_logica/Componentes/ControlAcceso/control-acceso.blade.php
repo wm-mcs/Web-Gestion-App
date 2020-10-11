@@ -25,43 +25,40 @@ methods:{
            this.consultarSocio(celular);
         }
     },
-    consultarSocio:function(busqueda){
-
-        
+    consultarSocio:function(busqueda){        
         
         this.cargando = true;
 
         var url  = '/control_acceso_socio';
 
         var data = {  
-                      celular:busqueda,
-                      empresa_id:{{$Empresa->id}}
+                        celular:busqueda,
+                        empresa_id:{{$Empresa->id}}
                    };  
 
-        var vue  = this;
-                
+        var vue  = this;                
   
-       axios.post(url,data).then(function (response){  
-        var data = response.data;  
-        
+        axios.post(url,data).then(function (response){  
+
+        var data = response.data;         
 
         if(data.Validacion == true)
         {
-        vue.cargando = false;
+            vue.socio =  data.Data;   
+            vue.cargando = false;
             
-        $.notify(response.data.Validacion_mensaje, "success");
+            $.notify(response.data.Validacion_mensaje, "success");
         }
         else
         {
-        vue.cargando = false;
-        $.notify(response.data.Validacion_mensaje, "error");
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
         }
         
 
         }).catch(function (error){
-        vue.cargando = false;
-        $.notify(error, "error");      
-        
+            vue.cargando = false;
+            $.notify(error, "error");              
         });
 
     }

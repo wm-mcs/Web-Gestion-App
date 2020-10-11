@@ -125,7 +125,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $UserEmpresa  = $Request->get('user_empresa_desde_middleware'); 
     $Celular      = $Request->get('celular');
-    $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,  $Celular ):
+    $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,  $Celular );
 
     if($Socio->count() > 0 )
     {
