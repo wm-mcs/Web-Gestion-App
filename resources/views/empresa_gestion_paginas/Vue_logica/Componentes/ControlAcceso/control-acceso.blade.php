@@ -13,10 +13,27 @@ mounted() {
 },
 methods:{
 
-    focusInput() {
+    focusInput:function() {
         this.$refs.celular.focus();
-    }   
+    },
+    consultarSocio:_.debounce(function(busqueda){
 
+
+        alert(busqueda);
+        this.cargando = true;
+
+    }, 800)   
+    
+
+},
+watch:{ 
+    celular: {
+      immediate: true,
+      deep: true,
+      handler(newValue, oldValue) {
+      	this.consultarSocio(newValue);
+      }
+    }
 },
 template:`
 
