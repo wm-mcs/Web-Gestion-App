@@ -16,13 +16,19 @@ methods:{
     focusInput:function() {
         this.$refs.celular.focus();
     },
-    consultarSocio:_.debounce(function(busqueda){
+    verificar_celular:function(celular){
+        if(celular.length == 9)
+        {
+
+        }
+    },
+    consultarSocio:function(busqueda){
 
 
         alert(busqueda);
         this.cargando = true;
 
-    }, 800)   
+    }
     
 
 },
@@ -31,7 +37,7 @@ watch:{
       immediate: true,
       deep: true,
       handler(newValue, oldValue) {
-      	this.consultarSocio(newValue);
+      	this.verificar_celular(newValue);
       }
     }
 },
