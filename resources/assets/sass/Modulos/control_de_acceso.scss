@@ -8,25 +8,25 @@
     line-height: 1.7;
     font-family: $font-secondary;
     font-weight: bold;
-    font-size: 16px !important;
+    font-size: 40px !important;
     background-color: transparent;
     border: solid  3px transparent;  
-    padding: 8px;
-    border-radius:0px;
+    padding: 10px;    
     width: 100%;
     border-radius:4px;
-    border-color: $color-3;
-    color:$color-3;
+    border-color: $color-grey0;
+    color:$color-grey1;
 }
 
 .controll-access-input-celular::placeholder{
-    color:darken( $color-white, 20% );
+    color:$color-grey0;
   }
 
     .controll-access-input-celular:focus {    
         box-shadow: none !important;
         outline: 0 none !important;
-        border-color:$color-white;
+        border-color:$color-grey0;
+        border: solid  4px transparent;  
     }
 
 
