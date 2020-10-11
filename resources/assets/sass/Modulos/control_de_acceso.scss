@@ -9,7 +9,7 @@
     line-height: 1.7;
     font-family: $font-secondary;
     font-weight: bold;
-    font-size: 40px !important;
+    font-size: 50px !important;
     background-color: transparent;
     border: solid  3px transparent;  
     padding: 10px;    
@@ -24,9 +24,8 @@
 
     .controll-access-input-celular:focus {    
         box-shadow: none !important;
-        outline: 0 none !important;
-        border-color:$color-grey0;
-        border: solid  4px transparent;  
+        outline: 0 none !important;        
+        border: solid  4px $color-grey0;  
     }
 
     /*Oculto los iconitos del input de mas y menos*/
