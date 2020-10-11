@@ -19,7 +19,7 @@ methods:{
     verificar_celular:function(celular){
         
         console.log(celular);
-        if(celulartoString().length == 9)
+        if(celular.toString().length == 9)
         {
             this.consultarSocio(celular);
         }
