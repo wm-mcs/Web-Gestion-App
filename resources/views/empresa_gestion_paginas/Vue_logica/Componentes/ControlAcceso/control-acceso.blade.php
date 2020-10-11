@@ -19,9 +19,9 @@ methods:{
     verificar_celular:function(celular){
         
         console.log(celular);
-        if(celular.length == 9)
+        if(celulartoString().length == 9)
         {
-
+            this.consultarSocio(celular);
         }
     },
     consultarSocio:function(busqueda){
