@@ -103,7 +103,7 @@
 
    
   
-        @include('admin.layouts.JS_Partial.LogicaDeComoCargarJS')
+        @include('layouts.JS_Partial.LogicaDeComoCargarJS')
        
 
 
