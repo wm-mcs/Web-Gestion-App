@@ -2,7 +2,7 @@
 
 
 @section('title') 
- Control de acceso  
+ Control de acceso de {{$Empresa->name}}
 @stop
 
 
@@ -11,9 +11,26 @@
   
 
 
+<div class="controll-access-contenedor d-flex flex-row align-items-center justify-content-center ">
+     
+     <img class="controll-access-easy-socio-logo" src="{{$Empresa_gestion->url_img}}" alt="EasySocio">
+     
+     <div class="w-100 d-flex flex-column align-items-center">
+          
+          @if(file_exists($Empresa->path_url_img)) 
+           <img class="my-3 controll-access-empresa-cliente-logo" src="{{$Empresa->url_img}}">
+          @endif
+          
+          <h1 class="sub-titulos-class text-center">Control de acceso</h1>
+
+          
+
+     </div>
 
 
-<h1>Control de acceso</h1>
+
+</div>
+
 
 
 
