@@ -4,6 +4,7 @@
     position: relative;
 }
 
+/* E l   i n p u t */
 .controll-access-input-celular{
     line-height: 1.7;
     font-family: $font-secondary;
@@ -17,16 +18,25 @@
     border-color: $color-grey0;
     color:$color-grey1;
 }
-
-.controll-access-input-celular::placeholder{
-    color:$color-grey0;
-  }
+    .controll-access-input-celular::placeholder{
+        color:$color-grey0;
+    }
 
     .controll-access-input-celular:focus {    
         box-shadow: none !important;
         outline: 0 none !important;
         border-color:$color-grey0;
         border: solid  4px transparent;  
+    }
+
+    /*Oculto los iconitos del input de mas y menos*/
+    .controll-access-input-celular::-webkit-inner-spin-button, 
+    .controll-access-input-celular::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    .controll-access-input-celular{ 
+        -moz-appearance:textfield;    
     }
 
 

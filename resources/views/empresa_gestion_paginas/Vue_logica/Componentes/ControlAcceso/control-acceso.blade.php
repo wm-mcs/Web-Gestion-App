@@ -31,9 +31,10 @@ template:`
     <img class="my-3 controll-access-empresa-cliente-logo" src="{{$Empresa->url_img}}">
     @endif
     
-    <h1 class="sub-titulos-class text-center">Control de acceso</h1>
+    <h1 class="sub-titulos-class text-center mb-5">Control de acceso</h1>
 
     <input class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    
    </div> 
    
 
