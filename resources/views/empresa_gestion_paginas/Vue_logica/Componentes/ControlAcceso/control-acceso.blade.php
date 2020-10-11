@@ -5,6 +5,7 @@ data:function(){
     return {
      cargando:false,
      celular:'',
+     socio:'',
 
     }
 },
@@ -21,14 +22,47 @@ methods:{
         console.log(celular);
         if(celular.toString().length == 9)
         {
-            this.consultarSocio(celular);
+           this.consultarSocio(celular);
         }
     },
     consultarSocio:function(busqueda){
 
-
-        alert(busqueda);
+        
+        
         this.cargando = true;
+
+        var url  = '/control_acceso_socio';
+
+        var data = {  
+                      celular:busqueda,
+                      empresa_id:{{$Empresa->id}}
+                   };  
+
+        var vue  = this;
+                
+  
+       axios.post(url,data).then(function (response){  
+        var data = response.data;  
+        
+
+        if(data.Validacion == true)
+        {
+        vue.cargando = false;
+            
+        $.notify(response.data.Validacion_mensaje, "success");
+        }
+        else
+        {
+        vue.cargando = false;
+        $.notify(response.data.Validacion_mensaje, "error");
+        }
+        
+
+        }).catch(function (error){
+        vue.cargando = false;
+        $.notify(error, "error");      
+        
+        });
 
     }
     

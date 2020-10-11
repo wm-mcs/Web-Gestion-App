@@ -30,6 +30,7 @@ use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager;
 use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager; 
 use App\Repositorios\ServicioSocioRenovacionRepo;
 use Illuminate\Support\Facades\Cache;
+use App\Helpers\HelpersGenerales;
 
 
 
@@ -78,31 +79,31 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   public function getPropiedades()
   {
-    return ['name','rut','razon_social','email','celular','direccion','factura_con_iva','estado','codigo_pais_whatsapp','mensaje_aviso_especial'];
+      return ['name','rut','razon_social','email','celular','direccion','factura_con_iva','estado','codigo_pais_whatsapp','mensaje_aviso_especial'];
   }
 
 
   //La pagina de inicio
   public function get_home()
   {
-    $User = Auth::user();
-    
-    if($User->role == 10) //admin
-    {
-      $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
-    }
-    elseif($User->role == 4) //vendedor
-    {
-      $Id_de_empresas = $this->VendedorEmpresaRepo->getEmpresasDeEsteVendedor($User->id);
-      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
-    }
-    elseif($User->role <= 3) //dueño
-    {
-      $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
-      $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);       
-    }
+      $User = Auth::user();
+      
+      if($User->role == 10) //admin
+      {
+        $Empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
+      }
+      elseif($User->role == 4) //vendedor
+      {
+        $Id_de_empresas = $this->VendedorEmpresaRepo->getEmpresasDeEsteVendedor($User->id);
+        $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);
+      }
+      elseif($User->role <= 3) //dueño
+      {
+        $Id_de_empresas = $this->UserEmpresaRepo->getEmpresasDeEsteUsuario($User->id);
+        $Empresas       = $this->EmpresaConSociosoRepo->getEntidadesConEstosId($Id_de_empresas);       
+      }
 
-    return view('empresa_gestion_paginas.home_general', compact('Empresas'));
+      return view('empresa_gestion_paginas.home_general', compact('Empresas'));
   }
 
   /**
@@ -110,29 +111,47 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
    *  */ 
   public function get_control_access_view(Request $Request)
   {
-    $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
-    $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+      $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
+      $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
-    return view('empresa_gestion_paginas.control_de_acceso', compact('Empresa'));
+      return view('empresa_gestion_paginas.control_de_acceso', compact('Empresa'));
+  }
+
+
+  /**
+   * verifico que el socio sea de la empresa
+   */
+  public function control_acceso_socio(Request $Request)
+  {
+    $UserEmpresa  = $Request->get('user_empresa_desde_middleware'); 
+    $Celular      = $Request->get('celular');
+    $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,  $Celular ):
+
+    if($Socio->count() > 0 )
+    {
+      return HelpersGenerales::formateResponseToVue(true,'Se consigío un socio',$Socio->first());
+    }
+
+    return HelpersGenerales::formateResponseToVue(false,'El celular '.$Celular . ' no lo tenemos en la base de datos de nuestros clientes.');    
   }
 
   //home admin User
   public function get_admin_empresas_gestion_socios(Request $Request)
   { 
-    $Empresas = $this->EmpresaConSociosoRepo
-                     ->getEntidad()
-                     ->orderBy('id','desc')
-                     ->get();
-    
-    $Empresa  = '';    
+      $Empresas = $this->EmpresaConSociosoRepo
+                      ->getEntidad()
+                      ->orderBy('id','desc')
+                      ->get();
+      
+      $Empresa  = '';    
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home', compact('Empresas','Empresa'));
+      return view('admin.empresas_gestion_socios.empresa_gestion_socios_home', compact('Empresas','Empresa'));
   }
 
   //get Crear admin User
   public function get_admin_empresas_gestion_socios_crear()
   {      
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_crear',compact('Empresa'));
+      return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_crear',compact('Empresa'));
   }
 
   //set Crear admin User
@@ -156,30 +175,30 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //get edit admin marca
   public function get_admin_empresas_gestion_socios_editar($id)
   {
-    $Empresa         = $this->EmpresaConSociosoRepo->find($id);
+      $Empresa         = $this->EmpresaConSociosoRepo->find($id);
 
-    $UsersEmpresa    = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $UsersEmpresa    = $this->UserEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
-    $VendedorEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
+      $VendedorEmpresa = $this->VendedorEmpresaRepo->getEntidad()->where('empresa_id',$Empresa->id )->get();
 
-    return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa','VendedorEmpresa'));
+      return view('admin.empresas_gestion_socios.empresa_gestion_socios_home_editar',compact('Empresa','UsersEmpresa','VendedorEmpresa'));
   }
 
   //set edit admin marca
   public function set_admin_empresas_gestion_socios_editar($id,Request $Request)
   {
-    $Entidad = $this->EmpresaConSociosoRepo->find($id);    
+      $Entidad = $this->EmpresaConSociosoRepo->find($id);    
 
-    //propiedades para crear
-    $Propiedades = $this->getPropiedades();    
+      //propiedades para crear
+      $Propiedades = $this->getPropiedades();    
 
-    //grabo todo las propiedades
-    $this->EmpresaConSociosoRepo->setEntidadDato($Entidad,$Request,$Propiedades);
+      //grabo todo las propiedades
+      $this->EmpresaConSociosoRepo->setEntidadDato($Entidad,$Request,$Propiedades);
 
-    //para la imagen
-    $this->EmpresaConSociosoRepo->setImagen( null ,$Request , 'img', 'Empresa/',  $Entidad->id.'-logo_empresa_socios'   ,'.png',250);
+      //para la imagen
+      $this->EmpresaConSociosoRepo->setImagen( null ,$Request , 'img', 'Empresa/',  $Entidad->id.'-logo_empresa_socios'   ,'.png',250);
 
-    return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Editado Correctamente');  
+      return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Editado Correctamente');  
   }
 
 
@@ -187,122 +206,122 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //Panel de gestio de empresa
   public function get_empresa_panel_de_gestion(Request $Request)
   {
-       $User            =  $Request->get('user_desde_middleware');  
-       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
-       $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
-       /*$Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);*/
-       $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
+      $User            =  $Request->get('user_desde_middleware');  
+      $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
+      $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+      /*$Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);*/
+      $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
 
-       $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
-            $Hoy                         = Carbon::now('America/Montevideo');
-            $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
+      $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
+          $Hoy                         = Carbon::now('America/Montevideo');
+          $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
 
 
 
-            $Array_resultados = [];
+          $Array_resultados = [];
 
-            //primer me fijo se está activo esto
-            if($Empresa->actualizar_servicios_socios_automaticamente != 'si')  
-            {
-               $Array_resultados = 'no renueva' ;
-               return  $Array_resultados ;
-            }     
+          //primer me fijo se está activo esto
+          if($Empresa->actualizar_servicios_socios_automaticamente != 'si')  
+          {
+              $Array_resultados = 'no renueva' ;
+              return  $Array_resultados ;
+          }     
 
-            foreach($this->SocioRepo->getSociosBusqueda($Empresa->id, null,null) as $Socio)
-            {
+          foreach($this->SocioRepo->getSociosBusqueda($Empresa->id, null,null) as $Socio)
+          {
 
-               $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id); 
+              $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id); 
 
-               //primero me fijo que el socio no tenga deudas
-               if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
-               {
-                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                         'Acutualizo' => 'no', 
-                                                         'Razon'      => 'debia plata',
-                                                         'Fecha'      =>  $Hoy_objet] )  ) );
-               }
-               else
-               {
-                   //luego me fijo si tiene servicios de renovacion
-                    if($Servicios_renovacion->count() == 0) 
+              //primero me fijo que el socio no tenga deudas
+              if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
+              {
+                  array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                        'Acutualizo' => 'no', 
+                                                        'Razon'      => 'debia plata',
+                                                        'Fecha'      =>  $Hoy_objet] )  ) );
+              }
+              else
+              {
+                  //luego me fijo si tiene servicios de renovacion
+                  if($Servicios_renovacion->count() == 0) 
+                  {
+                      array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                                  'Acutualizo' => 'no', 
+                                                                  'Razon'      => 'no tenía servicio con renovación marcada en si',
+                                                                  'Fecha'      =>  $Hoy_objet ] )  ) );
+                  }
+
+                  //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
+                  foreach ($Servicios_renovacion as $Servicio_para_renovar)
+                  {
+
+
+                    //busco los servicios del socio
+                    $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
+
+                    if($Servicio != null)
                     {
-                       array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                                   'Acutualizo' => 'no', 
-                                                                   'Razon'      => 'no tenía servicio con renovación marcada en si',
-                                                                   'Fecha'      =>  $Hoy_objet ] )  ) );
+                      
+                          //debería buscar servicio a socio y ver si en un mes hay alguno disponible
+                          if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                          {
+                            //creo el nuevo servicio
+                            $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+                                                                                                  $Sucursal->id, 
+                                                                                                  $Servicio->tipo_de_servicio, 
+                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
+
+                            //Logica de estado de cuenta cuando compra
+                            $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+                                                                                            $User->id,
+                                                                                            $Nuevo_servicio->moneda,
+                                                                                            $Nuevo_servicio->valor,
+                                                                                            'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
+                                                                                            'acredor',
+                                                                                            Carbon::now('America/Montevideo'),
+                                                                                            $Nuevo_servicio->id);
+
+                            //ajusto el servicio de renovación
+                            $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                                        $Socio->empresa_id,
+                                                                                        $Nuevo_servicio->tipo_de_servicio, 
+                                                                                        Carbon::now('America/Montevideo')       );
+
+                            array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                            'Acutualizo'  => 'si', 
+                                                            'Razon'       => 'Se renovó correctamente' ,
+                                                                    'Fecha'      =>  $Hoy_objet] ) )  );
+                          }
+                          else
+                          {
+                            array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                                  'Acutualizo'  => 'no', 
+                                                                  'Razon'       => 'Aun tenía servicios disponibles',
+                                                                    'Fecha'      =>  $Hoy_objet ])  )  );
+                          }
                     }
 
-                    //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
-                    foreach ($Servicios_renovacion as $Servicio_para_renovar)
-                    {
 
 
-                     //busco los servicios del socio
-                     $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
+                    
 
-                     if($Servicio != null)
-                     {
-                        
-                           //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-                           if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
-                           {
-                             //creo el nuevo servicio
-                             $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
-                                                                                                   $Sucursal->id, 
-                                                                                                   $Servicio->tipo_de_servicio, 
-                                                                                                   Carbon::parse($Servicio->fecha_vencimiento)->addMonth());
-
-                             //Logica de estado de cuenta cuando compra
-                             $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
-                                                                                              $User->id,
-                                                                                              $Nuevo_servicio->moneda,
-                                                                                              $Nuevo_servicio->valor,
-                                                                                              'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
-                                                                                              'acredor',
-                                                                                              Carbon::now('America/Montevideo'),
-                                                                                              $Nuevo_servicio->id);
-
-                              //ajusto el servicio de renovación
-                              $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
-                                                                                          $Socio->empresa_id,
-                                                                                          $Nuevo_servicio->tipo_de_servicio, 
-                                                                                          Carbon::now('America/Montevideo')       );
-
-                              array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                             'Acutualizo'  => 'si', 
-                                                             'Razon'       => 'Se renovó correctamente' ,
-                                                                     'Fecha'      =>  $Hoy_objet] ) )  );
-                           }
-                           else
-                           {
-                              array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                                   'Acutualizo'  => 'no', 
-                                                                   'Razon'       => 'Aun tenía servicios disponibles',
-                                                                     'Fecha'      =>  $Hoy_objet ])  )  );
-                           }
-                     }
+                  }
+              }
+                  
 
 
+            
+      }
 
-                     
+      return $Array_resultados;
 
-                    }
-               }
-                   
-
-
-             
-        }
-
-        return $Array_resultados;
-
-        }); 
+      }); 
 
 
-        
       
+    
 
-       return view('empresa_gestion_paginas.home', compact('Empresa')); 
+      return view('empresa_gestion_paginas.home', compact('Empresa')); 
   }
 
 

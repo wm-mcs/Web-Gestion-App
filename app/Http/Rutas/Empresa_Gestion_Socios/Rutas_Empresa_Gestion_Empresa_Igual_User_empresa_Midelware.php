@@ -5,6 +5,12 @@ Route::post('get_control_access_view',
   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_control_access_view',
   'as'         => 'get_control_access_view']);  
 
+Route::post('control_acceso_socio',
+[
+  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@control_acceso_socio',
+  'as'         => 'control_acceso_socio']);  
+  
+
 
 
 //Desde Panel creo socio
