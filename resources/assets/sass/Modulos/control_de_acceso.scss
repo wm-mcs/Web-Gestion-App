@@ -4,6 +4,32 @@
     position: relative;
 }
 
+.controll-access-input-celular{
+    line-height: 1.7;
+    font-family: $font-secondary;
+    font-weight: bold;
+    font-size: 16px !important;
+    background-color: transparent;
+    border: solid  3px transparent;  
+    padding: 8px;
+    border-radius:0px;
+    width: 100%;
+    border-radius:4px;
+    border-color: $color-3;
+    color:$color-3;
+}
+
+.controll-access-input-celular::placeholder{
+    color:darken( $color-white, 20% );
+  }
+
+    .controll-access-input-celular:focus {    
+        box-shadow: none !important;
+        outline: 0 none !important;
+        border-color:$color-white;
+    }
+
+
 
 .controll-access-empresa-cliente-logo{
     width: 100px;

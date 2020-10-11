@@ -3,7 +3,8 @@ Vue.component('control-acceso' ,
 
 data:function(){
     return {
-     cargando:false
+     cargando:false,
+     celular:'',
 
     }
 },
@@ -29,6 +30,8 @@ template:`
     @endif
     
     <h1 class="sub-titulos-class text-center">Control de acceso</h1>
+
+    <input class="controll-access-input-celular" v-model="celular" type="number"  placeholder="Escribe tu celular">
 
           
 
