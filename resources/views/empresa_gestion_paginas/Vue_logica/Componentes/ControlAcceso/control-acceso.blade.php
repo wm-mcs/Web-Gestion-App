@@ -85,12 +85,7 @@ methods:{
             
             $.notify(response.data.Validacion_mensaje, "success");
 
-
             vue.countDownTimer();
-
-            
-
-
         }
         else
         {
@@ -133,6 +128,38 @@ computed:{
      {
       return true;
      }
+  },
+  validacion:function(){
+
+    let Validation;
+    let Mensaje;
+
+    if(this.estaAlDia && this.tieneAlgoContratado)
+    {
+      Validation = true;
+      Mensaje    = '';
+    }
+
+    if(this.estaAlDia && !this.tieneAlgoContratado)
+    {
+      Validation = false;
+      Mensaje    = 'No tienes ningun plan o cuponera vigente';
+    }
+
+    if(!this.estaAlDia && this.tieneAlgoContratado)
+    {
+      Validation = false;
+      Mensaje    = 'Tienes una deuda de ' + this.socio.saldo_de_estado_de_cuenta_pesos;
+    }
+
+
+     return {
+               validacion:Validation,
+                  mensaje:Mensaje
+            };
+
+
+
   }
 
 
@@ -164,7 +191,7 @@ template:`
                 @{{socio.name}}
                </div>
 
-               <div class="">
+               <div v-if="validacion.validacion" class="iconoDeControll mb-5 color-text-success">
                  <i class="fas fa-check-circle"></i>
                </div>
 
