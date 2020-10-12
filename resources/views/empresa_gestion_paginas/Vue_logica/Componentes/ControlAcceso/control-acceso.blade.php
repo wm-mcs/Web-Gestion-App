@@ -216,7 +216,7 @@ template:`
 
                <span v-if="validacion.validacion">Puedes pasar</span>
 
-                 @{{socio.name}} <i class="fas fa-hand-point-right"></i> <b>@{{socio.celular}}</b> 
+                 @{{socio.name}} <i class="fas fa-hand-point-right"></i>  
                </div>
 
                <div v-if="validacion.validacion" class="iconoDeControll mb-5 color-text-success">
