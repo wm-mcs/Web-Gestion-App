@@ -17,9 +17,12 @@
 
  <div class="empresa-lista-user-contenedor">
         <div class="empresa-lista-user-header">
-          <div class="empresa-lista-user-contiene-img">
-            <img src="{{$Empresa->url_img}}" class="empresa-lista-user-img">
-          </div>
+
+           @if(file_exists($Empresa->path_url_img))
+            <div class="empresa-lista-user-contiene-img">
+              <img src="{{$Empresa->url_img}}" class="empresa-lista-user-img">
+            </div>
+           @endif
            @foreach($Empresa->sucursuales_empresa as $sucursal)          
             @if($sucursal->puede_ver_el_user)
               <div class="empresa-lista-user-sucursal">
@@ -137,8 +140,7 @@
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
 
-  {{-- imagen logo --}}
-  <a href="{{route('get_home')}}"><img class="admin-header-logo" src="{{$Empresa->url_img}}"></a>
+  
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')

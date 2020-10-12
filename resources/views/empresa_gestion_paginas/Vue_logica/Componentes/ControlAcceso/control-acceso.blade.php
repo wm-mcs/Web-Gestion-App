@@ -7,7 +7,7 @@ data:function(){
      celular:'',
      socio:'',
      countDown:false,
-     tiempoCountDown:5, /*Crear porpiedad en la empresa que configure esto*/
+     tiempoCountDown:{{$Empresa->tiempo_luego_consulta_control_access}}, /*Crear porpiedad en la empresa que configure esto*/
 
     }
 },
