@@ -33,6 +33,10 @@ methods:{
                 this.countDownTimer();
             }, 1000)
         }
+        else
+        {
+            location.reload();
+        }
     },
     consultarSocio:function(busqueda){        
         
@@ -61,7 +65,7 @@ methods:{
 
             vue.countDownTimer();
 
-            location.reload()
+            
 
 
         }
