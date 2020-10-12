@@ -115,7 +115,7 @@ watch:{
 computed:{
   
   estaAlDia:function(){
-      if(this.socio.saldo_de_estado_de_cuenta_dolares < 0 || this.socio.saldo_de_estado_de_cuenta_pesos <)
+      if(this.socio.saldo_de_estado_de_cuenta_dolares < 0 || this.socio.saldo_de_estado_de_cuenta_pesos < 0)
       {
         return false;
       }
