@@ -6,14 +6,12 @@ data:function(){
      cargando:false,
      celular:'',
      socio:'',
-     countDown:'',
+     countDown:false,
      tiempoCountDown:5, /*Crear porpiedad en la empresa que configure esto*/
 
     }
 },
-mounted() {
-
-     this.countDown = false;
+mounted() {     
      this.focusInput();
 },
 ready() {
@@ -122,8 +120,8 @@ template:`
     
    
 
-    <input v-if="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
-    <div v-else>
+    <input v-show="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <div v-if="countDown != false">
             <div class="">
                <div class="titulos-class text-color-black text-center mb-4">
                 @{{socio.name}}
