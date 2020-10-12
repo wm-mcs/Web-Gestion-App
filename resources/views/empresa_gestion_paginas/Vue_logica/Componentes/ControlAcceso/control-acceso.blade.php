@@ -200,8 +200,8 @@ template:`
     <input v-show="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-if="countDown != false">
             <div v-if="socio != ''" class="d-flex flex-column align-items-center">
-               <div class="titulos-class text-color-black text-center mb-4">
-                @{{socio.name}}
+               <div class="sub-titulos-class text-color-black text-center mb-4">
+                @{{socio.name}} <i class="fas fa-hand-point-right"></i>  @{{socio.celular}}
                </div>
 
                <div v-if="validacion.validacion" class="iconoDeControll mb-5 color-text-success">
