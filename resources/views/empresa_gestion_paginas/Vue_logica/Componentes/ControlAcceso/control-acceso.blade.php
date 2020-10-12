@@ -218,7 +218,7 @@ template:`
 
 
                 <div v-if="this.socio.servicios_contratados_disponibles_tipo_mensual.length" class="row justify-content-center mb-2">
-                  <h2 class="mb-3 sub-titulos-class color-text-gris text-center">
+                  <h2 class="mb-3 col-12  sub-titulos-class color-text-gris text-center">
                     Servicios vigentes <i class="fas fa-hand-point-down"></i>
                   </h2>
 
@@ -233,7 +233,7 @@ template:`
                 </div>
 
                 <div v-if="this.socio.servicios_contratados_disponibles_tipo_clase.length" class="row justify-content-center mb-2">
-                  <h2 class="mb-3 sub-titulos-class color-text-gris text-center">
+                  <h2 class="mb-3 col-12 sub-titulos-class color-text-gris text-center">
                    Te quedan estas clases  <i class="fas fa-hand-point-down"></i>
                   </h2>
 
