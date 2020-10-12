@@ -212,8 +212,39 @@ template:`
                   <i class="fas fa-exclamation-triangle"></i>
                 </div>
 
-                <div v-if="!validacion.validacion" class="color-text-gris mb-4 color-text-gris">
+                <div v-if="!validacion.validacion" class=" mb-4 color-text-gris">
                   @{{validacion.mensaje}}
+                </div>
+
+
+                <div v-if="this.socio.servicios_contratados_disponibles_tipo_mensual.length" class="row justify-content-center mb-2">
+                  <h2 class="mb-3 sub-titulos-class color-text-gris text-center">
+                    Servicios vigentes <i class="fas fa-hand-point-down"></i>
+                  </h2>
+
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-6">
+
+                    <div class="p-4 background-mensual">
+                        <h3 class="tesxt -center mb-2 color-text-white">@{{servicio.name}}</h3>
+                        <p class="tesxt -center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
+                    </div>                    
+                  </div>
+                  
+                </div>
+
+                <div v-if="this.socio.servicios_contratados_disponibles_tipo_clase.length" class="row justify-content-center mb-2">
+                  <h2 class="mb-3 sub-titulos-class color-text-gris text-center">
+                   Te quedan estas clases  <i class="fas fa-hand-point-down"></i>
+                  </h2>
+
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-6">
+
+                    <div class="p-4 background-clases">
+                        <h3 class="tesxt -center mb-2 color-text-white">@{{servicio.name}}</h3>
+                        <p class="tesxt -center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
+                    </div>                    
+                  </div>
+                  
                 </div>
 
 
