@@ -6,24 +6,23 @@ data:function(){
      cargando:false,
      celular:'',
      socio:'',
-     countDown:false,
+     countDown:'',
      tiempoCountDown:5, /*Crear porpiedad en la empresa que configure esto*/
 
     }
 },
 mounted() {
-    
+
+     this.countDown = false;
+     this.focusInput();
 },
 ready() {
-    this.focusInput();
+   
 },
 methods:{
 
-    focusInput:function() {
-     
-           this.$refs.celular.focus();
-        
-        
+    focusInput:function() {     
+       this.$refs.celular.focus();
     },
     verificar_celular:function(celular){
         
