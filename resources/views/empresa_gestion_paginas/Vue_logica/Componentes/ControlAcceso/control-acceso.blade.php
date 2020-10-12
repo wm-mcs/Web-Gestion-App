@@ -6,7 +6,8 @@ data:function(){
      cargando:false,
      celular:'',
      socio:'',
-     countDown:5
+     countDown:false,
+     tiempoCountDown:5, /*Crear porpiedad en la empresa que configure esto*/
 
     }
 },
@@ -27,6 +28,8 @@ methods:{
         }
     },
     countDownTimer() {
+
+        this.countDown = this.tiempoCountDown;
         if(this.countDown > 0) {
             setTimeout(() => {
                 this.countDown -= 1;
@@ -114,7 +117,7 @@ template:`
     
    
 
-    <input v-if="countDown == 10" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <input v-if="countDown != false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-else>
             <div class="">
                <div class="titulos-class text-color-black text-center mb-4">
