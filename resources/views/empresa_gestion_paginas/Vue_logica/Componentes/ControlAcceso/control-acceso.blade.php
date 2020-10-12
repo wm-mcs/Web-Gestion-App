@@ -14,7 +14,7 @@ data:function(){
 mounted() {
     
 },
-updated() {
+ready() {
     this.focusInput();
 },
 methods:{
