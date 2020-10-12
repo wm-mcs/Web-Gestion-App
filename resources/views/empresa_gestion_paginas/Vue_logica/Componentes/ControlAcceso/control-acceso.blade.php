@@ -218,11 +218,11 @@ template:`
 
 
                 <div v-if="this.socio.servicios_contratados_disponibles_tipo_mensual.length" class="row justify-content-center mb-2">
-                  <h2 class="mb-3 col-12  sub-titulos-class color-text-gris text-center">
+                  <h2 class="mb-4 col-12  sub-titulos-class color-text-gris text-center">
                     Servicios vigentes <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-4">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-4 mb-2">
 
                     <div class="p-2 background-mensual">
                         <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
@@ -233,11 +233,11 @@ template:`
                 </div>
 
                 <div v-if="this.socio.servicios_contratados_disponibles_tipo_clase.length" class="row justify-content-center mb-2">
-                  <h2 class="mb-3 col-12 sub-titulos-class color-text-gris text-center">
+                  <h2 class="mb-4 col-12 sub-titulos-class color-text-gris text-center">
                    Te quedan estas clases  <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-4">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-4 mb-2">
 
                     <div class="p-2 background-clases">
                         <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
@@ -250,7 +250,7 @@ template:`
 
 
 
-               <div class="sub-titulos-class color-text-gris text-center mb-4">
+               <div class="sub-titulos-class color-text-gris text-center mt-4">
                 @{{countDown}}
                </div>
                 
@@ -259,7 +259,7 @@ template:`
                <div class="sub-titulos-class color-text-gris text-center mb-4">
                  No tenemos ese celular <i class="fas fa-hand-point-right"></i> <b>@{{celular}}</b> en la base de datos  ¿Está bien el número? 
                </div>
-               <div class="sub-titulos-class color-text-gris text-center mb-4">
+               <div class="sub-titulos-class color-text-gris text-center mt-4">
                 @{{countDown}}
                </div>
 
