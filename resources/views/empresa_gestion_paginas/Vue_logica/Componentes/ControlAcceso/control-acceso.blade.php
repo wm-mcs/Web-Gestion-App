@@ -190,7 +190,7 @@ template:`
 <div v-else class="w-100 d-flex flex-column align-items-center">
           
 
-   <div class="col-8 col-lg-5 d-flex flex-column align-items-center">
+   <div class="col-8 col-lg-8 d-flex flex-column align-items-center">
     @if(file_exists($Empresa->path_url_img)) 
     <img class="my-3 controll-access-empresa-cliente-logo" src="{{$Empresa->url_img}}">
     @endif
@@ -222,11 +222,11 @@ template:`
                     Servicios vigentes <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-6">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-4">
 
                     <div class="p-4 background-mensual">
-                        <h3 class="tesxt -center mb-2 color-text-white">@{{servicio.name}}</h3>
-                        <p class="tesxt -center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
+                        <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
+                        <p class="text-center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
                     </div>                    
                   </div>
                   
@@ -237,11 +237,11 @@ template:`
                    Te quedan estas clases  <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-6">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-4">
 
                     <div class="p-4 background-clases">
-                        <h3 class="tesxt -center mb-2 color-text-white">@{{servicio.name}}</h3>
-                        <p class="tesxt -center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
+                        <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
+                        <p class="text-center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
                     </div>                    
                   </div>
                   
