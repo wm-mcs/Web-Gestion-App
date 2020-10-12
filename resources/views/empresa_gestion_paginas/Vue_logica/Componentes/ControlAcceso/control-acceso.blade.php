@@ -29,8 +29,8 @@ methods:{
     countDownTimer() {
         if(this.countDown > 0) {
             setTimeout(() => {
-                this.countDown -= 1
-                this.countDownTimer()
+                this.countDown -= 1;
+                this.countDownTimer();
             }, 1000)
         }
     },
