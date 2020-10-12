@@ -195,6 +195,16 @@ template:`
                  <i class="fas fa-check-circle"></i>
                </div>
 
+                <div v-if="!validacion.validacion" class="iconoDeControll mb-5 color-text-gris">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+
+                <div v-if="!validacion.validacion" class="color-text-gris mb-4 color-text-gris">
+                  @{{validacion.mensaje}}
+                </div>
+
+                
+
 
                <div class="sub-titulos-class color-text-gris text-center mb-4">
                 @{{countDown}}
