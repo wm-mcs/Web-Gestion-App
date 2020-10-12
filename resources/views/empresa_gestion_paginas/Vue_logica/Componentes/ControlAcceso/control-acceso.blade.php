@@ -17,10 +17,9 @@ mounted() {
 methods:{
 
     focusInput:function() {
-
-       this.$nextTick(function () {
-           this.$refs.celular.$el.focus();
-        })
+     
+           this.$refs.celular.focus();
+        
         
     },
     verificar_celular:function(celular){
@@ -97,6 +96,7 @@ watch:{
       immediate: true,
       deep: true,
       handler(newValue, oldValue) {
+        this.focusInput();
       	this.verificar_celular(newValue);
       }
     }
