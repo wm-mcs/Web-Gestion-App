@@ -137,7 +137,7 @@ computed:{
 
   },
   tieneAlgoContratado:function(){
-     if(this.socio.servicios_contratados_disponibles_tipo_mensual.length || this.socio.servicios_contratados_disponibles_tipo_mensual.length)
+     if(this.socio.servicios_contratados_disponibles_tipo_mensual.length || this.socio.servicios_contratados_disponibles_tipo_clase.length)
      {
       return true;
      }
