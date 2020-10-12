@@ -117,7 +117,7 @@ template:`
     
    
 
-    <input v-if="countDown != false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <input v-if="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-else>
             <div class="">
                <div class="titulos-class text-color-black text-center mb-4">
