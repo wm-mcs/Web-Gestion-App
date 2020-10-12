@@ -217,27 +217,27 @@ template:`
                 </div>
 
 
-                <div v-if="this.socio.servicios_contratados_disponibles_tipo_mensual.length" class="row justify-content-center mb-2">
+                <div v-if="this.socio.servicios_contratados_disponibles_tipo_mensual.length" class="row col-11 col-lg-10 mb-2">
                   <h2 class="mb-4 col-12  sub-titulos-class color-text-gris text-center">
                     Servicios vigentes <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-4 mb-2">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-12 mb-2">
 
                     <div class="p-2 background-mensual">
-                        <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
+                        <h3 class="text-center mb-1 color-text-white">@{{servicio.name}}</h3>
                         <p class="text-center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
                     </div>                    
                   </div>
                   
                 </div>
 
-                <div v-if="this.socio.servicios_contratados_disponibles_tipo_clase.length" class="row justify-content-center mb-2">
+                <div v-if="this.socio.servicios_contratados_disponibles_tipo_clase.length" class="row col-11 col-lg-10 mb-2">
                   <h2 class="mb-4 col-12 sub-titulos-class color-text-gris text-center">
                    Te quedan estas clases  <i class="fas fa-hand-point-down"></i>
                   </h2>
 
-                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-4 mb-2">
+                  <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-12 mb-2">
 
                     <div class="p-2 background-clases">
                         <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
