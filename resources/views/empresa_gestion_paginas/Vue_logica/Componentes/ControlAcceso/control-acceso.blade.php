@@ -31,7 +31,7 @@ methods:{
         }
     },
     countDownTimer() {
-    
+
         if(this.countDown == false)
         {
           this.countDown = this.tiempoCountDown;
@@ -41,14 +41,19 @@ methods:{
 
             setTimeout(() => {
 
-                this.countDown -= 1;
-                this.countDownTimer();
+              this.countDown -= 1;
+              this.countDownTimer();
+
+              if(this.countDown == 0)
+              {
+                  location.reload();
+              }
+                
             }, 1000)
         }
-        else
-        {
-            location.reload();
-        }
+        
+          
+        
     },
     consultarSocio:function(busqueda){        
         
