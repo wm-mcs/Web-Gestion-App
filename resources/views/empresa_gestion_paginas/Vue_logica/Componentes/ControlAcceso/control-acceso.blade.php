@@ -17,7 +17,7 @@ mounted() {
 methods:{
 
     focusInput:function() {
-        this.$refs.celular.focus();
+        this.$refs.celular.$el.focus();
     },
     verificar_celular:function(celular){
         
