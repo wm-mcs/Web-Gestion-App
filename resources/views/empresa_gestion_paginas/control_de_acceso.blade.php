@@ -13,7 +13,10 @@
 
 <div class="controll-access-contenedor d-flex flex-row align-items-center justify-content-center ">
      
-     <img class="controll-access-easy-socio-logo" src="/imagenes/Empresa/logo_rectangular.png" alt="EasySocio">
+ <div class="controll-access-easy-socio-logo-wraper d-flex flex-row align-items-center justify-content-center">
+   <img class="controll-access-easy-socio-logo" src="/imagenes/Empresa/logo_rectangular.png" alt="EasySocio">
+ </div>    
+     
      
 
 
