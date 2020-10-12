@@ -41,14 +41,15 @@ methods:{
 
             setTimeout(() => {
 
-              this.countDown -= 1;
-              this.countDownTimer();
+              this.countDown -= 1;              
 
               if(this.countDown == 0)
               {
                   location.reload();
               }
-                
+              
+              this.countDownTimer();
+
             }, 1000)
         }
         
