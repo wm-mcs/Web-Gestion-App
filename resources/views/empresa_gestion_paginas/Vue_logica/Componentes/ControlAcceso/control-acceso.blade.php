@@ -90,7 +90,7 @@ methods:{
         else
         {
             vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
+            vue.countDownTimer();
         }
         
 
@@ -186,7 +186,7 @@ template:`
 
     <input v-show="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-if="countDown != false">
-            <div class="d-flex flex-column align-items-center">
+            <div v-if="socio != ''" class="d-flex flex-column align-items-center">
                <div class="titulos-class text-color-black text-center mb-4">
                 @{{socio.name}}
                </div>
@@ -201,7 +201,15 @@ template:`
                </div>
                 
             </div>
+            <div v-else class="d-flex flex-column align-items-center">
+               <div class="sub-titulos-class color-text-gris text-center mb-4">
+                 No tenemos ese celular <i class="fas fa-hand-point-right"></i> <b>@{{celular}}</b> en la base de datos  ¿Está bien el número? 
+               </div>
+               <div class="sub-titulos-class color-text-gris text-center mb-4">
+                @{{countDown}}
+               </div>
 
+            </div>
     </div>
    </div> 
    
