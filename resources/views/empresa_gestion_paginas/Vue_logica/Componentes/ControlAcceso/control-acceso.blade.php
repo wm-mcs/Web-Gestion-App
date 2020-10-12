@@ -34,7 +34,16 @@ methods:{
 
         if(this.countDown == false)
         {
-          this.countDown = this.tiempoCountDown;
+
+          if(this.socio != '' && this.validacion.validacion == false )
+          {
+             this.countDown = this.tiempoCountDown * 3;
+          }
+          else
+          {
+             this.countDown = this.tiempoCountDown;
+          }
+          
         }        
         if(this.countDown > 0) {
 
