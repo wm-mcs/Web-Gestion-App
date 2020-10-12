@@ -45,6 +45,7 @@ methods:{
 
               if(this.countDown == 0)
               {
+                  this.cargando = true;
                   location.reload();
               }
               else
