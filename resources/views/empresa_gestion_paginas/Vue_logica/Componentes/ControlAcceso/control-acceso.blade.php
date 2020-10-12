@@ -82,14 +82,27 @@ methods:{
         {
             vue.socio    =  data.Data;   
             vue.cargando = false;
+
+            if(vue.validacion.validacion)
+            {
+              let audio = new Audio('sonidos/notificaciones/success.mp3');
+              audio.play();
+            }
+            else
+            {
+              let audio = new Audio('sonidos/notificaciones/warning.mp3');
+              audio.play();
+            }
             
-            $.notify(response.data.Validacion_mensaje, "success");
+           
 
             vue.countDownTimer();
         }
         else
         {
             vue.cargando = false;
+            let audio = new Audio('sonidos/notificaciones/warning.mp3');
+            audio.play();
             vue.countDownTimer();
         }
         
@@ -149,7 +162,7 @@ computed:{
     if(!this.estaAlDia && this.tieneAlgoContratado)
     {
       Validation = false;
-      Mensaje    = 'Tienes una deuda de ' + this.socio.saldo_de_estado_de_cuenta_pesos;
+      Mensaje    = 'Tienes una deuda de $ ' + this.socio.saldo_de_estado_de_cuenta_pesos;
     }
 
 
@@ -203,7 +216,7 @@ template:`
                   @{{validacion.mensaje}}
                 </div>
 
-                
+
 
 
                <div class="sub-titulos-class color-text-gris text-center mb-4">
