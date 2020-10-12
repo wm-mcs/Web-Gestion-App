@@ -196,14 +196,18 @@ template:`
     @endif
     
    <div v-show="countDown === false" class="sub-titulos-class  color-text-gris text-center mb-4">
-     Para ingresar <i class="fas fa-hand-point-right"></i> 
+     Para ingresar <i class="fas fa-hand-point-down"></i> 
    </div>
 
     <input v-show="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-if="countDown != false">
             <div v-if="socio != ''" class="d-flex flex-column align-items-center">
-               <div :class="{ 'color-text-success': validacion.validacion, 'color-text-error': validacion.validacion == false }" class="sub-titulos-class text-color-black text-center mb-4">
-               Puedes pasar  @{{socio.name}} <i class="fas fa-hand-point-right"></i> <b>@{{socio.celular}}</b> 
+               <div :class="{ 'color-text-success': validacion.validacion, 'color-text-gris': validacion.validacion == false }" class="sub-titulos-class text-color-black text-center mb-4">
+               
+
+               <span v-if="validacion.validacion">Puedes pasar</span>
+               
+                 @{{socio.name}} <i class="fas fa-hand-point-right"></i> <b>@{{socio.celular}}</b> 
                </div>
 
                <div v-if="validacion.validacion" class="iconoDeControll mb-5 color-text-success">
