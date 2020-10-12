@@ -47,8 +47,12 @@ methods:{
               {
                   location.reload();
               }
-              
-              this.countDownTimer();
+              else
+              {
+                  this.countDownTimer();
+              }
+
+             
 
             }, 1000)
         }

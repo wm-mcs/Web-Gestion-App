@@ -23,7 +23,7 @@
 <div class="formulario-label-fiel">
   {!! Form::label('factura_con_iva', '¿Factura con IVA?', array('class' => 'formulario-label ')) !!}
   {!! Form::select('factura_con_iva',['si' => 'Si',
-                             'no' => 'No'] , null )          !!}
+                             'no' => 'No'] , null ,['class' => 'formulario-field'] )          !!}
 </div>
 
 <div class="formulario-label-fiel">
@@ -50,9 +50,19 @@
 </div>
 
 <div class="formulario-label-fiel">
+  {!! Form::label('tiempo_luego_consulta_control_access', 'Segundo luego de acceso', array('class' => 'formulario-label ')) !!}
+   <div class="modal-mensaje-aclarador">
+    Es el tiempo luego de la consulta del usuario en el control de acceso. 
+   </div>
+  {!! Form::text('tiempo_luego_consulta_control_access', null ,['class' => 'formulario-field']) !!}
+</div>
+
+
+
+<div class="formulario-label-fiel">
   {!! Form::label('estado', 'Estado', array('class' => 'formulario-label ')) !!}
   {!! Form::select('estado',['si' => 'Si',
-                             'no' => 'No'] , null )          !!}
+                             'no' => 'No'] , null,['class' => 'formulario-field'] )          !!}
 </div>
 
 
