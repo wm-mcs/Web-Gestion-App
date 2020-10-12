@@ -12,6 +12,9 @@ data:function(){
     }
 },
 mounted() {
+    
+},
+updated() {
     this.focusInput();
 },
 methods:{
@@ -95,8 +98,7 @@ watch:{
     celular: {
       immediate: true,
       deep: true,
-      handler(newValue, oldValue) {
-        this.focusInput();
+      handler(newValue, oldValue) {      
       	this.verificar_celular(newValue);
       }
     }
