@@ -6,6 +6,7 @@ data:function(){
      cargando:false,
      celular:'',
      socio:'',
+     countDown:10
 
     }
 },
@@ -23,6 +24,14 @@ methods:{
         if(celular.toString().length == 9)
         {
            this.consultarSocio(celular);
+        }
+    },
+    countDownTimer() {
+        if(this.countDown > 0) {
+            setTimeout(() => {
+                this.countDown -= 1
+                this.countDownTimer()
+            }, 1000)
         }
     },
     consultarSocio:function(busqueda){        
@@ -44,10 +53,17 @@ methods:{
 
         if(data.Validacion == true)
         {
-            vue.socio =  data.Data;   
+            vue.socio    =  data.Data;   
             vue.cargando = false;
             
             $.notify(response.data.Validacion_mensaje, "success");
+
+
+            vue.countDownTimer();
+
+            location.reload()
+
+
         }
         else
         {
@@ -94,8 +110,19 @@ template:`
     
    
 
-    <input ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <input v-if="countDown == 10" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
+    <div v-else>
+            <div class="">
+               <div class="titulos-class text-color-black text-center mb-4">
+                @{{socio.name}}
+               </div>
+               <div class="sub-titulos-class color-text-gris text-center mb-4">
+                @{{countDown}}
+               </div>
+                
+            </div>
 
+    </div>
    </div> 
    
 
