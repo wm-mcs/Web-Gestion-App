@@ -6,7 +6,7 @@ data:function(){
      cargando:false,
      celular:'',
      socio:'',
-     countDown:10
+     countDown:5
 
     }
 },
