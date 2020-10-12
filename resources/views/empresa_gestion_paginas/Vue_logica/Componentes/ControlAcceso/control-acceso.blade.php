@@ -224,7 +224,7 @@ template:`
 
                   <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_mensual"class="col-4">
 
-                    <div class="p-4 background-mensual">
+                    <div class="p-2 background-mensual">
                         <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
                         <p class="text-center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
                     </div>                    
@@ -239,7 +239,7 @@ template:`
 
                   <div v-for="servicio in this.socio.servicios_contratados_disponibles_tipo_clase"class="col-4">
 
-                    <div class="p-4 background-clases">
+                    <div class="p-2 background-clases">
                         <h3 class="text-center mb-2 color-text-white">@{{servicio.name}}</h3>
                         <p class="text-center mb-0 color-text-white">Se vence el <b>@{{servicio.fecha_vencimiento_formateada}}</b> </p>
                     </div>                    
