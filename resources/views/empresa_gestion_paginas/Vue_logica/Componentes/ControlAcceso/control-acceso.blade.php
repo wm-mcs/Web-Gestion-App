@@ -34,7 +34,10 @@ methods:{
 
         this.countDown = this.tiempoCountDown;
         if(this.countDown > 0) {
+
+
             setTimeout(() => {
+                console.log(this.countDown);
                 this.countDown -= 1;
                 this.countDownTimer();
             }, 1000)
