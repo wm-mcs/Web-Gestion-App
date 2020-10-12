@@ -219,11 +219,11 @@ template:`
                  @{{socio.name}}   
                </div>
 
-               <div v-if="validacion.validacion" class="iconoDeControll mb-5 color-text-success">
+               <div v-if="validacion.validacion" class="iconoDeControll mb-3 color-text-success">
                  <i class="fas fa-check-circle"></i>
                </div>
 
-                <div v-if="!validacion.validacion" class="iconoDeControll mb-5 color-text-gris">
+                <div v-if="!validacion.validacion" class="iconoDeControll mb-3 color-text-gris">
                   <i class="fas fa-exclamation-triangle"></i>
                 </div>
 
