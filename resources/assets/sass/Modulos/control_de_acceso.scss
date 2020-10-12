@@ -4,6 +4,11 @@
     position: relative;
 }
 
+
+
+
+
+
 /* E l   i n p u t */
 .controll-access-input-celular{
     line-height: 1.7;
@@ -26,7 +31,7 @@
     .controll-access-input-celular:focus {    
         box-shadow: none !important;
         outline: 0 none !important;        
-        border: solid  4px $color-grey0;  
+        border: solid  10px $color-grey0;  
     }
 
     /*Oculto los iconitos del input de mas y menos*/
@@ -41,6 +46,9 @@
 
 
 
+
+
+
 .controll-access-empresa-cliente-logo{
     width: 100px;
     height: auto;
@@ -51,6 +59,6 @@
     width: 100px;
     height: auto;
     position: absolute;
-    top: 2%;
-    left: 2%;
+    bottom: 2%;
+    left: 50%;
 }

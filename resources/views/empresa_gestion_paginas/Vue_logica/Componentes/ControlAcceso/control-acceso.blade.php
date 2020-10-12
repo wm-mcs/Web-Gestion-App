@@ -117,6 +117,26 @@ watch:{
       }
     }
 },
+computed:{
+  
+  estaAlDia:function(){
+      if(this.socio.saldo_de_estado_de_cuenta_dolares < 0 || this.socio.saldo_de_estado_de_cuenta_pesos <)
+      {
+        return false;
+      }
+
+      return true;
+
+  },
+  tieneAlgoContratado:function(){
+     if(this.socio.servicios_contratados_disponibles_tipo_mensual.length || this.socio.servicios_contratados_disponibles_tipo_mensual.length)
+     {
+      return true;
+     }
+  }
+
+
+},
 template:`
 
 
@@ -139,10 +159,16 @@ template:`
 
     <input v-show="countDown === false" ref="celular" class="controll-access-input-celular my-4" v-model="celular" type="number"  placeholder="Escribe tu celular">
     <div v-if="countDown != false">
-            <div class="">
+            <div class="d-flex flex-column align-items-center">
                <div class="titulos-class text-color-black text-center mb-4">
                 @{{socio.name}}
                </div>
+
+               <div class="">
+                 <i class="fas fa-check-circle"></i>
+               </div>
+
+
                <div class="sub-titulos-class color-text-gris text-center mb-4">
                 @{{countDown}}
                </div>
