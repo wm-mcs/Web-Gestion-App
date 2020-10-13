@@ -207,6 +207,7 @@ compara_valor_de_vencimiento:function(a,b){
   
 },
 actualizar_socios:function(socios){
+  this.ya_pedi_todos = false;
 	this.socios = socios;
 },
 setArrayDeIs:function(){
@@ -354,8 +355,7 @@ checkSearchStr: _.debounce(function(string){
 },
 created() {
     
-    bus.$on('socios-set', (socios) => {
-      this.ya_pedi_todos = false;
+    bus.$on('socios-set', (socios) => {      
       this.socios = socios;
     });
     window.addEventListener('scroll', this.scroll);
@@ -408,7 +408,7 @@ template:'
 
   
   </div> 
-  <div class="se-muestran-socios-texto"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
+  <div class="se-muestran-socios-texto my-3"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
   <div v-if="cargando" class="Procesando-text get_width_100">
      
                        <div class="cssload-container">
