@@ -4,6 +4,8 @@
 Vue.component('control-de-acceso-movimientos' ,
 {
 
+
+
 data:function(){
     return {
         cargando:false,
@@ -26,9 +28,13 @@ ready() {
 methods:{
 
   
-    cargarAccesos:function(){   
+    cargarAccesos:function(borrar_ids){   
         
-        
+        if(borrar_ids)
+        {
+            this.accesos_ids = [];
+        }
+
         if(this.ya_pedi_todos)
         {      
             return false;
@@ -120,6 +126,14 @@ template:`
 
     <p class="text-center col-11 col-lg-8 color-text-gris mb-5"> Accesos de clientes que pasaron por el control de acceso</p>
 
+
+    <socio-list 
+
+    v-for="acceso in accesos" 
+                 :key="acceso.id" 
+               :socio="acceso.socio" 
+             :empresa="$root.empresa"
+              v-on:ActualizarSocios="cargarAccesos(true)" ></socio-list>
     <div v-for="acceso in accesos">@{{acceso.name}} 
         <estado-de-cuenta-socio-saldo empresa="{{$Empresa->id}}" :socio="acceso.socio"> </estado-de-cuenta-socio-saldo></div>
 

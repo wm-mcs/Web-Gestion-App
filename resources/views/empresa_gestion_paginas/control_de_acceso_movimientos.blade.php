@@ -42,7 +42,7 @@
 
   <avisos-empresa :empresa="empresa"></avisos-empresa>
 
-  <control-de-acceso-movimientos></control-de-acceso-movimientos>
+  <control-de-acceso-movimientos ></control-de-acceso-movimientos>
 
 @stop
 

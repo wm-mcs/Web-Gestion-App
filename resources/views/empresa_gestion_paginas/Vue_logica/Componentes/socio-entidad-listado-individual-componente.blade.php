@@ -1,14 +1,14 @@
 Vue.component('socio-list' ,
 {
 
-props:['socio','empresa']
+props:['socio','empresa','acceso']
 ,  
 
 
 
 data:function(){
     return {
-         clases_desplegadas:false,
+      clases_desplegadas:false,
       mensuales_desplegadas:false,
       cargando:false
      
@@ -326,7 +326,7 @@ computed:{
 
 
 },
-template:'  
+template:`  
 <div v-if="$root.vista_lista" :class="getClassLista">
   
     
@@ -340,6 +340,11 @@ template:'
            <span :id="socio.id" class="no-mostrar"></span>
            <input type="hidden" name="socio_id" :value="socio.id">
            <span class="contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+
+      
+      <div v-if="acceso != null && acceso != undefined"> 
+        Fecha <b>@{{acceso.fecha}}</b> 
+      </div>
       <a :href="whatsAppLink"  target="_blank">
         <div class="contiene-socio-celular">  
           <i class="fab fa-whatsapp"></i> @{{whatsAppnumero}}    
@@ -477,7 +482,7 @@ template:'
                 
       </div>
           
-</div>'  
+</div>`
 
 }
 
