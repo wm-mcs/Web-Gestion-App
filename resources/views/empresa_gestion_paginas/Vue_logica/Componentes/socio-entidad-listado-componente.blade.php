@@ -227,11 +227,13 @@ scroll:function(){
         {
             window.onscroll = () => {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 300 > document.documentElement.offsetHeight;
+
+            console.log(bottomOfWindow,document.documentElement.scrollTop,document.documentElement.offsetHeight);
                 if(bottomOfWindow) {    
-                if(this.cargando == false)
-                {  
-                    this.get_socios();            
-                } 
+                  if(this.cargando == false)
+                  {  
+                      this.get_socios();            
+                  } 
                 }
             };
         }
@@ -252,6 +254,7 @@ get_socios:function(){
                     empresa_id: this.empresa.id ,
                     ids_ya_usados:this.socios_ids      
                  };  
+
       var vue = this;  
       this.cargando = true;         
 
