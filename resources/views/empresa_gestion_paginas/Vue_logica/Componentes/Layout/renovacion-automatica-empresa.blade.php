@@ -102,7 +102,7 @@ template:`
           </div>
 
           <div v-if="Data.length" class="modal-body">
-            <p class="mb-1 col-12" v-for="valor in Data" :class="{ 'color-text-success': valor.Acutualizo == 'si' }">
+            <p class="mb-2 col-12" v-for="valor in Data" :class="{ 'color-text-success': valor.Acutualizo == 'si' }">
               @{{valor.Socio}} <i class="fas fa-hand-point-right"></i>  @{{valor.Acutualizo}}. 
               <span v-if="valor.Acutualizo != 'si'">No se actualizo por que: @{{valor.Razon}} </span>
 
