@@ -13,9 +13,9 @@
  
   {!! Form::close() !!} 
 
-  {!! Form::open(['route'  => ['get_control_access_view'],
+  {!! Form::open(['route'  => ['movimientos_de_accesos_view'],
                   'method' => 'Post',
-                  'class'  => 'w-100 my-2 p-3'])                         !!}   
+                  'class'  => 'w-100 mb-2 '])                         !!}   
 
 
   <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">   
