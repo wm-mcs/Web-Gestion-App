@@ -209,9 +209,9 @@ compara_valor_de_vencimiento:function(a,b){
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
-setArrayDeIs:function(socios){
-
-     socios.forEach(element => this.socios_ids.push(element.id));
+setArrayDeIs:function(){
+     this.socios_ids = [];
+     this.socios.forEach(element => this.socios_ids.push(element.id));
 
 },
 scroll:function(){
@@ -253,14 +253,13 @@ get_socios:function(){
       this.cargando = true;         
 
      axios.post(url,data).then(function (response){  
-            var data = response.data;  
-            
+           
+            var data = response.data;              
 
             if(data.Validacion == true)
-            {
-              
+            {             
                vue.socios = vue.socios.concat(data.Socios);  
-               vue.setArrayDeIs(vue.socios);  
+               vue.setArrayDeIs();  
                vue.cargando = false; 
             }
             else
