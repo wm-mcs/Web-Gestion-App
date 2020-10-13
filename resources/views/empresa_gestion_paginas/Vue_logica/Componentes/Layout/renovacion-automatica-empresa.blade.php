@@ -92,7 +92,7 @@ template:`
       <div class="modal-wrapper">
         <div class="modal-container">
 
-          <div class="modal-header">
+          <div class="row">
             <h3 class="col-12 titulo-linea-seccion">
               Acciones automáticas 
             </h3>
