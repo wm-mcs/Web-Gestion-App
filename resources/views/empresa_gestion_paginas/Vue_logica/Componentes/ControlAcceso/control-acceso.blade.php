@@ -201,12 +201,12 @@ template:`
 <div v-else class="w-100 d-flex flex-column align-items-center">
           
 
-   <div class="col-8 col-lg-8 d-flex flex-column align-items-center">
+   <div v-show="countDown === false" class="col-8 col-lg-8 d-flex flex-column align-items-center">
     @if(file_exists($Empresa->path_url_img)) 
     <img class="my-3 img-fluid" src="{{$Empresa->url_img}}">
     @endif
     
-   <div v-show="countDown === false" class="sub-titulos-class  color-text-gris text-center mb-4">
+   <div v-show="countDown === false" class="sub-titulos-class  color-text-gris text-center mb-1">
      Para ingresar <i class="fas fa-hand-point-down"></i> 
    </div>
 
