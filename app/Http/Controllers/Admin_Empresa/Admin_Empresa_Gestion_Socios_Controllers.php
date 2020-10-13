@@ -271,7 +271,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
           foreach($this->SocioRepo->getSociosBusqueda($Empresa->id, null,null) as $Socio)
           {
-
               $Servicios_renovacion  = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id); 
 
               //primero me fijo que el socio no tenga deudas
@@ -355,9 +354,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             
       }
 
-      return HelpersGenerales::formateResponseToVue(true,'ok',$Array_resultados);  
+      return $Array_resultados;
 
       }); 
+
+      return HelpersGenerales::formateResponseToVue(true,'ok', $Actualizar_automaticamente);  
 
   }
 
