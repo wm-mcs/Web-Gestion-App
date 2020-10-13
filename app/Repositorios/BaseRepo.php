@@ -63,7 +63,7 @@ abstract class BaseRepo
                                         $Cantidad,                                                     
                                         $Ordenar_key = 'fecha',
                                         $Order_sentido = 'desc',
-                                        $Borrado = 'no',)
+                                        $Borrado = 'no')
   {
       $Entidades = $this->getEntidad()
                         ->where(function($q) use ($Entidad_key_array)
