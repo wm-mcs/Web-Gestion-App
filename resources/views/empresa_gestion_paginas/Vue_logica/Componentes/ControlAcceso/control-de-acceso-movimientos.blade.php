@@ -120,7 +120,8 @@ template:`
 
     <p class="text-center col-11 col-lg-8 color-text-gris mb-5"> Accesos de clientes que pasaron por el control de acceso</p>
 
-    <div v-for="acceso in accesos">@{{acceso.name}} <estado-de-cuenta-socio-saldo empresa="{{$Empresa->id}}" :socio="acceso.socio"> </estado-de-cuenta-socio-saldo></div>
+    <div v-for="acceso in accesos">@{{acceso.name}} 
+        <estado-de-cuenta-socio-saldo empresa="{{$Empresa->id}}" :socio="acceso.socio"> </estado-de-cuenta-socio-saldo></div>
 
 
     <div v-if="cargando" class="Procesando-text">    

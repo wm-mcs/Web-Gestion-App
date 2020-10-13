@@ -51,6 +51,8 @@
 
 <script type="text/javascript">
 
+
+    
      @include('empresa_gestion_paginas.Vue_logica.Componentes.ControlAcceso.control-de-acceso-movimientos')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
