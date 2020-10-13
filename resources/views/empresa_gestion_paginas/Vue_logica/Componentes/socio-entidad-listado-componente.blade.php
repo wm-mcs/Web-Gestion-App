@@ -258,9 +258,10 @@ get_socios:function(){
 
             if(data.Validacion == true)
             {
-               vue.cargando = false; 
+              
                vue.socios = vue.socios.concat(data.Socios);  
-               vue.setArrayDeIs(data.Socios);  
+               vue.setArrayDeIs(vue.socios);  
+               vue.cargando = false; 
             }
             else
             {
