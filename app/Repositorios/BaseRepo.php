@@ -81,7 +81,7 @@ abstract class BaseRepo
                                 {
                                   $q->where($valor['key'],$valor['value']); 
                                 }
-                                elseif($valor['where_tipo'], == 'orWhere')
+                                elseif($valor['where_tipo'] == 'orWhere')
                                 {
                                   $q->orWhere($valor['key'],$valor['value']); 
                                 }
