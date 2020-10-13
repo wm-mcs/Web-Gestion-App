@@ -147,12 +147,7 @@ computed:{
 
   }
 },
-created () {
-    window.addEventListener('scroll', this.scroll);
-},
-destroyed () {
-    window.removeEventListener('scroll', this.scroll);
-},
+
 methods:{
 
 comparar_valor:function(key, order = 'asc') {
@@ -357,7 +352,12 @@ created() {
     
     bus.$on('socios-set', (socios) => {
       this.socios = socios
-    })
+    });
+    window.addEventListener('scroll', this.scroll);
+},
+
+destroyed () {
+    window.removeEventListener('scroll', this.scroll);
 },
 template:'
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
