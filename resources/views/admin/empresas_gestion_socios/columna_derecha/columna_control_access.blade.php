@@ -12,3 +12,18 @@
                     
  
   {!! Form::close() !!} 
+
+  {!! Form::open(['route'  => ['get_control_access_view'],
+                  'method' => 'Post',
+                  'class'  => 'w-100 my-2 p-3'])                         !!}   
+
+
+  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">   
+
+  <p class="simula-link text-center  disparar-este-form">
+     Ver accesos
+  </p>                 
+                 
+                    
+ 
+  {!! Form::close() !!} 

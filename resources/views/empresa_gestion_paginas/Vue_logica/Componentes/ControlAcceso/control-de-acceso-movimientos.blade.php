@@ -36,7 +36,7 @@ methods:{
         
         this.cargando = true;
 
-        var url  = '/control_acceso_movimientos';
+        var url  = '/get_control_acceso_movimientos';
 
         var data = {                          
                      empresa_id:{{$Empresa->id}},

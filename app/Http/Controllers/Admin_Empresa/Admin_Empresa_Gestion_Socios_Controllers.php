@@ -142,10 +142,22 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
 
+  
+  /**
+   * Me manda a la página dónde están los movimientos
+   */  
+  public function movimientos_de_accesos_view(Request $Request)
+  {
+      $UserEmpresa     = $Request->get('user_empresa_desde_middleware'); 
+      $Empresa         = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
+
+      return view('empresa_gestion_paginas.control-de-acceso-movimientos', compact('Empresa'));
+  }
+
   /**
    * 
    */
-  public function control_acceso_movimientos(Request $Request)
+  public function get_control_acceso_movimientos(Request $Request)
   {
     $Empresa_id    = $Request->get('user_empresa_desde_middleware')->empresa_id; 
     $ids_ya_usados = $Request->get('ids_ya_usados');
