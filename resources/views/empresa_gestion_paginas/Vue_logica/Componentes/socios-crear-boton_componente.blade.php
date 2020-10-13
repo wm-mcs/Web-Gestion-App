@@ -106,7 +106,7 @@ template:'<span >
                   </div>                  
                   <div class="formulario-label-fiel">
                      
-                      <input type="text" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
+                      <input type="number" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
                   </div> 
                   <div class="formulario-label-fiel">
                       
