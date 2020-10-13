@@ -209,7 +209,7 @@ compara_valor_de_vencimiento:function(a,b){
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
-setArrayDeIs:function(accesos){
+setArrayDeIs:function(socios){
 
      socios.forEach(element => this.socios_ids.push(element.id));
 
