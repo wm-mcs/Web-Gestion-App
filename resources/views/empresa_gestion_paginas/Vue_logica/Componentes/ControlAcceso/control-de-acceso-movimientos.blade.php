@@ -26,7 +26,7 @@ ready() {
 methods:{
 
   
-    cargarAccesos:function(busqueda){   
+    cargarAccesos:function(){   
         
         
         if(this.ya_pedi_todos)
@@ -99,7 +99,6 @@ methods:{
 
     }
 }, 
-
 created () {
     window.addEventListener('scroll', this.scroll);
 },
