@@ -405,7 +405,7 @@ template:`
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
 
      <p class="color-text-gris mt-2" v-if="acceso != null && acceso != undefined"> 
-        Igreso <i class="fas fa-hand-point-right"></i> <b>@{{acceso.fecha_formateada }}</b> 
+      <small>@{{acceso.fecha_formateada }}</small>  
      </p>
   </div>
 
