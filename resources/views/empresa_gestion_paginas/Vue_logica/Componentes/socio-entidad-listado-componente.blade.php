@@ -355,7 +355,8 @@ checkSearchStr: _.debounce(function(string){
 created() {
     
     bus.$on('socios-set', (socios) => {
-      this.socios = socios
+      this.ya_pedi_todos = false;
+      this.socios = socios;
     });
     window.addEventListener('scroll', this.scroll);
 },
