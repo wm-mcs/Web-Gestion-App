@@ -161,7 +161,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $Empresa_id    = $Request->get('user_empresa_desde_middleware')->empresa_id; 
     $ids_ya_usados = $Request->get('ids_ya_usados');
-    $array_keys    = [['empresa_id' => $Empresa_id ]];
+    $array_keys    = [     
+                      [      
+                        'key' => 'empresa_id',
+                        'value' => $Empresa_id 
+                      ]
+                     ];
 
     $Data = $this->AccesoClienteRepo->getEntidadesMenosIdsYConFiltros($array_keys , $ids_ya_usados, 40);
 
