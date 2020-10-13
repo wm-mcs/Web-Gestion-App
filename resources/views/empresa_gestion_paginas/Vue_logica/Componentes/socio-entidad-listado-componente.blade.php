@@ -222,8 +222,7 @@ scroll:function(){
         {
             window.onscroll = () => {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 300 > document.documentElement.offsetHeight;
-
-            console.log(bottomOfWindow,document.documentElement.scrollTop,document.documentElement.offsetHeight);
+           
                 if(bottomOfWindow) {    
                   if(this.cargando == false)
                   {  
@@ -261,7 +260,7 @@ get_socios:function(){
             {
                vue.cargando = false; 
                vue.socios = vue.socios.concat(data.Socios);  
-               vue.setArrayDeIs(data.Data);  
+               vue.setArrayDeIs(data.Socios);  
             }
             else
             {
