@@ -5,6 +5,7 @@ namespace App\Entidades;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositorios\SocioRepo;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 
 
