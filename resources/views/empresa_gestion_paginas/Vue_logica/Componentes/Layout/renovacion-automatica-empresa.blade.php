@@ -26,7 +26,7 @@ setRenovaciones:function(){
         var url  = '/actuliarServiciosDeManeraAutomatica';
 
         var data = {  
-                       
+                     empresa_id:this.empresa.id
                    };  
 
         var vue  = this;                
