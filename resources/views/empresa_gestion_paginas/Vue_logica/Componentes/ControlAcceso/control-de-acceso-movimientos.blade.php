@@ -33,6 +33,7 @@ methods:{
         if(borrar_ids)
         {
             this.accesos_ids = [];
+            this.accesos =[];
         }
 
         if(this.ya_pedi_todos)
