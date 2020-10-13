@@ -20,7 +20,7 @@ class AccesoClienteRepo extends BaseRepo
   {
       $Acceso = $this->getEntidad();
       $Acceso->empresa_id  = $Empresa_id;
-      $Acceso->sucursal_id = $EmpreSucursal_idsa_id;
+      $Acceso->sucursal_id = $Sucursal_id;
       $Acceso->socio_id    = $Socio->id; 
       $Acceso->name        = $Socio->name; 
       $Acceso->celular     = $Celular; 
