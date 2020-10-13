@@ -58,12 +58,12 @@ abstract class BaseRepo
    * 
    *  @return array  
    */
-  public function getEntidadesMenosIdsYConFiltros( $Entidad_key_array = null,                                                                               
-                                        $Ids_ya_cargados,
-                                        $Cantidad,                                                     
-                                        $Ordenar_key = 'fecha',
-                                        $Order_sentido = 'desc',
-                                        $Borrado = 'no')
+  public function getEntidadesMenosIdsYConFiltros(  $Entidad_key_array = null,                                                                               
+                                                    $Ids_ya_cargados,
+                                                    $Cantidad,                                                     
+                                                    $Ordenar_key = 'fecha',
+                                                    $Order_sentido = 'desc',
+                                                    $Borrado = 'no')
   {
       $Entidades = $this->getEntidad()
                         ->where(function($q) use ($Entidad_key_array)
