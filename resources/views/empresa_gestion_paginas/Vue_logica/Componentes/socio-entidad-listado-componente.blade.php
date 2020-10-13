@@ -9,6 +9,9 @@ data:function(){
          socios:'',
          cargando:false,
          cargando_inactivos:false,
+         ya_pedi_todos:false,  
+         socios_ids:[],
+         scrollPos:0,
          socios_inactivos:[],
          filtro_busqueda:'sin_filtro',
          filtros_busqueda:[{nombre:'Sin filtro',value:'sin_filtro'},
@@ -144,6 +147,12 @@ computed:{
 
   }
 },
+created () {
+    window.addEventListener('scroll', this.scroll);
+},
+destroyed () {
+    window.removeEventListener('scroll', this.scroll);
+},
 methods:{
 
 comparar_valor:function(key, order = 'asc') {
@@ -205,12 +214,43 @@ compara_valor_de_vencimiento:function(a,b){
 actualizar_socios:function(socios){
 	this.socios = socios;
 },
+setArrayDeIs:function(accesos){
+
+     socios.forEach(element => this.socios_ids.push(element.id));
+
+}.
+scroll:function(){
+        if( (document.body.getBoundingClientRect() ).top > this.scrollPos )
+        {    
+        }
+        else
+        {
+            window.onscroll = () => {
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 300 > document.documentElement.offsetHeight;
+                if(bottomOfWindow) {    
+                if(this.cargando == false)
+                {  
+                    this.get_socios();            
+                } 
+                }
+            };
+        }
+        this.scrollPos = document.body.getBoundingClientRect().top;
+    
+},
 get_socios:function(){
 
-  var url = '/get_socios_activos';
+    
+      if(this.ya_pedi_todos)
+      {      
+          return false;
+      }   
+
+      var url = '/get_socios_activos';
 
       var data = {  
-                    empresa_id: this.empresa.id       
+                    empresa_id: this.empresa.id ,
+                    ids_ya_usados:this.socios_ids      
                  };  
       var vue = this;  
       this.cargando = true;         
@@ -222,8 +262,8 @@ get_socios:function(){
             if(data.Validacion == true)
             {
                vue.cargando = false; 
-               vue.socios = response.data.Socios;              
-               
+               vue.socios = vue.socios.concat(data.Socios);  
+               vue.setArrayDeIs(data.Data);  
             }
             else
             {

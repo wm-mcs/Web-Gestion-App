@@ -375,8 +375,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //me devulve los oscios activos
   public function get_socios_activos(Request $Request)   
   {      
-       $UserEmpresa        = $Request->get('user_empresa_desde_middleware'); 
-       $Socios             = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,null,null);  
+       $Empresa_id    = $Request->get('user_empresa_desde_middleware')->empresa_id; 
+
+       $ids_ya_usados = $Request->get('ids_ya_usados');
+        $array_keys   = [     
+                          [ 'where_tipo' => 'where',     
+                            'key'        => 'empresa_id',
+                            'value'      => $Empresa_id 
+                          ]
+
+                        ];
+
+       $Socios = $this->SocioRepo->getEntidadesMenosIdsYConFiltros($array_keys , $ids_ya_usados, 40,'created_at', 'desc');
+       
        return [
        'Validacion'  => true,
        'Socios'      => $Socios];     

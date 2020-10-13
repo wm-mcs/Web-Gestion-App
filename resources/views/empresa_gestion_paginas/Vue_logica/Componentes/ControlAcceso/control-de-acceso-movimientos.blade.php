@@ -102,11 +102,11 @@ methods:{
     
     },
     
-    setArrayDeIs:function(accesos){
+setArrayDeIs:function(accesos){
 
-        accesos.forEach(element => this.accesos_ids.push(element.id));
+    accesos.forEach(element => this.accesos_ids.push(element.id));
 
-    }
+}
 }, 
 created () {
     window.addEventListener('scroll', this.scroll);
