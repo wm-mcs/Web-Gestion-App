@@ -6,7 +6,7 @@ props:['empresa','palabra_busqueda']
 
 data:function(){
     return {
-         socios:'',
+         socios:[],
          cargando:false,
          cargando_inactivos:false,
          ya_pedi_todos:false,  
