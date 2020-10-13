@@ -342,9 +342,7 @@ template:`
            <span class="contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
 
       
-      <div v-if="acceso != null && acceso != undefined"> 
-        Fecha <b>@{{acceso.fecha}}</b> 
-      </div>
+     
       <a :href="whatsAppLink"  target="_blank">
         <div class="contiene-socio-celular">  
           <i class="fab fa-whatsapp"></i> @{{whatsAppnumero}}    
@@ -405,6 +403,10 @@ template:`
   <div class="socio-lista-contiene-estado-de-cuenta" >
     
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
+
+     <p class="color-text-gris mt-2" v-if="acceso != null && acceso != undefined"> 
+        Igreso <i class="fas fa-hand-point-right"></i> <b>@{{acceso.fecha_formateada }}</b> 
+     </p>
   </div>
 
 

@@ -20,7 +20,7 @@ class AccesoCliente extends Model
      * @var array
      */
     protected $fillable  = ['name', 'description'];
-    protected $appends   = ['socio'];
+    protected $appends   = ['socio','fecha_formateada'];
 
     
     
@@ -31,6 +31,12 @@ class AccesoCliente extends Model
                         $Repo = new SocioRepo();
                         return $Repo->getEntidad()->find($this->socio_id);
                        });   
+    }
+
+
+    public function getFechaFormateadaAttribute()
+    {
+        return Carbon::parse($this->fecha)->format('Y-m-d-H-M');
     }
     
     
