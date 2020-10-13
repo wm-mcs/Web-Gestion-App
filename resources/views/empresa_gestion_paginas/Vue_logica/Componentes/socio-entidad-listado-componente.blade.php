@@ -218,7 +218,7 @@ setArrayDeIs:function(accesos){
 
      socios.forEach(element => this.socios_ids.push(element.id));
 
-}.
+},
 scroll:function(){
         if( (document.body.getBoundingClientRect() ).top > this.scrollPos )
         {    
