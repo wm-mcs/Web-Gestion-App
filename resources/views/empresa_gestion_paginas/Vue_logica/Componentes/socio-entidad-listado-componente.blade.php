@@ -260,6 +260,11 @@ get_socios:function(){
             {             
                vue.socios = vue.socios.concat(data.Socios);  
                vue.setArrayDeIs();  
+
+               if(data.Socios.length == 0)
+               {
+                 this.ya_pedi_todos = true;
+               }
                vue.cargando = false; 
             }
             else
