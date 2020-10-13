@@ -79,10 +79,5 @@
 
   
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_control_access')
-
-
-
-  <caja-saldo></caja-saldo>
-  <atencion-al-cliente :empresa="empresa"></atencion-al-cliente>
+ 
 @stop

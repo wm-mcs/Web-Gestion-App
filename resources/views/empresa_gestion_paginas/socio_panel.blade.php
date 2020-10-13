@@ -85,7 +85,5 @@
 
   
 
-  <caja-saldo></caja-saldo>
 
-  <atencion-al-cliente :empresa="empresa"></atencion-al-cliente>
 @stop
