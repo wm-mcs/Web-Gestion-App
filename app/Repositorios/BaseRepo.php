@@ -77,7 +77,7 @@ abstract class BaseRepo
                             {
                               foreach($Entidad_key_array as $clave => $valor)
                               {
-                                if($valor['where_tipo'], == 'where')
+                                if($valor['where_tipo'] == 'where')
                                 {
                                   $q->where($valor['key'],$valor['value']); 
                                 }
