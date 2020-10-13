@@ -245,10 +245,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Editado Correctamente');  
   }
 
-
-
-  //Panel de gestio de empresa
-  public function get_empresa_panel_de_gestion(Request $Request)
+  public function actuliarServiciosDeManeraAutomatica(Request $Request)
   {
       $User            =  $Request->get('user_desde_middleware');  
       $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
@@ -256,7 +253,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       /*$Socios          =  $this->SocioRepo->getSociosBusqueda($Empresa->id , null, 40);*/
       $Sucursal        =  $Request->get('sucursal_desde_middleware'); 
 
-      $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
+
+          $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
           $Hoy                         = Carbon::now('America/Montevideo');
           $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
 
@@ -357,13 +355,17 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             
       }
 
-      return $Array_resultados;
+      return HelpersGenerales::formateResponseToVue(true,'ok',$Array_resultados);  
 
       }); 
 
+  }
 
-      
-    
+  //Panel de gestio de empresa
+  public function get_empresa_panel_de_gestion(Request $Request)
+  {      
+      $UserEmpresa     =  $Request->get('user_empresa_desde_middleware');     
+      $Empresa         =  $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id); 
 
       return view('empresa_gestion_paginas.home', compact('Empresa')); 
   }

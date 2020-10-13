@@ -59,6 +59,11 @@
                   'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_empresa_panel_de_gestion',
                   'as'         => 'get_empresa_panel_de_gestion']);  
 
+                Route::post('actuliarServiciosDeManeraAutomatica',
+                [
+                  'uses'       => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@actuliarServiciosDeManeraAutomatica',
+                  'as'         => 'actuliarServiciosDeManeraAutomatica']);  
+
                 //cambiar de sucursal
                 Route::post('cambiar_de_sucursal',
                 [
