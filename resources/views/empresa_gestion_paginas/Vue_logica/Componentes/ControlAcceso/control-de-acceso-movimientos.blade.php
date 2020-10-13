@@ -124,18 +124,18 @@ template:`
 <div class="w-100 d-flex flex-column align-items-center">
 
 
-    <p class="text-center col-11 col-lg-8 color-text-gris mb-5"> Accesos de clientes que pasaron por el control de acceso</p>
+    <p class="text-center col-11 col-lg-8 color-text-gris mb-5"> Pasaron por el control de acceso</p>
 
 
     <socio-list 
 
     v-for="acceso in accesos" 
                  :key="acceso.id" 
+                 :acceso="acceso"
                :socio="acceso.socio" 
              :empresa="$root.empresa"
               v-on:ActualizarSocios="cargarAccesos(true)" ></socio-list>
-    <div v-for="acceso in accesos">@{{acceso.name}} 
-        <estado-de-cuenta-socio-saldo empresa="{{$Empresa->id}}" :socio="acceso.socio"> </estado-de-cuenta-socio-saldo></div>
+    
 
 
     <div v-if="cargando" class="Procesando-text">    
