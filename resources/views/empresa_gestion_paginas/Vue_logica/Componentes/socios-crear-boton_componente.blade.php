@@ -118,7 +118,7 @@ template:'<span >
                   </div> 
                
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
-                  <div v-else v-on:click="crear_socio_post" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
+                  <div v-else v-on:click="crear_socio_post" class="mt-3 boton-simple">@{{$root.boton_aceptar_texto}}</div>
                  
                  
         </div>
