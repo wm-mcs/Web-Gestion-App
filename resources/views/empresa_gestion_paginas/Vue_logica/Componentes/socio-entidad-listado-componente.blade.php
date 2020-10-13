@@ -357,6 +357,7 @@ created() {
     
     bus.$on('socios-set', (socios) => {      
       this.socios = socios;
+      this.ya_pedi_todos = false;
     });
     window.addEventListener('scroll', this.scroll);
 },
