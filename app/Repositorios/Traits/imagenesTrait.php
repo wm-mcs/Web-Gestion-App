@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositorios\Traits;
+use Illuminate\Support\Facades\File;
 
 use Intervention\Image\ImageManagerStatic as Image;
 
