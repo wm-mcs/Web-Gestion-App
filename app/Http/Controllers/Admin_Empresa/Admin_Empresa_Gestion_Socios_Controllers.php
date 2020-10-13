@@ -382,6 +382,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                           [ 'where_tipo' => 'where',     
                             'key'        => 'empresa_id',
                             'value'      => $Empresa_id 
+                          ],
+                          [ 
+                            'where_tipo' => 'where',     
+                            'key'        => 'estado',
+                            'value'      => 'si' 
                           ]
 
                         ];
