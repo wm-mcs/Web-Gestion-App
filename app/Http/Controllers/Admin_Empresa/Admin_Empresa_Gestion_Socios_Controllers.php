@@ -31,6 +31,7 @@ use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager;
 use App\Repositorios\ServicioSocioRenovacionRepo;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\HelpersGenerales;
+use App\Repositorios\AccesoClienteRepo;
 
 
 
@@ -49,6 +50,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $SucursalEmpresaRepo;
   protected $CajaEmpresaRepo;
   protected $ServicioSocioRenovacionRepo;
+  protected $AccesoClienteRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -61,7 +63,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               VendedorEmpresaRepo               $VendedorEmpresaRepo,
                               SucursalEmpresaRepo               $SucursalEmpresaRepo,
                               CajaEmpresaRepo                   $CajaEmpresaRepo,
-                              ServicioSocioRenovacionRepo       $ServicioSocioRenovacionRepo  )
+                              ServicioSocioRenovacionRepo       $ServicioSocioRenovacionRepo,
+                              AccesoClienteRepo                 $AccesoClienteRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -75,6 +78,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->SucursalEmpresaRepo               = $SucursalEmpresaRepo;
     $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
     $this->ServicioSocioRenovacionRepo       = $ServicioSocioRenovacionRepo;
+    $this->AccesoClienteRepo                 = $AccesoClienteRepo;
   }
 
   public function getPropiedades()
@@ -125,14 +129,25 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $UserEmpresa  = $Request->get('user_empresa_desde_middleware'); 
     $Celular      = $Request->get('celular');
-    $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,  $Celular );
+    $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,$Celular );
 
     if($Socio->count() > 0 )
     {
-      return HelpersGenerales::formateResponseToVue(true,'Se consigío un socio',$Socio->first());
+      $Socio = $Socio->first();
+      $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id,$Socio,$Celular,Carbon::now('America/Montevideo'));
+      return HelpersGenerales::formateResponseToVue(true,'Se consigío un socio',$Socio);
     }
 
     return HelpersGenerales::formateResponseToVue(false,'El celular '.$Celular . ' no lo tenemos en la base de datos de nuestros clientes.');    
+  }
+
+
+  /**
+   * 
+   */
+  public function control_acceso_movimientos(Request $Request)
+  {
+    
   }
 
   //home admin User

@@ -4,7 +4,7 @@
 @section('miga-de-pan') 
  
 
-   <a href="{{route('get_home')}}"><i class="fas fa-home"></i></a>
+  <a href="{{route('get_home')}}"><i class="fas fa-home"></i></a>
   <span class="spam-separador"><i class="fas fa-chevron-right"></i></span>
 
   <span> Panel administrador de general de {{$Empresa->name}}</span>
