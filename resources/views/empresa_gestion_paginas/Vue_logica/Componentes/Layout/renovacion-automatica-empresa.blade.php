@@ -96,9 +96,9 @@ template:`
             <h3 class="col-12 titulo-linea-seccion">
               Acciones automáticas 
             </h3>
-            <p class="col-12 aclaracion-linea-seccion">
+            <div class="col-12 aclaracion-linea-seccion">
               A continuación se presentan las actividades automáticas que realiza el sistema con respecto a la actualización de los servicios de caracter mensual de los socios. Se realizan una vez al día
-            </p>
+            </div>
           </div>
 
           <div v-if="Data.length" class="modal-body">
