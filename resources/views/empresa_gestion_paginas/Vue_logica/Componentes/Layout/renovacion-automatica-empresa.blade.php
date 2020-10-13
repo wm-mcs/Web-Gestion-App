@@ -88,7 +88,7 @@ template:`
  <span @click="showModal = !showModal"><i class="fas fa-robot"></i> Automático</span> 
 
   <transition name="modal" v-if="showModal">
-    <div class="modal-mask ">
+    <div class="modal-mask  @click="showModal = !showModal">
       <div class="modal-wrapper">
         <div class="modal-container">
 
