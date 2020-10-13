@@ -38,7 +38,7 @@ methods:{
 
           if(this.socio != '' && this.validacion.validacion == false )
           {
-             this.countDown = this.tiempoCountDown * 3;
+             this.countDown = this.tiempoCountDown ;
           }
           else
           {
