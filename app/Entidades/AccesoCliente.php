@@ -37,7 +37,7 @@ class AccesoCliente extends Model
 
     public function getFechaFormateadaAttribute()
     {
-        return Carbon::parse($this->fecha)->format('Y-m-d-H-M');
+        return Carbon::parse($this->fecha)->format('d-m-Y h:i A ') ;
     }
     
     
