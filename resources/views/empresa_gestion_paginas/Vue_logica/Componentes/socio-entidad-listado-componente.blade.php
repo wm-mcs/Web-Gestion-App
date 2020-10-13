@@ -209,6 +209,7 @@ compara_valor_de_vencimiento:function(a,b){
 actualizar_socios:function(socios){
   this.ya_pedi_todos = false;
 	this.socios = socios;
+  this.setArrayDeIs(); 
 },
 setArrayDeIs:function(){
      this.socios_ids = [];
@@ -358,6 +359,7 @@ created() {
     bus.$on('socios-set', (socios) => {      
       this.socios = socios;
       this.ya_pedi_todos = false;
+      this.setArrayDeIs();  
     });
     window.addEventListener('scroll', this.scroll);
 },
