@@ -47,6 +47,56 @@ abstract class BaseRepo
     $Entidad->delete();
   }
 
+
+  /**
+   *  Devulve entidades filtrando por estos parametros
+   *  @param $Entidad_key_array es un array de este tipo [ ['key1' => ''valor1'],['key2' => ''valor2']]
+   *  @param $Cantidad La cantidad que quiero cada vez que pido
+   *  @param $Ordenar_key Orden key
+   *  @param $Order_sentido sentido del orden
+   *  @param $Borrado si trae borrados o no
+   * 
+   *  @return array  
+   */
+  public function getEntidadesMenosIdsYConFiltros( $Entidad_key_array = null,                                                                               
+                                        $Ids_ya_cargados,
+                                        $Cantidad,                                                     
+                                        $Ordenar_key = 'fecha',
+                                        $Order_sentido = 'desc',
+                                        $Borrado = 'no',)
+  {
+      $Entidades = $this->getEntidad()
+                        ->where(function($q) use ($Entidad_key_array)
+                          {  
+                            if($Entidad_key_array != null)
+                            {
+                              foreach($Entidad_key_array as $clave => $valor)
+                              {
+                                if($clave == 0)
+                                {
+                                  $q->where($valor['key'],$valor['value']); 
+                                }
+                                else
+                                {
+                                  $q->orWhere($valor['key'],$valor['value']); 
+                                }
+                              }                                                            
+                            }    
+                          }
+                        )
+                        ->where('borrado',$Borrado) 
+                        ->whereNotIn('id',$Ids_ya_cargados)
+                        ->orderBy($Ordenar_key,$Order_sentido)
+                        ->get();
+                        
+      if($Entidades->count() >= $Cantidad)
+      {
+        return $Entidades->take($Cantidad);
+      } 
+      
+      return $Entidades;
+  }
+
   //se cambia la propiedad borrado a si
   public function destruir_esta_entidad_de_manera_logica($Entidad)
   {
