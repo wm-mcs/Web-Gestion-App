@@ -147,7 +147,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
    */
   public function control_acceso_movimientos(Request $Request)
   {
-    
+    $Empresa_id    = $Request->get('user_empresa_desde_middleware')->empresa_id; 
+    $ids_ya_usados = $Request->get('ids_ya_usados');
+
+    return HelpersGenerales::formateResponseToVue(true,'Ok',$this->AccesoClienteRepo->getAccesos()); 
   }
 
   //home admin User
