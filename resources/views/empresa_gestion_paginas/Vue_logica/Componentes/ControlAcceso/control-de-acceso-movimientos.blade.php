@@ -71,7 +71,7 @@ methods:{
             $.notify(error, "error");              
         });
 
-    }   
+    },   
 
     scroll:function(){
         if( (document.body.getBoundingClientRect() ).top > this.scrollPos )
