@@ -93,25 +93,25 @@ template:`
         <div class="modal-container">
 
           <div class="modal-header">
-            <h3>
+            <h3 class="col-12 titulo-linea-seccion">
               Acciones automáticas 
             </h3>
-            <p>
+            <p class="col-12 aclaracion-linea-seccion">
               A continuación se presentan las actividades automáticas que realiza el sistema con respecto a la actualización de los servicios de caracter mensual de los socios. Se realizan una vez al día
             </p>
           </div>
 
-          <div class="modal-body">
+          <div v-if="Data.length" class="modal-body">
             <p class="mb-1 col-12" v-for="valor in Data" :class="{ 'color-text-success': valor.Acutualizo == 'si' }">
               @{{valor.Socio}} <i class="fas fa-hand-point-right"></i>  @{{valor.Acutualizo}}. 
               <span v-if="valor.Acutualizo != 'si'">No se actualizo por que: @{{valor.Razon}} </span>
 
               | Fecha:  @{{valor.Fecha}}  
-            </p>
-         
-
-
+            </p>  
           </div>
+          <p v-else class="color-text-gris col-12 my-5 text-center">
+            Hoy no se realizaron renovaciones automáticas
+          </p>
 
           <div class="modal-footer">
            
