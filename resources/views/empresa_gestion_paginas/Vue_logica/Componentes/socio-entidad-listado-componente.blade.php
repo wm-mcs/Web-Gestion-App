@@ -390,7 +390,7 @@ template:'
 
 
 
-  <div v-if="socios_filtrados.length > 0 && !cargando" class="listado-socios-contenedor-lista">
+  <div v-if="socios_filtrados.length" class="listado-socios-contenedor-lista">
 
     <socio-list 
 
