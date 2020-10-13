@@ -264,7 +264,7 @@ get_socios:function(){
 
                if(data.Socios.length == 0)
                {
-                 this.ya_pedi_todos = true;
+                 vue.ya_pedi_todos = true;
                }
                vue.cargando = false; 
             }
