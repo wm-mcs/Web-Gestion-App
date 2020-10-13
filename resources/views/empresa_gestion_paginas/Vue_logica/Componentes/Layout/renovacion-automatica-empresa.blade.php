@@ -102,12 +102,12 @@ template:`
           </div>
 
           <div v-if="Data.length" class="modal-body">
-            <p class="mb-2 col-12" v-for="valor in Data" :class="{ 'color-text-success': valor.Acutualizo == 'si' }">
+            <div class="mb-3 aclaracion-linea-seccion col-12" v-for="valor in Data" :class="{ 'color-text-success': valor.Acutualizo == 'si' }">
               @{{valor.Socio}} <i class="fas fa-hand-point-right"></i>  @{{valor.Acutualizo}}. 
               <span v-if="valor.Acutualizo != 'si'">No se actualizo por que: @{{valor.Razon}} </span>
 
               | Fecha:  @{{valor.Fecha}}  
-            </p>  
+            </div>  
           </div>
           <p v-else class="color-text-gris col-12 my-5 text-center">
             Hoy no se realizaron renovaciones automáticas
