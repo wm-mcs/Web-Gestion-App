@@ -129,12 +129,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   {
     $UserEmpresa  = $Request->get('user_empresa_desde_middleware'); 
     $Celular      = $Request->get('celular');
+    $Sucursal_id  = $Request->get('sucursal_id');
     $Socio        = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id,$Celular );
 
     if($Socio->count() > 0 )
     {
       $Socio = $Socio->first();
-      $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id,$Socio,$Celular,Carbon::now('America/Montevideo'));
+      $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id,$Sucursal_id,$Socio,$Celular,Carbon::now('America/Montevideo'));
       return HelpersGenerales::formateResponseToVue(true,'Se consigío un socio',$Socio);
     }
 
@@ -162,10 +163,15 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $Empresa_id    = $Request->get('user_empresa_desde_middleware')->empresa_id; 
     $ids_ya_usados = $Request->get('ids_ya_usados');
     $array_keys    = [     
-                      [      
-                        'key' => 'empresa_id',
-                        'value' => $Empresa_id 
-                      ]
+                      [ 'where_tipo' => 'where',     
+                        'key'        => 'empresa_id',
+                        'value'      => $Empresa_id 
+                      ],
+                      [ 'where_tipo' => 'where',     
+                        'key'        => 'sucursal_id',
+                        'value'      => $Request->get('sucursal_id') 
+                      ],
+
                      ];
 
     $Data = $this->AccesoClienteRepo->getEntidadesMenosIdsYConFiltros($array_keys , $ids_ya_usados, 40);

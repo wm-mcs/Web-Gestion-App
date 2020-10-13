@@ -16,14 +16,15 @@ class AccesoClienteRepo extends BaseRepo
   }
 
 
-  public function setAcceso($Empresa_id,$Socio,$Celular,$Fecha)
+  public function setAcceso($Empresa_id,$Sucursal_id,$Socio,$Celular,$Fecha)
   {
       $Acceso = $this->getEntidad();
-      $Acceso->empresa_id = $Empresa_id;
-      $Acceso->socio_id   = $Socio->id; 
-      $Acceso->name       = $Socio->name; 
-      $Acceso->celular    = $Celular; 
-      $Acceso->fecha      = $Fecha; 
+      $Acceso->empresa_id  = $Empresa_id;
+      $Acceso->sucursal_id = $EmpreSucursal_idsa_id;
+      $Acceso->socio_id    = $Socio->id; 
+      $Acceso->name        = $Socio->name; 
+      $Acceso->celular     = $Celular; 
+      $Acceso->fecha       = $Fecha; 
       $Acceso->save();           
   }
 

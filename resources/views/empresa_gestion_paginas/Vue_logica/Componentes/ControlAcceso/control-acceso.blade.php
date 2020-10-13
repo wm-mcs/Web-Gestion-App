@@ -4,6 +4,7 @@ Vue.component('control-acceso' ,
 data:function(){
     return {
      cargando:false,
+     sucursal:{!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
      celular:'',
      socio:'',
      countDown:false,
@@ -78,7 +79,8 @@ methods:{
 
         var data = {  
                         celular:busqueda,
-                        empresa_id:{{$Empresa->id}}
+                        empresa_id:{{$Empresa->id}},
+                        sucursal_id:this.sucursal.id
                    };  
 
         var vue  = this;                

@@ -50,7 +50,12 @@ abstract class BaseRepo
 
   /**
    *  Devulve entidades filtrando por estos parametros
-   *  @param $Entidad_key_array es un array de este tipo [ ['key1' => ''valor1'],['key2' => ''valor2']]
+   *  @param $Entidad_key_array es un array de este tipo [
+                                                           [ 'where_tipo' => 'where',     
+                                                             'key'        => 'empresa_id',
+                                                             'value'      => $Empresa_id 
+                                                           ]
+                                                         ] 
    *  @param $Cantidad La cantidad que quiero cada vez que pido
    *  @param $Ordenar_key Orden key
    *  @param $Order_sentido sentido del orden
@@ -72,11 +77,11 @@ abstract class BaseRepo
                             {
                               foreach($Entidad_key_array as $clave => $valor)
                               {
-                                if($clave == 0)
+                                if($valor['where_tipo'], == 'where')
                                 {
                                   $q->where($valor['key'],$valor['value']); 
                                 }
-                                else
+                                elseif($valor['where_tipo'], == 'orWhere')
                                 {
                                   $q->orWhere($valor['key'],$valor['value']); 
                                 }

@@ -8,6 +8,7 @@ Vue.component('control-de-acceso-movimientos' ,
 
 data:function(){
     return {
+        sucursal:{!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
         cargando:false,
         accesos:[],
         accesos_ids:[],
@@ -47,7 +48,8 @@ methods:{
 
         var data = {                          
                      empresa_id:{{$Empresa->id}},
-                     ids_ya_usados:this.accesos_ids
+                     ids_ya_usados:this.accesos_ids,
+                     sucursal_id:this.sucursal.id
                    };  
 
         var vue  = this;                
