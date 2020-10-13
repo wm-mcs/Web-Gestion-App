@@ -361,7 +361,7 @@ destroyed () {
 template:'
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
-  <div class="se-muestran-socios-texto"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
+  
 
 
 
@@ -390,7 +390,7 @@ template:'
 
 
 
-  <div v-if="socios.length > 0 && !cargando" class="listado-socios-contenedor-lista">
+  <div v-if="socios_filtrados.length > 0 && !cargando" class="listado-socios-contenedor-lista">
 
     <socio-list 
 
@@ -402,7 +402,8 @@ template:'
 
   
   </div> 
-  <div v-else class="Procesando-text get_width_100">
+  <div class="se-muestran-socios-texto"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
+  <div v-if="cargando" class="Procesando-text get_width_100">
      
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
