@@ -18,7 +18,7 @@ data:function(){
     }
 },
 mounted() {     
-     
+     this.cargarAccesos();
 },
 ready() {
    
@@ -120,7 +120,7 @@ template:`
 
     <p class="text-center col-11 col-lg-8 color-text-gris mb-5"> Accesos de clientes que pasaron por el control de acceso</p>
 
-
+    <div v-for="acceso in accesos">@{{acceso.name}}</div>
 
 
     <div v-if="cargando" class="Procesando-text">    
