@@ -152,6 +152,9 @@ computed:{
      {
       return true;
      }
+     else{
+      return false;
+     } 
   },
   validacion:function(){
 
