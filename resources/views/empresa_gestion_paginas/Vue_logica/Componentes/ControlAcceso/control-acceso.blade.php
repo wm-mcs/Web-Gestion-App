@@ -155,6 +155,7 @@ computed:{
   },
   validacion:function(){
 
+    console.log(this.socio);
     let Validation;
     let Mensaje;
 
