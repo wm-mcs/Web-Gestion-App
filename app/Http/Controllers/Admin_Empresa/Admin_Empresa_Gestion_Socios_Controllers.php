@@ -527,6 +527,16 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $manager    = new CrearSocioModalManager($entidad,$Request->all());
         $Validacion = true;
         $Socio      = $this->SocioRepo->find($Request->get('id'));
+
+
+
+       $ExisteElSocio = $this->SocioRepo->ExisteElSocio($Socio->empresa_id,$Request->get('celular'),[$Socio->id]);
+
+       if($ExisteElSocio)
+       {
+         return  ['Validacion'          => false,
+                 'Validacion_mensaje'  => 'Ya existe un socio con ese celular'];
+       }
     
 
        $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota','celular_internacional'];

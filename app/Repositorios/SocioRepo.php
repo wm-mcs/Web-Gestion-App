@@ -130,11 +130,12 @@ class SocioRepo extends BaseRepo
   }
 
 
-  public function ExisteElSocio($Empresa_id,$Celular)
+  public function ExisteElSocio($Empresa_id,$Celular,$array_ids_no_buscar = [])
   {
     $Socio = $this->getEntidad()
                   ->active()
                   ->noborrado()
+                  ->whereNotIn('id',$array_ids_no_buscar)
                   ->where('empresa_id',$Empresa_id)
                   ->where('celular',$Celular)
                   ->get();

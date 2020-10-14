@@ -170,7 +170,8 @@ methods:{
            
            }).catch(function (error){
 
-                     
+              app.cargando = false;
+              $.notify(error, "error");
             
            });
 

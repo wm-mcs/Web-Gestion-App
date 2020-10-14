@@ -152,8 +152,12 @@ computed:{
      {
       return true;
      }
+     else{
+      return false;
+     } 
   },
   validacion:function(){
+
 
     let Validation;
     let Mensaje;
@@ -170,11 +174,19 @@ computed:{
       Mensaje    = 'No tienes ningun plan o cuponera vigente';
     }
 
+    if(!this.estaAlDia && !this.tieneAlgoContratado)
+    {
+      Validation = false;
+      Mensaje    = 'No tienes ningun plan o cuponera vigente y además tienes una deuda de $ '  + this.socio.saldo_de_estado_de_cuenta_pesos;
+    }
+
     if(!this.estaAlDia && this.tieneAlgoContratado)
     {
       Validation = false;
       Mensaje    = 'Tienes una deuda de $ ' + this.socio.saldo_de_estado_de_cuenta_pesos;
     }
+
+    
 
 
      return {
