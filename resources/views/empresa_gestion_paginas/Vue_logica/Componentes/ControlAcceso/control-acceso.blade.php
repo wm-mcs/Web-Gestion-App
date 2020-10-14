@@ -177,7 +177,7 @@ computed:{
       Mensaje    = 'Tienes una deuda de $ ' + this.socio.saldo_de_estado_de_cuenta_pesos;
     }
 
-    console.log(Validation,Mensaje);
+    console.log(this.estaAlDia,this.tieneAlgoContratado);
 
 
      return {
