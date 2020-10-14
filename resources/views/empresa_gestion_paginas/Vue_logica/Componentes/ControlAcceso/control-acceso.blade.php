@@ -155,7 +155,7 @@ computed:{
   },
   validacion:function(){
 
-    console.log(this.socio);
+
     let Validation;
     let Mensaje;
 
@@ -176,6 +176,8 @@ computed:{
       Validation = false;
       Mensaje    = 'Tienes una deuda de $ ' + this.socio.saldo_de_estado_de_cuenta_pesos;
     }
+
+    console.log(Validation,Mensaje);
 
 
      return {
