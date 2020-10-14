@@ -177,7 +177,7 @@ computed:{
     if(!this.estaAlDia && !this.tieneAlgoContratado)
     {
       Validation = false;
-      Mensaje    = 'No tienes ningun plan o cuponera vigente y además '  + this.socio.saldo_de_estado_de_cuenta_pesos;
+      Mensaje    = 'No tienes ningun plan o cuponera vigente y además tienes una deuda de $ '  + this.socio.saldo_de_estado_de_cuenta_pesos;
     }
 
     if(!this.estaAlDia && this.tieneAlgoContratado)
