@@ -38,18 +38,15 @@ computed: {
 },
 methods:{
      valores_a_cero:function(){
-      this.crear_service_name = '';
-      this.crear_service_tipo = '';
-                  this.moneda = '$';
-                   this.valor = '';
-         this.cantidad_clases = 0; 
-     },
-    
+
+          this.crear_service_name = '';
+          this.crear_service_tipo = '';
+          this.moneda = '$';
+          this.valor = '';
+          this.cantidad_clases = 0; 
+     },    
 
      agregarServicioShoww:function(){
-
-       
-
        $('#modal-agregar-servicio').appendTo("body").modal('show');
      },
      agregarServicioCreat:function(){
@@ -74,16 +71,15 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 app.cargando = false;
-                 app.empresa = response.data.empresa;
-                 $.notify(response.data.Validacion_mensaje, "success");
-                 vue.valores_a_cero();
-                 
+                  app.cargando = false;
+                  app.empresa = response.data.empresa;
+                  $.notify(response.data.Validacion_mensaje, "success");
+                  vue.valores_a_cero();                 
               }
               else
               {
-                app.cargando = false;
-                $.notify(response.data.Validacion_mensaje, "error");
+                  app.cargando = false;
+                  $.notify(response.data.Validacion_mensaje, "error");
               }
              
              }).catch(function (error){
@@ -116,16 +112,15 @@ methods:{
               
 
               if(response.data.Validacion == true)
-              {  app.cargando = false;
-                 vue.empresa = response.data.empresa;
-                 
-                 $.notify(response.data.Validacion_mensaje, "success");
-                 
+              {   
+                  app.cargando = false;
+                  vue.empresa = response.data.empresa;                
+                  $.notify(response.data.Validacion_mensaje, "success");                 
               }
               else
               {
-                app.cargando = false;
-                $.notify(response.data.Validacion_mensaje, "error");
+                  app.cargando = false;
+                  $.notify(response.data.Validacion_mensaje, "error");
               }
              
              }).catch(function (error){

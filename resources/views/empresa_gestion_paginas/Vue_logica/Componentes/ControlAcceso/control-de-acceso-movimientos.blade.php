@@ -23,9 +23,6 @@ data:function(){
 mounted() {     
      this.cargarAccesos();
 },
-ready() {
-   
-},
 methods:{
 
   
@@ -91,10 +88,10 @@ methods:{
             window.onscroll = () => {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 300 > document.documentElement.offsetHeight;
                 if(bottomOfWindow) {    
-                if(this.cargando == false)
-                {  
-                    this.cargarAccesos();            
-                } 
+                    if(this.cargando == false)
+                    {  
+                        this.cargarAccesos();            
+                    } 
                 }
             };
         }
@@ -103,9 +100,7 @@ methods:{
     },
     
 setArrayDeIs:function(accesos){
-
     accesos.forEach(element => this.accesos_ids.push(element.id));
-
 }
 }, 
 created () {
