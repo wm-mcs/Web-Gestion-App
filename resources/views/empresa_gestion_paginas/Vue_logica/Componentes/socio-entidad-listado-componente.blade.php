@@ -223,7 +223,7 @@ scroll:function(){
         else
         {
             window.onscroll = () => {
-            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 300 > document.documentElement.offsetHeight;
+            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 600 > document.documentElement.offsetHeight;
            
                 if(bottomOfWindow) {    
                   if(this.cargando == false)
