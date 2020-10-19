@@ -80,16 +80,15 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 app.cargando = false;
-                 app.empresa = response.data.empresa;
-                 $.notify(response.data.Validacion_mensaje, "success");
-                 vue.valores_a_cero();
-                 
+                  app.cargando = false;
+                  app.empresa = response.data.empresa;
+                  $.notify(response.data.Validacion_mensaje, "success");
+                  vue.valores_a_cero();                 
               }
               else
               {
-                app.cargando = false;
-                $.notify(response.data.Validacion_mensaje, "error");
+                  app.cargando = false;
+                  $.notify(response.data.Validacion_mensaje, "error");
               }
              
              }).catch(function (error){
@@ -122,16 +121,15 @@ methods:{
               
 
               if(response.data.Validacion == true)
-              {  app.cargando = false;
-                 vue.empresa = response.data.empresa;
-                 
-                 $.notify(response.data.Validacion_mensaje, "success");
-                 
+              {   
+                  app.cargando = false;
+                  vue.empresa = response.data.empresa;                
+                  $.notify(response.data.Validacion_mensaje, "success");                 
               }
               else
               {
-                app.cargando = false;
-                $.notify(response.data.Validacion_mensaje, "error");
+                  app.cargando = false;
+                  $.notify(response.data.Validacion_mensaje, "error");
               }
              
              }).catch(function (error){
