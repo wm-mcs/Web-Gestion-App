@@ -107,11 +107,11 @@ template:`
                  </div>
 
 
-                  <div class="get_width_100 flex-row-center flex-justifice-space-around formulario-label-fiel-sin-width">
+                  <div class="col-12 d-flex flex-column align-items-center">
                       <div v-if="cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
+                        <div class="cssload-container">
+                              <div class="cssload-tube-tunnel"></div>
+                        </div>
                       </div>
                       <div v-else v-on:click="editarServicio" title="Editar este servicio" class="boton-simple-chico">
                         <i class="fas fa-edit"></i> Editar @{{servicio.name}}
