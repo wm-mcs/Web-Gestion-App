@@ -32,7 +32,7 @@ methods:{
         var vue = this;
 
 
-        app.cargando = true;
+        this.cargando = true;
 
         var data = {   servicio:this.servicio,
                      empresa_id:this.$root.empresa.id
@@ -45,19 +45,20 @@ methods:{
 
               if(response.data.Validacion == true)
               {
-                 app.cargando = false;
+                 vue.cargando = false;
                  vue.empresa  = response.data.empresa;
                  $.notify(response.data.Validacion_mensaje, "success");
                  
               }
               else
               {
-                app.cargando = false;
+                vue.cargando = false;
                 $.notify(response.data.Validacion_mensaje, "error");
               }
              
              }).catch(function (error){
-
+              vue.cargando = false;
+              $.notify(error, "error");
                        
               
              });   
