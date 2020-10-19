@@ -1,4 +1,4 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.tipo_servicio_empresa.tipoServicioLista')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.tipoServicioEmpresa.tipoServicioLista')
 
 
 Vue.component('tipo-de-servicios-modal',
