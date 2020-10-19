@@ -35,7 +35,7 @@ methods:{
         app.cargando = true;
 
         var data = {   servicio:this.servicio,
-                     empresa_id:this.empresa.id
+                     empresa_id:this.$root.empresa.id
                        
                    }; 
 
