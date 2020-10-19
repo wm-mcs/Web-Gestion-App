@@ -6,7 +6,8 @@ props:['servicio_prop'],
 data:function(){
     return {
       cargando:false,
-      servicio:'' 
+      servicio:'',
+      array_cantidad_de_dias:cantidadDeDiasArray 
     }
 }, 
 
@@ -83,6 +84,16 @@ template:`
             <option>U$S</option>                        
         </select>
     </div>
+    <div class="col-12 col-lg-4 formulario-label-fiel">
+      <label class="formulario-label">Se renueva cada</label>
+      <select v-model="servicio.renovacion_cantidad_en_dias" class="formulario-field">         
+        <option v-for="cantidad_dias in array_cantidad_de_dias" :value="cantidad_dias.cantidad_de_dias_numero">
+          @{{cantidad_dias.cantidad_de_dias_texto}}
+        </option>                                
+      </select>
+    </div>
+
+    
     <div class="col-12 d-flex flex-column align-items-center">
           <div v-if="cargando" class="Procesando-text">
             <div class="cssload-container">

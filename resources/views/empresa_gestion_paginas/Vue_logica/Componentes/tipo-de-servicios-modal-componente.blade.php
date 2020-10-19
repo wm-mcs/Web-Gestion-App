@@ -1,3 +1,4 @@
+@include('empresa_gestion_paginas.Vue_logica.Componentes.tipoServicioEmpresa.cantidadDeDiasArray')
 @include('empresa_gestion_paginas.Vue_logica.Componentes.tipoServicioEmpresa.tipoServicioLista')
 
 
