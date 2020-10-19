@@ -158,8 +158,8 @@ template:`
         </span>
 
           
-          <div class="modal-header">
-            <h4 class="col-12 modal-title" > Servicios</h4>
+          <div class="row">
+            <h4 class="col-12 sub-titulos-class" > Servicios</h4>
             <div class="col-12 modal-mensaje-aclarador">
               Existen dos tipos de servicios: periódicos (mensual, semestral y anual) y por clase (cuponeras)
             </div>
@@ -170,8 +170,8 @@ template:`
              <div class="row mb-5" v-if="empresa.tipo_servicios.length > 0">
                
                   <tipo-servicio-lista  v-for="servicio in empresa.tipo_servicios" 
-                                        :key="servicio.id"
-                                        :servicio_prop="servicio">                    
+                                         :key="servicio.id"
+                                         :servicio_prop="servicio">                    
                   </tipo-servicio-lista>
                
              </div>

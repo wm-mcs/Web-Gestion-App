@@ -87,10 +87,17 @@ template:'
   <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container position-relative">
+        <span class="modal-cerrar-icono sub-titulos-class text-center color-text-gris" @click="showModal = !showModal">
+          <i class="fas fa-times"></i>
+        </span>
 
-          <div class="modal-header">
-            <h3></h3>
+          
+          <div class="row">
+            <h4 class="col-12 sub-titulos-class" > Tipo de movimientos</h4>
+            <div class="col-12 modal-mensaje-aclarador">
+              Crear un tipo de movimiento
+            </div>
           </div>
 
           <div class="modal-body">
