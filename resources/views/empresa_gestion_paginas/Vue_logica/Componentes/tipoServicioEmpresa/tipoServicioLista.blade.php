@@ -71,10 +71,10 @@ computed:{
 
 },
 template:`  
-<div  class="empresa-gestion-listado-contenedor flex-justifice-space-between border-bottom-claro">
+<div  class="col-12 mb-1">
                  
-                <div class="get_width_100 flex-wrap flex-row-center">
-                 <div class="get_width_100 formulario-label-fiel-sin-width">
+                <div class="row">
+                 <div class="col-12 formulario-label-fiel-sin-width">
                    <label class="formulario-label">Nombre</label>
                    <input type="text" class="form-control" v-model="servicio.name">
                  </div> 

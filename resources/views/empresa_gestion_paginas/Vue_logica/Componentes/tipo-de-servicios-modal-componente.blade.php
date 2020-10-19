@@ -162,19 +162,21 @@ template:`
           </div>
 
           <div class="modal-body">            
-            <div class="row mb-5">
-             <div v-if="empresa.tipo_servicios.length > 0">
-               <div  class="empresa-gestion-listado-contenedor flex-justifice-space-between border-bottom-claro">
+            
+             <div class="row mb-5" v-if="empresa.tipo_servicios.length > 0">
+               
                   <tipo-servicio-lista  v-for="servicio in empresa.tipo_servicios" 
                                         :key="servicio.id"
                                         :servicio_prop="servicio">                    
                   </tipo-servicio-lista>
-               </div>
+               
              </div>
-             <div v-else class="col-12 sub-titulos-class text-center color-text-gris">
-               Aún no hay servicios creados ¡Crea uno ahora!
+             <div v-else class="row">
+               <div class="col-12  sub-titulos-class text-center color-text-gris">
+                  Aún no hay servicios creados ¡Crea uno ahora!
+               </div> 
              </div>                
-            </div>
+            
 
             <div>
                 <div class="titulo-dentro-de-form" >
