@@ -26,7 +26,6 @@
   display: block;   
 }
 
-
 $altura-imagen-miniaturas:150px; /*Defino la altura*/
 
 .img-altura-chica{
@@ -59,8 +58,9 @@ $altura-imagen-miniaturas:150px; /*Defino la altura*/
   background-color: $color-grey-1;
 }
 
-
-
+.background-hover-gris-0{
+  
+}
 .background-hover-gris-0:hover{
   background-color: $color-grey-1;
 }
@@ -100,7 +100,6 @@ $altura-imagen-miniaturas:150px; /*Defino la altura*/
 .background-error{
   background-color:$Color-Errors-BG;
 }
-
 
 .background-mensual{
   background-color: $Color-info;
