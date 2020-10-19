@@ -101,7 +101,7 @@ methods:{
      deletServicio:function(servicio)
      {
 
-        var result = confirm("¿Seguro que quieres hacer esto?");
+        var result = confirm("¿Seguro qué quieres hacer esto?");
 
         if(result){            
         
@@ -153,10 +153,14 @@ template:`
     <div class="modal-mask ">
       <div class="modal-wrapper">
         <div class="modal-container position-relative">
+        <span class="modal-cerrar-icono sub-titulos-class text-center color-text-gris" @click="showModal = !showModal">
+          <i class="fas fa-times"></i>
+        </span>
+
           
           <div class="modal-header">
-            <h4 class="modal-title" > Servicios</h4>
-            <div class="modal-mensaje-aclarador">
+            <h4 class="col-12 modal-title" > Servicios</h4>
+            <div class="col-12 modal-mensaje-aclarador">
               Existen dos tipos de servicios: periódicos (mensual, semestral y anual) y por clase (cuponeras)
             </div>
           </div>
