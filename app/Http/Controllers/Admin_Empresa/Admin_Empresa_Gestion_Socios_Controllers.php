@@ -591,7 +591,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                    'Validacion_mensaje'  => 'No se pudo crear el servicio: ' . $manager->getErrors()];
         }
 
-       $Propiedades = ['name','tipo','empresa_id','moneda','valor','cantidad_clases'];
+       $Propiedades = ['name','tipo','renovacion_cantidad_en_dias','empresa_id','moneda','valor','cantidad_clases'];
 
        $Entidad->estado = 'si';
        $Entidad->moneda = '$';
@@ -639,7 +639,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
        $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
        
        //las porpiedades que se van a editar
-       $Propiedades = ['name','tipo','valor','moneda','cantidad_clases'];
+       $Propiedades = ['name','tipo','renovacion_cantidad_en_dias','valor','moneda','cantidad_clases'];
 
        foreach($Propiedades as $Propiedad)
        {

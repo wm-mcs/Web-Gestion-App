@@ -77,7 +77,7 @@ template:'
     </div>
    
      
-      <transition name="modal" v-if="showModal">
+   <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
         <div class="modal-container">
