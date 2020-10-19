@@ -184,8 +184,8 @@ template:`
              </div>                
             
 
-            <div class="">
-                <div class="titulos-class text-center" >
+            <div class="row">
+                <div class="col-12 titulos-class text-center" >
                     Crear nuevo <i class="fas fa-arrow-circle-down"></i>
                 </div>
                 <div class="col-12 col-lg-6 formulario-label-fiel">
@@ -229,7 +229,7 @@ template:`
                       <div class="cssload-tube-tunnel"></div>
                     </div>
                   </div>
-                  <div v-else v-on:click="agregarServicioCreat" title="Editar este servicio" class="w-100 py-5 mt-4 boton-simple-chico">
+                  <div v-else v-on:click="agregarServicioCreat" title="Editar este servicio" class="w-100  mt-4 Boton-Primario-Relleno Boton-Fuente-Grande">
                       @{{$root.boton_aceptar_texto}}
                   </div>    
                 </div>                 
