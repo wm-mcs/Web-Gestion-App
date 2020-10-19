@@ -55,28 +55,28 @@ computed:{
 
 },
 template:`  
-<div  class="col-12 mb-1">
+<div  class="col-12 mb-1 p-2 p-lg-4 borde-bottom-gris mb-4 background-hover-gris-0">
   <div class="row">
-    <div class="col-6 formulario-label-fiel">
+    <div class="col-12 col-lg-6 formulario-label-fiel">
       <label class="formulario-label ">Nombre</label>
       <input type="text" class="formulario-field" v-model="servicio.name">
     </div> 
-    <div class="col-6 formulario-label-fiel">
+    <div class="col-12 col-lg-6 formulario-label-fiel">
       <label class="formulario-label">Tipo</label>
       <select v-model="servicio.tipo" class="formulario-field">                        
         <option>clase</option>
         <option>mensual</option>                        
       </select>
     </div>
-    <div v-if="servicio.es_clase" class="get_width_30 formulario-label-fiel">
+    <div v-if="servicio.es_clase" class="col-12 col-lg-4 formulario-label-fiel">
       <label class="formulario-label">Cantidad</label>
       <input type="number" class="formulario-field" v-model="servicio.cantidad_clases" step="any">
     </div>
-    <div class="get_width_30 formulario-label-fiel">
+    <div class="col-12 col-lg-4 formulario-label-fiel">
       <label class="formulario-label">Valor</label>
       <input type="text" class="formulario-field" v-model="servicio.valor" step="any">
     </div>
-    <div class="get_width_30 formulario-label-fiel">
+    <div class="col-12 col-lg-4 formulario-label-fiel">
       <label class="formulario-label">Moneda</label>
       <select v-model="servicio.moneda" class="formulario-field">                        
             <option>$</option>
@@ -89,7 +89,7 @@ template:`
               <div class="cssload-tube-tunnel"></div>
             </div>
           </div>
-          <div v-else v-on:click="editarServicio" title="Editar este servicio" class="boton-simple-chico">
+          <div v-else v-on:click="editarServicio" title="Editar este servicio" class="w-100 mt-4 boton-simple-chico">
             <i class="fas fa-edit"></i> Editar @{{servicio.name}}
           </div>    
     </div>
