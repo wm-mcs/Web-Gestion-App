@@ -20,7 +20,8 @@ data:function(){
         moneda:'$',
         cantidad_clases:0,
         renovacion_cantidad_en_dias:30,
-        showModal:false
+        showModal:false,
+        array_cantidad_de_dias:cantidadDeDiasArray 
       }
 },
 mounted: function mounted () {        
@@ -183,72 +184,63 @@ template:`
              </div>                
             
 
-            <div>
-                <div class="titulo-dentro-de-form" >
-                     Crear nuevo <i class="fas fa-arrow-circle-down"></i>
-                  </div>
+            <div class="">
+                <div class="titulos-class text-center" >
+                    Crear nuevo <i class="fas fa-arrow-circle-down"></i>
+                </div>
+                <div class="col-12 col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label" for="Nombre">Nombre del servicio  </label>
+                    <input type="text" class="formulario-field"  v-model="crear_service_name" placeholder="Nombre del servicio" required  />
+                </div> 
+                <div class="col-12 col-lg-6 formulario-label-fiel">
+                  <label class="formulario-label" for="Nombre">Tipo <span class="formulario-label-aclaracion">¿Por clase o mensual?</span></label>
+                  <select v-model="crear_service_tipo" class="formulario-field">                          
+                    <option>clase</option>
+                    <option>mensual</option>                          
+                  </select>
+                </div>   
+                <div v-if="tipo_clase" class="col-12 col-lg-4 formulario-label-fiel">
+                  <label class="formulario-label">Cantidad de clases</label>
+                  <input type="number" class="formulario-field" v-model="cantidad_clases" step="any">
+                </div>
+                <div class="col-12 col-lg-4 formulario-label-fiel">
+                  <label class="formulario-label">¿Cuánto cuesta?</label>
+                  <input type="text" class="formulario-field" v-model="valor" step="any">
+                </div>
+                <div class="col-12 col-lg-4 formulario-label-fiel">
+                  <label class="formulario-label">¿Pesos o Dolares?</label>
+                  <select v-model="moneda" class="formulario-field">
+                    <option>$</option>
+                    <option>U$S</option>
+                  </select>
+                </div>
+                <div class="col-12 col-lg-4 formulario-label-fiel">
+                  <label class="formulario-label">Se renueva cada</label>
+                  <select v-model="renovacion_cantidad_en_dias" class="formulario-field">         
+                    <option v-for="cantidad_dias in array_cantidad_de_dias" :value="cantidad_dias.cantidad_de_dias_numero">
+                      @{{cantidad_dias.cantidad_de_dias_texto}}
+                    </option>                                
+                  </select>
+                </div>
 
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Nombre del servicio  </label>
-                      <input type="text" class="form-control"  v-model="crear_service_name" placeholder="Nombre del servicio" required  />
-                  </div> 
-                 
-
-                 <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Tipo <span class="formulario-label-aclaracion">¿por clase o mensual?</span></label>
-                     <select v-model="crear_service_tipo" class="form-control">
-                        
-                        <option>clase</option>
-                        <option>mensual</option>
-                        
-                      </select>
-                  </div>   
-                  <div v-if="tipo_clase" class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">Cantidad de clases</label>
-                   <input type="number" class="form-control" v-model="cantidad_clases" step="any">
-                 </div>
-
-                  <div class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">¿Cuánto cuesta?</label>
-                   <input type="text" class="form-control" v-model="valor" step="any">
-                 </div>
-                 <div class="get_width_50 formulario-label-fiel-sin-width">
-                   <label class="formulario-label">¿Pesos o Dolares?</label>
-                   <select v-model="moneda" class="form-control">
-                        
-                        <option>$</option>
-                        <option>U$S</option>
-                        
-                    </select>
-                 </div>
-
-
-
-               
-                  
+                <div class="col-12 d-flex flex-column align-items-center">
                   <div v-if="$root.cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
+                    <div class="cssload-container">
+                      <div class="cssload-tube-tunnel"></div>
+                    </div>
                   </div>
-                  <div v-else v-on:click="agregarServicioCreat" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
+                  <div v-else v-on:click="agregarServicioCreat" title="Editar este servicio" class="w-100 py-5 mt-4 boton-simple-chico">
+                      @{{$root.boton_aceptar_texto}}
+                  </div>    
+                </div>                 
+                 
             </div>
-
-             
-
-            
-           
-            
-
-
           </div>
 
-          <div class="modal-footer">
-           
-              <button class="modal-default-button"  @click="showModal = false">
-                @{{$root.boton_cancelar_texto}}
-              </button>
-           
+          <div class="modal-footer">           
+            <button class="modal-default-button"  @click="showModal = false">
+              @{{$root.boton_cancelar_texto}}
+            </button>           
           </div>
         </div>
       </div>
