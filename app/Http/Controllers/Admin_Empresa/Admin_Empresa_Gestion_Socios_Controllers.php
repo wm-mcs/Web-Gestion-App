@@ -779,12 +779,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //editar servicio a socio
   public function editar_servicio_a_socio(Request $Request)
-    {      
+  {      
       $User              = $Request->get('user_desde_middleware');
       $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
       $Socio             = $Request->get('socio_desde_middleware');    
 
-       
+        
       $Validacion  = true;
       $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
 
@@ -804,35 +804,35 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       //actualizo cache socio
       $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
-     if($Validacion)
-     {
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Se editó correctamente ',
-               'Socio'               => $Socio];
-     }
+      if($Validacion)
+      {
+        return ['Validacion'          => $Validacion,
+                'Validacion_mensaje'  => 'Se editó correctamente ',
+                'Socio'               => $Socio];
+      }
   }
 
   //obtengo servicios
   public function get_servicios_de_socio(Request $Request)
   {
-     $Validacion        = true;     
+      $Validacion        = true;     
 
-    if($Validacion)
-     {
-       return ['Validacion'          =>  $Validacion,
-               'Validacion_mensaje'  =>  'Se cargó correctamente',
-               'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Request->get('socio_id'))];
-     }
+      if($Validacion)
+      {
+        return ['Validacion'          =>  $Validacion,
+                'Validacion_mensaje'  =>  'Se cargó correctamente',
+                'servicios'           =>  $this->ServicioContratadoSocioRepo->getServiciosContratadosASocios($Request->get('socio_id'))];
+      }
   }
 
   //borra el servicio del socio
   public function borrar_servicio_de_socio(Request $Request)
   {
-     $Validacion   = true;
-     $User         = $Request->get('user_desde_middleware'); 
-     $Servicio     = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
-     $Socio        = $Request->get('socio_desde_middleware'); 
-     $Sucursal     = $Request->get('sucursal_desde_middleware'); 
+      $Validacion   = true;
+      $User         = $Request->get('user_desde_middleware'); 
+      $Servicio     = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
+      $Socio        = $Request->get('socio_desde_middleware'); 
+      $Sucursal     = $Request->get('sucursal_desde_middleware'); 
 
       $this->ServicioContratadoSocioRepo->destruir_esta_entidad_de_manera_logica($Servicio);
 
@@ -840,8 +840,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Estados_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo->getEstadoDeCuentasDelSocioDeUnServicioEnParticular($Socio->id,$Request->get('servicio_id'));
 
       foreach ($Estados_de_cuenta as $Estado)
-      {
-       
+      {       
         if($Estado->tipo_saldo == 'deudor')
         {
           $Tipo_saldo = 'acredor';
@@ -850,48 +849,42 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         {
           $Tipo_saldo = 'deudor';
         }
-
         
-        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User->id,Carbon::now('America/Montevideo')); 
-       
+        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado,$User->id,Carbon::now('America/Montevideo'));      
 
-          //me fijo se el estado es deudor (es decir que pagó) 
-          if($Estado->tipo_saldo == 'deudor')
-          {
-           $Caja = $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
-                                                                 $Sucursal->id, 
-                                                                 $User->id, 
-                                                                 'acredor', 
-                                                                 $Estado->moneda, 
-                                                                 $Estado->valor, 
-                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,               
-                                                                 Carbon::now('America/Montevideo'),
-                                                                  'Anulacion Estado De Cuenta',
-                                                                  null
-                                                                 ); 
-            //indico que es un movimiento anulador
-           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
-          }
-          
-
+        //me fijo se el estado es deudor (es decir que pagó) 
+        if($Estado->tipo_saldo == 'deudor')
+        {
+          $Caja = $this->CajaEmpresaRepo->InresarMovimientoDeCaja(     $Request->get('empresa_id'), 
+                                                                $Sucursal->id, 
+                                                                $User->id, 
+                                                                'acredor', 
+                                                                $Estado->moneda, 
+                                                                $Estado->valor, 
+                                                                'Anulación de estado de cuenta de socio '. $Socio->name,               
+                                                                Carbon::now('America/Montevideo'),
+                                                                'Anulacion Estado De Cuenta',
+                                                                null
+                                                                ); 
+          //indico que es un movimiento anulador
+          $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
+        }   
       }      
 
       //actualiza la session
       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
 
       $Sucursal = $this->SucursalEmpresaRepo->find($Sucursal->id);
-
       //actualizo cache socio
       $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
-     if($Validacion)
-     {
-       return ['Validacion'          =>  $Validacion,
-               'Validacion_mensaje'  =>  'Se eliminó correctamente',
-               'Socio'               =>  $Socio,
-               'sucursal'            =>  $Sucursal ];
-     }
-     
+      if($Validacion)
+      {
+        return ['Validacion'          =>  $Validacion,
+                'Validacion_mensaje'  =>  'Se eliminó correctamente',
+                'Socio'               =>  $Socio,
+                'sucursal'            =>  $Sucursal ];
+      }     
   }
 
   //indica que el servicio tipo calse ya fué usado
