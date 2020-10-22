@@ -163,7 +163,10 @@ template:`
           <div class="row">
             <h4 class="col-12 sub-titulos-class" > Servicios</h4>
             <div class="col-12 modal-mensaje-aclarador">
-              Existen dos tipos de servicios: periódicos (mensual, semestral y anual) y por clase (cuponeras)
+              Existen dos tipos de servicios mensual y por clase. 
+              <b>Mensula</b>  significa que no se controla la cantidad de veces que el socio asiste. Ejemplo de mensual sería un pase libre.
+              <b>Clase</b>  sería para el caso de una cuponera. Cada vez que el socio toma una clase se descontará de la cuponera.
+              En ambos caso tiene vencimientos y estos podrán ser editados.
             </div>
           </div>
 
@@ -215,7 +218,7 @@ template:`
                   </select>
                 </div>
                 <div class="col-12 col-lg-4 formulario-label-fiel">
-                  <label class="formulario-label">Se renueva cada</label>
+                  <label class="formulario-label">Se vence en</label>
                   <select v-model="renovacion_cantidad_en_dias" class="formulario-field">         
                     <option v-for="cantidad_dias in array_cantidad_de_dias" :value="cantidad_dias.cantidad_de_dias_numero">
                       @{{cantidad_dias.cantidad_de_dias_texto}}

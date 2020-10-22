@@ -17,7 +17,8 @@ data:function(){
                         socio_id:this.socio.id,
                         socio_empresa_id:'',
                         paga:'si',
-                        tipo_servicio_id:''
+                        tipo_servicio_id:'',
+                        renovacion_cantidad_en_dias:''
 
                     },
       tipo_servicio:'',              
@@ -31,7 +32,7 @@ props:['socio','empresa']
 
 mounted: function mounted () {        
       
-    this.setFecha();
+    
 
 },
 computed:{
@@ -55,88 +56,75 @@ computed:{
 },
 methods:{
 
- setFecha:function()
+ setFecha:function(servicio)
  {
-       var fecha =  new Date();
-       fecha.setMonth(fecha.getMonth() + 1);
+      var fecha =  new Date();
 
-       this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0,10);
+      date.fecha(date.getDate() + parseInt(servicio.renovacion_cantidad_en_dias));
+      
+
+      this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0,10);
  },
 
  abrir_modal:function(){
-
-   $('#modal-agregar-servicio-socio').appendTo("body").modal('show');  
-   
-
+   $('#modal-agregar-servicio-socio').appendTo("body").modal('show');    
  },
  crear_servicio_a_socio:function(){  
 
-      var url  = '/agregar_servicio_a_socio';
+    var url  = '/agregar_servicio_a_socio';
 
-      var data = this.servicio_data;
+    var data = this.servicio_data;
 
-      var vue = this;
+    var vue = this;
 
-      app.cargando = true;
+    app.cargando = true;
 
-      axios.post(url,data).then(function (response){  
-            var data = response.data;  
-            
+    axios.post(url,data).then(function (response){  
+          var data = response.data;  
+          
 
-            if(data.Validacion == true)
-            {
-
-              app.cargando = false;
-              vue.$emit('actualizar_servicios_de_socios',response.data.servicios);   
-              vue.$emit('actualizar_socio',response.data.Socio);   
-              app.cerrarModal('#modal-agregar-servicio-socio');
-              bus.$emit('sucursal-set', response.data.sucursal); 
-              $.notify(data.Validacion_mensaje, "success");      
-            }
-            else
-            {
-
-              app.cargando = false;
-              $.notify(response.data.Validacion_mensaje, "warn");
-            }
-           
-      }).catch(function (error){}); 
-
-
-
-
-
+          if(data.Validacion == true)
+          {
+            app.cargando = false;
+            vue.$emit('actualizar_servicios_de_socios',response.data.servicios);   
+            vue.$emit('actualizar_socio',response.data.Socio);   
+            app.cerrarModal('#modal-agregar-servicio-socio');
+            bus.$emit('sucursal-set', response.data.sucursal); 
+            $.notify(data.Validacion_mensaje, "success");      
+          }
+          else
+          {
+            app.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "warn");
+          }
+          
+    }).catch(function (error){}); 
  },
- cambioTipoDeServicio:function(){
+ cambioTipoDeServicio:function(){  
+    var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'id',this.tipo_servicio);
+    this.servicio_data.name                        = servicio.name;
+    this.servicio_data.tipo                        = servicio.tipo;
+    this.servicio_data.moneda                      = servicio.moneda;
+    this.servicio_data.valor                       = servicio.valor;
+    this.servicio_data.tipo_servicio_id            = servicio.id;
+    this.servicio_data.renovacion_cantidad_en_dias = servicio.renovacion_cantidad_en_dias;
 
-  
-  var servicio = this.seleccionarUnObjetoSegunAtributo(this.empresa.tipo_servicios,'id',this.tipo_servicio);
+    this.servicio_data.socio_id         = this.socio.id;
+    this.servicio_data.socio_empresa_id = this.socio.empresa_id;
 
-  
-                  
-
-  this.servicio_data.name               = servicio.name;
-  this.servicio_data.tipo               = servicio.tipo;
-  this.servicio_data.moneda             = servicio.moneda;
-  this.servicio_data.valor              = servicio.valor;
-  this.servicio_data.tipo_servicio_id   = servicio.id;
-
-  this.servicio_data.socio_id         = this.socio.id;
-  this.servicio_data.socio_empresa_id = this.socio.empresa_id;
-
-  if(servicio.tipo != 'mensual')
-  {
-    this.servicio_data.cantidad_de_servicios = servicio.cantidad_clases;
-  } 
-  else
-  {
-    this.servicio_data.cantidad_de_servicios = 0;
-  }
+    if(servicio.tipo != 'mensual')
+    {
+      this.servicio_data.cantidad_de_servicios = servicio.cantidad_clases;
+    } 
+    else
+    {
+      this.servicio_data.cantidad_de_servicios = 0;
+    }
 }, 
 seleccionarUnObjetoSegunAtributo:function(lista,atributo,valor){
-        return lista.find(function(element) {
-        return element.id == valor;
-      });
+    return lista.find(function(element) {
+      return element.id == valor;
+    });
 },
 
      

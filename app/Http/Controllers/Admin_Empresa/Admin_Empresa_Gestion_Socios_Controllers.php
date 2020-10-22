@@ -671,7 +671,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
        
        //las porpiedades que se van a editar
-       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','tipo_servicio_id'];
+       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','tipo_servicio_id','renovacion_cantidad_en_dias'];
 
 
        //veo si son mas de uno
@@ -819,31 +819,30 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //editar servicio a socio
   public function editar_servicio_a_socio(Request $Request)
-  {      
-     $User              = $Request->get('user_desde_middleware');
-     $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
-     $Socio             = $Request->get('socio_desde_middleware');    
+    {      
+      $User              = $Request->get('user_desde_middleware');
+      $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
+      $Socio             = $Request->get('socio_desde_middleware');    
 
        
-           $Validacion  = true;
+      $Validacion  = true;
+      $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
 
-           $Servicio = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
+      $Servicio->editado_por = $User->first_name;
+      $Servicio->editado_at  = Carbon::now('America/Montevideo');
 
-           $Servicio->editado_por = $User->first_name;
-           $Servicio->editado_at  = Carbon::now('America/Montevideo');
-       
-           //las porpiedades que se van a editar
-           $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido'];
-
-
-           $this->ServicioContratadoSocioRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
-           $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
-
-           $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
+      //las porpiedades que se van a editar
+      $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido','renovacion_cantidad_en_dias'];
 
 
-           //actualizo cache socio
-           $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
+      $this->ServicioContratadoSocioRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
+      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_vencimiento',$Servicio_a_editar->fecha_vencimiento_formateada );
+
+      $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio,'fecha_consumido',$Servicio_a_editar->fecha_consumido_formateada );
+
+
+      //actualizo cache socio
+      $this->ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
      if($Validacion)
      {
@@ -856,10 +855,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   //obtengo servicios
   public function get_servicios_de_socio(Request $Request)
   {
-
-     $Validacion        = true;
-     $User              = $Request->get('user_desde_middleware'); 
-     $Socio             = $this->SocioRepo->find($Request->get('socio_id'));
+     $Validacion        = true;     
 
     if($Validacion)
      {
@@ -918,10 +914,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           }
           
 
-      }
-
-      //borrar los moviemiento de caja si es que hubo         
-      $MovimeintosDeCaja = $this->CajaEmpresaRepo->getMovimeintosDeEstaSecursalYServicio($Request->get('servicio_id'),$Sucursal->id);
+      }      
 
       //actualiza la session
       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
