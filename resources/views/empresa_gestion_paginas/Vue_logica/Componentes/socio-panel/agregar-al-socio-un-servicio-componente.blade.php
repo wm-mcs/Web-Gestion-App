@@ -60,7 +60,7 @@ methods:{
  {
       var fecha =  new Date();
 
-      date.fecha(date.getDate() + parseInt(servicio.renovacion_cantidad_en_dias));
+      fecha.setDate(fecha.getDate() + parseInt(servicio.renovacion_cantidad_en_dias));
       
 
       this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0,10);
