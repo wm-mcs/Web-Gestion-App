@@ -58,7 +58,7 @@ methods:{
 
  setFecha:function(servicio)
  {
-      var fecha =  new Date();
+      const  fecha =  new Date();
 
       fecha.setDate(fecha.getDate() + parseInt(servicio.renovacion_cantidad_en_dias));
       
@@ -111,6 +111,8 @@ methods:{
 
     this.servicio_data.socio_id         = this.socio.id;
     this.servicio_data.socio_empresa_id = this.socio.empresa_id;
+
+    this.getDate(servicio);
 
     if(servicio.tipo != 'mensual')
     {
