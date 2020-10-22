@@ -112,7 +112,7 @@ methods:{
     this.servicio_data.socio_id         = this.socio.id;
     this.servicio_data.socio_empresa_id = this.socio.empresa_id;
 
-    this.getDate(servicio);
+    this.setFecha(servicio);
 
     if(servicio.tipo != 'mensual')
     {
