@@ -241,7 +241,7 @@ template:`
           </div>
 
           <div class="modal-footer">           
-            <button class="modal-default-button"  @click="showModal = false">
+            <button class="modal-default-button"   @click="showModal = !showModal">
               @{{$root.boton_cancelar_texto}}
             </button>           
           </div>

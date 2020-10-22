@@ -257,9 +257,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios'.$Empresa->id, 3200, function() use($Empresa,$User,$Sucursal) {
           $Hoy                         = Carbon::now('America/Montevideo');
           $Hoy_objet                   = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
-
-
-
           $Array_resultados = [];
 
           //primer me fijo se está activo esto
@@ -301,57 +298,47 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Servicio =  $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id,$Servicio_para_renovar->tipo_servicio_id); 
 
                     if($Servicio != null)
-                    {
-                      
-                          //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-                          if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
-                          {
-                            //creo el nuevo servicio
-                            $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
-                                                                                                    $Sucursal->id, 
-                                                                                                    $Servicio->tipo_de_servicio, 
-                                                                                                    Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->renovacion_cantidad_en_dias));
+                    {                    
+                        //debería buscar servicio a socio y ver si en un mes hay alguno disponible
+                        if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                        {
+                          //creo el nuevo servicio
+                          $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
+                                                                                                  $Sucursal->id, 
+                                                                                                  $Servicio->tipo_de_servicio, 
+                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->renovacion_cantidad_en_dias));
 
-                            //Logica de estado de cuenta cuando compra
-                            $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
-                                                                                              $User->id,
-                                                                                              $Nuevo_servicio->moneda,
-                                                                                              $Nuevo_servicio->valor,
-                                                                                              'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
-                                                                                              'acredor',
-                                                                                              Carbon::now('America/Montevideo'),
-                                                                                              $Nuevo_servicio->id);
+                          //Logica de estado de cuenta cuando compra
+                          $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
+                                                                                            $User->id,
+                                                                                            $Nuevo_servicio->moneda,
+                                                                                            $Nuevo_servicio->valor,
+                                                                                            'Compra de '.$Nuevo_servicio->name . ' ' . $Nuevo_servicio->id ,
+                                                                                            'acredor',
+                                                                                            Carbon::now('America/Montevideo'),
+                                                                                            $Nuevo_servicio->id);
 
-                            //ajusto el servicio de renovación
-                            $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
-                                                                                      $Socio->empresa_id,
-                                                                                      $Nuevo_servicio->tipo_de_servicio, 
-                                                                                      Carbon::now('America/Montevideo')       );
+                          //ajusto el servicio de renovación
+                          $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
+                                                                                    $Socio->empresa_id,
+                                                                                    $Nuevo_servicio->tipo_de_servicio, 
+                                                                                    Carbon::now('America/Montevideo')       );
 
-                            array_push($Array_resultados, json_decode(json_encode([ 'Socio'       => $Socio->name, 
-                                                                                    'Acutualizo'  => 'si', 
-                                                                                    'Razon'       => 'Se renovó correctamente' ,
-                                                                                    'Fecha'       =>  $Hoy_objet] ) )  );
-                          }
-                          else
-                          {
-                            array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                                  'Acutualizo'  => 'no', 
-                                                                  'Razon'       => 'Aun tenía servicios disponibles',
-                                                                    'Fecha'      =>  $Hoy_objet ])  )  );
-                          }
+                          array_push($Array_resultados, json_decode(json_encode([ 'Socio'       => $Socio->name, 
+                                                                                  'Acutualizo'  => 'si', 
+                                                                                  'Razon'       => 'Se renovó correctamente' ,
+                                                                                  'Fecha'       =>  $Hoy_objet] ) )  );
+                        }
+                        else
+                        {
+                          array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
+                                                                'Acutualizo'  => 'no', 
+                                                                'Razon'       => 'Aun tenía servicios disponibles',
+                                                                  'Fecha'      =>  $Hoy_objet ])  )  );
+                        }
                     }
-
-
-
-                    
-
                   }
               }
-                  
-
-
-            
       }
 
       return $Array_resultados;
@@ -478,35 +465,22 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         return  ['Validacion'          => false,
                  'Validacion_mensaje'  => 'Ya existe un socio con ese celular'];
        }
-
-
      
-       $Socio                   = $this->SocioRepo
-                                       ->getEntidad();
-
-
+       $Socio                   = $this->SocioRepo->getEntidad();
        $Socio->empresa_id       = $UserEmpresa->empresa_id; 
        $Socio->factura_con_iva  = 'no';
        $Socio->estado           = 'si';
 
        $Propiedades = ['name','celular','cedula','email'];
 
-
-
        $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades);  
 
        $Validacion = true;
-
-
 
        return ['Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se creó correctamente '. $Socio->name,
                'Socio'               => $this->SocioRepo->find($Socio->id),
                'Socios'              => $this->SocioRepo->getSociosDeEstaEmpresa($UserEmpresa->empresa_id)];
-
-
-
-      
     }
     else
     {
@@ -519,35 +493,25 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //para editar al socio desde el modal
   public function post_editar_socio_desde_modal(Request $Request)
-  {
-        $User       = $Request->get('user_desde_middleware'); 
+  {        
+      $Validacion = true;
+      $Socio      = $this->SocioRepo->find($Request->get('id'));
 
-        $entidad    = '';
-        $manager    = new CrearSocioModalManager($entidad,$Request->all());
-        $Validacion = true;
-        $Socio      = $this->SocioRepo->find($Request->get('id'));
+      $ExisteElSocio = $this->SocioRepo->ExisteElSocio($Socio->empresa_id,$Request->get('celular'),[$Socio->id]);
 
+      if($ExisteElSocio)
+      {
+        return  ['Validacion'          => false,
+                'Validacion_mensaje'  => 'Ya existe un socio con ese celular'];
+      }    
 
+      $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota','celular_internacional'];
 
-       $ExisteElSocio = $this->SocioRepo->ExisteElSocio($Socio->empresa_id,$Request->get('celular'),[$Socio->id]);
+      $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades); 
 
-       if($ExisteElSocio)
-       {
-         return  ['Validacion'          => false,
-                 'Validacion_mensaje'  => 'Ya existe un socio con ese celular'];
-       }
-    
-
-       $Propiedades = ['estado','name','email','celular','cedula','direccion','rut','razon_social','mutualista','nota','celular_internacional'];
-
-       $this->SocioRepo->setEntidadDato($Socio,$Request,$Propiedades); 
-
-       return ['Validacion'          => $Validacion,
-               'Validacion_mensaje'  => 'Se editó correctamente a '. $Socio->name,
-               'Socio'               => $this->SocioRepo->find($Socio->id)];
-       
-    
-   
+      return ['Validacion'          => $Validacion,
+              'Validacion_mensaje'  => 'Se editó correctamente a '. $Socio->name,
+              'Socio'               => $this->SocioRepo->find($Socio->id)];
   }
 
   public function get_tipo_servicios($empresa_id)
@@ -608,9 +572,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
   //borrar un servicio
   public function delet_servicio(Request $Request)
-  {
-     
-     $User        = $Request->get('user_desde_middleware');     
+  {    
      $Entidad     = $this->TipoDeServicioRepo->find($Request->get('id')); 
      $Empresa     = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
@@ -620,9 +582,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
      return  [ 'Validacion'          => $Validacion,
                'Validacion_mensaje'  => 'Se borró correctamente ',
-               'empresa'             => $Empresa];
-
-      
+               'empresa'             => $Empresa];      
   }
 
 
@@ -671,7 +631,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     
        
        //las porpiedades que se van a editar
-       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','tipo_servicio_id','renovacion_cantidad_en_dias'];
+       $Propiedades = ['name','tipo','moneda','fecha_vencimiento','tipo_servicio_id'];
 
 
        //veo si son mas de uno
@@ -832,7 +792,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Servicio->editado_at  = Carbon::now('America/Montevideo');
 
       //las porpiedades que se van a editar
-      $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido','renovacion_cantidad_en_dias'];
+      $Propiedades = ['name','tipo','moneda','fecha_vencimiento','esta_consumido'];
 
 
       $this->ServicioContratadoSocioRepo->setEntidadDatoObjeto($Servicio,$Servicio_a_editar,$Propiedades );
