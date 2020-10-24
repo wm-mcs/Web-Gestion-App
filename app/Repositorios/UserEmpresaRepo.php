@@ -1,14 +1,10 @@
 <?php 
 
 namespace App\Repositorios;
-
 use App\Entidades\UserEmpresa;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
-/**
-* Repositorio de consultas a la base de datos User
-*/
+
+
 class UserEmpresaRepo extends BaseRepo
 {
   
@@ -23,17 +19,10 @@ class UserEmpresaRepo extends BaseRepo
     return $this->getEntidad()->where('empresa_id',$Empresa_id )->get();
   } 
 
-
-
-
   public function setAsociarEmpresaYUser($Empresa_id,$User_id,$Gerarqui,$User,$Sucursal_id)
   {
-
-
     if($User->role >= $Gerarqui)
-    {
-
-    
+    {    
         $Existe = $this->getEntidad()
                        ->where('user_id',$User_id)
                        ->where('empresa_id',$Empresa_id)
@@ -63,8 +52,6 @@ class UserEmpresaRepo extends BaseRepo
                  'Validacion'          =>  $Validacion,
                  'Validacion_mensaje'  =>  $Mensaje     
                ];
-
-
     }	
     else
     {
@@ -82,9 +69,7 @@ class UserEmpresaRepo extends BaseRepo
       $User = $this->getEntidad()
                    ->where('user_id',$User_id)
                    ->where('empresa_id',$Empresa_id)
-                   ->get(); 
-
-                  
+                   ->get();                   
 
       $Validacion = false;             
 
@@ -97,7 +82,6 @@ class UserEmpresaRepo extends BaseRepo
           $Validacion = false;
       }
 
-
       return [  
              'Validacion'   =>  $Validacion,
              'UserEmpresa'  =>  $User->first()   
@@ -109,9 +93,7 @@ class UserEmpresaRepo extends BaseRepo
     $empresas =  $this->getEntidad()
                       ->where('user_id',$UserId)
                       ->get();
-    $array_id = [];
-
-    
+    $array_id = [];    
     
     foreach ($empresas as $empresa) 
     {
