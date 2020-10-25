@@ -45,15 +45,13 @@ methods:{
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
   return {      
-      'contiene-ingreso-opciones-duedor': true,
-      'contiene-ingreso-opciones':true 
+      'contiene-ingreso-opciones-duedor': true
     }
  }
  else
  {
   return {      
-      'contiene-ingreso-opciones-acredor': true,
-      'contiene-ingreso-opciones':true 
+      'contiene-ingreso-opciones-acredor': true
     }
  }
  },
@@ -184,11 +182,12 @@ template:`<span >
           </div>
 
           <div class="row mb-2 align-items-center">
-            <p  class="col-4 titulos-class color-text-gris text-center mb-0">@{{moneda}}</p>
+            <p  class="col-4 sub-titulos-class color-text-gris text-center mb-0">@{{moneda}}</p>
+            <div class="col-8 ">
+              <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor"  >
+            </div>
           </div>
-          <div class="col-8 ">
-            <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor"  >
-          </div>
+          
           
           <p v-if="valor_ingresar > 0" class=" color-text-gris text-center">
             Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
@@ -210,7 +209,7 @@ template:`<span >
                 class="col-6"
                 v-on:click="elegir_lo_que_voy_a_agregar(movimiento)" 
                 >                
-                  <div :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
+                  <div class="contiene-ingreso-opciones" :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
                     @{{movimiento.name}}
                   </div>    
           </div>
