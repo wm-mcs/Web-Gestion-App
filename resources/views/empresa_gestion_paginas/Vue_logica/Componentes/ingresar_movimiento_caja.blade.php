@@ -22,7 +22,7 @@ mounted: function mounted () {
 },
 methods:{
  abrir_modal:function(){
-   $(this.modal).appendTo("body").modal('show'); 
+  this.showModal = true;
    if(this.tipos_de_movimientos.length === 0)
    {
     this.get_tipos_de_movimientos();
@@ -258,31 +258,7 @@ template:`<span >
 
 
 
-   <div  class="admin-user-boton-Crear mr-lg-2" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
-       
-   </div>
 
-    <div class="modal fade" id="modal-ingreso-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-           <h4 class="modal-title" id="myModalLabel" v-if="servicio_elegido_comp">Ingresa el monto</h4>
-           <h4 class="modal-title" id="myModalLabel" v-else>Ingresar movimiento en sucursal @{{sucursal.name}}</h4>
-          <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-          
-        </div>
-        <div class="modal-body text-center"> 
-         
-                 
-                 
-        </div>
-        <div class="modal-footer">
-          
-          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 
