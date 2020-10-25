@@ -182,10 +182,13 @@ template:`<span >
           </div>
 
           <div class="row mb-2 align-items-center">
-            <p  class="col-3  color-text-gris text-center mb-0">@{{moneda}}</p>
-            <div class="col-9 ">
-              <input type="number" name="" v-model="valor_ingresar" class="col-12 ingresar-input-valor"  >
+            <p  class="col-4  color-text-gris text-right mb-0">@{{moneda}}</p>
+            
+            <div class="col-8">
+              <input type="number" name="" v-model="valor_ingresar" class="w-100 ingresar-input-valor"  >
             </div>
+            
+            
           </div>
           
           
