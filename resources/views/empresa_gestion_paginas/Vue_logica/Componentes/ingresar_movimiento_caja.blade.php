@@ -104,7 +104,7 @@ computed:{
   }
 }
 ,
-template:'<span >
+template:`<span >
    <div  class="admin-user-boton-Crear mr-lg-2" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
        <i class="fas fa-cash-register"></i>
 
@@ -131,14 +131,14 @@ template:'<span >
                       <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
             </div> 
            
-           <div class="contiene-fase-2-moneda">
+           <div v-if="$root.aceptaDolares" class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_40">
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="$" v-model="moneda">
                 <label class="moneda-label" for="$">Pesos</label>
               </div>
               
-              <div class="contiene-opcion-moneda">
+              <div  class="contiene-opcion-moneda">
                 <input type="radio" value="U$S" v-model="moneda">
                 <label class="moneda-label" for="U$S">Dolares</label>
               </div>
@@ -197,7 +197,7 @@ template:'<span >
 
 
 
-</span>'
+</span>`
 
 }
 

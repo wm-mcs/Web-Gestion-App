@@ -150,7 +150,7 @@ template:'<span >
                       <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
             </div>
            
-           <div class="contiene-fase-2-moneda">
+           <div v-if="$root.aceptaDolares" class="contiene-fase-2-moneda">
             <div class="flex-row-center flex-justifice-space-around get_width_40">
               <div class="contiene-opcion-moneda">
                 <input type="radio" value="$" v-model="moneda">

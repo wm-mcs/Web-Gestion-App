@@ -169,7 +169,7 @@ template:'<span>
 
                   
 
-                    <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
+                    <div  v-if="$root.aceptaDolares" class="formulario-label-fiel" v-if="se_puede_mostrar">
                       <label class="formulario-label" >Moneda</label>
                       <select v-model="servicio_data.moneda" class="form-control">
                         <option>$</option>

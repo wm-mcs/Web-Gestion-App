@@ -77,7 +77,7 @@ template:`
       <label class="formulario-label">Valor</label>
       <input type="text" class="formulario-field" v-model="servicio.valor" step="any">
     </div>
-    <div class="col-12 col-lg-4 formulario-label-fiel">
+    <div v-if="$root.aceptaDolares" class="col-12 col-lg-4 formulario-label-fiel">
       <label class="formulario-label">Moneda</label>
       <select v-model="servicio.moneda" class="formulario-field">                        
             <option>$</option>

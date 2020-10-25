@@ -120,6 +120,16 @@
                   width: '100%',
                }
       }
+    },
+    aceptaDolares:function(){
+      if(this.empresa.acepta_dolares == 'si')
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
     }
 

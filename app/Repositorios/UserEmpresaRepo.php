@@ -47,7 +47,6 @@ class UserEmpresaRepo extends BaseRepo
           $Entidad->save();
         }
 
-
         return [  
                  'Validacion'          =>  $Validacion,
                  'Validacion_mensaje'  =>  $Mensaje     

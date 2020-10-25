@@ -210,7 +210,7 @@ template:`
                   <label class="formulario-label">¿Cuánto cuesta?</label>
                   <input type="text" class="formulario-field" v-model="valor" step="any">
                 </div>
-                <div class="col-12 col-lg-4 formulario-label-fiel">
+                <div v-if="$root.aceptaDolares" class="col-12 col-lg-4 formulario-label-fiel">
                   <label class="formulario-label">¿Pesos o Dolares?</label>
                   <select v-model="moneda" class="formulario-field">
                     <option>$</option>
