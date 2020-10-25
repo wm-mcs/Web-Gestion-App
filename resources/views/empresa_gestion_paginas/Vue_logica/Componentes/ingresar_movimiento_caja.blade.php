@@ -100,8 +100,8 @@ get_tipos_de_movimientos:function(){
   var url = '/getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja';
 
   var data = {  
-                  
-              };  
+               empresa_id: this.empresa.id
+             };  
   var vue = this;          
 
   axios.post(url,data).then(function (response){  
