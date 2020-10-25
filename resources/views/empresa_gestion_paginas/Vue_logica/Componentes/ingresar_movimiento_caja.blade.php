@@ -202,7 +202,7 @@ template:`<span >
             @{{$root.boton_aceptar_texto}}
           </div>         
         </div>
-        <div v-else class="" class="row ">
+        <div v-else  class="row">
           <div  v-if="tipos_de_movimientos.length" 
                 v-for="movimiento in tipos_de_movimientos" 
                 :key="movimiento.id"
