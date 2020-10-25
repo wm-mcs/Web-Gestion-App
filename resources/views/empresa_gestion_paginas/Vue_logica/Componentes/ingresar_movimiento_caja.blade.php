@@ -21,6 +21,10 @@ mounted: function mounted () {
 },
 methods:{
  abrir_modal:function(){
+   if(this.tipos_de_movimientos.length === 0)
+   {
+    this.get_tipos_de_movimientos();
+   }   
    $(this.modal).appendTo("body").modal('show'); 
  },
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
