@@ -181,8 +181,8 @@ template:`<span >
             </div>
           </div>
 
-          <div class="row mb-2 align-items-center">
-            <p  class="col-4  color-text-gris text-right mb-0">@{{moneda}}</p>
+          <div class="row mb-2 align-items-center justify-content-center">
+            
             
             <div class="col-8">
               <input type="number" name="" v-model="valor_ingresar" class="w-100 ingresar-input-valor"  >
@@ -200,7 +200,7 @@ template:`<span >
                     <div class="cssload-tube-tunnel"></div>
               </div>
           </div>
-          <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
+          <div v-else class="boton-simple mt-4" v-on:click="ingresa_movimiento">
             @{{$root.boton_aceptar_texto}}
           </div>         
         </div>
@@ -216,7 +216,7 @@ template:`<span >
                     @{{movimiento.name}}
                   </div>    
           </div>
-          <div v-if="cargando" class="Procesando-text">
+          <div v-if="cargando" class="row my-5 align-items-center justify-content-center">
             <div class="cssload-container">
                 <div class="cssload-tube-tunnel"></div>
             </div>
