@@ -42,16 +42,14 @@ methods:{
  },
  class_verificar_tipo_saldo:function(saldo){
  if(saldo == 'deudor'){
-  return {
-      
+  return {      
       'contiene-ingreso-opciones-duedor': true,
       'contiene-ingreso-opciones':true 
     }
  }
  else
  {
-  return {
-      
+  return {      
       'contiene-ingreso-opciones-acredor': true,
       'contiene-ingreso-opciones':true 
     }
@@ -110,6 +108,7 @@ get_tipos_de_movimientos:function(){
           if(data.Validacion == true)
           {
             vue.cargando = false;
+            vue.tipos_de_movimientos = data.Data;
           }
           else
           { vue.cargando = false;
