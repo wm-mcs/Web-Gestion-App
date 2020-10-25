@@ -148,47 +148,36 @@ template:'<span>
         </div>
         <div class="modal-body text-center"> 
 
-                
-
-              
-
                  <div class="formulario-label-fiel">
-                      <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
-                     <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
-                        <option></option>
-                        <option v-for="servicio in empresa.tipo_servicios" v-bind:value="servicio.id">@{{servicio.name}}</option>
-                       
-                        
-                      </select>
+                    <label class="formulario-label" >Tipo de servicio <span class="formulario-label-aclaracion"> ¿por clase o mensual?</span></label>
+                    <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
+                      <option></option>
+                      <option v-for="servicio in empresa.tipo_servicios" v-bind:value="servicio.id">@{{servicio.name}}</option>                       
+                    </select>
                   </div> 
 
                   <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
-                      <label class="formulario-label" >Nombre <span class="formulario-label-aclaracion"> Puedes cambiar este nombre si quieres</span></label>
-                      <input type="text" class="formulario-field"  v-model="servicio_data.name" placeholder="Nombre"   />
+                    <label class="formulario-label" >Nombre <span class="formulario-label-aclaracion"> Puedes cambiar este nombre si quieres</span></label>
+                    <input type="text" class="formulario-field"  v-model="servicio_data.name" placeholder="Nombre"   />
+                  </div>                   
+
+                  <div class="formulario-label-fiel" v-if="se_puede_mostrar && $root.aceptaDolares">
+                    <label class="formulario-label" >Moneda</label>
+                    <select v-model="servicio_data.moneda" class="form-control">
+                      <option>$</option>
+                      <option>U$S</option>
+                    </select>
                   </div> 
 
-                  
+                  <div  class="formulario-label-fiel" v-if="es_clase">
+                    <label class="formulario-label" >Cantidad de clases</label>
+                    <input type="number" min="1" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
+                  </div>
 
-                    <div  v-if="$root.aceptaDolares" class="formulario-label-fiel" v-if="se_puede_mostrar">
-                      <label class="formulario-label" >Moneda</label>
-                      <select v-model="servicio_data.moneda" class="form-control">
-                        <option>$</option>
-                        <option>U$S</option>
-                        
-                       
-                        
-                      </select>
-                    </div> 
-
-                     <div  class="formulario-label-fiel" v-if="es_clase">
-                      <label class="formulario-label" >Cantidad de clases</label>
-                      <input type="number" min="1" class="formulario-field"  v-model="servicio_data.cantidad_de_servicios"   />
-                     </div>
-
-                     <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
-                      <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
-                      <input type="number" min="1" class="formulario-field"  v-model="servicio_data.valor"   />
-                     </div> 
+                  <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
+                    <label class="formulario-label" >Valor <span v-if="servicio_data.cantidad_de_servicios"> de todas las clases</span> </label>
+                    <input type="number" min="1" class="formulario-field"  v-model="servicio_data.valor"   />
+                  </div> 
 
 
                      <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
