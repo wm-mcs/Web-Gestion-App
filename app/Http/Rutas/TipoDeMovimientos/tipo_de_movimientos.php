@@ -31,7 +31,6 @@ Route::post('getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
 ]);
 
 
-getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja
 
 
 
