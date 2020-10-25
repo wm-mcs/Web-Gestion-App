@@ -154,7 +154,7 @@ template:`<span >
       
       <div class="row">
         <h4 class="col-12 sub-titulos-class" v-if="servicio_elegido_comp">Ingresa el monto </h4>
-        <h4 class="col-12 sub-titulos-class" v-else>Ingresar movimiento de cajaen sucursal @{{sucursal.name}}</h4>
+        <h4 class="col-12 sub-titulos-class" v-else>Ingresar movimiento de caja de sucursal @{{sucursal.name}}</h4>
         <div class="col-12 modal-mensaje-aclarador" v-if="!servicio_elegido_comp">
           Para ingresar un movimiento debes elegir una de las opciones que estan abajo <i class="fas fa-hand-point-down"></i>
         </div>
