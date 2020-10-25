@@ -21,11 +21,12 @@ mounted: function mounted () {
 },
 methods:{
  abrir_modal:function(){
+   $(this.modal).appendTo("body").modal('show'); 
    if(this.tipos_de_movimientos.length === 0)
    {
     this.get_tipos_de_movimientos();
    }   
-   $(this.modal).appendTo("body").modal('show'); 
+   
  },
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
   this.servicio_elegido = tipo_servicio;
@@ -63,7 +64,8 @@ methods:{
                         moneda: this.moneda,  
                          valor: this.valor_ingresar,
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
-                        nombre: this.nombre_a_ingresar  
+                        nombre: this.nombre_a_ingresar,
+         tipo_de_movimiento_id: this.servicio_elegido.id
                  };  
       var vue = this;  
       app.cargando = true;         
