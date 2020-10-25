@@ -174,7 +174,7 @@ template:`<span >
             </div>
            </div>
 
-           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor">
+           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor" autofocus >
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
              Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
