@@ -142,7 +142,7 @@ computed:{
 }
 ,
 template:`<span >
-<div   class="admin-user-boton-Crear"  v-on:click="showModal = !showModal" title="Ingreso de movimiento de caja">
+<div   class="admin-user-boton-Crear"  v-on:click="abrir_modal" title="Ingreso de movimiento de caja">
     <i class="fas fa-cash-register"></i>   
 </div>
 <transition name="modal" v-if="showModal">
