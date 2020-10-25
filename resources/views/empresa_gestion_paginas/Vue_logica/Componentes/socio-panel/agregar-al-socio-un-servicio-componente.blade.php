@@ -154,12 +154,7 @@ template:'<span>
                       <option></option>
                       <option v-for="servicio in empresa.tipo_servicios" v-bind:value="servicio.id">@{{servicio.name}}</option>                       
                     </select>
-                  </div> 
-
-                  <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
-                    <label class="formulario-label" >Nombre <span class="formulario-label-aclaracion"> Puedes cambiar este nombre si quieres</span></label>
-                    <input type="text" class="formulario-field"  v-model="servicio_data.name" placeholder="Nombre"   />
-                  </div>                   
+                  </div>                                     
 
                   <div class="formulario-label-fiel" v-if="se_puede_mostrar && $root.aceptaDolares">
                     <label class="formulario-label" >Moneda</label>
@@ -181,12 +176,12 @@ template:'<span>
 
 
                      <div  class="formulario-label-fiel" v-if="se_puede_mostrar" >
-                      <label class="formulario-label" >Fecha de vencimiento <span class="formulario-label-aclaracion"> por defecto es a un mes</span></label>
+                      <label class="formulario-label" >Fecha de vencimiento </label>
                       <input type="date" class="formulario-field"  v-model="servicio_data.fecha_vencimiento"    />
                      </div> 
 
                       <div  class="formulario-label-fiel" v-if="se_puede_mostrar">
-                      <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> puede que quede debiendo</span></label>
+                      <label class="formulario-label" >¿Lo paga ahora? <span class="formulario-label-aclaracion"> Puede que quede debiendo</span></label>
                       <div class="form-control">
                         <input type="radio" id="si" value="si" v-model="servicio_data.paga">
                         <label for="si">si</label>
@@ -209,7 +204,7 @@ template:'<span>
                              <div class="cssload-tube-tunnel"></div>
                        </div>
                   </div>
-                  <div v-else v-on:click="crear_servicio_a_socio" class="boton-simple">@{{$root.boton_aceptar_texto}}</div>
+                  <div v-else v-on:click="crear_servicio_a_socio" class="boton-simple mt-4">@{{$root.boton_aceptar_texto}}</div>
                   
                  
         </div>
