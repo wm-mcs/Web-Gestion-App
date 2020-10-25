@@ -136,6 +136,18 @@ template:'
                 </select>
                 
               </div>
+               <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">¿Se muestra?</label> 
+                <div class="formulario-label-aclaracion">
+                  Si se muestra cómo opción en la vista
+                </div> 
+                <select v-model="data_editar.se_muestra_en_panel" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
+
 
               <div class="col-6 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label> 

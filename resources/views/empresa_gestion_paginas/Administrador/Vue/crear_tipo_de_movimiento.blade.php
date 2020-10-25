@@ -12,7 +12,8 @@ data:function(){
                   movimiento_de_empresa_a_socio:'',
                   movimiento_de_la_empresa:'',
                   descripcion_breve:'',
-                  estado:'si'
+                  estado:'si',
+                  se_muestra_en_panel:'si'
                 }
 
     }
@@ -114,8 +115,7 @@ template:'
               </div>
               
               <div class="col-lg-6 formulario-label-fiel">
-                <label class="formulario-label">¿Interactua con un socio?</label> 
-                               
+                <label class="formulario-label">¿Interactua con un socio?</label>                                
                 <select v-model="data_crear.movimiento_de_empresa_a_socio" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
@@ -143,6 +143,19 @@ template:'
                 </select>
                 
               </div>
+              <div class="col-lg-6 formulario-label-fiel">
+                <label class="formulario-label">¿Se muestra?</label> 
+                <div class="formulario-label-aclaracion">
+                  Si se muestra cómo opción en la vista
+                </div>
+                <select v-model="data_crear.se_muestra_en_panel" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
+
+              
 
               <div class="col-6 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label> 
