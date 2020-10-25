@@ -3,9 +3,9 @@ Vue.component('ingresar-movimiento-caja' ,
 props:[ 'empresa','sucursal'],
 data:function(){
     return {
+     cargando:false, 
      modal:'#modal-ingreso-caja',
-     tipos_de_servicios: {!! json_encode(config('tipo_movimientos_de_caja')) !!},
-     tipos_de_servicios_dueno:[{ nombre:"Ingreso Dinero",tipo_saldo:"deudor"},{ nombre:"Retiro Dinero",tipo_saldo:"acredor"}] ,
+     tipos_de_movimientos: [],
      servicio_elegido:'',
      moneda: '$',
      nombre_a_ingresar:'',
@@ -13,6 +13,11 @@ data:function(){
      user:  {!! json_encode(Auth::user()) !!}
 
     }
+},
+mounted: function mounted () {        
+      
+   
+
 },
 methods:{
  abrir_modal:function(){
@@ -82,15 +87,40 @@ methods:{
            
            }).catch(function (error){
 
-                     
+             app.cargando = false;
+             $.notify(error, "error");       
             
            });
+},
+get_tipos_de_movimientos:function(){
+  var url = '/getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja';
+
+  var data = {  
+                  
+              };  
+  var vue = this;          
+
+  axios.post(url,data).then(function (response){  
+          var data = response.data;         
+
+          if(data.Validacion == true)
+          {
+            vue.cargando = false;
+          }
+          else
+          { vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        
+        }).catch(function (error){
+            vue.cargando = false;
+            $.notify(error, "error");    
+        });
 }
 
     
 
 },
-
 computed:{
   servicio_elegido_comp:function(){
     if(this.servicio_elegido != '')
@@ -107,15 +137,9 @@ computed:{
 template:`<span >
    <div  class="admin-user-boton-Crear mr-lg-2" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
        <i class="fas fa-cash-register"></i>
+   </div>
 
-
-
-
-
-       
-  </div>
-
-         <div class="modal fade" id="modal-ingreso-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modal-ingreso-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -151,29 +175,31 @@ template:`<span >
            </div>
 
            <div v-if="$root.cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
-                  </div>
+              <div class="cssload-container">
+                    <div class="cssload-tube-tunnel"></div>
+              </div>
+           </div>
            <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
              @{{$root.boton_aceptar_texto}}
            </div>
 
            
-         </div>
-         <div v-else class="" class="contiene-ingreso-de-caja-opciones">
-           <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
-             @{{servicio.nombre}}
-           </div>
-           <div v-if="user.role > 2" 
-               v-for="servicio in tipos_de_servicios_dueno" 
-          v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
-             @{{servicio.nombre}}
-             
-           </div>
-         </div>
+        </div>
+        <div v-else class="" class="contiene-ingreso-de-caja-opciones">
+          <div v-if="tipos_de_movimientos.length" 
+                v-for="movimiento in tipos_de_movimientos" 
+                :key="movimiento.id"
+                :title="movimiento.descripcion_breve"
+                v-on:click="elegir_lo_que_voy_a_agregar(movimiento)" 
+                :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
+                @{{movimiento.name}}
+          </div>
+          <div v-if="cargando" class="Procesando-text">
+            <div class="cssload-container">
+                <div class="cssload-tube-tunnel"></div>
+            </div>
+          </div>           
+        </div>
                  
                  
         </div>

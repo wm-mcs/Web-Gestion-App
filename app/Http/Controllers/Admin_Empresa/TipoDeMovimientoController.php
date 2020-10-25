@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin_Empresa;
+
+use App\Helpers\HelpersGenerales;
 use Illuminate\Http\Request;
 use App\Repositorios\TipoDeMovimientoRepo;
 use App\Http\Controllers\Controller;
@@ -24,7 +26,7 @@ class TipoDeMovimientoController extends Controller
 
   public function getPropiedades()
   {
-    return ['name','tipo_saldo','movimiento_de_empresa_a_socio','movimiento_de_la_empresa','descripcion_breve','estado'];
+    return ['name','tipo_saldo','movimiento_de_empresa_a_socio','movimiento_de_la_empresa','descripcion_breve','estado','se_muestra_en_panel'];
   }
 
   /**
@@ -105,5 +107,28 @@ class TipoDeMovimientoController extends Controller
 
     return ['Validacion'          => true,
             'Validacion_mensaje'  => 'Se editó correctamente']; 
+  }
+
+  /**
+   * Obtengo los movimeintos para general de la empresa
+   */
+  public function getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja(Request $Request)
+  {
+
+    $array_filtros = [
+                        [ 
+                          'where_tipo' => 'where',     
+                          'key'        => 'se_muestra_en_panel',
+                          'value'      => 'si'
+                        ],
+                        [ 
+                          'where_tipo' => 'where',     
+                          'key'        => 'movimiento_de_la_empresa',
+                          'value'      => 'si'
+                        ]
+                     ]; 
+    $Tipos_de_movimeintos = $this->TipoDeMovimientoRepo->getEntidadesMenosIdsYConFiltros($array_filtros,[],100,'name','asc');
+
+    return HelpersGenerales::formateResponseToVue(true,'Se cargaron',$Tipos_de_movimeintos);
   }
 }
