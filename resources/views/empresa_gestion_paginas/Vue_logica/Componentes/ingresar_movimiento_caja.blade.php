@@ -102,7 +102,8 @@ get_tipos_de_movimientos:function(){
   var data = {  
                empresa_id: this.empresa.id
              };  
-  var vue = this;          
+  var vue = this; 
+  vue.cargando = true;         
 
   axios.post(url,data).then(function (response){  
           var data = response.data;         
@@ -174,7 +175,7 @@ template:`<span >
             </div>
            </div>
 
-           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor" autofocus >
+           <input type="text" name="" v-model="valor_ingresar" class="ingresar-input-valor"  >
            <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
              Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
            </div>
