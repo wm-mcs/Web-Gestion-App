@@ -24,11 +24,6 @@ Route::post('edit_un_tipo_de_movimiento',
   'as'    => 'edit_un_tipo_de_movimiento'
 ]);
 
-Route::post('getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
-[
-  'uses'  => 'Admin_Empresa\TipoDeMovimientoController@getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
-  'as'    => 'getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja'
-]);
 
 
 
