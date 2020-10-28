@@ -116,13 +116,13 @@ template:`  <div class="contiene-lista-caja">
                         <i class="fas fa-trash-alt"></i> 
                       </span>
                       <span v-if="caja.tipo_de_movimiento_id != null">
-                         <i class="far fa-check-circle"></i>
+                         <i class="far fa-check-circle"></i>  <span>@{{caja.tipo_de_movimiento_cache.name}} </span>
                       </span>
 
                     </span>
 
                 </span>            
-                <span> </span>
+               
               </div>             
               
             </div>`
