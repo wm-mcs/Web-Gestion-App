@@ -3,10 +3,7 @@
 namespace App\Repositorios;
 
 use App\Entidades\CajaEmpresa;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
-use Carbon\Carbon;
 use App\Helpers\Traits\contabilidadTrait;
 
 
@@ -32,11 +29,17 @@ class CajaEmpresaRepo extends BaseRepo
                 ->get();
   }
 
-
-  
-
-
-  public function InresarMovimientoDeCaja($empresa_id,$sucursal_id,$user_id,$tipo_saldo,$moneda,$valor,$detalle,$fecha_ingreso,$tipo_movimiento,$servicio = null)
+  public function InresarMovimientoDeCaja($empresa_id,
+                                          $sucursal_id,
+                                          $user_id,
+                                          $tipo_saldo,
+                                          $moneda,
+                                          $valor,
+                                          $detalle,
+                                          $fecha_ingreso,
+                                          $tipo_movimiento,
+                                          $servicio = null,
+                                          $tipo_de_movimiento_id = null)
   {
     $Entidad                   = $this->getEntidad();
     $Entidad->empresa_id       = $empresa_id;
@@ -54,6 +57,12 @@ class CajaEmpresaRepo extends BaseRepo
     {
       $Entidad->servicio_id = $servicio->id;
     }
+
+    if($tipo_de_movimiento_id != null)
+    {
+      $Entidad->tipo_de_movimiento_id = $tipo_de_movimiento_id;
+    }
+
     $Entidad->save();
 
     //actualizoElCache de todo lo que tiene que ver con Caja
@@ -145,8 +154,7 @@ class CajaEmpresaRepo extends BaseRepo
 
       $Acredor = $this->getMovimientosDeEstaSucrsalEnDolares($sucursal_id)->where('tipo_saldo','acredor') 
                                                                   ->sum('valor');
-
-
+                                                                  
       return round($Debe - $Acredor) ; 
   }
 

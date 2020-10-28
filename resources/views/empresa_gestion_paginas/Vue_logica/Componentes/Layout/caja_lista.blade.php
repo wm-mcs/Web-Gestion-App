@@ -86,7 +86,7 @@ computed:{
     
 
 },
-template:'  <div class="contiene-lista-caja"> 
+template:`  <div class="contiene-lista-caja"> 
 
               <div :class="getClassLista">
                 <span class="caja-lista-nombre" >
@@ -104,26 +104,28 @@ template:'  <div class="contiene-lista-caja">
                 </span>
                 <span class="caja-lista-datos-secundarios"> 
 
-                   Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong> | Id: @{{caja.id}}  
-                   <span v-if="sePuedeEliminar"> 
-
+                    Operador: <strong>@{{caja.user_name}}</strong>  | Fecha:  <strong>@{{caja.fecha}}</strong> | Id: @{{caja.id}}  
+                    <span v-if="sePuedeEliminar"> 
                       |
                       <div v-if="cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
+                        <div class="cssload-container">
+                           <div class="cssload-tube-tunnel"></div>
+                        </div>
                       </div>
-                     <span v-else v-on:click="anular_movimiento" class="simula_link" title="Anular éste movimiento.">
+                      <span v-else v-on:click="anular_movimiento" class="simula_link" title="Anular este movimiento.">
                         <i class="fas fa-trash-alt"></i> 
                       </span>
-
+                      <span v-if="caja.tipo_de_movimiento_id != null">
+                         <i class="far fa-check-circle"></i>
                       </span>
+
+                    </span>
 
                 </span>            
                 <span> </span>
               </div>             
               
-            </div>'
+            </div>`
 
 }
 

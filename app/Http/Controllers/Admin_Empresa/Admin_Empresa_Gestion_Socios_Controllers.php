@@ -1188,7 +1188,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                       $Request->get('valor'), 
                                                       $detalle, 
                                                       Carbon::now('America/Montevideo'), 
-                                                      $Request->get('nombre'));
+                                                      $Request->get('nombre'),
+                                                      null,
+                                                      $Request->get('tipo_de_movimiento_id'));
 
       //actualiza la session
       $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
