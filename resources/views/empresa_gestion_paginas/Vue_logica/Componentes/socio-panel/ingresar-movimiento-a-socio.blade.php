@@ -73,19 +73,15 @@ methods:{
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
-            
 
             if(data.Validacion == true)
             {
-
               vue.cargando = false;
-              
+              vue.showModal = false;
               vue.$emit('actualizar_socio',response.data.Socio); 
               bus.$emit('sucursal-set', response.data.sucursal);  
               $.notify(data.Validacion_mensaje, "success");   
-
               vue.poner_valor_de_cero();       
-               
             }
             else
             {
@@ -95,8 +91,7 @@ methods:{
            
            }).catch(function (error){
              vue.cargando = false;
-             $.notify(error, "error");  
-                     
+             $.notify(error, "error");                       
             
            });
 },

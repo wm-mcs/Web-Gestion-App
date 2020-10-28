@@ -438,9 +438,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
                   'Socio'                => $Socio 
-                 ];
-       
-      
+                 ];    
   }
 
 
@@ -963,9 +961,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           }
 
 
-     
-
-
      if($Validacion)
      {
        return ['Validacion'          =>  $Validacion,
@@ -1309,12 +1304,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Sucursal->id, 
                                                                  $User->id, 
                                                                  'deudor', 
-                                                                $Moneda, 
+                                                                 $Moneda, 
                                                                  $Valor, 
-                                                                 'Cobro a socio '. $Socio->name . ' por concepto de ' . $Nombre, 
+                                                                 'Movimiento a '. $Socio->name . ' por concepto de ' . $Nombre, 
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Nombre,
-                                                                 null ) ;
+                                                                 null,
+                                                                 $Request->get('tipo_de_movimiento_id') ) ;
 
               //actualiza la session
               $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
@@ -1457,12 +1453,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
 
-
-
-
   public function email_simples()
   {
-
       $Email = 'email';
       $Texto = 'Bienvenido a Easy Socio! te hemos creado una cuenta.';
 
@@ -1472,15 +1464,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Texto_boton    = 'Ingresar ahora';
       $Link_del_boton = 'asdasd';
       return view('emails.envio_email_creacion_user', compact('Texto','Texto_boton','Link_del_boton','User_name','Contraseña'));
-
   }
-
 
     public function borrar_todos_los_datos_de_esta_empresa($id)
     {
       $Empresa = $this->EmpresaConSociosoRepo->find($id);
-
-
 
       $Movimientos_de_caja = $this->CajaEmpresaRepo->getMovimientosDeCajaDeEstaEmpresa($Empresa->id);
       foreach($Movimientos_de_caja as $Caja)
