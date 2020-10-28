@@ -85,6 +85,13 @@ abstract class BaseRepo
                                 {
                                   $q->orWhere($valor['key'],$valor['value']); 
                                 }
+                                elseif($valor['where_tipo'] == 'whereBetween')
+                                {                                  
+                                  $q->whereBetween($valor['key'],[ 
+                                                                  $valor['value']['start'],
+                                                                  $valor['value']['end'] 
+                                                                 ]);
+                                }
                               }                                                            
                             }    
                           }

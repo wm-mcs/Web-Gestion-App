@@ -131,4 +131,28 @@ class TipoDeMovimientoController extends Controller
 
     return HelpersGenerales::formateResponseToVue(true,'Se cargaron',$Tipos_de_movimeintos);
   }
+
+  /**
+   * Le mando los movimientos al panel del socio
+   */
+  public function getMovimientosParaPanelDeIngresoDeMovimeintoAlSocio(Request $Request)
+  {
+    $array_filtros = [
+                        [ 
+                          'where_tipo' => 'where',     
+                          'key'        => 'se_muestra_en_panel',
+                          'value'      => 'si'
+                        ],
+                        [ 
+                          'where_tipo' => 'where',     
+                          'key'        => 'movimiento_de_empresa_a_socio',
+                          'value'      => 'si'
+                        ]
+                     ]; 
+
+    $Tipos_de_movimeintos = $this->TipoDeMovimientoRepo->getEntidadesMenosIdsYConFiltros($array_filtros,[],100,'name','asc');
+
+    return HelpersGenerales::formateResponseToVue(true,'Se cargaron',$Tipos_de_movimeintos);
+
+  }
 }

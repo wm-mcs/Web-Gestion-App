@@ -3,21 +3,26 @@ Vue.component('ingresar-movimiento-a-socio' ,
 props:[ 'empresa','sucursal','socio'],
 data:function(){
     return {
-     modal:'#modal-ingreso-caja',
-     tipos_de_servicios: {!! json_encode(config('movimientos_a_socio')) !!},
-    
-     servicio_elegido:'',
-     se_cobra:'si',
-     moneda: '$',
-     valor_ingresar:0,
-     nombre_a_ingresar:'',
-     user:  {!! json_encode(Auth::user()) !!}
-
+      cargando:false,
+      showModal:false,
+      tipos_de_servicios:[],    
+      servicio_elegido:'',
+      se_cobra:'si',
+      moneda: '$',
+      valor_ingresar:0,
+      nombre_a_ingresar:'',
+      user:  {!! json_encode(Auth::user()) !!}
     }
 },
 methods:{
  abrir_modal:function(){
-   $(this.modal).appendTo("body").modal('show'); 
+   
+   this.showModal = true;
+   if(this.tipos_de_movimientos.length === 0)
+   {
+    this.get_tipos_de_movimientos();
+   }   
+
  },
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
   this.servicio_elegido = tipo_servicio;
@@ -59,11 +64,12 @@ methods:{
                     tipo_saldo: this.servicio_elegido.tipo_saldo,
                         nombre: this.nombre_a_ingresar,
                       socio_id: this.socio.id,
-                          paga: this.se_cobra
+                          paga: this.se_cobra,
+         tipo_de_movimiento_id: this.servicio_elegido.id
                  };  
       var vue = this;    
 
-     app.cargando = true;        
+     vue.cargando = true;        
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -72,8 +78,8 @@ methods:{
             if(data.Validacion == true)
             {
 
-              app.cargando = false;
-              app.cerrarModal(vue.modal);
+              vue.cargando = false;
+              
               vue.$emit('actualizar_socio',response.data.Socio); 
               bus.$emit('sucursal-set', response.data.sucursal);  
               $.notify(data.Validacion_mensaje, "success");   
@@ -83,15 +89,43 @@ methods:{
             }
             else
             {
-              app.cargando = false;
+              vue.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
            }).catch(function (error){
-
+             vue.cargando = false;
+             $.notify(error, "error");  
                      
             
            });
+},
+get_tipos_de_movimientos:function(){
+  var url = '/getMovimientosParaPanelDeIngresoDeMovimeintoAlSocio';
+
+  var data = {  
+               empresa_id: this.empresa.id
+             };  
+  var vue = this; 
+  vue.cargando = true;         
+
+  axios.post(url,data).then(function (response){  
+          var data = response.data;         
+
+          if(data.Validacion == true)
+          {
+            vue.cargando = false;
+            vue.tipos_de_movimientos = data.Data;
+          }
+          else
+          { vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        
+        }).catch(function (error){
+            vue.cargando = false;
+            $.notify(error, "error");    
+        });
 }
 
     
@@ -121,115 +155,105 @@ computed:{
   },
 }
 ,
-template:'<span >
-   <div  class="admin-user-boton-Crear text-center panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal" title="Ingresar un movimiento de caja">
-       <i class="fas fa-cash-register"></i> Cobrar
+template:'
+<span >
+<div   class="admin-user-boton-Crear"  v-on:click="abrir_modal" title="Ingreso de movimiento de caja">
+    <i class="fas fa-cash-register"></i>   
+</div>
+<transition name="modal" v-if="showModal">
+<div class="modal-mask ">
+  <div class="modal-wrapper">
+    <div class="modal-container position-relative">
+    <span class="modal-cerrar-icono sub-titulos-class text-center color-text-gris" @click="showModal = !showModal">
+      <i class="fas fa-times"></i>
+    </span>
 
-
-
-
-
-       
-  </div>
-
-         <div class="modal fade" id="modal-ingreso-caja" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel" v-if="servicio_elegido_comp">Ingresa el monto</h4>
-           <h4 class="modal-title" id="myModalLabel" v-else> Facturar o cobrar algo a @{{socio.name}}</h4>
-          <button v-on:click="cancelarIngreso" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-          
+      
+      <div class="row">
+        <h4 class="col-12 sub-titulos-class" v-if="servicio_elegido_comp">Ingresa el monto </h4>
+        <h4 class="col-12 sub-titulos-class" v-else> Ingresar movimiento a @{{socio.name}} </h4>
+        <div class="col-12 modal-mensaje-aclarador" v-if="!servicio_elegido_comp">
+          Para ingresar un movimiento debes elegir una de las opciones que estan abajo <i class="fas fa-hand-point-down"></i>
         </div>
-        <div class="modal-body text-center"> 
-         <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
+      </div>      
 
-          <div class="formulario-label-fiel">
-                      <label class="formulario-label" for="Nombre"> Detalle a ingresar  </label>
-                      <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
-            </div>
-           
-           <div v-if="$root.aceptaDolares" class="contiene-fase-2-moneda">
-            <div class="flex-row-center flex-justifice-space-around get_width_40">
-              <div class="contiene-opcion-moneda">
+      <div class="modal-body">  
+          <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
+            <div class="col-12 mb-2">
+              <label class="formulario-label" for="Nombre"> Detalle a ingresar  </label>
+              <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
+            </div> 
+          
+          <div v-if="$root.aceptaDolares" class="contiene-fase-2-moneda">
+            <div class="row mb-2">
+              <div class="col-6">
                 <input type="radio" value="$" v-model="moneda">
                 <label class="moneda-label" for="$">Pesos</label>
               </div>
               
-              <div class="contiene-opcion-moneda">
+              <div  class="col-6">
                 <input type="radio" value="U$S" v-model="moneda">
                 <label class="moneda-label" for="U$S">Dolares</label>
               </div>
             </div>
-           </div>
+          </div>
 
-          
-
-           <input type="number" name="" min="1" v-model="valor_ingresar" class="ingresar-input-valor">
-
-           <div v-if="servicio_elegido_es_distinto_de_cobro" class="contiene-fase-2-moneda">
-            <div class="flex-row-center flex-justifice-space-around get_width_80">
-              <div class="contiene-opcion-moneda">
-                <input type="radio" value="si" v-model="se_cobra">
-                <label class="moneda-label" for="si">Paga ahora</label>
-              </div>
-              
-              <div class="contiene-opcion-moneda">
-                <input type="radio" value="no" v-model="se_cobra">
-                <label class="moneda-label" for="no">Queda debiendo</label>
-              </div>
+          <div class="row mb-2 align-items-center justify-content-center">
+            
+            
+            <div class="col-8">
+              <input type="number" name="" v-model="valor_ingresar" class="w-100 ingresar-input-valor"  >
             </div>
-           </div>
-
-
-           <div v-if="valor_ingresar > 0" class="ingreso-caja-aviso">
-             Estás a punto de ingresar ésto al socio @{{socio.name}}  : <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
-           </div>
-
-
-
-            <div v-if="$root.cargando" class="Procesando-text">
-                       <div class="cssload-container">
-                             <div class="cssload-tube-tunnel"></div>
-                       </div>
-                  </div>
-           <div v-else class="boton-simple" v-on:click="ingresa_movimiento">
-             @{{$root.boton_aceptar_texto}}
-           </div>
-
-           
-         </div>
-         <div v-else class="" class="contiene-ingreso-de-caja-opciones">
-           <div v-for="servicio in tipos_de_servicios" v-on:click="elegir_lo_que_voy_a_agregar(servicio)" 
-                       :class="class_verificar_tipo_saldo(servicio.tipo_saldo)">
-             @{{servicio.nombre}}
-           </div>
-           
-         </div>
-                 
-                 
+            
+            
+          </div>
+          
+          
+          <p v-if="valor_ingresar > 0" class=" color-text-gris text-center">
+            Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+          </p>
+          <div v-if="$root.cargando" class="py-5 d-flex flex-row align-items-center justify-content-center">
+              <div class="cssload-container">
+                    <div class="cssload-tube-tunnel"></div>
+              </div>
+          </div>
+          <div v-else class="boton-simple mt-4" v-on:click="ingresa_movimiento">
+            @{{$root.boton_aceptar_texto}}
+          </div>         
         </div>
-        <div class="modal-footer">
-          <button v-on:click="cancelarIngreso" type="button" class="btn btn-default" data-dismiss="modal">@{{$root.boton_cancelar_texto}}</button>        
+        <div v-else  class="row">
+          <div  v-if="tipos_de_movimientos.length" 
+                v-for="movimiento in tipos_de_movimientos" 
+                :key="movimiento.id"
+                :title="movimiento.descripcion_breve"
+                class="col-6 p-1"
+                v-on:click="elegir_lo_que_voy_a_agregar(movimiento)" 
+                >                
+                  <div class="contiene-ingreso-opciones" :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
+                    @{{movimiento.name}}
+                  </div>    
+          </div>
+          <div v-if="cargando" class=" w-100 d-flex flex-row my-5 align-items-center justify-content-center">
+            <div class="cssload-container">
+                <div class="cssload-tube-tunnel"></div>
+            </div>
+          </div>           
         </div>
+      </div>     
+
+      <div class="modal-footer">           
+        <button class="modal-default-button"   @click="showModal = !showModal">
+          @{{$root.boton_cancelar_texto}}
+        </button>           
       </div>
+
     </div>
   </div>
+</div>
+</transition>
 
 
-
-
-
-
-
-
-
-
-
-
-
-</span>'
-
+</span>`
 }
 
 
