@@ -67,7 +67,7 @@ methods:{
          tipo_de_movimiento_id: this.servicio_elegido.id
                  };  
       var vue = this;  
-      app.cargando = true;         
+      vue.cargando = true;         
 
      axios.post(url,data).then(function (response){  
             var data = response.data;  
@@ -75,8 +75,8 @@ methods:{
 
             if(data.Validacion == true)
             {
-              app.cargando = false;
-              app.cerrarModal(vue.modal);
+              vue.cargando = false;
+              vue.showModal = false;
               bus.$emit('sucursal-set', response.data.sucursal);  
               $.notify(data.Validacion_mensaje, "success");   
 
@@ -84,13 +84,13 @@ methods:{
                
             }
             else
-            { app.cargando = false;
+            { vue.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
            
            }).catch(function (error){
 
-             app.cargando = false;
+             vue.cargando = false;
              $.notify(error, "error");       
             
            });
@@ -195,7 +195,7 @@ template:`<span >
           <p v-if="valor_ingresar > 0" class=" color-text-gris text-center">
             Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
           </p>
-          <div v-if="$root.cargando" class="Procesando-text">
+          <div v-if="$root.cargando" class="py-5 d-flex flex-row align-items-center justify-content-center">
               <div class="cssload-container">
                     <div class="cssload-tube-tunnel"></div>
               </div>

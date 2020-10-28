@@ -60,7 +60,6 @@ methods:{
                         nombre: this.nombre_a_ingresar,
                       socio_id: this.socio.id,
                           paga: this.se_cobra
-
                  };  
       var vue = this;    
 
