@@ -26,7 +26,7 @@ methods:{
  },
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
   this.servicio_elegido = tipo_servicio;
-  this.nombre_a_ingresar = tipo_servicio.nombre;
+  this.nombre_a_ingresar = tipo_servicio.name;
  },
  cancelarIngreso:function(){
   this.poner_valor_de_cero();
