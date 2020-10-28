@@ -209,7 +209,7 @@ template:`<span >
                 v-for="movimiento in tipos_de_movimientos" 
                 :key="movimiento.id"
                 :title="movimiento.descripcion_breve"
-                class="col-6"
+                class="col-6 p-1"
                 v-on:click="elegir_lo_que_voy_a_agregar(movimiento)" 
                 >                
                   <div class="contiene-ingreso-opciones" :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
