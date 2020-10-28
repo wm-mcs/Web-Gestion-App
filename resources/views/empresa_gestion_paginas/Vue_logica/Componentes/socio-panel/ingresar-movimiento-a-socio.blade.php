@@ -139,7 +139,7 @@ computed:{
     }
   },
   servicio_elegido_es_distinto_de_cobro:function(){
-    if(this.servicio_elegido.nombre != 'Cobro')
+    if(this.servicio_elegido.id != '4') /*4 es el id de cobro*/
     {
       return true;
     }
@@ -189,6 +189,20 @@ template:`
               <div  class="col-6">
                 <input type="radio" value="U$S" v-model="moneda">
                 <label class="moneda-label" for="U$S">Dolares</label>
+              </div>
+            </div>
+          </div>
+
+
+          <div v-if="servicio_elegido_es_distinto_de_cobro" class="contiene-fase-2-moneda">
+           <div class="flex-row-center flex-justifice-space-around get_width_80">
+             <div class="contiene-opcion-moneda">
+                <input type="radio" value="si" v-model="se_cobra">
+                 <label class="moneda-label" for="si">Paga ahora</label>
+             </div>
+             <div class="contiene-opcion-moneda">	
+                <input type="radio" value="no" v-model="se_cobra">	
+                <label class="moneda-label" for="no">Queda debiendo</label>
               </div>
             </div>
           </div>
