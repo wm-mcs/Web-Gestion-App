@@ -216,7 +216,7 @@ template:`<span >
                     @{{movimiento.name}}
                   </div>    
           </div>
-          <div v-if="cargando" class="row my-5 align-items-center justify-content-center">
+          <div v-if="cargando" class=" w-100 d-flex flex-row my-5 align-items-center justify-content-center">
             <div class="cssload-container">
                 <div class="cssload-tube-tunnel"></div>
             </div>
