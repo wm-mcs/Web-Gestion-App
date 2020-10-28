@@ -5,7 +5,7 @@ data:function(){
     return {
       cargando:false,
       showModal:false,
-      tipos_de_servicios:[],    
+      tipos_de_movimientos:[],    
       servicio_elegido:'',
       se_cobra:'si',
       moneda: '$',
