@@ -155,7 +155,7 @@ computed:{
   },
 }
 ,
-template:'
+template:`
 <span >
 <div   class="admin-user-boton-Crear"  v-on:click="abrir_modal" title="Ingreso de movimiento de caja">
     <i class="fas fa-cash-register"></i>   
