@@ -216,7 +216,10 @@ template:`
    <div  class="col-8 col-lg-8 d-flex flex-column align-items-center">
     
     @if(file_exists($Empresa->path_url_img)) 
-    <img v-show="countDown === false" class="mb-3 img-fluid" src="{{$Empresa->url_img}}">
+    <div class="col-10 col-lg-5 p-3 p-lg-5">
+      <img v-show="countDown === false" class="mb-3 img-fluid" src="{{$Empresa->url_img}}">
+    </div>
+    
     @endif
     
    <div v-show="countDown === false" class="sub-titulos-class  color-text-gris text-center mb-1">

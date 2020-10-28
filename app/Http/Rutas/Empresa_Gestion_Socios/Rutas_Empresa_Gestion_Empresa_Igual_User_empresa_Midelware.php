@@ -20,6 +20,11 @@ Route::post('movimientos_de_accesos_view',  [
   'as'         => 'movimientos_de_accesos_view']);  
     
   
+Route::post('getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
+[
+  'uses'  => 'Admin_Empresa\TipoDeMovimientoController@getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
+  'as'    => 'getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja'
+]);
   
 
 
