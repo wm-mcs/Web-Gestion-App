@@ -37,7 +37,7 @@ class CajaEmpresa extends Model
 
     public function tipo_de_movimiento()
     {
-        return $this->hasOne(TipoDeMovimiento::class,'tipo_de_movimiento_id','id');
+        return $this->hasOne(TipoDeMovimiento::class,'id','tipo_de_movimiento_id');
     } 
 
         public function getTipoDeMovimientoCacheAttribute()
