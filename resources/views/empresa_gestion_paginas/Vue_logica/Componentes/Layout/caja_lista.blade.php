@@ -118,6 +118,9 @@ template:`  <div class="contiene-lista-caja">
                       <span v-if="caja.tipo_de_movimiento_id != null">
                          <i class="far fa-check-circle"></i>  <span>@{{caja.tipo_de_movimiento_cache.name}} </span>
                       </span>
+                       <span v-if="caja.estado_de_cuenta_del_socio_id != null">
+                         <i class="far fa-user"></i> <span>Asociado a estado de cuenta de socio</span>
+                      </span>
 
                     </span>
 
