@@ -32,6 +32,7 @@ use App\Repositorios\ServicioSocioRenovacionRepo;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\HelpersGenerales;
 use App\Repositorios\AccesoClienteRepo;
+use App\Repositorios\TipoDeMovimientoRepo;
 
 
 
@@ -51,6 +52,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $CajaEmpresaRepo;
   protected $ServicioSocioRenovacionRepo;
   protected $AccesoClienteRepo;
+  protected $TipoDeMovimientoRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -64,7 +66,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               SucursalEmpresaRepo               $SucursalEmpresaRepo,
                               CajaEmpresaRepo                   $CajaEmpresaRepo,
                               ServicioSocioRenovacionRepo       $ServicioSocioRenovacionRepo,
-                              AccesoClienteRepo                 $AccesoClienteRepo  )
+                              AccesoClienteRepo                 $AccesoClienteRepo,
+                              TipoDeMovimientoRepo              $TipoDeMovimientoRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -79,6 +82,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
     $this->ServicioSocioRenovacionRepo       = $ServicioSocioRenovacionRepo;
     $this->AccesoClienteRepo                 = $AccesoClienteRepo;
+    $this->TipoDeMovimientoRepo              = $TipoDeMovimientoRepo;
+
   }
 
   public function getPropiedades()
@@ -662,7 +667,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+              $Estado_de_cuenta =  $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Entidad->socio_id, 
                                             $User->id,
                                             $Entidad->moneda,
@@ -681,7 +686,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Venta de servicio a socio '. $Socio->name, 
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio ',
-                                                                 $Entidad ) ;
+                                                                 $Entidad,
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio(),
+                                                                 $Estado_de_cuenta->id ) ;
             }         
              
           }
@@ -723,7 +730,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+               $Estado_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Socio->id,
                                             $User->id, 
                                             $Entidad->moneda,
@@ -743,7 +750,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Venta de servicio a socio '. $Socio->name,
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio',
-                                                                 $Entidad ) ;
+                                                                 $Entidad,
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio(),
+                                                                 $Estado_de_cuenta->id
+                                                                  ) ;
 
 
 
@@ -862,7 +872,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,               
                                                                 Carbon::now('America/Montevideo'),
                                                                 'Anulacion Estado De Cuenta',
-                                                                null
+                                                                null,
+                                                                $this->CajaEmpresaRepo->getMovimientosDeCajaSegunEstadoDecuentasocioID($Estado->id)
                                                                 ); 
           //indico que es un movimiento anulador
           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
@@ -951,7 +962,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                    'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                    Carbon::now('America/Montevideo'),
                                                                    'Anulacion Estado De Cuenta',
-                                                                   null);
+                                                                   null,
+                                                                   $this->CajaEmpresaRepo->getMovimientosDeCajaSegunEstadoDecuentasocioID($Entidad->id) );
 
            //indico que es un movimiento anulador
            $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
@@ -1227,7 +1239,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                       $Caja_a_anular->valor, 
                                                       $this->CajaEmpresaRepo->getDetalleAlAnular($Caja_a_anular), 
                                                       Carbon::now('America/Montevideo'),
-                                                      'Anulacion');
+                                                      'Anulacion',
+                                                      null,
+                                                      $Caja_a_anular->tipo_de_movimiento_id);
 
        //indico que se anuló
        $this->CajaEmpresaRepo->setAtributoEspecifico($Caja_a_anular,'estado_del_movimiento','anulado');
@@ -1290,7 +1304,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+                $EstadoDeCuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Socio->id, 
                                             $User->id,
                                             $Moneda,
@@ -1310,7 +1324,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Nombre,
                                                                  null,
-                                                                 $Request->get('tipo_de_movimiento_id') ) ;
+                                                                 $Request->get('tipo_de_movimiento_id'),
+                                                                 $EstadoDeCuenta->id ) ;
 
               //actualiza la session
               $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
