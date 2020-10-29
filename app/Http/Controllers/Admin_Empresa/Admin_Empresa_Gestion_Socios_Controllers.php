@@ -687,7 +687,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio ',
                                                                  $Entidad,
-                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio(),
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
                                                                  $Estado_de_cuenta->id ) ;
             }         
              
@@ -751,7 +751,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio',
                                                                  $Entidad,
-                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio(),
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
                                                                  $Estado_de_cuenta->id
                                                                   ) ;
 
