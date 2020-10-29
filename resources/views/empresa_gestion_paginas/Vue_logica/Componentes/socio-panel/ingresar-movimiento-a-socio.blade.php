@@ -138,24 +138,7 @@ computed:{
     {
       return false;
     }
-  },
-  se_paga_ahora:function(){
-    if(this.servicio_elegido.id != '4') /*4 es el id de cobro*/
-    {
-      return 'si';
-    }
-    else if(this.servicio_elegido.id != '4')
-  },
-  servicio_elegido_es_distinto_de_cobro:function(){
-    if(this.servicio_elegido.id != '4') /*4 es el id de cobro*/
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  },
+  }
 }
 ,
 template:`
