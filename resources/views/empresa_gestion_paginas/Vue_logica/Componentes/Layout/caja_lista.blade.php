@@ -118,7 +118,7 @@ template:`  <div class="contiene-lista-caja">
                       
 
                     </span>
-                    <span v-if="caja.tipo_de_movimiento_id != null">
+                    <span v-if="caja.tipo_de_movimiento_id != null && caja.tipo_de_movimiento_cache != null">
                          <i class="far fa-check-circle"></i>  <span>@{{caja.tipo_de_movimiento_cache.name}} </span>
                     </span>
                       <span v-if="caja.estado_de_cuenta_del_socio_id != null">
