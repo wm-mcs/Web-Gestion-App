@@ -873,10 +873,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                 Carbon::now('America/Montevideo'),
                                                                 'Anulacion Estado De Cuenta',
                                                                 null,
-                                                                $this->CajaEmpresaRepo->getMovimientosDeCajaSegunEstadoDecuentasocioID($Estado->id)
+                                                                $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Estado->id)
                                                                 ); 
           //indico que es un movimiento anulador
           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
+          
         }   
       }      
 
@@ -963,7 +964,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                    Carbon::now('America/Montevideo'),
                                                                    'Anulacion Estado De Cuenta',
                                                                    null,
-                                                                   $this->CajaEmpresaRepo->getMovimientosDeCajaSegunEstadoDecuentasocioID($Entidad->id) );
+                                                                   $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Entidad->id) );
 
            //indico que es un movimiento anulador
            $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
