@@ -57,7 +57,7 @@ mounted: function () {
  this.data_editar = this.tipo_de_movimiento;
 },
 
-template:'
+template:`
 
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
@@ -201,7 +201,7 @@ template:'
     </div>
   </transition>
   </div>  
-'
+`
 }
 
 
