@@ -30,7 +30,7 @@ methods:{
                         movimiento_de_empresa_a_socio:'',
                         movimiento_de_la_empresa:'',
                         descripcion_breve:'',
-                        estado:'si'
+                        estado:'si',
                         socio_opcion_de_pago:'no',
                         se_paga:'no',
                       };
