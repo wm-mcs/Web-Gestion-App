@@ -27,6 +27,7 @@ methods:{
  elegir_lo_que_voy_a_agregar:function(tipo_servicio){
   this.servicio_elegido = tipo_servicio;
   this.nombre_a_ingresar = tipo_servicio.name;
+  this.se_cobra = tipo_servicio.se_paga;
  },
  cancelarIngreso:function(){
   this.poner_valor_de_cero();
@@ -138,6 +139,13 @@ computed:{
       return false;
     }
   },
+  se_paga_ahora:function(){
+    if(this.servicio_elegido.id != '4') /*4 es el id de cobro*/
+    {
+      return 'si';
+    }
+    else if(this.servicio_elegido.id != '4')
+  },
   servicio_elegido_es_distinto_de_cobro:function(){
     if(this.servicio_elegido.id != '4') /*4 es el id de cobro*/
     {
@@ -194,7 +202,7 @@ template:`
           </div>
 
 
-          <div v-if="servicio_elegido_es_distinto_de_cobro" class="contiene-fase-2-moneda">
+          <div v-if="servicio_elegido.socio_opcion_de_pago == 'si'" class="contiene-fase-2-moneda">
            <div class="flex-row-center flex-justifice-space-around get_width_80">
              <div class="contiene-opcion-moneda">
                 <input type="radio" value="si" v-model="se_cobra">
@@ -219,7 +227,7 @@ template:`
           
           
           <p v-if="valor_ingresar > 0" class=" color-text-gris text-center">
-            Estás a punto de ingresar ésto: <strong>@{{servicio_elegido.nombre}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+            Estás a punto de ingresar esto: <strong>@{{servicio_elegido.name}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
           </p>
           <div v-if="$root.cargando" class="py-5 d-flex flex-row align-items-center justify-content-center">
               <div class="cssload-container">
