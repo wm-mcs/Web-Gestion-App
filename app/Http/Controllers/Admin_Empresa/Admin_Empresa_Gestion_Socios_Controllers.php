@@ -279,9 +279,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
               {
                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                        'Acutualizo' => 'no', 
-                                                        'Razon'      => 'debia plata',
-                                                        'Fecha'      =>  $Hoy_objet] )  ) );
+                                                                          'Acutualizo' => 'no', 
+                                                                          'Razon'      => 'debia plata',
+                                                                          'Fecha'      =>  $Hoy_objet] )  ) );
               }
               else
               {
@@ -289,9 +289,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                   if($Servicios_renovacion->count() == 0) 
                   {
                       array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                                  'Acutualizo' => 'no', 
-                                                                  'Razon'      => 'no tenía servicio con renovación marcada en si',
-                                                                  'Fecha'      =>  $Hoy_objet ] )  ) );
+                                                                              'Acutualizo' => 'no', 
+                                                                              'Razon'      => 'no tenía servicio con renovación marcada en si',
+                                                                              'Fecha'      =>  $Hoy_objet ] )  ) );
                   }
 
                   //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
@@ -305,7 +305,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     if($Servicio != null)
                     {                    
                         //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-                        if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                        if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(1) > Carbon::parse($Servicio->fecha_vencimiento))
                         {
                           //creo el nuevo servicio
                           $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
