@@ -311,7 +311,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                           $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
                                                                                                   $Sucursal->id, 
                                                                                                   $Servicio->tipo_de_servicio, 
-                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->renovacion_cantidad_en_dias));
+                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->tipo_de_servicio->renovacion_cantidad_en_dias));
 
                           //Logica de estado de cuenta cuando compra
                           $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
