@@ -32,6 +32,7 @@ use App\Repositorios\ServicioSocioRenovacionRepo;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\HelpersGenerales;
 use App\Repositorios\AccesoClienteRepo;
+use App\Repositorios\TipoDeMovimientoRepo;
 
 
 
@@ -51,6 +52,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   protected $CajaEmpresaRepo;
   protected $ServicioSocioRenovacionRepo;
   protected $AccesoClienteRepo;
+  protected $TipoDeMovimientoRepo;
 
   public function __construct(EmpresaConSociosoRepo             $EmpresaConSociosoRepo, 
                               Guardian                          $Guardian,
@@ -64,7 +66,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                               SucursalEmpresaRepo               $SucursalEmpresaRepo,
                               CajaEmpresaRepo                   $CajaEmpresaRepo,
                               ServicioSocioRenovacionRepo       $ServicioSocioRenovacionRepo,
-                              AccesoClienteRepo                 $AccesoClienteRepo  )
+                              AccesoClienteRepo                 $AccesoClienteRepo,
+                              TipoDeMovimientoRepo              $TipoDeMovimientoRepo  )
   {
     $this->EmpresaConSociosoRepo             = $EmpresaConSociosoRepo;
     $this->Guardian                          = $Guardian;
@@ -79,6 +82,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     $this->CajaEmpresaRepo                   = $CajaEmpresaRepo;
     $this->ServicioSocioRenovacionRepo       = $ServicioSocioRenovacionRepo;
     $this->AccesoClienteRepo                 = $AccesoClienteRepo;
+    $this->TipoDeMovimientoRepo              = $TipoDeMovimientoRepo;
+
   }
 
   public function getPropiedades()
@@ -274,9 +279,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
               if(($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0))
               {
                   array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                        'Acutualizo' => 'no', 
-                                                        'Razon'      => 'debia plata',
-                                                        'Fecha'      =>  $Hoy_objet] )  ) );
+                                                                          'Acutualizo' => 'no', 
+                                                                          'Razon'      => 'debia plata',
+                                                                          'Fecha'      =>  $Hoy_objet] )  ) );
               }
               else
               {
@@ -284,9 +289,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                   if($Servicios_renovacion->count() == 0) 
                   {
                       array_push($Array_resultados, json_decode(json_encode([ 'Socio'      => $Socio->name, 
-                                                                  'Acutualizo' => 'no', 
-                                                                  'Razon'      => 'no tenía servicio con renovación marcada en si',
-                                                                  'Fecha'      =>  $Hoy_objet ] )  ) );
+                                                                              'Acutualizo' => 'no', 
+                                                                              'Razon'      => 'no tenía servicio con renovación marcada en si',
+                                                                              'Fecha'      =>  $Hoy_objet ] )  ) );
                   }
 
                   //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
@@ -300,13 +305,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     if($Servicio != null)
                     {                    
                         //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-                        if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(2) > Carbon::parse($Servicio->fecha_vencimiento))
+                        if(Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(1) > Carbon::parse($Servicio->fecha_vencimiento))
                         {
                           //creo el nuevo servicio
                           $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id, 
                                                                                                   $Sucursal->id, 
                                                                                                   $Servicio->tipo_de_servicio, 
-                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->renovacion_cantidad_en_dias));
+                                                                                                  Carbon::parse($Servicio->fecha_vencimiento)->addDays($Servicio->tipo_de_servicio->renovacion_cantidad_en_dias));
 
                           //Logica de estado de cuenta cuando compra
                           $this->MovimientoEstadoDeCuentaSocioRepo->setEstadoDeCuentaCuando($Socio->id, 
@@ -438,9 +443,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
           return ['Validacion'           => true,
                   'Validacion_mensaje'   => 'Socio agregado correctamente',
                   'Socio'                => $Socio 
-                 ];
-       
-      
+                 ];    
   }
 
 
@@ -664,7 +667,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+              $Estado_de_cuenta =  $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Entidad->socio_id, 
                                             $User->id,
                                             $Entidad->moneda,
@@ -683,7 +686,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Venta de servicio a socio '. $Socio->name, 
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio ',
-                                                                 $Entidad ) ;
+                                                                 $Entidad,
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
+                                                                 $Estado_de_cuenta->id ) ;
             }         
              
           }
@@ -725,7 +730,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+               $Estado_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Socio->id,
                                             $User->id, 
                                             $Entidad->moneda,
@@ -745,7 +750,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  'Venta de servicio a socio '. $Socio->name,
                                                                  Carbon::now('America/Montevideo'), 
                                                                  'Venta Servicio',
-                                                                 $Entidad ) ;
+                                                                 $Entidad,
+                                                                 $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
+                                                                 $Estado_de_cuenta->id
+                                                                  ) ;
 
 
 
@@ -864,10 +872,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                 'Anulación de estado de cuenta de socio '. $Socio->name,               
                                                                 Carbon::now('America/Montevideo'),
                                                                 'Anulacion Estado De Cuenta',
-                                                                null
+                                                                null,
+                                                                $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Estado->id)
                                                                 ); 
           //indico que es un movimiento anulador
           $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
+          
         }   
       }      
 
@@ -953,7 +963,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                    'Anulación de estado de cuenta de socio '. $Socio->name,
                                                                    Carbon::now('America/Montevideo'),
                                                                    'Anulacion Estado De Cuenta',
-                                                                   null);
+                                                                   null,
+                                                                   $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Entidad->id) );
 
            //indico que es un movimiento anulador
            $this->CajaEmpresaRepo->setAtributoEspecifico($Caja,'estado_del_movimiento','anulador');
@@ -961,9 +972,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
            //actualiza la session
            $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
           }
-
-
-     
 
 
      if($Validacion)
@@ -1232,7 +1240,9 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                       $Caja_a_anular->valor, 
                                                       $this->CajaEmpresaRepo->getDetalleAlAnular($Caja_a_anular), 
                                                       Carbon::now('America/Montevideo'),
-                                                      'Anulacion');
+                                                      'Anulacion',
+                                                      null,
+                                                      $Caja_a_anular->tipo_de_movimiento_id);
 
        //indico que se anuló
        $this->CajaEmpresaRepo->setAtributoEspecifico($Caja_a_anular,'estado_del_movimiento','anulado');
@@ -1295,7 +1305,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             //si se paga ahora      
             if($Request->get('paga') == 'si') 
             {
-                $this->MovimientoEstadoDeCuentaSocioRepo
+                $EstadoDeCuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                   ->setEstadoDeCuentaCuando($Socio->id, 
                                             $User->id,
                                             $Moneda,
@@ -1309,12 +1319,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                                                  $Sucursal->id, 
                                                                  $User->id, 
                                                                  'deudor', 
-                                                                $Moneda, 
+                                                                 $Moneda, 
                                                                  $Valor, 
-                                                                 'Cobro a socio '. $Socio->name . ' por concepto de ' . $Nombre, 
+                                                                 'Movimiento a '. $Socio->name . ' por concepto de ' . $Nombre, 
                                                                  Carbon::now('America/Montevideo'), 
                                                                  $Nombre,
-                                                                 null ) ;
+                                                                 null,
+                                                                 $Request->get('tipo_de_movimiento_id'),
+                                                                 $EstadoDeCuenta->id ) ;
 
               //actualiza la session
               $this->SucursalEmpresaRepo->actualizarSucursalSession($Sucursal->id);
@@ -1457,12 +1469,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
   }
 
 
-
-
-
   public function email_simples()
   {
-
       $Email = 'email';
       $Texto = 'Bienvenido a Easy Socio! te hemos creado una cuenta.';
 
@@ -1472,15 +1480,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
       $Texto_boton    = 'Ingresar ahora';
       $Link_del_boton = 'asdasd';
       return view('emails.envio_email_creacion_user', compact('Texto','Texto_boton','Link_del_boton','User_name','Contraseña'));
-
   }
-
 
     public function borrar_todos_los_datos_de_esta_empresa($id)
     {
       $Empresa = $this->EmpresaConSociosoRepo->find($id);
-
-
 
       $Movimientos_de_caja = $this->CajaEmpresaRepo->getMovimientosDeCajaDeEstaEmpresa($Empresa->id);
       foreach($Movimientos_de_caja as $Caja)

@@ -13,7 +13,9 @@ data:function(){
                   movimiento_de_la_empresa:'',
                   descripcion_breve:'',
                   estado:'si',
-                  se_muestra_en_panel:'si'
+                  se_muestra_en_panel:'si',
+                  socio_opcion_de_pago:'no',
+                  se_paga:'no',
                 }
 
     }
@@ -28,7 +30,9 @@ methods:{
                         movimiento_de_empresa_a_socio:'',
                         movimiento_de_la_empresa:'',
                         descripcion_breve:'',
-                        estado:'si'
+                        estado:'si',
+                        socio_opcion_de_pago:'no',
+                        se_paga:'no',
                       };
   },
   cancelar:function(){
@@ -78,7 +82,7 @@ mounted: function () {
 
 },
 
-template:'
+template:`
 
 <span>
 <div class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
@@ -165,6 +169,30 @@ template:'
                 </select>
                 
               </div>
+              <div v-if="data_crear.movimiento_de_empresa_a_socio == 'si'" class="col-6 formulario-label-fiel">
+                <label class="formulario-label">¿Muestra opción de pago al crear movimeinto a socio?</label> 
+                <div class="formulario-label-aclaracion">
+                  Si fuera un cobro se da por entendido que se paga. Si es agregar un cargo se da por entendido que se paga.
+                </div>
+                <select v-model="data_crear.socio_opcion_de_pago" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
+              <div v-if="data_crear.movimiento_de_empresa_a_socio == 'si'" class="col-6 formulario-label-fiel">
+                <label class="formulario-label">¿Se paga?</label> 
+                <div class="formulario-label-aclaracion">
+                  Es para cuando se ingresa un movimiento desde la cuenta del socio. ejemplo un cobro se da por entendido que se paga.
+                </div>
+                <select v-model="data_crear.se_paga" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
+
+              
 
               <div @click="agregar" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
@@ -189,8 +217,7 @@ template:'
 </span>
 
 
-
-'
+`
 }
 
 
