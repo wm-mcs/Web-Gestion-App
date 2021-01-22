@@ -73,7 +73,7 @@ computed:{
     }
   },
   sePuedeEliminar:function(){
-    if(this.caja.estado_del_movimiento != 'anulado' && this.caja.estado_del_movimiento != 'anulador' )
+    if(this.caja.estado_del_movimiento != 'anulado' && this.caja.estado_del_movimiento != 'anulador' && this.caja.estado_de_cuenta_del_socio_id == null)
     {
       return true;
     }
@@ -115,10 +115,14 @@ template:`  <div class="contiene-lista-caja">
                       <span v-else v-on:click="anular_movimiento" class="simula_link" title="Anular este movimiento.">
                         <i class="fas fa-trash-alt"></i> 
                       </span>
-                      <span v-if="caja.tipo_de_movimiento_id != null">
-                         <i class="far fa-check-circle"></i>  <span>@{{caja.tipo_de_movimiento_cache.name}} </span>
-                      </span>
+                      
 
+                    </span>
+                    <span v-if="caja.tipo_de_movimiento_id != null && caja.tipo_de_movimiento_cache != null">
+                         <i class="far fa-check-circle"></i>  <span>@{{caja.tipo_de_movimiento_cache.name}} </span>
+                    </span>
+                      <span v-if="caja.estado_de_cuenta_del_socio_id != null">
+                        <i class="far fa-user"></i> <span>Asociado a estado de cuenta de socio</span>
                     </span>
 
                 </span>            

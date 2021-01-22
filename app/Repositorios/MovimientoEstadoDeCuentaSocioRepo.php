@@ -62,6 +62,8 @@ class MovimientoEstadoDeCuentaSocioRepo extends BaseRepo
     $Entidad->save();
     $this->ActualizarCache($Socio_id);
 
+    return $Entidad;
+
   }
 
   //setters//////////////////////////////////////////////////////////////////////

@@ -25,6 +25,14 @@ Route::post('getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
   'uses'  => 'Admin_Empresa\TipoDeMovimientoController@getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja',
   'as'    => 'getMovimientosParaPanelDeIngresoDeMovimeintoDeCaja'
 ]);
+
+Route::post('getMovimientosParaPanelDeIngresoDeMovimeintoAlSocio',
+[
+  'uses'  => 'Admin_Empresa\TipoDeMovimientoController@getMovimientosParaPanelDeIngresoDeMovimeintoAlSocio',
+  'as'    => 'getMovimientosParaPanelDeIngresoDeMovimeintoAlSocio'
+]);
+
+
   
 
 

@@ -57,7 +57,7 @@ mounted: function () {
  this.data_editar = this.tipo_de_movimiento;
 },
 
-template:'
+template:`
 
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
@@ -147,6 +147,28 @@ template:'
                 </select>
                 
               </div>
+              <div v-if="data_editar.movimiento_de_empresa_a_socio == 'si'" class="col-6 formulario-label-fiel">
+                <label class="formulario-label">¿Muestra opción de pago al crear movimeinto a socio?</label> 
+                <div class="formulario-label-aclaracion">
+                  Si fuera un cobro se da por entendido que se paga. Si es agregar un cargo se da por entendido que se paga.
+                </div>
+                <select v-model="data_editar.socio_opcion_de_pago" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
+              <div v-if="data_editar.movimiento_de_empresa_a_socio == 'si'" class="col-6 formulario-label-fiel">
+                <label class="formulario-label">¿Se paga?</label> 
+                <div class="formulario-label-aclaracion">
+                  Es para cuando se ingresa un movimiento desde la cuenta del socio. ejemplo un cobro se da por entendido que se paga.
+                </div>
+                <select v-model="data_editar.se_paga" class="formulario-field">
+                  <option>si</option>
+                  <option>no</option>
+                </select>
+                
+              </div>
 
 
               <div class="col-6 formulario-label-fiel">
@@ -179,7 +201,7 @@ template:'
     </div>
   </transition>
   </div>  
-'
+`
 }
 
 

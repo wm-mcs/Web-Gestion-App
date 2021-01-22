@@ -21,6 +21,41 @@ class CajaEmpresaRepo extends BaseRepo
   }
 
 
+  /**
+   * Me trae el movimiento de caja asocioado al movimiento de estado de cuenta
+   * Si no encuentra devuelve null
+   * 
+   * @return Object Caja or null si no encuentra
+   * */  
+  public function getMovimientosDeCajaSegunEstadoDecuentasocioID($MovimientoEstadoDeCuentaSocioID)
+  {
+    $MovimientosDeCaja = $this->getEntidad()
+                              ->where('estado_de_cuenta_del_socio_id',$MovimientoEstadoDeCuentaSocioID) 
+                              ->get();
+    if($MovimientosDeCaja->count() > 0)
+    {
+      return $MovimientosDeCaja->first();
+    }     
+    
+    return null;
+  }
+
+  /**
+   * Busca si hay un movimiento de caja con ese id de estado de cuenta
+   * Si encuentra devuelve el id del movimiento de caja de lo contrario null
+   * 
+   * 
+   */
+  public function getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($MovimientoEstadoDeCuentaSocioID)
+  {
+    if($this->getMovimientosDeCajaSegunEstadoDecuentasocioID($MovimientoEstadoDeCuentaSocioID) != null)
+    {
+      return $this->getMovimientosDeCajaSegunEstadoDecuentasocioID($MovimientoEstadoDeCuentaSocioID)->tipo_de_movimiento_id;
+    }
+
+    return null;
+  }
+
   public function getMovimientosDeCajaDeEstaEmpresa($empresa_id)
   {
     return $this->getEntidad()
@@ -39,7 +74,8 @@ class CajaEmpresaRepo extends BaseRepo
                                           $fecha_ingreso,
                                           $tipo_movimiento,
                                           $servicio = null,
-                                          $tipo_de_movimiento_id = null)
+                                          $tipo_de_movimiento_id = null,
+                                          $estado_de_cuenta_del_socio_id = null)
   {
     $Entidad                   = $this->getEntidad();
     $Entidad->empresa_id       = $empresa_id;
@@ -61,6 +97,11 @@ class CajaEmpresaRepo extends BaseRepo
     if($tipo_de_movimiento_id != null)
     {
       $Entidad->tipo_de_movimiento_id = $tipo_de_movimiento_id;
+    }
+
+    if($estado_de_cuenta_del_socio_id != null)
+    {
+      $Entidad->estado_de_cuenta_del_socio_id = $estado_de_cuenta_del_socio_id;
     }
 
     $Entidad->save();
