@@ -85,9 +85,16 @@ mounted: function () {
 template:`
 
 <span>
-<div class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
-  Crear un tipo de movimiento <i class="fas fa-plus"></i>
-</div>  
+
+<div class="w-100 d-flex flex-column align-items-end">
+<div class="col-12 col-lg-6">
+<div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
+   Crear un tipo de movimiento <i class="fas fa-plus"></i>
+  </div>  
+</div>
+ 
+</div>
+
 
   <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
