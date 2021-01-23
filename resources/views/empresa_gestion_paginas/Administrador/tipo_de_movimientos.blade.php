@@ -7,11 +7,11 @@
 
 @section('content')
 
-<div class="row mx-0 alig-items-center">
+<div class="row mx-0 align-items-center">
 
 
 <div class="col-12 col-lg-6">
-  <h1 class=" mb-3 text-center"> Tipos de movimientos de empresas</h1>
+  <h1 class="h5 mb-3 "> Tipos de movimientos de empresas</h1>
 </div>
 
 <div class="col-12 col-lg-6">
