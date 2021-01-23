@@ -1,63 +1,56 @@
-Vue.component('tipo_de_movimiento_lista' ,
-{
-props:['tipo_de_movimiento'],
-data:function(){
-    return {
-     
-     showModal: false,
-     cargando:false,
-     data_editar:''
+Vue.component("tipo_de_movimiento_lista", {
+	props: ["tipo_de_movimiento"],
+	data: function () {
+		return {
+			showModal: false,
+			cargando: false,
+			data_editar: ""
+		};
+	},
+	methods: {
+		editar: function () {
+			let url = "/edit_un_tipo_de_movimiento";
+			let vue = this;
 
-    }
-},
-methods:{
-  editar:function(){
-     let url = '/edit_un_tipo_de_movimiento';     
-     let vue = this; 
+			this.cargando = true;
 
-     this.cargando = true;         
+			axios
+				.post(url, this.data_editar)
+				.then(function (response) {
+					let data = response.data;
 
-     axios.post(url,this.data_editar).then(function (response){  
-      let data = response.data;        
+					if (data.Validacion == true) {
+						vue.cargando = false;
+						bus.$emit("se-creo-un-movimiento", "hola");
+						vue.showModal = false;
 
-      if(data.Validacion == true)
-      {
-         vue.cargando  = false; 
-         bus.$emit('se-creo-un-movimiento', 'hola'); 
-         vue.showModal = false;
-         
-          
-         $.notify(response.data.Validacion_mensaje, "success"); 
-      }
-      else
-      {
-        vue.cargando = false; 
-        $.notify(response.data.Validacion_mensaje, "error");
-      }
-     
-     }).catch(function (error){
-          
-         vue.cargando = false;  
-         $.notify(error, "error");      
-      
-     });    
-  }  
-},
-computed:{
-  class_saldo:function(){
-    
-    return {
-            'color-text-success background-success':this.tipo_de_movimiento.tipo_saldo == 'deudor',
-            'color-text-error background-error':this.tipo_de_movimiento.tipo_saldo == 'acredor'     
-           }
-  }
-},
-mounted: function () {
-  
- this.data_editar = this.tipo_de_movimiento;
-},
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function (error) {
+					vue.cargando = false;
+					$.notify(error, "error");
+				});
+		}
+	},
+	computed: {
+		class_saldo: function () {
+			return {
+				"color-text-success background-success":
+					this.tipo_de_movimiento.tipo_saldo == "deudor",
+				"color-text-error background-error":
+					this.tipo_de_movimiento.tipo_saldo == "acredor"
+			};
+		}
+	},
+	mounted: function () {
+		this.data_editar = this.tipo_de_movimiento;
+	},
 
-template:`
+	template: `
 
 
   <div class="col-6 col-lg-4 p-4 mb-3 border-radius-estandar borde-gris background-white">
@@ -202,9 +195,4 @@ template:`
   </transition>
   </div>  
 `
-}
-
-
-
-
-);
+});

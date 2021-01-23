@@ -1,92 +1,78 @@
-Vue.component('crear-tipo-de-movimientos' ,
-{
+Vue.component("crear-tipo-de-movimientos", {
+	data: function () {
+		return {
+			showModal: false,
+			cargando: false,
+			data_crear: {
+				name: "",
+				tipo_saldo: "",
+				movimiento_de_empresa_a_socio: "",
+				movimiento_de_la_empresa: "",
+				descripcion_breve: "",
+				estado: "si",
+				se_muestra_en_panel: "si",
+				socio_opcion_de_pago: "no",
+				se_paga: "no"
+			}
+		};
+	},
+	methods: {
+		limpiar_data_crear: function () {
+			this.data_crear = {
+				name: "",
+				tipo_saldo: "",
+				movimiento_de_empresa_a_socio: "",
+				movimiento_de_la_empresa: "",
+				descripcion_breve: "",
+				estado: "si",
+				socio_opcion_de_pago: "no",
+				se_paga: "no"
+			};
+		},
+		cancelar: function () {
+			this.limpiar_data_crear();
+			this.showModal = false;
+		},
+		agregar: function () {
+			let url = "/set_un_tipo_de_movimiento";
+			let vue = this;
 
-data:function(){
-    return {
-     
-     showModal: false,
-     cargando:false,
-     data_crear:{
-                  name:'',
-                  tipo_saldo:'',
-                  movimiento_de_empresa_a_socio:'',
-                  movimiento_de_la_empresa:'',
-                  descripcion_breve:'',
-                  estado:'si',
-                  se_muestra_en_panel:'si',
-                  socio_opcion_de_pago:'no',
-                  se_paga:'no',
-                }
+			this.cargando = true;
 
-    }
-},
-methods:{
+			axios
+				.post(url, this.data_crear)
+				.then(function (response) {
+					let data = response.data;
 
-  limpiar_data_crear:function()
-  {
-    this.data_crear = {
-                        name:'',
-                        tipo_saldo:'',
-                        movimiento_de_empresa_a_socio:'',
-                        movimiento_de_la_empresa:'',
-                        descripcion_breve:'',
-                        estado:'si',
-                        socio_opcion_de_pago:'no',
-                        se_paga:'no',
-                      };
-  },
-  cancelar:function(){
-    this.limpiar_data_crear();
-    this.showModal = false;
+					if (data.Validacion == true) {
+						vue.cargando = false;
+						bus.$emit("se-creo-un-movimiento", "hola");
+						vue.showModal = false;
+						vue.limpiar_data_crear();
 
-  },
-  agregar:function(){
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function (error) {
+					vue.cargando = false;
+					$.notify(error, "error");
+				});
+		}
+	},
+	mounted: function () {},
 
-       let url = '/set_un_tipo_de_movimiento';     
-       let vue = this; 
-
-       this.cargando = true;         
-
-     axios.post(url,this.data_crear).then(function (response){  
-            let data = response.data;              
-
-            if(data.Validacion == true)
-            {
-               vue.cargando  = false; 
-               bus.$emit('se-creo-un-movimiento', 'hola'); 
-               vue.showModal = false;
-               vue.limpiar_data_crear();
-                
-               $.notify(response.data.Validacion_mensaje, "success"); 
-            }
-            else
-            {
-              vue.cargando = false; 
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-           
-           }).catch(function (error){
-                
-               vue.cargando = false;  
-               $.notify(error, "error");      
-            
-           });
-
-   
-  }
- 
-
-},
-mounted: function () {
-	
-
-},
-
-template:`
+	template: `
 
 <span>
 
 <div class="w-100 d-flex flex-column align-items-end">
+
+<h1 class="h5 mb-3 text-center"> Movimientos</h1>
+
+
 <div class="col-12 col-lg-6">
 <div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
    Crear un tipo de movimiento <i class="fas fa-plus"></i>
@@ -225,9 +211,4 @@ template:`
 
 
 `
-}
-
-
-
-
-);
+});
