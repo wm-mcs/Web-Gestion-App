@@ -53,9 +53,9 @@ Vue.component("tipo_de_movimiento_lista", {
 	template: `
 
   
-<div class="col-6 col-lg-4 p-1">
+<div class="col-6 col-lg-4 p-1 ">
 
-  <div class="p-3 mb-3 border-radius-estandar borde-gris background-white">
+  <div class="p-3 mb-3 border-radius-estandar borde-gris background-white h-100">
     <div class="row mx-0">
       <p class="col-10 mb-1 text-color-black ">
         <b>@{{tipo_de_movimiento.name}}</b>
