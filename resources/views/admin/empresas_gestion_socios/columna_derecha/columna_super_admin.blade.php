@@ -20,6 +20,11 @@
        <small>Tipos de movimientos</small> 
      </a>
     </li>
+    <li class="parrafo-class mb-1">
+     <a href="{{route('get_paises_index')}}" >
+       <small>Paises</small> 
+     </a>
+    </li>
    
   
    

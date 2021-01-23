@@ -155,7 +155,7 @@ public function ActualizarCache($empresa_id)
     } 
 
    $EstadoDeCuentas =  $this->getMovimientosDeEstadoDeCuenta($empresa_id);
-   Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$empresa_id, 8000, function() use ($EstadoDeCuentas){
+          Cache::remember('MovimeintosEstadoDeCuentaEmpresa'.$empresa_id, 8000, function() use ($EstadoDeCuentas){
         return  $EstadoDeCuentas ;
    }); 
 
