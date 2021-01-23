@@ -1,15 +1,26 @@
 @extends('layouts.gestion_socios_layout.admin_layout')
 
 
-@section('miga-de-pan') 
- 
+@section('miga-de-pan')
+
 @stop
 
 @section('content')
 
+<div class="row mx-0 alig-items-center">
 
 
+<div class="col-12 col-lg-6">
+  <h1 class=" mb-3 text-center"> Tipos de movimientos de empresas</h1>
+</div>
+
+<div class="col-12 col-lg-6">
 <crear-tipo-de-movimientos></crear-tipo-de-movimientos>
+</div>
+
+</div>
+
+
 <tipo-de-movimientos></tipo-de-movimientos>
 
 
@@ -33,9 +44,9 @@
 
 @section('columna')
 
-  
+
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
 
-  
+
 @stop

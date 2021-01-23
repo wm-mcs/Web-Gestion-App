@@ -68,18 +68,10 @@ Vue.component("crear-tipo-de-movimientos", {
 
 <span>
 
-<div class="w-100 d-flex flex-column align-items-end">
 
-<h1 class="h5 mb-3 text-center"> Movimientos</h1>
-
-
-<div class="col-12 col-lg-6">
-<div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
+  <div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
    Crear un tipo de movimiento <i class="fas fa-plus"></i>
   </div>  
-</div>
- 
-</div>
 
 
   <transition name="modal" v-if="showModal">

@@ -1,12 +1,12 @@
 Vue.component("tipo-de-movimientos", {
-	data: function () {
+	data: function() {
 		return {
 			tipo_de_movimientos: [],
 			cargando: false
 		};
 	},
 	methods: {
-		get_tipo_de_movimientos: function () {
+		get_tipo_de_movimientos: function() {
 			let url = "/get_tipo_de_movimientos";
 			let vue = this;
 
@@ -14,7 +14,7 @@ Vue.component("tipo-de-movimientos", {
 
 			axios
 				.get(url)
-				.then(function (response) {
+				.then(function(response) {
 					let data = response.data;
 
 					if (data.Validacion == true) {
@@ -26,25 +26,25 @@ Vue.component("tipo-de-movimientos", {
 						$.notify(response.data.Validacion_mensaje, "error");
 					}
 				})
-				.catch(function (error) {
+				.catch(function(error) {
 					vue.cargando = false;
 					$.notify(error, "error");
 				});
 		}
 	},
 	computed: {
-		get_movimientos_a_socios: function () {
+		get_movimientos_a_socios: function() {
 			return this.tipo_de_movimientos.filter(
 				tipo => tipo.movimiento_de_empresa_a_socio == "si"
 			);
 		},
-		get_movimientos_a_empresa: function () {
+		get_movimientos_a_empresa: function() {
 			return this.tipo_de_movimientos.filter(
 				tipo => tipo.movimiento_de_la_empresa == "si"
 			);
 		}
 	},
-	mounted: function () {
+	mounted: function() {
 		this.get_tipo_de_movimientos();
 	},
 	created() {
@@ -61,7 +61,7 @@ Vue.component("tipo-de-movimientos", {
 </div>
 <div v-else class="p-5">
 	<div v-if="get_movimientos_a_empresa.length" class="row mb-4 p-2 ">
-    <h2 class="col-12 mb-4 parrafo-class color-text-gris"><b>Tipo de movimientos de la empresa</b></h2>
+    
 		<tipo_de_movimiento_lista 
      v-for="tipo_movimiento in get_movimientos_a_empresa"
      :tipo_de_movimiento="tipo_movimiento"
