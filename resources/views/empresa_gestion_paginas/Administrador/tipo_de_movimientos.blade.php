@@ -11,7 +11,7 @@
 
 
 <div class="col-12 col-lg-6">
-  <h1 class="h5 mb-3 "> Tipos de movimientos de empresas</h1>
+  <h1 class="h3 mb-0"> Tipos de movimientos de empresas</h1>
 </div>
 
 <div class="col-12 col-lg-6">
