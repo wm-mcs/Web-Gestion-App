@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
 @include('empresa_gestion_paginas.Administrador.Vue.Bus.BusDeEventos')
-
+@include('empresa_gestion_paginas.Administrador.Vue.Paises.listado-de-paises')
 @include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
 
 
