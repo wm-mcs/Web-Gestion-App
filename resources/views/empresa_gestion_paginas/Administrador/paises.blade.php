@@ -21,7 +21,7 @@
 </div>
 
 
-<tipo-de-movimientos></tipo-de-movimientos>
+<listado-de-paises></listado-de-paises>
 
 
 @stop
