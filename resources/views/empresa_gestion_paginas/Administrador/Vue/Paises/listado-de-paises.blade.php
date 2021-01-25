@@ -51,7 +51,7 @@ Vue.component("listado-de-paises", {
 	</div>
 	<div v-else class="p-5">
 		<div v-if="paises.length" class="row mb-4 p-2 ">
-			<pais v-for="pais in paises" :key="pais.id"></pais>
+			<pais v-for="pais in paises" :pais="pais" :key="pais.id"></pais>
 		</div>
 
 	</div>
