@@ -3,7 +3,7 @@
 Vue.component("listado-de-paises", {
 
 	components :{
-		'paise':pais
+		'pais':pais
 	},
 	data: function() {
 		return {
