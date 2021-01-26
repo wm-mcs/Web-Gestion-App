@@ -120,6 +120,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     }
 
     /**
+     *
      * verifico que el socio sea de la empresa
      */
     public function control_acceso_socio(Request $Request)
@@ -144,6 +145,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     public function movimientos_de_accesos_view(Request $Request)
     {
         $UserEmpresa = $Request->get('user_empresa_desde_middleware');
+
         $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
 
         return view('empresa_gestion_paginas.control_de_acceso_movimientos', compact('Empresa'));
@@ -157,6 +159,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Empresa_id = $Request->get('user_empresa_desde_middleware')->empresa_id;
         $ids_ya_usados = $Request->get('ids_ya_usados');
         $array_keys = [
+
             ['where_tipo' => 'where',
                 'key' => 'empresa_id',
                 'value' => $Empresa_id,

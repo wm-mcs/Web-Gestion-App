@@ -2,21 +2,15 @@
 
 namespace App\Entidades;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
-use App\Entidades\User;
 use App\Entidades\EmpresaConSocios;
-use App\Entidades\Traits\entidadesScopesComunes;
-
-
-
-
+use App\Entidades\User;
+use Illuminate\Database\Eloquent\Model;
 
 //Usuarios y empresas asociados
 class VendedorEmpresa extends Model
 {
 
-    protected $table ='lista_vendedores_empresas';
+    protected $table = 'lista_vendedores_empresas';
 
     /**
      * The attributes that are mass assignable.
@@ -24,35 +18,27 @@ class VendedorEmpresa extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = ['usuario','empresa_asociada'];
-
+    protected $appends = ['usuario', 'empresa_asociada'];
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id');
-    } 
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
-      public function getUsuarioAttribute()
-      {
-        
+    public function getUsuarioAttribute()
+    {
         return $this->user;
-      }
+    }
 
     public function empresa()
     {
-        return $this->belongsTo(EmpresaConSocios::class,'empresa_id','id');
-    }  
+        return $this->belongsTo(EmpresaConSocios::class, 'empresa_id', 'id');
+    }
 
-      public function getEmpresaAsociadaAttribute()
-      {
-
-
+    public function getEmpresaAsociadaAttribute()
+    {
         return $this->empresa;
-      }
-
-
-    
-
+    }
 
     /**
      * PAra busqueda por nombre
@@ -63,30 +49,18 @@ class VendedorEmpresa extends Model
         /// trim() se utiliza para eliminar los espacios.
         ////Like se usa para busqueda incompletas
         /////%% es para los espacios adelante y atras
-        if (trim($name) !="")
-        {                        
-           $query->where('name', "LIKE","%$name%"); 
+        if (trim($name) != "") {
+            $query->where('name', "LIKE", "%$name%");
         }
-        
     }
 
     public function scopeActive($query)
     {
-                               
-           $query->where('estado', "si"); 
-                
+        $query->where('estado', "si");
     }
-
-
-
-
-
-   
 
     public function getRouteAttribute()
     {
         /*return route('',[$this->helper_convertir_cadena_para_url($this->name), $this->id]);*/
     }
-    
-    
 }

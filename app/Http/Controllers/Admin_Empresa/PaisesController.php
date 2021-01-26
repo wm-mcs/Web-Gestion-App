@@ -43,5 +43,4 @@ class PaisesController extends Controller
     {
         return view('empresa_gestion_paginas.Administrador.paises');
     }
-
 }
