@@ -67,7 +67,7 @@ var pais = {
               <div class="row">
                 <h4 class="col-12 sub-titulos-class"> Editar @{{pais.name}}</h4>
                 <div class="col-12 modal-mensaje-aclarador">
-                  Editar
+                  Editar los datos correspondientes al país <b>@{{pais.name}}</b>. 
                 </div>
               </div>
   
@@ -82,21 +82,25 @@ var pais = {
   
   
                   <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Nombre </label>
                     <input type="text" class="formulario-field" v-model="pais.name" placeholder="Nombre del país" />
                   </div>
                   <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Código</label>
                     <input type="text" class="formulario-field" v-model="pais.code" placeholder="Código del país" />
                   </div>
                   <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Código de moneda</label>
                     <input type="text" class="formulario-field" v-model="pais.currencyCode"
                       placeholder="Código de la moneda" />
                   </div>
-                  <div class="col-lg-6 formulario-label-fiel">
+                  <div class="col-12 formulario-label-fiel">
+                    <label class="formulario-label">Imagen</label>
                     <input class="formulario-field" type="file" name="image" v-on:change="onImageChange" accept="image/*">
                   </div>
                   
   
-                  <div class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+                  <div @click="editarPais" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                     Confirmar
                   </div>
                 </div>
