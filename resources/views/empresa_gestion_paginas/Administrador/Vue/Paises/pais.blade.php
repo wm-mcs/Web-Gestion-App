@@ -24,7 +24,7 @@ var pais = {
         editarPais: function(pais) {
             var url = "/editar_pais";
 
-            var data = { pais: pais, imagen: this.imagen };
+            var data = { pais: this.pais, imagen: this.imagen };
             var vue = this;
 
             axios
