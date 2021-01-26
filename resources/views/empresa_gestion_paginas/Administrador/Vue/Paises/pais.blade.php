@@ -98,6 +98,14 @@ var pais = {
                     <label class="formulario-label">Imagen</label>
                     <input class="formulario-field" type="file" name="image" v-on:change="onImageChange" accept="image/*">
                   </div>
+
+                  <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Activo?</label> 
+                    <select v-model="pais.estado" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>                        
+                   </div>
                   
   
                   <div @click="editarPais" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
