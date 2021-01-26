@@ -11,7 +11,7 @@ var pais = {
   <div class="p-3 mb-3 border-radius-estandar borde-gris background-white h-100 cursor-pinter"  @click="showModal = true">
     <div class="row mx-0 align-items-center">
       <div class="col-3">
-         <img :src="pais.url_img" :alt="`Bandera de ${pais.url_img}`" class="img-fluid rounded-circle">
+         <img :src="pais.url_img" :alt="'Bandera de ' + pais.url_img" class="img-fluid rounded-circle">
       </div>
       <p class="col-9 mb-0 text-color-black h5">
         <b>@{{pais.name}}</b>
