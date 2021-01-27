@@ -48,10 +48,14 @@ var pais = {
         <div class="col-3 cursor-pointer" @click="showModal = true">
           <img :src="pais.url_img" :alt="'Bandera de ' + pais.url_img" class="img-fluid rounded-circle">
         </div>
-        <p class="col-9 mb-0 text-color-black h5 cursor-pointer" @click="showModal = true">
-          <b>@{{pais.name}}</b>
+        <div class="col-9 mb-0   cursor-pointer" @click="showModal = true">
+        <p class="h5 mb-1"><b>@{{pais.name}}</b></p>  
+        
+
+          <p  class="mb-0" :class="pais.estado === 'si' ? 'color-text-success' : 'color-text-gris'"> @{{ pais.estado === 'si' ? 'Activo':'Desactivado'}}  
         </p>
-        <p :class="pais.estado === 'si' ? 'color-text-success' : 'color-text-gris'"> @{{ pais.estado === 'si' ? 'Activo':'Desactivado'}}  </p>
+        </div>
+        
   
       </div>
   
