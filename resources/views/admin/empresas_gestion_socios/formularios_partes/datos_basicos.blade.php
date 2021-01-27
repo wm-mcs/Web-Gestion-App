@@ -10,6 +10,9 @@
 
 <div class="formulario-label-fiel">
   {!! Form::label('celular', 'Celular', array('class' => 'formulario-label ')) !!}
+  <div class="modal-mensaje-aclarador">
+    Si la empresa es de fuera de Uruguay se debe poner todos los dígitos menos el simbolo de +.
+  </div>
   {!! Form::text('celular', null ,['class' => 'formulario-field']) !!}
 </div>
 
