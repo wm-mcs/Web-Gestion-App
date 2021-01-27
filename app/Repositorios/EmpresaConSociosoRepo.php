@@ -21,6 +21,7 @@ class EmpresaConSociosoRepo extends BaseRepo
         $Entidad->name = $nombre;
         $Entidad->estado = 'si';
         $Entidad->codigo_pais_whatsapp = '598';
+        $Entidad->pais = $pais;
         $Entidad->email = $email;
         $Entidad->celular = $celular;
         $Entidad->factura_con_iva = $factura_con_iva;

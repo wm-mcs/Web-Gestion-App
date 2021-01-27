@@ -206,7 +206,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
             $Request->get('empresa_celular'),
             $Request->get('factura_con_iva'),
             $Request->get('rut'),
-            $Request->get('razon_social')
+            $Request->get('razon_social'),
+            $Request->get('pais')
         );
 
         //creo al usuario
