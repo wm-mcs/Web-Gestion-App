@@ -268,7 +268,7 @@ Vue.component("crear-empresa", {
             </div>
           </div>
           <p v-if="cargando" class="Procesando-text">Cargando...</p>
-          < v-else div class="contenedor-grupo-datos">
+          <div v-else class="contenedor-grupo-datos">
             <div class="contenedor-grupo-datos-titulo">Plan</div>
             <div class="modal-mensaje-aclarador">
               El plan con el cual va a iniciar. Al comienzo se le otorgara 15
