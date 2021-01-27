@@ -51,6 +51,7 @@ var pais = {
         <p class="col-9 mb-0 text-color-black h5 cursor-pointer" @click="showModal = true">
           <b>@{{pais.name}}</b>
         </p>
+        <p :class="pais.estado === 'si'? 'color-text-success' : 'color-text-gris"> @{{ pais.estado === 'si'? 'Activo':'Desactivado')}}  </p>
   
       </div>
   

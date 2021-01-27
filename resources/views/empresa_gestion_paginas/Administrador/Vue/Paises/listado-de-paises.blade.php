@@ -13,7 +13,7 @@ Vue.component("listado-de-paises", {
     },
     methods: {
         getPaises: function() {
-            var url = "/get_paises";
+            var url = "/get_paises_todos";
             var vue = this;
 
             axios

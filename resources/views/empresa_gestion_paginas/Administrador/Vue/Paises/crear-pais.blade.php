@@ -71,7 +71,7 @@ Vue.component("crear-pais", {
 
 
   <div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
-   Crear un tipo de movimiento <i class="fas fa-plus"></i>
+   Crear un país<i class="fas fa-plus"></i>
   </div>  
 
 
@@ -140,7 +140,7 @@ Vue.component("crear-pais", {
 
           <div class="modal-footer">
            
-              <button class="modal-default-button" @click="cancelar" >
+              <button class="modal-default-button" @click="showModal = false" >
                 Cancelar
               </button>
            

@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin_Empresa;
 
+use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\validatorMesaagesTrait;
 use App\Managers\EmpresaGestion\PaisManager;
 use App\Repositorios\PaisRepo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PaisesController extends Controller
 {
     use validatorMesaagesTrait;
 
-    protected $TipoDeMovimientoRepo;
+    protected $PaisRepo;
 
     public function __construct(PaisRepo $PaisRepo)
     {
@@ -42,5 +45,85 @@ class PaisesController extends Controller
     public function getIndex()
     {
         return view('empresa_gestion_paginas.Administrador.paises');
+    }
+
+    public function crear_pais(Request $Request)
+    {
+        $manager = new PaisManager(null, $Request->all());
+
+        if (!$manager->isValid()) {
+            return ['Validacion' => false,
+                'Validacion_mensaje' => 'No se pudo crear: ' . $manager->getErrors()];
+
+        }
+
+        $Propiedades = ['name', 'code', 'currencyCode', 'estado'];
+
+        $Entidad = $this->PaisRepo->getEntidad();
+        $Entidad->borrado = 'no';
+
+        $Entidad = $this->PaisRepo->setEntidadDato($Entidad, $Request, $Propiedades);
+        $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ', '-', $Request->get('name')), '.png', 100);
+
+        //actualizo cache socio
+        $this->PaisRepo->ActualizarCache();
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se creó correctamente el país', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
+
+    }
+
+    public function editar_pais(Request $Request)
+    {
+
+        $Pais = json_decode(json_encode($Request->get('pais')));
+
+        $Validacion = true;
+
+        $PaisBuscado = $this->PaisRepo->find($Pais->id);
+
+        //las porpiedades que se van a editar
+        $Propiedades = ['name', 'code', 'currencyCode', 'estado'];
+
+        $this->PaisRepo->setEntidadDatoObjeto($PaisBuscado, $Pais, $Propiedades);
+
+        $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ', '-', $PaisBuscado->name), '.png', 100);
+
+        //actualizo cache socio
+        $this->PaisRepo->ActualizarCache();
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se ceditó correctamente el país', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
+
+    }
+
+    public function get_paises_todos(Request $Request)
+    {
+        $Keys = null;
+        return HelpersGenerales::formateResponseToVue(true, 'Paises todos', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
+    }
+
+    /**
+     *  Api pública
+     */
+    public function get_paises(Request $Request)
+    {
+
+        if (Auth::guest()) {
+            //crear un tokrn y guardarlo en la base de datos
+            //crear un tokrn y guardarlo en la base de datos
+        } else {
+
+        }
+
+        $Paises = Cache::remember('Paises', 10000, function () {
+            return $this->PaisRepo->getEntidadActivasOrdenadasSegun('name', 'asc');
+        });
+
+        return ['Validacion' => true,
+            'Validacion_mensaje' => 'Países cargados correctamente',
+            'Paises' => $Paises,
+            'Header' => $Request->header('Ip'),
+            'Header2' => $Request->header('Maurico'),
+            'cache' => $Request->get('cache')];
+
     }
 }
