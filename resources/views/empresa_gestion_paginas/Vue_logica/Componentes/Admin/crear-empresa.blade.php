@@ -155,7 +155,7 @@ Vue.component("crear-empresa", {
             <span aria-hidden="true"><i class="fas fa-times"></i></span>
           </button>
         </div>
-        <div class="modal-body text-center">
+        <div class="modal-body">
           {{-- empresa datos --}}
           <div class="contenedor-grupo-datos">
             <div class="contenedor-grupo-datos-titulo">Empresa datos</div>
@@ -185,7 +185,10 @@ Vue.component("crear-empresa", {
               </div>
               <div class="formulario-label-fiel">
                 {!! Form::label('empresa_celular', 'Celular', array('class' =>
-                'formulario-label ')) !!} {!! Form::text('empresa_celular', null
+                'formulario-label ')) !!}
+                <div v-if="data_post.pais != 'UY'"class="modal-mensaje-aclarador">
+    Si la empresa es de fuera de Uruguay se debe poner todos los dígitos menos el simbolo de +. 
+  </div> {!! Form::text('empresa_celular', null
                 ,['class' => 'formulario-field', 'v-model' =>
                 'data_post.empresa_celular' ]) !!}
               </div>
@@ -215,7 +218,10 @@ Vue.component("crear-empresa", {
               </div>
               <div class="formulario-label-fiel">
                 {!! Form::label('user_celular', 'Celular del usuario',
-                array('class' => 'formulario-label ')) !!} {!!
+                array('class' => 'formulario-label ')) !!}
+                <div v-if="data_post.pais != 'UY'"class="modal-mensaje-aclarador">
+                Si la empresa es de fuera de Uruguay se debe poner todos los dígitos menos el simbolo de +. 
+              </div> {!!
                 Form::text('user_celular', null ,['class' => 'formulario-field',
                 'v-model' => 'data_post.user_celular' ]) !!}
               </div>

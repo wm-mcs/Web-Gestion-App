@@ -1,11 +1,11 @@
 @extends('layouts.gestion_socios_layout.admin_layout')
 
-@section('miga-de-pan') 
+@section('miga-de-pan')
   {{-- lugar atras --}}
   <a href="{{route('get_admin_empresas_gestion_socios')}}"><span>Empresas</span></a>
 
   {{-- separador --}}
-  <span class="spam-separador">|</span> 
+  <span class="spam-separador">|</span>
 
   {{-- lugar donde esta --}}
   <span>Editar</span>
@@ -13,7 +13,7 @@
 
 @section('content')
 
- 
+
 
  <div class="empresa-lista-user-contenedor">
         <div class="empresa-lista-user-header">
@@ -23,7 +23,7 @@
               <img src="{{$Empresa->url_img}}" class="empresa-lista-user-img">
             </div>
            @endif
-           @foreach($Empresa->sucursuales_empresa as $sucursal)          
+           @foreach($Empresa->sucursuales_empresa as $sucursal)
             @if($sucursal->puede_ver_el_user)
               <div class="empresa-lista-user-sucursal">
                 <div class="empresa-lista-user-sucursal-entrar">Entrar a sucursal</div>
@@ -31,20 +31,20 @@
                             'method'=> 'Post',
                             'files' =>  true,
                             'name'  => 'form1'
-                          ])               !!}   
+                          ])               !!}
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
                  <input type="hidden" name="sucursal_id" value="{{$sucursal->id}}">
-                 <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >{{$sucursal->name}}</span>    
+                 <span class="simula_link empresa-lista-user-sucursal-nombre disparar-este-form" >{{$sucursal->name}}</span>
 
-                 {!! Form::close() !!}  
-                
+                 {!! Form::close() !!}
+
               </div>
             @endif
            @endforeach
         </div>
-    </div> 
+    </div>
 
-  
+
 
   {{-- formulario --}}
   {!! Form::model($Empresa,   ['route' => ['set_admin_empresas_gestion_socios_editar',$Empresa->id],
@@ -59,22 +59,28 @@
                {{-- datos corporativos --}}
             <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo"> Datos</div>
-              <div class="contenedor-formulario-label-fiel">                       
-               @include('admin.empresas_gestion_socios.formularios_partes.datos_basicos')               
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_basicos')
+              </div>
+            </div>
+            <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Facturación</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_facturacion')
               </div>
             </div>
 
             <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo"> Acciones</div>
-              <div class="contenedor-formulario-label-fiel">                       
-                  <a href="{{route('borrar_todos_los_datos_de_esta_empresa',$Empresa->id)}}" 
+              <div class="contenedor-formulario-label-fiel">
+                  <a href="{{route('borrar_todos_los_datos_de_esta_empresa',$Empresa->id)}}"
                     class="super-confirmacion mb-2"> Eliminar los datos de caja, servicios, socios y estado de cuenta socios (Todos)
-                  </a>        
+                  </a>
               </div>
             </div>
 
 
-          
+
           </div>
 
 
@@ -85,7 +91,7 @@
             {{-- imagenes corporativos --}}
             <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo">Imagen</div>
-              <div class="contenedor-formulario-label-fiel">                       
+              <div class="contenedor-formulario-label-fiel">
                 @include('admin.empresas_gestion_socios.formularios_partes.datos_imagenes')
               </div>
             </div>
@@ -102,16 +108,22 @@
                 <vincular-sucursal-empresa :empresa="empresa"></vincular-sucursal-empresa>
                </div>
            </div>
+           <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Control de acceso</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_control_de_acceso')
+              </div>
+            </div>
 
-            
-          </div>      
+
+          </div>
      </div>
      <div class="admin-boton-editar">
        Guardar
-     </div> 
- </div>   
+     </div>
+ </div>
   {!! Form::close() !!}
-  
+
 @stop
 
 
@@ -122,7 +134,7 @@
 <script type="text/javascript">
 
 
-    
+
 
      Vue.component('v-select', VueSelect.VueSelect)
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-sucursal-empresa')
@@ -140,7 +152,7 @@
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
 
-  
+
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
