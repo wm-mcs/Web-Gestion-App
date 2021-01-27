@@ -22,7 +22,7 @@ Vue.component("listado-de-paises", {
                     var data = response.data;
 
                     if (data.Validacion == true) {
-                        vue.paises = data.Paises;
+                        vue.paises = data.Data;
                         $.notify(response.data.Validacion_mensaje, "success");
                     } else {
                         $.notify(response.data.Validacion_mensaje, "error");
