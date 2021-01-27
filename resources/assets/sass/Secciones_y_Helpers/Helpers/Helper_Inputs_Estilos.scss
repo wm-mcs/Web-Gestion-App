@@ -1,48 +1,43 @@
-@mixin InputGeneral()
-{   
+@mixin InputGeneral() {
   line-height: 1.7;
   font-family: $font-secondary;
   font-weight: bold;
   font-size: 16px !important;
   background-color: transparent;
-  border: solid  3px transparent;  
+  border: solid 3px transparent;
   padding: 8px;
-  border-radius:0px;
+  border-radius: 0px;
   width: 100%;
-  border-radius:$Border-radius;
+  border-radius: $Border-radius;
 }
 
-
-.input-text-class-primary{
+.input-text-class-primary {
   @include InputGeneral;
   border-color: $color-3;
-  color:$color-3;
+  color: $color-3;
 }
 
-   .input-text-class-primary::placeholder{
-        color: lighten( $color-3, 20% );
-    }
-    .input-text-class-primary::focus {    
-      box-shadow: none !important;
-      outline: 0 none !important;
-      border-color:$color-3;
-    }
+.input-text-class-primary::placeholder {
+  color: lighten($color-3, 20%);
+}
+.input-text-class-primary::focus {
+  box-shadow: none !important;
+  outline: 0 none !important;
+  border-color: $color-3;
+}
 
-
-
-.input-text-class-white{
+.input-text-class-white {
   @include InputGeneral;
-  border-color:$color-white;
-  color:$color-white;
+  border-color: $color-white;
+  color: $color-white;
 }
 
+.input-text-class-white::placeholder {
+  color: darken($color-white, 20%);
+}
 
-    .input-text-class-white::placeholder{
-      color:darken( $color-white, 20% );
-    }
-
-    .input-text-class-white:focus {    
-      box-shadow: none !important;
-      outline: 0 none !important;
-      border-color:$color-white;
-    }
+.input-text-class-white:focus {
+  box-shadow: none !important;
+  outline: 0 none !important;
+  border-color: $color-white;
+}

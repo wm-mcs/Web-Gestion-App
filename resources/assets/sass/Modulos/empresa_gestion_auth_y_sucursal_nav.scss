@@ -1,31 +1,26 @@
- .contiene-auth-y-sucursal{
+.contiene-auth-y-sucursal {
   @include flexbox;
   @include align-items(flex-end);
-  @include flex-direction(row); 
- }
+  @include flex-direction(row);
+}
 
-    .navigation-auth-contenedor{
-      padding: 8px;
-      color: $color-gris-text;
-      font-size: 10px;
-      letter-spacing: 1.2px;  
-      @include flexbox;
-      @include align-items(flex-start);
-      @include flex-direction(row); 
-    }
+.navigation-auth-contenedor {
+  padding: 8px;
+  color: $color-gris-text;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  @include flexbox;
+  @include align-items(flex-start);
+  @include flex-direction(row);
+}
 
+.contiene-sucursal {
+  color: $color-gris-text;
+  font-size: 10px;
+  cursor: pointer;
+  margin-right: 40px;
+}
 
-    .contiene-sucursal{      
-      color: $color-gris-text;
-      font-size: 10px;
-      cursor: pointer;
-      margin-right: 40px;
-    }
-
-    
-
-     
-
-     .sucursal-nombre{       
-       font-weight: bold;
-     }
+.sucursal-nombre {
+  font-weight: bold;
+}

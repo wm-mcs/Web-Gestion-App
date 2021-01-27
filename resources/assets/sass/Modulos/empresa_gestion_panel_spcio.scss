@@ -1,107 +1,83 @@
-.panel-socio-header-contenedor{
+.panel-socio-header-contenedor {
   width: 100%;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(column);
-  @include align-items(center); 
+  @include align-items(center);
   padding: 15px;
-  border-radius: 4px; 
+  border-radius: 4px;
 }
 
+.panel-socio-name {
+  font-size: 22px;
+  font-weight: bold;
+}
 
-  .panel-socio-name{
-    font-size: 22px;
-    font-weight: bold;
-  }
-
-
-  .panel-socio-contiene-acciones{
-    padding:8px;
-    border-radius:4px;    
-    @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center);     
-
-  }
-
-    .panel-socio-agrega-margin-left-boton{
-      margin-left: 15px;
-    }
-
-
-
-
-  .panel-socio-contiene-servicios{
-      padding:6px;
-      border-radius:8px;      
-      @include flexbox;       
-      @include flex-direction(row);
-      @include align-items(center); 
-      @include flex-wrap(wrap); 
-      @include justify-content(space-around); 
-      width: 100%;
-
-    }
-
-    .titulo-socios-cuando-hay{
-      color:$color-gris-text;
-      font-size: 18px;
-      text-align: center;
-      width: 100%;
-      padding:8px;
-      margin-bottom:4px;
-      
-    }
-
-   .se-muestran-socios-texto{
-    margin-bottom: 20px;
-    font-size: 12px;
-    text-align: center;
-    color:$color-gris-text;
-    width: 100%;
-    }
-
-    .cuando-no-hay-socios{
-      padding: 35px;
-      color:$color-gris-text;
-      font-size: 18px;
-      text-align: center;
-      width: 100%;
-      
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (min-width: $BrackPoint-Primario){}
-@media (min-width: $BrackPoint-Secundario){
-
-
-.panel-socio-header-contenedor{ 
+.panel-socio-contiene-acciones {
+  padding: 8px;
+  border-radius: 4px;
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center);   
-  @include justify-content(space-between);
-  margin-bottom: 10px;
+  @include align-items(center);
 }
 
-  .panel-socio-name{
+.panel-socio-agrega-margin-left-boton {
+  margin-left: 15px;
+}
+
+.panel-socio-contiene-servicios {
+  padding: 6px;
+  border-radius: 8px;
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+  @include flex-wrap(wrap);
+  @include justify-content(space-around);
+  width: 100%;
+}
+
+.titulo-socios-cuando-hay {
+  color: $color-gris-text;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+.se-muestran-socios-texto {
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-align: center;
+  color: $color-gris-text;
+  width: 100%;
+}
+
+.cuando-no-hay-socios {
+  padding: 35px;
+  color: $color-gris-text;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: $BrackPoint-Primario) {
+}
+@media (min-width: $BrackPoint-Secundario) {
+  .panel-socio-header-contenedor {
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(space-between);
+    margin-bottom: 10px;
+  }
+
+  .panel-socio-name {
     font-size: 28px;
     font-weight: bold;
   }
 
-  .panel-socio-titulo-seccion{
-      font-size: 20px;
-    }
-
-
-
+  .panel-socio-titulo-seccion {
+    font-size: 20px;
+  }
 }
-@media (min-width: $BrackPoint-Tercer){}
+@media (min-width: $BrackPoint-Tercer) {
+}

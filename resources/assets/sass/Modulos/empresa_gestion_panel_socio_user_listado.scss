@@ -1,53 +1,47 @@
-.component-user-list-contenedor{
-	padding:6px;
-	border-radius:6px;
-	margin-top:3px;
-	background-color: $color-grey-1;
-	@include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center);     
-    @include justify-content(space-between); 
-    width:100%;
+.component-user-list-contenedor {
+  padding: 6px;
+  border-radius: 6px;
+  margin-top: 3px;
+  background-color: $color-grey-1;
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+  @include justify-content(space-between);
+  width: 100%;
 }
 
- .component-user-list-sub{
- 	width:80%;
- 	@include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
-    padding:3px;    
+.component-user-list-sub {
+  width: 80%;
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+  padding: 3px;
+}
 
- }
+.component-user-list-sub-de-seb {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  padding: 3px;
+}
 
- .component-user-list-sub-de-seb{
-  
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
-    padding:3px;    
+.component-user-list-dato-name {
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 3px;
+  width: 30%;
+  padding: 4px;
+  text-align: center;
+}
 
- }
+.component-user-list-dato-email {
+  color: $color-gris-text;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
 
-
-   .component-user-list-dato-name{
-   	font-size:12px;
-   	font-weight:bold;
-   	margin-right:3px;
-    width: 30%;
-    padding:4px;
-    text-align:center;
-   	
-   }
-
-   .component-user-list-dato-email{
-   	color:  $color-gris-text;
-   	font-size:10px;
-   	margin-bottom:2px;
-   	
-   }
-
-   .component-user-list-dato-role{
-   	font-weight:bold;
-   	font-size:10px;
-    margin-bottom:2px;
-   }
+.component-user-list-dato-role {
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 2px;
+}

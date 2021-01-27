@@ -1,228 +1,184 @@
-.contiene-socio-tipo-lista{
-   width: 100%;
-   padding: 4px 10px;
-   border:solid 2px transparent;
-   background-color: white;
-    @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
-    @include justify-content(space-between);
-    @include flex-wrap(wrap); 
-    box-shadow: 0 1px 2px rgba(0,0,0,.26);
-    margin-top: 10px;
-
-
+.contiene-socio-tipo-lista {
+  width: 100%;
+  padding: 4px 10px;
+  border: solid 2px transparent;
+  background-color: white;
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+  @include justify-content(space-between);
+  @include flex-wrap(wrap);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.26);
+  margin-top: 10px;
 }
 
+.contenedor-border-rojo {
+  background-color: $Color-Errors-BG;
+}
 
-  .contenedor-border-rojo{
-   background-color: $Color-Errors-BG;
-  }
-
-
-.contiene-socio-lista_nombre-y-celular{
-  @include flexbox;       
+.contiene-socio-lista_nombre-y-celular {
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
+  @include align-items(center);
   width: 100%;
   @include justify-content(space-between);
-
-  
 }
 
-  .contiene-socio-lista{
-    font-size: 14px;
+.contiene-socio-lista {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px;
+  color: $color-3;
+  border: solid 1px $color-grey-1;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+.contiene-socio-lista:hover {
+  background-color: $color-3-primary_hover;
+  color: white;
+}
+
+.contiene-socio-celular {
+  font-size: 12px;
+  color: $color-gris-text;
+  padding: 8px;
+  border: solid 1px $color-grey-1;
+  border-radius: 4px;
+}
+
+.contiene-socio-celular:hover {
+  background-color: $color-3;
+  color: white;
+}
+
+.contiene-planes-socio-lista {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  margin-right: 5px;
+  width: 100%;
+}
+
+.socio-clases-contenedor {
+  max-width: 200px;
+}
+
+.contiene-planes-mensuales {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+}
+
+.planes-mensuales-cotiene {
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  text-align: center;
+  background-color: $Color-info;
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+}
+
+.plan-mensual-fecha-vencimiento {
+  font-size: 11px;
+  font-weight: thin;
+  margin-left: 5px;
+}
+
+.socio-lista-contiene-estado-de-cuenta {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  width: 100%;
+  margin-top: 5px;
+}
+
+@media (min-width: $BrackPoint-Secundario) {
+  .contiene-socio-tipo-lista {
+    width: 85%;
+    padding: 3px 10px;
+    margin-top: 7px;
+  }
+
+  .contiene-socio-tipo-lista:hover {
+    background-color: $color-grey-1;
+  }
+
+  .contiene-socio-lista_nombre-y-celular {
+    width: 20%;
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(flex-start);
+  }
+
+  .contiene-socio-lista {
+    font-size: 16px;
     font-weight: bold;
-    padding:8px;
-    color:$color-3;
-    border:solid 1px $color-grey-1;
-    cursor:pointer;
-    border-radius:4px;
-    margin-bottom:5px;
-    
-  }
-  .contiene-socio-lista:hover{
-    background-color:$color-3-primary_hover;
-    color:white;
-  }
+    padding: 6px;
+    color: $color-3;
+    background-color: transparent;
+    border: solid 1px transparent;
 
-  .contiene-socio-celular{
-    font-size: 12px;
-    color: $color-gris-text;
-    padding: 8px;
-    border:solid 1px $color-grey-1;
-    border-radius: 4px;
+    margin-bottom: 0px;
   }
-
-  .contiene-socio-celular:hover {
-    background-color:$color-3;
+  .contiene-socio-lista:hover {
+    background-color: $color-3-primary_hover;
     color: white;
   }
 
-   
-
-.contiene-planes-socio-lista{
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start);     
-    margin-right: 5px;
-    width: 100%;
-}
-
- .socio-clases-contenedor{
-  max-width: 200px;
- }
-
-  .contiene-planes-mensuales{
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
-  }
-
-  .planes-mensuales-cotiene{
-    padding: 4px;
-    border-radius: 4px;
-    font-size: 11px;
-    text-align: left;
-    color:white;    
-    font-weight: bold;
-    margin-right: 5px;
-    margin-top: 5px;
-    cursor: pointer;
-    text-align: center;
-    background-color: $Color-info;
-    @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
-
-  }
-
-   .plan-mensual-fecha-vencimiento{
-    
-    font-size: 11px;
-    font-weight: thin;
-    margin-left:5px;
-   }
-
-
-
-   .socio-lista-contiene-estado-de-cuenta{
-
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
-    width: 100%;
-    margin-top: 5px;
-
-   }
-
-
-
-
-  
-
-
-
-
-   @media (min-width: $BrackPoint-Secundario){
- 
- .contiene-socio-tipo-lista{
-   width: 85%;
-   padding: 3px 10px;
-   margin-top: 7px;
-  }
-
-  .contiene-socio-tipo-lista:hover{
-  background-color: $color-grey-1;
-}
-
-  .contiene-socio-lista_nombre-y-celular{
-    width: 20%;  
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start);   
-  }
-
-  
-
-   .contiene-socio-lista{
-    font-size: 16px;
-    font-weight: bold;
-    padding:6px;
-    color:$color-3;
-    background-color:transparent;
-    border:solid 1px transparent;
-    
-    margin-bottom:0px;
-    
-  }
-  .contiene-socio-lista:hover{
-    background-color:$color-3-primary_hover;
-    color:white;
-  }
-
-
-  .contiene-socio-celular{
+  .contiene-socio-celular {
     font-size: 12px;
     color: $color-gris-text;
     padding: 0px;
-    border:solid 1px transparent;
-    
+    border: solid 1px transparent;
   }
-  
 
-
-  .contiene-planes-socio-lista{
+  .contiene-planes-socio-lista {
     @include flex-direction(row);
-    @include align-items(center); 
+    @include align-items(center);
     margin-right: 0;
     width: 50%;
-}
-
- .socio-clases-contenedor{
-  padding:6px;
-  width: 160px; 
-  max-width: 160px;
- }
-
-
- .contiene-planes-mensuales{
-    @include flexbox;       
-    @include flex-direction(row);
-    @include align-items(center); 
   }
 
-  .planes-mensuales-cotiene{
-    padding: 5px;    
-    text-align: center;    
-    width: 160px;    
+  .socio-clases-contenedor {
+    padding: 6px;
+    width: 160px;
+    max-width: 160px;
+  }
+
+  .contiene-planes-mensuales {
+    @include flexbox;
+    @include flex-direction(row);
+    @include align-items(center);
+  }
+
+  .planes-mensuales-cotiene {
+    padding: 5px;
+    text-align: center;
+    width: 160px;
     margin-right: 5px;
     margin-top: 0;
     @include flex-direction(column);
-    @include align-items(center); 
-    
+    @include align-items(center);
   }
 
-      .plan-mensual-fecha-vencimiento{
-        margin-left:0;
-      }
+  .plan-mensual-fecha-vencimiento {
+    margin-left: 0;
+  }
 
-
-
-   .socio-lista-contiene-estado-de-cuenta{
-
-    @include flexbox;       
+  .socio-lista-contiene-estado-de-cuenta {
+    @include flexbox;
     @include flex-direction(column);
-    @include align-items(flex-end); 
+    @include align-items(flex-end);
     width: 20%;
     margin-top: 0;
-
-   }
-
-
-
-
-
-   }
-
-    
+  }
+}

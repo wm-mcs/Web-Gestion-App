@@ -1,50 +1,42 @@
-.contiene-lista-caja{
+.contiene-lista-caja {
   width: 100%;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(column);
-  @include align-items(center); 
+  @include align-items(center);
   margin-bottom: 4px;
   font-size: 12px;
 }
 
-   .sub-contiene-lista-caja{
-    border-radius:6px;
-    padding: 4px;
-    border:solid 1px transparent;
-    width: 70%;
-    color:$color-gris-text;
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(center); 
+.sub-contiene-lista-caja {
+  border-radius: 6px;
+  padding: 4px;
+  border: solid 1px transparent;
+  width: 70%;
+  color: $color-gris-text;
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+}
 
+.sub-contiene-lista-caja-deudor {
+  @include align-self(flex-start);
+  border-color: $color-verde-texto-success;
+}
 
-   }
+.sub-contiene-lista-caja-acredor {
+  @include align-self(flex-end);
+  border-color: $Color-Errors-BG;
+}
 
-    .sub-contiene-lista-caja-deudor{
-      @include align-self(flex-start); 
-      border-color:$color-verde-texto-success;
-     }
+.caja-lista-nombre {
+  width: 100%;
+  margin-bottom: 2px;
+  text-align: center;
+}
 
-    .sub-contiene-lista-caja-acredor{
-      @include align-self(flex-end);
-      border-color:$Color-Errors-BG;
-     }
-
-
-  .caja-lista-nombre{
-    width: 100%;
-    margin-bottom: 2px;
-    text-align: center;
-  }
-
-  .caja-lista-datos-secundarios{
-    text-align: center;
-    width: 100%;
-    letter-spacing: 1.5px;
-    font-size: 9px;
-  }
-
-
-
- 
-
+.caja-lista-datos-secundarios {
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1.5px;
+  font-size: 9px;
+}

@@ -1,100 +1,87 @@
-
-
-@mixin Boton-base()
-{
+@mixin Boton-base() {
   padding: 10px 14px;
-  
+
   border: solid 1px transparent;
   border-radius: $Border-radius;
-  width:100%;
-  cursor:pointer;
+  width: 100%;
+  cursor: pointer;
   letter-spacing: 1.4px;
   text-align: center;
   display: block;
-  font-family:$font-secondary;
+  font-family: $font-secondary;
   font-size: 14px;
-  
 }
-
 
 /* B O T O N E S */
-.Boton-Fuente-Muy-Chica{
+.Boton-Fuente-Muy-Chica {
   font-size: 12px !important;
 }
-.Boton-Fuente-Chica{
+.Boton-Fuente-Chica {
   font-size: 14px !important;
 }
 
-.Boton-Fuente-Grande{
+.Boton-Fuente-Grande {
   font-size: 20px !important;
 }
 
-
-.Boton-Primario-Relleno,.boton-simple,.boton-simple-chico{
+.Boton-Primario-Relleno,
+.boton-simple,
+.boton-simple-chico {
   @include Boton-base;
-  color:$color-white;
+  color: $color-white;
   background-color: $color-3;
-  border-color:darken( $color-3, 10% );
+  border-color: darken($color-3, 10%);
 }
-.Boton-Primario-Relleno:hover,.boton-simple:hover,.boton-simple-chico:hover{
-  background-color: lighten( $color-3, 5% );
-  color:$color-white;
+.Boton-Primario-Relleno:hover,
+.boton-simple:hover,
+.boton-simple-chico:hover {
+  background-color: lighten($color-3, 5%);
+  color: $color-white;
 }
 
-.Boton-Primario-Sin-Relleno{
+.Boton-Primario-Sin-Relleno {
   @include Boton-base;
-  color:$color-3;
+  color: $color-3;
   background-color: transparent;
-  border-color:$color-3;
+  border-color: $color-3;
 }
-.Boton-Primario-Sin-Relleno:hover{
+.Boton-Primario-Sin-Relleno:hover {
   background-color: $color-3;
-  color:$color-white;
+  color: $color-white;
 }
 
-.Boton-Primario-Sin-Relleno-Ni-Borde{
+.Boton-Primario-Sin-Relleno-Ni-Borde {
   @include Boton-base;
-  color:$color-3;
+  color: $color-3;
   background-color: transparent;
-  border-color:transparent;
+  border-color: transparent;
 }
-.Boton-Primario-Sin-Relleno-Ni-Borde:hover{
+.Boton-Primario-Sin-Relleno-Ni-Borde:hover {
   background-color: $color-3;
-  color:$color-white;
+  color: $color-white;
 }
 
-
-
-.Boton-Blanco{
+.Boton-Blanco {
   @include Boton-base;
-  color:$color-white;
+  color: $color-white;
   background-color: transparent;
-  border-color:$color-white;
+  border-color: $color-white;
 }
-.Boton-Blanco:hover{
-  background-color:  lighten( $color-3, 10% );
-  border-color:darken( $color-3, 10% );
-  color:$color-white;
+.Boton-Blanco:hover {
+  background-color: lighten($color-3, 10%);
+  border-color: darken($color-3, 10%);
+  color: $color-white;
 }
 
-.Boton-Disable{
+.Boton-Disable {
   cursor: not-allowed;
 }
 
-
-
-
-
-@media (min-width: $BrackPoint-Secundario){
-
-.Boton-Fuente-Chica{
-  font-size: 18px;
+@media (min-width: $BrackPoint-Secundario) {
+  .Boton-Fuente-Chica {
+    font-size: 18px;
+  }
+  .Boton-Fuente-Grande {
+    font-size: 28px;
+  }
 }
-.Boton-Fuente-Grande{
-  font-size: 28px;
-}
-
-
-
-
-}  

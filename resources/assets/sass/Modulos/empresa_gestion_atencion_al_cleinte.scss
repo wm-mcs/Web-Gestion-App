@@ -1,56 +1,48 @@
-
-
- .contacto-whatsapp-contenedor{
-  @include flexbox;       
+.contacto-whatsapp-contenedor {
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
-  padding:8px;
-  border-radius:8px;  
-  border:solid 4px transparent;   
+  @include align-items(center);
+  padding: 8px;
+  border-radius: 8px;
+  border: solid 4px transparent;
   position: absolute;
   bottom: 20px;
   left: 0px;
-
 }
-.contacto-whatsapp-contenedor:hover{
+.contacto-whatsapp-contenedor:hover {
   border-color: $color-3;
 }
 
-
-.contacto-whatsapp-img{
+.contacto-whatsapp-img {
   width: 50px;
   height: auto;
-  border-radius:100%;
+  border-radius: 100%;
   margin-right: 10px;
 }
 
-.contiene-aclaracio-y-resouesta{
-  @include flexbox;       
+.contiene-aclaracio-y-resouesta {
+  @include flexbox;
   @include flex-direction(column);
-  @include align-items(flex-start); 
-  
+  @include align-items(flex-start);
 }
 
-.aclaracion-de-respuesta{
-  color: rgba(0, 0, 0, .50);
+.aclaracion-de-respuesta {
+  color: rgba(0, 0, 0, 0.5);
   font-size: 8pt;
   margin-bottom: 4px;
   margin-left: 4px;
-  
-  
 }
 
-.contacto-whatsapp-texto{
-  
-  color:$color-gris-text;
-  padding: 8px 12px; 
-  border-radius:8px;
+.contacto-whatsapp-texto {
+  color: $color-gris-text;
+  padding: 8px 12px;
+  border-radius: 8px;
   font-size: 12px;
-  
+
   background-color: #f1f0f0;
 }
 
-.contacto-whatsapp-icono{
-  font-size: 38px; 
-  padding:8px; 
+.contacto-whatsapp-icono {
+  font-size: 38px;
+  padding: 8px;
 }

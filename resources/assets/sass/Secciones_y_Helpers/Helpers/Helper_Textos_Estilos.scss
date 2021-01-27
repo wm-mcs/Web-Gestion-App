@@ -1,105 +1,91 @@
 /* CLASES DE TEXTO */
 
-.text-bold{
+.text-bold {
   font-weight: bold;
 }
-.text-color-primary{
+.text-color-primary {
   color: $color-3 !important;
 }
 
-
-.text-color-black{
+.text-color-black {
   color: $color-negro-para-textos !important;
 }
 
-.helper-aumenta-texto{
-  font-size:1.2em;
+.helper-aumenta-texto {
+  font-size: 1.2em;
 }
 
-.helper-reduce-texto{
-  font-size:0.7em;
+.helper-reduce-texto {
+  font-size: 0.7em;
 }
 
-.espacio-letras{
+.espacio-letras {
   letter-spacing: 2px;
   font-family: arial;
   margin-bottom: 8px;
 }
 
-.espacio-letras-chico{
+.espacio-letras-chico {
   letter-spacing: 1px;
   font-family: arial;
   margin-bottom: 8px;
 }
 
 /* colores personalizados */
-.color-text-gris{
+.color-text-gris {
   color: $color-gris-text;
 }
 
 /* colores personalizados */
-.color-text-white{
+.color-text-white {
   color: $color-white !important;
 }
 
 /*color-texto-verde-success*/
-.color-text-success{
-  color:$color-verde-texto-success;
+.color-text-success {
+  color: $color-verde-texto-success;
 }
 
-.color-text-error{
-  color:$Color-Rojo-Texto-Error !important;
+.color-text-error {
+  color: $Color-Rojo-Texto-Error !important;
 }
 
-.font-primary{
-  font-family:$font-primary !important;
+.font-primary {
+  font-family: $font-primary !important;
 }
 
-.font-secondary{
-  font-family:$font-secondary !important;
+.font-secondary {
+  font-family: $font-secondary !important;
 }
-
-
 
 /*  S e r á n   l o s   t í t u l o s  */
-.titulos-class{
-  font-size:40px !important;
+.titulos-class {
+  font-size: 40px !important;
   letter-spacing: -1px;
   font-weight: bold;
   line-height: 1.2;
-  font-family:$font-primary;
+  font-family: $font-primary;
 }
 
 /*  S e r á n   l o s   s u b   t í t u l o s  */
-.sub-titulos-class{
-  font-size:24px !important; 
-  letter-spacing:1.4px;  
+.sub-titulos-class {
+  font-size: 24px !important;
+  letter-spacing: 1.4px;
   line-height: 1;
-  font-family:$font-secondary;
+  font-family: $font-secondary;
 }
-
 
 /*  S e r á n   l o s   p á r r a f o s  */
-.parrafo-class{
-  @include Parrafo_Style;  
- }
-
-
-
-
-
-
-
-@media (min-width: $BrackPoint-Secundario){
-
- .titulos-class{
-  font-size:60px !important;
+.parrafo-class {
+  @include Parrafo_Style;
 }
 
+@media (min-width: $BrackPoint-Secundario) {
+  .titulos-class {
+    font-size: 60px !important;
+  }
 
-.sub-titulos-class{
-  font-size:28px !important; 
-}
-
-
+  .sub-titulos-class {
+    font-size: 28px !important;
+  }
 }

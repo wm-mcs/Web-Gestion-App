@@ -1,110 +1,105 @@
 /*  I M Á G E N E S  */
 
-.background_img{ 
- width: 100%;
- background-position: center;
- background-repeat: no-repeat;
- background-size: cover;
+.background_img {
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.background_img_fixed{
- background-attachment: fixed; 
+.background_img_fixed {
+  background-attachment: fixed;
 }
 
 /* S e   u s a   p a r a   l a s  p o r t a d a s */
-.imagen-portada-altura-100vh{
-	display: block;
+.imagen-portada-altura-100vh {
+  display: block;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
 }
 
 /* A j u s t a   l a   im a g e n   s u   a l t u r a   y   s u    w i d t h */
-.img-cover{
-  width: 100%;    
+.img-cover {
+  width: 100%;
   object-fit: cover;
-  display: block;   
+  display: block;
 }
 
-$altura-imagen-miniaturas:150px; /*Defino la altura*/
+$altura-imagen-miniaturas: 150px; /*Defino la altura*/
 
-.img-altura-chica{
-  height:$altura-imagen-miniaturas;
+.img-altura-chica {
+  height: $altura-imagen-miniaturas;
 }
 
-.img-altura-normal{
-  height:$altura-imagen-miniaturas*1.5;
+.img-altura-normal {
+  height: $altura-imagen-miniaturas * 1.5;
 }
 
-.img-altura-grande{
-  height:$altura-imagen-miniaturas*2;
+.img-altura-grande {
+  height: $altura-imagen-miniaturas * 2;
 }
-
-
-
-
 
 /*  B A C K G R O U N D S  */
 
-.background-primary{
+.background-primary {
   background-color: $color-3;
 }
 
-.background-white{
+.background-white {
   background-color: $color-white;
 }
 
-.background-gris-0{
+.background-gris-0 {
   background-color: $color-grey-1;
 }
 
-.background-hover-gris-0{
-  
+.background-hover-gris-0 {
 }
-.background-hover-gris-0:hover{
+.background-hover-gris-0:hover {
   background-color: $color-grey-1;
 }
 
-.background-gris-1{
+.background-gris-1 {
   background-color: $color-grey0;
 }
 
-.background-gris-2{
+.background-gris-2 {
   background-color: $color-grey1;
 }
 
-.background-gris-3{
+.background-gris-3 {
   background-color: $color-grey2;
 }
 
-.background-gris-4{
+.background-gris-4 {
   background-color: $color-grey3;
 }
 
-.background-gris-5{
+.background-gris-5 {
   background-color: $color-grey4;
 }
 
-.background-black{
+.background-black {
   background-color: $color-black;
 }
 
-.background-black-transparent{
-  background-color: rgba($color-black,.2);
+.background-black-transparent {
+  background-color: rgba($color-black, 0.2);
 }
 
-.background-success{
+.background-success {
   background-color: $Color-Verde-Super-Claro;
 }
 
-.background-error{
-  background-color:$Color-Errors-BG;
+.background-error {
+  background-color: $Color-Errors-BG;
 }
 
-.background-mensual{
+.background-mensual {
   background-color: $Color-info;
 }
 
-.background-clases{
+.background-clases {
   background-color: $Color-clase;
 }

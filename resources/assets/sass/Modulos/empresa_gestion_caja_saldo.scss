@@ -1,81 +1,67 @@
-
-
-.contiene-saldo{
+.contiene-saldo {
   padding: 8px;
-  border-radius:8px;
+  border-radius: 8px;
   margin-top: 20px;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
+  @include align-items(center);
   width: 100%;
   cursor: pointer;
 }
 
-  .saldo-aclaracion{
-    font-size: 10px;
-    color: $color-gris-text;
-    text-align: center;    
-    width: 60%;
-    margin-right: 10px;
-  }
+.saldo-aclaracion {
+  font-size: 10px;
+  color: $color-gris-text;
+  text-align: center;
+  width: 60%;
+  margin-right: 10px;
+}
 
-  .saldo-valor{
-    font-size: 14px;
-    text-align: center;
-    padding:8px;
-    border-radius:8px;
-    background-color: white;
-    color:$color-verde-texto-success ;
-  }
+.saldo-valor {
+  font-size: 14px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: white;
+  color: $color-verde-texto-success;
+}
 
+.contiene-buscar-entre-fechas {
+  width: 100%;
+  margin-bottom: 4px;
+  border-top: solid 2px $color-grey0;
+}
 
-  .contiene-buscar-entre-fechas{
-    width:100%;
-    margin-bottom:4px;
-    border-top:solid 2px $color-grey0;
-  }
+.fecha_input_caja_busqueda {
+  width: 200px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
 
-    .fecha_input_caja_busqueda{
-      width:200px;
-      margin-bottom:10px;
-      margin-right:10px;
-    }
+.fechas-buscar-texto {
+  margin-bottom: 10px;
+  color: $color-gris-text;
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
+  padding: 5px;
+}
 
-    .fechas-buscar-texto{
-      margin-bottom:10px;  
-      color: $color-gris-text;
-      font-size: 12px;
-      text-align: left;
-      width:100%;
-      padding:5px;
+.contiene-buscar-entre-fechas-texto {
+  width: 100%;
+  padding: 4px 0;
+  font-size: 14px;
+  text-align: left;
+  color: $color-gris-text;
+  cursor: pointer;
+}
 
-    }
+.saldo-modal {
+  font-size: 16px;
+  color: $color-gris-text;
+}
 
-
-
-  .contiene-buscar-entre-fechas-texto{
-    width:100%;
-    padding:4px 0;
-    font-size:14px;
-    text-align:left;
-    color:$color-gris-text;
-    cursor:pointer;
-  }
-
-
-
-  .saldo-modal{
-    font-size: 16px;
-    color:$color-gris-text;
-  }
-
-     
-
-     .saldo-modal-valor{      
-      color:$color-verde-texto-success;      
-      width: 100%;
-      
-     }
-
-
-
+.saldo-modal-valor {
+  color: $color-verde-texto-success;
+  width: 100%;
+}

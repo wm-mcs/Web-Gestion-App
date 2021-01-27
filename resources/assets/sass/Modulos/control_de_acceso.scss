@@ -1,72 +1,60 @@
-.controll-access-contenedor{
-   
-    height: 100vh;
-    width: 100%;
-    position: relative;
+.controll-access-contenedor {
+  height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
-
-
-
-.iconoDeControll{
-    font-size: 180px;
+.iconoDeControll {
+  font-size: 180px;
 }
 
 /* E l   i n p u t */
-.controll-access-input-celular{
-    line-height: 1.7;
-    font-family: $font-secondary;
-    font-weight: bold;
-    font-size: 50px !important;
-    background-color: transparent;
-    border: solid  3px transparent;  
-    padding: 10px;    
-    width: 100%;
-    border-radius:4px;
-    border-color: $color-grey0;
-    color:$color-grey1;
-    text-align: center;
+.controll-access-input-celular {
+  line-height: 1.7;
+  font-family: $font-secondary;
+  font-weight: bold;
+  font-size: 50px !important;
+  background-color: transparent;
+  border: solid 3px transparent;
+  padding: 10px;
+  width: 100%;
+  border-radius: 4px;
+  border-color: $color-grey0;
+  color: $color-grey1;
+  text-align: center;
 }
-    .controll-access-input-celular::placeholder{
-        color:$color-grey0;
-    }
-
-    .controll-access-input-celular:focus {    
-        box-shadow: none !important;
-        outline: 0 none !important;        
-        border: solid  10px $color-grey0;  
-    }
-
-    /*Oculto los iconitos del input de mas y menos*/
-    .controll-access-input-celular::-webkit-inner-spin-button, 
-    .controll-access-input-celular::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    .controll-access-input-celular{ 
-        -moz-appearance:textfield;    
-    }
-
-
-
-
-
-
-.controll-access-empresa-cliente-logo{
-    width: 120px;
-    height: auto;
-    
+.controll-access-input-celular::placeholder {
+  color: $color-grey0;
 }
 
-.controll-access-easy-socio-logo-wraper{
-     position: absolute;
-     bottom: 2%;
-     padding:3px 0;
-     
+.controll-access-input-celular:focus {
+  box-shadow: none !important;
+  outline: 0 none !important;
+  border: solid 10px $color-grey0;
 }
 
-.controll-access-easy-socio-logo{
-    width: 100px;
-    height: auto;
-   
+/*Oculto los iconitos del input de mas y menos*/
+.controll-access-input-celular::-webkit-inner-spin-button,
+.controll-access-input-celular::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.controll-access-input-celular {
+  -moz-appearance: textfield;
+}
+
+.controll-access-empresa-cliente-logo {
+  width: 120px;
+  height: auto;
+}
+
+.controll-access-easy-socio-logo-wraper {
+  position: absolute;
+  bottom: 2%;
+  padding: 3px 0;
+}
+
+.controll-access-easy-socio-logo {
+  width: 100px;
+  height: auto;
 }

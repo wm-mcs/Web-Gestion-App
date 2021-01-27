@@ -1,53 +1,49 @@
-.contiene-se-renueva{
-    width: 200px;
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(center); 
-    padding: 10px;
-    margin-top: 10px;
-    background-color: $color-grey-1;
-    border-radius:6px;
+.contiene-se-renueva {
+  width: 200px;
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  padding: 10px;
+  margin-top: 10px;
+  background-color: $color-grey-1;
+  border-radius: 6px;
 }
 
-  .se-renueva-name{
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 2px;
-    color:$color-3;
+.se-renueva-name {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: $color-3;
+}
 
-  }
+.se-renueva-ULTIMA {
+  font-size: 9px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
 
-  .se-renueva-ULTIMA{
-    font-size: 9px;
-    font-weight: bold;
-    margin-bottom: 6px;
+.sub-contiene-se-renueva {
+  padding: 6px;
+  border-radius: 4px;
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  background-color: $color-grey-1;
+}
+.se-renueva-automaticamente {
+  font-size: 9px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
 
-  }
+.contiene-re-renueva-label-input {
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(center);
+}
 
- .sub-contiene-se-renueva{
-  padding:6px;
-  border-radius:4px;
-  @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(center); 
-    background-color: $color-grey-1;
-
- }
-  .se-renueva-automaticamente{
-    font-size: 9px;
-    font-weight: bold;
-    margin-bottom: 8px;
-
-  }
-
-  .contiene-re-renueva-label-input{
-      @include flexbox;       
-      @include flex-direction(row);
-      @include align-items(center); 
-  }
-
-    .renueva-label{
-      font-size: 10px;
-      margin:0 0 0 4px;
-      cursor:pointer;
-    }
+.renueva-label {
+  font-size: 10px;
+  margin: 0 0 0 4px;
+  cursor: pointer;
+}
