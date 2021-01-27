@@ -1,48 +1,48 @@
 var pais = {
-    props: ["pais"],
-    data: function() {
-        return {
-            cargando: false,
-            showModal: false,
-            imagen: ""
-        };
+  props: ["pais"],
+  data: function() {
+    return {
+      cargando: false,
+      showModal: false,
+      imagen: ""
+    };
+  },
+  methods: {
+    onImageChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
     },
-    methods: {
-        onImageChange(e) {
-            let files = e.target.files || e.dataTransfer.files;
-            if (!files.length) return;
-            this.createImage(files[0]);
-        },
-        createImage(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = e => {
-                vm.imagen = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        },
-        editarPais: function(pais) {
-            var url = "/editar_pais";
-
-            var data = { pais: this.pais, imagen: this.imagen };
-            var vue = this;
-
-            axios
-                .post(url, data)
-                .then(function(response) {
-                    var data = response.data;
-
-                    if (data.Validacion == true) {
-                        vue.paises = data.Paises;
-                        $.notify(response.data.Validacion_mensaje, "success");
-                    } else {
-                        $.notify(response.data.Validacion_mensaje, "error");
-                    }
-                })
-                .catch(function(error) {});
-        }
+    createImage(file) {
+      let reader = new FileReader();
+      let vm = this;
+      reader.onload = (e) => {
+        vm.imagen = e.target.result;
+      };
+      reader.readAsDataURL(file);
     },
-    template: `<div class="col-6 col-lg-4 p-1 ">
+    editarPais: function(pais) {
+      var url = "/editar_pais";
+
+      var data = { pais: this.pais, imagen: this.imagen };
+      var vue = this;
+
+      axios
+        .post(url, data)
+        .then(function(response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.paises = data.Paises;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {});
+    }
+  },
+  template: `<div class="col-6 col-lg-4 p-1 ">
     <div class="p-3  border-radius-estandar borde-gris background-white h-100">
       <div class="row mx-0 align-items-center">
         <div class="col-3 cursor-pointer" @click="showModal = true">
@@ -78,7 +78,7 @@ var pais = {
   
               <div class="modal-body">
   
-                <div class="row">
+                <div class="row contenedor-grupo-datos">
                 
                     <div class=" col-lg-6 formulario-label-fiel">
                       <img :src="pais.url_img" class="img-fluid">
