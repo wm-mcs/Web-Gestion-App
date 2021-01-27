@@ -453,7 +453,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 'Socios' => $this->SocioRepo->getSociosDeEstaEmpresa($UserEmpresa->empresa_id)];
         } else {
             return ['Validacion' => $Validacion,
-                'Validacion_mensaje' => 'No se puede crear el socio en este momento: ' . $manager->getErrors()];
+                'Validacion_mensaje' => $manager->getErrors()];
         }
 
     }
