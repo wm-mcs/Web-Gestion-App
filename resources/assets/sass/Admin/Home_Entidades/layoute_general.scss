@@ -1,28 +1,24 @@
 /* --- H E A D E R --- */
 
-.admin-header{
-  width: 100%;  
-  padding: 0 6px; 
+.admin-header {
+  width: 100%;
+  padding: 0 6px;
   @include flexbox;
   @include align-items(center);
-  @include flex-direction(row); 
-  border:solid 1px transparent;
+  @include flex-direction(row);
+  border: solid 1px transparent;
   font-family: $font-primary;
-  
-}  
+}
 
-  
-
-  .admi-header-titulo{
-    font-size: 16px;
-    color: $color-gris-text;
-    margin-left: 5px; 
-  }
-
+.admi-header-titulo {
+  font-size: 16px;
+  color: $color-gris-text;
+  margin-left: 5px;
+}
 
 /* --- C O N T E N E D O R  d e  C O L U M N A  y  C O N T E N T --- */
 
-.admin-contiene-columna-y-content{  
+.admin-contiene-columna-y-content {
   width: 100%;
   @include flexbox;
   @include align-items(flex-start);
@@ -34,34 +30,31 @@
   left: 0;
   z-index: 1000;*/
   font-family: $font-primary;
-  position:relative;  
+  position: relative;
 }
 
 /*Wrapper de 20%*/
-.column-wraper-cuando-esta-fixed{
+.column-wraper-cuando-esta-fixed {
   width: 20%;
 }
 
-  .admin-contiene-content{
-       
-    @include flexbox;
-    @include align-items(center);
-    @include flex-direction(column);  
-    padding:4px;
-  }
+.admin-contiene-content {
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(column);
+  padding: 4px;
+}
 
-    .admin-contiene-content-wraper{
-      width: 95%;    
-      @include flexbox;
-      @include align-items(center);
-      @include flex-direction(column); 
-      padding:8px;
-      border-radius:4px;
-      
-    }
+.admin-contiene-content-wraper {
+  width: 95%;
+  @include flexbox;
+  @include align-items(center);
+  @include flex-direction(column);
+  padding: 8px;
+  border-radius: 4px;
+}
 
-
-.contiene-miga-y-auth{
+.contiene-miga-y-auth {
   width: 100%;
   @include flexbox;
   @include align-items(flex-start);
@@ -69,128 +62,104 @@
   @include justify-content(space-between);
   margin-bottom: 20px;
   padding: 4px 10px;
-
 }
 
+.miga-de-pan-boton-abrir-cerra-menu {
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 24px;
+  color: $color-gris-text;
+  cursor: pointer;
+  margin-right: 30px;
+}
 
-  .miga-de-pan-boton-abrir-cerra-menu{
-    padding: 0 8px;
-    border-radius:6px;
-    font-size: 24px;    
-    color:$color-gris-text;
-    cursor: pointer;
-    margin-right: 30px;
-  }
+.miga-de-pan-boton-abrir-cerra-menu-texto {
+  padding: 8px 8px;
+  border-radius: 6px;
+  font-size: 24px;
+  color: $color-gris-text;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
 
-  .miga-de-pan-boton-abrir-cerra-menu-texto{
-    padding: 8px 8px;
-    border-radius:6px;
-    font-size: 24px;    
-    color:$color-gris-text;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
+.admin-contnedor-navegacion-miga {
+  padding: 8px;
+  color: $color-gris-text;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  @include flexbox;
+  @include align-items(flex-start);
+  @include flex-direction(row);
+}
+.spam-separador {
+  margin: 0 4px;
+  color: $color-gris-text;
+  font-size: 8px;
+}
 
+.miga-imagen {
+  height: 20px;
+  width: auto;
+  margin-right: 10px;
+}
 
-
-  .admin-contnedor-navegacion-miga{    
-    padding: 8px;
-    color: $color-gris-text;
-    font-size: 10px;
-    letter-spacing: 1.2px;  
-    @include flexbox;
-    @include align-items(flex-start);
-    @include flex-direction(row); 
-    
-  }
-    .spam-separador{
-      margin: 0 4px;  
-      color: $color-gris-text ;
-      font-size: 8px;
-    }
-
-    .miga-imagen{
-      height: 20px;
-      width: auto;
-      margin-right: 10px;
-    }
-
-
- .admin-columna-contenedor{
-  min-width: 20%; 
+.admin-columna-contenedor {
+  min-width: 20%;
   background-color: $color-grey-2;
   @include flexbox;
   @include align-items(center);
-  @include flex-direction(column);   
+  @include flex-direction(column);
   height: 100%;
   z-index: 998;
-  position: fixed;  
+  position: fixed;
   top: 0;
   left: 0;
-  
 }
 
-.admin-columna-wraper{
-  width: 230px;   
+.admin-columna-wraper {
+  width: 230px;
   @include flexbox;
   @include align-items(center);
   @include flex-direction(column);
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
-.admin-logo-contendor{
-  width:100%;
-  height:90px;
-  padding:10px 15px;
+.admin-logo-contendor {
+  width: 100%;
+  height: 90px;
+  padding: 10px 15px;
   @include flexbox;
   @include align-items(center);
-  @include flex-direction(row);   
-  @include justify-content(space-around); 
+  @include flex-direction(row);
+  @include justify-content(space-around);
   margin: 40px auto;
 }
 
-.easy-text{
-  color:$color-3;
-  font-weight:bold;
-  font-size:18px;
-  font-family:arial;
+.easy-text {
+  color: $color-3;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: arial;
 }
-
 
 // logo o isologo de la marca
-.admin-header-logo{
-    width: 50px;
-    margin:35px 3px;
-  }
-
-
-  .logo-easy-columna{
-    height:auto;
-    width: 180px;
-    margin-top: 20px;
-    margin-bottom: 40px;
-  }
-
-
-.columna-lista-texto{
-  font-size:10px;
-  margin-top:3px;
-  margin-left:7px; 
+.admin-header-logo {
+  width: 50px;
+  margin: 35px 3px;
 }
 
+.logo-easy-columna {
+  height: auto;
+  width: 180px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
+.columna-lista-texto {
+  font-size: 10px;
+  margin-top: 3px;
+  margin-left: 7px;
+}
 
-
-
-
-
-
-
-
-
-
-@media (min-width: $BrackPoint-Secundario){
-
-
-
+@media (min-width: $BrackPoint-Secundario) {
 }

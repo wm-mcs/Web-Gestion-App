@@ -1,133 +1,114 @@
-Vue.component('crear-empresa' ,
-{
-
-
- 
-
-data:function(){
+Vue.component("crear-empresa", {
+  data: function() {
     return {
-       modal:'#modal-crear-empresa',
-       data_post:{
-               empresa_name:'',
-               empresa_celular:'',
-               empresa_email:'',
-               user_name:'',
-               user_email:'',
-               user_celular:'',
-               plan_id:'',
-               factura_con_iva:'no',
-               razon_social:'',
-               rut:''
-                 },
-      planes:''
+      modal: "#modal-crear-empresa",
+      data_post: {
+        empresa_name: "",
+        empresa_celular: "",
+        empresa_email: "",
+        user_name: "",
+        user_email: "",
+        user_celular: "",
+        plan_id: "",
+        factura_con_iva: "no",
+        razon_social: "",
+        rut: ""
+      },
+      planes: [],
+      paises: []
+    };
+  },
 
-    }
-}, 
- 
+  methods: {
+    abrir_modal: function() {
+      this.getPlanes();
+      $(this.modal)
+        .appendTo("body")
+        .modal("show");
+    },
+    crear_empresa_post: function() {
+      var validation = confirm("¿Seguros quieres crear la empresa?");
 
-methods:{
+      if (!validation) {
+        return "";
+      }
 
- abrir_modal:function(){
-   this.getPlanes();
-   $(this.modal).appendTo("body").modal('show');  
+      var url = "/crear_empresa_nueva";
+      var vue = this;
+      var data = this.data_post;
 
- },
- crear_empresa_post:function(){
+      app.cargando = true;
 
-  var validation = confirm("¿Seguros quieres crear la empresa?");
-
-       if(!validation)
-       {
-        return '';
-       }
-
- var url  = '/crear_empresa_nueva';
- var vue  = this;
- var data = this.data_post;
-
- app.cargando = true;
-
-  axios.post(url,data).then(function(response){ 
-
-
-          
-          if(response.data.Validacion == true)
-          {  app.cargando = false;  
-             app.cerrarModal('#modal-crear-empresa');
-             bus_empresas.$emit('empresas-set', response.data.empresas);  
-             $.notify(response.data.Validacion_mensaje, "success");
-          }
-          else
-          { app.cargando = false;
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            app.cargando = false;
+            app.cerrarModal("#modal-crear-empresa");
+            bus_empresas.$emit("empresas-set", response.data.empresas);
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            app.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
+          }
+        })
+        .catch(function(error) {});
+    },
+    getPlanes: function() {
+      var url = "/get_planes_empresa";
 
-                     
-            
-           });
+      var vue = this;
 
+      axios
+        .get(url)
+        .then(function(response) {
+          var data = response.data;
 
+          if (data.Validacion == true) {
+            vue.planes = data.planes;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {});
+    },
+    getPaises: function() {
+      var url = "/get_paises_todos";
+      var vue = this;
 
+      axios
+        .get(url)
+        .then(function(response) {
+          var data = response.data;
 
-
-
-
- 
-},
-getPlanes:function(){
-   var url  = '/get_planes_empresa';
-
-      
-      var vue  = this;
-
-     axios.get(url).then(function (response){  
-            var data = response.data;  
-            
-
-            if(data.Validacion == true)
-            {
-               vue.planes = data.planes;
-               $.notify(response.data.Validacion_mensaje, "success");
-            }
-            else
-            {
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-           
-           }).catch(function (error){
-
-                     
-            
-           });
-},
-get_valor_dependiendo_si_es_conIva:function(valor)
-{
-  if(this.data_post.factura_con_iva == 'no')
-  {
-    return valor;
-  }
-  else
-  {
-    return parseFloat(valor*1.22).toFixed(1) + ' iva inc ';
-  }
-}
-},
-computed:{
-  es_con_rut:function(){
-  if(this.data_post.factura_con_iva == 'si')
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-  }
-},
-template:'
+          if (data.Validacion == true) {
+            vue.paises = data.Data;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {});
+    },
+    get_valor_dependiendo_si_es_conIva: function(valor) {
+      if (this.data_post.factura_con_iva == "no") {
+        return valor;
+      } else {
+        return parseFloat(valor * 1.22).toFixed(1) + " iva inc ";
+      }
+    }
+  },
+  computed: {
+    es_con_rut: function() {
+      if (this.data_post.factura_con_iva == "si") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  template: `
 
 <span >
    <div  style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
@@ -303,11 +284,5 @@ template:'
 
  
 
-'
-
-}
-
-
-
-
-);
+`
+});

@@ -72,7 +72,7 @@ Vue.component("crear-pais", {
 
   <div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
    Crear un país<i class="fas fa-plus"></i>
-  </div>  
+  </div>
 
 
   <transition name="modal" v-if="showModal">
@@ -83,73 +83,73 @@ Vue.component("crear-pais", {
           <i class="fas fa-times"></i>
         </span>
 
-          
+
           <div class="row">
             <h4 class="col-12 sub-titulos-class" > Crear país</h4>
             <div class="col-12 modal-mensaje-aclarador">
-              
+
             </div>
           </div>
 
           <div class="modal-body">
-            
-            <div class="row">
+
+            <div class="row row mx-0 contenedor-grupo-datos">
               <div class="col-lg-6 formulario-label-fiel">
-               <label class="formulario-label">Nombre</label> 
+               <label class="formulario-label">Nombre</label>
                <input v-model="datos_a_enviar.name" type="text" min="1" class="formulario-field" placeholder="Nombre">
               </div>
 
               <div class="col-lg-6 formulario-label-fiel">
-               <label class="formulario-label">Código</label> 
-               <input v-model="datos_a_enviar.code" type="text"  class="formulario-field" placeholder="Código de país">                
+               <label class="formulario-label">Código</label>
+               <input v-model="datos_a_enviar.code" type="text"  class="formulario-field" placeholder="Código de país">
               </div>
 
               <div class="col-lg-6 formulario-label-fiel">
-               <label class="formulario-label">Código de moneda</label> 
-               <input v-model="datos_a_enviar.currencyCode" type="text"  class="formulario-field" placeholder="Código de moneda">                
-              </div>             
-             
-              
+               <label class="formulario-label">Código de moneda</label>
+               <input v-model="datos_a_enviar.currencyCode" type="text"  class="formulario-field" placeholder="Código de moneda">
+              </div>
+
+
                 <div class="col-12 formulario-label-fiel">
                     <label class="formulario-label">Imagen</label>
                     <input class="formulario-field" type="file" name="image" v-on:change="onImageChange" accept="image/*">
                   </div>
-              
+
 
               <div class="col-12 formulario-label-fiel">
-                <label class="formulario-label">¿Activo?</label> 
+                <label class="formulario-label">¿Activo?</label>
                 <select v-model="datos_a_enviar.estado" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
-                
-              </div>
-             
-           
 
-              
+              </div>
+
+
+
+
 
               <div @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
               </div>
             </div>
-            
+
 
 
           </div>
 
           <div class="modal-footer">
-           
+
               <button class="modal-default-button" @click="showModal = false" >
                 Cancelar
               </button>
-           
+
           </div>
         </div>
       </div>
     </div>
   </transition>
 </span>
-	
+
 `
 });

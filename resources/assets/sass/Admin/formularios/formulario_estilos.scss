@@ -1,158 +1,138 @@
-.wrpaer-formulario-contenedor{
-  width:100%;
-  @include flexbox; 
+.wrpaer-formulario-contenedor {
+  width: 100%;
+  @include flexbox;
   @include flex-direction(column);
   @include align-items(center);
 }
 
-.formulario-contenedor{
-      @include flexbox; 
-      @include flex-direction(row);
-      @include align-items(flex-start);
-      @include justify-content(space-around);
-      @include flex-wrap(wrap);      
-      margin-top: 30px;
-      width:100%;
+.formulario-contenedor {
+  @include flexbox;
+  @include flex-direction(row);
+  @include align-items(flex-start);
+  @include justify-content(space-around);
+  @include flex-wrap(wrap);
+  margin-top: 30px;
+  width: 100%;
 }
 
-.formulario-contenedor-columnas{
-  width:100%;
-  padding:8px;
+.formulario-contenedor-columnas {
+  width: 100%;
+  padding: 8px;
 }
 
- .contenedor-grupo-datos{
-    padding:15px;
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
-    margin-top: 20px;    
-    border: 0;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.26);
-    background-color: $color-white;    
-    width: 100%;
+.contenedor-grupo-datos {
+  padding: 15px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+  background-color: $color-white;
+  width: 100%;
+}
 
-   }
-   
-
-.contenedor-formulario-label-fiel{
-  @include flexbox; 
+.contenedor-formulario-label-fiel {
+  @include flexbox;
   @include flex-direction(column);
   @include align-items(flex-start);
-  width:100%;
+  width: 100%;
 }
 
+.formulario-label-fiel {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
 
+//lo uso en la aprte de gestion
+.formulario-label-fiel-sin-width {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  padding: 4px;
+  border-radius: 4px;
+  border: solid 1px transparent;
+  margin-top: 4px;
+}
 
+//lo uso en la aprte de gestion
+.titulo-dentro-de-form {
+  font-size: 28px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
-           .formulario-label-fiel{
-             @include flexbox; 
-             @include flex-direction(column);
-             @include align-items(flex-start);
-             width:100%;
-             padding: 4px;
-             border-radius: 4px;                        
-             margin-top: 4px;
-           }
+.formulario-label {
+  padding: 2px 2px;
+  color: black;
+  font-size: 12px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+.formulario-label-aclaracion {
+  color: $color-gris-text !important;
+  margin-top: 2px;
+  padding: 3px;
+  background-color: $color-grey0;
+  font-size: 10px;
+}
 
-            //lo uso en la aprte de gestion
-            .formulario-label-fiel-sin-width{
-             @include flexbox; 
-             @include flex-direction(column);
-             @include align-items(flex-start);             
-             padding: 4px;
-             border-radius: 4px;
-             border:solid 1px transparent;             
-             margin-top: 4px;
-           }
+.formulario-field {
+  padding: 6px;
+  border-radius: 4px;
+  border: solid 2px $color-grey1;
+  font-size: 14px;
+  font-weight: bold;
+  color: $color-3;
+  width: 100%;
+}
+.formulario-field::placeholder {
+  color: $color-grey0;
+}
+.formulario-field:focus {
+  box-shadow: none !important;
+  outline: 0 none !important;
+  border-color: $color-3 !important;
+}
 
-           //lo uso en la aprte de gestion
-           .titulo-dentro-de-form{
-            font-size: 28px;
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
-           }
-           
-           
+.admin-boton-editar {
+  @include Boton-base;
+  font-size: 14px;
+  color: $color-white;
+  background-color: $color-3;
+  border-color: darken($color-3, 10%);
+}
+.admin-boton-editar:hover {
+  background-color: darken($color-3, 10%);
+  color: $color-white;
+}
 
+.admin-img-section-contenedor {
+  width: 100%;
+  padding: 8px;
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+}
+.admin-img-section-text {
+  margin-top: 5px;
+  font-size: 10px;
+  color: $color-gris-text;
+}
 
-              .formulario-label{                
-                padding:2px 2px;                
-                color: black; 
-                font-size: 12px;
-                margin-bottom: 2px;
-                font-weight: bold;
-              }
-              .formulario-label-aclaracion{
-                color: $color-gris-text !important;
-                margin-top: 2px;
-                padding: 3px;
-                background-color: $color-grey0;
-                font-size: 10px;
-              }
+.admin-img-section-img {
+  height: 50px;
+  width: auto;
+  padding: 10px;
+  margin-top: 10px;
+}
 
-              .formulario-field{
-                padding: 6px;
-                border-radius: 4px;
-                border:solid 2px $color-grey1;
-                font-size: 14px;     
-                font-weight:bold;           
-                color: $color-3;
-                width: 100%;
-              }
-              .formulario-field::placeholder{
-                color: $color-grey0;
-              }
-              .formulario-field:focus {    
-                box-shadow: none !important;
-                outline: 0 none !important;
-                border-color:$color-3 !important;
-              }
-
-
-              .admin-boton-editar{
-                @include Boton-base;
-                font-size: 14px;
-                color:$color-white;
-                background-color: $color-3;
-                border-color:darken( $color-3, 10% );
-              }
-              .admin-boton-editar:hover{
-               background-color: darken( $color-3, 10% );
-               color:$color-white;
-              }
-
-              .admin-img-section-contenedor{
-                width: 100%;
-                padding:8px;
-                @include flexbox; 
-                @include flex-direction(column);
-                @include align-items(flex-start); 
-
-              }
-              .admin-img-section-text{
-                margin-top: 5px;
-                font-size: 10px;
-                color: $color-gris-text;
-              }
-
-              .admin-img-section-img{
-                height: 50px;
-                width: auto;
-                padding:10px;
-                margin-top: 10px;
-              }
-
-
- @media (min-width: $BrackPoint-Secundario){
-
-
-   .formulario-contenedor-columnas{
-    width:49%;
+@media (min-width: $BrackPoint-Secundario) {
+  .formulario-contenedor-columnas {
+    width: 49%;
   }
-
-
- }
-
-              
+}

@@ -1,23 +1,22 @@
 //cargando layout
-.cargando-style-contenedor{
-  position:fixed;
-  width:100%;
-  height:100vh;
-  background-color:#D5D5D5;
+.cargando-style-contenedor {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: #d5d5d5;
   opacity: 0.5;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(flex-start); 
+  @include align-items(flex-start);
   @include justify-content(space-around);
-  z-index:999;
-
+  z-index: 999;
 }
 
-.cargando-style-contenedor-sub{
-  @include flexbox;       
+.cargando-style-contenedor-sub {
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
-  height:100vh;
+  @include align-items(center);
+  height: 100vh;
   @include justify-content(space-around);
 }
 
@@ -35,162 +34,171 @@
   border-radius: 50%;
   border-color: $color-3;
   animation: cssload-scale 1035ms infinite linear;
-    -o-animation: cssload-scale 1035ms infinite linear;
-    -ms-animation: cssload-scale 1035ms infinite linear;
-    -webkit-animation: cssload-scale 1035ms infinite linear;
-    -moz-animation: cssload-scale 1035ms infinite linear;
+  -o-animation: cssload-scale 1035ms infinite linear;
+  -ms-animation: cssload-scale 1035ms infinite linear;
+  -webkit-animation: cssload-scale 1035ms infinite linear;
+  -moz-animation: cssload-scale 1035ms infinite linear;
 }
 
-
-
 @keyframes cssload-scale {
-  0% { transform: scale(0); transform: scale(0); }
-  90% { transform: scale(0.7); transform: scale(0.7); }
-  100% { transform: scale(1); transform: scale(1); }
+  0% {
+    transform: scale(0);
+    transform: scale(0);
+  }
+  90% {
+    transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 @-o-keyframes cssload-scale {
-  0% { -o-transform: scale(0); transform: scale(0); }
-  90% { -o-transform: scale(0.7); transform: scale(0.7); }
-  100% { -o-transform: scale(1); transform: scale(1); }
+  0% {
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+  90% {
+    -o-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 @-ms-keyframes cssload-scale {
-  0% { -ms-transform: scale(0); transform: scale(0); }
-  90% { -ms-transform: scale(0.7); transform: scale(0.7); }
-  100% { -ms-transform: scale(1); transform: scale(1); }
+  0% {
+    -ms-transform: scale(0);
+    transform: scale(0);
+  }
+  90% {
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 @-webkit-keyframes cssload-scale {
-  0% { -webkit-transform: scale(0); transform: scale(0); }
-  90% { -webkit-transform: scale(0.7); transform: scale(0.7); }
-  100% { -webkit-transform: scale(1); transform: scale(1); }
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  90% {
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
 @-moz-keyframes cssload-scale {
-  0% { -moz-transform: scale(0); transform: scale(0); }
-  90% { -moz-transform: scale(0.7); transform: scale(0.7); }
-  100% { -moz-transform: scale(1); transform: scale(1); }
+  0% {
+    -moz-transform: scale(0);
+    transform: scale(0);
+  }
+  90% {
+    -moz-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  100% {
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
 }
 
- .cargando-text-style{
-  font-size:20px;
-  text-align:center;
-  color:black;
- }
+.cargando-text-style {
+  font-size: 20px;
+  text-align: center;
+  color: black;
+}
 
- .Procesando-text{
-  padding:8px;
-  color:$color-gris-text;
-  font-weight:bold;
-  @include flexbox;       
+.Procesando-text {
+  padding: 8px;
+  color: $color-gris-text;
+  font-weight: bold;
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
+  @include align-items(center);
   @include justify-content(space-around);
- }
-
-
-
-
-
+}
 
 //mensaje de inicio de la app en la home
-.empresa-gestion-texto-gris-grande-de-aviso{
+.empresa-gestion-texto-gris-grande-de-aviso {
   font-size: 25px;
   width: 100%;
   padding: 25px;
-  border-radius:8px;
+  border-radius: 8px;
   color: $color-grey1;
   letter-spacing: 1.5px;
   margin-bottom: 25px;
   text-align: center;
 }
 
-
-.empresa-gestion-barra-top-boton-y-forma-busqueda{
-
+.empresa-gestion-barra-top-boton-y-forma-busqueda {
   width: 100%;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
+  @include align-items(center);
   padding: 10px;
   border-radius: 4px;
   @include justify-content(space-between);
-  @include flex-wrap(wrap); 
-
+  @include flex-wrap(wrap);
 }
 
-
-
-.empresa-gestion-contiene-input-busqueda{
+.empresa-gestion-contiene-input-busqueda {
   width: 100%;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
- .empresa-gestion-input-busqueda{
-      height: 50px;
-      font-size: 18px;
- }
+.empresa-gestion-input-busqueda {
+  height: 50px;
+  font-size: 18px;
+}
 
-
-
-
-
-
-
- .empresa-gestion-listado-contenedor{
-  padding:6px;
-  border-radius:6px;
+.empresa-gestion-listado-contenedor {
+  padding: 6px;
+  border-radius: 6px;
   margin-top: 4px;
   width: 100%;
-  @include flexbox;       
+  @include flexbox;
   @include flex-direction(row);
-  @include align-items(center); 
-
- }
- .empresa-gestion-listado-contenedor:hover{
+  @include align-items(center);
+}
+.empresa-gestion-listado-contenedor:hover {
   background-color: $color-grey-2;
- }
+}
 
+/* diseño de las secciones en general para toda la app */
+.empresa-contendor-de-secciones {
+  padding: 6px;
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(flex-start);
+  margin-top: 20px;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+}
 
+.empresa-titulo-de-secciones,
+.contenedor-grupo-datos-titulo {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
- /* diseño de las secciones en general para toda la app */
- .empresa-contendor-de-secciones{
-    padding:6px;
-    @include flexbox;       
-    @include flex-direction(column);
-    @include align-items(flex-start); 
-    margin-top: 20px;
-    width: 100%;
-    border: 0;
-    border-radius: 8px;
-    
- }
-
-
-
-
-
-    .empresa-titulo-de-secciones,.contenedor-grupo-datos-titulo{
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      
-    }
-
-
-
-
-
-    @media (min-width: $BrackPoint-Secundario){
-
-
-        .empresa-gestion-contiene-input-busqueda{
-          width: 60%;
-          margin-bottom:0;
-        }
-
-
-    }
-
-   
+@media (min-width: $BrackPoint-Secundario) {
+  .empresa-gestion-contiene-input-busqueda {
+    width: 60%;
+    margin-bottom: 0;
+  }
+}

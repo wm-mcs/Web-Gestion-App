@@ -78,7 +78,7 @@ var pais = {
   
               <div class="modal-body">
   
-                <div class="row contenedor-grupo-datos">
+                <div class="row mx-0 contenedor-grupo-datos">
                 
                     <div class=" col-lg-6 formulario-label-fiel">
                       <img :src="pais.url_img" class="img-fluid">
