@@ -65,10 +65,11 @@ class PaisesController extends Controller
         $Entidad = $this->PaisRepo->setEntidadDato($Entidad, $Request, $Propiedades);
         $this->PaisRepo->setImagenDesdeVue($Request->get('imagen'), 'Paises/', str_replace(' ', '-', $Request->get('name')), '.png', 100);
 
-        //actualizo cache socio
         $this->PaisRepo->ActualizarCache();
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se creó correctamente el país', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
+        return HelpersGenerales::formateResponseToVue(true, 'Se creó correctamente el país', Cache::remember('Paises', 10000, function () {
+            return $this->PaisRepo->getEntidadesMenosIdsYConFiltros(null, [], null, 'name', 'asc', 'no');
+        }));
 
     }
 
@@ -91,14 +92,15 @@ class PaisesController extends Controller
         //actualizo cache socio
         $this->PaisRepo->ActualizarCache();
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se ceditó correctamente el país', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
-
+        return HelpersGenerales::formateResponseToVue(true, 'Se ceditó correctamente el país', Cache::remember('Paises', 10000, function () {
+            return $this->PaisRepo->getEntidadesMenosIdsYConFiltros(null, [], null, 'name', 'asc', 'no');
+        }));
     }
 
     public function get_paises_todos(Request $Request)
     {
-        $Keys = null;
-        return HelpersGenerales::formateResponseToVue(true, 'Paises todos', $this->PaisRepo->getEntidadesMenosIdsYConFiltros($Keys, [], null, 'name', 'asc', 'no'));
+
+        return HelpersGenerales::formateResponseToVue(true, 'Paises todos', $this->PaisRepo->getEntidadesMenosIdsYConFiltros(null, [], null, 'name', 'asc', 'no'));
     }
 
     /**
