@@ -1,85 +1,66 @@
-Vue.component('socios-crear-boton' ,
-{
-props: {
+Vue.component("socios-crear-boton", {
+  props: {
     accion_name: String,
-    empresa:Object
+    empresa: Object
+  },
 
-}
-
-
-,
-data:function(){
+  data: function() {
     return {
-      form_socio_name:'',
-      form_socio_email:'',
-      form_socio_celular:'',
-      form_socio_cedula:'' ,
-      modal:'#modal-crear-socio'
+      form_socio_name: "",
+      form_socio_email: "",
+      form_socio_celular: "",
+      form_socio_cedula: "",
+      modal: "#modal-crear-socio"
+    };
+  },
 
-    }
-},
+  methods: {
+    abrir_modal: function() {
+      $(this.modal)
+        .appendTo("body")
+        .modal("show");
+    },
+    crear_socio_post: function() {
+      var url = "/post_crear_socio_desde_modal";
 
-methods:{
-
- abrir_modal:function(){
-
-   $(this.modal).appendTo("body").modal('show');
-
- },
- crear_socio_post:function(){
-
-       var url = '/post_crear_socio_desde_modal';
-
-      var data = {    name:this.form_socio_name,
-                     email:this.form_socio_email,
-                   celular:this.form_socio_celular,
-                    cedula:this.form_socio_cedula,
-                    empresa_id: this.empresa.id
-                 };
+      var data = {
+        name: this.form_socio_name,
+        email: this.form_socio_email,
+        celular: this.form_socio_celular,
+        cedula: this.form_socio_cedula,
+        empresa_id: this.empresa.id
+      };
       var vue = this;
       app.cargando = true;
 
-     axios.post(url,data).then(function (response){
-            var data = response.data;
+      axios
+        .post(url, data)
+        .then(function(response) {
+          var data = response.data;
 
-
-            if(data.Validacion == true)
-            {
-               app.cargando = false;
-               bus.$emit('socios-set', response.data.Socios);
-               app.cerrarModal(vue.modal);
-               $.notify(response.data.Validacion_mensaje, "success");
-            }
-            else
-            {
-              app.cargando = false;
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-
-           }).catch(function (error){
-
-
-
-           });
-
- }
-
-
-
-},
-computed:{
- boton_crear_validation:function(){
- if(this.form_socio_name != ''  & this.form_socio_celular != ''  ){
-  return true;
- }
- else{
- return false;
-}
-
- }
-
-},
-template:'<span >
+          if (data.Validacion == true) {
+            app.cargando = false;
+            bus.$emit("socios-set", response.data.Socios);
+            app.cerrarModal(vue.modal);
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            app.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {});
+    }
+  },
+  computed: {
+    boton_crear_validation: function() {
+      if ((this.form_socio_name != "") & (this.form_socio_celular != "")) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  template: `<span >
    <div id="socio-boton-crear" style="position:relative;" class="admin-user-boton-Crear" v-on:click="abrir_modal">
          <i class="fas fa-user-plus" title="Crear nuevo socio"></i>
 
@@ -98,14 +79,14 @@ template:'<span >
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
 
         </div>
-        <div class="modal-body text-center">
+        <div class="modal-body">
 
                   <div class="formulario-label-fiel">
 
                       <input type="text" class="formulario-field"  v-model="form_socio_name" placeholder="Nombres y apellidos" required  />
                   </div>
                   <div class="formulario-label-fiel">
-                  <div v-if="empresa.pais != 'UY'"class="modal-mensaje-aclarador">
+                  <div v-if="empresa.pais != 'UY'" class="modal-mensaje-aclarador">
     Se deben ingresar todo los dígitos menos el símbolo de +.
   </div>
                       <input type="number" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
@@ -144,9 +125,5 @@ template:'<span >
 
 
 </span>
-   '
-
-}
-
-
-);
+   `
+});
