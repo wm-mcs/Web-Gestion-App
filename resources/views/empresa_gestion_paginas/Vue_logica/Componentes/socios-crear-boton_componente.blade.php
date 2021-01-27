@@ -48,7 +48,7 @@ Vue.component("socios-crear-boton", {
             const dataError = response.data.Validacion_mensaje;
             if (Array.isArray(dataError)) {
               const valores = Object.values(dataError);
-              valores.forEach((element) => $.notify(element));
+              valores.forEach((element) => $.notify(element[0], "error"));
             } else {
               $.notify(dataError);
             }
