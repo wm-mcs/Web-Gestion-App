@@ -12,7 +12,8 @@ Vue.component("crear-empresa", {
         plan_id: "",
         factura_con_iva: "no",
         razon_social: "",
-        rut: ""
+        rut: "",
+        pais: "UY"
       },
       planes: [],
       paises: []
@@ -135,7 +136,17 @@ Vue.component("crear-empresa", {
           {{-- empresa datos --}}
           <div class="contenedor-grupo-datos">
             <div class="contenedor-grupo-datos-titulo"> Empresa datos</div>
-            <div class="contenedor-formulario-label-fiel">                       
+            <div class="contenedor-formulario-label-fiel">
+                <div class="formulario-label-fiel">
+                  {!! Form::label('pais', 'País', array('class' => 'formulario-label ')) !!}
+
+                  <select class="formulario-field" v-model="data_post.pais">
+                            
+                            <option v-for="pais in paises" :value="pais.code">
+                                @{{ pais.name }}</option>
+                        </select>
+
+                             </div>                       
                 <div class="formulario-label-fiel">
                   {!! Form::label('empresa_name', 'Nombre', array('class' => 'formulario-label ')) !!}
                   {!! Form::text('empresa_name', null ,['class' => 'formulario-field',
