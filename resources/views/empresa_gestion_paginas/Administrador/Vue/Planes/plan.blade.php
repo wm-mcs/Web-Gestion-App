@@ -72,13 +72,13 @@ var plan = {
 
                   <div class="col-lg-6 formulario-label-fiel">
                     <label class="formulario-label">Nombre </label>
-                    <input type="text" class="formulario-field" v-model="pais.name" placeholder="Nombre del país" />
+                    <input type="text" class="formulario-field" v-model="plan.name" placeholder="Nombre del plan" />
                   </div>
 
 
                   <div class="col-6 formulario-label-fiel">
                     <label class="formulario-label">¿Activo?</label>
-                    <select v-model="pais.estado" class="formulario-field">
+                    <select v-model="plan.estado" class="formulario-field">
                         <option>si</option>
                         <option>no</option>
                     </select>
