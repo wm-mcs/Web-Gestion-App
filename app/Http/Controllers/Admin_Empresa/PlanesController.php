@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin_Empresa;
 
+use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
 use App\Managers\EmpresaGestion\CrearPlanManager;
 use App\Repositorios\EmpresaConSociosoRepo;
@@ -46,10 +47,8 @@ class PlanesController extends Controller
     public function get_planes_empresa(Request $Request)
     {
         $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
+        return HelpersGenerales::formateResponseToVue(true, 'Planes agregados corectamente', $planes);
 
-        return ['Validacion' => true,
-            'Validacion_mensaje' => 'Planes agregados corectamente',
-            'planes' => $planes];
     }
 
     public function get_planes_index()

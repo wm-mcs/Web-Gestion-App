@@ -1,5 +1,5 @@
-var pais = {
-  props: ["pais"],
+var plan = {
+  props: ["plan"],
   data: function() {
     return {
       cargando: false,
@@ -8,23 +8,11 @@ var pais = {
     };
   },
   methods: {
-    onImageChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files[0]);
-    },
-    createImage(file) {
-      let reader = new FileReader();
-      let vm = this;
-      reader.onload = (e) => {
-        vm.imagen = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-    editarPais: function(pais) {
-      var url = "/editar_pais";
 
-      var data = { pais: this.pais, imagen: this.imagen };
+    editarPais: function() {
+      var url = "/editar_plan";
+
+      var data = { plan: this.plan };
       var vue = this;
 
       axios
@@ -45,14 +33,12 @@ var pais = {
   template: `<div class="col-6 col-lg-4 p-1 ">
     <div class="p-3  border-radius-estandar borde-gris background-white h-100">
       <div class="row mx-0 align-items-center">
-        <div class="col-3 cursor-pointer" @click="showModal = true">
-          <img :src="pais.url_img" :alt="'Bandera de ' + pais.url_img" class="img-fluid rounded-circle">
-        </div>
-        <div class="col-9 mb-0   cursor-pointer" @click="showModal = true">
-        <p class="h5 mb-1"><b>@{{pais.name}}</b></p>
+
+        <div class="col-12 mb-0   cursor-pointer" @click="showModal = true">
+        <p class="h5 mb-1"><b>@{{plan.name}}</b></p>
 
 
-          <p  class="mb-0" :class="pais.estado === 'si' ? 'color-text-success' : 'color-text-gris'"> @{{ pais.estado === 'si' ? 'Activo':'Desactivado'}}
+          <p  class="mb-0" :class="plan.estado === 'si' ? 'color-text-success' : 'color-text-gris'"> @{{ plan.estado === 'si' ? 'Activo':'Desactivado'}}
         </p>
         </div>
 
@@ -70,9 +56,9 @@ var pais = {
 
 
               <div class="row">
-                <h4 class="col-12 sub-titulos-class"> Editar @{{pais.name}}</h4>
+                <h4 class="col-12 sub-titulos-class"> Editar @{{plan.name}}</h4>
                 <div class="col-12 modal-mensaje-aclarador">
-                  Editar los datos correspondientes al país <b>@{{pais.name}}</b>.
+                  Editar los datos correspondientes al plan <b>@{{plan.name}}</b>.
                 </div>
               </div>
 
@@ -80,9 +66,7 @@ var pais = {
 
                 <div class="row mx-0 contenedor-grupo-datos">
 
-                    <div class=" col-lg-6 formulario-label-fiel">
-                      <img :src="pais.url_img" class="img-fluid">
-                    </div>
+
 
 
 
@@ -90,19 +74,7 @@ var pais = {
                     <label class="formulario-label">Nombre </label>
                     <input type="text" class="formulario-field" v-model="pais.name" placeholder="Nombre del país" />
                   </div>
-                  <div class="col-lg-6 formulario-label-fiel">
-                    <label class="formulario-label">Código</label>
-                    <input type="text" class="formulario-field" v-model="pais.code" placeholder="Código del país" />
-                  </div>
-                  <div class="col-lg-6 formulario-label-fiel">
-                    <label class="formulario-label">Código de moneda</label>
-                    <input type="text" class="formulario-field" v-model="pais.currencyCode"
-                      placeholder="Código de la moneda" />
-                  </div>
-                  <div class="col-12 formulario-label-fiel">
-                    <label class="formulario-label">Imagen</label>
-                    <input class="formulario-field" type="file" name="image" v-on:change="onImageChange" accept="image/*">
-                  </div>
+
 
                   <div class="col-6 formulario-label-fiel">
                     <label class="formulario-label">¿Activo?</label>
@@ -113,7 +85,7 @@ var pais = {
                    </div>
 
 
-                  <div @click="editarPais" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+                  <div @click="editarPlan" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                     Confirmar
                   </div>
                 </div>

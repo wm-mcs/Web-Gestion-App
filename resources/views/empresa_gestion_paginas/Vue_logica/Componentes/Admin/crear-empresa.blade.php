@@ -61,7 +61,7 @@ Vue.component("crear-empresa", {
         .then(function(response) {
           var data = response.data;
           if (data.Validacion == true) {
-            vue.planes = data.planes;
+            vue.planes = data.Data;
             vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "success");
             vue.cargando = false;
