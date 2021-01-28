@@ -47,13 +47,14 @@ class PlanesController extends Controller
     {
         $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
 
-        if (!$Request->ajax()) {
-            return view('empresa_gestion_paginas.Administrador.planes');
-        }
-
         return ['Validacion' => true,
             'Validacion_mensaje' => 'Planes agregados corectamente',
             'planes' => $planes];
+    }
+
+    public function get_planes_index()
+    {
+        return view('empresa_gestion_paginas.Administrador.planes');
     }
 
     public function crear_plan(Request $Request)
