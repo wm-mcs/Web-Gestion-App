@@ -1,49 +1,50 @@
 @include('empresa_gestion_paginas.Administrador.Vue.Paises.pais')
 
 Vue.component("listado-de-paises", {
+  components: {
+    pais: pais
+  },
+  data: function() {
+    return {
+      paises: [],
+      cargando: false
+    };
+  },
+  methods: {
+    getPaises: function() {
+      var url = "/get_paises_todos";
+      var vue = this;
+      vue.cargando = true;
+      axios
+        .get(url)
+        .then(function(response) {
+          var data = response.data;
 
-    components: {
-        'pais': pais
-    },
-    data: function() {
-        return {
-            paises: [],
-            cargando: false
-        };
-    },
-    methods: {
-        getPaises: function() {
-            var url = "/get_paises_todos";
-            var vue = this;
-
-            axios
-                .get(url)
-                .then(function(response) {
-                    var data = response.data;
-
-                    if (data.Validacion == true) {
-                        vue.paises = data.Data;
-                        $.notify(response.data.Validacion_mensaje, "success");
-                    } else {
-                        $.notify(response.data.Validacion_mensaje, "error");
-                    }
-                })
-                .catch(function(error) {});
-        }
-    },
-    computed: {
-
-    },
-    mounted: function() {
-        this.getPaises();
-    },
-    created() {
-        bus.$on("se-creo-o-edito-pais", data => {
-            this.getPaises();
+          if (data.Validacion == true) {
+            vue.paises = data.Data;
+            $.notify(response.data.Validacion_mensaje, "success");
+            vue.cargando = false;
+          } else {
+            $.notify(response.data.Validacion_mensaje, "error");
+            vue.cargando = false;
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
         });
-    },
+    }
+  },
+  computed: {},
+  mounted: function() {
+    this.getPaises();
+  },
+  created() {
+    bus.$on("se-creo-o-edito-pais", (data) => {
+      this.getPaises();
+    });
+  },
 
-    template: `
+  template: `
 	<div v-if="cargando" class="w-100 d-flex flex-column align-items-center p-5">
         <div class="cssload-container">
             <div class="cssload-tube-tunnel"></div>

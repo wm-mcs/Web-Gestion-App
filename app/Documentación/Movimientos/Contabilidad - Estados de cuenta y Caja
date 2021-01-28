@@ -1,17 +1,14 @@
-* 
-*
-* 
 
-* C a d e n a   y   g e r a r q u í a   u n   m o v i m i e n t o
+# C a d e n a   y   g e r a r q u í a   u n   m o v i m i e n t o
 
 
-M o v i m i e n t o 
+_M o v i m i e n t o_ 
 
-** Este será el el movimiento padré. 
-** El mismo tiene un Id y se usará en todos los demas entidades como referencia.
-** Se asociará a un tipo de movimiento. Entidad "TipoDeMovimiento" 
+ Este será el el movimiento padré. 
+ El mismo tiene un Id y se usará en todos los demas entidades como referencia.
+ Se asociará a un tipo de movimiento. Entidad "TipoDeMovimiento" 
 
- * Movimiento contable a empresa
- * Movimiento de caja
- * Movimiento de estado de cuenta del socio
- *  
+ - Movimiento contable a empresa
+ - Movimiento de caja
+ - Movimiento de estado de cuenta del socio
+   
