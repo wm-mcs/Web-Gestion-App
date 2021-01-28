@@ -1,6 +1,6 @@
 @include('empresa_gestion_paginas.Administrador.Vue.Planes.plan')
 
-Vue.component("listado-de-paises", {
+Vue.component("listado-de-planes", {
   components: {
     plan: plan
   },
@@ -12,7 +12,7 @@ Vue.component("listado-de-paises", {
   },
   methods: {
     getPlanes: function() {
-      var url = "/get_paises_todos";
+      var url = "/get_planes_empresa";
       var vue = this;
       vue.cargando = true;
       axios
@@ -52,7 +52,7 @@ Vue.component("listado-de-paises", {
     </div>
     <div v-else class="p-5">
         <div v-if="planes.length" class="row mb-4 p-2 ">
-            <plan v-for="plan in planes" :pais="plan" :key="plan.id"></plan>
+            <plan v-for="plan in planes" :plan="plan" :key="plan.id"></plan>
         </div>
 
     </div>

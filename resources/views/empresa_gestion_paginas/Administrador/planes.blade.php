@@ -21,6 +21,9 @@
 </div>
 
 
+<listado-de-planes></listado-de-planes>
+
+
 
 
 
@@ -31,7 +34,7 @@
 
 <script type="text/javascript">
 @include('empresa_gestion_paginas.Administrador.Vue.Bus.BusDeEventos')
-
+@include('empresa_gestion_paginas.Administrador.Vue.Planes.listado_de_planes')
 @include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
 
 
