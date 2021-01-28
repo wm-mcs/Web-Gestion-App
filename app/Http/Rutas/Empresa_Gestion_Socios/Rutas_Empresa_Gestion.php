@@ -43,11 +43,7 @@ Route::group(['middleware' => 'SistemaGestionUserGerarquia:3'], function () {
             'as' => 'crear_empresa_nueva',
         ]);
 
-    Route::get('get_planes_empresa',
-        [
-            'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@get_planes_empresa',
-            'as' => 'get_planes_empresa',
-        ]);
+    require __DIR__ . '/../Planes/planes.php';
 
     Route::group(['middleware' => 'SistemaGestionUserGerarquia:8'], function () {
 
@@ -98,18 +94,6 @@ Route::group(['middleware' => 'SistemaGestionUserGerarquia:3'], function () {
             [
                 'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delete_vendedor_a_empresa',
                 'as' => 'delete_vendedor_a_empresa',
-            ]);
-
-        Route::post('crear_plan',
-            [
-                'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@crear_plan',
-                'as' => 'crear_plan',
-            ]);
-
-        Route::post('editar_plan_empresa',
-            [
-                'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers@editar_plan_empresa',
-                'as' => 'editar_plan_empresa',
             ]);
 
         // R u t a s   s o l o   p a r a   U s u a r i o   S u p e r   A d m i n
