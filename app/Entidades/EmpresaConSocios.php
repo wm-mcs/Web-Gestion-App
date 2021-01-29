@@ -130,14 +130,12 @@ class EmpresaConSocios extends Model
 
     public function getServiciosContratadosAEmpresasActivosAttribute()
     {
-
         return Cache::remember('ServiciosActivosEmpresa' . $this->id, 8000, function () {
 
             $Repo = new ServicioContratadoEmpresaRepo();
 
             return $Repo->getServiciosActivosDeEstaEmpresa($this->id);
         });
-
     }
 
     public function getServiciosContratadosAEmpresasDesactivosAttribute()

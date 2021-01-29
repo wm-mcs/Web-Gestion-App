@@ -1,36 +1,35 @@
 var plan = {
-  props: ["plan"],
-  data: function() {
-    return {
-      cargando: false,
-      showModal: false,
-      imagen: ""
-    };
-  },
-  methods: {
+	props: ["plan"],
+	data: function() {
+		return {
+			cargando: false,
+			showModal: false,
+			imagen: ""
+		};
+	},
+	methods: {
+		editarPais: function() {
+			var url = "/editar_plan";
 
-    editarPais: function() {
-      var url = "/editar_plan";
+			var data = { plan: this.plan };
+			var vue = this;
 
-      var data = { plan: this.plan };
-      var vue = this;
+			axios
+				.post(url, data)
+				.then(function(response) {
+					var data = response.data;
 
-      axios
-        .post(url, data)
-        .then(function(response) {
-          var data = response.data;
-
-          if (data.Validacion == true) {
-
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .catch(function(error) {});
-    }
-  },
-  template: `<div class="col-6 col-lg-4 p-1 ">
+					if (data.Validacion == true) {
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {});
+		}
+	},
+	template: `
+  <div class="col-6 col-lg-4 p-1 ">
     <div class="p-3  border-radius-estandar borde-gris background-white h-100">
       <div class="row mx-0 align-items-center">
 
@@ -75,6 +74,54 @@ var plan = {
                     <input type="text" class="formulario-field" v-model="plan.name" placeholder="Nombre del plan" />
                   </div>
 
+                  <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Cantidad de socios </label>
+                    <input type="text" class="formulario-field" v-model="plan.cantidad_socios " placeholder="Cantidad de socios" />
+                  </div>
+
+                  <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Cantidad de socios </label>
+                    <input type="text" class="formulario-field" v-model="plan.cantidad_sucursales " placeholder="Cantidad de sucursales" />
+                  </div>
+
+                  <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Precio en $ Uruguayos </label>
+                    <div class="formulario-label-aclaracion">
+                    Es el precio sin impuestos en pesos. Para el caso de Uruguay.
+                  </div>
+                    <input type="text" class="formulario-field" v-model="plan.valor" placeholder="Precio" />
+                  </div>
+
+                  <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Moneda en Uruguay?</label>
+                    <div class="formulario-label-aclaracion">
+                       Es la moneda que se usa para cobrar en Uruguay. Puede ser pesos o dolares. 
+                    </div>
+                    <select v-model="plan.moneda" class="formulario-field">
+                        <option>$</option>
+                        <option>U$S</option>
+                    </select>
+                  </div>
+
+
+
+                  <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Precio fuera de uruguay  </label>
+                    <div class="formulario-label-aclaracion">
+                    Este valor será en DOLARES.
+                  </div>
+                    <input type="text" class="formulario-field" v-model="plan.valor_fuera_de_uruguay" placeholder="Precio fuera de Uruguay" />
+                  </div>
+
+
+                  <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Incluye control de acceso? </label>                    
+                    <select v-model="plan.control_acceso" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>
+                  </div>
+
 
                   <div class="col-6 formulario-label-fiel">
                     <label class="formulario-label">¿Activo?</label>
@@ -82,7 +129,9 @@ var plan = {
                         <option>si</option>
                         <option>no</option>
                     </select>
-                   </div>
+                  </div>
+
+
 
 
                   <div @click="editarPlan" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">

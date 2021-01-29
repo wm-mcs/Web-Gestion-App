@@ -44,6 +44,12 @@ class PlanesController extends Controller
 
     }
 
+    public function getPropiedades()
+    {
+        return ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales', 'estado', 'control_acceso', 'valor_fuera_de_uruguay'];
+
+    }
+
     public function get_planes_empresa(Request $Request)
     {
         $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
@@ -64,7 +70,7 @@ class PlanesController extends Controller
                 'Validacion_mensaje' => 'No se pudó crear el plan: ' . $manager->getErrors()];
         }
 
-        $Propiedades = ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales'];
+        $Propiedades = $this->getPropiedades();
 
         $this->TipoDeServicioAEmpresaRepo->setEntidadDato($this->TipoDeServicioAEmpresaRepo->getEntidad(), $Request, $Propiedades);
 
@@ -82,7 +88,7 @@ class PlanesController extends Controller
         $Entidad = $this->TipoDeServicioAEmpresaRepo->find($Plan['id']);
 
         //las porpiedades que se van a editar
-        $Propiedades = ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales'];
+        $Propiedades = $this->getPropiedades();
 
         foreach ($Propiedades as $Propiedad) {
             $Entidad->$Propiedad = $Plan[$Propiedad];
@@ -90,9 +96,8 @@ class PlanesController extends Controller
 
         $Entidad->save();
 
-        return ['Validacion' => true,
-            'Validacion_mensaje' => 'Se editó correctamente ',
-            'planes' => $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas()];
+        return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente ', $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas());
+
     }
 
 }
