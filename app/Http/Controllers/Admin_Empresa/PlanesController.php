@@ -96,8 +96,6 @@ class PlanesController extends Controller
 
         $Entidad->save();
 
-        dd($Plan, $Entidad);
-
         return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente ');
 
     }
