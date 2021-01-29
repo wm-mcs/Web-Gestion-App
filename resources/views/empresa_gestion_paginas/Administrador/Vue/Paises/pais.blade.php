@@ -33,7 +33,7 @@ var pais = {
           var data = response.data;
 
           if (data.Validacion == true) {
-
+            bus.$emit("se-creo-o-edito-pais", "hola");
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             $.notify(response.data.Validacion_mensaje, "error");

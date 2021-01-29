@@ -8,7 +8,7 @@ var plan = {
 		};
 	},
 	methods: {
-		editarPais: function() {
+		editarPlan: function() {
 			var url = "/editar_plan";
 
 			var data = { plan: this.plan };
@@ -20,6 +20,7 @@ var plan = {
 					var data = response.data;
 
 					if (data.Validacion == true) {
+            bus.$emit("se-creo-o-edito-un-plan", "hola");
 						$.notify(response.data.Validacion_mensaje, "success");
 					} else {
 						$.notify(response.data.Validacion_mensaje, "error");
@@ -80,7 +81,7 @@ var plan = {
                   </div>
 
                   <div class="col-lg-6 formulario-label-fiel">
-                    <label class="formulario-label">Cantidad de socios </label>
+                    <label class="formulario-label">Cantidad de sucursales </label>
                     <input type="text" class="formulario-field" v-model="plan.cantidad_sucursales " placeholder="Cantidad de sucursales" />
                   </div>
 
@@ -95,7 +96,7 @@ var plan = {
                   <div class="col-6 formulario-label-fiel">
                     <label class="formulario-label">¿Moneda en Uruguay?</label>
                     <div class="formulario-label-aclaracion">
-                       Es la moneda que se usa para cobrar en Uruguay. Puede ser pesos o dolares. 
+                       Es la moneda que se usa para cobrar en Uruguay. Puede ser pesos o dolares.
                     </div>
                     <select v-model="plan.moneda" class="formulario-field">
                         <option>$</option>
@@ -114,13 +115,7 @@ var plan = {
                   </div>
 
 
-                  <div class="col-6 formulario-label-fiel">
-                    <label class="formulario-label">¿Incluye control de acceso? </label>                    
-                    <select v-model="plan.control_acceso" class="formulario-field">
-                        <option>si</option>
-                        <option>no</option>
-                    </select>
-                  </div>
+
 
 
                   <div class="col-6 formulario-label-fiel">
@@ -134,10 +129,24 @@ var plan = {
 
 
 
+
+                </div>
+                <div class="row mx-0 contenedor-grupo-datos">
+                <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Incluye control de acceso? </label>
+                    <select v-model="plan.control_acceso" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>
+                  </div>
+                </div>
+
+                  <div class="col-12">
                   <div @click="editarPlan" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                     Confirmar
                   </div>
-                </div>
+                  </div>
+
 
 
 
