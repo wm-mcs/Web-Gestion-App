@@ -9,7 +9,7 @@ var plan = {
 	},
 	methods: {
 		editarPlan: function() {
-			var url = "/editar_plan";
+			var url = "/editar_plan_empresa";
 
 			var data = { plan: this.plan };
 			var vue = this;
@@ -141,11 +141,11 @@ var plan = {
                   </div>
                 </div>
 
-                  <div class="col-12">
+
                   <div @click="editarPlan" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                     Confirmar
                   </div>
-                  </div>
+
 
 
 
