@@ -96,7 +96,9 @@ class PlanesController extends Controller
 
         $Entidad->save();
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente ', $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas());
+        dd($Plan, $Entidad);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente ');
 
     }
 
