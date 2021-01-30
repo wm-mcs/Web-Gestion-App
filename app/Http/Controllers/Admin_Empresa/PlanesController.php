@@ -106,13 +106,6 @@ class PlanesController extends Controller
     public function get_planes_publica(Request $Request)
     {
 
-        if (Auth::guest()) {
-            //crear un tokrn y guardarlo en la base de datos
-            //crear un tokrn y guardarlo en la base de datos
-        } else {
-
-        }
-
         $Planes = Cache::remember('PlanesPublicos', 800, function () {
             return $this->TipoDeServicioAEmpresaRepo->getEntidadActivasOrdenadasSegun('valor', 'asc');
         });
