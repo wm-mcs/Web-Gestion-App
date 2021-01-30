@@ -13,6 +13,7 @@ use App\Repositorios\UserEmpresaRepo;
 use App\Repositorios\UserRepo;
 use App\Repositorios\VendedorEmpresaRepo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PlanesController extends Controller
 {
