@@ -10,7 +10,8 @@ Vue.component("crear-plan", {
 				moneda: "",
 				valor_fuera_de_uruguay: "",
 				estado: "",
-				control_acceso: ""
+				control_acceso: "",
+				tipo: "principal"
 			},
 			showModal: false
 		};
@@ -96,6 +97,14 @@ Vue.component("crear-plan", {
                   <div class="col-lg-6 formulario-label-fiel">
                     <label class="formulario-label">Nombre </label>
                     <input type="text" class="formulario-field" v-model="datos_a_enviar.name" placeholder="Nombre del plan" />
+                  </div>
+
+                   <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Tipo </label>
+                    <div class="formulario-label-aclaracion">
+                       Atributo que distingue un plan completo con un upgrade. Actualmente solo se usa de tipo principal.
+                    </div>
+                    <input type="text" class="formulario-field" v-model="datos_a_enviar.tipo" placeholder="Tipo de plan" />
                   </div>
 
                   <div class="col-lg-6 formulario-label-fiel">
