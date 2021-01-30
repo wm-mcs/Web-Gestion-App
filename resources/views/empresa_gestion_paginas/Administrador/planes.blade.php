@@ -15,7 +15,7 @@
 </div>
 
 <div class="col-12 col-lg-6">
-
+ <crear-plan></crear-plan>
 </div>
 
 </div>
@@ -34,6 +34,7 @@
 
 <script type="text/javascript">
 @include('empresa_gestion_paginas.Administrador.Vue.Bus.BusDeEventos')
+@include('empresa_gestion_paginas.Administrador.Vue.Planes.crear_plan')
 @include('empresa_gestion_paginas.Administrador.Vue.Planes.listado_de_planes')
 @include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
 
