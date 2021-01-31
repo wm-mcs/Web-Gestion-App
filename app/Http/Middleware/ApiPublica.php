@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\Cache;
 
@@ -21,10 +20,10 @@ class ApiPublica
                 Cache::increment($nombre);
 
             } else {
-                Cache::put($nombre, 1, Carbon::now('America/Montevideo')->addMinutes(5));
+                Cache::put($nombre, 1, 60);
             }
 
-            if (Cache::get($nombre) > 6) {
+            if (Cache::get($nombre) > 30) {
                 return ['Validacion' => false,
                     'Validacion_mensaje' => 'Muchas solicitudes.'];
             }
