@@ -1,142 +1,107 @@
-Vue.component('agregar-servicio-a-empresa' ,
-{
+Vue.component("agregar-servicio-a-empresa", {
+	data: function() {
+		return {
+			servicio_data: {
+				name: "",
+				tipo: "",
+				moneda: "",
+				valor: "",
+				fecha_vencimiento: "",
+				empresa_id: this.empresa.id,
+				paga: "no",
+				tipo_servicio_id: ""
+			},
+			tipo_servicio: "",
+			planes: ""
+		};
+	},
 
+	props: ["empresa"],
+	mounted: function mounted() {
+		this.setFecha();
+	},
+	methods: {
+		setFecha: function() {
+			var fecha = new Date();
+			fecha.setMonth(fecha.getMonth() + 1);
 
-data:function(){
-    return {
-      
-      
-      servicio_data:{
-                        name:'',
-                        tipo:'',
-                        moneda:'',
-                        valor:'',
-                        fecha_vencimiento:'',
-                        empresa_id:this.empresa.id,                        
-                        paga:'no',
-                        tipo_servicio_id:''
+			this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0, 10);
+		},
+		getPlanes: function() {
+			var url = "/get_planes_empresa";
 
-                    },
-      tipo_servicio:'',     
-      planes:''         
+			var vue = this;
 
-    }
-},
+			axios
+				.get(url)
+				.then(function(response) {
+					var data = response.data;
 
-props:['empresa']
-,
+					if (data.Validacion == true) {
+						vue.planes = data.Data;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {});
+		},
 
+		abrir_modal: function() {
+			this.getPlanes();
 
-mounted: function mounted () {        
-      
-    this.setFecha();
+			$("#modal-agregar-servicio-socio")
+				.appendTo("body")
+				.modal("show");
+		},
+		crear_servicio_a_socio: function() {
+			var url = "/agregar_servicio_a_empresa";
 
-},
-methods:{
+			var data = this.servicio_data;
 
- setFecha:function()
- {
-       var fecha =  new Date();
-       fecha.setMonth(fecha.getMonth() + 1);
+			var vue = this;
 
-       this.servicio_data.fecha_vencimiento = fecha.toISOString().slice(0,10);
- },
- getPlanes:function(){
-   var url  = '/get_planes_empresa';
+			app.cargando = true;
 
-      
-      var vue  = this;
+			axios
+				.post(url, data)
+				.then(function(response) {
+					var data = response.data;
 
-     axios.get(url).then(function (response){  
-            var data = response.data;  
-            
+					if (data.Validacion == true) {
+						app.cargando = false;
+						app.empresa = data.empresa;
 
-            if(data.Validacion == true)
-            {
-               vue.planes = data.planes;
-               $.notify(response.data.Validacion_mensaje, "success");
-            }
-            else
-            {
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-           
-           }).catch(function (error){
+						app.cerrarModal("#modal-agregar-servicio-socio");
 
-                     
-            
-           });
-},
+						$.notify(data.Validacion_mensaje, "success");
+					} else {
+						app.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "warn");
+					}
+				})
+				.catch(function(error) {});
+		},
+		cambioTipoDeServicio: function() {
+			var servicio = this.seleccionarUnObjetoSegunAtributo(
+				this.planes,
+				"name",
+				this.tipo_servicio
+			);
 
- abrir_modal:function(){
-
-   this.getPlanes();
-
-   $('#modal-agregar-servicio-socio').appendTo("body").modal('show');  
-   
-
- },
- crear_servicio_a_socio:function(){  
-
-     var url  = '/agregar_servicio_a_empresa';
-
-      var data = this.servicio_data;
-
-      var vue = this;
-
-      app.cargando = true;
-
-      axios.post(url,data).then(function (response){  
-            var data = response.data;  
-            
-
-            if(data.Validacion == true)
-            {
-
-              app.cargando = false;
-              app.empresa = data.empresa;
-               
-              app.cerrarModal('#modal-agregar-servicio-socio');
-              
-              $.notify(data.Validacion_mensaje, "success");      
-            }
-            else
-            { 
-              app.cargando = false;
-              $.notify(response.data.Validacion_mensaje, "warn");
-            }
-           
-      }).catch(function (error){}); 
-
-
-
-
-
- },
- cambioTipoDeServicio:function(){
-
-  
-  var servicio = this.seleccionarUnObjetoSegunAtributo( this.planes,'name',this.tipo_servicio);
-                  
-
-  this.servicio_data.name             = servicio.name;
-  this.servicio_data.tipo             = servicio.tipo;
-  this.servicio_data.moneda           = servicio.moneda;
-  this.servicio_data.valor            = servicio.valor;
-  this.servicio_data.tipo_servicio_id = servicio.id;
-
- 
-}, 
-seleccionarUnObjetoSegunAtributo:function(lista,atributo,valor){
-        return lista.find(function(element) {
-        return element.name == valor;
-      });
-},
-
-     
-
-},
-template:'<span>
+			this.servicio_data.name = servicio.name;
+			this.servicio_data.tipo = servicio.tipo;
+			this.servicio_data.moneda = servicio.moneda;
+			this.servicio_data.valor = servicio.valor;
+			this.servicio_data.tipo_servicio_id = servicio.id;
+		},
+		seleccionarUnObjetoSegunAtributo: function(lista, atributo, valor) {
+			return lista.find(function(element) {
+				return element.name == valor;
+			});
+		}
+	},
+	template: `<span>
  <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear panel-socio-agrega-margin-left-boton" v-on:click="abrir_modal">
         <i class="fas fa-cash-register"></i> Vender plan
        
@@ -231,10 +196,5 @@ template:'<span>
    
   
 
-</span>'
-}
-
-
-
-
-);
+</span>`
+});
