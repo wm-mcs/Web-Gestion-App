@@ -22,7 +22,7 @@ trait empresaFuncionalidadesVerificar
 
         }
 
-        dd($Plan)
+        dd($Plan);
     }
 
 }
