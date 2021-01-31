@@ -16,7 +16,7 @@ trait empresaFuncionalidadesVerificar
             $ServiciosNoDisponibles = $empresa->servicios_contratados_a_empresas_desactivos;
 
             if ($ServiciosNoDisponibles->count() > 0) {
-                $Plan = $ServiciosDisponibles->first()->tipo_de_servicio;
+                $Plan = $ServiciosNoDisponibles->first()->tipo_de_servicio;
 
             }
 
