@@ -5,6 +5,7 @@ namespace App\Entidades;
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use App\Entidades\SucursalEmpresa;
 use App\Entidades\TipoDeServicio;
+use App\Entidades\Traits\empresaFuncionalidadesVerificar;
 use App\Entidades\Traits\entidadesScopesComunes;
 use App\Entidades\User;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
@@ -15,7 +16,9 @@ use Illuminate\Support\Facades\Cache;
 class EmpresaConSocios extends Model
 {
 
+    use empresaFuncionalidadesVerificar;
     use entidadesScopesComunes;
+
     protected $table = 'empresa_con_socios';
 
     /**
@@ -36,7 +39,8 @@ class EmpresaConSocios extends Model
         'servicios_contratados_a_empresas_activos',
         'servicios_contratados_a_empresas_desactivos',
         'vendedor_de_esta_empresa',
-        'path_url_img'];
+        'path_url_img',
+        'control_acceso_habilitado'];
 
     public function servicios_relation()
     {
@@ -140,7 +144,6 @@ class EmpresaConSocios extends Model
 
     public function getServiciosContratadosAEmpresasDesactivosAttribute()
     {
-
         return Cache::remember('ServiciosDesactivosEmpresa' . $this->id, 8000, function () {
 
             $Repo = new ServicioContratadoEmpresaRepo();
@@ -159,6 +162,10 @@ class EmpresaConSocios extends Model
         return Cache::remember('VendedorDeEstaEmpresa' . $this->id, 600, function () {
             return $this->vendedor;
         });
+    }
+    public function getControlAccesoHabilitadoAttribute()
+    {
+        return $this->verificarSiPuedeUsarEstaFuncionalidad('control_acceso', $this);
     }
 
     public function getUrlImgAttribute()

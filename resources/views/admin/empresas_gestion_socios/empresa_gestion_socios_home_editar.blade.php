@@ -48,10 +48,10 @@
 
   {{-- formulario --}}
   {!! Form::model($Empresa,   ['route' => ['set_admin_empresas_gestion_socios_editar',$Empresa->id],
-                            'method'=> 'PATCH',
-                            'files' =>  true,
-                            'id'    => 'form-admin-empresa-datos'
-                          ])               !!}
+                               'method'=> 'PATCH',
+                               'files' =>  true,
+                               'id'    => 'form-admin-empresa-datos'
+                      ])               !!}
 
   <div class="wrpaer-formulario-contenedor">
      <div class="formulario-contenedor">
@@ -67,6 +67,13 @@
               <div class="contenedor-grupo-datos-titulo"> Facturación</div>
               <div class="contenedor-formulario-label-fiel">
                @include('admin.empresas_gestion_socios.formularios_partes.datos_facturacion')
+              </div>
+            </div>
+
+            <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Renovación de servicios atomátic</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_renovacion_servicio')
               </div>
             </div>
 
@@ -113,7 +120,14 @@
               <div class="contenedor-formulario-label-fiel">
                @include('admin.empresas_gestion_socios.formularios_partes.datos_control_de_acceso')
               </div>
-            </div>
+           </div>
+
+           <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Funcionalidades que puede usar</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_funcionalidades')
+              </div>
+           </div>
 
 
           </div>

@@ -202,6 +202,8 @@ class Admin_Empresa_Gestion_Socios_Admin_Vendedores_Controllers extends Controll
         //creo el servicio en si
         $this->ServicioContratadoEmpresaRepo->setServicioAEmpresa($Empresa, $Plan, $Fecha_vencimiento);
 
+        //según las funcionalidades que tiene el plan, ajusto al momento de crear las funcionalidades del plan con respecto a la de la empresa
+
         $empresas = $this->EmpresaConSociosoRepo->getEntidadActivas();
         return ['Validacion' => true,
             'Validacion_mensaje' => 'Se agregó correctamente la empresa',

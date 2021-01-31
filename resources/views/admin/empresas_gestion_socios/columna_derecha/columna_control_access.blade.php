@@ -1,3 +1,6 @@
+  
+  @if($Empresa->control_acceso_habilitado)
+  
   {!! Form::open(['route'  => ['get_control_access_view'],
                   'method' => 'Post',
                   'class'  => 'w-100 my-2 p-3'])                         !!}   
@@ -27,3 +30,4 @@
                     
  
   {!! Form::close() !!} 
+  @endif
