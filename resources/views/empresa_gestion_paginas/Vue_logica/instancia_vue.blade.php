@@ -71,7 +71,7 @@
     },
     computed:{
      whatsappContactoPagos:function(){
-     var url = 'https://api.whatsapp.com/send?phone=59892336388&text=Hola';
+     var url = 'https://api.whatsapp.com/send?phone=59892742064&text=Hola';
      return url;
     },
     esResolucionDeCelular:function(){

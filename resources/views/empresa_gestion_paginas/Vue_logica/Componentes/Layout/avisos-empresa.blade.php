@@ -1,70 +1,51 @@
-Vue.component('avisos-empresa' ,
-{
-props:[ 'empresa' ],
-data:function(){
-    return {
-     
-
-    }
-},
-methods:{
-
-   
-
-},
-computed:{
-	 tiene_algo_activo:function(){
-     if(this.empresa.servicios_contratados_a_empresas_activos.length)
-     {
-     	return true;
-     }
-     else
-     {
-        return false;
-     }
-    },
-    debe_plata_pesos:function(){
-     if(this.empresa.estado_de_cuenta_saldo_pesos < 0)
-     {
-     	return true;
-     }
-     else
-     {
-        return false;
-     }
-    },
-    debe_plata_dolares:function(){
-     if(this.empresa.estado_de_cuenta_saldo_dolares < 0)
-     {
-     	return true;
-     }
-     else
-     {
-        return false;
-     }
-    },
-    tiene_mensaje_personalizado:function(){
-     if(this.empresa.mensaje_aviso_especial != '')
-     {
-     	return true;
-     }
-     else
-     {
-     	return false;
-     }
-    },
-    mostrar_contenedor_avisos:function(){
-    if(this.tiene_mensaje_personalizado || this.debe_plata_pesos || this.debe_plata_dolares)
-    {
-    return true;
-    }
-    else
-    {
-     return false;
-    }
-    }
-},
-template:'
+Vue.component("avisos-empresa", {
+	props: ["empresa"],
+	data: function() {
+		return {};
+	},
+	methods: {},
+	computed: {
+		tiene_algo_activo: function() {
+			if (this.empresa.servicios_contratados_a_empresas_activos.length) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		debe_plata_pesos: function() {
+			if (this.empresa.estado_de_cuenta_saldo_pesos < 0) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		debe_plata_dolares: function() {
+			if (this.empresa.estado_de_cuenta_saldo_dolares < 0) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		tiene_mensaje_personalizado: function() {
+			if (this.empresa.mensaje_aviso_especial != "") {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		mostrar_contenedor_avisos: function() {
+			if (
+				this.tiene_mensaje_personalizado ||
+				this.debe_plata_pesos ||
+				this.debe_plata_dolares
+			) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	},
+	template: `
 <div  v-if="mostrar_contenedor_avisos" class="ocultar-esto contiene-mensaje-empresa-top">
 
     <span class="mensaje-cerrar-icono">
@@ -108,11 +89,5 @@ template:'
     
 
 </div>
-'
-
-}
-
-
-
-
-);
+`
+});
