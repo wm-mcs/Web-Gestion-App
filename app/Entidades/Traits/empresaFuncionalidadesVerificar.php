@@ -13,11 +13,7 @@ trait empresaFuncionalidadesVerificar
             $Plan = $ServiciosDisponibles->first()->tipo_de_servicio;
 
         } else {
-            $ServiciosNoDisponibles = $empresa->servicios_contratados_a_empresas_desactivos;
-
-            if ($ServiciosNoDisponibles->count() > 0) {
-                $Plan = $ServiciosNoDisponibles->first()->tipo_de_servicio;
-            }
+            return false;
         }
 
         return (isset($Plan) && $empresa->$keyFuncionalidad == 'si' || $Plan > $keyFuncionalidad == 'si') ? true : false;
