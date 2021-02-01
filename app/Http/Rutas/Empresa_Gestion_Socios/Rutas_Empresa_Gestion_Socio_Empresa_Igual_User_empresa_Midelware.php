@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/../Analiticas/analiticas.php';
-
 //Para ir al panel del socio
 Route::post('get_socio',
     [
