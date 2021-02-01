@@ -3,7 +3,7 @@
 
 
 
-{!! Form::open(['route'  => ['get_analiticas'],
+{!! Form::open(['route'  => 'get_analiticas',
                   'method' => 'Post',
                   'class'  => 'w-100 my-2 p-3'])                         !!}
 
