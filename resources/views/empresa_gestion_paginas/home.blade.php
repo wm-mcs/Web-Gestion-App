@@ -1,62 +1,62 @@
 @extends('layouts.gestion_socios_layout.admin_layout')
 
 
-@section('miga-de-pan') 
+@section('miga-de-pan')
   {!! Form::open(['route' => ['get_empresa_panel_de_gestion'],
                             'method'=> 'Post',
                             'files' =>  true,
                             'name'  => 'form1'
-                          ])               !!}   
-                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">                 
-                 
-                  @if(file_exists($Empresa->path_url_img))   
-                  <span class="simula_link  disparar-este-form" >           
-                  
+                          ])               !!}
+                 <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
+
+                  @if(file_exists($Empresa->path_url_img))
+                  <span class="simula_link  disparar-este-form" >
+
                     <img class="miga-imagen" src="{{$Empresa->url_img}}">
-                   </span> 
-                    
+                   </span>
+
                  @else
                    <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
-                 </span> 
+                 </span>
                  @endif
-                    
- 
-  {!! Form::close() !!} 
-  
 
- 
+
+  {!! Form::close() !!}
+
+
+
 @stop
 
-@section('sucursal')  
+@section('sucursal')
   <sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
 @stop
 
-@section('empresa-configuracion')  
+@section('empresa-configuracion')
 <renovacion-automatica-empresa :empresa="empresa"></renovacion-automatica-empresa>
-<configuracion-empresa :empresa="empresa"> </configuracion-empresa> 
+<configuracion-empresa :empresa="empresa"> </configuracion-empresa>
 @stop
 
 @section('content')
-  
+
 
   <avisos-empresa :empresa="empresa"></avisos-empresa>
-  
+
   {{-- Buscar Socio --}}
   <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
 
       <div class="empresa-gestion-contiene-input-busqueda">
         <input class="empresa-gestion-input-busqueda form-control" v-model="busqueda" type="text" placeholder="Buscar socio" aria-label="Search">
       </div>
-      
+
 
       <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
       <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
-      <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>  
-   
-  </div>  
+      <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
 
-  
+  </div>
+
+
   <socio-entidad-listado :palabra_busqueda="busqueda"  :empresa="empresa"></socio-entidad-listado>
 
 
@@ -90,7 +90,7 @@
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socios-crear-boton_componente')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.estado-de-cuenta-saldo')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-entidad-listado-individual-componente')
-     @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-entidad-listado-componente')     
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-entidad-listado-componente')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
@@ -102,8 +102,9 @@
 
 @section('columna')
 
-  
+
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
   @include('admin.empresas_gestion_socios.columna_derecha.columna_control_access')
 
 
