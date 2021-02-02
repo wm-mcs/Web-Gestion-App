@@ -3,8 +3,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
   data: function() {
     return {
       cargando: false,
-      fecha_inicio: new Date(Date.now()).toLocaleString(),
-      fecha_fin: new Date(Date.now()).toLocaleString(),
+      fecha_inicio: new Date(Date.now()).toLocaleString().split(",")[0],
+      fecha_fin: new Date(Date.now()).toLocaleString().split(",")[0],
       movimientos: []
     };
   },
