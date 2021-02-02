@@ -8,17 +8,15 @@
 @section('content')
 
 <div class="row mx-0 align-items-center">
+  <div class="col-12 col-lg-6">
+    <h1 class="h3 mb-0"> Finanzas y analíticas </h1>
+  </div>
+  <div class="col-12 col-lg-6">
 
-
-<div class="col-12 col-lg-6">
-  <h1 class="h3 mb-0"> Finanzas y analíticas </h1>
+  </div>
 </div>
 
-<div class="col-12 col-lg-6">
-
-</div>
-
-</div>
+<analiticas-de-ventas-y-gasto></analiticas-de-ventas-y-gasto>
 
 
 
@@ -34,6 +32,7 @@
 
 <script type="text/javascript">
 
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.analiticas_de_ventas_y_gasto')
 @include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
 
 

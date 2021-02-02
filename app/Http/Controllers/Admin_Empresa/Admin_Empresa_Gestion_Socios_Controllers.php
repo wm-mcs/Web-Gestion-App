@@ -1021,7 +1021,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     //obtiene los movimientos de caja
     public function get_movimientos_de_caja_de_sucursal(Request $Request)
     {
-        $User = $Request->get('user_desde_middleware');
+
         $Sucursal = $Request->get('sucursal_desde_middleware');
 
         /**
