@@ -47,7 +47,7 @@ data:function(){
 },
 
 mounted: function mounted () {
-
+this.cargando = true;
 },
 
 watch:{
