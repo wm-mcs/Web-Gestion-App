@@ -1,54 +1,56 @@
 Vue.component("analiticas-de-ventas-y-gasto", {
-  data: function() {
-    return {
-      cargando: false,
-      fecha_inicio: null,
-      fecha_fin: null,
-      movimientos: []
-    };
-  },
+	data: function() {
+		return {
+			cargando: false,
+			fecha_inicio: null,
+			fecha_fin: null,
+			movimientos: []
+		};
+	},
 
-  mounted: function mounted() {
-    this.getData();
-  },
+	mounted: function mounted() {
+		this.getData().then(function() {
+			console.log("Se terminaron de cargar los datos");
+		});
+	},
 
-  methods: {
-    getData: function() {
-      let url = "/get_movimientos_de_caja_para_analiticas";
-      let vue = this;
-      this.cargando = true;
+	methods: {
+		getData: function() {
+			let url = "/get_movimientos_de_caja_para_analiticas";
+			let vue = this;
+			this.cargando = true;
 
-      let data = {
-        fecha_inicio: this.fecha_inicio,
-        fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id
-      };
+			let data = {
+				fecha_inicio: this.fecha_inicio,
+				fecha_fin: this.fecha_fin,
+				empresa_id: this.$root.empresa.id
+			};
 
-      console.log(vue);
+			console.log(vue);
 
-      axios
-        .post(url, data)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.movimientos = response.data.Data.Movimientos;
-            vue.fecha_inicio = response.data.Data.fecha_inicio;
-            vue.fecha_fin = response.data.Data.fecha_fin;
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    }
-  },
-  computed: {},
+			return axios
+				.post(url, data)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.movimientos = response.data.Data.Movimientos;
+						vue.fecha_inicio = response.data.Data.fecha_inicio;
+						vue.fecha_fin = response.data.Data.fecha_fin;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		}
+	},
+	computed: {},
 
-  template: `
+	template: `
 
 
   <div>
