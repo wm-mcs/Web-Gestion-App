@@ -62,7 +62,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 					if (response.data.Validacion == true) {
 						vue.cargando = false;
 						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
-							tipo => tipo.movimiento_de_empresa_a_socio == "si"
+							tipo => tipo.movimiento_de_la_empresa == "si"
 						);
 
 						$.notify(response.data.Validacion_mensaje, "success");
