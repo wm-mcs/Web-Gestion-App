@@ -36,7 +36,7 @@ class AnaliticasController extends Controller
         $Fecha_inicio = $Request->get('fecha_inicio') != null ? Carbon::parse($Request->get('fecha_inicio')) : Carbon::now('America/Montevideo')->subMonth()->startOfMonth();
         $Fecha_fin = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonth()->endOfMonth();
 
-        dd($Fecha_inicio, $Fecha_fin);
+        dd($Fecha_inicio, $Fecha_fin, $Request->get('fecha_inicio'), $Request->get('fecha_fin'));
         $keys = [
             ['where_tipo' => 'where',
                 'key' => 'empresa_id',
