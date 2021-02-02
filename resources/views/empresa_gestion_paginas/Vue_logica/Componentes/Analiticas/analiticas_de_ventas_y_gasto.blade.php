@@ -11,7 +11,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
 	mounted: function mounted() {
 		this.getData()
-			.then(function(this) {
+			.then(function() {
 				this.getTipoDeMovimientos();
 			})
 			.then(function() {
