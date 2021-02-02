@@ -51,7 +51,7 @@ class AnaliticasController extends Controller
 
         $Movimientos = $this->CajaEmpresaRepo->getEntidadesMenosIdsYConFiltros($keys, [], null, 'fecha_ingreso', 'desc', 'no');
 
-        return HelpersGenerales::formateResponseToVue(true, 'Datos cargados', ['Movimientos' => $Movimientos, 'fecha_inicio' => $Fecha_inicio->format('d-m-Y'), 'fecha_fin' => $Fecha_fin->format('d-m-Y')]);
+        return HelpersGenerales::formateResponseToVue(true, 'Datos cargados', ['Movimientos' => $Movimientos, 'fecha_inicio' => $Fecha_inicio->format('Y-m-d'), 'fecha_fin' => $Fecha_fin->format('Y-m-d')]);
     }
 
 }
