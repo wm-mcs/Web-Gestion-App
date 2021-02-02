@@ -9,9 +9,13 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 	},
 
 	mounted: function mounted() {
-		this.getData().then(function() {
-			console.log("Se terminaron de cargar los datos");
-		});
+		this.getData()
+			.then(function() {
+				console.log("Se terminaron de cargar los datos");
+			})
+			.then(function() {
+				console.log("Se terminaron de cargar los datos 2");
+			});
 	},
 
 	methods: {
