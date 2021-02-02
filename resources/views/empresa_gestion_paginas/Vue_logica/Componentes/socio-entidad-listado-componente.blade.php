@@ -348,8 +348,6 @@ checkSearchStr: _.debounce(function(string){
 
            });
 	}else{
-    this.ya_pedi_todos = false;
-    this.socios_ids = [];
     this.get_socios();
   }
     }, 800)
