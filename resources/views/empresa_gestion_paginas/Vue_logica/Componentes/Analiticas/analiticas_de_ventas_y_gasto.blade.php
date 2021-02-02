@@ -3,8 +3,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
   data: function() {
     return {
       cargando: false,
-      fecha_inicio: new Date(Date.now()).toLocaleString().split(",")[0],
-      fecha_fin: new Date(Date.now()).toLocaleString().split(",")[0],
+      fecha_inicio: null,
+      fecha_fin: null,
       movimientos: []
     };
   },
@@ -31,6 +31,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
           if (response.data.Validacion == true) {
             vue.cargando = false;
             vue.movimientos = response.data.Data.Movimientos;
+            vue.fecha_inicio = response.data.Data.fecha_inicio;
+            vue.fecha_fin = response.data.Data.fecha_fin;
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
