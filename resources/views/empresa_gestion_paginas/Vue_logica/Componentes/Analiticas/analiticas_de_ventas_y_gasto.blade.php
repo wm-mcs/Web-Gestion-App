@@ -57,7 +57,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			let vue = this;
 			this.cargando = true;
 			return axios
-				.post(url, data)
+				.get(url)
 				.then(function(response) {
 					if (response.data.Validacion == true) {
 						vue.cargando = false;
