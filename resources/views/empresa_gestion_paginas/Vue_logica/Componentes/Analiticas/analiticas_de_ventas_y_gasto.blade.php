@@ -19,8 +19,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       this.cargando = true;
 
       let data = {
-        fecha_inicial: this.fecha_inicio,
-        fecha_final: this.fecha_fin,
+        fecha_inicio: this.fecha_inicio,
+        fecha_fin: this.fecha_fin,
         empresa_id: this.$root.empresa.id
       };
 
@@ -66,6 +66,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         </div>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
-        </div>    
+        </div>
     `
 });
