@@ -4,7 +4,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     return {
       cargando: false,
       fecha_inicio: new Date(),
-      fecha_final: new Date(),
+      fecha_fin: new Date(),
       movimientos: []
     };
   },
@@ -21,7 +21,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
       let data = {
         fecha_inicial: this.fecha_inicio,
-        fecha_final: this.fecha_final,
+        fecha_final: this.fecha_fin,
         empresa_id: this.$root.empresa.id
       };
 
