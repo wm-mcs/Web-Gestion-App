@@ -33,8 +33,8 @@ class AnaliticasController extends Controller
 
     public function get_movimientos_de_caja_para_analiticas(Request $Request)
     {
-        $Fecha_inicio = $Request->get('fecha_inicio') != null ? Carbon::parse($Request->get('fecha_inicio')) : Carbon::now('America/Montevideo')->subMonths(1)->startOfDay();
-        $Fecha_fin = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonths(1)->endOfDay();
+        $Fecha_inicio = $Request->get('fecha_inicio') != null ? Carbon::parse($Request->get('fecha_inicio')) : Carbon::now('America/Montevideo')->subMonths(1)->startOfMonth();
+        $Fecha_fin = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonths(1)->endOfMonth();
 
         dd($Fecha_inicio, $Fecha_fin);
         $keys = [
