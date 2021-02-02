@@ -30,7 +30,7 @@ methods:{
         {
            this.consultarSocio(celular);
         }
-    },500),
+    },800),
     countDownTimer() {
 
         if(this.countDown == false)
