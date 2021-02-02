@@ -23,14 +23,14 @@ methods:{
     focusInput:function() {     
        this.$refs.celular.focus();
     },
-    verificar_celular:function(celular){
+    verificar_celular:_.debounce(function(celular){
         
         console.log(celular);
-        if(celular.toString().length == 9)
+        if(celular.toString().length > 4)
         {
            this.consultarSocio(celular);
         }
-    },
+    },500),
     countDownTimer() {
 
         if(this.countDown == false)
