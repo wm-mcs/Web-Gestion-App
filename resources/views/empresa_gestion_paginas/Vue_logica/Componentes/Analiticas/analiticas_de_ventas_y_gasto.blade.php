@@ -10,15 +10,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 	},
 
 	mounted: function mounted() {
-		let vue = this;
-
-		this.getData()
-			.then(function() {
-				vue.getTipoDeMovimientos();
-			})
-			.then(function() {
-				console.log("Se terminaron de cargar los datos 2");
-			});
+		this.getData();
 	},
 
 	methods: {
@@ -46,6 +38,12 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 						vue.cargando = false;
 						$.notify(response.data.Validacion_mensaje, "error");
 					}
+				})
+				.then(function() {
+					vue.getTipoDeMovimientos();
+				})
+				.then(function() {
+					console.log("Se terminaron de cargar los datos 2");
 				})
 				.catch(function(error) {
 					vue.cargando = false;
