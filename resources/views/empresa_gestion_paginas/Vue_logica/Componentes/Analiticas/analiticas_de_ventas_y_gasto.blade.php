@@ -1,5 +1,4 @@
 Vue.component("analiticas-de-ventas-y-gasto", {
-  props: ["empresa"],
   data: function() {
     return {
       cargando: false,
@@ -24,6 +23,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         fecha_final: this.fecha_fin,
         empresa_id: this.$root.empresa.id
       };
+
+      console.log(vue);
 
       axios
         .post(url, data)
