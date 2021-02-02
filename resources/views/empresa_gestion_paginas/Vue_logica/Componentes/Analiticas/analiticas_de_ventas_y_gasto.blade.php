@@ -9,7 +9,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     };
   },
 
-  mounted() {
+  mounted: function mounted() {
     this.getData();
   },
 
