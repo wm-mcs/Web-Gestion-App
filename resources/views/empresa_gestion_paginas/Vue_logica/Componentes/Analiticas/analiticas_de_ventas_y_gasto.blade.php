@@ -61,7 +61,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
 		</div>
-		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
+		<div class="admin-user-boton-Crear" v-on:click="getData()"><i class="fas fa-search"></i> </div>
 		</div>
         </div>
 

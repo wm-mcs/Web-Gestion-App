@@ -33,7 +33,7 @@
 <script type="text/javascript">
 
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.analiticas_de_ventas_y_gasto')
-@include('empresa_gestion_paginas.Vue_logica.instancia_users_vue')
+@include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
 </script>
