@@ -47,7 +47,7 @@ data:function(){
 },
 
 mounted: function mounted () {
-  this.get_socios();
+
 },
 
 watch:{
@@ -318,7 +318,7 @@ get_socios_inactivos:function(){
 },
 checkSearchStr: _.debounce(function(string){
 
-	if(string != '' && string.length > 3)
+	if(string != '')
 	{
       var url = '/buscar_socios_activos';
 
