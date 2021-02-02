@@ -4,14 +4,15 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			cargando: false,
 			fecha_inicio: null,
 			fecha_fin: null,
-			movimientos: []
+			movimientos: [],
+			tipo_de_movimientos: []
 		};
 	},
 
 	mounted: function mounted() {
 		this.getData()
-			.then(function() {
-				console.log("Se terminaron de cargar los datos");
+			.then(function(this) {
+				this.getTipoDeMovimientos();
 			})
 			.then(function() {
 				console.log("Se terminaron de cargar los datos 2");
@@ -30,8 +31,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 				empresa_id: this.$root.empresa.id
 			};
 
-			console.log(vue);
-
 			return axios
 				.post(url, data)
 				.then(function(response) {
@@ -40,6 +39,30 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 						vue.movimientos = response.data.Data.Movimientos;
 						vue.fecha_inicio = response.data.Data.fecha_inicio;
 						vue.fecha_fin = response.data.Data.fecha_fin;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		},
+		getTipoDeMovimientos: function() {
+			let url = "/get_tipo_de_movimientos";
+			let vue = this;
+			this.cargando = true;
+			return axios
+				.post(url, data)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
+							tipo => tipo.movimiento_de_empresa_a_socio == "si"
+						);
+
 						$.notify(response.data.Validacion_mensaje, "success");
 					} else {
 						vue.cargando = false;
