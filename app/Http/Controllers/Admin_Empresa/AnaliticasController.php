@@ -44,7 +44,7 @@ class AnaliticasController extends Controller
             [
                 'where_tipo' => 'whereBetween',
                 'key' => 'fecha_ingreso',
-                'value' => [$Fecha_inicio, $Fecha_fin],
+                'value' => ['start' => $Fecha_inicio, 'end' => $Fecha_fin],
             ],
 
         ];
