@@ -211,7 +211,9 @@ template:`
    
 </div>
 <div v-else class="w-100 d-flex flex-column align-items-center">
-          
+<div  v-if="countDown != false" class="controll-access-easy-socio-logo-wraper d-flex flex-row align-items-center justify-content-center">
+<img class="controll-access-easy-socio-logo" src="/imagenes/Empresa/logo_rectangular.png" alt="EasySocio">
+</div>         
 
    <div  class="col-8 col-lg-8 d-flex flex-column align-items-center">
     
