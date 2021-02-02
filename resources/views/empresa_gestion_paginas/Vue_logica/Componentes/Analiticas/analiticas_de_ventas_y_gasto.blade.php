@@ -5,7 +5,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       cargando: false,
       fecha_inicial: new Date(),
       fecha_final: new Date(),
-      data: []
+      movimientos: []
     };
   },
 
@@ -30,7 +30,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         .then(function(response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
-            vue.data = response.data.Data.Movimientos;
+            vue.movimientos = response.data.Data.Movimientos;
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
@@ -62,7 +62,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		</div>
         </div>
 
-        <p v-if="Data.length" v-for="movimiento in Data" :key="movimiento.id">@{{movimiento.id}}</p>
+        <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>    
     `
 });
