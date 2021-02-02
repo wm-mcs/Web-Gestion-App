@@ -10,9 +10,11 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 	},
 
 	mounted: function mounted() {
+		let vue = this;
+
 		this.getData()
 			.then(function() {
-				this.getTipoDeMovimientos();
+				vue.getTipoDeMovimientos();
 			})
 			.then(function() {
 				console.log("Se terminaron de cargar los datos 2");
