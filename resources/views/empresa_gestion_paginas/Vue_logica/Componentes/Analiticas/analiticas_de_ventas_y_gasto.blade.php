@@ -51,13 +51,13 @@ Vue.component("line-chart", {
                 beginAtZero: true
               },
               gridLines: {
-                display: false
+                display: true
               }
             }
           ]
         },
         legend: {
-          display: false
+          display: true
         },
         tooltips: {
           enabled: true,
