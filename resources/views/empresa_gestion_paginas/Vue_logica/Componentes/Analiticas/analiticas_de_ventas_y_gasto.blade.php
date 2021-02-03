@@ -1,8 +1,8 @@
 Vue.component("line-chart", {
   extends: VueChartJs.Bar,
-  data: function() {
-    return {
-      datacollection: {
+  mounted() {
+    this.renderChart(
+      {
         labels: [
           "January",
           "February",
@@ -10,25 +10,21 @@ Vue.component("line-chart", {
           "April",
           "May",
           "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
+          "July"
         ],
         datasets: [
           {
             label: "Data One",
             backgroundColor: "#f87979",
-            pointBackgroundColor: "white",
-            borderWidth: 1,
-            pointBorderColor: "#249EBF",
-            data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+
+            data: [40, 39, 10, 40, 39, 80, 40]
           }
         ]
       },
-      options: {
+      {
         scales: {
           yAxes: [
             {
@@ -67,11 +63,7 @@ Vue.component("line-chart", {
         maintainAspectRatio: false,
         height: 200
       }
-    };
-  },
-  mounted: function mounted() {
-    // this.chartData is created in the mixin
-    this.renderChart(this.datacollection, this.options);
+    );
   }
 });
 
