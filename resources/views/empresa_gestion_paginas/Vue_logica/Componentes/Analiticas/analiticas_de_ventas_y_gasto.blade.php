@@ -64,7 +64,7 @@ Vue.component("line-chart", {
           mode: "single",
           callbacks: {
             label: function(tooltipItems, data) {
-              return "$" + tooltipItems.yLabel;
+              return "$ sdf " + tooltipItems.yLabel;
             }
           }
         },
