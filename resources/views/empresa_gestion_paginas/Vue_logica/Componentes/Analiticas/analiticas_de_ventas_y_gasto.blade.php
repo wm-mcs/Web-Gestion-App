@@ -21,6 +21,15 @@ Vue.component("line-chart", {
             minBarLength: 2,
 
             data: [40, 39, 10, 40, 39, 80, 40]
+          },
+          {
+            label: "Data two",
+            backgroundColor: "#f8re79",
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+
+            data: [40, 39, 10, 40, 39, 80, 40]
           }
         ]
       },
