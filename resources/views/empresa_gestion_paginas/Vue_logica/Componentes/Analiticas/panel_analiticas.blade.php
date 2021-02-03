@@ -29,7 +29,7 @@
 
 @section('vue-logica')
 
-
+<script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.2.4/dist/frappe-charts.min.iife.js"></script>
 <script type="text/javascript">
 
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.analiticas_de_ventas_y_gasto')

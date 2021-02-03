@@ -76,7 +76,43 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 				});
 		},
 		setData: function() {},
-		calcularSaldo: function() {}
+		calcularSaldo: function() {},
+		graficar: function() {
+			const data = {
+				labels: [
+					"12am-3am",
+					"3am-6pm",
+					"6am-9am",
+					"9am-12am",
+					"12pm-3pm",
+					"3pm-6pm",
+					"6pm-9pm",
+					"9am-12am"
+				],
+				datasets: [
+					{
+						name: "Some Data",
+						type: "bar",
+						values: [25, 40, 30, 35, 8, 52, 17, -4]
+					},
+					{
+						name: "Another Set",
+						type: "line",
+						values: [25, 50, -10, 15, 18, 32, 27, 14]
+					}
+				]
+			};
+
+			const chart = new frappe.Chart("#grafica", {
+				// or a DOM element,
+				// new Chart() in case of ES6 module with above usage
+				title: "My Awesome Chart",
+				data: data,
+				type: "axis-mixed", // or 'bar', 'line', 'scatter', 'pie', 'percentage'
+				height: 250,
+				colors: ["#7cd6fd", "#743ee2"]
+			});
+		}
 	},
 	computed: {},
 
@@ -95,7 +131,9 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		</div>
 		<div class="admin-user-boton-Crear" v-on:click="getData()"><i class="fas fa-search"></i> </div>
 		</div>
-        </div>
+		</div>
+		<div id="grafica">
+		</div>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
