@@ -4,13 +4,13 @@ Vue.component("line-chart", {
 		this.renderChart(
 			{
 				labels: [
-					"January",
-					"February",
-					"March",
-					"April",
-					"May",
-					"June",
-					"July"
+					["January", "jilio"],
+					["January", "jilio"],
+					["January", "jilio"],
+					["January", "jilio"],
+					["January", "jilio"],
+					["January", "jilio"],
+					["January", "jilio"]
 				],
 				datasets: [
 					{
