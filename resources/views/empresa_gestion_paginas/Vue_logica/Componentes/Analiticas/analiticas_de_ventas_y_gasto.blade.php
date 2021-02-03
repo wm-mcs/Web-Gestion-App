@@ -1,3 +1,30 @@
+Vue.component("line-chart", {
+	extends: VueChartJs.Line,
+	mounted() {
+		this.renderChart(
+			{
+				labels: [
+					"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July"
+				],
+				datasets: [
+					{
+						label: "Data One",
+						backgroundColor: "#f87979",
+						data: [40, 39, 10, 40, 39, 80, 40]
+					}
+				]
+			},
+			{ responsive: true, maintainAspectRatio: false }
+		);
+	}
+});
+
 Vue.component("analiticas-de-ventas-y-gasto", {
 	data: function() {
 		return {
@@ -104,7 +131,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 				]
 			};
 
-			const chart = new frappe.Chart("#grafica", {
+			const chart = new Chart("#grafica", {
 				// or a DOM element,
 				// new Chart() in case of ES6 module with above usage
 				title: "My Awesome Chart",
@@ -130,11 +157,10 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
 			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
 		</div>
-		<div class="admin-user-boton-Crear" v-on:click="getData()"><i class="fas fa-search"></i> </div>
+		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
 		</div>
 		</div>
-		<div id="grafica">
-		</div>
+		<line-chart></line-chart>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
