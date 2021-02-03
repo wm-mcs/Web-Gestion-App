@@ -16,8 +16,8 @@ Vue.component("line-chart", {
 					{
 						label: "Data One",
 						backgroundColor: "#f87979",
-						categoryPercentage: 1.0,
-						barPercentage: 1.0,
+						barThickness: "flex",
+						categoryPercentage: 0.2,
 
 						data: [40, 39, 10, 40, 39, 80, 40]
 					}
