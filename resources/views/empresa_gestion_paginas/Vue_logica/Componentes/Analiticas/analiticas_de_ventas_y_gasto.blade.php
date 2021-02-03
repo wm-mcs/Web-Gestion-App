@@ -20,7 +20,7 @@ Vue.component("line-chart", {
 					}
 				]
 			},
-			{ responsive: true, maintainAspectRatio: false }
+			{ responsive: true, maintainAspectRatio: true }
 		);
 	}
 });
