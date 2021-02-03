@@ -161,7 +161,7 @@ Vue.component("crear-empresa", {
             <div class="contenedor-grupo-datos-titulo">Empresa datos</div>
             <div class="contenedor-formulario-label-fiel">
               <p v-if="cargando" class="Procesando-text">Cargando...</p>
-              <div v-esle class="formulario-label-fiel">
+              <div v-else class="formulario-label-fiel">
                 {!! Form::label('pais', 'País', array('class' =>
                 'formulario-label ')) !!}
 
