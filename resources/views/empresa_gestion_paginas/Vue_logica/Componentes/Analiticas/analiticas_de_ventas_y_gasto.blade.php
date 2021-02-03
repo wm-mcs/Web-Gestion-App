@@ -1,5 +1,5 @@
 Vue.component("line-chart", {
-	extends: VueChartJs.Line,
+	extends: VueChartJs.Bar,
 	mounted() {
 		this.renderChart(
 			{
