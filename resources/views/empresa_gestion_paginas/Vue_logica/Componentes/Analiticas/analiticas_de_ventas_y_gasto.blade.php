@@ -1,117 +1,163 @@
 Vue.component("line-chart", {
-	extends: VueChartJs.Bar,
-	mounted() {
-		this.renderChart(
-			{
-				labels: [
-					"January",
-					"February",
-					"March",
-					"April",
-					"May",
-					"June",
-					"July"
-				],
-				datasets: [
-					{
-						label: "Data One",
-						backgroundColor: "#f87979",
-						barThickness: 35,
-
-
-						data: [40, 39, 10, 40, 39, 80, 40]
-					}
-				]
-			},
-			{ responsive: true, maintainAspectRatio: false }
-		);
-	}
+  extends: VueChartJs.Bar,
+  data: function() {
+    return {
+      datacollection: {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            pointBackgroundColor: "white",
+            borderWidth: 1,
+            pointBorderColor: "#249EBF",
+            data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              },
+              gridLines: {
+                display: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              },
+              gridLines: {
+                display: false
+              }
+            }
+          ]
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: true,
+          mode: "single",
+          callbacks: {
+            label: function(tooltipItems, data) {
+              return "$" + tooltipItems.yLabel;
+            }
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        height: 200
+      }
+    };
+  },
+  mounted() {
+    // this.chartData is created in the mixin
+    this.renderChart(this.datacollection, this.options);
+  }
 });
 
 Vue.component("analiticas-de-ventas-y-gasto", {
-	data: function() {
-		return {
-			cargando: false,
-			fecha_inicio: null,
-			fecha_fin: null,
-			movimientos: [],
-			tipo_de_movimientos: [],
-			datos: []
-		};
-	},
+  data: function() {
+    return {
+      cargando: false,
+      fecha_inicio: null,
+      fecha_fin: null,
+      movimientos: [],
+      tipo_de_movimientos: [],
+      datos: []
+    };
+  },
 
-	mounted: function mounted() {
-		this.getData();
-		this.graficar();
-	},
+  mounted: function mounted() {
+    this.getData();
+  },
 
-	methods: {
-		getData: function() {
-			let url = "/get_movimientos_de_caja_para_analiticas";
-			let vue = this;
-			this.cargando = true;
+  methods: {
+    getData: function() {
+      let url = "/get_movimientos_de_caja_para_analiticas";
+      let vue = this;
+      this.cargando = true;
 
-			let data = {
-				fecha_inicio: this.fecha_inicio,
-				fecha_fin: this.fecha_fin,
-				empresa_id: this.$root.empresa.id
-			};
+      let data = {
+        fecha_inicio: this.fecha_inicio,
+        fecha_fin: this.fecha_fin,
+        empresa_id: this.$root.empresa.id
+      };
 
-			return axios
-				.post(url, data)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.movimientos = response.data.Data.Movimientos;
-						vue.fecha_inicio = response.data.Data.fecha_inicio;
-						vue.fecha_fin = response.data.Data.fecha_fin;
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.then(function() {
-					vue.getTipoDeMovimientos();
-				})
-				.then(function() {
-					console.log("Se terminaron de cargar los datos 2");
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		getTipoDeMovimientos: function() {
-			let url = "/get_tipo_de_movimientos";
-			let vue = this;
-			this.cargando = true;
-			return axios
-				.get(url)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
-							tipo => tipo.movimiento_de_la_empresa == "si"
-						);
+      return axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.movimientos = response.data.Data.Movimientos;
+            vue.fecha_inicio = response.data.Data.fecha_inicio;
+            vue.fecha_fin = response.data.Data.fecha_fin;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .then(function() {
+          vue.getTipoDeMovimientos();
+        })
+        .then(function() {
+          console.log("Se terminaron de cargar los datos 2");
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    getTipoDeMovimientos: function() {
+      let url = "/get_tipo_de_movimientos";
+      let vue = this;
+      this.cargando = true;
+      return axios
+        .get(url)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
+              (tipo) => tipo.movimiento_de_la_empresa == "si"
+            );
 
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		setData: function() {},
-		calcularSaldo: function() {}
-	},
-	computed: {},
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    setData: function() {},
+    calcularSaldo: function() {}
+  },
+  computed: {},
 
-	template: `
+  template: `
 
 
   <div>
