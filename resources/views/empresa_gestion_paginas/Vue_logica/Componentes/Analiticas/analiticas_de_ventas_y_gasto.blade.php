@@ -16,7 +16,6 @@ Vue.component("line-chart", {
           {
             label: "Data One",
             backgroundColor: "#f87979",
-            barThickness: 18,
             borderWidth: 1,
             pointBorderColor: "#249EBF",
 
@@ -25,7 +24,6 @@ Vue.component("line-chart", {
           {
             label: "Data two",
             backgroundColor: "#f8re79",
-            barThickness: 18,
             borderWidth: 1,
             pointBorderColor: "#249EBF",
 
