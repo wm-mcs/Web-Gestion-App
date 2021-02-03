@@ -5,7 +5,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			fecha_inicio: null,
 			fecha_fin: null,
 			movimientos: [],
-			tipo_de_movimientos: []
+			tipo_de_movimientos: [],
+			datos: []
 		};
 	},
 
@@ -73,7 +74,9 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 					vue.cargando = false;
 					$.notify(error.message, "error");
 				});
-		}
+		},
+		setData: function() {},
+		calcularSaldo: function() {}
 	},
 	computed: {},
 
