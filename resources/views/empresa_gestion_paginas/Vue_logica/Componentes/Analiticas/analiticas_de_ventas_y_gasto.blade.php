@@ -12,6 +12,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
 	mounted: function mounted() {
 		this.getData();
+		this.graficar();
 	},
 
 	methods: {
@@ -78,7 +79,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		setData: function() {},
 		calcularSaldo: function() {},
 		graficar: function() {
-			const data = {
+			let data = {
 				labels: [
 					"12am-3am",
 					"3am-6pm",
