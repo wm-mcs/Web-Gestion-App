@@ -16,7 +16,7 @@ Vue.component("line-chart", {
 					{
 						label: "Data One",
 						backgroundColor: "#f87979",
-						barPercentage: 0.5,
+
 						barThickness: 6,
 						maxBarThickness: 8,
 						minBarLength: 2,
