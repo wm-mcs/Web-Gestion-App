@@ -69,7 +69,7 @@ Vue.component("line-chart", {
       }
     };
   },
-  mounted() {
+  mounted: function mounted() {
     // this.chartData is created in the mixin
     this.renderChart(this.datacollection, this.options);
   }
