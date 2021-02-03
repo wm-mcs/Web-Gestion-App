@@ -16,11 +16,15 @@ Vue.component("line-chart", {
 					{
 						label: "Data One",
 						backgroundColor: "#f87979",
+						barPercentage: 0.5,
+						barThickness: 6,
+						maxBarThickness: 8,
+						minBarLength: 2,
 						data: [40, 39, 10, 40, 39, 80, 40]
 					}
 				]
 			},
-			{ responsive: true, maintainAspectRatio: true }
+			{ responsive: true, maintainAspectRatio: false }
 		);
 	}
 });
