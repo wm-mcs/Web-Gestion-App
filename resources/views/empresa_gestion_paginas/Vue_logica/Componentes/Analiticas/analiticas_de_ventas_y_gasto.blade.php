@@ -1,35 +1,38 @@
 Vue.component("line-chart", {
   extends: VueChartJs.Bar,
+
+  data: function() {
+    return {
+      label: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+        {
+          label: "Data One",
+          backgroundColor: "#f87979",
+          borderWidth: 1,
+          pointBorderColor: "#249EBF",
+
+          data: [40, 39, 10, 40, 39, 80, 40]
+        },
+        {
+          label: "Data two",
+          backgroundColor: "#f8re79",
+          borderWidth: 1,
+          pointBorderColor: "#249EBF",
+
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ],
+      fecha_fin: null,
+      movimientos: [],
+      tipo_de_movimientos: [],
+      datos: []
+    };
+  },
   mounted() {
     this.renderChart(
       {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July"
-        ],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#f87979",
-            borderWidth: 1,
-            pointBorderColor: "#249EBF",
-
-            data: [40, 39, 10, 40, 39, 80, 40]
-          },
-          {
-            label: "Data two",
-            backgroundColor: "#f8re79",
-            borderWidth: 1,
-            pointBorderColor: "#249EBF",
-
-            data: [40, 39, 10, 40, 39, 80, 40]
-          }
-        ]
+        labels: this.label,
+        datasets: this.datasets
       },
       {
         scales: {
