@@ -180,8 +180,11 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		</div>
 		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
 		</div>
-		</div>
-		<line-chart :chart-data="chartData" ></line-chart>
+    </div>
+    <div class="col-12 p-3 p-lg-5">
+    <line-chart :chart-data="chartData" ></line-chart>
+    </div>
+	
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
