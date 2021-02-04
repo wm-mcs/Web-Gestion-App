@@ -167,12 +167,16 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
             dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
             dataset.backgroundColor.push(
-              this.esSaldoDeudor(tipo) ? "#4bb543" : " #fcb6b6"
+              tipo.tipo_saldo == "deudor"
+                ? true
+                : false
+                ? "#4bb543"
+                : " #fcb6b6"
             );
 
             dataset.data.push(
               this.calcularSaldo(
-                this.esSaldoDeudor(tipo),
+                tipo.tipo_saldo == "deudor" ? true : false,
                 cantidadRegistrosDeEsteTipo
               )
             );
