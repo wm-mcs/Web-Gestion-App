@@ -1,165 +1,162 @@
-Vue.component("line-chart", {
-  extends: VueChartJs.Bar,
+const lineChart = {
+	extends: VueChartJs.Bar,
 
-  data: function() {
-    return {
-      label: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-          label: "Data One",
-          backgroundColor: "#f87979",
-          borderWidth: 1,
-          pointBorderColor: "#249EBF",
+	props: ["datasets", "labels"],
 
-          data: [40, 39, 10, 40, 39, 80, 40]
-        },
-        {
-          label: "Data two",
-          backgroundColor: "#f8re79",
-          borderWidth: 1,
-          pointBorderColor: "#249EBF",
-
-          data: [40, 39, 10, 40, 39, 80, 40]
-        }
-      ],
-      fecha_fin: null,
-      movimientos: [],
-      tipo_de_movimientos: [],
-      datos: []
-    };
-  },
-  mounted() {
-    this.renderChart(
-      {
-        labels: this.label,
-        datasets: this.datasets
-      },
-      {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              },
-              gridLines: {
-                display: true
-              }
-            }
-          ],
-          xAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              },
-              gridLines: {
-                display: true
-              }
-            }
-          ]
-        },
-        legend: {
-          display: true
-        },
-        tooltips: {
-          enabled: true,
-          mode: "single",
-          callbacks: {
-            label: function(tooltipItems, data) {
-              return "$ sdf " + tooltipItems.yLabel;
-            }
-          }
-        },
-        responsive: true,
-        maintainAspectRatio: false,
-        height: 200
-      }
-    );
-  }
-});
+	mounted() {
+		this.renderChart(
+			{
+				labels: this.label,
+				datasets: this.datasets
+			},
+			{
+				scales: {
+					yAxes: [
+						{
+							ticks: {
+								beginAtZero: true
+							},
+							gridLines: {
+								display: true
+							}
+						}
+					],
+					xAxes: [
+						{
+							ticks: {
+								beginAtZero: true
+							},
+							gridLines: {
+								display: true
+							}
+						}
+					]
+				},
+				legend: {
+					display: true
+				},
+				tooltips: {
+					enabled: true,
+					mode: "single",
+					callbacks: {
+						label: function(tooltipItems, data) {
+							return "$ sdf " + tooltipItems.yLabel;
+						}
+					}
+				},
+				responsive: true,
+				maintainAspectRatio: false,
+				height: 200
+			}
+		);
+	}
+};
 
 Vue.component("analiticas-de-ventas-y-gasto", {
-  data: function() {
-    return {
-      cargando: false,
-      fecha_inicio: null,
-      fecha_fin: null,
-      movimientos: [],
-      tipo_de_movimientos: [],
-      datos: []
-    };
-  },
+	components: {
+		"line-chart": lineChart
+	},
+	data: function() {
+		return {
+			cargando: false,
+			fecha_inicio: null,
+			fecha_fin: null,
+			movimientos: [],
+			tipo_de_movimientos: [],
+			datos: [],
+			label: ["January", "February", "March", "April", "May", "June", "July"],
+			datasets: [
+				{
+					label: "Data One",
+					backgroundColor: "#f87979",
+					borderWidth: 1,
+					pointBorderColor: "#249EBF",
 
-  mounted: function mounted() {
-    this.getData();
-  },
+					data: [40, 39, 10, 40, 39, 80, 40]
+				},
+				{
+					label: "Data two",
+					backgroundColor: "#f8re79",
+					borderWidth: 1,
+					pointBorderColor: "#249EBF",
 
-  methods: {
-    getData: function() {
-      let url = "/get_movimientos_de_caja_para_analiticas";
-      let vue = this;
-      this.cargando = true;
+					data: [40, 39, 10, 40, 39, 80, 40]
+				}
+			]
+		};
+	},
 
-      let data = {
-        fecha_inicio: this.fecha_inicio,
-        fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id
-      };
+	mounted: function mounted() {
+		this.getData();
+	},
 
-      return axios
-        .post(url, data)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.movimientos = response.data.Data.Movimientos;
-            vue.fecha_inicio = response.data.Data.fecha_inicio;
-            vue.fecha_fin = response.data.Data.fecha_fin;
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .then(function() {
-          vue.getTipoDeMovimientos();
-        })
-        .then(function() {
-          console.log("Se terminaron de cargar los datos 2");
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
-    getTipoDeMovimientos: function() {
-      let url = "/get_tipo_de_movimientos";
-      let vue = this;
-      this.cargando = true;
-      return axios
-        .get(url)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
-              (tipo) => tipo.movimiento_de_la_empresa == "si"
-            );
+	methods: {
+		getData: function() {
+			let url = "/get_movimientos_de_caja_para_analiticas";
+			let vue = this;
+			this.cargando = true;
 
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
-    setData: function() {},
-    calcularSaldo: function() {}
-  },
-  computed: {},
+			let data = {
+				fecha_inicio: this.fecha_inicio,
+				fecha_fin: this.fecha_fin,
+				empresa_id: this.$root.empresa.id
+			};
 
-  template: `
+			return axios
+				.post(url, data)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.movimientos = response.data.Data.Movimientos;
+						vue.fecha_inicio = response.data.Data.fecha_inicio;
+						vue.fecha_fin = response.data.Data.fecha_fin;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.then(function() {
+					vue.getTipoDeMovimientos();
+				})
+				.then(function() {
+					console.log("Se terminaron de cargar los datos 2");
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		},
+		getTipoDeMovimientos: function() {
+			let url = "/get_tipo_de_movimientos";
+			let vue = this;
+			this.cargando = true;
+			return axios
+				.get(url)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
+							tipo => tipo.movimiento_de_la_empresa == "si"
+						);
+
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		},
+		setData: function() {},
+		calcularSaldo: function() {}
+	},
+	computed: {},
+
+	template: `
 
 
   <div>
@@ -175,7 +172,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
 		</div>
 		</div>
-		<line-chart></line-chart>
+		<line-chart :datasets="datasets" :labels="labels"></line-chart>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
