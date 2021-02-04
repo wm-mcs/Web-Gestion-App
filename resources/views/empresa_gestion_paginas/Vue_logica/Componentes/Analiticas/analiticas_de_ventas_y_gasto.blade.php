@@ -174,7 +174,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
             );
 
             dataset.data.push(
-              calcularSaldo(
+              this.calcularSaldo(
                 this.esSaldoDeudor(tipo),
                 cantidadRegistrosDeEsteTipo
               )
