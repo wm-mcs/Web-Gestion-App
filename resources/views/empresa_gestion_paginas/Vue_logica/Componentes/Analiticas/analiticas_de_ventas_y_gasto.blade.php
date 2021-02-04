@@ -6,7 +6,7 @@ const lineChart = {
 	mounted() {
 		this.renderChart(
 			{
-				labels: this.label,
+				labels: this.labels,
 				datasets: this.datasets
 			},
 			{
