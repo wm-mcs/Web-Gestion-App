@@ -86,7 +86,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         empresa_id: this.$root.empresa.id
       };
 
-      return axios
+      axios
         .post(url, data)
         .then(function(response) {
           if (response.data.Validacion == true) {
@@ -104,14 +104,14 @@ Vue.component("analiticas-de-ventas-y-gasto", {
           vue.getTipoDeMovimientos();
         })
         .then(function() {
-          vue.setData();
-        })
-        .then(function() {
           console.log("Se terminaron de cargar los datos 2");
         })
         .catch(function(error) {
           vue.cargando = false;
           $.notify(error.message, "error");
+        })
+        .then(function() {
+          vue.setData();
         });
     },
     getTipoDeMovimientos: function() {
