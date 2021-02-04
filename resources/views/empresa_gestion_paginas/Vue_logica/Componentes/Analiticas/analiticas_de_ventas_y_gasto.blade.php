@@ -152,7 +152,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     },
     setData: function() {
       this.recetChartData();
-
+      console.log("Ya se receteo dara");
       this.tipo_de_movimientos.forEach((tipo) => {
         let cantidadRegistrosDeEsteTipo = this.movimientos.filter(
           (movimiento) => movimiento.tipo_de_movimiento_id == tipo.id
