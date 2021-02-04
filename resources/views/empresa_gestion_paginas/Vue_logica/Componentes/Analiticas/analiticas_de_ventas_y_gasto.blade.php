@@ -4,7 +4,7 @@ const lineChart = {
 	props: ["datasets", "labels"],
 	watch: {
 		datasets() {
-			this.$data._chart.update();
+			this.$data._sets.update();
 		}
 	},
 
