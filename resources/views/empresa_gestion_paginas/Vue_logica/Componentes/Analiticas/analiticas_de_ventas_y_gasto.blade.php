@@ -86,7 +86,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         empresa_id: this.$root.empresa.id
       };
 
-      axios
+      return axios
         .post(url, data)
         .then(function(response) {
           if (response.data.Validacion == true) {
