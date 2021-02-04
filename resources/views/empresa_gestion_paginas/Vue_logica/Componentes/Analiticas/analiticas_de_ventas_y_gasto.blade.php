@@ -153,7 +153,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       this.tipo_de_movimientos.forEach((tipo) => {
         cantidadRegistrosDeEsteTipo = this.movimientos.filter(
           (movimiento) =>
-            parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+            parseInt(movimiento.tipo_de_movimiento_id) == parseInt(tipo.id)
         );
 
         console.log(cantidadRegistrosDeEsteTipo, "Id", tipo);
