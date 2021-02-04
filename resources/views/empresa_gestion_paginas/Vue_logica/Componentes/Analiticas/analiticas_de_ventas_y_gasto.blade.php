@@ -205,7 +205,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
   <div v-if="cargando">Cargando</div>
   <div else>
-        <div>
+        
             <div class="fechas-buscar-texto">
 			Filtrar movimientos entre fechas. Para hacer arqueos elegir la misma fecha en ambos campos. De esa manera se verán los movimientos de ese día y el saldo a ese día.
 		</div>
