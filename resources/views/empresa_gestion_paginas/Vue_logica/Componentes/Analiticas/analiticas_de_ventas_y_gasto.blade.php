@@ -162,7 +162,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         console.log(cantidadRegistrosDeEsteTipo);
 
         if (cantidadRegistrosDeEsteTipo.length) {
-          this.chartData.label = tipo.name;
+          this.chartData.labels.push(tipo.name);
 
           if (cantidadRegistrosDeEsteTipo.length === 1) {
             let dataset = this.chartData.datasets[0];
