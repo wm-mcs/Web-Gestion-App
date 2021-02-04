@@ -104,14 +104,25 @@ Vue.component("analiticas-de-ventas-y-gasto", {
           vue.getTipoDeMovimientos();
         })
         .then(function() {
-          console.log("Se terminaron de cargar los datos 2");
+          console.log(
+            "Se terminaron de cargar los datos 2",
+            vue.tipo_de_movimientos
+          );
         })
         .catch(function(error) {
           vue.cargando = false;
           $.notify(error.message, "error");
         })
         .then(function() {
+          console.log(
+            "Antes de ejecutar la funcion set data",
+            vue.tipo_de_movimientos
+          );
           vue.setData();
+          console.log(
+            "Despues de ejecutar la funcion set data",
+            vue.tipo_de_movimientos
+          );
         });
     },
     getTipoDeMovimientos: function() {
