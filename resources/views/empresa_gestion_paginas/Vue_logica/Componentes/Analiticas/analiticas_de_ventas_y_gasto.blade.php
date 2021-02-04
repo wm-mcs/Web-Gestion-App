@@ -1,6 +1,6 @@
 const lineChart = {
 	extends: VueChartJs.Bar,
-	mixins: VueChartJs.reactiveProp,
+	mixins: [VueChartJs.mixins.reactiveProp],
 	props: ["datasets", "labels"],
 
 	mounted() {
