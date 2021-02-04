@@ -167,11 +167,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
             dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
             dataset.backgroundColor.push(
-              tipo.tipo_saldo == "deudor"
-                ? true
-                : false
-                ? "#4bb543"
-                : " #fcb6b6"
+              tipo.tipo_saldo == "deudor" ? "#4bb543" : " #fcb6b6"
             );
 
             dataset.data.push(
@@ -184,17 +180,15 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         }
       });
     },
-    esSaldoDeudor: function(tipo) {
-      return tipo.tipo_saldo == "deudor" ? true : false;
-    },
+
     calcularSaldo: function(esDeudor, data) {
       let REDUCER = (acc, movimiento) =>
         parseFloat(acc) + parseFloat(movimiento.valor);
       let deduroSumados = data
-        .filter((movimiento) => movimiento.tipo_saldo == "deudor")
+        .filter((movimiento) => movimiento.tipo_saldo === "deudor")
         .reduce(REDUCER, 0);
       let acredorSumados = data
-        .filter((movimiento) => movimiento.tipo_saldo == "acredor")
+        .filter((movimiento) => movimiento.tipo_saldo === "acredor")
         .reduce(REDUCER, 0);
 
       return esDeudor
