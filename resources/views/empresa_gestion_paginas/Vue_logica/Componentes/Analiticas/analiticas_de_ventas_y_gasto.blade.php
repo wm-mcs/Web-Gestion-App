@@ -53,7 +53,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
   },
 
   mounted: function mounted() {
-    this.getData();
+    this.getData().then(this.setData());
   },
 
   methods: {
@@ -118,11 +118,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
             "Antes de ejecutar la funcion set data",
             vue.tipo_de_movimientos
           );
-          vue.setData();
-          console.log(
-            "Despues de ejecutar la funcion set data",
-            vue.tipo_de_movimientos
-          );
         });
     },
     getTipoDeMovimientos: function() {
@@ -138,13 +133,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
               (tipo) => {
                 return tipo.movimiento_de_la_empresa == "si";
               }
-            );
-
-            console.log(
-              vue.tipo_de_movimientos,
-              response.data.Tipo_de_movimientos.filter((tipo) => {
-                return tipo.movimiento_de_la_empresa == "si";
-              })
             );
 
             $.notify(response.data.Validacion_mensaje, "success");
@@ -172,9 +160,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     },
     setData: function() {
       this.recetChartData();
-      console.log("Ya se receteo dara");
-
-      console.log(this.tipo_de_movimientos);
 
       this.tipo_de_movimientos.forEach((tipo) => {
         console.log(this.movimientos);
