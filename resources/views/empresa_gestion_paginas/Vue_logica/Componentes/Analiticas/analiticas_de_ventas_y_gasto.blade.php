@@ -54,7 +54,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
   mounted: function mounted() {
     this.getData();
-    this.setData();
   },
 
   methods: {
@@ -103,6 +102,9 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         })
         .then(function() {
           vue.getTipoDeMovimientos();
+        })
+        .then(function() {
+          vue.setData();
         })
         .then(function() {
           console.log("Se terminaron de cargar los datos 2");
