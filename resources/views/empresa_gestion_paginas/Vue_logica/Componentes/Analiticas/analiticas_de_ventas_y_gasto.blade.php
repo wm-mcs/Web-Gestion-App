@@ -123,7 +123,11 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         .then(function(response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
-            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
+              (tipo) => {
+                return tipo.movimiento_de_la_empresa == "si";
+              }
+            );
 
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
@@ -152,7 +156,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       this.recetChartData();
       console.log("Ya se receteo dara");
 
-      console.log(this.tipo_de_movimientos, this.movimientos);
+      console.log(this.tipo_de_movimientos);
+
       this.tipo_de_movimientos.forEach((tipo) => {
         console.log(this.movimientos);
         let cantidadRegistrosDeEsteTipo = this.movimientos.filter(
