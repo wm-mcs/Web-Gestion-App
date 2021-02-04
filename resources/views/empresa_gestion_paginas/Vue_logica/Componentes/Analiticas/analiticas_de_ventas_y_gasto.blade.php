@@ -79,6 +79,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
   mounted: function mounted() {
     this.getData();
+    this.generateData();
   },
 
   methods: {
