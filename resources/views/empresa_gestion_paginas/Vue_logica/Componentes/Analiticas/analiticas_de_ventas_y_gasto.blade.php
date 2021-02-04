@@ -121,11 +121,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         .then(function(response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
-            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
-              (tipo) => {
-                return tipo.movimiento_de_la_empresa == "si";
-              }
-            );
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
             vue.setData();
 
             $.notify(response.data.Validacion_mensaje, "success");
