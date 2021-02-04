@@ -1,10 +1,10 @@
 const lineChart = {
 	extends: VueChartJs.Bar,
 	mixins: [VueChartJs.mixins.reactiveProp],
-	props: ["datasets", "labels"],
+	props: ["chartData", "labels"],
 	watch: {
-		datasets() {
-			this.$data._sets.update();
+		chartData() {
+			this.$data._chart.update();
 		}
 	},
 
@@ -12,7 +12,7 @@ const lineChart = {
 		this.renderChart(
 			{
 				labels: this.labels,
-				datasets: this.datasets
+				datasets: this.chartData
 			},
 			{
 				scales: {
@@ -70,7 +70,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			tipo_de_movimientos: [],
 			datos: [],
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
-			datasets: [
+			chartData: [
 				{
 					label: "Data One",
 					backgroundColor: "#f87979",
@@ -177,7 +177,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
 		</div>
 		</div>
-		<line-chart :datasets="datasets" :labels="labels"></line-chart>
+		<line-chart :chartData="chartData" :labels="labels"></line-chart>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
