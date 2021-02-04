@@ -1,7 +1,7 @@
 const lineChart = {
 	extends: VueChartJs.Bar,
 	mixins: [VueChartJs.mixins.reactiveProp],
-	props: ["datasets", "labels"],
+	props: ["options"],
 
 	watch: {
 		datasets: function(newVal, oldVal) {
@@ -10,51 +10,7 @@ const lineChart = {
 	},
 
 	mounted() {
-		this.renderChart(
-			{
-				labels: this.labels,
-				datasets: this.datasets
-			},
-			{
-				scales: {
-					yAxes: [
-						{
-							ticks: {
-								beginAtZero: true
-							},
-							gridLines: {
-								display: true
-							}
-						}
-					],
-					xAxes: [
-						{
-							ticks: {
-								beginAtZero: true
-							},
-							gridLines: {
-								display: true
-							}
-						}
-					]
-				},
-				legend: {
-					display: true
-				},
-				tooltips: {
-					enabled: true,
-					mode: "single",
-					callbacks: {
-						label: function(tooltipItems, data) {
-							return "$ sdf " + tooltipItems.yLabel;
-						}
-					}
-				},
-				responsive: true,
-				maintainAspectRatio: false,
-				height: 200
-			}
-		);
+		this.renderChart(this.chartData, this.options);
 	}
 };
 
@@ -70,25 +26,35 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			movimientos: [],
 			tipo_de_movimientos: [],
 			datos: [],
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
-			datasets: [
-				{
-					label: "Data One",
-					backgroundColor: "#f87979",
-					borderWidth: 1,
-					pointBorderColor: "#249EBF",
+			chartdata: {
+				labels: [
+					"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July"
+				],
+				datasets: [
+					{
+						label: "Data One",
+						backgroundColor: "#f87979",
+						borderWidth: 1,
+						pointBorderColor: "#249EBF",
 
-					data: [40, 39, 10, 40, 39, 80, 40]
-				},
-				{
-					label: "Data two",
-					backgroundColor: "#f8re79",
-					borderWidth: 1,
-					pointBorderColor: "#249EBF",
+						data: [40, 39, 10, 40, 39, 80, 40]
+					},
+					{
+						label: "Data two",
+						backgroundColor: "#f8re79",
+						borderWidth: 1,
+						pointBorderColor: "#249EBF",
 
-					data: [40, 39, 10, 40, 39, 80, 40]
-				}
-			]
+						data: [40, 39, 10, 40, 39, 80, 40]
+					}
+				]
+			}
 		};
 	},
 
@@ -178,7 +144,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
 		</div>
 		</div>
-		<line-chart :datasets="datasets" :labels="labels"></line-chart>
+		<line-chart :chart-data="chartdata" ></line-chart>
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
         </div>
