@@ -180,7 +180,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       });
     },
     esSaldoDeudor: function(tipo) {
-      return tipo.tipo_saldo == "deudor" ? true : false;
+      return tipo.tipo_saldo === "deudor" ? true : false;
     },
     calcularSaldo: function(esDeudor, data) {
       let REDUCER = (acc, movimiento) =>
