@@ -184,7 +184,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       return tipo.tipo_saldo === "deudor" ? treu : false;
     },
     calcularSaldo: function(esDeudor, data) {
-      const REDUCER = (acc, movimiento) => acc + parseFloat(movimiento.valor);
+      let REDUCER = (acc, movimiento) => acc + parseFloat(movimiento.valor);
       let deduroSumados = data
         .filter((movimiento) => movimiento.tipo_saldo == "deudor")
         .reduce(REDUCER, 0);
