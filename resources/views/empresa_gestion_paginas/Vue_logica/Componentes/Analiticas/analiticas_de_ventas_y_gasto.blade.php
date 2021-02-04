@@ -1,134 +1,154 @@
 const lineChart = {
-	extends: VueChartJs.Bar,
-	mixins: [VueChartJs.mixins.reactiveProp],
-	props: ["options"],
+  extends: VueChartJs.Bar,
+  mixins: [VueChartJs.mixins.reactiveProp],
+  props: ["options"],
 
-	watch: {
-		chartData: function(newVal, oldVal) {
-			console.log(newVal, oldVal);
-		}
-	},
+  watch: {
+    chartData: function(newVal, oldVal) {
+      console.log(newVal, oldVal);
+    }
+  },
 
-	mounted() {
-		this.renderChart(this.chartData, this.options);
-	}
+  mounted() {
+    this.renderChart(this.chartData, this.options);
+  }
 };
 
 Vue.component("analiticas-de-ventas-y-gasto", {
-	components: {
-		"line-chart": lineChart
-	},
-	data: function() {
-		return {
-			cargando: false,
-			fecha_inicio: null,
-			fecha_fin: null,
-			movimientos: [],
-			tipo_de_movimientos: [],
-			datos: [],
-			chartdata: {
-				labels: [
-					"January",
-					"February",
-					"March",
-					"April",
-					"May",
-					"June",
-					"July"
-				],
-				datasets: [
-					{
-						label: "Data One",
-						backgroundColor: "#f87979",
-						borderWidth: 1,
-						pointBorderColor: "#249EBF",
+  components: {
+    "line-chart": lineChart
+  },
+  data: function() {
+    return {
+      cargando: false,
+      fecha_inicio: null,
+      fecha_fin: null,
+      movimientos: [],
+      tipo_de_movimientos: [],
+      datos: [],
+      chartData: null,
+      chartdata: {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July"
+        ],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            borderWidth: 1,
+            pointBorderColor: "#249EBF",
 
-						data: [40, 39, 10, 40, 39, 80, 40]
-					},
-					{
-						label: "Data two",
-						backgroundColor: "#f8re79",
-						borderWidth: 1,
-						pointBorderColor: "#249EBF",
+            data: [40, 39, 10, 40, 39, 80, 40]
+          },
+          {
+            label: "Data two",
+            backgroundColor: "#f8re79",
+            borderWidth: 1,
+            pointBorderColor: "#249EBF",
 
-						data: [40, 39, 10, 40, 39, 80, 40]
-					}
-				]
-			}
-		};
-	},
+            data: [40, 39, 10, 40, 39, 80, 40]
+          }
+        ]
+      }
+    };
+  },
 
-	mounted: function mounted() {
-		this.getData();
-	},
+  mounted: function mounted() {
+    this.getData();
+    setInterval(this.generateData, 2000);
+  },
 
-	methods: {
-		getData: function() {
-			let url = "/get_movimientos_de_caja_para_analiticas";
-			let vue = this;
-			this.cargando = true;
+  methods: {
+    generateData() {
+      let newArray = [];
+      for (let i = 0; i < 10; i++) {
+        let randomValue = Math.floor(Math.random() * 10);
+        newArray.push(randomValue);
+      }
 
-			let data = {
-				fecha_inicio: this.fecha_inicio,
-				fecha_fin: this.fecha_fin,
-				empresa_id: this.$root.empresa.id
-			};
+      this.chartData = {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#f87979",
+            data: newArray
+          }
+        ]
+      };
+    },
+    getData: function() {
+      let url = "/get_movimientos_de_caja_para_analiticas";
+      let vue = this;
+      this.cargando = true;
 
-			return axios
-				.post(url, data)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.movimientos = response.data.Data.Movimientos;
-						vue.fecha_inicio = response.data.Data.fecha_inicio;
-						vue.fecha_fin = response.data.Data.fecha_fin;
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.then(function() {
-					vue.getTipoDeMovimientos();
-				})
-				.then(function() {
-					console.log("Se terminaron de cargar los datos 2");
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		getTipoDeMovimientos: function() {
-			let url = "/get_tipo_de_movimientos";
-			let vue = this;
-			this.cargando = true;
-			return axios
-				.get(url)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
-							tipo => tipo.movimiento_de_la_empresa == "si"
-						);
+      let data = {
+        fecha_inicio: this.fecha_inicio,
+        fecha_fin: this.fecha_fin,
+        empresa_id: this.$root.empresa.id
+      };
 
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		setData: function() {},
-		calcularSaldo: function() {}
-	},
-	computed: {},
+      return axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.movimientos = response.data.Data.Movimientos;
+            vue.fecha_inicio = response.data.Data.fecha_inicio;
+            vue.fecha_fin = response.data.Data.fecha_fin;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .then(function() {
+          vue.getTipoDeMovimientos();
+        })
+        .then(function() {
+          console.log("Se terminaron de cargar los datos 2");
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    getTipoDeMovimientos: function() {
+      let url = "/get_tipo_de_movimientos";
+      let vue = this;
+      this.cargando = true;
+      return axios
+        .get(url)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos.filter(
+              (tipo) => tipo.movimiento_de_la_empresa == "si"
+            );
 
-	template: `
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    setData: function() {},
+    calcularSaldo: function() {}
+  },
+  computed: {},
+
+  template: `
 
 
   <div>
