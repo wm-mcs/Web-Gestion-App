@@ -1,13 +1,9 @@
 const lineChart = {
   extends: VueChartJs.Bar,
-  mixins: VueChartJs.mixins.reactiveProp,
+  mixins: VueChartJs.mixins.reactiveProp],
   props: ["options"],
 
-  watch: {
-    chartData: function(newVal, oldVal) {
-      console.log(newVal, oldVal);
-    }
-  },
+  
 
   mounted() {
     this.renderChart(this.chartData, this.options);
