@@ -2,6 +2,11 @@ const lineChart = {
 	extends: VueChartJs.Bar,
 	mixins: [VueChartJs.mixins.reactiveProp],
 	props: ["datasets", "labels"],
+	watch: {
+		datasets() {
+			this.$data._chart.update();
+		}
+	},
 
 	mounted() {
 		this.renderChart(
