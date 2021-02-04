@@ -3,6 +3,29 @@ const lineChart = {
   mixins: [VueChartJs.mixins.reactiveProp],
   props: ["options"],
 
+  data: function() {
+    return {
+      options: {
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              }
+            }
+          ],
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    };
+  },
+
   mounted() {
     this.renderChart(this.chartData, this.options);
   }
@@ -33,9 +56,10 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         ],
         datasets: [
           {
-            label: "Data One",
-            backgroundColor: "#f87979",
-            borderWidth: 1,
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
             pointBorderColor: "#249EBF",
 
             data: [40, 39, 10, 40, 39, 80, 40]
@@ -55,7 +79,6 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
   mounted: function mounted() {
     this.getData();
-    setInterval(this.generateData, 2000);
   },
 
   methods: {
