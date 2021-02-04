@@ -20,7 +20,9 @@ const lineChart = {
               }
             }
           ]
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false
       }
     };
   },
