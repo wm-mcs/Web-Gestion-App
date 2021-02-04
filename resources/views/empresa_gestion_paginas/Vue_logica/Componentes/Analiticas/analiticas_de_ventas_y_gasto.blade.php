@@ -129,6 +129,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
               }
             );
 
+            console.log(vue.tipo_de_movimientos);
+
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
