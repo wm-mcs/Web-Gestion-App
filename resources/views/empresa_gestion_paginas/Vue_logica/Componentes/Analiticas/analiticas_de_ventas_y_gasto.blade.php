@@ -1,6 +1,6 @@
 const lineChart = {
   extends: VueChartJs.Bar,
-  mixins: [VueChartJs.mixins.reactiveProp],
+  mixins: VueChartJs.mixins.reactiveProp,
   props: ["options"],
 
   watch: {
