@@ -64,7 +64,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 			movimientos: [],
 			tipo_de_movimientos: [],
 			datos: [],
-			label: ["January", "February", "March", "April", "May", "June", "July"],
+			labels: ["January", "February", "March", "April", "May", "June", "July"],
 			datasets: [
 				{
 					label: "Data One",
