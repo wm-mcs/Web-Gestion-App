@@ -160,7 +160,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
             parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
         );
 
-        console.log(cantidadRegistrosDeEsteTipo, "Id", tipo.id);
+        console.log(cantidadRegistrosDeEsteTipo, "Id", tipo);
 
         if (cantidadRegistrosDeEsteTipo.length) {
           this.chartData.labels.push(tipo.name);
