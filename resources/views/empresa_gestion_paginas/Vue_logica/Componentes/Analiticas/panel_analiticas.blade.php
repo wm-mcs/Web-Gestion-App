@@ -29,8 +29,8 @@
 
 @section('vue-logica')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-<script src="https://unpkg.com/vue-chartjs@3.2.1-rc2/dist/vue-chartjs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://unpkg.com/vue-chartjs@3.0.1-rc2/dist/vue-chartjs.js"></script>
 
 <script type="text/javascript">
 
