@@ -153,9 +153,9 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     },
     setData: function() {
       this.recetChartData();
-
+      let cantidadRegistrosDeEsteTipo = "";
       this.tipo_de_movimientos.forEach((tipo) => {
-        var cantidadRegistrosDeEsteTipo = this.movimientos.filter(
+        cantidadRegistrosDeEsteTipo = this.movimientos.filter(
           (movimiento) =>
             parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
         );
