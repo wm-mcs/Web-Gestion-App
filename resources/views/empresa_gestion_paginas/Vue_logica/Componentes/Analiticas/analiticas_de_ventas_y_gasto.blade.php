@@ -52,8 +52,12 @@ Vue.component("analiticas-de-ventas-y-gasto", {
     };
   },
 
+  created: function() {
+    this.getData();
+  },
+
   mounted: function mounted() {
-    this.getData().then(this.setData());
+    this.setData();
   },
 
   methods: {
