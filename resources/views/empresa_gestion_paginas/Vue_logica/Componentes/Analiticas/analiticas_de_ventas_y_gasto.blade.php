@@ -156,18 +156,14 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         console.log(this.movimientos);
         const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
           (movimiento) =>
-            parseInt(movimiento.tipo_de_movimiento_id) == parseInt(tipo.id)
+            parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
         );
-
-        console.log(this.movimientos);
-
-        console.log(cantidadRegistrosDeEsteTipo, "Id", tipo);
 
         if (cantidadRegistrosDeEsteTipo.length) {
           this.chartData.labels.push(tipo.name);
 
           if (this.chartData.datasets.length === 1) {
-            let dataset = this.chartData.datasets[0];
+            const dataset = this.chartData.datasets[0];
 
             dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
             dataset.backgroundColor.push(
