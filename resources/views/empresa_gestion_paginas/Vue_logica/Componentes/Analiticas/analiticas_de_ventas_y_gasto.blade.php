@@ -204,25 +204,27 @@ Vue.component("analiticas-de-ventas-y-gasto", {
   template: `
 
   <div v-if="cargando">Cargando</div>
-  <div else>
+  <div v-else>
         
-            <div class="fechas-buscar-texto">
+    <div class="fechas-buscar-texto">
 			Filtrar movimientos entre fechas. Para hacer arqueos elegir la misma fecha en ambos campos. De esa manera se verán los movimientos de ese día y el saldo a ese día.
 		</div>
 		<div class="get_width_100 flex-row-center">
 			<div class="flex-row-column">
-			<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
-      <input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
+        <input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
+        <input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
       </div>
 		</div>
-		<div class="admin-user-boton-Crear" v-on:click="getData"><i class="fas fa-search"></i> </div>
+    <div class="admin-user-boton-Crear" v-on:click="getData">
+      <i class="fas fa-search"></i> 
+    </div>
 	
     <div class="col-12 p-3 p-lg-5">
-    <line-chart :chart-data="chartData" ></line-chart>
+      <line-chart :chart-data="chartData" ></line-chart>
     </div>
 	
 
         <p v-if="movimientos.length" v-for="movimiento in movimientos" :key="movimiento.id">@{{movimiento.id}}</p>
-        </div>
+</div>
     `
 });
