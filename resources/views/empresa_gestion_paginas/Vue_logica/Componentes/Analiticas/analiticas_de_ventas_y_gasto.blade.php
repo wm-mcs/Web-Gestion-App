@@ -156,10 +156,12 @@ Vue.component("analiticas-de-ventas-y-gasto", {
           (movimiento) => movimiento.tipo_de_movimiento_id == tipo.id
         );
 
+        console.log(cantidadRegistrosDeEsteTipo);
+
         if (cantidadRegistrosDeEsteTipo.length) {
           this.chartData.label = tipo.name;
 
-          if (this.chartData.datasets.length === 1) {
+          if (cantidadRegistrosDeEsteTipo.length === 1) {
             let dataset = this.chartData.datasets[0];
 
             dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
