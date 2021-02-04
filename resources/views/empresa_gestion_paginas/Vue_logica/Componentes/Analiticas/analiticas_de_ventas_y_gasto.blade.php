@@ -20,8 +20,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       movimientos: [],
       tipo_de_movimientos: [],
       datos: [],
-      chartData: null,
-      chartdata: {
+
+      chartData: {
         labels: [
           "January",
           "February",
