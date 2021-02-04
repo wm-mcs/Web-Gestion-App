@@ -46,41 +46,15 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       datos: [],
 
       chartData: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July"
-        ],
-        datasets: [
-          {
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            pointBorderColor: "#249EBF",
-
-            data: [40, 39, 10, 40, 39, 80, 40]
-          },
-          {
-            label: "Data two",
-            backgroundColor: "#f8re79",
-            borderWidth: 1,
-            pointBorderColor: "#249EBF",
-
-            data: [40, 39, 10, 40, 39, 80, 40]
-          }
-        ]
+        labels: null,
+        datasets: []
       }
     };
   },
 
   mounted: function mounted() {
     this.getData();
-    setInterval(this.generateData, 2000);
+    this.setData();
   },
 
   methods: {
@@ -96,7 +70,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         datasets: [
           {
             label: "Data One",
-            backgroundColor: "#f87979",
+            backgroundColor: [],
             data: newArray
           }
         ]
@@ -162,8 +136,63 @@ Vue.component("analiticas-de-ventas-y-gasto", {
           $.notify(error.message, "error");
         });
     },
-    setData: function() {},
-    calcularSaldo: function() {}
+    recetChartData: function() {
+      this.chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: "",
+            backgroundColor: [],
+            data: []
+          }
+        ]
+      };
+    },
+    setData: function() {
+      this.recetChartData();
+
+      this.tipo_de_movimientos.forEach((tipo) => {
+        let cantidadRegistrosDeEsteTipo = this.movimientos.filter(
+          (movimiento) => movimiento.tipo_de_movimiento_id == tipo.id
+        );
+
+        if (cantidadRegistrosDeEsteTipo.length) {
+          this.chartData.label = tipo.name;
+
+          if (this.chartData.datasets.length === 1) {
+            let dataset = this.chartData.datasets[0];
+
+            dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
+            dataset.backgroundColor.push(
+              this.esSaldoDeudor(tipo) ? "#4bb543" : " #fcb6b6"
+            );
+
+            dataset.data.push(
+              calcularSaldo(
+                this.esSaldoDeudor(tipo),
+                cantidadRegistrosDeEsteTipo
+              )
+            );
+          }
+        }
+      });
+    },
+    esSaldoDeudor: function(tipo) {
+      return tipo.tipo_saldo === "deudor" ? treu : false;
+    },
+    calcularSaldo: function(esDeudor, data) {
+      const REDUCER = (acc, movimiento) => acc + parseFloat(movimiento.valor);
+      let deduroSumados = data
+        .filter((movimiento) => movimiento.tipo_saldo == "deudor")
+        .reduce(REDUCER, 0);
+      let acredorSumados = data
+        .filter((movimiento) => movimiento.tipo_saldo == "acredor")
+        .reduce(REDUCER, 0);
+
+      return esDeudor
+        ? deduroSumados - acredorSumados
+        : acredorSumados - deduroSumados;
+    }
   },
   computed: {},
 
