@@ -4,7 +4,7 @@ const lineChart = {
 	props: ["options"],
 
 	watch: {
-		datasets: function(newVal, oldVal) {
+		chartData: function(newVal, oldVal) {
 			console.log(newVal, oldVal);
 		}
 	},
