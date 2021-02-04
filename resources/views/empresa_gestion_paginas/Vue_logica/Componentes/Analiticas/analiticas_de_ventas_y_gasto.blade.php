@@ -126,6 +126,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
                 return tipo.movimiento_de_la_empresa == "si";
               }
             );
+            vue.setData();
 
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
