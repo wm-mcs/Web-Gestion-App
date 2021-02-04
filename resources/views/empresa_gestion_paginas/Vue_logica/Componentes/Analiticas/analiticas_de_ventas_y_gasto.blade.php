@@ -107,21 +107,9 @@ Vue.component("analiticas-de-ventas-y-gasto", {
         .then(function() {
           vue.getTipoDeMovimientos();
         })
-        .then(function() {
-          console.log(
-            "Se terminaron de cargar los datos 2",
-            vue.tipo_de_movimientos
-          );
-        })
         .catch(function(error) {
           vue.cargando = false;
           $.notify(error.message, "error");
-        })
-        .then(function() {
-          console.log(
-            "Antes de ejecutar la funcion set data",
-            vue.tipo_de_movimientos
-          );
         });
     },
     getTipoDeMovimientos: function() {
@@ -215,8 +203,8 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 
   template: `
 
-
-  <div>
+  <div v-if="cargando">Cargando</div>
+  <div else>
         <div>
             <div class="fechas-buscar-texto">
 			Filtrar movimientos entre fechas. Para hacer arqueos elegir la misma fecha en ambos campos. De esa manera se verán los movimientos de ese día y el saldo a ese día.
