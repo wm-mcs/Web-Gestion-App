@@ -1,15 +1,12 @@
 const orderFunction = {
 	methods: {
-		isNumeric: function(num) {
-			return !isNaN(num);
-		},
 		compareValues: function(key, order = "asc") {
 			return function innerSort(a, b) {
 				if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
 					return 0;
 				}
 
-				if (typeof a[key] === "string" && this.isNumeric(a[key])) {
+				if (typeof a[key] === "string" && !isNaN(a[key])) {
 					var varA = parseFloat(a[key]);
 					var varB = parseFloat(b[key]);
 				} else {
