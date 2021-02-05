@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="row mx-0 align-items-center">
+<div class="row mx-0 align-items-center mb-4">
   <div class="col-12 col-lg-6">
     <h1 class="h3 mb-0"> Finanzas y analíticas </h1>
   </div>

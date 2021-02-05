@@ -1,374 +1,319 @@
-Vue.component('socio-entidad-listado' ,
-{
-
-props:['empresa','palabra_busqueda']
-,
-
-data:function(){
-    return {
-         socios:[],
-         cargando:false,
-         cargando_inactivos:false,
-         ya_pedi_todos:false,
-         socios_ids:[],
-         scrollPos:0,
-         socios_inactivos:[],
-         filtro_busqueda:'sin_filtro',
-         filtros_busqueda:[{nombre:'Sin filtro',value:'sin_filtro'},
-                           {nombre:'Deudores',value:'deudores'},
-                           {nombre:'Sin nada contratado',value:'sin_nada'},
-                           {nombre:'Al día',value:'al_dia'},],
-         opcion_ordenar:'nuevos',
-         opciones_ordenar:[{
-                            nombre:'Alfabético creciente',
-                             value:'asc'
-                           },
-                           {
-                            nombre:'Alfabético decreciente',
-                             value:'desc'
-                           },
-                           {
-                            nombre:'Primeros creados',
-                             value:'viejos'
-                           },
-                           {
-                            nombre:'Recién creados',
-                             value:'nuevos'
-                           },
-                           {
-                            nombre:'Por vencer servicio',
-                             value:'se_vence'
-                           }
-
-
-                          ]
-
-    }
-},
-
-mounted: function mounted () {
-this.cargando = true;
-},
-
-watch:{
-
-    palabra_busqueda: {
-      immediate: true,
-      deep: true,
-      handler(newValue, oldValue) {
-      	this.checkSearchStr(newValue);
-      }
-    }
-
-
-
-},
-computed:{
-  socios_filtrados:function(){
-    var socios = this.socios;
-    switch(this.filtro_busqueda){
-    case "deudores":
-         socios = socios.filter(function (el) {
-          return el.saldo_de_estado_de_cuenta_pesos < 0 ||
-                 el.saldo_de_estado_de_cuenta_dolares < 0
-
-        });
-
-    break;
-
-    case "al_dia":
-
-    socios = socios.filter(function (el) {
-          return el.saldo_de_estado_de_cuenta_pesos >= 0 &&
-                 el.saldo_de_estado_de_cuenta_dolares >= 0
-
-        });
-
-    break;
-
-    case "sin_nada":
-         socios = socios.filter(function (el) {
-          return el.servicios_contratados_disponibles_tipo_clase.length == 0 &&
-                 el.servicios_contratados_disponibles_tipo_mensual.length == 0
-
-        });
-
-    break;
-    case "sin_filtro":
-    socios = socios;
-
-    break;
-
-
-    default:
-        socios = socios;
-    }
-
-
-
-
-
-
-    switch(this.opcion_ordenar){
-    case "asc":
-         socios = socios.sort(this.comparar_valor('name','asc'));
-
-    break;
-
-    case "desc":
-         socios = socios.sort(this.comparar_valor('name','desc'));
-
-    break;
-    case "nuevos":
-         socios = socios.sort(this.comparar_valor('created_at','desc'));
-
-    break;
-    case "viejos":
-         socios = socios.sort(this.comparar_valor('created_at','asc'));
-
-    break;
-    case "se_vence":
-       socios = socios.filter(function (el) {
-          return el.servicios_contratados_disponibles_tipo_clase.length > 0 ||
-                 el.servicios_contratados_disponibles_tipo_mensual.length > 0
-
-        }).sort(this.compara_valor_de_vencimiento);
-
-    break;
-
-    default:
-        socios = socios;
-    }
-
-
-
-    return socios;
-
-
-  }
-},
-
-methods:{
-
-comparar_valor:function(key, order = 'asc') {
-  return function innerSort(a, b) {
-    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-
-      return 0;
-    }
-
-    const varA = (typeof a[key] === 'string')
-      ? a[key].toUpperCase() : a[key];
-    const varB = (typeof b[key] === 'string')
-      ? b[key].toUpperCase() : b[key];
-
-    let comparison = 0;
-    if (varA > varB) {
-      comparison = 1;
-    } else if (varA < varB) {
-      comparison = -1;
-    }
-    return (
-      (order === 'desc') ? (comparison * -1) : comparison
-    );
-  };
-},
-compara_valor_de_vencimiento:function(a,b){
-
-  let comparison = 0;
-  if(a.servicios_contratados_del_socio.length == 0 && b.servicios_contratados_del_socio.length != 0 )
-  {
-    return -1;
-  }
-  else if(a.servicios_contratados_del_socio.length != 0 && b.servicios_contratados_del_socio.length == 0){
-    return 1;
-  }
-  else if(a.servicios_contratados_del_socio.length == 0 && b.servicios_contratados_del_socio.length == 0){
-    return 0;
-  }
-
-
-
-    const varA =  new Date(a.servicios_contratados_del_socio[0].fecha_vencimiento);
-    const varB =  new Date(b.servicios_contratados_del_socio[0].fecha_vencimiento);
-
-
-
-
-    if (varA > varB) {
-      comparison = 1;
-    } else if (varA < varB) {
-      comparison = -1;
-    }
-    console.log(varA,varB,comparison);
-
-    return comparison;
-
-
-},
-actualizar_socios:function(socios){
-  this.ya_pedi_todos = false;
-	this.socios = socios;
-  this.setArrayDeIs();
-},
-setArrayDeIs:function(){
-     this.socios_ids = [];
-     this.socios.forEach(element => this.socios_ids.push(element.id));
-
-},
-scroll:function(){
-        if( (document.body.getBoundingClientRect() ).top > this.scrollPos )
-        {
-        }
-        else
-        {
-            window.onscroll = () => {
-            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight + 600 > document.documentElement.offsetHeight;
-
-                if(bottomOfWindow) {
-                  if(this.cargando == false)
-                  {
-                      this.get_socios();
-                  }
-                }
-            };
-        }
-        this.scrollPos = document.body.getBoundingClientRect().top;
-
-},
-get_socios:function(){
-
-
-      if(this.ya_pedi_todos)
-      {
-          return false;
-      }
-
-      var url = '/get_socios_activos';
-
-      var data = {
-                    empresa_id: this.empresa.id ,
-                    ids_ya_usados:this.socios_ids
-                 };
-
-      var vue = this;
-      this.cargando = true;
-
-     axios.post(url,data).then(function (response){
-
-            var data = response.data;
-
-            if(data.Validacion == true)
-            {
-               vue.socios = vue.socios.concat(data.Socios);
-               vue.setArrayDeIs();
-
-               if(data.Socios.length == 0)
-               {
-                 vue.ya_pedi_todos = true;
-               }
-               vue.cargando = false;
-            }
-            else
-            {
-              vue.cargando = false;
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-
-           }).catch(function (error){
-
-
-
-           });
-
-},
-get_socios_inactivos:function(){
-
-  var url = '/get_socios_inactivos';
-
-      var data = {
-                    empresa_id: this.empresa.id
-                 };
-      var vue = this;
-      this.cargando_inactivos = true;
-
-     axios.post(url,data).then(function (response){
-            var data = response.data;
-
-
-            if(data.Validacion == true)
-            {
-               vue.cargando_inactivos = false;
-               vue.socios_inactivos = response.data.Socios;
-               $.notify(response.data.Validacion_mensaje, "success");
-
-            }
-            else
-            {
-              vue.cargando_inactivos = false;
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-
-           }).catch(function (error){
-
-
-
-           });
-
-},
-checkSearchStr: _.debounce(function(string){
-
-	if(string != '')
-	{
-      var url = '/buscar_socios_activos';
-
-      var data = {  busqueda: string,
-                    empresa_id: this.empresa.id
-                 };
-      var vue = this;
-
-     axios.post(url,data).then(function (response){
-            var data = response.data;
-
-
-            if(data.Validacion == true)
-            {
-               vue.socios = response.data.Socios;
-
-
-            }
-            else
-            {
-              $.notify(response.data.Validacion_mensaje, "error");
-            }
-
-           }).catch(function (error){
-
-
-
-           });
-	}else{
-    this.ya_pedi_todos = false;
-    this.socios_ids = [];
-    this.socios = [];
-    this.get_socios();
-  }
-    }, 800)
-},
-created() {
-
-    bus.$on('socios-set', (socios) => {
-      this.socios = socios;
-      this.ya_pedi_todos = false;
-      this.setArrayDeIs();
-    });
-    window.addEventListener('scroll', this.scroll);
-},
-
-destroyed () {
-    window.removeEventListener('scroll', this.scroll);
-},
-template:'
+Vue.component("socio-entidad-listado", {
+	props: ["empresa", "palabra_busqueda"],
+	data: function() {
+		return {
+			socios: [],
+			cargando: false,
+			cargando_inactivos: false,
+			ya_pedi_todos: false,
+			socios_ids: [],
+			scrollPos: 0,
+			socios_inactivos: [],
+			filtro_busqueda: "sin_filtro",
+			filtros_busqueda: [
+				{ nombre: "Sin filtro", value: "sin_filtro" },
+				{ nombre: "Deudores", value: "deudores" },
+				{ nombre: "Sin nada contratado", value: "sin_nada" },
+				{ nombre: "Al día", value: "al_dia" }
+			],
+			opcion_ordenar: "nuevos",
+			opciones_ordenar: [
+				{
+					nombre: "Alfabético creciente",
+					value: "asc"
+				},
+				{
+					nombre: "Alfabético decreciente",
+					value: "desc"
+				},
+				{
+					nombre: "Primeros creados",
+					value: "viejos"
+				},
+				{
+					nombre: "Recién creados",
+					value: "nuevos"
+				},
+				{
+					nombre: "Por vencer servicio",
+					value: "se_vence"
+				}
+			]
+		};
+	},
+
+	mounted: function mounted() {
+		this.cargando = true;
+	},
+
+	watch: {
+		palabra_busqueda: {
+			immediate: true,
+			deep: true,
+			handler(newValue, oldValue) {
+				this.checkSearchStr(newValue);
+			}
+		}
+	},
+	computed: {
+		socios_filtrados: function() {
+			var socios = this.socios;
+			switch (this.filtro_busqueda) {
+				case "deudores":
+					socios = socios.filter(function(el) {
+						return (
+							el.saldo_de_estado_de_cuenta_pesos < 0 ||
+							el.saldo_de_estado_de_cuenta_dolares < 0
+						);
+					});
+
+					break;
+
+				case "al_dia":
+					socios = socios.filter(function(el) {
+						return (
+							el.saldo_de_estado_de_cuenta_pesos >= 0 &&
+							el.saldo_de_estado_de_cuenta_dolares >= 0
+						);
+					});
+
+					break;
+
+				case "sin_nada":
+					socios = socios.filter(function(el) {
+						return (
+							el.servicios_contratados_disponibles_tipo_clase.length == 0 &&
+							el.servicios_contratados_disponibles_tipo_mensual.length == 0
+						);
+					});
+
+					break;
+				case "sin_filtro":
+					socios = socios;
+
+					break;
+
+				default:
+					socios = socios;
+			}
+
+			switch (this.opcion_ordenar) {
+				case "asc":
+					socios = socios.sort(this.comparar_valor("name", "asc"));
+
+					break;
+
+				case "desc":
+					socios = socios.sort(this.comparar_valor("name", "desc"));
+
+					break;
+				case "nuevos":
+					socios = socios.sort(this.comparar_valor("created_at", "desc"));
+
+					break;
+				case "viejos":
+					socios = socios.sort(this.comparar_valor("created_at", "asc"));
+
+					break;
+				case "se_vence":
+					socios = socios
+						.filter(function(el) {
+							return (
+								el.servicios_contratados_disponibles_tipo_clase.length > 0 ||
+								el.servicios_contratados_disponibles_tipo_mensual.length > 0
+							);
+						})
+						.sort(this.compara_valor_de_vencimiento);
+
+					break;
+
+				default:
+					socios = socios;
+			}
+
+			return socios;
+		}
+	},
+
+	methods: {
+		comparar_valor: function(key, order = "asc") {
+			return function innerSort(a, b) {
+				if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+					return 0;
+				}
+
+				const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+				const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+
+				let comparison = 0;
+				if (varA > varB) {
+					comparison = 1;
+				} else if (varA < varB) {
+					comparison = -1;
+				}
+				return order === "desc" ? comparison * -1 : comparison;
+			};
+		},
+		compara_valor_de_vencimiento: function(a, b) {
+			let comparison = 0;
+			if (
+				a.servicios_contratados_del_socio.length == 0 &&
+				b.servicios_contratados_del_socio.length != 0
+			) {
+				return -1;
+			} else if (
+				a.servicios_contratados_del_socio.length != 0 &&
+				b.servicios_contratados_del_socio.length == 0
+			) {
+				return 1;
+			} else if (
+				a.servicios_contratados_del_socio.length == 0 &&
+				b.servicios_contratados_del_socio.length == 0
+			) {
+				return 0;
+			}
+
+			const varA = new Date(
+				a.servicios_contratados_del_socio[0].fecha_vencimiento
+			);
+			const varB = new Date(
+				b.servicios_contratados_del_socio[0].fecha_vencimiento
+			);
+
+			if (varA > varB) {
+				comparison = 1;
+			} else if (varA < varB) {
+				comparison = -1;
+			}
+
+			return comparison;
+		},
+		actualizar_socios: function(socios) {
+			this.ya_pedi_todos = false;
+			this.socios = socios;
+			this.setArrayDeIs();
+		},
+		setArrayDeIs: function() {
+			this.socios_ids = [];
+			this.socios.forEach(element => this.socios_ids.push(element.id));
+		},
+		scroll: function() {
+			if (document.body.getBoundingClientRect().top > this.scrollPos) {
+			} else {
+				window.onscroll = () => {
+					let bottomOfWindow =
+						document.documentElement.scrollTop + window.innerHeight + 600 >
+						document.documentElement.offsetHeight;
+
+					if (bottomOfWindow) {
+						if (this.cargando == false) {
+							this.get_socios();
+						}
+					}
+				};
+			}
+			this.scrollPos = document.body.getBoundingClientRect().top;
+		},
+		get_socios: function() {
+			if (this.ya_pedi_todos) {
+				return false;
+			}
+
+			var url = "/get_socios_activos";
+
+			var data = {
+				empresa_id: this.empresa.id,
+				ids_ya_usados: this.socios_ids
+			};
+
+			var vue = this;
+			this.cargando = true;
+
+			axios
+				.post(url, data)
+				.then(function(response) {
+					var data = response.data;
+
+					if (data.Validacion == true) {
+						vue.socios = vue.socios.concat(data.Socios);
+						vue.setArrayDeIs();
+
+						if (data.Socios.length == 0) {
+							vue.ya_pedi_todos = true;
+						}
+						vue.cargando = false;
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {});
+		},
+		get_socios_inactivos: function() {
+			var url = "/get_socios_inactivos";
+
+			var data = {
+				empresa_id: this.empresa.id
+			};
+			var vue = this;
+			this.cargando_inactivos = true;
+
+			axios
+				.post(url, data)
+				.then(function(response) {
+					var data = response.data;
+
+					if (data.Validacion == true) {
+						vue.cargando_inactivos = false;
+						vue.socios_inactivos = response.data.Socios;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando_inactivos = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {});
+		},
+		checkSearchStr: _.debounce(function(string) {
+			if (string != "") {
+				var url = "/buscar_socios_activos";
+
+				var data = { busqueda: string, empresa_id: this.empresa.id };
+				var vue = this;
+
+				axios
+					.post(url, data)
+					.then(function(response) {
+						var data = response.data;
+
+						if (data.Validacion == true) {
+							vue.socios = response.data.Socios;
+						} else {
+							$.notify(response.data.Validacion_mensaje, "error");
+						}
+					})
+					.catch(function(error) {});
+			} else {
+				this.ya_pedi_todos = false;
+				this.socios_ids = [];
+				this.socios = [];
+				this.get_socios();
+			}
+		}, 800)
+	},
+	created() {
+		bus.$on("socios-set", socios => {
+			this.socios = socios;
+			this.ya_pedi_todos = false;
+			this.setArrayDeIs();
+		});
+		window.addEventListener("scroll", this.scroll);
+	},
+
+	destroyed() {
+		window.removeEventListener("scroll", this.scroll);
+	},
+	template: `
 <div v-if="socios.length" class="empresa-contendor-de-secciones">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
@@ -463,11 +408,5 @@ template:'
  <span v-else>No hay socios <i class="far fa-frown"></i></span>
 </div>
 
-'
-
-}
-
-
-
-
-);
+`
+});
