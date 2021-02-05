@@ -18,7 +18,7 @@ const barChart = {
 
 Vue.component("analiticas-de-ventas-y-gasto", {
   components: {
-    "line-chart": lineChart
+    "bar-chart": barChart
   },
   data: function() {
     return {
@@ -205,7 +205,7 @@ Vue.component("analiticas-de-ventas-y-gasto", {
 	
     <div class="col-12 p-3 p-lg-5">
 	  <h5>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</h5>
-      <line-chart :chart-data="chartData" ></line-chart>
+      <bar-chart :chart-data="chartData" ></bar-chart>
     </div>
 	
 
