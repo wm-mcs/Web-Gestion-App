@@ -194,9 +194,9 @@ Vue.component("ventas-gastos-segun-periodo", {
 
     <div class="contenedor-grupo-datos w-100">
 
-    <h5 class="col-12" >
+    <h6 class="col-12 mb-4" >
     <strong>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
-    </h5>
+    </h6>
 
       <div class="row mb-2">
         <div class="p-2 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
