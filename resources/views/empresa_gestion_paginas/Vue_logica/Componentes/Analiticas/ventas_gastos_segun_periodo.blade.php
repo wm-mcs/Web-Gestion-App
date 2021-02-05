@@ -71,7 +71,16 @@ const barChart = {
     return {
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                offsetGridLines: true
+              }
+            }
+          ]
+        }
       }
     };
   },
@@ -199,7 +208,7 @@ Vue.component("ventas-gastos-segun-periodo", {
         </div>
       </div>
 
-	    <h5 class="col-12 mb-3" >Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</h5>
+
       <div class="col-12">
          <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
