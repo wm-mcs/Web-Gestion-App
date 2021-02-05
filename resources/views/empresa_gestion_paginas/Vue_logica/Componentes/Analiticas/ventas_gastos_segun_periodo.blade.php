@@ -13,38 +13,7 @@ const misChartMixin = {
         data: data
       };
     },
-    setData: function() {
-      this.recetChartData();
-
-      const movimientosDelPeriodo = this.movimientos;
-      const dataset = this.setDataSet();
-
-      this.tipo_de_movimientos.forEach((tipo) => {
-        console.log(this.movimientos);
-        const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
-          (movimiento) =>
-            parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-        );
-
-        if (cantidadRegistrosDeEsteTipo.length) {
-          this.chartData.labels.push(tipo.name);
-
-          dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
-          dataset.backgroundColor.push(
-            tipo.tipo_saldo == "deudor" ? "#4bb543" : " #fcb6b6"
-          );
-
-          dataset.data.push(
-            this.calcularSaldo(
-              tipo.tipo_saldo == "deudor" ? true : false,
-              cantidadRegistrosDeEsteTipo
-            )
-          );
-        }
-      });
-
-      this.chartData.datasets.push(dataset);
-    },
+   ,
 
     calcularSaldo: function(esDeudor, data) {
       let REDUCER = (acc, movimiento) =>
@@ -111,6 +80,10 @@ Vue.component("ventas-gastos-segun-periodo", {
       datos: [],
 
       chartData: {
+        labels: null,
+        datasets: []
+      },
+      chartDataAgrupado:{
         labels: null,
         datasets: []
       }
@@ -181,6 +154,45 @@ Vue.component("ventas-gastos-segun-periodo", {
           vue.cargando = false;
           $.notify(error.message, "error");
         });
+    },
+    setData: function() {
+      this.recetChartData();
+
+      const movimientosDelPeriodo = this.movimientos;
+      const dataset = this.setDataSet();
+
+      this.tipo_de_movimientos.forEach((tipo) => {
+        console.log(this.movimientos);
+        const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+          (movimiento) =>
+            parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+        );
+
+        if (cantidadRegistrosDeEsteTipo.length) {
+          this.chartData.labels.push(tipo.name);
+
+          dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
+          dataset.backgroundColor.push(
+            tipo.tipo_saldo == "deudor" ? "#4bb543" : " #fcb6b6"
+          );
+
+          dataset.data.push(
+            this.calcularSaldo(
+              tipo.tipo_saldo == "deudor" ? true : false,
+              cantidadRegistrosDeEsteTipo
+            )
+          );
+        }
+      });
+
+      this.chartData.datasets.push(dataset);
+    },
+    setDataAgrupada:function(){
+      const movimientos = this.movimientos;
+      this.chartDataAgrupado.labels.push('ingresos');
+      this.chartDataAgrupado.labels.push('gasto');
+
+      const dataset = this.setDataSet();
     }
   },
   computed: {},
@@ -216,7 +228,11 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 
       <div class="col-12">
-         <bar-chart :chart-data="chartData" ></bar-chart>
+         <bar-chart :chart-data="chartDataAgrupado" ></bar-chart>
+      </div>
+
+      <div class="col-12">
+        <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
 
     </div>
