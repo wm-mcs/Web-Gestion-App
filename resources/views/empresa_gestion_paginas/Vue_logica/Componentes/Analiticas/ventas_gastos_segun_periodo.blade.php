@@ -1,6 +1,6 @@
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.Components.order_function')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
 
 Vue.component("ventas-gastos-segun-periodo", {
 	mixins: [misChartMixin,orderFunction],
