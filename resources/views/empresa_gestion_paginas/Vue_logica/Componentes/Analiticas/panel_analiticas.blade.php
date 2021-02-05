@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<analiticas-de-ventas-y-gasto></analiticas-de-ventas-y-gasto>
+<ventas-gastos-segun-periodo></ventas-gastos-segun-periodo>
 
 
 
@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
 
-  @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.analiticas_de_ventas_y_gasto')
+  @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.ventas_gastos_segun_periodo')
   @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
