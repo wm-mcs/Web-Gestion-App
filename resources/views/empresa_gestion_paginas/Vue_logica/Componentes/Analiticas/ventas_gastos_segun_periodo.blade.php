@@ -113,6 +113,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 						dataset.backgroundColor.push(
 							tipo.tipo_saldo == "deudor" ? this.colorSuccess : this.colorDanger
 						);
+            dataset.label = '';
 
 						dataset.data.push(
 							this.calcularSaldo(
@@ -124,6 +125,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 				});
 
 			this.chartData.datasets.push(dataset);
+      this.setDataAgrupada();
 		},
 		setDataAgrupada: function() {
 			const movimientos = this.movimientos;
