@@ -109,7 +109,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 					if (cantidadRegistrosDeEsteTipo.length) {
 						this.chartData.labels.push(tipo.name);
 
-						dataset.label = tipo.name;
+						
 						dataset.backgroundColor.push(
 							tipo.tipo_saldo == "deudor" ? this.colorSuccess : this.colorDanger
 						);
@@ -135,16 +135,16 @@ Vue.component("ventas-gastos-segun-periodo", {
 			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
 
 			const saldoDeudor = movimientos.filter(
-				movimiento => parseInt(movimiento.tipo_saldo) === "deudor"
+				movimiento => movimiento.tipo_saldo == "deudor"
 			);
 
 			const saldoAcredor = movimientos.filter(
-				movimiento => parseInt(movimiento.tipo_saldo) === "acredor"
+				movimiento => movimiento.tipo_saldo == "acredor"
 			);
 
 			dataset.data = [
 				this.calcularSaldo(true, saldoDeudor),
-				this.calcularSaldo(true, saldoAcredor)
+				this.calcularSaldo(false, saldoAcredor)
 			];
 
 			this.chartDataAgrupado.datasets.push(dataset);
