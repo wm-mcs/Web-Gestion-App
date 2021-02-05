@@ -1,9 +1,9 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
 
 Vue.component("ventas-gastos-segun-periodo", {
-	mixins: [misChartMixin,orderFunction],
+	mixins: [misChartMixin, orderFunction],
 	components: {
 		"bar-chart": barChart
 	},
@@ -98,28 +98,30 @@ Vue.component("ventas-gastos-segun-periodo", {
 			const movimientosDelPeriodo = this.movimientos;
 			const dataset = this.setDataSet();
 
-			this.tipo_de_movimientos.sort(this.compareValues('tipo_saldo','desc')).forEach(tipo => {
-				const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
-					movimiento =>
-						parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-				);
-
-				if (cantidadRegistrosDeEsteTipo.length) {
-					this.chartData.labels.push(tipo.name);
-
-					dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
-					dataset.backgroundColor.push(
-						tipo.tipo_saldo == "deudor" ? this.colorSuccess : this.colorDanger
+			this.tipo_de_movimientos
+				.sort(this.compareValues("tipo_saldo", "desc"))
+				.forEach(tipo => {
+					const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+						movimiento =>
+							parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
 					);
 
-					dataset.data.push(
-						this.calcularSaldo(
-							tipo.tipo_saldo == "deudor" ? true : false,
-							cantidadRegistrosDeEsteTipo
-						)
-					);
-				}
-			});
+					if (cantidadRegistrosDeEsteTipo.length) {
+						this.chartData.labels.push(tipo.name);
+
+						dataset.label = tipo.name;
+						dataset.backgroundColor.push(
+							tipo.tipo_saldo == "deudor" ? this.colorSuccess : this.colorDanger
+						);
+
+						dataset.data.push(
+							this.calcularSaldo(
+								tipo.tipo_saldo == "deudor" ? true : false,
+								cantidadRegistrosDeEsteTipo
+							)
+						);
+					}
+				});
 
 			this.chartData.datasets.push(dataset);
 		},
@@ -131,6 +133,21 @@ Vue.component("ventas-gastos-segun-periodo", {
 			const dataset = this.setDataSet();
 
 			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
+
+			const saldoDeudor = movimientos.filter(
+				movimiento => parseInt(movimiento.tipo_saldo) === "deudor"
+			);
+
+			const saldoAcredor = movimientos.filter(
+				movimiento => parseInt(movimiento.tipo_saldo) === "acredor"
+			);
+
+			dataset.data = [
+				this.calcularSaldo(true, saldoDeudor),
+				this.calcularSaldo(true, saldoAcredor)
+			];
+
+			this.chartDataAgrupado.datasets.push(dataset);
 		}
 	},
 	computed: {},
