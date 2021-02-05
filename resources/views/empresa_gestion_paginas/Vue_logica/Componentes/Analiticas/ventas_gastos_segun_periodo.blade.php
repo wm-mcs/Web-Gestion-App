@@ -96,7 +96,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 			this.recetChartData();
 
 			const movimientosDelPeriodo = this.movimientos;
-			const dataset = this.setDataSet();
+			const dataset = this.setDataSet('');
 
 			this.tipo_de_movimientos
 				.sort(this.compareValues("tipo_saldo", "desc"))
@@ -132,7 +132,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 			this.chartDataAgrupado.labels = ["ingresos", "gastos"];
 
-			const dataset = this.setDataSet();
+			const dataset = this.setDataSet('');
 
 			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
 
@@ -149,7 +149,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 				this.calcularSaldo(false, saldoAcredor)
 			];
 
-			this.chartDataAgrupado.datasets = dataset;
+			this.chartDataAgrupado.datasets.push(dataset) ;
 		}
 	},
 	computed: {},
