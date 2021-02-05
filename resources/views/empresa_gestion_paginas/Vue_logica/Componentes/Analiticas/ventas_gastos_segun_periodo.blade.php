@@ -149,7 +149,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 				this.calcularSaldo(false, saldoAcredor)
 			];
 
-			this.chartDataAgrupado.datasets.push(dataset);
+			this.chartDataAgrupado.datasets = dataset;
 		}
 	},
 	computed: {},
