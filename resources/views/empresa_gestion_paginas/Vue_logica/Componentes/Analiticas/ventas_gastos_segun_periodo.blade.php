@@ -76,8 +76,14 @@ const barChart = {
           xAxes: [
             {
               gridLines: {
-                offsetGridLines: true
+                offsetGridLines: true,
+                stacked: true
               }
+            }
+          ],
+          yAxes: [
+            {
+              stacked: true
             }
           ]
         }
