@@ -203,21 +203,20 @@ Vue.component("analiticas-de-ventas-y-gasto", {
   <div v-if="cargando" class="Procesando-text w-100 p-4 text-center">
                         Procesando...
   </div>
-  <div v-else class="w-100">
+  <div v-else class="row mx-0">
         
-  		<div class="h2 mb-4 color-text-gris ">
-			Finanzas
-		</div>
-		<div class="row mx-0 ">
+  		
+		<div class="p-2 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
 			<div class="col-6">
-				<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_inicio" name="">
+				<input type="date" class="formulario-field" v-model="fecha_inicio" name="">
 			</div>
 			<div class="col-6">	
-				<input type="date" class="form-control fecha_input_caja_busqueda" v-model="fecha_fin" name="">
+				<input type="date" class="formulario-field" v-model="fecha_fin" name="">
 			</div>
 		</div>
-    <div class="admin-user-boton-Crear" v-on:click="getData">
-      <i class="fas fa-search"></i> 
+    <div class="p-2  col-12 col-lg-4 row mx-0 ">
+		<div  v-on:click="getData" class=" admin-user-boton-Crear"><i class="fas fa-search"></i> </div>
+	
     </div>
 	
     <div class="col-12 p-3 p-lg-5">
