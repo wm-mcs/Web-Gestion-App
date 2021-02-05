@@ -1,124 +1,5 @@
-const barChart = {
-  extends: VueChartJs.Bar,
-  mixins: [VueChartJs.mixins.reactiveProp],
-
-  data: function() {
-    return {
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    };
-  },
-
-  mounted() {
-    this.renderChart(this.chartData, this.options);
-  }
-};
-
-Vue.component("analiticas-de-ventas-y-gasto", {
-  components: {
-    "bar-chart": barChart
-  },
-  data: function() {
-    return {
-      cargando: false,
-      fecha_inicio: null,
-      fecha_fin: null,
-      movimientos: [],
-      tipo_de_movimientos: [],
-      datos: [],
-
-      chartData: {
-        labels: null,
-        datasets: []
-      }
-    };
-  },
-
-  created: function() {
-    this.getData();
-  },
-
-  mounted: function mounted() {
-    this.setData();
-  },
-
+const misChartMixin = {
   methods: {
-    generateData() {
-      let newArray = [];
-      for (let i = 0; i < 10; i++) {
-        let randomValue = Math.floor(Math.random() * 10);
-        newArray.push(randomValue);
-      }
-
-      this.chartData = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: [],
-            data: newArray
-          }
-        ]
-      };
-    },
-    getData: function() {
-      let url = "/get_movimientos_de_caja_para_analiticas";
-      let vue = this;
-      this.cargando = true;
-
-      let data = {
-        fecha_inicio: this.fecha_inicio,
-        fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id
-      };
-
-      return axios
-        .post(url, data)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.movimientos = response.data.Data.Movimientos;
-            vue.fecha_inicio = response.data.Data.fecha_inicio;
-            vue.fecha_fin = response.data.Data.fecha_fin;
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .then(function() {
-          vue.getTipoDeMovimientos();
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
-    getTipoDeMovimientos: function() {
-      let url = "/get_tipo_de_movimientos";
-      let vue = this;
-      this.cargando = true;
-      return axios
-        .get(url)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
-            vue.setData();
-
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
     recetChartData: function() {
       this.chartData = {
         labels: [],
@@ -178,6 +59,113 @@ Vue.component("analiticas-de-ventas-y-gasto", {
       return esDeudor
         ? deduroSumados - acredorSumados
         : acredorSumados - deduroSumados;
+    }
+  }
+};
+
+const barChart = {
+  extends: VueChartJs.Bar,
+  mixins: [VueChartJs.mixins.reactiveProp],
+
+  data: function() {
+    return {
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+  },
+
+  mounted() {
+    this.renderChart(this.chartData, this.options);
+  }
+};
+
+Vue.component("analiticas-de-ventas-y-gasto", {
+  mixins: [misChartMixin],
+  components: {
+    "bar-chart": barChart
+  },
+  data: function() {
+    return {
+      cargando: false,
+      fecha_inicio: null,
+      fecha_fin: null,
+      movimientos: [],
+      tipo_de_movimientos: [],
+      datos: [],
+
+      chartData: {
+        labels: null,
+        datasets: []
+      }
+    };
+  },
+
+  created: function() {
+    this.getData();
+  },
+
+  mounted: function mounted() {
+    this.setData();
+  },
+
+  methods: {
+    getData: function() {
+      let url = "/get_movimientos_de_caja_para_analiticas";
+      let vue = this;
+      this.cargando = true;
+
+      let data = {
+        fecha_inicio: this.fecha_inicio,
+        fecha_fin: this.fecha_fin,
+        empresa_id: this.$root.empresa.id
+      };
+
+      return axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.movimientos = response.data.Data.Movimientos;
+            vue.fecha_inicio = response.data.Data.fecha_inicio;
+            vue.fecha_fin = response.data.Data.fecha_fin;
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .then(function() {
+          vue.getTipoDeMovimientos();
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    getTipoDeMovimientos: function() {
+      let url = "/get_tipo_de_movimientos";
+      let vue = this;
+      this.cargando = true;
+      return axios
+        .get(url)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
+            vue.setData();
+
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
     }
   },
   computed: {},
