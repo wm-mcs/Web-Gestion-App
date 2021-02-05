@@ -1,204 +1,204 @@
 const lineChart = {
-  extends: VueChartJs.Bar,
-  mixins: [VueChartJs.mixins.reactiveProp],
+	extends: VueChartJs.Bar,
+	mixins: [VueChartJs.mixins.reactiveProp],
 
-  data: function() {
-    return {
-      options: {
-        scales: {
-          xAxes: [
-            {
-              gridLines: {
-                offsetGridLines: true
-              }
-            }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        },
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    };
-  },
+	data: function() {
+		return {
+			options: {
+				scales: {
+					xAxes: [
+						{
+							gridLines: {
+								offsetGridLines: true
+							}
+						}
+					],
+					yAxes: [
+						{
+							ticks: {
+								beginAtZero: true
+							}
+						}
+					]
+				},
+				responsive: true,
+				maintainAspectRatio: false
+			}
+		};
+	},
 
-  mounted() {
-    this.renderChart(this.chartData, this.options);
-  }
+	mounted() {
+		this.renderChart(this.chartData, this.options);
+	}
 };
 
 Vue.component("analiticas-de-ventas-y-gasto", {
-  components: {
-    "line-chart": lineChart
-  },
-  data: function() {
-    return {
-      cargando: false,
-      fecha_inicio: null,
-      fecha_fin: null,
-      movimientos: [],
-      tipo_de_movimientos: [],
-      datos: [],
+	components: {
+		"line-chart": lineChart
+	},
+	data: function() {
+		return {
+			cargando: false,
+			fecha_inicio: null,
+			fecha_fin: null,
+			movimientos: [],
+			tipo_de_movimientos: [],
+			datos: [],
 
-      chartData: {
-        labels: null,
-        datasets: []
-      }
-    };
-  },
+			chartData: {
+				labels: null,
+				datasets: []
+			}
+		};
+	},
 
-  created: function() {
-    this.getData();
-  },
+	created: function() {
+		this.getData();
+	},
 
-  mounted: function mounted() {
-    this.setData();
-  },
+	mounted: function mounted() {
+		this.setData();
+	},
 
-  methods: {
-    generateData() {
-      let newArray = [];
-      for (let i = 0; i < 10; i++) {
-        let randomValue = Math.floor(Math.random() * 10);
-        newArray.push(randomValue);
-      }
+	methods: {
+		generateData() {
+			let newArray = [];
+			for (let i = 0; i < 10; i++) {
+				let randomValue = Math.floor(Math.random() * 10);
+				newArray.push(randomValue);
+			}
 
-      this.chartData = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: [],
-            data: newArray
-          }
-        ]
-      };
-    },
-    getData: function() {
-      let url = "/get_movimientos_de_caja_para_analiticas";
-      let vue = this;
-      this.cargando = true;
+			this.chartData = {
+				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+				datasets: [
+					{
+						label: "Data One",
+						backgroundColor: [],
+						data: newArray
+					}
+				]
+			};
+		},
+		getData: function() {
+			let url = "/get_movimientos_de_caja_para_analiticas";
+			let vue = this;
+			this.cargando = true;
 
-      let data = {
-        fecha_inicio: this.fecha_inicio,
-        fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id
-      };
+			let data = {
+				fecha_inicio: this.fecha_inicio,
+				fecha_fin: this.fecha_fin,
+				empresa_id: this.$root.empresa.id
+			};
 
-      return axios
-        .post(url, data)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.movimientos = response.data.Data.Movimientos;
-            vue.fecha_inicio = response.data.Data.fecha_inicio;
-            vue.fecha_fin = response.data.Data.fecha_fin;
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .then(function() {
-          vue.getTipoDeMovimientos();
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
-    getTipoDeMovimientos: function() {
-      let url = "/get_tipo_de_movimientos";
-      let vue = this;
-      this.cargando = true;
-      return axios
-        .get(url)
-        .then(function(response) {
-          if (response.data.Validacion == true) {
-            vue.cargando = false;
-            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
-            vue.setData();
+			return axios
+				.post(url, data)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.movimientos = response.data.Data.Movimientos;
+						vue.fecha_inicio = response.data.Data.fecha_inicio;
+						vue.fecha_fin = response.data.Data.fecha_fin;
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.then(function() {
+					vue.getTipoDeMovimientos();
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		},
+		getTipoDeMovimientos: function() {
+			let url = "/get_tipo_de_movimientos";
+			let vue = this;
+			this.cargando = true;
+			return axios
+				.get(url)
+				.then(function(response) {
+					if (response.data.Validacion == true) {
+						vue.cargando = false;
+						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
+						vue.setData();
 
-            $.notify(response.data.Validacion_mensaje, "success");
-          } else {
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "error");
-          }
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-          $.notify(error.message, "error");
-        });
-    },
-    recetChartData: function() {
-      this.chartData = {
-        labels: [],
-        datasets: [
-          {
-            label: "",
-            backgroundColor: [],
-            data: []
-          }
-        ]
-      };
-    },
-    setData: function() {
-      this.recetChartData();
+						$.notify(response.data.Validacion_mensaje, "success");
+					} else {
+						vue.cargando = false;
+						$.notify(response.data.Validacion_mensaje, "error");
+					}
+				})
+				.catch(function(error) {
+					vue.cargando = false;
+					$.notify(error.message, "error");
+				});
+		},
+		recetChartData: function() {
+			this.chartData = {
+				labels: [],
+				datasets: []
+			};
+		},
+		setDataSet: function(label, backgroundColor = [], data = []) {
+			return {
+				label: label,
+				backgroundColor: backgroundColor,
+				data: data
+			};
+		},
+		setData: function() {
+			this.recetChartData();
 
-      const movimientosDelPeriodo = this.movimientos;
+			const movimientosDelPeriodo = this.movimientos;
+			const dataset = this.setDataSet();
 
-      this.tipo_de_movimientos.forEach((tipo) => {
-        console.log(this.movimientos);
-        const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
-          (movimiento) =>
-            parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-        );
+			this.tipo_de_movimientos.forEach(tipo => {
+				console.log(this.movimientos);
+				const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+					movimiento =>
+						parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+				);
 
-        if (cantidadRegistrosDeEsteTipo.length) {
-          this.chartData.labels.push(tipo.name);
+				if (cantidadRegistrosDeEsteTipo.length) {
+					this.chartData.labels.push(tipo.name);
 
-          if (this.chartData.datasets.length === 1) {
-            const dataset = this.chartData.datasets[0];
+					dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
+					dataset.backgroundColor.push(
+						tipo.tipo_saldo == "deudor" ? "#4bb543" : " #fcb6b6"
+					);
 
-            dataset.label = `Periodo ${this.fecha_inicio} a ${this.fecha_fin}`;
-            dataset.backgroundColor.push(
-              tipo.tipo_saldo == "deudor" ? "#4bb543" : " #fcb6b6"
-            );
+					dataset.data.push(
+						this.calcularSaldo(
+							tipo.tipo_saldo == "deudor" ? true : false,
+							cantidadRegistrosDeEsteTipo
+						)
+					);
+				}
+			});
 
-            dataset.data.push(
-              this.calcularSaldo(
-                tipo.tipo_saldo == "deudor" ? true : false,
-                cantidadRegistrosDeEsteTipo
-              )
-            );
-          }
-        }
-      });
-    },
+			this.chartData.datasets.push(dataset);
+		},
 
-    calcularSaldo: function(esDeudor, data) {
-      let REDUCER = (acc, movimiento) =>
-        parseFloat(acc) + parseFloat(movimiento.valor);
-      let deduroSumados = data
-        .filter((movimiento) => movimiento.tipo_saldo === "deudor")
-        .reduce(REDUCER, 0);
-      let acredorSumados = data
-        .filter((movimiento) => movimiento.tipo_saldo === "acredor")
-        .reduce(REDUCER, 0);
+		calcularSaldo: function(esDeudor, data) {
+			let REDUCER = (acc, movimiento) =>
+				parseFloat(acc) + parseFloat(movimiento.valor);
+			let deduroSumados = data
+				.filter(movimiento => movimiento.tipo_saldo === "deudor")
+				.reduce(REDUCER, 0);
+			let acredorSumados = data
+				.filter(movimiento => movimiento.tipo_saldo === "acredor")
+				.reduce(REDUCER, 0);
 
-      return esDeudor
-        ? deduroSumados - acredorSumados
-        : acredorSumados - deduroSumados;
-    }
-  },
-  computed: {},
+			return esDeudor
+				? deduroSumados - acredorSumados
+				: acredorSumados - deduroSumados;
+		}
+	},
+	computed: {},
 
-  template: `
+	template: `
 
   <div v-if="cargando">Cargando</div>
   <div v-else>
