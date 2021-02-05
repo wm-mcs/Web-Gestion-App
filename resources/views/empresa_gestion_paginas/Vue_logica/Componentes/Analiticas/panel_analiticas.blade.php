@@ -14,9 +14,18 @@
   <div class="col-12 col-lg-6">
 
   </div>
+
+
+</div>
+<div class="row mx-0 align-items-center">
+
+  <div class="col-12">
+      <ventas-gastos-segun-periodo></ventas-gastos-segun-periodo>
+  </div>
+
 </div>
 
-<ventas-gastos-segun-periodo></ventas-gastos-segun-periodo>
+
 
 
 

@@ -175,9 +175,13 @@ Vue.component("ventas-gastos-segun-periodo", {
   <div v-if="cargando" class="Procesando-text w-100 p-4 text-center">
                         Procesando...
   </div>
-  <div v-else class="">
+  <div v-else class="mb-3">
 
     <div class="contenedor-grupo-datos w-100">
+
+    <h5 class="col-12" >
+    <strong>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
+    </h5>
 
       <div class="row mb-2">
         <div class="p-2 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
@@ -195,7 +199,7 @@ Vue.component("ventas-gastos-segun-periodo", {
         </div>
       </div>
 
-	    <h5 class="col-12" >Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</h5>
+	    <h5 class="col-12 mb-3" >Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</h5>
       <div class="col-12">
          <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
