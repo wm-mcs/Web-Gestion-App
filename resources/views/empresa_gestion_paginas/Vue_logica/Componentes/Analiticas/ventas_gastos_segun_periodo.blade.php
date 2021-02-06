@@ -138,9 +138,9 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
 
-			const saldoDeudor = 0;
+			let saldoDeudor = 0;
 
-			const saldoAcredor = 0;
+			let saldoAcredor = 0;
 
 			this.tipo_de_movimientos
 				.sort(this.compareValues("tipo_saldo", "desc"))
