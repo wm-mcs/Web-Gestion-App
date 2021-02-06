@@ -187,12 +187,16 @@ Vue.component("ventas-gastos-segun-periodo", {
       </div>
 
 
-      <div class="col-12">
-         <bar-chart :chart-data="chartDataAgrupado" ></bar-chart>
+     
+
+      <div class="col-12 mb-3">
+        <p class=""><b>Ingresos y salidas de dinero en $ </b></p>
+        <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
 
-      <div class="col-12">
-        <bar-chart :chart-data="chartData" ></bar-chart>
+       <div class="col-12">
+          <p class=""><b>Datos desglosados por tipo </b></p>
+         <bar-chart :chart-data="chartDataAgrupado" ></bar-chart>
       </div>
 
     </div>
