@@ -198,6 +198,12 @@ Vue.component("ventas-gastos-segun-periodo", {
             <i class="fas fa-search"></i>
           </div>
         </div>
+		<p class="col-12 mt-2">
+			<small>
+				Los resultados que estás viendo son los del período <b>@{{fecha_inicio}} al @{{fecha_fin}}</b>. Puedes cambiar las fechas a tu gusta y se graficará los movimientos entre las fechas que tu indiques.
+			</small>
+			
+		</p>
       </div>
 
 
@@ -218,7 +224,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 	  </div>
 
-	  <div v-else class="h4 my-5 color-text-gris text-center"> 🤔 No hay movimientos en el periodo del <b>@{{fecha_inicio}} al @{{fecha_fin}}.</b>  Probá cambiando las fechas. </div>
+	  <div v-else class="h4 my-5 color-text-gris text-center"> 🤔 No hay movimientos en el período del <b>@{{fecha_inicio}} al @{{fecha_fin}}.</b>  Probá cambiando las fechas. </div>
 
     </div>
 	
