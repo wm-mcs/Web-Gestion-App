@@ -178,7 +178,7 @@ Vue.component("ventas-gastos-segun-periodo", {
   </div>
   <div v-else class="mb-3">
 
-    <div class="contenedor-grupo-datos w-100">
+    <div  class="contenedor-grupo-datos w-100">
 
     <h6 class="col-12 mb-5" >
     <strong>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
@@ -202,7 +202,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 
      
-
+	  <div class="w-100" v-if="movimientos.length">
      
 
        <div class="col-12 mb-4">
@@ -216,7 +216,12 @@ Vue.component("ventas-gastos-segun-periodo", {
         <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
 
+	  </div>
+
+	  <div v-else class="h3 my-5 color-text-gris text-center"> No hay movimientos en esete periodo del @{{fecha_inicio}} al @{{fecha_fin}}</div>
+
     </div>
+	
 
 
 
