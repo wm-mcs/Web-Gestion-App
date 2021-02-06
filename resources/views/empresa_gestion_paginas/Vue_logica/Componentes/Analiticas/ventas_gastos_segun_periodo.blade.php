@@ -185,7 +185,7 @@ Vue.component("ventas-gastos-segun-periodo", {
     </h6>
 
       <div class="row mb-4">
-        <div class="p-2 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
+        <div class="p-0 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
           <div class="col-6">
             <input type="date" class="formulario-field" v-model="fecha_inicio" name="">
           </div>
@@ -193,7 +193,7 @@ Vue.component("ventas-gastos-segun-periodo", {
             <input type="date" class="formulario-field" v-model="fecha_fin" name="">
           </div>
         </div>
-        <div class="p-2  col-12 col-lg-4 row mx-0 ">
+        <div class="col-12 col-lg-4 row mx-0 ">
           <div  v-on:click="getData" class=" admin-user-boton-Crear">
             <i class="fas fa-search"></i>
           </div>
