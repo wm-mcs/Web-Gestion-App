@@ -1,6 +1,6 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
+//@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
 
 Vue.component("ventas-gastos-segun-periodo", {
 	mixins: [misChartMixin, orderFunction],
@@ -96,7 +96,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 			this.recetChartData();
 
 			const movimientosDelPeriodo = this.movimientos;
-			const dataset = this.setDataSet('');
+			const dataset = this.setDataSet("");
 
 			this.tipo_de_movimientos
 				.sort(this.compareValues("tipo_saldo", "desc"))
@@ -107,52 +107,66 @@ Vue.component("ventas-gastos-segun-periodo", {
 					);
 
 					if (cantidadRegistrosDeEsteTipo.length) {
-						this.chartData.labels.push(tipo.name);
-
-						
-						dataset.backgroundColor.push(
-							tipo.tipo_saldo == "deudor" ? this.colorSuccess : this.colorDanger
+						let saldo = this.calcularSaldo(
+							tipo.tipo_saldo == "deudor" ? true : false,
+							cantidadRegistrosDeEsteTipo
 						);
-            dataset.label = '';
+						if (saldo > 0) {
+							this.chartData.labels.push(tipo.name);
 
-						dataset.data.push(
-							this.calcularSaldo(
-								tipo.tipo_saldo == "deudor" ? true : false,
-								cantidadRegistrosDeEsteTipo
-							)
-						);
+							dataset.backgroundColor.push(
+								tipo.tipo_saldo == "deudor"
+									? this.colorSuccess
+									: this.colorDanger
+							);
+							dataset.label = "";
+
+							dataset.data.push(saldo);
+						}
 					}
 				});
 
 			this.chartData.datasets.push(dataset);
-      this.setDataAgrupada();
+			this.setDataAgrupada();
 		},
 		setDataAgrupada: function() {
 			const movimientos = this.movimientos;
 
 			this.chartDataAgrupado.labels = ["ingresos", "gastos"];
 
-			const dataset = this.setDataSet('');
-
-      
+			const dataset = this.setDataSet("");
 
 			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
 
-			const saldoDeudor = movimientos.filter(
-				movimiento => movimiento.tipo_saldo == "deudor"
-			);
+			const saldoDeudor = 0;
 
-			const saldoAcredor = movimientos.filter(
-				movimiento => movimiento.tipo_saldo == "acredor"
-			);
+			const saldoAcredor = 0;
 
-			dataset.data = [
-				this.calcularSaldo(true, saldoDeudor),
-				this.calcularSaldo(false, saldoAcredor)
-			];
+			this.tipo_de_movimientos
+				.sort(this.compareValues("tipo_saldo", "desc"))
+				.forEach(tipo => {
+					const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+						movimiento =>
+							parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+					);
 
-      this.chartDataAgrupado.datasets = [];
-			this.chartDataAgrupado.datasets.push(dataset) ;
+					if (cantidadRegistrosDeEsteTipo.length) {
+						let saldo = this.calcularSaldo(
+							tipo.tipo_saldo == "deudor" ? true : false,
+							cantidadRegistrosDeEsteTipo
+						);
+						if (saldo > 0) {
+							tipo.tipo_saldo == "deudor"
+								? (saldoDeudor += saldo)
+								: (saldoAcredor += saldo);
+						}
+					}
+				});
+
+			dataset.data = [saldoDeudor, saldoAcredor];
+
+			this.chartDataAgrupado.datasets = [];
+			this.chartDataAgrupado.datasets.push(dataset);
 		}
 	},
 	computed: {},
@@ -166,11 +180,11 @@ Vue.component("ventas-gastos-segun-periodo", {
 
     <div class="contenedor-grupo-datos w-100">
 
-    <h6 class="col-12 mb-4" >
+    <h6 class="col-12 mb-5" >
     <strong>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
     </h6>
 
-      <div class="row mb-2">
+      <div class="row mb-4">
         <div class="p-2 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
           <div class="col-6">
             <input type="date" class="formulario-field" v-model="fecha_inicio" name="">
@@ -191,7 +205,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
      
 
-       <div class="col-12 mb-3">
+       <div class="col-12 mb-4">
            <p class=""><b>Ingresos y salidas de dinero en $ </b></p>
          <bar-chart :chart-data="chartDataAgrupado" ></bar-chart>
       </div>
