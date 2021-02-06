@@ -1158,7 +1158,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Tipo_saldo = $Request->get('tipo_saldo');
         $Nombre = $Request->get('nombre');
 
-        $this->MovimientoEstadoDeCuentaSocioRepo
+        $EstadoDeCuenta = $this->MovimientoEstadoDeCuentaSocioRepo
             ->setEstadoDeCuentaCuando($Socio->id,
                 $User->id,
                 $Moneda,
@@ -1170,15 +1170,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
         //si se paga ahora
         if ($Request->get('paga') == 'si') {
-            $EstadoDeCuenta = $this->MovimientoEstadoDeCuentaSocioRepo
-                ->setEstadoDeCuentaCuando($Socio->id,
-                    $User->id,
-                    $Moneda,
-                    $Valor,
-                    'Pago de ' . $Nombre,
-                    'deudor',
-                    Carbon::now('America/Montevideo'),
-                    null);
+
             //Movimiento de caja
             $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'),
                 $Sucursal->id,
