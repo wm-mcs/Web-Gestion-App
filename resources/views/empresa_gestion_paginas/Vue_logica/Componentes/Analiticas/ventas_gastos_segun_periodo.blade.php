@@ -218,7 +218,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
 	  </div>
 
-	  <div v-else class="h3 my-5 color-text-gris text-center"> No hay movimientos en el periodo del @{{fecha_inicio}} al @{{fecha_fin}}. <b>Probá cambiando las fechas.</b> </div>
+	  <div v-else class="h4 my-5 color-text-gris text-center"> 🤔 No hay movimientos en el periodo del <b>@{{fecha_inicio}} al @{{fecha_fin}}.</b>  Probá cambiando las fechas. </div>
 
     </div>
 	
