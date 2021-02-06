@@ -20,4 +20,13 @@ class TipoDeMovimientoRepo extends BaseRepo
         $id_de_movimiento_de_venta = 9;
         return $this->find($id_de_movimiento_de_venta);
     }
+
+    /**
+     * De manera manual traigo el tipo de movimiento que relaciona la venta de un producto.
+     **/
+    public function getMovimientoDeVentaDeProducto()
+    {
+        $id_de_movimiento_de_venta = 8;
+        return $this->find($id_de_movimiento_de_venta);
+    }
 }
