@@ -130,7 +130,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 			this.setDataAgrupada();
 		},
 		setDataAgrupada: function() {
-			const movimientos = this.movimientos;
+			const movimientosDelPeriodo = this.movimientos;
 
 			this.chartDataAgrupado.labels = ["ingresos", "gastos"];
 
