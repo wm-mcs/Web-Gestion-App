@@ -16,7 +16,7 @@ trait empresaFuncionalidadesVerificar
             return false;
         }
 
-        return (isset($Plan) && $empresa->$keyFuncionalidad == 'si' || $Plan > $keyFuncionalidad == 'si') ? true : false;
+        return (isset($Plan) && $empresa->$keyFuncionalidad == 'si' || $Plan->$keyFuncionalidad == 'si') ? true : false;
     }
 
 }
