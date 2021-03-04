@@ -104,9 +104,9 @@
 
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_control_access')
 
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_control_access')
+  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueno')
 
 
   <caja-saldo></caja-saldo>

@@ -1,7 +1,7 @@
 @extends('layouts.gestion_socios_layout.admin_layout')
 
 
-@section('miga-de-pan') 
+@section('miga-de-pan')
 
   <span>Empresas Gestion</span>
 @stop
@@ -9,10 +9,10 @@
 @section('content')
 
 <div class="contenedor-admin-entidad-titulo-form-busqueda">
-    <div class="admin-entidad-titulo"> 
+    <div class="admin-entidad-titulo">
      <a href="{{route('get_admin_empresas_gestion_socios_crear')}}">
       <span class="admin-user-boton-Crear">Crear </span>
-     </a>  
+     </a>
     </div>
     @include('admin.empresas_gestion_socios.partes.buscador')
  </div>
@@ -20,12 +20,12 @@
 
  <mostrar-empresas></mostrar-empresas>
 
- 
 
 
-  
 
-  
+
+
+
 @stop
 
 @section('vue-logica')
@@ -34,10 +34,10 @@
 <script type="text/javascript">
 
 
-@include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')     
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')    
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')        
-@include('empresa_gestion_paginas.Vue_logica.instancia_vue')   
+@include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.empresa_lista')
+@include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
 
@@ -51,8 +51,5 @@
 
  @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
 
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_operario')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_dueño_empresa')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_vendedor')
-  @include('admin.empresas_gestion_socios.columna_derecha.columna_super_admin')
+
 @stop
