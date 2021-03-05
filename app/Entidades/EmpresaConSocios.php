@@ -3,13 +3,13 @@
 namespace App\Entidades;
 
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
-use App\Entidades\SucursalEmpresa;
 use App\Entidades\TipoDeServicio;
 use App\Entidades\Traits\empresaFuncionalidadesVerificar;
 use App\Entidades\Traits\entidadesScopesComunes;
 use App\Entidades\User;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
+use App\Repositorios\SucursalEmpresaRepo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -52,15 +52,12 @@ class EmpresaConSocios extends Model
         return $this->servicios_relation;
     }
 
-    public function sucursales()
-    {
-        return $this->hasMany(SucursalEmpresa::class, 'empresa_id', 'id');
-    }
-
     public function getSucursualesEmpresaAttribute()
     {
-        return Cache::remember('sucursales_empresa' . $this->id, 60, function () {
-            return $this->sucursales;
+        return Cache::remember('sucursales_empresa' . $this->id, 600, function () {
+
+            $Repo = new SucursalEmpresaRepo();
+            return $Repo->getSucursalesDeEmpresa($this->id);
         });
     }
 

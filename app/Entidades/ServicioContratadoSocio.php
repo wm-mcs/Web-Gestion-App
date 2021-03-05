@@ -2,20 +2,16 @@
 
 namespace App\Entidades;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Repositorios\SucursalEmpresaRepo;
+use App\Repositorios\TipoDeServicioRepo;
 use Carbon\Carbon;
-use App\Entidades\SucursalEmpresa;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use App\Entidades\TipoDeServicio;
-
-
-
-
 
 class ServicioContratadoSocio extends Model
 {
 
-    protected $table ='servicios_contratados_socios';
+    protected $table = 'servicios_contratados_socios';
 
     /**
      * The attributes that are mass assignable.
@@ -23,83 +19,61 @@ class ServicioContratadoSocio extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends  = [
-                           'fecha_vencimiento_formateada',
-                           'fecha_contratado_formateada',
-                           'fecha_consumido_formateada',
-                           'fecha_editada_formateada',
-                           'esta_vencido',
-                           'se_consumio',
-                           'sucursal_donde_se_emitio',
-                           'sucursal_donde_se_uso',
-                           'tipo_de_servicio'
-                          ];
+    protected $appends = [
+        'fecha_vencimiento_formateada',
+        'fecha_contratado_formateada',
+        'fecha_consumido_formateada',
+        'fecha_editada_formateada',
+        'esta_vencido',
+        'se_consumio',
+        'sucursal_donde_se_emitio',
+        'sucursal_donde_se_uso',
+        'tipo_de_servicio',
+    ];
 
-
-
-
-    
-    public function SucursalEmitio()
+    public function getSucursalDondeSeEmitioAttribute()
     {
-      return  $this->belongsTo(SucursalEmpresa::class,'sucursal_emitio_id','id'); 
+        return Cache::remember('EmitioSucursalDondeSeEmitio' . $this->id, 1200, function () {
+            $Repo = new SucursalEmpresaRepo();
+            $Sucursal = $Repo->find($this->sucursal_emitio_id);
+
+            return $Sucursal;
+        });
     }
 
-        public function getSucursalDondeSeEmitioAttribute()
-        {
-           return Cache::remember('SucursalDondeSeEmitio'.$this->id, 15, function() {
-                              return $this->SucursalEmitio; 
-                          }); 
-        }  
-
-    public function tipo_servicio()
+    public function getTipoDeServicioAttribute()
     {
-      return  $this->belongsTo(TipoDeServicio::class,'tipo_servicio_id','id'); 
-    }    
+        return Cache::remember('tipoServicio' . $this->id, 600, function () {
 
-      public function getTipoDeServicioAttribute()
-      {
-          return Cache::remember('tipoServicio'.$this->id, 60, function() {
-                              return $this->tipo_servicio; 
-                          }); 
-      }
+            $Repo = new TipoDeServicioRepo();
 
-    public function SucursalUso()
-    {
-      return  $this->belongsTo(SucursalEmpresa::class,'sucursal_uso_id','id'); 
+            return $Repo->find($this->tipo_servicio_id);
+        });
     }
 
-        public function getSucursalDondeSeUsoAttribute()
-        {
-           return Cache::remember('SucursalDondeSeUso'.$this->id, 15, function() {
-                              return $this->SucursalUso; 
-                          }); 
-        }  
-    
+    public function getSucursalDondeSeUsoAttribute()
+    {
+        if ($this->sucursal_uso_id == null) {
+            return "";
+        }
+        return Cache::remember('SucursalDondeSeUso' . $this->id, 600, function () {
+            $Repo = new SucursalEmpresaRepo();
+            $Sucursal = $Repo->find($this->sucursal_uso_id);
+            return $Sucursal;
+        });
+    }
 
-
-    /**
-     * PAra busqueda por nombre
-     */
     public function scopeName($query, $name)
     {
-        //si el paramatre(campo busqueda) esta vacio ejecutamos el codigo
-        /// trim() se utiliza para eliminar los espacios.
-        ////Like se usa para busqueda incompletas
-        /////%% es para los espacios adelante y atras
-        if (trim($name) !="")
-        {                        
-           $query->where('name', "LIKE","%$name%"); 
+        if (trim($name) != "") {
+            $query->where('name', "LIKE", "%$name%");
         }
-        
     }
 
     public function scopeActive($query)
     {
-                               
-           $query->where('estado', "si"); 
-                
+        $query->where('estado', "si");
     }
-
 
     public function getFechaVencimientoFormateadaAttribute()
     {
@@ -111,28 +85,22 @@ class ServicioContratadoSocio extends Model
         return Carbon::parse($this->fecha_consumido)->format('Y-m-d');
     }
 
-    
-
-
     public function getFechaContratadoFormateadaAttribute()
     {
-        return $this->created_at->format('Y-m-d'); 
+        return $this->created_at->format('Y-m-d');
     }
 
     public function getFechaEditadaFormateadaAttribute()
     {
-        return Carbon::parse($this->editado_at)->format('Y-m-d'); 
+        return Carbon::parse($this->editado_at)->format('Y-m-d');
     }
 
     public function getEstaVencidoAttribute()
     {
 
-        if(Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_vencimiento))
-        {
+        if (Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_vencimiento)) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 
@@ -140,26 +108,15 @@ class ServicioContratadoSocio extends Model
 
     public function getSeConsumioAttribute()
     {
-
-        if($this->esta_consumido == 'no')
-        {
-          return false;
-        }
-        
-
-        if(Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_consumido))
-        {
-            return true;
-        }
-        else
-        {
+        if ($this->esta_consumido == 'no') {
             return false;
         }
 
+        if (Carbon::now('America/Montevideo') >= Carbon::parse($this->fecha_consumido)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-
-
-    
-    
 }

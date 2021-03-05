@@ -2,39 +2,30 @@
 
 namespace App\Entidades;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Entidades\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-
-
-
-
-
 
 class MovimientoEstadoDeCuentaEmpresa extends Model
 {
 
-    protected $table ='movimientos_estado_de_cuenta_empresas';
+    protected $table = 'movimientos_estado_de_cuenta_empresas';
 
     protected $fillable = ['name'];
-    protected $appends  = ['fecha','user_name'];
-
+    protected $appends = ['fecha', 'user_name'];
 
     public function user()
     {
-      return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-        public function getUserNameAttribute()
-        {
-            return  Cache::remember('UserMovimientoContableName'.$this->id, 100000, function() {
-                              return $this->user->first_name;
-                          }); 
-        } 
-
-    
-
+    public function getUserNameAttribute()
+    {
+        return Cache::remember('UserMovimientoContableName' . $this->id, 100000, function () {
+            return $this->user->first_name;
+        });
+    }
 
     /**
      * PAra busqueda por nombre
@@ -45,28 +36,22 @@ class MovimientoEstadoDeCuentaEmpresa extends Model
         /// trim() se utiliza para eliminar los espacios.
         ////Like se usa para busqueda incompletas
         /////%% es para los espacios adelante y atras
-        if (trim($name) !="")
-        {                        
-           $query->where('name', "LIKE","%$name%"); 
+        if (trim($name) != "") {
+            $query->where('name', "LIKE", "%$name%");
         }
-        
+
     }
 
     public function scopeActive($query)
     {
-                               
-           $query->where('estado', "si"); 
-                
-    }
 
+        $query->where('estado', "si");
+
+    }
 
     public function getFechaAttribute()
     {
         return Carbon::parse($this->fecha_ingreso)->format('Y-m-d');
-    } 
+    }
 
-
-
-    
-    
 }
