@@ -1,177 +1,177 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Mixins.mis_chart_mixin')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.Components.bar_chart')
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.order_function')
+var VentasGastoSegunPeridodo = {
+  mixins: [misChartMixin, orderFunction],
+  components: {
+    "bar-chart": barChart
+  },
+  data: function() {
+    return {
+      cargando: false,
+      fecha_inicio: null,
+      fecha_fin: null,
+      movimientos: [],
+      tipo_de_movimientos: [],
+      datos: [],
 
-Vue.component("ventas-gastos-segun-periodo", {
-	mixins: [misChartMixin, orderFunction],
-	components: {
-		"bar-chart": barChart
-	},
-	data: function() {
-		return {
-			cargando: false,
-			fecha_inicio: null,
-			fecha_fin: null,
-			movimientos: [],
-			tipo_de_movimientos: [],
-			datos: [],
+      chartData: {
+        labels: null,
+        datasets: []
+      },
+      chartDataAgrupado: {
+        labels: null,
+        datasets: []
+      }
+    };
+  },
 
-			chartData: {
-				labels: null,
-				datasets: []
-			},
-			chartDataAgrupado: {
-				labels: null,
-				datasets: []
-			}
-		};
-	},
+  created: function() {
+    this.getData();
+  },
 
-	created: function() {
-		this.getData();
-	},
+  mounted: function mounted() {
+    this.setData();
+  },
 
-	mounted: function mounted() {
-		this.setData();
-	},
+  methods: {
+    getData: function() {
+      let url = "/get_movimientos_de_caja_para_analiticas";
+      let vue = this;
+      this.cargando = true;
 
-	methods: {
-		getData: function() {
-			let url = "/get_movimientos_de_caja_para_analiticas";
-			let vue = this;
-			this.cargando = true;
+      let data = {
+        fecha_inicio: this.fecha_inicio,
+        fecha_fin: this.fecha_fin,
+        empresa_id: this.$root.empresa.id
+      };
 
-			let data = {
-				fecha_inicio: this.fecha_inicio,
-				fecha_fin: this.fecha_fin,
-				empresa_id: this.$root.empresa.id
-			};
+      return axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.movimientos = response.data.Data.Movimientos;
+            vue.fecha_inicio = response.data.Data.fecha_inicio;
+            vue.fecha_fin = response.data.Data.fecha_fin;
+            bus.$emit("cambio-perido", {
+              fecha_inicio: vue.fecha_inicio,
+              fecha_fin: vue.fecha_fin
+            });
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .then(function() {
+          vue.getTipoDeMovimientos();
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    getTipoDeMovimientos: function() {
+      let url = "/get_tipo_de_movimientos";
+      let vue = this;
+      this.cargando = true;
+      return axios
+        .get(url)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
+            vue.setData();
 
-			return axios
-				.post(url, data)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.movimientos = response.data.Data.Movimientos;
-						vue.fecha_inicio = response.data.Data.fecha_inicio;
-						vue.fecha_fin = response.data.Data.fecha_fin;
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.then(function() {
-					vue.getTipoDeMovimientos();
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		getTipoDeMovimientos: function() {
-			let url = "/get_tipo_de_movimientos";
-			let vue = this;
-			this.cargando = true;
-			return axios
-				.get(url)
-				.then(function(response) {
-					if (response.data.Validacion == true) {
-						vue.cargando = false;
-						vue.tipo_de_movimientos = response.data.Tipo_de_movimientos;
-						vue.setData();
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify(error.message, "error");
+        });
+    },
+    setData: function() {
+      this.recetChartData();
 
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify(error.message, "error");
-				});
-		},
-		setData: function() {
-			this.recetChartData();
+      const movimientosDelPeriodo = this.movimientos;
+      const dataset = this.setDataSet("");
 
-			const movimientosDelPeriodo = this.movimientos;
-			const dataset = this.setDataSet("");
+      this.tipo_de_movimientos
+        .sort(this.compareValues("tipo_saldo", "desc"))
+        .forEach((tipo) => {
+          const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+            (movimiento) =>
+              parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+          );
 
-			this.tipo_de_movimientos
-				.sort(this.compareValues("tipo_saldo", "desc"))
-				.forEach(tipo => {
-					const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
-						movimiento =>
-							parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-					);
+          if (cantidadRegistrosDeEsteTipo.length) {
+            let saldo = this.calcularSaldo(
+              tipo.tipo_saldo == "deudor" ? true : false,
+              cantidadRegistrosDeEsteTipo
+            );
+            if (saldo > 0) {
+              this.chartData.labels.push(tipo.name);
 
-					if (cantidadRegistrosDeEsteTipo.length) {
-						let saldo = this.calcularSaldo(
-							tipo.tipo_saldo == "deudor" ? true : false,
-							cantidadRegistrosDeEsteTipo
-						);
-						if (saldo > 0) {
-							this.chartData.labels.push(tipo.name);
+              dataset.backgroundColor.push(
+                tipo.tipo_saldo == "deudor"
+                  ? this.colorSuccess
+                  : this.colorDanger
+              );
+              dataset.label = "";
 
-							dataset.backgroundColor.push(
-								tipo.tipo_saldo == "deudor"
-									? this.colorSuccess
-									: this.colorDanger
-							);
-							dataset.label = "";
+              dataset.data.push(saldo);
+            }
+          }
+        });
 
-							dataset.data.push(saldo);
-						}
-					}
-				});
+      this.chartData.datasets.push(dataset);
+      this.setDataAgrupada();
+    },
+    setDataAgrupada: function() {
+      const movimientosDelPeriodo = this.movimientos;
 
-			this.chartData.datasets.push(dataset);
-			this.setDataAgrupada();
-		},
-		setDataAgrupada: function() {
-			const movimientosDelPeriodo = this.movimientos;
+      this.chartDataAgrupado.labels = ["ingresos", "gastos"];
 
-			this.chartDataAgrupado.labels = ["ingresos", "gastos"];
+      const dataset = this.setDataSet("");
 
-			const dataset = this.setDataSet("");
+      dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
 
-			dataset.backgroundColor = [this.colorSuccess, this.colorDanger];
+      let saldoDeudor = 0;
 
-			let saldoDeudor = 0;
+      let saldoAcredor = 0;
 
-			let saldoAcredor = 0;
+      this.tipo_de_movimientos
+        .sort(this.compareValues("tipo_saldo", "desc"))
+        .forEach((tipo) => {
+          const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
+            (movimiento) =>
+              parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
+          );
 
-			this.tipo_de_movimientos
-				.sort(this.compareValues("tipo_saldo", "desc"))
-				.forEach(tipo => {
-					const cantidadRegistrosDeEsteTipo = movimientosDelPeriodo.filter(
-						movimiento =>
-							parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-					);
+          if (cantidadRegistrosDeEsteTipo.length) {
+            let saldo = this.calcularSaldo(
+              tipo.tipo_saldo == "deudor" ? true : false,
+              cantidadRegistrosDeEsteTipo
+            );
+            if (saldo > 0) {
+              tipo.tipo_saldo == "deudor"
+                ? (saldoDeudor += saldo)
+                : (saldoAcredor += saldo);
+            }
+          }
+        });
 
-					if (cantidadRegistrosDeEsteTipo.length) {
-						let saldo = this.calcularSaldo(
-							tipo.tipo_saldo == "deudor" ? true : false,
-							cantidadRegistrosDeEsteTipo
-						);
-						if (saldo > 0) {
-							tipo.tipo_saldo == "deudor"
-								? (saldoDeudor += saldo)
-								: (saldoAcredor += saldo);
-						}
-					}
-				});
+      dataset.data = [saldoDeudor, saldoAcredor];
 
-			dataset.data = [saldoDeudor, saldoAcredor];
+      this.chartDataAgrupado.datasets = [];
+      this.chartDataAgrupado.datasets.push(dataset);
+    }
+  },
+  computed: {},
 
-			this.chartDataAgrupado.datasets = [];
-			this.chartDataAgrupado.datasets.push(dataset);
-		}
-	},
-	computed: {},
-
-	template: `
+  template: `
 
   <div v-if="cargando" class="Procesando-text w-100 p-4 text-center">
                         Procesando...
@@ -180,11 +180,11 @@ Vue.component("ventas-gastos-segun-periodo", {
 
     <div  class="contenedor-grupo-datos w-100">
 
-    <h6 class="col-12 mb-5" >
-    <strong>Movimientos del periodo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
+    <h6 class="col-12 mb-3" >
+    <strong>Entrada y salida de dinero del periódo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
     </h6>
 
-      <div class="row mb-4">
+      <div class="row mb-4 mx-0">
         <div class="p-0 col-12 col-lg-8 row mx-0 mb-2 mb-lg-0">
           <div class="col-6">
             <input type="date" class="formulario-field" v-model="fecha_inicio" name="">
@@ -202,14 +202,14 @@ Vue.component("ventas-gastos-segun-periodo", {
 			<small>
 				Los resultados que estás viendo son los del período <b>@{{fecha_inicio}} al @{{fecha_fin}}</b>. Puedes cambiar las fechas a tu gusta y se graficará los movimientos entre las fechas que tu indiques.
 			</small>
-			
+
 		</p>
       </div>
 
 
-     
+
 	  <div class="w-100" v-if="movimientos.length">
-     
+
 
        <div class="col-12 mb-4">
            <p class=""><b>Ingresos y salidas de dinero en $ </b></p>
@@ -218,7 +218,7 @@ Vue.component("ventas-gastos-segun-periodo", {
 
        <div class="col-12">
       <p class=""><b>Datos desglosados por tipo </b></p>
-       
+
         <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
 
@@ -227,10 +227,10 @@ Vue.component("ventas-gastos-segun-periodo", {
 	  <div v-else class="h4 my-5 color-text-gris text-center"> 🤔 No hay movimientos en el período del <b>@{{fecha_inicio}} al @{{fecha_fin}}.</b>  Probá cambiando las fechas. </div>
 
     </div>
-	
+
 
 
 
 </div>
     `
-});
+};

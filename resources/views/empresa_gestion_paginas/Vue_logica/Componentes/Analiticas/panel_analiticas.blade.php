@@ -17,13 +17,12 @@
 
 
 </div>
-<div class="row mx-0 align-items-center">
 
-  <div class="col-12">
-      <ventas-gastos-segun-periodo></ventas-gastos-segun-periodo>
-  </div>
+<analiticas-componente-padre>
 
-</div>
+
+
+</analiticas-componente-padre>
 
 
 
@@ -43,7 +42,7 @@
 
 <script type="text/javascript">
 
-  @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.ventas_gastos_segun_periodo')
+  @include('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.analiticasComponentePadre')
   @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 
 
