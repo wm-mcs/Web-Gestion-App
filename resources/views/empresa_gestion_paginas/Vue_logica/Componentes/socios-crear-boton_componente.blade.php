@@ -10,7 +10,8 @@ Vue.component("socios-crear-boton", {
       form_socio_email: "",
       form_socio_celular: "",
       form_socio_cedula: "",
-      modal: "#modal-crear-socio"
+      modal: "#modal-crear-socio",
+      mostrarMasDatos: false
     };
   },
 
@@ -89,22 +90,38 @@ Vue.component("socios-crear-boton", {
 
                   <div class="formulario-label-fiel">
 
-                      <input type="text" class="formulario-field"  v-model="form_socio_name" placeholder="Nombres y apellidos" required  />
+                      <input type="text" class="formulario-field py-3"  v-model="form_socio_name" placeholder="Nombres y apellidos" required  />
                   </div>
                   <div class="formulario-label-fiel">
                   <div v-if="empresa.pais != 'UY'" class="modal-mensaje-aclarador">
     Se deben ingresar todo los dígitos menos el símbolo de +.
   </div>
-                      <input type="number" class="formulario-field"  v-model="form_socio_celular" placeholder="Número de celular" required  />
+                      <input type="number" class="formulario-field py-3"  v-model="form_socio_celular" placeholder="Número de celular" required  />
                   </div>
-                  <div class="formulario-label-fiel">
 
-                      <input type="text" class="formulario-field"  v-model="form_socio_email" placeholder="Email (opcional)" required  />
-                  </div>
-                  <div class="formulario-label-fiel">
 
-                      <input type="text" class="formulario-field"  v-model="form_socio_cedula" placeholder="Número de cédula (opcional)" required  />
+                  <p class="text-center my-3 simula-link" @click="mostrarMasDatos = !mostrarMasDatos">  @{{ mostrarMasDatos ? 'Ocultar datos opcionales':'Desplegar datos opcionales' }}
+                  
+                  <i v-if="!mostrarMasDatos" class="fas fa-chevron-down"></i>
+                  <i v-else class="fas fa-chevron-up"></i>
+                  
+                  </p>
+
+                  <transition name="slide-fade">
+                  <div  v-if="mostrarMasDatos" class="">
+                  <div class="formulario-label-fiel">
+                  <input type="text" class="formulario-field py-3"  v-model="form_socio_email" placeholder="Email (opcional)" required  />
+              </div>
+              <div class="formulario-label-fiel">
+
+                  <input type="text" class="formulario-field py-3"  v-model="form_socio_cedula" placeholder="Número de cédula (opcional)" required  />
+              </div>
                   </div>
+            
+                  </transition>
+
+
+                 
 
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
                   <div v-else v-on:click="crear_socio_post" class="mt-5 boton-simple">@{{$root.boton_aceptar_texto}}</div>
