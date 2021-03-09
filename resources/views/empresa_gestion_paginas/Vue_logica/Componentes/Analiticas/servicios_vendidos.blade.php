@@ -1,9 +1,9 @@
 var ServiciosVendidos = {
   mixins: [misChartMixin, orderFunction],
   components: {
-    "bar-chart": barChart
+    "bar-chart": barChart,
   },
-  data: function() {
+  data: function () {
     return {
       cargando: false,
       fecha_inicio: null,
@@ -13,16 +13,12 @@ var ServiciosVendidos = {
       datos: [],
       chartData: {
         labels: null,
-        datasets: []
+        datasets: [],
       },
-      chartDataAgrupado: {
-        labels: null,
-        datasets: []
-      }
     };
   },
 
-  created: function() {
+  created: function () {
     this.getData();
 
     bus.$on("cambio-perido", (data) => {
@@ -33,12 +29,10 @@ var ServiciosVendidos = {
     });
   },
 
-  mounted: function mounted() {
-    this.setData();
-  },
+  mounted: function mounted() {},
 
   methods: {
-    getData: function() {
+    getData: function () {
       let url = "/get_servicios_vendidos";
       let vue = this;
       this.cargando = true;
@@ -46,12 +40,12 @@ var ServiciosVendidos = {
       let data = {
         fecha_inicio: this.fecha_inicio,
         fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id
+        empresa_id: this.$root.empresa.id,
       };
 
       return axios
         .post(url, data)
-        .then(function(response) {
+        .then(function (response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
             vue.servicios = response.data.Data.Servicios;
@@ -63,45 +57,46 @@ var ServiciosVendidos = {
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
+        .then(function () {
+          vue.setData();
+        })
 
-        .catch(function(error) {
+        .catch(function (error) {
           vue.cargando = false;
           $.notify(error.message, "error");
         });
     },
 
-    setData: function() {
+    setData: function () {
       this.recetChartData();
 
       const serviciosDelPeriodo = this.servicios;
+
       const dataset = this.setDataSet("");
 
-      this.$root.tipo_servicios
-        .sort(this.compareValues("name", "asc"))
-        .forEach((tipo) => {
-          const cantidadRegistrosDeEsteTipo = serviciosDelPeriodo.filter(
-            (movimiento) =>
-              parseInt(movimiento.tipo_de_movimiento_id) === parseInt(tipo.id)
-          );
+      const tipoDeServicios = this.$root.empresa.tipo_servicios.sort(
+        this.compareValues("name", "asc")
+      );
 
-          if (cantidadRegistrosDeEsteTipo.length) {
-            let saldo = this.calcularSaldo(
-              tipo.tipo_saldo == "deudor" ? true : false,
-              cantidadRegistrosDeEsteTipo
-            );
-            if (saldo > 0) {
-              this.chartData.labels.push(tipo.name);
-
-              dataset.backgroundColor.push(this.colorSuccess);
-              dataset.label = "";
-
-              dataset.data.push(cantidadRegistrosDeEsteTipo.length);
-            }
+      tipoDeServicios.forEach((tipo) => {
+        const cantidadRegistrosDeEsteTipo = serviciosDelPeriodo.filter(
+          (servicio) => {
+            return parseInt(servicio.tipo_servicio_id) === parseInt(tipo.id);
           }
-        });
+        );
+
+        if (cantidadRegistrosDeEsteTipo.length > 0) {
+          this.chartData.labels.push(`${tipo.name} precio c/u ${tipo.moneda} ${tipo.valor} `);
+
+          dataset.backgroundColor.push(this.colorSuccess);
+          dataset.label = "";
+
+          dataset.data.push(cantidadRegistrosDeEsteTipo.length);
+        }
+      });
 
       this.chartData.datasets.push(dataset);
-    }
+    },
   },
   computed: {},
 
@@ -150,5 +145,5 @@ var ServiciosVendidos = {
 
 
 </div>
-    `
+    `,
 };

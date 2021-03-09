@@ -11,13 +11,12 @@ use Illuminate\Support\Facades\Cache;
  */
 class ServicioContratadoSocioRepo extends BaseRepo
 {
-
     public function getEntidad()
     {
         return new ServicioContratadoSocio();
     }
 
-    //guetters/////////////////////////////////////////////////////////////////////
+//guetters/////////////////////////////////////////////////////////////////////
 
     //setters//////////////////////////////////////////////////////////////////////
 
@@ -46,18 +45,19 @@ class ServicioContratadoSocioRepo extends BaseRepo
 
     public function setServicioASocio($Socio_id, $Scuursal_id, $Tipo_de_servicio_objeto, $Fecha_vencimiento)
     {
-        $Entidad = $this->getEntidad();
-        $Entidad->estado = 'si';
-        $Entidad->borrado = 'no';
-        $Entidad->esta_consumido = 'no';
+        $Entidad                     = $this->getEntidad();
+        $Entidad->estado             = 'si';
+        $Entidad->borrado            = 'no';
+        $Entidad->esta_consumido     = 'no';
         $Entidad->sucursal_emitio_id = $Scuursal_id;
-        $Entidad->socio_id = $Socio_id;
-        $Entidad->tipo_servicio_id = $Tipo_de_servicio_objeto->id;
-        $Entidad->tipo = $Tipo_de_servicio_objeto->tipo;
-        $Entidad->name = $Tipo_de_servicio_objeto->name;
-        $Entidad->valor = $Tipo_de_servicio_objeto->valor;
-        $Entidad->moneda = $Tipo_de_servicio_objeto->moneda;
-        $Entidad->fecha_vencimiento = $Fecha_vencimiento;
+        $Entidad->socio_id           = $Socio_id;
+        $Entidad->tipo_servicio_id   = $Tipo_de_servicio_objeto->id;
+        $Entidad->empresa_id         = $Tipo_de_servicio_objeto->empresa_id;
+        $Entidad->tipo               = $Tipo_de_servicio_objeto->tipo;
+        $Entidad->name               = $Tipo_de_servicio_objeto->name;
+        $Entidad->valor              = $Tipo_de_servicio_objeto->valor;
+        $Entidad->moneda             = $Tipo_de_servicio_objeto->moneda;
+        $Entidad->fecha_vencimiento  = $Fecha_vencimiento;
         $Entidad->save();
 
         $this->ActualizarCache($Socio_id);
@@ -134,5 +134,4 @@ class ServicioContratadoSocioRepo extends BaseRepo
             return $Servicos;
         });
     }
-
 }

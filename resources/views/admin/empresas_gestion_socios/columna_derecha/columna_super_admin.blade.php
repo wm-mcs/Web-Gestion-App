@@ -32,6 +32,13 @@
      </a>
     </li>
 
+    <li class="parrafo-class mb-1">
+     <a href="{{route('ajustar_servicios_empresa_id')}}" >
+       <small>Ajustar los servicios empresa id</small>
+     </a>
+    </li>
+
+
 
 
 
