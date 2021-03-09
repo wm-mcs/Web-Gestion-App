@@ -1,9 +1,9 @@
 var ServiciosVendidos = {
   mixins: [misChartMixin, orderFunction],
   components: {
-    "bar-chart": barChart,
+    "bar-chart": barChart
   },
-  data: function () {
+  data: function() {
     return {
       cargando: false,
       fecha_inicio: null,
@@ -13,12 +13,12 @@ var ServiciosVendidos = {
       datos: [],
       chartData: {
         labels: null,
-        datasets: [],
-      },
+        datasets: []
+      }
     };
   },
 
-  created: function () {
+  created: function() {
     this.getData();
 
     bus.$on("cambio-perido", (data) => {
@@ -32,7 +32,7 @@ var ServiciosVendidos = {
   mounted: function mounted() {},
 
   methods: {
-    getData: function () {
+    getData: function() {
       let url = "/get_servicios_vendidos";
       let vue = this;
       this.cargando = true;
@@ -40,12 +40,12 @@ var ServiciosVendidos = {
       let data = {
         fecha_inicio: this.fecha_inicio,
         fecha_fin: this.fecha_fin,
-        empresa_id: this.$root.empresa.id,
+        empresa_id: this.$root.empresa.id
       };
 
       return axios
         .post(url, data)
-        .then(function (response) {
+        .then(function(response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
             vue.servicios = response.data.Data.Servicios;
@@ -57,17 +57,17 @@ var ServiciosVendidos = {
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
-        .then(function () {
+        .then(function() {
           vue.setData();
         })
 
-        .catch(function (error) {
+        .catch(function(error) {
           vue.cargando = false;
           $.notify(error.message, "error");
         });
     },
 
-    setData: function () {
+    setData: function() {
       this.recetChartData();
 
       const serviciosDelPeriodo = this.servicios;
@@ -86,7 +86,9 @@ var ServiciosVendidos = {
         );
 
         if (cantidadRegistrosDeEsteTipo.length > 0) {
-          this.chartData.labels.push(`${tipo.name} precio c/u ${tipo.moneda} ${tipo.valor} `);
+          this.chartData.labels.push(
+            `${tipo.name} precio c/u ${tipo.moneda} ${tipo.valor} `
+          );
 
           dataset.backgroundColor.push(this.colorSuccess);
           dataset.label = "";
@@ -96,7 +98,7 @@ var ServiciosVendidos = {
       });
 
       this.chartData.datasets.push(dataset);
-    },
+    }
   },
   computed: {},
 
@@ -110,7 +112,7 @@ var ServiciosVendidos = {
     <div  class="contenedor-grupo-datos w-100">
 
     <h6 class="col-12 mb-3" >
-    <strong>Servicios vendidos del periódo @{{fecha_inicio}} || @{{fecha_fin}}</strong>
+    <strong>Servicios vendidos del período @{{fecha_inicio}} || @{{fecha_fin}}</strong>
     </h6>
 
       <div class="row mb-4 mx-0">
@@ -130,7 +132,7 @@ var ServiciosVendidos = {
 
 
        <div class="col-12">
-      <p class=""><b>Datos desglosados por tipo </b></p>
+      <p class=""><b>Cantidad de servicios vendidos deslosados</b></p>
 
         <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
@@ -145,5 +147,5 @@ var ServiciosVendidos = {
 
 
 </div>
-    `,
+    `
 };
