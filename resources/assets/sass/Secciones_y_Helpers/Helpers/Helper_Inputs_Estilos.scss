@@ -1,10 +1,12 @@
+
+/* F o r m a t o   e s t a n d a r   d e   i n p u t s */
 @mixin InputGeneral() {
   line-height: 1.7;
   font-family: $font-secondary;
   font-weight: bold;
   font-size: 16px !important;
   background-color: transparent;
-  border: solid 3px transparent;
+  border: solid 1px transparent;
   padding: 8px;
   border-radius: 0px;
   width: 100%;
@@ -13,7 +15,7 @@
 
 .input-text-class-primary {
   @include InputGeneral;
-  border-color: $color-3;
+  border-color:  lighten($color-3,20%);
   color: $color-3;
 }
 
@@ -24,6 +26,7 @@
   box-shadow: none !important;
   outline: 0 none !important;
   border-color: $color-3;
+  background-color: $color-grey-1;
 }
 
 .input-text-class-white {
@@ -40,4 +43,56 @@
   box-shadow: none !important;
   outline: 0 none !important;
   border-color: $color-white;
+}
+
+/*  F o r m a t o    f  l o t a n t e */
+
+.float-label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  margin-bottom: 10px;
+  height: 3.5em;
+  box-sizing: border-box;
+  box-shadow: none;
+  position: relative;
+  label {
+      z-index: 0;
+      width: 100%;
+      height: 0;
+      left: 0px;
+      top: 0px;
+      position: absolute;
+      top: 15px;
+      left: 8px;
+      font-weight: 500;
+      color:$color-gris-text;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      transition: all 0.2s ease-in-out;
+  }
+  input,
+  textarea {
+      z-index: 0;
+      height: 3.5em;
+      font-weight: bold;
+
+      &:valid,
+      &:focus {
+          padding: 20px 8px 5px 8px;
+          outline: 0;
+      }
+      &:focus {
+          background: rgba(255, 255, 255, 1);
+      }
+      &:valid + label,
+      &:focus + label {
+          color: $color-3;
+          font-size: 10px;
+          -webkit-transform: translate3d(0, -10px, 0);
+          transform: translate3d(0, -10px, 0) !important;
+          z-index: 1;
+      }
+  }
 }

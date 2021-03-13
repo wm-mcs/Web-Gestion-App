@@ -88,40 +88,90 @@ Vue.component("socios-crear-boton", {
         </div>
         <div class="modal-body">
 
-                  <div class="formulario-label-fiel">
 
-                      <input type="text" class="formulario-field py-3"  v-model="form_socio_name" placeholder="Nombres y apellidos" required  />
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="name"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="form_socio_name"
+                        required
+
+                      />
+                      <label for="name">Nombres y apellidos</label>
+                    </fieldset>
                   </div>
+
                   <div class="formulario-label-fiel">
                   <div v-if="empresa.pais != 'UY'" class="modal-mensaje-aclarador">
-    Se deben ingresar todo los dígitos menos el símbolo de +.
-  </div>
-                      <input type="number" class="formulario-field py-3"  v-model="form_socio_celular" placeholder="Número de celular" required  />
+                        Se deben ingresar todo los dígitos menos el símbolo de +.
+                      </div>
+                    <fieldset class="float-label">
+                      <input
+                        name="celular"
+                        type="number"
+                        class="input-text-class-primary"
+                        v-model="form_socio_celular"
+                        required
+
+                      />
+                      <label for="celular">Celular</label>
+                    </fieldset>
                   </div>
+
+
 
 
                   <p class="text-center my-3 simula-link" @click="mostrarMasDatos = !mostrarMasDatos">  @{{ mostrarMasDatos ? 'Ocultar datos opcionales':'Desplegar datos opcionales' }}
-                  
-                  <i v-if="!mostrarMasDatos" class="fas fa-chevron-down"></i>
-                  <i v-else class="fas fa-chevron-up"></i>
-                  
+
+                    <i v-if="!mostrarMasDatos" class="fas fa-chevron-down"></i>
+                    <i v-else class="fas fa-chevron-up"></i>
+
                   </p>
 
                   <transition name="slide-fade">
                   <div  v-if="mostrarMasDatos" class="">
-                  <div class="formulario-label-fiel">
-                  <input type="text" class="formulario-field py-3"  v-model="form_socio_email" placeholder="Email (opcional)" required  />
-              </div>
-              <div class="formulario-label-fiel">
 
-                  <input type="text" class="formulario-field py-3"  v-model="form_socio_cedula" placeholder="Número de cédula (opcional)" required  />
-              </div>
+
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="email"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="form_socio_email"
+                        required
+
+                      />
+                      <label for="email">Email (opcional)</label>
+                    </fieldset>
                   </div>
-            
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="cedula"
+                        type="number"
+                        class="input-text-class-primary"
+                        v-model="form_socio_cedula"
+                        required
+
+                      />
+                      <label for="cedula">Número de cédula (opcional sin puntos ni guión)</label>
+                    </fieldset>
+                  </div>
+
+
+
+
+                  </div>
+
                   </transition>
 
 
-                 
+
 
                   <div v-if="$root.cargando" class="Procesando-text">Procesado...</div>
                   <div v-else v-on:click="crear_socio_post" class="mt-5 boton-simple">@{{$root.boton_aceptar_texto}}</div>
