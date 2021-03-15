@@ -14,3 +14,10 @@
 
 
   {!! Form::close() !!}
+
+
+
+
+  <a href="{{route('getIndex',['empresa_id' => $Empresa->id ])}}" class="Boton-Primario-Sin-Relleno ">
+     Agenda
+  </a>

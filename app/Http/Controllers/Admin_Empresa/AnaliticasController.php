@@ -22,33 +22,33 @@ class AnaliticasController extends Controller
         TipoDeMovimientoRepo $TipoDeMovimientoRepo,
         CajaEmpresaRepo $CajaEmpresaRepo,
         ServicioContratadoSocioRepo $ServicioContratadoSocioRepo) {
-        $this->EmpresaConSociosoRepo = $EmpresaConSociosoRep;
-        $this->TipoDeMovimientoRepo = $TipoDeMovimientoRepo;
-        $this->CajaEmpresaRepo = $CajaEmpresaRepo;
+        $this->EmpresaConSociosoRepo       = $EmpresaConSociosoRep;
+        $this->TipoDeMovimientoRepo        = $TipoDeMovimientoRepo;
+        $this->CajaEmpresaRepo             = $CajaEmpresaRepo;
         $this->ServicioContratadoSocioRepo = $ServicioContratadoSocioRepo;
     }
 
     public function get_analiticas(Request $Request)
     {
         $UserEmpresa = $Request->get('user_empresa_desde_middleware');
-        $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
+        $Empresa     = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
         return view('empresa_gestion_paginas.Vue_logica.Componentes.Analiticas.panel_analiticas', compact('Empresa'));
     }
 
     public function get_movimientos_de_caja_para_analiticas(Request $Request)
     {
         $Fecha_inicio = $Request->get('fecha_inicio') != null ? Carbon::parse($Request->get('fecha_inicio')) : Carbon::now('America/Montevideo')->subMonth()->startOfMonth();
-        $Fecha_fin = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonth()->endOfMonth();
+        $Fecha_fin    = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonth()->endOfMonth();
 
         $keys = [
             ['where_tipo' => 'where',
-                'key' => 'empresa_id',
-                'value' => $Request->get('empresa_id'),
+                'key'         => 'empresa_id',
+                'value'       => $Request->get('empresa_id'),
             ],
             [
                 'where_tipo' => 'whereBetween',
-                'key' => 'fecha_ingreso',
-                'value' => ['start' => $Fecha_inicio, 'end' => $Fecha_fin],
+                'key'        => 'fecha_ingreso',
+                'value'      => ['start' => $Fecha_inicio, 'end' => $Fecha_fin],
             ],
 
         ];
@@ -61,17 +61,17 @@ class AnaliticasController extends Controller
     public function get_servicios_vendidos(Request $Request)
     {
         $Fecha_inicio = $Request->get('fecha_inicio') != null ? Carbon::parse($Request->get('fecha_inicio')) : Carbon::now('America/Montevideo')->subMonth()->startOfMonth();
-        $Fecha_fin = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonth()->endOfMonth();
+        $Fecha_fin    = $Request->get('fecha_fin') != null ? Carbon::parse($Request->get('fecha_fin')) : Carbon::now('America/Montevideo')->subMonth()->endOfMonth();
 
         $keys = [
             ['where_tipo' => 'where',
-                'key' => 'empresa_id',
-                'value' => $Request->get('empresa_id'),
+                'key'         => 'empresa_id',
+                'value'       => $Request->get('empresa_id'),
             ],
             [
                 'where_tipo' => 'whereBetween',
-                'key' => 'created_at',
-                'value' => ['start' => $Fecha_inicio, 'end' => $Fecha_fin],
+                'key'        => 'created_at',
+                'value'      => ['start' => $Fecha_inicio, 'end' => $Fecha_fin],
             ],
 
         ];

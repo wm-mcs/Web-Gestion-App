@@ -33,8 +33,8 @@
 @stop
 
 @section('empresa-configuracion')
-<renovacion-automatica-empresa :empresa="empresa"></renovacion-automatica-empresa>
-<configuracion-empresa :empresa="empresa"> </configuracion-empresa>
+  <renovacion-automatica-empresa :empresa="empresa"></renovacion-automatica-empresa>
+  <configuracion-empresa :empresa="empresa"> </configuracion-empresa>
 @stop
 
 @section('content')
@@ -42,18 +42,14 @@
 
   <avisos-empresa :empresa="empresa"></avisos-empresa>
 
-  {{-- Buscar Socio --}}
+
   <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
-
-      <div class="empresa-gestion-contiene-input-busqueda">
-        <input class="empresa-gestion-input-busqueda form-control" v-model="busqueda" type="text" placeholder="Buscar socio" aria-label="Search">
-      </div>
-
-
-      <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
-      <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
-      <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
-
+    <div class="empresa-gestion-contiene-input-busqueda">
+      <input class="empresa-gestion-input-busqueda form-control" v-model="busqueda" type="text" placeholder="Buscar socio" aria-label="Search">
+    </div>
+    <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
+    <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
+    <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
   </div>
 
 
