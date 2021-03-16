@@ -1,4 +1,4 @@
-var bus = new Vue();
+
 
 Vue.component('caja-saldo' ,
 {
@@ -17,7 +17,7 @@ data:function(){
       fecha_inicio:new Date(),
       fecha_fin:new Date(),
       fecha_de_arqueo:'',
-      buscar_entre_fechas_mostrar:false,  
+      buscar_entre_fechas_mostrar:false,
       tipo_de_consulta:'inicial',
       inicial:'inicial',
       arqueo:'arqueo',
@@ -25,30 +25,30 @@ data:function(){
 
     }
 },
-mounted: function mounted () {        
-      
-    
+mounted: function mounted () {
+
+
 
 },
 methods:{
 
-    disparador:function(tipo_de_consulta)  
+    disparador:function(tipo_de_consulta)
     {
       this.tipo_de_consulta = tipo_de_consulta;
       this.getMovimientosDeCaja();
-    },  
+    },
 
      setFecha:function()
      {
        var fecha =  new Date();
        fecha.setMonth(fecha.getMonth());
 
-       
+
        this.fecha_de_arqueo = fecha.toISOString().slice(0,10);
      },
 
      mostrar_busqueda:function(){
-     if(this.buscar_entre_fechas_mostrar) 
+     if(this.buscar_entre_fechas_mostrar)
      {
       this.buscar_entre_fechas_mostrar = false;
      }
@@ -62,33 +62,33 @@ methods:{
 
        var url = '/get_movimientos_de_caja_de_sucursal';
 
-      var data = {    
-                       empresa_id : this.sucursal.empresa_id, 
+      var data = {
+                       empresa_id : this.sucursal.empresa_id,
                       sucursal_id : this.sucursal.id,
                      fecha_inicio : this.fecha_inicio,
                         fecha_fin : this.fecha_fin,
                   fecha_de_arqueo : this.fecha_de_arqueo,
                  tipo_de_consulta : this.tipo_de_consulta
-                 
-                 };  
-      var vue = this; 
 
-      app.cargando = true;          
+                 };
+      var vue = this;
 
-     axios.post(url,data).then(function (response){  
-            var data = response.data;  
-            
+      app.cargando = true;
+
+     axios.post(url,data).then(function (response){
+            var data = response.data;
+
 
             if(data.Validacion == true)
             {
-               
+
                app.cargando = false;
 
                vue.fecha_de_saldo = data.Fecha_saldo;
                vue.fecha_inicio    = data.Fecha_inicio;
                vue.fecha_fin       = data.Fecha_fin;
                vue.fecha_de_arqueo = data.Fecha_fin;
-            
+
                if(data.movimientos_de_caja_pesos)
                {
                 vue.movimientos_de_caja_pesos = data.movimientos_de_caja_pesos;
@@ -99,22 +99,22 @@ methods:{
                 vue.movimientos_de_caja_dolares = data.movimientos_de_caja_dolares;
                 vue.saldo_dolares = data.Saldo_dolares;
                }
-               
+
                $.notify(response.data.Validacion_mensaje, "success");
             }
             else
             { app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
             }
-           
+
            }).catch(function (error){
 
-                     
-            
+
+
            });
 
     },
-   
+
 
     esMatoyIgualACero:function(valor){
         if(valor < 0 )
@@ -144,11 +144,11 @@ methods:{
       this.getMovimientosDeCaja();
       app.abrirModal(this.modal_dolares);
     }
-    
+
 
 },
 created() {
-    
+
     bus.$on('sucursal-set', (sucursal) => {
       this.sucursal = sucursal
     });
@@ -160,7 +160,7 @@ created() {
 template:'<div>
 
   <div  class="contiene-saldo" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
-     <span class="saldo-aclaracion"> 
+     <span class="saldo-aclaracion">
        Saldo caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
      <div v-if="esMatoyIgualACero(saldo_pesos)" class="saldo-valor">
@@ -169,11 +169,11 @@ template:'<div>
      <div v-else class="color-text-danger saldo-valor ">
        $ @{{sucursal.saldo_de_caja_pesos}}
      </div>
-     
-  </div> 
+
+  </div>
 
  <div v-if="esDistintoACero(saldo_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
-     <span class="saldo-aclaracion"> 
+     <span class="saldo-aclaracion">
        Saldo caja dolares sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
      </span>
      <div v-if="esMatoyIgualACero(saldo_dolares)" class="saldo-valor">
@@ -182,7 +182,7 @@ template:'<div>
      <div v-else class="color-text-danger saldo-valor">
        U$S @{{sucursal.saldo_de_caja_dolares}}
      </div>
- </div> 
+ </div>
 
 
  <div class="modal fade" id="modal-caja-pesos" tabindex="+1" role="dialog" aria-labelledby="myModalLabel">
@@ -190,8 +190,8 @@ template:'<div>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title get_width_80" id="myModalLabel">
-            Movimientos de caja pesos:  
-            <div class="saldo-modal">              
+            Movimientos de caja pesos:
+            <div class="saldo-modal">
               Saldo al día @{{fecha_de_saldo}}
               <span class="saldo-modal-valor">$ @{{saldo_pesos}} </span>
             </div>
@@ -199,35 +199,35 @@ template:'<div>
 
           </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-          
+
         </div>
         <div v-if="$root.cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
                   </div>
-        <div v-if="esDistintoACero(movimientos_de_caja_pesos)"  class="modal-body text-center"> 
+        <div v-if="esDistintoACero(movimientos_de_caja_pesos)"  class="modal-body text-center">
         <div class="fechas-buscar-texto text-center">
-          Movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> $ @{{saldo_pesos}} </strong> . 
+          Movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> $ @{{saldo_pesos}} </strong> .
         </div>
 
 
-          <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos" 
+          <caja-lista v-for="(caja,index) in movimientos_de_caja_pesos"
                        :key="caja.id"
                        :caja="caja"
                        :sucursal="sucursal">
-            
-           
-            
+
+
+
           </caja-lista>
 
-                  
-                 
+
+
         </div>
         <div  v-else class="fechas-buscar-texto text-center">
-          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> 
+          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong>
         </div>
-       
+
       </div>
     </div>
   </div>
@@ -237,48 +237,48 @@ template:'<div>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="myModalLabel">Movimientos de caja dolares
-           
-            <div class="saldo-modal">              
+
+            <div class="saldo-modal">
               Saldo al día @{{fecha_de_saldo}}
               <span class="saldo-modal-valor">U$S @{{saldo_dolares}}  </span>
             </div>
             @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
           </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-          
+
         </div>
         <div v-if="$root.cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
                   </div>
-        <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal-body text-center"> 
+        <div v-if="esDistintoACero(movimientos_de_caja_dolares)" class="modal-body text-center">
         <div class="fechas-buscar-texto text-center">
-          Movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> U$S @{{saldo_dolares}} </strong> . 
+          Movimientos entre las fechas <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> y el saldo acumulado al  @{{fecha_fin}} es de <strong> U$S @{{saldo_dolares}} </strong> .
         </div>
-          <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares" 
+          <caja-lista v-for="(caja,index) in movimientos_de_caja_dolares"
                        :key="caja.id"
                        :caja="caja"
                        :sucursal="sucursal">
-            
-           
-            
+
+
+
           </caja-lista>
         </div>
          <div  v-else class="fechas-buscar-texto text-center">
-          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong> 
+          No hay movimientos entre estas fechas  <strong> @{{fecha_inicio}} -  @{{fecha_fin}}</strong>
         </div>
 
 
-       
+
       </div>
     </div>
   </div>
 
 
-  
-   
-  
+
+
+
 
 </div>'
 

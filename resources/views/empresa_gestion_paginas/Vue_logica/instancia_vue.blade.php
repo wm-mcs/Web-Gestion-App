@@ -1,11 +1,11 @@
 
-  
 
-   
+
+   @include('empresa_gestion_paginas.Vue_logica.bus')
 
     var app = new Vue({
-    el: '#app',    
-    data:{     
+    el: '#app',
+    data:{
       servicios:[],
       empresa: {!! json_encode($Empresa) !!},
       variable:'esta es la instancia',
@@ -21,8 +21,8 @@
       @if( $Empresa != '')
       Sucursal: {!! json_encode(Session::get('sucursal'.$Empresa->id)) !!},
       @else
-      Sucursal:'', 
-      @endif 
+      Sucursal:'',
+      @endif
       @if(Session::has('vista_socios_lista'))
       vista_lista:true
       @else
@@ -30,10 +30,10 @@
       @endif
 
 
-      
+
 
     },
-    mounted: function mounted () {        
+    mounted: function mounted () {
 
       this.$nextTick(() => {
         window.addEventListener('resize', () => {
@@ -52,7 +52,7 @@
 
      $(id_modal).modal('hide');
      $('.modal-backdrop').remove();
-    },   
+    },
     abrirModal:function(id_modal){
     $(id_modal).appendTo("body").modal('show');
     },
@@ -66,8 +66,8 @@
         this.menu_abierto = true;
       }
     }
-    
-    
+
+
     },
     computed:{
      whatsappContactoPagos:function(){
@@ -133,49 +133,8 @@
     }
     }
 
-     
 
-   
+
+
 
    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

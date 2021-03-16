@@ -29,7 +29,7 @@
 @stop
 
 @section('sucursal')
-
+<sucursal-nav :empresa="empresa" :sucursal="Sucursal"></sucursal-nav>
 @stop
 
 @section('empresa-configuracion')
@@ -39,9 +39,26 @@
 @section('content')
 
 
-  <avisos-empresa :empresa="empresa"></avisos-empresa>
 
-  <h1>Agenda</h1>
+
+  <div class="row mx-0">
+    <h1 class="col-12 col-lg-8" >Cronograma de actividades</h1>
+    <div class="col-12 col-lg-4">
+     <crear-agenda></crear-agenda>
+    </div>
+    <p class="col-12 my-3 text-center">
+      Aquí es donde crearás las actividades, asignando: día, hora y cupos (si es que los tuviera) de las clases que ofrece tu emprendimiento.
+      Esto se usará para la funcionalidad de reserva de clases por internet.
+    </p>
+    <p v-if="$root.empresa.sucursuales_empresa.length > 1 " class="col-12 my-3 text-center">
+      Cronograma de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
+    </p>
+  </div>
+
+
+  <p>
+
+  </p>
 
 
 
@@ -52,16 +69,11 @@
 
 <script type="text/javascript">
 
-
-
-
-
-     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
-
-
-
-     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
-
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.crearAgenda')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
+    @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 </script>
 
 @stop
