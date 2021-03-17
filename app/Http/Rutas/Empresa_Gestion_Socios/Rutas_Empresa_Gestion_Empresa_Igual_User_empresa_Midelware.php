@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../Analiticas/analiticas.php';
 require __DIR__ . '/../Agenda/agenda.php';
+require __DIR__ . '/../Actividades/actividades.php';
 
 Route::post('get_control_access_view',
     [

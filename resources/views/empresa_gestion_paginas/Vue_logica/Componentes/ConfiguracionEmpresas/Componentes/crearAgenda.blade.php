@@ -1,27 +1,27 @@
 Vue.component("crear-agenda", {
-    mixins: [onKeyPressEscapeCerrarModalMixIn],
-  data: function() {
+  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  data: function () {
     return {
       cargando: false,
-      diasQueRepiteArray: [0,1,2,3],
+      diasQueRepiteArray: [0, 1, 2, 3],
       datos_a_enviar: {
         name: "",
 
         currencyCode: "",
         estado: "si",
-        imagen: ""
+        imagen: "",
       },
-      showModal: false
+      showModal: false,
     };
   },
   methods: {
-    limpiar_data_crear: function() {
+    limpiar_data_crear: function () {
       this.datos_a_enviar = {
         name: "",
         code: "",
         currencyCode: "",
         estado: "si",
-        imagen: ""
+        imagen: "",
       };
     },
     onImageChange(e) {
@@ -37,7 +37,7 @@ Vue.component("crear-agenda", {
       };
       reader.readAsDataURL(file);
     },
-    crear: function() {
+    crear: function () {
       var url = "/crear";
 
       var data = this.datos_a_enviar;
@@ -46,7 +46,7 @@ Vue.component("crear-agenda", {
 
       axios
         .post(url, data)
-        .then(function(response) {
+        .then(function (response) {
           var data = response.data;
 
           if (data.Validacion == true) {
@@ -60,14 +60,14 @@ Vue.component("crear-agenda", {
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
         });
-    }
+    },
   },
   computed: {},
-  mounted: function() {},
+  mounted: function () {},
 
   template: `<span>
 
@@ -195,5 +195,5 @@ Vue.component("crear-agenda", {
   </transition>
 </span>
 
-`
+`,
 });
