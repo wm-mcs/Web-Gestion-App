@@ -8,6 +8,11 @@ Route::post('get_control_access_view',
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_control_access_view',
         'as'   => 'get_control_access_view']);
 
+Route::get('get_pagina_de_configuracion',
+    [
+        'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_pagina_de_configuracion',
+        'as'   => 'get_pagina_de_configuracion']);
+
 Route::post('control_acceso_socio',
     [
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@control_acceso_socio',

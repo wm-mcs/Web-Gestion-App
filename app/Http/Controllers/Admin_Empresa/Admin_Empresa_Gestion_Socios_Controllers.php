@@ -117,6 +117,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         return view('empresa_gestion_paginas.control_de_acceso', compact('Empresa'));
     }
 
+    public function get_pagina_de_configuracion(Request $Request)
+    {
+        $UserEmpresa = $Request->get('user_empresa_desde_middleware');
+        $Empresa     = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
+
+        return view('empresa_gestion_paginas.pagina_configuracion_empresa', compact('Empresa'));
+    }
+
     /**
      *
      * verifico que el socio sea de la empresa
@@ -1302,12 +1310,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function email_simples()
     {
-        $Email = 'email';
-        $Texto = 'Bienvenido a Easy Socio! te hemos creado una cuenta.';
-
-        $User_name   = 'mauricio@worldmaster.com.uy';
-        $Contraseña = 'ñakljsdfi';
-
+        $Email          = 'email';
+        $Texto          = 'Bienvenido a Easy Socio! te hemos creado una cuenta.';
+        $User_name      = 'mauricio@worldmaster.com.uy';
+        $Contraseña    = 'ñakljsdfi';
         $Texto_boton    = 'Ingresar ahora';
         $Link_del_boton = 'asdasd';
 

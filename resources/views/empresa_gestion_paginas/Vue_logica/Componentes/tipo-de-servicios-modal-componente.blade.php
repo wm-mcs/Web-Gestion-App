@@ -13,7 +13,7 @@ components: {
 props:['empresa'],
 
 data:function(){
-    return { 
+    return {
         crear_service_name:'',
         crear_service_tipo:'',
         valor:'',
@@ -21,13 +21,13 @@ data:function(){
         cantidad_clases:0,
         renovacion_cantidad_en_dias:30,
         showModal:false,
-        array_cantidad_de_dias:cantidadDeDiasArray 
+        array_cantidad_de_dias:cantidadDeDiasArray
       }
 },
-mounted: function mounted () {        
+mounted: function mounted () {
 
-    
-     
+
+
 
 
 },
@@ -53,12 +53,12 @@ methods:{
       this.crear_service_tipo = '';
       this.moneda = '$';
       this.valor = '';
-      this.cantidad_clases = 0; 
+      this.cantidad_clases = 0;
       this.renovacion_cantidad_en_dias = 30;
      },
-    
 
-   
+
+
      agregarServicioCreat:function(){
 
        var url = '/set_nuevo_servicio';
@@ -71,33 +71,33 @@ methods:{
                      moneda:this.moneda,
                       valor:this.valor,
             cantidad_clases:this.cantidad_clases,
-            renovacion_cantidad_en_dias:this.renovacion_cantidad_en_dias   
-                   }; 
+            renovacion_cantidad_en_dias:this.renovacion_cantidad_en_dias
+                   };
 
       app.cargando = true;
 
-              axios.post(url,data).then(function (response){  
-              
-               
+              axios.post(url,data).then(function (response){
+
+
 
               if(response.data.Validacion == true)
               {
                   app.cargando = false;
                   app.empresa = response.data.empresa;
                   $.notify(response.data.Validacion_mensaje, "success");
-                  vue.valores_a_cero();                 
+                  vue.valores_a_cero();
               }
               else
               {
                   app.cargando = false;
                   $.notify(response.data.Validacion_mensaje, "error");
               }
-             
+
              }).catch(function (error){
 
-                       
-              
-             });      
+
+
+             });
 
      },
      deletServicio:function(servicio)
@@ -105,52 +105,52 @@ methods:{
 
         var result = confirm("¿Seguro qué quieres hacer esto?");
 
-        if(result){            
-        
+        if(result){
+
         var url = '/delet_servicio';
 
         var vue = this;
 
         var data = {   id:servicio.id,
                empresa_id:this.empresa.id
-                       
-                   }; 
+
+                   };
 
         app.cargando = true;
 
-              axios.post(url,data).then(function (response){  
-              
-              
+              axios.post(url,data).then(function (response){
+
+
 
               if(response.data.Validacion == true)
-              {   
+              {
                   app.cargando = false;
-                  vue.empresa = response.data.empresa;                
-                  $.notify(response.data.Validacion_mensaje, "success");                 
+                  vue.empresa = response.data.empresa;
+                  $.notify(response.data.Validacion_mensaje, "success");
               }
               else
               {
                   app.cargando = false;
                   $.notify(response.data.Validacion_mensaje, "error");
               }
-             
+
              }).catch(function (error){
 
-                       
-              
-             });   
-        }   
+
+
+             });
+        }
      }
 
 
-         
+
 
 },
 template:`
 <span>
- <div   class="admin-user-boton-Crear"  v-on:click="showModal = !showModal" title="Listado de servicios">
-        <i class="far fa-list-alt"></i>         
- </div>
+ <button type="button"   class="admin-user-boton-Crear"  v-on:click="showModal = !showModal" title="Listado de servicios">
+        <i class="far fa-list-alt"></i>
+ </button>
  <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
@@ -159,33 +159,33 @@ template:`
           <i class="fas fa-times"></i>
         </span>
 
-          
+
           <div class="row">
             <h4 class="col-12 sub-titulos-class" > Servicios</h4>
             <div class="col-12 modal-mensaje-aclarador">
-              Existen dos tipos de servicios mensual y por clase. 
+              Existen dos tipos de servicios mensual y por clase.
               <b>Mensula</b>  significa que no se controla la cantidad de veces que el socio asiste. Ejemplo de mensual sería un pase libre.
               <b>Clase</b>  sería para el caso de una cuponera. Cada vez que el socio toma una clase se descontará de la cuponera.
               En ambos caso tiene vencimientos y estos podrán ser editados.
             </div>
           </div>
 
-          <div class="modal-body">            
-            
+          <div class="modal-body">
+
              <div class="row mb-5" v-if="empresa.tipo_servicios.length > 0">
-               
-                  <tipo-servicio-lista  v-for="servicio in empresa.tipo_servicios" 
+
+                  <tipo-servicio-lista  v-for="servicio in empresa.tipo_servicios"
                                          :key="servicio.id"
-                                         :servicio_prop="servicio">                    
+                                         :servicio_prop="servicio">
                   </tipo-servicio-lista>
-               
+
              </div>
              <div v-else class="row">
                <div class="col-12  sub-titulos-class text-center color-text-gris">
                   Aún no hay servicios creados ¡Crea uno ahora!
-               </div> 
-             </div>                
-            
+               </div>
+             </div>
+
 
             <div class="row">
                 <div class="col-12 titulos-class text-center" >
@@ -194,14 +194,14 @@ template:`
                 <div class="col-12 col-lg-6 formulario-label-fiel">
                     <label class="formulario-label" for="Nombre">Nombre del servicio  </label>
                     <input type="text" class="formulario-field"  v-model="crear_service_name" placeholder="Nombre del servicio" required  />
-                </div> 
+                </div>
                 <div class="col-12 col-lg-6 formulario-label-fiel">
                   <label class="formulario-label" for="Nombre">Tipo <span class="formulario-label-aclaracion">¿Por clase o mensual?</span></label>
-                  <select v-model="crear_service_tipo" class="formulario-field">                          
+                  <select v-model="crear_service_tipo" class="formulario-field">
                     <option>clase</option>
-                    <option>mensual</option>                          
+                    <option>mensual</option>
                   </select>
-                </div>   
+                </div>
                 <div v-if="tipo_clase" class="col-12 col-lg-4 formulario-label-fiel">
                   <label class="formulario-label">Cantidad de clases</label>
                   <input type="number" class="formulario-field" v-model="cantidad_clases" step="any">
@@ -219,10 +219,10 @@ template:`
                 </div>
                 <div class="col-12 col-lg-4 formulario-label-fiel">
                   <label class="formulario-label">Se vence en</label>
-                  <select v-model="renovacion_cantidad_en_dias" class="formulario-field">         
+                  <select v-model="renovacion_cantidad_en_dias" class="formulario-field">
                     <option v-for="cantidad_dias in array_cantidad_de_dias" :value="cantidad_dias.cantidad_de_dias_numero">
                       @{{cantidad_dias.cantidad_de_dias_texto}}
-                    </option>                                
+                    </option>
                   </select>
                 </div>
 
@@ -234,16 +234,16 @@ template:`
                   </div>
                   <div v-else v-on:click="agregarServicioCreat" title="Editar este servicio" class="w-100  mt-4 Boton-Primario-Relleno Boton-Fuente-Grande">
                       @{{$root.boton_aceptar_texto}}
-                  </div>    
-                </div>                 
-                 
+                  </div>
+                </div>
+
             </div>
           </div>
 
-          <div class="modal-footer">           
+          <div class="modal-footer">
             <button class="modal-default-button"   @click="showModal = !showModal">
               @{{$root.boton_cancelar_texto}}
-            </button>           
+            </button>
           </div>
         </div>
       </div>
@@ -268,7 +268,7 @@ template:`
 
 
 
- 
+
 
 </span>`,
 

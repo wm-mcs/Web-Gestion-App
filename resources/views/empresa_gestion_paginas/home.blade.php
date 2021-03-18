@@ -43,13 +43,35 @@
   <avisos-empresa :empresa="empresa"></avisos-empresa>
 
 
-  <div class="empresa-gestion-barra-top-boton-y-forma-busqueda">
-    <div class="empresa-gestion-contiene-input-busqueda">
-      <input class="empresa-gestion-input-busqueda form-control" v-model="busqueda" type="text" placeholder="Buscar socio" aria-label="Search">
+  <div class="row mx-0 align-items-center mb-5">
+    <div class="col-12 col-lg-8 mb-2 mb-lg-0">
+    <fieldset class="float-label mb-0">
+                      <input
+                        name="busqueda"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="busqueda"
+                        aria-label="Search"
+
+                        required
+
+                      />
+                      <label for="busqueda">Buscar socio</label>
+                    </fieldset>
+
     </div>
+    <div class="col-3 col-lg-1">
     <socios-crear-boton :accion_name="'Crear'"  :empresa="empresa" > </socios-crear-boton>
+    </div>
+    <div class="col-3 col-lg-1">
     <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
-    <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
+    </div>
+    <div class="col-3 col-lg-1">
+       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
+    </div>
+    <div class="col-3 col-lg-1">
+      <a class="admin-user-boton-Crear"  href="{{route('get_pagina_de_configuracion',['empresa_id' => $Empresa->id ])}}"> <i class="fas fa-cog"></i></a>
+    </div>
   </div>
 
 

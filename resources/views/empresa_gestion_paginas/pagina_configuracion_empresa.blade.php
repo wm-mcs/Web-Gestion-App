@@ -20,9 +20,6 @@
                    {{$Empresa->name}}
                  </span>
                  @endif
-                 <span>
-                    > <a href="{{route('get_pagina_de_configuracion',['empresa_id' => $Empresa->id ])}}"> Configuración </a>
-                 </span>
 
 
   {!! Form::close() !!}
@@ -45,17 +42,33 @@
 
 
   <div class="row mx-0">
-    <h1 class="col-12 col-lg-8" >Cronograma de actividades</h1>
+    <h1 class="col-12 col-lg-8" >Configuración de la empresa</h1>
     <div class="col-12 col-lg-4">
-     <crear-agenda></crear-agenda>
+
     </div>
     <p class="col-12 my-3 text-center">
-      Aquí es donde crearás las actividades, asignando: día, hora y cupos (si es que los tuviera) de las clases que ofrece tu emprendimiento.
-      Esto se usará para la funcionalidad de reserva de clases por internet.
+      Estos botones de aquí abajo te permitiran configurar todo EasySocio.
     </p>
-    <p v-if="$root.empresa.sucursuales_empresa.length > 1 " class="col-12 my-3 text-center">
-      Cronograma de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
-    </p>
+
+
+    <div class="col-4 mb-4">
+        <div class="formulario-label-aclaracion text-center mb-1">
+            Las actividades son el tipo de clases o "actividades" que se brindan. Por ejemplo "musculación",'karate',"boxeo","funcional".
+        </div>
+        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_actividades_index',['empresa_id' => $Empresa->id ])}}">
+            Actividades
+        </a>
+    </div>
+
+    <div class="col-4 mb-4">
+        <div class="formulario-label-aclaracion text-center mb-1">
+            Aquí se define los días, horas y cupos de las clases. Esto se usará para la función de reserva de clases online.
+        </div>
+        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_index_agenda',['empresa_id' => $Empresa->id ])}}">
+            Cronograma
+        </a>
+    </div>
+
   </div>
 
 
@@ -71,10 +84,7 @@
 
 
 <script type="text/javascript">
-
-@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.crearAgenda')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 </script>

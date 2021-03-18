@@ -18,8 +18,9 @@
                  @else
                    <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
-                 </span>
+                   </span>
                  @endif
+
                  <span>
                     > <a href="{{route('get_pagina_de_configuracion',['empresa_id' => $Empresa->id ])}}"> Configuración </a>
                  </span>
@@ -45,16 +46,15 @@
 
 
   <div class="row mx-0">
-    <h1 class="col-12 col-lg-8" >Cronograma de actividades</h1>
+    <h1 class="col-12 col-lg-8" >Actividades</h1>
     <div class="col-12 col-lg-4">
-     <crear-agenda></crear-agenda>
+
     </div>
     <p class="col-12 my-3 text-center">
-      Aquí es donde crearás las actividades, asignando: día, hora y cupos (si es que los tuviera) de las clases que ofrece tu emprendimiento.
-      Esto se usará para la funcionalidad de reserva de clases por internet.
+      Aquí es donde crearás las clases o actividades. Por ejemplo: musculación, boxeo, aeróbica, karate, kik boxin, etc. Se usarán para la función de ingreso.
     </p>
     <p v-if="$root.empresa.sucursuales_empresa.length > 1 " class="col-12 my-3 text-center">
-      Cronograma de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
+      Actividades de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
     </p>
   </div>
 
@@ -74,7 +74,7 @@
 
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.crearAgenda')
+
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 </script>
