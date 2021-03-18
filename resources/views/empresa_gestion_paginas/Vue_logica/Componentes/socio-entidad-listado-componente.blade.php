@@ -358,7 +358,7 @@ Vue.component("socio-entidad-listado", {
 
   </div>
   <div class="se-muestran-socios-texto my-3"> Se están mostrando <strong>@{{socios_filtrados.length}}</strong> socios</div>
-  <div v-if="cargando" class="Procesando-text get_width_100">
+  <div v-if="cargando" class="Procesando-text w-100">
 
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>

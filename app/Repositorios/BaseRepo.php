@@ -9,7 +9,6 @@ use Input;
  */
 abstract class BaseRepo
 {
-
     protected $entidad;
 
     public function __construct()
@@ -67,6 +66,7 @@ abstract class BaseRepo
         $Borrado = 'no') {
         $Entidades = $this->getEntidad()
             ->where(function ($q) use ($Entidad_key_array) {
+
                 if ($Entidad_key_array != null) {
                     foreach ($Entidad_key_array as $clave => $valor) {
                         if ($valor['where_tipo'] == 'where') {
@@ -93,6 +93,20 @@ abstract class BaseRepo
         }
 
         return $Entidades;
+    }
+
+    public function getEntidadesDeEstaEmpresa(
+        $Empresa_id,
+        $Ordenar_key = 'id',
+        $Order_sentido = 'desc',
+        $Estado = 'si',
+        $Borrado = 'no') {
+
+        return $this->entidad
+            ->where('empresa_id', $Empresa_id)
+            ->where('borrado', $Borrado)
+            ->orderBy($Ordenar_key, $Order_sentido)
+            ->get();
     }
 
     //se cambia la propiedad borrado a si
@@ -150,6 +164,7 @@ abstract class BaseRepo
     //setters
     public function setEntidadDato($Entidad, $request, $Propiedades)
     {
+
         if ($Entidad === null) {
             $Entidad = $this->getEntidad();
         }
@@ -170,6 +185,7 @@ abstract class BaseRepo
     //setters recibe un objeto en lugar del reques
     public function setEntidadDatoObjeto($Entidad, $objeto, $Propiedades)
     {
+
         foreach ($Propiedades as $Propiedad) {
             $Entidad->$Propiedad = $objeto->$Propiedad;
         }
@@ -179,11 +195,9 @@ abstract class BaseRepo
         return $Entidad;
     }
 
-    /**
-     * grabar entidad atributo especifico
-     */
     public function setAtributoEspecifico($Entidad, $atributo, $valor)
     {
+
         if ($valor != '') {
             $Entidad->$atributo = trim($valor);
             $Entidad->save();
@@ -192,12 +206,8 @@ abstract class BaseRepo
         }
     }
 
-    /**
-     * Válido para movimiento de caja o estado de cuenta
-     */
     public function getDetalleAlAnular($EntidadAAnular)
     {
         return 'Anulación del movimiento ' . $EntidadAAnular->id . ' : ' . $EntidadAAnular->detalle;
     }
-
 }

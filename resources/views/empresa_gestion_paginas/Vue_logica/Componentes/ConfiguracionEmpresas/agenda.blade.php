@@ -45,7 +45,7 @@
 
 
   <div class="row mx-0">
-    <h1 class="col-12 col-lg-8" >Cronograma de actividades</h1>
+    <h1 class="h3 col-12 col-lg-8 font-weight-bold" >Cronograma de actividades</h1>
     <div class="col-12 col-lg-4">
      <crear-agenda></crear-agenda>
     </div>
@@ -74,7 +74,7 @@
 
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.crearAgenda')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Agenda.crear')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')
 </script>
