@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Cache;
 
 class PlanesController extends Controller
 {
-
     protected $EmpresaConSociosoRepo;
     protected $MovimientoEstadoDeCuentaEmpresaRepo;
     protected $UserRepo;
@@ -35,27 +34,25 @@ class PlanesController extends Controller
         SucursalEmpresaRepo $SucursalEmpresaRepo
 
     ) {
-        $this->EmpresaConSociosoRepo = $EmpresaConSociosoRepo;
+        $this->EmpresaConSociosoRepo               = $EmpresaConSociosoRepo;
         $this->MovimientoEstadoDeCuentaEmpresaRepo = $MovimientoEstadoDeCuentaEmpresaRepo;
-        $this->UserRepo = $UserRepo;
-        $this->UserEmpresaRepo = $UserEmpresaRepo;
-        $this->VendedorEmpresaRepo = $VendedorEmpresaRepo;
-        $this->TipoDeServicioAEmpresaRepo = $TipoDeServicioAEmpresaRepo;
-        $this->SucursalEmpresaRepo = $SucursalEmpresaRepo;
-
+        $this->UserRepo                            = $UserRepo;
+        $this->UserEmpresaRepo                     = $UserEmpresaRepo;
+        $this->VendedorEmpresaRepo                 = $VendedorEmpresaRepo;
+        $this->TipoDeServicioAEmpresaRepo          = $TipoDeServicioAEmpresaRepo;
+        $this->SucursalEmpresaRepo                 = $SucursalEmpresaRepo;
     }
 
     public function getPropiedades()
     {
-        return ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales', 'estado', 'control_acceso', 'valor_fuera_de_uruguay'];
-
+        return ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales', 'estado', 'control_acceso', 'valor_fuera_de_uruguay', 'reserva_de_clases_on_line'];
     }
 
     public function get_planes_empresa(Request $Request)
     {
         $planes = $this->TipoDeServicioAEmpresaRepo->getServiciosActivosAEmpresas();
-        return HelpersGenerales::formateResponseToVue(true, 'Planes agregados corectamente', $planes);
 
+        return HelpersGenerales::formateResponseToVue(true, 'Planes agregados corectamente', $planes);
     }
 
     public function get_planes_index()
@@ -66,9 +63,10 @@ class PlanesController extends Controller
     public function crear_plan(Request $Request)
     {
         $manager = new CrearPlanManager(null, $Request->all());
+
         if (!$manager->isValid()) {
             return ['Validacion' => false,
-                'Validacion_mensaje' => 'No se pudó crear el plan: ' . $manager->getErrors()];
+                'Validacion_mensaje' => 'No se pudo crear el plan: ' . $manager->getErrors()];
         }
 
         $Propiedades = $this->getPropiedades();
@@ -79,13 +77,12 @@ class PlanesController extends Controller
 
         return ['Validacion' => true,
             'Validacion_mensaje' => 'Planes agregados corectamente',
-            'planes' => $planes];
-
+            'planes'             => $planes];
     }
 
     public function editar_plan_empresa(Request $Request)
     {
-        $Plan = $Request->get('plan'); //me manda la data en array vue
+        $Plan    = $Request->get('plan'); //me manda la data en array vue
         $Entidad = $this->TipoDeServicioAEmpresaRepo->find($Plan['id']);
 
         //las porpiedades que se van a editar
@@ -98,7 +95,6 @@ class PlanesController extends Controller
         $Entidad->save();
 
         return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente ');
-
     }
 
     /**
@@ -112,7 +108,5 @@ class PlanesController extends Controller
         });
 
         return HelpersGenerales::formateResponseToVue(true, 'Planes cargados', $Planes);
-
     }
-
 }

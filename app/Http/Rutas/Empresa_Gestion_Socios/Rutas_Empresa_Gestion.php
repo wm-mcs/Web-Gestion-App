@@ -117,11 +117,6 @@ Route::group(['middleware' => 'SistemaGestionUserGerarquia:3'], function () {
 
 });
 
-Route::get('get_tipo_servicios{empresa_id}',
-    [
-        'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_tipo_servicios',
-        'as'   => 'get_tipo_servicios']);
-
 Route::get('get_tipo_de_movimientos',
     [
         'uses' => 'Admin_Empresa\TipoDeMovimientoController@get_tipo_de_movimientos',

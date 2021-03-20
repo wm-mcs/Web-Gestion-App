@@ -41,7 +41,7 @@
 
 
 
-  <div class="row mx-0">
+  <div class="row mx-0 justify-content-center">
     <h1 class="col-12 col-lg-8" >Configuración de la empresa</h1>
     <div class="col-12 col-lg-4">
 
@@ -51,7 +51,8 @@
     </p>
 
 
-    <div class="col-4 mb-4">
+    @if($Empresa->reserva_online_habilitado)
+    <div class="col-6 col-lg-4 mb-4">
         <div class="formulario-label-aclaracion text-center mb-1">
             Las actividades son el tipo de clases o "actividades" que se brindan. Por ejemplo "musculación",'karate',"boxeo","funcional".
         </div>
@@ -60,12 +61,22 @@
         </a>
     </div>
 
-    <div class="col-4 mb-4">
+    <div class="col-6 col-lg-4 mb-4">
         <div class="formulario-label-aclaracion text-center mb-1">
             Aquí se define los días, horas y cupos de las clases. Esto se usará para la función de reserva de clases online.
         </div>
         <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_index_agenda',['empresa_id' => $Empresa->id ])}}">
             Cronograma
+        </a>
+    </div>
+    @endif
+
+    <div class="col-6 col-lg-4 mb-4">
+        <div class="formulario-label-aclaracion text-center mb-1">
+            Son los servicios que vendés. Ejemplo: pase libre, cuponera de 8 clases, etc.
+        </div>
+        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_servicios_index',['empresa_id' => $Empresa->id ])}}">
+            Servicios
         </a>
     </div>
 

@@ -3,19 +3,18 @@
 namespace App\Entidades;
 
 use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
-use App\Entidades\TipoDeServicio;
 use App\Entidades\Traits\empresaFuncionalidadesVerificar;
 use App\Entidades\Traits\entidadesScopesComunes;
 use App\Entidades\User;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\SucursalEmpresaRepo;
+use App\Repositorios\TipoDeServicioRepo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class EmpresaConSocios extends Model
 {
-
     use empresaFuncionalidadesVerificar;
     use entidadesScopesComunes;
 
@@ -27,7 +26,7 @@ class EmpresaConSocios extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends = ['tipo_servicios', /*
+    protected $appends  = ['tipo_servicios', /*
     'socios_de_la_empresa',*/
         'sucursuales_empresa',
         'url_img',
@@ -40,16 +39,16 @@ class EmpresaConSocios extends Model
         'servicios_contratados_a_empresas_desactivos',
         'vendedor_de_esta_empresa',
         'path_url_img',
-        'control_acceso_habilitado'];
-
-    public function servicios_relation()
-    {
-        return $this->hasMany(TipoDeServicio::class, 'empresa_id', 'id')->where('borrado', 'no');
-    }
+        'control_acceso_habilitado',
+        'reserva_online_habilitado'];
 
     public function getTipoServiciosAttribute()
     {
-        return $this->servicios_relation;
+        return Cache::remember('tipoDeServiciosEmpresa' . $this->id, 500000, function () {
+            $Repo = new TipoDeServicioRepo();
+
+            return $Repo->getEntidadesDeEstaEmpresa($this->id, 'name', 'asc', null, 'no');
+        });
     }
 
     public function getSucursualesEmpresaAttribute()
@@ -57,6 +56,7 @@ class EmpresaConSocios extends Model
         return Cache::remember('sucursales_empresa' . $this->id, 600, function () {
 
             $Repo = new SucursalEmpresaRepo();
+
             return $Repo->getSucursalesDeEmpresa($this->id);
         });
     }
@@ -79,6 +79,7 @@ class EmpresaConSocios extends Model
         if ($this->movimientos_estado_de_cuenta_empresa->count() == 0) {
             return 0;
         }
+
         return Cache::remember('SaldoPesosEmpresa' . $this->id, 8000, function () {
 
             $Debe = $this->movimientos_estado_de_cuenta_empresa->where('tipo_saldo', 'deudor')
@@ -92,7 +93,6 @@ class EmpresaConSocios extends Model
                 ->sum('valor');
 
             return round($Debe - $Acredor);
-
         });
     }
 
@@ -160,9 +160,15 @@ class EmpresaConSocios extends Model
             return $this->vendedor;
         });
     }
+
     public function getControlAccesoHabilitadoAttribute()
     {
         return $this->verificarSiPuedeUsarEstaFuncionalidad('control_acceso', $this);
+    }
+
+    public function getReservaOnlineHabilitadoAttribute()
+    {
+        return $this->verificarSiPuedeUsarEstaFuncionalidad('reserva_de_clases_on_line', $this);
     }
 
     public function getUrlImgAttribute()
@@ -205,5 +211,4 @@ class EmpresaConSocios extends Model
     {
         return route('get_empresa_panel_de_gestion', $this->id);
     }
-
 }

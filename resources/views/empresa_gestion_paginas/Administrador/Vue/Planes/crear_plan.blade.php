@@ -11,6 +11,7 @@ Vue.component("crear-plan", {
 				valor_fuera_de_uruguay: "",
 				estado: "",
 				control_acceso: "",
+        reserva_de_clases_on_line:"",
 				tipo: "principal"
 			},
 			showModal: false
@@ -162,6 +163,10 @@ Vue.component("crear-plan", {
 
 
 
+
+
+
+
                 </div>
                 <div class="row mx-0 contenedor-grupo-datos">
                 <div class="col-6 formulario-label-fiel">
@@ -172,6 +177,20 @@ Vue.component("crear-plan", {
                     </select>
                   </div>
                 </div>
+
+                <div class="row mx-0 contenedor-grupo-datos">
+                <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Incluye reserva de clases online? </label>
+                    <select v-model="datos_a_enviar.reserva_de_clases_on_line" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
 
 
                   <div @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">

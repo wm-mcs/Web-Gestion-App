@@ -2,6 +2,7 @@
 require __DIR__ . '/../Analiticas/analiticas.php';
 require __DIR__ . '/../Agenda/agenda.php';
 require __DIR__ . '/../Actividades/actividades.php';
+require __DIR__ . '/../Servicios/servicios.php';
 
 Route::post('get_control_access_view',
     [
@@ -67,21 +68,6 @@ Route::post('buscar_socios_activos',
     [
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@buscar_socios_activos',
         'as'   => 'buscar_socios_activos']);
-
-Route::post('set_nuevo_servicio',
-    [
-        'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@set_nuevo_servicio',
-        'as'   => 'set_nuevo_servicio']);
-
-Route::post('delet_servicio',
-    [
-        'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@delet_servicio',
-        'as'   => 'delet_servicio']);
-
-Route::post('editar_servicio',
-    [
-        'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@editar_servicio',
-        'as'   => 'editar_servicio']);
 
 //editar la empresa la parte de actualziacion automatica
 Route::post('editar_empresa_renovacion_automatica',

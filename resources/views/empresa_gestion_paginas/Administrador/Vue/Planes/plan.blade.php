@@ -141,6 +141,19 @@ var plan = {
                   </div>
                 </div>
 
+                <div class="row mx-0 contenedor-grupo-datos">
+                <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Incluye reserva de clases? </label>
+                    <select v-model="plan.reserva_de_clases_on_line" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
 
                   <div @click="editarPlan" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                     Confirmar

@@ -22,7 +22,7 @@
 .input-text-class-primary::placeholder {
   color: lighten($color-3, 20%);
 }
-.input-text-class-primary::focus {
+.input-text-class-primary:focus {
   box-shadow: none !important;
   outline: 0 none !important;
   border-color: $color-3;
@@ -72,7 +72,7 @@
       transform: translate3d(0, 0, 0);
       transition: all 0.2s ease-in-out;
   }
-  input,
+  input, select,
   textarea {
       z-index: 0;
       height: 3.5em;

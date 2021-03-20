@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin_Empresa;
 
 use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
+use App\Interfases\EntidadCrudInterface;
 use App\Managers\EmpresaGestion\ActividadManager;
 use App\Repositorios\ActividadRepo;
 use App\Repositorios\EmpresaConSociosoRepo;
 use Illuminate\Http\Request;
 
-class ActividadController extends Controller
+class ActividadController extends Controller implements EntidadCrudInterface
 {
     protected $EmpresaConSociosoRepo;
     protected $EntidadRepo;
@@ -30,6 +31,11 @@ class ActividadController extends Controller
         return ['empresa_id', 'name', 'estado'];
     }
 
+    public function cleanCache($customCache)
+    {
+        HelpersGenerales::forgetEsteCache($customCache);
+    }
+
     public function getIndex(Request $Request)
     {
         $UserEmpresa = $Request->get('user_empresa_desde_middleware');
@@ -41,9 +47,8 @@ class ActividadController extends Controller
     public function getEntidades(Request $Request)
     {
         $Empresa_id = $Request->get('user_empresa_desde_middleware')->empresa_id;
-        $Data       = $this->EntidadRepo->getEntidadesDeEstaEmpresa($Empresa_id, 'name', 'desc', false, 'no');
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se cargaron actividades', $Data);
+        return HelpersGenerales::formateResponseToVue(true, 'Se cargaron actividades', $this->EntidadRepo->getEntidadesDeEstaEmpresa($Empresa_id, 'name', 'desc', false, 'no'));
     }
 
     public function crearEntidad(Request $Request)

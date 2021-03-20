@@ -10,7 +10,6 @@ use App\Managers\EmpresaGestion\AgregarAlSocioUnServicioManager;
 use App\Managers\EmpresaGestion\AnularCajaManager;
 use App\Managers\EmpresaGestion\CrearSocioModalManager;
 use App\Managers\EmpresaGestion\CrearSucursalManager;
-use App\Managers\EmpresaGestion\CrearTipoServicioManager;
 use App\Managers\EmpresaGestion\EditarRenovacionDeSocioManager;
 use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager;
 use App\Managers\EmpresaGestion\IngresarMovimientoCajaManager;
@@ -82,7 +81,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function getPropiedades()
     {
-        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva', 'estado', 'codigo_pais_whatsapp', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access', 'control_acceso'];
+        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva', 'estado', 'codigo_pais_whatsapp', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access', 'control_acceso', 'reserva_de_clases_on_line'];
     }
 
     //La pagina de inicio
@@ -483,92 +482,6 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         return ['Validacion' => $Validacion,
             'Validacion_mensaje' => 'Se editó correctamente a ' . $Socio->name,
             'Socio'              => $this->SocioRepo->find($Socio->id)];
-    }
-
-    public function get_tipo_servicios($empresa_id)
-    {
-        $Validacion = false;
-        $User       = Auth::user();
-
-        if ($this->Guardian->son_iguales($User->empresa_gestion_id, $empresa_id) || $User->role == 'adminMcos522') {
-            $Validacion = true;
-
-            return ['Validacion' => $Validacion,
-                'Validacion_mensaje' => 'Se cargó correctamente',
-                'servicios'          => $this->TipoDeServicioRepo->getServiciosActivosDeEmpresa($empresa_id)];
-        } else {
-            return ['Validacion' => $Validacion,
-                'Validacion_mensaje' => 'Algo anda mal'];
-        }
-    }
-
-    //agrega un nuevo tipo de servicio ( Tipo Clase o Tipo Mensual )
-    public function set_nuevo_servicio(Request $Request)
-    {
-        $User = $Request->get('user_desde_middleware');
-
-        $Empresa = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-
-        $Entidad = $this->TipoDeServicioRepo->getEntidad();
-
-        $manager = new CrearTipoServicioManager(null, $Request->all());
-
-        if (!$manager->isValid()) {
-            return ['Validacion' => false,
-                'Validacion_mensaje' => 'No se pudo crear el servicio: ' . $manager->getErrors()];
-        }
-
-        $Propiedades = ['name', 'tipo', 'renovacion_cantidad_en_dias', 'empresa_id', 'moneda', 'valor', 'cantidad_clases'];
-
-        $Entidad->estado = 'si';
-        $Entidad->moneda = '$';
-        $Entidad->valor  = 0;
-
-        $this->TipoDeServicioRepo->setEntidadDato($Entidad, $Request, $Propiedades);
-
-        $Validacion = true;
-
-        return ['Validacion' => $Validacion,
-            'Validacion_mensaje' => 'Se creo correctamente ',
-            'empresa'            => $Empresa];
-    }
-
-    //borrar un servicio
-    public function delet_servicio(Request $Request)
-    {
-        $Entidad = $this->TipoDeServicioRepo->find($Request->get('id'));
-        $Empresa = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-
-        $this->TipoDeServicioRepo->destruir_esta_entidad_de_manera_logica($Entidad);
-
-        $Validacion = true;
-
-        return ['Validacion' => $Validacion,
-            'Validacion_mensaje' => 'Se borró correctamente ',
-            'empresa'            => $Empresa];
-    }
-
-    //editar un servicio
-    public function editar_servicio(Request $Request)
-    {
-        $User       = $Request->get('user_desde_middleware');
-        $Validacion = true;
-        $Servicio   = $Request->get('servicio'); //me manda la data en array vue
-        $Entidad    = $this->TipoDeServicioRepo->find($Servicio['id']);
-        $Empresa    = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
-
-        //las porpiedades que se van a editar
-        $Propiedades = ['name', 'tipo', 'renovacion_cantidad_en_dias', 'valor', 'moneda', 'cantidad_clases'];
-
-        foreach ($Propiedades as $Propiedad) {
-            $Entidad->$Propiedad = $Servicio[$Propiedad];
-        }
-
-        $Entidad->save();
-
-        return ['Validacion' => $Validacion,
-            'Validacion_mensaje' => 'Se editó correctamente ',
-            'empresa'            => $Empresa];
     }
 
     //agrega servicio a socio
