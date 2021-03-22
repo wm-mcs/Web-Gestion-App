@@ -1,6 +1,7 @@
 @include('empresa_gestion_paginas.Vue_logica.Componentes.tipoServicioEmpresa.cantidadDeDiasArray')
 Vue.component("crear-servicios", {
   mixins: [onKeyPressEscapeCerrarModalMixIn],
+
   data: function () {
     return {
       cargando: false,
@@ -12,11 +13,13 @@ Vue.component("crear-servicios", {
         tipo:'',
         cantidad_clases:0,
         renovacion_cantidad_en_dias:30,
+        actividad_habilitadas:[],
 
         estado: "si",
       },
       array_cantidad_de_dias:cantidadDeDiasArray,
       showModal: false,
+      actividades:[]
     };
   },
   methods: {
@@ -63,9 +66,39 @@ Vue.component("crear-servicios", {
           $.notify("Upsssssss.. algo pasó", "error");
         });
     },
+    getActividades: function () {
+      var url = "/get_actividad";
+
+      var data = { empresa_id: this.$root.empresa.id };
+
+      var vue = this;
+      vue.cargando = true;
+
+      axios
+        .post(url, data)
+        .then(function (response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.cargando = false;
+            vue.actividades = data.Data;
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function (error) {
+          vue.cargando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
+    }
   },
   computed: {},
-  mounted: function () {},
+  mounted: function () {
+
+   this.getActividades();
+
+  },
 
   template: `<span>
 
@@ -179,16 +212,41 @@ Vue.component("crear-servicios", {
 
 
 
-                <div class="formulario-label-fiel">
-                  <fieldset class="float-label">
+                <div v-if="$root.empresa.reserva_online_habilitado" class="w-100">
+                <div class="formulario-label-fiel mb-0">
+                <fieldset class="float-label">
 
-                  <select  name="estado" required v-model="datos_a_enviar.estado" class="formulario-field">
+                  <select  name="todo_las_clases_actividades_habilitadas" required v-model="datos_a_enviar.todo_las_clases_actividades_habilitadas" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
-                </select>
-                    <label for="estado">¿Activo?</label>
-                  </fieldset>
+                  </select>
+                  <label for="todo_las_clases_actividades_habilitadas">¿Acepta toda las actividades?</label>
+                </fieldset>
                 </div>
+
+
+
+                  <div  v-if="datos_a_enviar.todo_las_clases_actividades_habilitadas == 'no'" class="formulario-label-fiel">
+                  <div  class="col-12 formulario-label"
+                  >
+                  ¿Cuáles son las actividades que incluye? Marcá con check las que acepta.
+                  </div>
+                  <div v-for="actividad in actividades" :key="actividad.id" class="col-12">
+                      <label :for="actividad.name">@{{actividad.name}}</label>
+                      <input type="checkbox" :id="actividad.name" :value="actividad.id" v-model="datos_a_enviar.actividad_habilitadas">
+                  </div>
+
+
+
+
+
+
+                </div>
+                </div>
+
+
+
+
 
 
 

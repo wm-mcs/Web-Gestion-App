@@ -44,6 +44,7 @@ Vue.component("crear-agenda", {
 
       var vue = this;
 
+      vue.cargando = true;
       axios
         .post(url, data)
         .then(function (response) {

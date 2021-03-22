@@ -69,7 +69,7 @@ class ServiciosController extends Controller implements EntidadCrudInterface
 
         $Entidad = $this->EntidadRepo->getEntidad();
 
-        $manager = $this->getManager();
+        $manager = $this->getManager($Request);
 
         if (!$manager->isValid()) {
             return ['Validacion' => false,
@@ -79,6 +79,7 @@ class ServiciosController extends Controller implements EntidadCrudInterface
         $Entidad->estado = 'si';
         $Entidad->moneda = '$';
         $Entidad->valor  = 0;
+
         if ($Request->get('actividad_habilitadas') != null && $Request->get('actividad_habilitadas') != '' && is_array($Request->get('actividad_habilitadas'))) {
             $Entidad = $this->EntidadRepo->setAtributoEspecifico($Entidad, 'actividad_habilitadas', implode(',', $Request->get('actividad_habilitadas')));
         }
