@@ -74,8 +74,9 @@
 <script type="text/javascript">
 
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Servicios.listado')
+
     @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Servicios.crear')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Servicios.listado')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')

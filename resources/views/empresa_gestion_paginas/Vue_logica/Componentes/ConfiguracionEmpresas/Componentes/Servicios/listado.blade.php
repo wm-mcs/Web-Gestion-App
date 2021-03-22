@@ -1,4 +1,4 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Actividad.lista')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Servicios.lista')
 
 Vue.component("listado-servicios", {
 

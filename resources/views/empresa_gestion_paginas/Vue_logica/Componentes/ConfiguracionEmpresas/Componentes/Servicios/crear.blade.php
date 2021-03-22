@@ -40,6 +40,7 @@ Vue.component("crear-servicios", {
       var data = this.datos_a_enviar;
 
       var vue = this;
+      vue.cargando = true;
 
       axios
         .post(url, data)
@@ -195,7 +196,8 @@ Vue.component("crear-servicios", {
 
 
 
-
+                <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
+              <div v-else class="w-100">
 
               <h5 class="text-center col-12 my-4"  v-if="datos_a_enviar.tipo == 'clase' && datos_a_enviar.cantidad_clases < 1 ">
                   La cantidad de clases debe ser mayor a 0.
@@ -203,6 +205,7 @@ Vue.component("crear-servicios", {
               <button v-else type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
               </button>
+            </div>
             </div>
 
 

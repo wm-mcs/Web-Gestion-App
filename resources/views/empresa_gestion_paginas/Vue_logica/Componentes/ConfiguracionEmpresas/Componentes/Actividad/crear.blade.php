@@ -109,9 +109,12 @@ Vue.component("crear-actividad", {
 
 
 
+              <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
+              <div v-else class="w-100">
               <button type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
               </button>
+              </div>
             </div>
 
 

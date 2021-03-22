@@ -28,7 +28,7 @@ class ServiciosController extends Controller implements EntidadCrudInterface
 
     public function getPropiedades()
     {
-        return ['name', 'tipo', 'renovacion_cantidad_en_dias', 'empresa_id', 'moneda', 'valor', 'cantidad_clases'];
+        return ['name', 'tipo', 'renovacion_cantidad_en_dias', 'empresa_id', 'moneda', 'valor', 'cantidad_clases', 'todo_las_clases_actividades_habilitadas'];
     }
 
     public function cleanCache($customCache)
@@ -79,6 +79,9 @@ class ServiciosController extends Controller implements EntidadCrudInterface
         $Entidad->estado = 'si';
         $Entidad->moneda = '$';
         $Entidad->valor  = 0;
+        if ($Request->get('actividad_habilitadas') != null && $Request->get('actividad_habilitadas') != '' && is_array($Request->get('actividad_habilitadas'))) {
+            $Entidad = $this->EntidadRepo->setAtributoEspecifico($Entidad, 'actividad_habilitadas', implode(',', $Request->get('actividad_habilitadas')));
+        }
 
         $Entidad = $this->EntidadRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
 
@@ -111,22 +114,17 @@ class ServiciosController extends Controller implements EntidadCrudInterface
     //editar un servicio
     public function editarEntidad(Request $Request)
     {
-        $User       = $Request->get('user_desde_middleware');
-        $Validacion = true;
-        $Servicio   = $Request->get('servicio'); //me manda la data en array vue
-        $Entidad    = $this->EntidadRepo->find($Servicio['id']);
-        $Empresa    = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
 
-        foreach ($this->getPropiedades() as $Propiedad) {
-            $Entidad->$Propiedad = $Servicio[$Propiedad];
+        $Entidad = $this->EntidadRepo->find($Request->get('id')); //me manda la data en array vue
+
+        $this->EntidadRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
+
+        if ($Request->get('actividad_habilitadas') != null && $Request->get('actividad_habilitadas') != '' && is_array($Request->get('actividad_habilitadas'))) {
+            $Entidad = $this->EntidadRepo->setAtributoEspecifico($Entidad, 'actividad_habilitadas', implode(',', $Request->get('actividad_habilitadas')));
         }
-
-        $Entidad->save();
 
         $this->cleanCache('tipoDeServiciosEmpresa' . $Entidad->id);
 
-        return ['Validacion' => $Validacion,
-            'Validacion_mensaje' => 'Se editó correctamente ',
-            'empresa'            => $Empresa];
+        return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente');
     }
 }
