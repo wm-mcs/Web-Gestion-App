@@ -1,332 +1,230 @@
-Vue.component('socio-list' ,
-{
-
-props:['socio','empresa','acceso']
-,  
-
-
-
-data:function(){
+Vue.component("socio-list", {
+  props: ["socio", "empresa", "acceso"],
+  data: function() {
     return {
-      clases_desplegadas:false,
-      mensuales_desplegadas:false,
-      cargando:false
-     
+      clases_desplegadas: false,
+      mensuales_desplegadas: false,
+      cargando: false
+    };
+  },
 
+  methods: {
+    enviar_form: function(id) {
+      var id = "#" + id.toString();
 
-    }
-}, 
+      $(id)
+        .parent()
+        .submit();
+    },
+    abrir_cerrar_clases: function() {
+      if (this.clases_desplegadas) {
+        this.clases_desplegadas = false;
+      } else {
+        this.clases_desplegadas = true;
+      }
+    },
+    abrir_cerrar_mensual: function() {
+      if (this.mensuales_desplegadas) {
+        this.mensuales_desplegadas = false;
+      } else {
+        this.mensuales_desplegadas = true;
+      }
+    },
+    consumir_esta_clase: function(servicio) {
+      var mensaje =
+        "¿Seguro quieres consumir está clase? (de " + this.socio.name + " )";
 
+      var validation = confirm(mensaje);
 
+      if (!validation) {
+        return "";
+      }
 
-methods:{
-enviar_form:function(id){
-  var id = '#'+ id.toString();
+      var url = "/indicar_que_se_uso_el_servicio_hoy";
 
-   $( id ).parent().submit();
-},
-abrir_cerrar_clases:function(){
-  if(this.clases_desplegadas)
-  {
-    this.clases_desplegadas = false;
-  }
-  else
-  {
-    this.clases_desplegadas = true;
-  }
-},
-abrir_cerrar_mensual:function(){
+      var vue = this;
 
-  if(this.mensuales_desplegadas)
-  {
-    this.mensuales_desplegadas = false;
-  }
-  else
-  {
-    this.mensuales_desplegadas = true;
-  }
+      var data = {
+        servicio_a_editar: servicio,
+        socio_id: this.socio.id,
+        servicio_id: servicio.id,
+        empresa_id: this.empresa.id
+      };
 
-  
-},
-consumir_esta_clase:function(servicio){
+      this.cargando = true;
 
-  
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
 
-       var mensaje    = "¿Seguro quieres consumir está clase? (de " + this.socio.name + ' )' ;
+            vue.$emit("ActualizarSocios", response.data.Socios);
 
-       var validation = confirm(mensaje);
-
-       if(!validation)
-       {
-        return '';
-       }
-
-
-       var url = '/indicar_que_se_uso_el_servicio_hoy';
-
-       var vue = this;
-
-       var data = {servicio_a_editar:servicio,
-                            socio_id:this.socio.id,
-                         servicio_id:servicio.id,
-                          empresa_id:this.empresa.id};
-
-
-       this.cargando = true;                   
-
-       axios.post(url,data).then(function(response){ 
-
-
-          
-          if(response.data.Validacion == true)
-          {
-            
-             vue.cargando = false;
-             
-             vue.$emit("ActualizarSocios", response.data.Socios);
-
-             $.notify(response.data.Validacion_mensaje, "success");
-          }
-          else
-          {
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
             vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
-
-
-
-  
-
-},
-cargar_servicios:function(){
-       var mensaje    = "¿Seguro quieres renovar los servicios? (de " + this.socio.name + ' )' ;
-
-       var validation = confirm(mensaje);
-
-       if(!validation)
-       {
-        return '';
-       }
-
-
-       var url = '/cargar_servicios_recuerrentes_a_socio';
-
-       var vue = this;
-
-       var data = {
-                            socio_id:this.socio.id,                         
-                          empresa_id:this.empresa.id};
-
-       axios.post(url,data).then(function(response){ 
-
-
-          
-          if(response.data.Validacion == true)
-          {
-            
-            
-             
-             vue.$emit("ActualizarSocios", response.data.Socios);
-
-             $.notify(response.data.Validacion_mensaje, "success");
           }
-          else
-          {
+        })
+        .catch(function(error) {});
+    },
+    cargar_servicios: function() {
+      var mensaje =
+        "¿Seguro quieres renovar los servicios? (de " + this.socio.name + " )";
+
+      var validation = confirm(mensaje);
+
+      if (!validation) {
+        return "";
+      }
+
+      var url = "/cargar_servicios_recuerrentes_a_socio";
+
+      var vue = this;
+
+      var data = {
+        socio_id: this.socio.id,
+        empresa_id: this.empresa.id
+      };
+
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.$emit("ActualizarSocios", response.data.Socios);
+
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
             $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
-
-}
-
-         
-
-},
-computed:{
-
-  desactivado:function(){
-    if(this.socio.estado != 'si')
-    {
-      return true;
-    }
-    else
-    {
-      return false;
+          }
+        })
+        .catch(function(error) {});
     }
   },
-  
-  clasesDisponibles:function(){
-    if(this.socio.servicios_contratados_disponibles_tipo_clase.length > 0)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  },
-  mensualDisponibles:function(){
-    if(this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  },
-  nadaDisponible:function(){
-    if(this.clasesDisponibles || this.mensualDisponibles  )
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
-  },
-  cantidadDeClasesDisponibles:function(){
-
-    var cantidad = this.socio.servicios_contratados_disponibles_tipo_clase.length;
-
-    if(cantidad > 0)
-    {
-      if(cantidad > 1)
-      {
-        return cantidad + ' clases disponibles';
-      }
-      else
-      {
-         return cantidad + ' clase disponible';
-      }
-    }
-    else
-    {
-      return 0;
-    }
-
-  },
-  cantidadDeMensualesDisponibles:function(){
-
-    var cantidad = this.socio.servicios_contratados_disponibles_tipo_mensual.length;
-    if( cantidad > 0)
-    {
-      if(cantidad > 1)
-      {
-        return cantidad + ' mensuales disponibles';
-      }
-      else
-      {
-         return cantidad + ' mensual disponible';
-      }
-
-      return cantidad;
-    }
-    else
-    {
-      return 0;
-    }
-
-  },
-  getClassLista:function(){
-
-     var saldo_pesos   = this.socio.saldo_de_estado_de_cuenta_pesos;
-     var saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
-
-     if(saldo_pesos < 0 || saldo_dolares < 0 )
-     {
-       var debe = true;
-     }
-     else
-     {
-      var debe = false;
-     }
-    
-
-    return {      
-      
-      
-      'contiene-socio-tipo-lista': true 
-    }
-  },
-  mostrarEstadoDeCuenta:function(){
-    if(this.nadaDisponible)
-    {
-      if(this.socio.saldo_de_estado_de_cuenta_dolares != 0 || this.socio.saldo_de_estado_de_cuenta_pesos != 0)
-      {
+  computed: {
+    desactivado: function() {
+      if (this.socio.estado != "si") {
         return true;
-      }
-      else
-      {
+      } else {
         return false;
       }
-    }
-    else
-    {
-      return true;
+    },
+
+    clasesDisponibles: function() {
+      if (this.socio.servicios_contratados_disponibles_tipo_clase.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    mensualDisponibles: function() {
+      if (
+        this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    nadaDisponible: function() {
+      if (this.clasesDisponibles || this.mensualDisponibles) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    cantidadDeClasesDisponibles: function() {
+      var cantidad = this.socio.servicios_contratados_disponibles_tipo_clase
+        .length;
+
+      if (cantidad > 0) {
+        if (cantidad > 1) {
+          return cantidad + " clases disponibles";
+        } else {
+          return cantidad + " clase disponible";
+        }
+      } else {
+        return 0;
+      }
+    },
+    cantidadDeMensualesDisponibles: function() {
+      var cantidad = this.socio.servicios_contratados_disponibles_tipo_mensual
+        .length;
+      if (cantidad > 0) {
+        if (cantidad > 1) {
+          return cantidad + " mensuales disponibles";
+        } else {
+          return cantidad + " mensual disponible";
+        }
+
+        return cantidad;
+      } else {
+        return 0;
+      }
+    },
+    getClassLista: function() {
+      var saldo_pesos = this.socio.saldo_de_estado_de_cuenta_pesos;
+      var saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
+
+      if (saldo_pesos < 0 || saldo_dolares < 0) {
+        var debe = true;
+      } else {
+        var debe = false;
+      }
+
+      return {
+        "contiene-socio-tipo-lista": true
+      };
+    },
+    mostrarEstadoDeCuenta: function() {
+      if (this.nadaDisponible) {
+        if (
+          this.socio.saldo_de_estado_de_cuenta_dolares != 0 ||
+          this.socio.saldo_de_estado_de_cuenta_pesos != 0
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    },
+    tieneServiciosRenovacion: function() {
+      if (this.socio.servicios_renovacion_del_socio.length) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    whatsAppLink: function() {
+      if (
+        this.socio.celular_internacional == "" ||
+        this.socio.celular_internacional == null
+      ) {
+        var celular =
+          this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1);
+      } else {
+        var celular = this.socio.celular_internacional;
+      }
+
+      var url = "https://api.whatsapp.com/send?phone=" + celular + "&text=Hola";
+
+      return url;
+    },
+    whatsAppnumero: function() {
+      if (
+        this.socio.celular_internacional == "" ||
+        this.socio.celular_internacional == null
+      ) {
+        return this.socio.celular;
+      } else {
+        return this.socio.celular_internacional;
+      }
     }
   },
-  tieneServiciosRenovacion:function(){
-    if(this.socio.servicios_renovacion_del_socio.length)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  },
-  whatsAppLink:function(){
-
-
-    if(this.socio.celular_internacional == '' || this.socio.celular_internacional == null)
-    {
-      var celular = this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1);
-    }
-    else
-    {
-      var celular =  this.socio.celular_internacional;  
-    }
-
-     
-      var url     = 'https://api.whatsapp.com/send?phone=' + celular + '&text=Hola';
-
-      return        url;
-
-
-  },
-  whatsAppnumero:function(){
-
-
-    if(this.socio.celular_internacional == '' || this.socio.celular_internacional == null)
-    {
-       return this.socio.celular;
-    }
-    else
-    {
-
-      return this.socio.celular_internacional;
-      
-    }
-
-  }
-
-
-
-},
-template:`  
+  template: `  
 <div v-if="$root.vista_lista" :class="getClassLista">
   
     
@@ -339,6 +237,9 @@ template:`
            <input type="hidden" name="empresa_id" :value="empresa.id">
            <span :id="socio.id" class="no-mostrar"></span>
            <input type="hidden" name="socio_id" :value="socio.id">
+
+
+           <img  class="socio-img mx-3 " :src="socio.url_img"/>
            <span class="contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
 
       
@@ -485,10 +386,4 @@ template:`
       </div>
           
 </div>`
-
-}
-
-
-
-
-);
+});

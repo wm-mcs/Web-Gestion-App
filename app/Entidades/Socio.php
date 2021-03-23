@@ -27,7 +27,8 @@ class Socio extends Model
         'servicios_contratados_disponibles_tipo_clase',
         'servicios_contratados_disponibles_tipo_mensual',
         'servicios_renovacion_del_socio',
-        'fecha_creado_formateada'];
+        'fecha_creado_formateada',
+        'url_img'];
 
     public function getServiciosContratadosDelSocioAttribute()
     {
@@ -66,6 +67,11 @@ class Socio extends Model
             $Repo = new ServicioContratadoSocioRepo();
             return $Repo->getServiciosContratadosDisponiblesTipoMensual($this->id);
         });
+    }
+
+    public function getUrlImgAttribute()
+    {
+        return url() . '/imagenes/Socios/socio-icono.jpg';
     }
 
     /**
