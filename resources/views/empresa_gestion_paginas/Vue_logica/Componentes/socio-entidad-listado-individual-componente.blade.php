@@ -1,36 +1,34 @@
 Vue.component("socio-list", {
   props: ["socio", "empresa", "acceso"],
-  data: function() {
+  data: function () {
     return {
       clases_desplegadas: false,
       mensuales_desplegadas: false,
-      cargando: false
+      cargando: false,
     };
   },
 
   methods: {
-    enviar_form: function(id) {
+    enviar_form: function (id) {
       var id = "#" + id.toString();
 
-      $(id)
-        .parent()
-        .submit();
+      $(id).parent().submit();
     },
-    abrir_cerrar_clases: function() {
+    abrir_cerrar_clases: function () {
       if (this.clases_desplegadas) {
         this.clases_desplegadas = false;
       } else {
         this.clases_desplegadas = true;
       }
     },
-    abrir_cerrar_mensual: function() {
+    abrir_cerrar_mensual: function () {
       if (this.mensuales_desplegadas) {
         this.mensuales_desplegadas = false;
       } else {
         this.mensuales_desplegadas = true;
       }
     },
-    consumir_esta_clase: function(servicio) {
+    consumir_esta_clase: function (servicio) {
       var mensaje =
         "¿Seguro quieres consumir está clase? (de " + this.socio.name + " )";
 
@@ -48,14 +46,14 @@ Vue.component("socio-list", {
         servicio_a_editar: servicio,
         socio_id: this.socio.id,
         servicio_id: servicio.id,
-        empresa_id: this.empresa.id
+        empresa_id: this.empresa.id,
       };
 
       this.cargando = true;
 
       axios
         .post(url, data)
-        .then(function(response) {
+        .then(function (response) {
           if (response.data.Validacion == true) {
             vue.cargando = false;
 
@@ -67,9 +65,9 @@ Vue.component("socio-list", {
             $.notify(response.data.Validacion_mensaje, "warn");
           }
         })
-        .catch(function(error) {});
+        .catch(function (error) {});
     },
-    cargar_servicios: function() {
+    cargar_servicios: function () {
       var mensaje =
         "¿Seguro quieres renovar los servicios? (de " + this.socio.name + " )";
 
@@ -85,12 +83,12 @@ Vue.component("socio-list", {
 
       var data = {
         socio_id: this.socio.id,
-        empresa_id: this.empresa.id
+        empresa_id: this.empresa.id,
       };
 
       axios
         .post(url, data)
-        .then(function(response) {
+        .then(function (response) {
           if (response.data.Validacion == true) {
             vue.$emit("ActualizarSocios", response.data.Socios);
 
@@ -99,11 +97,11 @@ Vue.component("socio-list", {
             $.notify(response.data.Validacion_mensaje, "warn");
           }
         })
-        .catch(function(error) {});
-    }
+        .catch(function (error) {});
+    },
   },
   computed: {
-    desactivado: function() {
+    desactivado: function () {
       if (this.socio.estado != "si") {
         return true;
       } else {
@@ -111,14 +109,14 @@ Vue.component("socio-list", {
       }
     },
 
-    clasesDisponibles: function() {
+    clasesDisponibles: function () {
       if (this.socio.servicios_contratados_disponibles_tipo_clase.length > 0) {
         return true;
       } else {
         return false;
       }
     },
-    mensualDisponibles: function() {
+    mensualDisponibles: function () {
       if (
         this.socio.servicios_contratados_disponibles_tipo_mensual.length > 0
       ) {
@@ -127,14 +125,14 @@ Vue.component("socio-list", {
         return false;
       }
     },
-    nadaDisponible: function() {
+    nadaDisponible: function () {
       if (this.clasesDisponibles || this.mensualDisponibles) {
         return false;
       } else {
         return true;
       }
     },
-    cantidadDeClasesDisponibles: function() {
+    cantidadDeClasesDisponibles: function () {
       var cantidad = this.socio.servicios_contratados_disponibles_tipo_clase
         .length;
 
@@ -148,7 +146,7 @@ Vue.component("socio-list", {
         return 0;
       }
     },
-    cantidadDeMensualesDisponibles: function() {
+    cantidadDeMensualesDisponibles: function () {
       var cantidad = this.socio.servicios_contratados_disponibles_tipo_mensual
         .length;
       if (cantidad > 0) {
@@ -163,7 +161,7 @@ Vue.component("socio-list", {
         return 0;
       }
     },
-    getClassLista: function() {
+    getClassLista: function () {
       var saldo_pesos = this.socio.saldo_de_estado_de_cuenta_pesos;
       var saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
 
@@ -174,10 +172,10 @@ Vue.component("socio-list", {
       }
 
       return {
-        "contiene-socio-tipo-lista": true
+        "contiene-socio-tipo-lista": true,
       };
     },
-    mostrarEstadoDeCuenta: function() {
+    mostrarEstadoDeCuenta: function () {
       if (this.nadaDisponible) {
         if (
           this.socio.saldo_de_estado_de_cuenta_dolares != 0 ||
@@ -191,14 +189,14 @@ Vue.component("socio-list", {
         return true;
       }
     },
-    tieneServiciosRenovacion: function() {
+    tieneServiciosRenovacion: function () {
       if (this.socio.servicios_renovacion_del_socio.length) {
         return true;
       } else {
         return false;
       }
     },
-    whatsAppLink: function() {
+    whatsAppLink: function () {
       if (
         this.socio.celular_internacional == "" ||
         this.socio.celular_internacional == null
@@ -213,7 +211,7 @@ Vue.component("socio-list", {
 
       return url;
     },
-    whatsAppnumero: function() {
+    whatsAppnumero: function () {
       if (
         this.socio.celular_internacional == "" ||
         this.socio.celular_internacional == null
@@ -222,37 +220,42 @@ Vue.component("socio-list", {
       } else {
         return this.socio.celular_internacional;
       }
-    }
+    },
   },
   template: `  
-<div v-if="$root.vista_lista" :class="getClassLista">
+<div v-if="$root.vista_lista" class="w-100 row mx-0 justify-content-between align-items-center mb-3 p-3" :class="getClassLista">
   
     
        {!! Form::open([         'route' => ['get_socio_panel'],
                                 'method'=> 'Post',
                                 'files' =>  true,
-                                'class' => 'contiene-socio-lista_nombre-y-celular'
+                                'class' => 'col-3  d-flex align-items-start mx-0 px-0 mb-3 mb-lg-0'
                               ])               !!}   
 
            <input type="hidden" name="empresa_id" :value="empresa.id">
            <span :id="socio.id" class="no-mostrar"></span>
            <input type="hidden" name="socio_id" :value="socio.id">
 
-
-           <img  class="socio-img mx-3 " :src="socio.url_img"/>
-           <span class="contiene-socio-lista"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+           <div class="mr-3">                      
+              <img  class="socio-img  " :src="socio.url_img"/>
+           </div>
+           <div class="">
+            <span class="contiene-socio-lista d-block"  v-on:click="enviar_form(socio.id)">@{{socio.name}}</span>
+            <a :href="whatsAppLink"  target="_blank">
+              <div class="contiene-socio-celular">  
+                <i class="fab fa-whatsapp"></i> @{{whatsAppnumero}}    
+              </div>
+            </a> 
+           </div>
+           
 
       
      
-      <a :href="whatsAppLink"  target="_blank">
-        <div class="contiene-socio-celular">  
-          <i class="fab fa-whatsapp"></i> @{{whatsAppnumero}}    
-        </div>
-      </a> 
+     
      {!! Form::close() !!} 
 
    
-    <div class="contiene-planes-socio-lista">
+    <div class="col-6 contiene-planes-socio-lista">
        <div v-if="nadaDisponible" class="listado-socio-no-tiene" >  Nada disponible <i class="far fa-meh"></i></div> 
        <div v-if="clasesDisponibles" class="listado-socio-tiene-clases socio-clases-contenedor">
           <span>
@@ -301,7 +304,7 @@ Vue.component("socio-list", {
 
   <div v-if="desactivado"></div>
   
-  <div class="socio-lista-contiene-estado-de-cuenta" >
+  <div class="socio-lista-contiene-estado-de-cuenta col-3" >
     
     <estado-de-cuenta-socio-saldo v-if="mostrarEstadoDeCuenta" :empresa="empresa" :socio="socio"> </estado-de-cuenta-socio-saldo>
 
@@ -385,5 +388,5 @@ Vue.component("socio-list", {
                 
       </div>
           
-</div>`
+</div>`,
 });
