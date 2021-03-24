@@ -4,8 +4,8 @@ Vue.component('estado-de-cuenta-socio-saldo' ,
 
 data:function(){
     return {
-      
-            
+
+
 
     }
 },
@@ -14,9 +14,9 @@ props:['empresa','socio']
 ,
 
 
-mounted: function mounted () {        
-      
-   
+mounted: function mounted () {
+
+
 
 },
 methods:{
@@ -31,12 +31,12 @@ es_mayor_que_sero:function(valor){
           return false;
         }
      }
-   
-     
+
+
 
 },
 computed:{
-  
+
     saldoPesosIgualCero:function(){
     if( this.socio.saldo_de_estado_de_cuenta_pesos == 0)
     {
@@ -99,43 +99,43 @@ computed:{
    }
 
 },
-template:'
-  
- <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="contiene-estado-de-cuenta">
-            
-         
-              <div v-if="saldoPesosMayorCero" class="estado-de-cuenta-saldo estado-pago-indication">
-                
+template:`
+
+ <div v-if="!saldoPesosIgualCero || !saldoDolaresIgualCero " class="w-100">
+
+
+              <div v-if="saldoPesosMayorCero" class="color-text-success text-right datos-socio-lista">
+
                 <span v-if="saldoPesosMayorCero">
-                  A favor $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}} <i class="fas fa-check-square"></i>
+                <i class="fas fa-check-circle"></i>  A favor $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}}
                 </span>
-                
+
               </div>
-              <div v-if="saldoPesosMenorCero" class="estado-de-cuenta-saldo estado-debe-indication">
-                Debe $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}}  <i class="far fa-frown-open"></i>
+              <div v-if="saldoPesosMenorCero" class="color-text-error text-right datos-socio-lista">
+              <i class="fas fa-times-circle"></i> Debe $ @{{ Math.abs(socio.saldo_de_estado_de_cuenta_pesos)}}
               </div>
 
-              <div v-if="saldoDoalresMayorCero" class="estado-de-cuenta-saldo estado-pago-indication">
-               
+              <div v-if="saldoDoalresMayorCero" class="color-text-success text-right datos-socio-lista">
+
                 <span v-if="saldoDoalresMayorCero">
-                  A favor U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}} <i class="fas fa-check-square"></i>
+                <i class="fas fa-check-circle"></i>   A favor U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}}
                 </span>
-                
+
               </div>
-              <div v-if="saldoDoalresMenorCero" class="estado-de-cuenta-saldo estado-debe-indication">
-                Debe U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}}  <i class="far fa-frown-open"></i>
+              <div v-if="saldoDoalresMenorCero" class="color-text-error text-right datos-socio-lista">
+              <i class="fas fa-times-circle"></i>  Debe U$S @{{Math.abs(socio.saldo_de_estado_de_cuenta_dolares)}}
               </div>
 
-           </div>   
-           <div v-else class="estado-de-cuenta-saldo estado-pago-indication"">
-                  Al día <i class="fas fa-check-square"></i>
+           </div>
+           <div v-else class="color-text-success text-right datos-socio-lista">
+           <i class="fas fa-check-circle"></i>     Al día
            </div>
 
 
 
 
 
-'
+`
 }
 
 

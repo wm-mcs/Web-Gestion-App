@@ -6,19 +6,14 @@
 }
 
 .contiene-socio-tipo-lista {
- 
-  border: solid 2px transparent;
-  background-color: white;  
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.26);
-  
+  border: solid 1px transparent;
+  background-color: white;
+
+  border-bottom-color: $color-grey-1;
 }
 
 .contenedor-border-rojo {
   background-color: $Color-Errors-BG;
-}
-
-.contiene-socio-lista_nombre-y-celular {
-  
 }
 
 .contiene-socio-lista {
@@ -50,21 +45,17 @@
 }
 
 .contiene-planes-socio-lista {
-  @include flexbox;
-  @include flex-direction(column);
-  @include align-items(flex-start);
-  margin-right: 5px;
-  
 }
 
 .socio-clases-contenedor {
-  max-width: 200px;
 }
 
 .contiene-planes-mensuales {
-  @include flexbox;
-  @include flex-direction(column);
-  @include align-items(flex-start);
+}
+
+.datos-socio-lista {
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
 .planes-mensuales-cotiene {
@@ -79,9 +70,6 @@
   cursor: pointer;
   text-align: center;
   background-color: $Color-info;
-  @include flexbox;
-  @include flex-direction(row);
-  @include align-items(center);
 }
 
 .plan-mensual-fecha-vencimiento {
@@ -94,15 +82,16 @@
   @include flexbox;
   @include flex-direction(column);
   @include align-items(flex-start);
-  
+
   margin-top: 5px;
 }
 
 @media (min-width: $BrackPoint-Secundario) {
   .contiene-socio-tipo-lista {
-    width: 85%;
     padding: 3px 10px;
-    margin-top: 7px;
+
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.26);
+    border-bottom-color: transparent;
   }
 
   .contiene-socio-tipo-lista:hover {
@@ -110,10 +99,6 @@
   }
 
   .contiene-socio-lista_nombre-y-celular {
-    width: 20%;
-    @include flexbox;
-    @include flex-direction(column);
-    @include align-items(flex-start);
   }
 
   .contiene-socio-lista {
@@ -139,16 +124,10 @@
   }
 
   .contiene-planes-socio-lista {
-    @include flex-direction(row);
-    @include align-items(center);
-    margin-right: 0;
-    width: 50%;
   }
 
   .socio-clases-contenedor {
     padding: 6px;
-    width: 160px;
-    max-width: 160px;
   }
 
   .contiene-planes-mensuales {
@@ -158,13 +137,6 @@
   }
 
   .planes-mensuales-cotiene {
-    padding: 5px;
-    text-align: center;
-    width: 160px;
-    margin-right: 5px;
-    margin-top: 0;
-    @include flex-direction(column);
-    @include align-items(center);
   }
 
   .plan-mensual-fecha-vencimiento {
@@ -172,10 +144,5 @@
   }
 
   .socio-lista-contiene-estado-de-cuenta {
-    @include flexbox;
-    @include flex-direction(column);
-    @include align-items(flex-end);
-    width: 20%;
-    margin-top: 0;
   }
 }
