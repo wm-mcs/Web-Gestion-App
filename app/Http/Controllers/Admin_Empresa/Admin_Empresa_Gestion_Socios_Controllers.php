@@ -477,7 +477,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
         $Propiedades = ['estado', 'name', 'email', 'celular', 'cedula', 'direccion', 'rut', 'razon_social', 'mutualista', 'nota', 'celular_internacional'];
 
-        $this->SocioRepo->setEntidadDato($Socio, $Request, $Propiedades);
+        $Socio = $this->SocioRepo->setEntidadDato($Socio, $Request, $Propiedades);
+
+        if ($Request->get('imagen') != null) {
+            $Socio = $this->SocioRepo->setAtributoEspecifico($Socio, 'img', str_replace(' ', '-', $Socio->name) . $Socio->id);
+
+            $this->SocioRepo->setImagenDesdeVue($Request->get('imagen'), 'Socios/', $Socio->img, '.jpg', 500);
+            $this->SocioRepo->setImagenDesdeVue($Request->get('imagen'), 'Socios/', $Socio->img, '-chica.jpg', 100);
+        }
 
         return ['Validacion' => $Validacion,
             'Validacion_mensaje' => 'Se editó correctamente a ' . $Socio->name,

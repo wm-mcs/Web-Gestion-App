@@ -28,7 +28,8 @@ class Socio extends Model
         'servicios_contratados_disponibles_tipo_mensual',
         'servicios_renovacion_del_socio',
         'fecha_creado_formateada',
-        'url_img'];
+        'url_img',
+        'url_img_chica'];
 
     public function getServiciosContratadosDelSocioAttribute()
     {
@@ -69,9 +70,35 @@ class Socio extends Model
         });
     }
 
+    public function getPathImagenAttribute()
+    {
+        return public_path() . '/imagenes/Socios/' . $this->img . '.jpg';
+    }
+
     public function getUrlImgAttribute()
     {
-        return url() . '/imagenes/Socios/socio-icono.jpg';
+
+        if (file_exists($this->path_imagen)) {
+            return url() . '/imagenes/Socios/' . $this->img . '.jpg';
+        } else {
+            return url() . '/imagenes/Socios/socio-icono.jpg';
+        }
+
+    }
+
+    public function getPathImagenChicaAttribute()
+    {
+        return public_path() . '/imagenes/Socios/' . $this->img . '-chica.jpg';
+    }
+
+    public function getUrlImgChicaAttribute()
+    {
+        if (file_exists($this->path_imagen_chica)) {
+            return url() . '/imagenes/Socios/' . $this->img . '.-chica.jpg';
+        } else {
+            return url() . '/imagenes/Socios/socio-icono.jpg';
+        }
+
     }
 
     /**
