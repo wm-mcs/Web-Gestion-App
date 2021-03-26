@@ -19,74 +19,169 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
 
         </div>
-        <div class="modal-body text-center">
-
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Nombres y apellidos  </label>
-                      <input type="text" class="form-control"  v-model="socio.name" placeholder="Nombres y apellidos" required  />
-                  </div>
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Cédula  <span class="formulario-label-aclaracion"> (sin puntos ni guiones)</span> </label>
-                      <input type="text" class="form-control"  v-model="socio.cedula" placeholder="Cédula" required  />
-                  </div>
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Email</label>
-                      <input type="text" class="form-control"  v-model="socio.email" placeholder="Email" required  />
-                  </div>
-                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Número de celular</label>
-                      <input type="text" class="form-control"  v-model="socio.celular" placeholder="Número de celular" required  />
-                   </div>
-
-                   <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Celular internacional</label>
-                      <div class="modal-mensaje-aclarador">Rellenar este campo únicamente si el socio tiene un celular distinto al de tu país. Agregar el celular completo sin el símbolo de +. Esto es para que puedas comunicarte por Whatsapp con un solo click.
-                      </div>
-                      <input type="text" class="form-control"  v-model="socio.celular_internacional" placeholder="Celular" required  />
-                   </div>
+        <div class="modal-body ">
 
 
 
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Dirección</label>
-                      <input type="text" class="form-control"  v-model="socio.direccion" placeholder="Dirección" required  />
-                  </div>
+        <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="name"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="socio.name"
+                        required
 
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">RUT  </label>
-                      <input type="text" class="form-control"  v-model="socio.rut" placeholder="RUT" required  />
-                  </div>
-
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Razón social </label>
-                      <input type="text" class="form-control"  v-model="socio.razon_social" placeholder="Razón social" required  />
-                  </div>
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Mutualista</label>
-                      <input type="text" class="form-control"  v-model="socio.mutualista" placeholder="Mutualista" required  />
-                  </div>
-
-                  <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Notas <span class="formulario-label-aclaracion"> </span></label>
-                      <input type="text" class="form-control"  v-model="socio.nota" placeholder="Escribe algo para tener en cuenta con este socio" required  />
+                      />
+                      <label for="name">Nombres y apellidos</label>
+                    </fieldset>
                   </div>
 
                   <div class="formulario-label-fiel">
-                 <input type="file" name="imagen" v-on:change="onImageChange" accept="image/*">
-                </div>
+                    <fieldset class="float-label">
+                      <input
+                        name="cedula"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="socio.cedula"
+                        required
 
-                 <div class="form-group">
-                      <label class="formulario-label" for="Nombre">Estado <span class="formulario-label-aclaracion"> ¿está activo? </span></label>
-                      <div class="modal-mensaje-aclarador">
+                      />
+                      <label for="cedula">Cédula o DNI</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="email"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="socio.email"
+                        required
+
+                      />
+                      <label for="email">Email</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="celular"
+                        type="number"
+                        class="input-text-class-primary"
+                        v-model="socio.celular"
+                        required
+
+                      />
+                      <label for="celular">Celular</label>
+                    </fieldset>
+                  </div>
+
+
+                  <div class="formulario-label-fiel">
+                  <div class="modal-mensaje-aclarador">Rellenar este campo únicamente si el socio tiene un celular distinto al de tu país. Agregar el celular completo sin el símbolo de +. Esto es para que puedas comunicarte por Whatsapp con un solo click.</div>
+                    <fieldset class="float-label">
+                      <input
+                        name="celular_internacional"
+                        type="number"
+                        class="input-text-class-primary"
+                        v-model="socio.celular_internacional"
+                        required
+
+                      />
+                      <label for="celular_internacional">Celular</label>
+                    </fieldset>
+                  </div>
+
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="direccion"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="socio.direccion"
+                        required
+
+                      />
+                      <label for="direccion">Dirección</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="mutualista"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="socio.mutualista"
+                        required
+
+                      />
+                      <label for="mutualista">Mutualista</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+
+                  <div class="modal-mensaje-aclarador">
+                    Usá las notas para poner algún comentario que creas relevante. Ejemplo:'Llamó para avisar que dejó una campera.'
+                   </div>
+
+                    <fieldset class="float-label">
+
+                    <textarea name="nota" id="" cols="30"  class="input-text-class-primary"
+                        v-model="socio.nota" required rows="10"></textarea>
+
+                      <label for="mutualista">Notas</label>
+                    </fieldset>
+                  </div>
+
+
+
+
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+
+                      <input type="file"
+                      name="imagen"
+
+                      v-on:change="onImageChange"
+                      accept="image/*"
+                      class="input-text-class-primary">
+                      <label for="imagen">Foto de perfil</label>
+                    </fieldset>
+                  </div>
+
+
+
+                  <div class="formulario-label-fiel">
+
+                  <div class="modal-mensaje-aclarador">
                        Si cambias a "No" no podrás realizar acciones con el socio (cobrar, vender, etc) y el mismo no se mostrará en los listados.
                       </div>
-                     <select v-model="socio.estado" class="form-control">
+                    <fieldset class="float-label">
+
+                    <select required name="estado" v-model="socio.estado" class="input-text-class-primary">
 
                         <option>si</option>
                         <option>no</option>
 
                       </select>
+
+                      <label for="estado">Estado</label>
+                    </fieldset>
                   </div>
+
+
+
+
+
+
+
 
 
 

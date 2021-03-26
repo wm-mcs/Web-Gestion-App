@@ -199,7 +199,7 @@ Vue.component("socio-list", {
   template: `
 <div class="w-100 row mx-0 col-12 col-md-10 col-lg-9 col-xl-8 align-items-center mb-3 p-3" :class="getClassLista">
   {!! Form::open([ 'route' => ['get_socio_panel'], 'method'=> 'Post', 'files' =>
-  true, 'class' => 'col-6 col-lg-4 d-flex align-items-center mx-0 px-0 
+  true, 'class' => 'col-6 col-lg-4 d-flex align-items-center mx-0 px-0
   mb-lg-0' ]) !!}
 
   <input type="hidden" name="empresa_id" :value="empresa.id" />
@@ -227,7 +227,12 @@ Vue.component("socio-list", {
   <div class="col-6 col-lg-8 ">
     <div class="w-100 d-flex flex-column align-items-end">
       <div v-if="nadaDisponible" class="color-text-gris text-right datos-socio-lista mb-2">
-         <i class="fas fa-times-circle"></i> Nada disponible 
+         <i class="fas fa-times-circle"></i> Nada disponible
+      </div>
+
+
+      <div v-if="socio.nota != null &&  socio.nota != ''" class="color-text-gris text-right datos-socio-lista mb-2">
+      <i class="fas fa-exclamation"></i> @{{socio.nota}}
       </div>
       <div
         v-if="clasesDisponibles"
