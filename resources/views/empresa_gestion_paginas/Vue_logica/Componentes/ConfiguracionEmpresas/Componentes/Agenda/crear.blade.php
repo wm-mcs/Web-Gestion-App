@@ -3,11 +3,13 @@ Vue.component("crear-agenda", {
   data: function () {
     return {
       cargando: false,
-      diasQueRepiteArray: [0, 1, 2, 3],
+      diasQueRepiteArray: [],
       datos_a_enviar: {
         name: "",
 
-        currencyCode: "",
+        days: "",
+        hora_inicio: "",
+        hora_fin:"",
         estado: "si",
         imagen: "",
       },
@@ -18,10 +20,7 @@ Vue.component("crear-agenda", {
     limpiar_data_crear: function () {
       this.datos_a_enviar = {
         name: "",
-        code: "",
-        currencyCode: "",
-        estado: "si",
-        imagen: "",
+
       };
     },
     onImageChange(e) {
@@ -99,7 +98,7 @@ Vue.component("crear-agenda", {
             <div class="row  mx-0 ">
 
 
-                <div class="formulario-label-fiel">
+                <div class="formulario-label-fiel  borde-bottom-gris">
                     <fieldset class="float-label">
                       <input
                         name="name"
@@ -112,6 +111,50 @@ Vue.component("crear-agenda", {
                       <label for="name">Nombre</label>
                     </fieldset>
                   </div>
+
+
+                  <div class="row w-100 ">
+                  <div class="modal-mensaje-aclarador col-12 mb-1">
+                  Las horas se escriben hh.mm .
+                  Si querés escribir que algo comienza o termina a las 14 y 30 hs.
+                  Deberías escribir: 14.30
+                  Si querés que sea a las 14 en punto deberás escribir 14.00
+                  </div>
+                  <div class="col-6">
+                  <div class=" formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="hora_inicio"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="datos_a_enviar.hora_inicio"
+                        required
+
+                      />
+                      <label for="hora_inicio">Hora inicio</label>
+                    </fieldset>
+                  </div>
+                  </div>
+                  <div class="col-6">
+                  <div class=" formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="hora_fin"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="datos_a_enviar.hora_fin"
+                        required
+
+                      />
+                      <label for="hora_fin">Hora fin</label>
+                    </fieldset>
+                  </div>
+                  </div>
+
+
+                  </div>
+
+
 
                   <div class="formulario-label-fiel">
                   <div  class="col-12 formulario-label"
