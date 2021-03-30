@@ -7,6 +7,7 @@ Vue.component("crear-actividad", {
         name: "",
         empresa_id: this.$root.empresa.id,
         sucursal_id: this.$root.Sucursal.id,
+        color:'#7168f3',
         estado: "si",
       },
       showModal: false,
@@ -17,6 +18,7 @@ Vue.component("crear-actividad", {
       this.datos_a_enviar = {
         name: "",
         estado: "si",
+        color:'#7168f3'
 
       };
     },
@@ -96,6 +98,22 @@ Vue.component("crear-actividad", {
                       />
                       <label for="name">Nombre</label>
                     </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="color"
+                        type="color"
+                        class="input-text-class-primary"
+                        v-model="datos_a_enviar.color"
+                        required
+
+                      />
+                      <label for="color">Color</label>
+                    </fieldset>
+
+
                   </div>
 
               <div class="col-12 formulario-label-fiel">

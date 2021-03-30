@@ -1,24 +1,24 @@
 var ListaActividad = {
-    mixins: [onKeyPressEscapeCerrarModalMixIn],
-    props:['entidad'],
-    data: function () {
+  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  props: ["entidad"],
+  data: function () {
     return {
       cargando: false,
-      entidadAEditar:this.entidad,
+      entidadAEditar: this.entidad,
       showModal: false,
+      
     };
   },
   methods: {
-
-
     edit: function () {
       var url = "/editar_actividad";
 
-      var data = {empresa_id:this.$root.empresa.id,
-                    id:this.entidadAEditar.id,
-                    name:this.entidadAEditar.name,
-                    estado:this.entidadAEditar.estado,
-
+      var data = {
+        empresa_id: this.$root.empresa.id,
+        id: this.entidadAEditar.id,
+        name: this.entidadAEditar.name,
+        estado: this.entidadAEditar.estado,
+        color: this.entidadAEditar.color,
       };
 
       var vue = this;
@@ -31,11 +31,9 @@ var ListaActividad = {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-            
+
             vue.showModal = false;
             $.notify(response.data.Validacion_mensaje, "success");
-
-
           } else {
             vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "error");
@@ -49,13 +47,9 @@ var ListaActividad = {
   },
   computed: {},
   mounted: function () {
-
-
+   
   },
-  created() {
-
-
-},
+  created() {},
 
   template: `
   <div class="col-4">
@@ -96,6 +90,23 @@ var ListaActividad = {
                       />
                       <label for="name">Nombre</label>
                     </fieldset>
+                  </div>
+
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <input
+                        name="color"
+                        type="color"
+                        class="input-text-class-primary"
+                        v-model="entidadAEditar.color"
+                        required
+
+                      />
+                      <label for="color">Color</label>
+                    </fieldset>
+
+                    
                   </div>
 
               <div class="col-12 formulario-label-fiel">
@@ -144,5 +155,5 @@ var ListaActividad = {
 
   </div>
 
-`
+`,
 };

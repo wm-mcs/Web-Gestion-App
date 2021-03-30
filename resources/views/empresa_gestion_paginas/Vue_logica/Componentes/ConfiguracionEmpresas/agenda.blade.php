@@ -71,7 +71,7 @@
 
 
 <script type="text/javascript">
-
+ @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Mixin.actividadesMixIn')
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Agenda.crear')

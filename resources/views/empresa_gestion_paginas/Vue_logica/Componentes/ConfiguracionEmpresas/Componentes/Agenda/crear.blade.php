@@ -1,5 +1,5 @@
 Vue.component("crear-agenda", {
-  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  mixins: [onKeyPressEscapeCerrarModalMixIn,actividadeslMixIn],
   data: function () {
     return {
       cargando: false,
@@ -8,10 +8,14 @@ Vue.component("crear-agenda", {
         name: "",
 
         days: "",
-        hora_inicio: "",
-        hora_fin:"",
+        hora_inicio: "10:00",
+        hora_fin:"11:00",
+        actividad_id:'',
+        tiene_limite_de_cupos:'no',
         estado: "si",
-        imagen: "",
+        empresa_id: this.$root.empresa.id,
+        sucursal_id:this.$root.Sucursal.id
+
       },
       showModal: false,
     };
@@ -23,18 +27,14 @@ Vue.component("crear-agenda", {
 
       };
     },
-    onImageChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files[0]);
-    },
-    createImage(file) {
-      let reader = new FileReader();
-      let vm = this;
-      reader.onload = (e) => {
-        vm.datos_a_enviar.imagen = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    onChangeActividad:function(){
+
+      let actividad = this.actividades.filter(
+        actividad => actividad.id == this.datos_a_enviar.actividad_id
+      )[0];
+
+      this.datos_a_enviar.name = actividad.name;
+
     },
     crear: function () {
       var url = "/crear";
@@ -98,34 +98,39 @@ Vue.component("crear-agenda", {
             <div class="row  mx-0 ">
 
 
-                <div class="formulario-label-fiel  borde-bottom-gris">
-                    <fieldset class="float-label">
-                      <input
-                        name="name"
-                        type="text"
-                        class="input-text-class-primary"
-                        v-model="datos_a_enviar.name"
-                        required
+            <div class="formulario-label-fiel">
 
-                      />
-                      <label for="name">Nombre</label>
-                    </fieldset>
+            <div class="modal-mensaje-aclarador">
+                ¿Qué actividad vas a agregar al cronograma?
+                </div>
+              <fieldset class="float-label">
+
+              <select required name="actividad_id" v-model="datos_a_enviar.actividad_id"  @change="onChangeActividad" class="input-text-class-primary">
+
+                  <option :value="actividad.id" v-for="actividad in actividades" :key="actividad.id">@{{actividad.name}}</option>
+
+
+                </select>
+
+                <label for="actividad_id">Actividad</label>
+              </fieldset>
+            </div>
+
+
+
+
+
+                  <div v-if="datos_a_enviar.actividad_id != ''" class="row w-100 mx-0 ">
+                  <div class="modal-mensaje-aclarador col-12 px-1 ">
+
+                  Indicá entre qué horas es
                   </div>
-
-
-                  <div class="row w-100 ">
-                  <div class="modal-mensaje-aclarador col-12 mb-1">
-                  Las horas se escriben hh.mm .
-                  Si querés escribir que algo comienza o termina a las 14 y 30 hs.
-                  Deberías escribir: 14.30
-                  Si querés que sea a las 14 en punto deberás escribir 14.00
-                  </div>
-                  <div class="col-6">
+                  <div class="col-6 p-0">
                   <div class=" formulario-label-fiel">
                     <fieldset class="float-label">
                       <input
                         name="hora_inicio"
-                        type="text"
+                        type="time"
                         class="input-text-class-primary"
                         v-model="datos_a_enviar.hora_inicio"
                         required
@@ -135,12 +140,12 @@ Vue.component("crear-agenda", {
                     </fieldset>
                   </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 p-0">
                   <div class=" formulario-label-fiel">
                     <fieldset class="float-label">
                       <input
                         name="hora_fin"
-                        type="text"
+                        type="time"
                         class="input-text-class-primary"
                         v-model="datos_a_enviar.hora_fin"
                         required
@@ -156,10 +161,10 @@ Vue.component("crear-agenda", {
 
 
 
-                  <div class="formulario-label-fiel">
+                  <div v-if="datos_a_enviar.hora_fin != '' && datos_a_enviar.hora_inicio != ''  && datos_a_enviar.actividad_id != '' " class="formulario-label-fiel">
                   <div  class="col-12 formulario-label"
                   >
-                  Los días que se repite son ...
+                  ¿En qué días se repite @{{datos_a_enviar.name}} en el horarío de @{{datos_a_enviar.hora_inicio}} hs a @{{datos_a_enviar.hora_fin}} hs ?
                   </div>
                   <div class="col-12">
                       <label for="lunes">Lunes</label>
@@ -197,21 +202,45 @@ Vue.component("crear-agenda", {
 
 
 
+                  <div v-if="datos_a_enviar.hora_fin != '' && datos_a_enviar.hora_inicio != ''  && datos_a_enviar.actividad_id != '' && diasQueRepiteArray.length > 0  " class="formulario-label-fiel">
+
+                     <div class="modal-mensaje-aclarador">
+                      Indicá si tiene límite de cupos-
+                    </div>
+                    <fieldset class="float-label">
+
+                    <select required name="tiene_limite_de_cupos" v-model="datos_a_enviar.tiene_limite_de_cupos" class="input-text-class-primary">
+
+                        <option>si</option>
+                        <option>no</option>
+
+                      </select>
+
+                      <label for="tiene_limite_de_cupos">¿Tiene límite de cupos?</label>
+                    </fieldset>
+                  </div>
 
 
 
+                  <div class="formulario-label-fiel">
+
+                  <div class="modal-mensaje-aclarador">
+                      Activar o desactivar está actividad del cronograma. QUITAR ESTO PARA LA PARTE DE CREAR LUEGO DE CREAR LA LISTA
+                      </div>
+                    <fieldset class="float-label">
+
+                    <select required name="estado" v-model="datos_a_enviar.estado" class="input-text-class-primary">
+
+                        <option>si</option>
+                        <option>no</option>
+
+                      </select>
+
+                      <label for="estado">¿Está activa?</label>
+                    </fieldset>
+                  </div>
 
 
-
-
-              <div class="col-12 formulario-label-fiel">
-                <label class="formulario-label">¿Activo?</label>
-                <select v-model="datos_a_enviar.estado" class="formulario-field">
-                  <option>si</option>
-                  <option>no</option>
-                </select>
-
-              </div>
 
 
 

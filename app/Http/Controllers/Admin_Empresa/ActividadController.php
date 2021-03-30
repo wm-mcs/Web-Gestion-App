@@ -28,7 +28,7 @@ class ActividadController extends Controller implements EntidadCrudInterface
 
     public function getPropiedades()
     {
-        return ['empresa_id', 'name', 'estado'];
+        return ['empresa_id', 'name', 'estado', 'color'];
     }
 
     public function cleanCache($customCache)

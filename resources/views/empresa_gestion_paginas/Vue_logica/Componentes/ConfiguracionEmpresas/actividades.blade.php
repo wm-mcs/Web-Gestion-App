@@ -73,6 +73,8 @@
 @section('vue-logica')
 
 
+
+
 <script type="text/javascript">
 
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
