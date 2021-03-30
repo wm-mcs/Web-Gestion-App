@@ -59,7 +59,7 @@
   </div>
 
 
-  <listado-actividad></listado-actividad>
+  <listado></listado>
 
 
   <p>

@@ -12,6 +12,7 @@ Vue.component("crear-agenda", {
         hora_fin:"11:00",
         actividad_id:'',
         tiene_limite_de_cupos:'no',
+        cantidad_de_cupos:'',
         estado: "si",
         empresa_id: this.$root.empresa.id,
         sucursal_id:this.$root.Sucursal.id
@@ -36,11 +37,16 @@ Vue.component("crear-agenda", {
       this.datos_a_enviar.name = actividad.name;
 
     },
+    handlerClose:function(){
+      this.showModal = false;
+
+    },
     crear: function () {
-      var url = "/crear";
+      var url = "/crear_agenda";
+
+      this.datos_a_enviar.days = this.diasQueRepiteArray;
 
       var data = this.datos_a_enviar;
-
       var vue = this;
 
       vue.cargando = true;
@@ -51,7 +57,7 @@ Vue.component("crear-agenda", {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-            bus.$emit("se-creo-o-edito-pais", "hola");
+            bus.$emit("se-creo-o-edito", "hola");
             vue.showModal = false;
             vue.limpiar_data_crear();
             $.notify(response.data.Validacion_mensaje, "success");
@@ -73,7 +79,7 @@ Vue.component("crear-agenda", {
 
 
   <button type="button" class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
-   Crear actividad <i class="fas fa-plus"></i>
+   Crar cronograma de una actividad <i class="fas fa-plus"></i>
   </button>
 
 
@@ -162,9 +168,9 @@ Vue.component("crear-agenda", {
 
 
                   <div v-if="datos_a_enviar.hora_fin != '' && datos_a_enviar.hora_inicio != ''  && datos_a_enviar.actividad_id != '' " class="formulario-label-fiel">
-                  <div  class="col-12 formulario-label"
+                  <div  class="col-12 modal-mensaje-aclarador mb-2"
                   >
-                  ¿En qué días se repite @{{datos_a_enviar.name}} en el horarío de @{{datos_a_enviar.hora_inicio}} hs a @{{datos_a_enviar.hora_fin}} hs ?
+                  ¿En qué días se repite @{{datos_a_enviar.name}} en el horarío de @{{datos_a_enviar.hora_inicio}} hs a @{{datos_a_enviar.hora_fin}} hs ? <b>Seleccioná el o los días.</b>
                   </div>
                   <div class="col-12">
                       <label for="lunes">Lunes</label>
@@ -202,7 +208,10 @@ Vue.component("crear-agenda", {
 
 
 
-                  <div v-if="datos_a_enviar.hora_fin != '' && datos_a_enviar.hora_inicio != ''  && datos_a_enviar.actividad_id != '' && diasQueRepiteArray.length > 0  " class="formulario-label-fiel">
+                  <div v-if="datos_a_enviar.hora_fin != ''
+                   && datos_a_enviar.hora_inicio != ''
+                   && datos_a_enviar.actividad_id != ''
+                   && diasQueRepiteArray.length > 0  " class="formulario-label-fiel">
 
                      <div class="modal-mensaje-aclarador">
                       Indicá si tiene límite de cupos-
@@ -219,6 +228,27 @@ Vue.component("crear-agenda", {
                       <label for="tiene_limite_de_cupos">¿Tiene límite de cupos?</label>
                     </fieldset>
                   </div>
+
+
+                  <div v-if="datos_a_enviar.tiene_limite_de_cupos == 'si'" class="formulario-label-fiel">
+
+                    <div class="modal-mensaje-aclarador">
+                       ¿Cuál es la cantidad máxima de personas por clase ?
+                        </div>
+                      <fieldset class="float-label">
+
+                      <input
+                        name="cantidad_de_cupos"
+                        type="number"
+                        class="input-text-class-primary"
+                        v-model="datos_a_enviar.cantidad_de_cupos"
+                        required
+
+                      />
+
+                        <label for="cantidad_de_cupos">Cantidad máxima de personas por clase</label>
+                      </fieldset>
+                    </div>
 
 
 
@@ -248,7 +278,7 @@ Vue.component("crear-agenda", {
 
               <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
               <div v-else class="w-100">
-              <button type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+              <button v-if="datos_a_enviar.hora_fin != '' && datos_a_enviar.hora_inicio != ''  && datos_a_enviar.actividad_id != '' && diasQueRepiteArray.length > 0  "  type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
                  Confirmar
               </button>
               </div>

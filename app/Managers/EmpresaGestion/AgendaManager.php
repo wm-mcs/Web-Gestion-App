@@ -14,7 +14,8 @@ class AgendaManager extends ManagerBase
             'hora_fin'              => 'required',
             'actividad_id'          => 'required',
             'tiene_limite_de_cupos' => 'required',
-            'estado'                => 'required',
+            'cantidad_de_cupos'     => 'min:2',
+
         ];
 
         return $rules;

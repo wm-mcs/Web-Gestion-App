@@ -1,35 +1,27 @@
-Vue.component("crear-actividad", {
+var ListaActividad = {
   mixins: [onKeyPressEscapeCerrarModalMixIn],
+  props: ["entidad"],
   data: function () {
     return {
       cargando: false,
-      datos_a_enviar: {
-        name: "",
-        empresa_id: this.$root.empresa.id,
-        sucursal_id: this.$root.Sucursal.id,
-        color:'#7168f3',
-        estado: "si",
-      },
+      entidadAEditar: this.entidad,
       showModal: false,
+      
     };
   },
   methods: {
-    limpiar_data_crear: function () {
-      this.datos_a_enviar = {
-        name: "",
-        estado: "si",
-        color:'#7168f3'
+    edit: function () {
+      var url = "/editar_actividad";
 
+      var data = {
+        empresa_id: this.$root.empresa.id,
+        id: this.entidadAEditar.id,
+        name: this.entidadAEditar.name,
+        estado: this.entidadAEditar.estado,
+        color: this.entidadAEditar.color,
       };
-    },
-
-    crear: function () {
-      var url = "/crear_actividad";
-
-      var data = this.datos_a_enviar;
 
       var vue = this;
-
       vue.cargando = true;
 
       axios
@@ -39,9 +31,8 @@ Vue.component("crear-actividad", {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-            bus.$emit("se-creo-o-edito", "hola");
+
             vue.showModal = false;
-            vue.limpiar_data_crear();
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
@@ -55,16 +46,17 @@ Vue.component("crear-actividad", {
     },
   },
   computed: {},
-  mounted: function () {},
+  mounted: function () {
+   
+  },
+  created() {},
 
-  template: `<span>
+  template: `
+  <div class="col-4">
 
-
-  <button type="button" class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
-   Crear actividad <i class="fas fa-plus"></i>
-  </button>
-
-
+  <div>
+    <h3 class="simula_link" @click="showModal = true" > @{{entidadAEditar.name}}</h3>
+  </div>
   <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
@@ -75,7 +67,7 @@ Vue.component("crear-actividad", {
 
 
           <div class="row">
-            <h4 class="col-12 sub-titulos-class" > Crear</h4>
+            <h4 class="col-12 sub-titulos-class" > Editar @{{entidadAEditar.name}}</h4>
             <div class="col-12 modal-mensaje-aclarador">
 
             </div>
@@ -92,7 +84,7 @@ Vue.component("crear-actividad", {
                         name="name"
                         type="text"
                         class="input-text-class-primary"
-                        v-model="datos_a_enviar.name"
+                        v-model="entidadAEditar.name"
                         required
 
                       />
@@ -100,25 +92,26 @@ Vue.component("crear-actividad", {
                     </fieldset>
                   </div>
 
+
                   <div class="formulario-label-fiel">
                     <fieldset class="float-label">
                       <input
                         name="color"
                         type="color"
                         class="input-text-class-primary"
-                        v-model="datos_a_enviar.color"
+                        v-model="entidadAEditar.color"
                         required
 
                       />
                       <label for="color">Color</label>
                     </fieldset>
 
-
+                    
                   </div>
 
               <div class="col-12 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label>
-                <select v-model="datos_a_enviar.estado" class="formulario-field">
+                <select v-model="entidadAEditar.estado" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
@@ -129,12 +122,15 @@ Vue.component("crear-actividad", {
 
 
 
-              <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
-              <div v-else class="w-100">
-              <button type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
-                 Confirmar
+              <button v-if="cargando != true" type="button" @click="edit" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+                 Editar
               </button>
-              </div>
+              <div v-else class="my-3  Procesando-text w-100">
+        <div class="cssload-container">
+            <div class="cssload-tube-tunnel"></div>
+        </div>
+    </div>
+
             </div>
 
 
@@ -154,5 +150,10 @@ Vue.component("crear-actividad", {
   </transition>
 </span>
 
+
+
+
+  </div>
+
 `,
-});
+};

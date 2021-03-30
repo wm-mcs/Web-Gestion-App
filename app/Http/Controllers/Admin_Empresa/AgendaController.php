@@ -36,7 +36,7 @@ class AgendaController extends Controller implements EntidadCrudInterface
 
     public function getPropiedades()
     {
-        return ['name', 'hora_inicio', 'hora_fin', 'actividad_id', 'tiene_limite_de_cupos', 'empresa_id', 'sucursal_id'];
+        return ['name', 'hora_inicio', 'hora_fin', 'actividad_id', 'tiene_limite_de_cupos', 'cantidad_de_cupos', 'empresa_id', 'sucursal_id'];
     }
 
     public function cleanCache($customCache)
@@ -46,10 +46,11 @@ class AgendaController extends Controller implements EntidadCrudInterface
 
     public function getEntidades(Request $Request)
     {
-    }
+        $Empresa_id = $Request->get('user_empresa_desde_middleware')->empresa_id;
+        $Sucursal   = $Request->get('sucursal_desde_middleware');
+        $Entidades  = $this->EntidadRepo->getAgendasDeEstaSucursal($Empresa_id, $Sucursal->id, 'id', 'desc', null);
 
-    public function get_tipo_servicios($empresa_id)
-    {
+        return HelpersGenerales::formateResponseToVue(true, 'Se cargaron los cronogramas', $Entidades);
     }
 
     //agrega un nuevo tipo de servicio ( Tipo Clase o Tipo Mensual )
@@ -69,7 +70,7 @@ class AgendaController extends Controller implements EntidadCrudInterface
 
         $Entidad = $this->EntidadRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
 
-        $this->cleanCache('ActividadAgenda' . $Entidad->actividad_id);
+        $this->cleanCache('ActividadAgenda' . $Entidad->id);
 
         return HelpersGenerales::formateResponseToVue(true, 'Se creó correctamente');
     }

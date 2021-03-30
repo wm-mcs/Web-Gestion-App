@@ -1,4 +1,4 @@
-@include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Actividad.lista')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Agenda.lista')
 
 Vue.component("listado", {
 
@@ -16,7 +16,7 @@ Vue.component("listado", {
 
 
     get: function () {
-      var url = "/get_actividad";
+      var url = "/get_agendas";
 
       var data = {empresa_id:this.$root.empresa.id};
 
