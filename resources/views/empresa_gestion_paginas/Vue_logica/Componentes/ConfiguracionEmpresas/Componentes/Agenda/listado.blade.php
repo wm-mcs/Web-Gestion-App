@@ -1,61 +1,115 @@
 @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Agenda.lista')
 
 Vue.component("listado", {
-
-  components:{
-    'Lista':ListaActividad
+  mixins: [actividadeslMixIn],
+  components: {
+    Lista: Lista
   },
-  data: function () {
+  data: function() {
     return {
       cargando: false,
-      entidades:[],
+      entidades: [],
       showModal: false,
+      diasArrayObjeto: [
+        {
+          name: "lunes",
+          valor: 0
+        },
+        {
+          name: "martes",
+          valor: 1
+        },
+        {
+          name: "miércoles",
+          valor: 2
+        },
+        {
+          name: "jueves",
+          valor: 3
+        },
+        {
+          name: "viernes",
+          valor: 4
+        },
+        {
+          name: "sábado",
+          valor: 5
+        },
+        {
+          name: "domingo",
+          valor: 6
+        }
+      ]
     };
   },
   methods: {
-
-
-    get: function () {
+    get: function() {
       var url = "/get_agendas";
 
-      var data = {empresa_id:this.$root.empresa.id};
+      var data = { empresa_id: this.$root.empresa.id };
 
       var vue = this;
       vue.cargando = true;
 
       axios
         .post(url, data)
-        .then(function (response) {
+        .then(function(response) {
           var data = response.data;
 
           if (data.Validacion == true) {
             vue.cargando = false;
             vue.entidades = data.Data;
-
-
-
           } else {
             vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
         });
-    },
+    }
   },
-  computed: {},
-  mounted: function () {
+  computed: {
+    diasConAgendasArray: function() {
+      let dataConDias = [];
 
-      this.get();
+      this.diasArrayObjeto.forEach((dia) => {
+        let agendasDeesteDia = this.entidades
+          .filter((agenda) => {
+            return agenda.days.split(",").includes(dia.valor.toString());
+          })
+          .sort(function(a, b) {
+            a = parseInt(a.hora_inicio.replace(":", ""));
+            b = parseInt(b.hora_inicio.replace(":", ""));
+
+            if (a > b) {
+              return 1;
+            }
+            if (a < b) {
+              return -1;
+            }
+            
+            return 0;
+          });
+
+        dataConDias.push({
+          name: dia.name,
+          agendas: agendasDeesteDia
+        });
+      });
+
+      return dataConDias;
+    }
+  },
+  mounted: function() {
+    this.get();
   },
   created() {
-    bus.$on("se-creo-o-edito", data => {
-        this.get();
+    bus.$on("se-creo-o-edito", (data) => {
+      this.get();
     });
-
-},
+  },
 
   template: `
   <div class="row mx-0 my-5 w-100">
@@ -65,13 +119,31 @@ Vue.component("listado", {
             <div class="cssload-tube-tunnel"></div>
         </div>
     </div>
+    <div v-else class="row w-100 mx-0">
 
-    <Lista  v-for="entidad in entidades" :entidad="entidad" :key="entidad.id" v-if="entidades.length > 0">
-        @{{entidad.name}}
-    </Lista>
+    <div v-for="diaObjeto in diasConAgendasArray" :key="diaObjeto.valor" class="col-12 col-lg-2 mb-2 p-2">
+      <div class="p-1 border-hover-gris-0">
+
+
+      <p class="w-100 px-2 mb-2">
+        <b class="text-uppercase">@{{diaObjeto.name}}</b>
+      </p>
+
+      <div >
+      <Lista  v-for="agenda in diaObjeto.agendas" :key="diaObjeto.name + '-' +agenda.id " :entidad="agenda" :actividades="actividades" v-if="diaObjeto.agendas.length > 0">
+
+      </Lista>
+      </div>
+      </div>
+    </div>
+
+
+    </div>
+
+
 
 
   </div>
 
-`,
+`
 });

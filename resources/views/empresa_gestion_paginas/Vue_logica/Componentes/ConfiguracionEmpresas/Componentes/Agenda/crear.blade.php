@@ -252,23 +252,6 @@ Vue.component("crear-agenda", {
 
 
 
-                  <div class="formulario-label-fiel">
-
-                  <div class="modal-mensaje-aclarador">
-                      Activar o desactivar está actividad del cronograma. QUITAR ESTO PARA LA PARTE DE CREAR LUEGO DE CREAR LA LISTA
-                      </div>
-                    <fieldset class="float-label">
-
-                    <select required name="estado" v-model="datos_a_enviar.estado" class="input-text-class-primary">
-
-                        <option>si</option>
-                        <option>no</option>
-
-                      </select>
-
-                      <label for="estado">¿Está activa?</label>
-                    </fieldset>
-                  </div>
 
 
 

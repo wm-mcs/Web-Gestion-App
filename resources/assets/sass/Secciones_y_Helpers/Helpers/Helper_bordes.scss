@@ -15,3 +15,11 @@
 .borde-primary {
   border: solid 1px $color-3;
 }
+
+.border-hover-gris-0 {
+  border: solid 2px transparent;
+}
+
+.border-hover-gris-0:hover {
+  border-color: $color-grey0;
+}
