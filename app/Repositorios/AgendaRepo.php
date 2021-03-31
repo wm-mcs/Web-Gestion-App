@@ -20,13 +20,16 @@ class AgendaRepo extends BaseRepo
 
     ) {
 
-        return $this->entidad
+        return $this->getEntidad()
             ->where('empresa_id', $Empresa_id)
             ->where('sucursal_id', $Sucursal_id)
             ->where('borrado', 'no')
             ->where(function ($q) use ($Estado) {
+
                 if ($Estado == 'si') {
                     $q->where('estado', 'si');
+                } else {
+                    $q->where('estado', '<>', '');
                 }
             })
             ->orderBy($Ordenar_key, $Order_sentido)

@@ -1,31 +1,38 @@
 var Lista = {
   mixins: [onKeyPressEscapeCerrarModalMixIn],
   props: ["entidad", "actividades"],
-  data: function() {
+  data: function () {
     return {
       cargando: false,
       entidadAEditar: this.entidad,
       showModal: false,
-      diasQueRepiteArray: []
+      diasQueRepiteArray: [],
+      errores:[]
     };
   },
   methods: {
-    onChangeActividad: function() {
+    onChangeActividad: function () {
       let actividad = this.actividades.filter(
         (actividad) => actividad.id == this.entidadAEditar.actividad_id
       )[0];
-
+      this.entidadAEditar.actividad_id = actividad.id;
       this.entidadAEditar.name = actividad.name;
     },
-    edit: function() {
+    edit: function () {
       var url = "/editar_agenda";
 
       var data = {
         empresa_id: this.$root.empresa.id,
+        sucursal_id:this.$root.Sucursal.id,
         id: this.entidadAEditar.id,
         name: this.entidadAEditar.name,
+        days: this.diasQueRepiteArray,
+        hora_inicio: this.entidadAEditar.hora_inicio,
+        hora_fin: this.entidadAEditar.hora_fin,
+        actividad_id: this.entidadAEditar.actividad_id,
+        tiene_limite_de_cupos: this.entidadAEditar.tiene_limite_de_cupos,
+        cantidad_de_cupos: this.entidadAEditar.cantidad_de_cupos,
         estado: this.entidadAEditar.estado,
-        color: this.entidadAEditar.color
       };
 
       var vue = this;
@@ -33,35 +40,77 @@ var Lista = {
 
       axios
         .post(url, data)
-        .then(function(response) {
+        .then(function (response) {
           var data = response.data;
 
           if (data.Validacion == true) {
             vue.cargando = false;
 
             vue.showModal = false;
+
+            vue.errores = [];
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
+            vue.errores = data.Data;
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
+          vue.cargando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
+    },
+    eliminar:function(){
+      var url = "/eleminar_actividad"; 
+
+      var validation = confirm("¿De verdad lo querés borrar?");
+
+      if(!validation)
+      {
+       return '';
+      }
+      const data = {
+        empresa_id: this.$root.empresa.id,
+        id: this.entidadAEditar.id,
+       
+      };
+
+      var vue = this;
+      vue.cargando = true;
+
+      axios
+        .post(url, data)
+        .then(function (response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.cargando = false;
+            vue.showModal = false;
+            bus.$emit("se-creo-o-edito", "hola");
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function (error) {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
         });
     }
   },
   computed: {},
-  mounted: function() {
-    this.diasQueRepiteArray = this.entidadAEditar.days;
+  mounted: function () {
+    this.diasQueRepiteArray = this.entidadAEditar.days.split(",");
   },
   created() {},
 
   template: `
   <div class="w-100 mb-1">
 
-  <div class="px-2 py-2 agenda-lista-contenedor background-gris-0" :style="{ borderLeftColor: entidadAEditar.actividad.color}">
+  <div class="px-2 py-2 agenda-lista-contenedor background-gris-0" :style="{ borderLeftColor: entidadAEditar.actividad.color, opacity:entidadAEditar.estado == 'si' ? '1':'0.5'}">
     <h3 class="agenda-lista-name mb-2 simula_link" @click="showModal = true" >
       <b>@{{entidadAEditar.actividad.name}}</b> <i class="fas fa-edit"></i>
     </h3>
@@ -77,6 +126,9 @@ var Lista = {
       </small>
 
     </p>
+    <p v-if="entidadAEditar.estado != 'si'" class="agenda-lista-dato mt-2 mb-0 text-uppercase">     
+      DESACTIVADA
+    </p>
 
 
   </div>
@@ -90,11 +142,15 @@ var Lista = {
 
 
           <div class="row">
-            <h4 class="col-12 sub-titulos-class" > Editar @{{entidadAEditar.name}}</h4>
+            <h4 class="col-12 sub-titulos-class" > Editar el cronograma de @{{entidadAEditar.name}}</h4>
             <div class="col-12 modal-mensaje-aclarador">
 
             </div>
+
+            
+            
           </div>
+
 
           <div class="modal-body">
 
@@ -269,7 +325,9 @@ var Lista = {
 
 
 
-
+      <div class="col-12 my-2" v-if="errores.length > 0" >
+      <div @click="errores = []" class="cursor_pointer" v-for="error in errores">@{{error[0]}}</div>
+    </div>
 
 
               <button v-if="cargando != true" type="button" @click="edit" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
@@ -305,5 +363,5 @@ var Lista = {
 
   </div>
 
-`
+`,
 };

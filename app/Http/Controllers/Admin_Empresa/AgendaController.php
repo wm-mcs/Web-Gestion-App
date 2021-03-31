@@ -75,8 +75,35 @@ class AgendaController extends Controller implements EntidadCrudInterface
         return HelpersGenerales::formateResponseToVue(true, 'Se creó correctamente');
     }
 
-    //editar un servicio
+    //editar
     public function editarEntidad(Request $Request)
     {
+        $manager = $this->getManager($Request);
+
+        if (!$manager->isValid()) {
+            return HelpersGenerales::formateResponseToVue(false, 'No se pudó crear', $manager->getErrors());
+        }
+
+        $Entidad = $this->EntidadRepo->find($Request->get('id'));
+
+        $Entidad = $this->EntidadRepo->setAtributoEspecifico($Entidad, 'days', implode(',', $Request->get('days')));
+
+        $Entidad = $this->EntidadRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
+
+        $this->cleanCache('ActividadAgenda' . $Entidad->id);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se editó correctamente');
+    }
+
+    //borrar lógico
+    public function eliminarEntidad(Request $Request)
+    {
+        $Entidad = $this->EntidadRepo->find($Request->get('id'));
+
+        $this->EntidadRepo->destruir_esta_entidad_de_manera_logica($Entidad);
+
+        $this->cleanCache('ActividadAgenda' . $Entidad->id);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se borró la actividad');
     }
 }

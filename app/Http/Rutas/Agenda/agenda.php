@@ -16,7 +16,12 @@ Route::post('crear_agenda',
         'uses' => 'Admin_Empresa\AgendaController@crearEntidad',
         'as'   => 'crear_agenda']);
 
-Route::post('editar_actividad',
+Route::post('editar_agenda',
     [
         'uses' => 'Admin_Empresa\AgendaController@editarEntidad',
-        'as'   => 'editar_actividad']);
+        'as'   => 'editar_agenda']);
+
+Route::post('eleminar_agenda',
+    [
+        'uses' => 'Admin_Empresa\AgendaController@eliminarEntidad',
+        'as'   => 'eleminar_agenda']);
