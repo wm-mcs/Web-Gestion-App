@@ -1,5 +1,5 @@
 Vue.component("crear-agenda", {
-  mixins: [onKeyPressEscapeCerrarModalMixIn,actividadeslMixIn],
+  mixins: [onKeyPressEscapeCerrarModalMixIn,actividadeslMixIn,erroresMixIn],
   data: function () {
     return {
       cargando: false,
@@ -50,6 +50,7 @@ Vue.component("crear-agenda", {
       var vue = this;
 
       vue.cargando = true;
+      vue.errores = [];
       axios
         .post(url, data)
         .then(function (response) {
@@ -63,6 +64,7 @@ Vue.component("crear-agenda", {
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
+            vue.setErrores(data.Data);
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -254,7 +256,11 @@ Vue.component("crear-agenda", {
 
 
 
-
+              <transition name="fade-enter" v-if="errores.length > 0">
+                <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
+                  <div @click="handlerClickErrores" class="color-text-error mb-1" v-for="error in errores">@{{error[0]}}</div>
+                </div>
+              </transition>
 
 
 

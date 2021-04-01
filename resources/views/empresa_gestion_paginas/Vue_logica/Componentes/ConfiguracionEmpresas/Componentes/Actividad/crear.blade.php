@@ -1,5 +1,5 @@
 Vue.component("crear-actividad", {
-  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
   data: function () {
     return {
       cargando: false,
@@ -31,6 +31,7 @@ Vue.component("crear-actividad", {
       var vue = this;
 
       vue.cargando = true;
+      vue.errores = [];
 
       axios
         .post(url, data)
@@ -45,6 +46,7 @@ Vue.component("crear-actividad", {
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
+            vue.setErrores(data.Data);
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -127,7 +129,11 @@ Vue.component("crear-actividad", {
 
 
 
-
+              <transition name="fade-enter" v-if="errores.length > 0">
+        <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
+          <div @click="handlerClickErrores" class="color-text-error mb-1" v-for="error in errores">@{{error[0]}}</div>
+        </div>
+      </transition>
 
               <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
               <div v-else class="w-100">

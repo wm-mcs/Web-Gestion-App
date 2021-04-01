@@ -1,12 +1,12 @@
 var ListaActividad = {
-  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
   props: ["entidad"],
   data: function () {
     return {
       cargando: false,
       entidadAEditar: this.entidad,
       showModal: false,
-      
+
     };
   },
   methods: {
@@ -23,6 +23,7 @@ var ListaActividad = {
 
       var vue = this;
       vue.cargando = true;
+      vue.errores = [];
 
       axios
         .post(url, data)
@@ -36,6 +37,7 @@ var ListaActividad = {
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
+            vue.setErrores(data.Data);
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -47,16 +49,26 @@ var ListaActividad = {
   },
   computed: {},
   mounted: function () {
-   
+
   },
   created() {},
 
   template: `
   <div class="col-4">
 
-  <div>
-    <h3 class="simula_link" @click="showModal = true" > @{{entidadAEditar.name}}</h3>
+  <div class="px-2 py-2 agenda-lista-contenedor background-gris-0 mb-3" :style="{ borderLeftColor: entidadAEditar.color, opacity:entidadAEditar.estado == 'si' ? '1':'0.5'}">
+    <h3 class="mb-0 simula_link" @click="showModal = true" >
+      @{{entidadAEditar.name}} <i class="fas fa-edit"></i>
+    </h3>
+
+    <p v-if="entidadAEditar.estado != 'si'" class="mt-2 mb-0 text-uppercase">
+      DESACTIVADA
+    </p>
+
+
   </div>
+
+
   <transition name="modal" v-if="showModal">
     <div class="modal-mask ">
       <div class="modal-wrapper">
@@ -106,7 +118,7 @@ var ListaActividad = {
                       <label for="color">Color</label>
                     </fieldset>
 
-                    
+
                   </div>
 
               <div class="col-12 formulario-label-fiel">
@@ -118,7 +130,11 @@ var ListaActividad = {
 
               </div>
 
-
+              <transition name="fade-enter" v-if="errores.length > 0">
+        <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
+          <div @click="handlerClickErrores" class="color-text-error mb-1" v-for="error in errores">@{{error[0]}}</div>
+        </div>
+      </transition>
 
 
 

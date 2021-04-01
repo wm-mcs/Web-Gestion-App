@@ -49,9 +49,10 @@
     <div class="col-12 col-lg-4">
      <crear-agenda></crear-agenda>
     </div>
-    <p class="col-12 my-3 text-center">
-      Aquí es donde crearás las actividades, asignando: día, hora y cupos (si es que los tuviera) de las clases que ofrece tu emprendimiento.
-      Esto se usará para la funcionalidad de reserva de clases por internet.
+    <p class="col-12 my-5 text-center">
+      <small>Aquí es donde crearás las actividades, asignando: día, hora y cupos (si es que los tuviera) de las clases que ofrece tu emprendimiento.
+      Esto se usará para la funcionalidad de reserva de clases por internet.</small>
+
     </p>
     <p v-if="$root.empresa.sucursuales_empresa.length > 1 " class="col-12 my-3 text-center">
       Cronograma de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
@@ -72,6 +73,7 @@
 
 <script type="text/javascript">
  @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Mixin.actividadesMixIn')
+ @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.sucursa-nav')
 

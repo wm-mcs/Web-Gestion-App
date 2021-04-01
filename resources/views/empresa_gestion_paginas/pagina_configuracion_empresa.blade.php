@@ -42,12 +42,16 @@
 
 
   <div class="row mx-0 justify-content-center">
-    <h1 class="col-12 col-lg-8" >Configuración de la empresa</h1>
+    <h1 class="col-12 h3 col-lg-8 font-weight-bold" >Configuración de la empresa</h1>
     <div class="col-12 col-lg-4">
 
     </div>
-    <p class="col-12 my-3 text-center">
-      Estos botones de aquí abajo te permitiran configurar todo EasySocio.
+    <p class="col-12 my-5 text-center">
+      <small>
+        Estos botones de aquí abajo te permitiran configurar todo EasySocio.
+
+      </small>
+
     </p>
 
 
@@ -63,10 +67,10 @@
 
     <div class="col-6 col-lg-4 mb-4">
         <div class="formulario-label-aclaracion text-center mb-1">
-            Aquí se define los días, horas y cupos de las clases. Esto se usará para la función de reserva de clases online.
+            Aquí se define el calendario (cronograma) de actividades. Esto se usará para la función de reserva de clases online.
         </div>
         <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_index_agenda',['empresa_id' => $Empresa->id ])}}">
-            Cronograma
+            Calendario
         </a>
     </div>
     @endif

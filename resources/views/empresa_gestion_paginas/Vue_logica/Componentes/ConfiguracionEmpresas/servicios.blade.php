@@ -46,12 +46,12 @@
 
 
   <div class="row mx-0">
-    <h1 class="col-12 col-lg-8" >Servicios</h1>
+    <h1 class="col-12 col-lg-8 h3 font-weight-bold" >Servicios</h1>
     <div class="col-12 col-lg-4">
       <crear-servicios></crear-servicios>
     </div>
-    <p class="col-12 my-3 text-center">
-     Son los tipo de planes "servicios" que vendés. Ejemplo: pase libre, cuponera de 8 clases, etc.
+    <p class="col-12 my-5 text-center">
+     <small>Son los tipo de planes "servicios" que vendés. Ejemplo: pase libre, cuponera de 8 clases, etc.</small>
     </p>
 
   </div>

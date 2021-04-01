@@ -1,13 +1,12 @@
 var Lista = {
-  mixins: [onKeyPressEscapeCerrarModalMixIn],
+  mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
   props: ["entidad", "actividades"],
   data: function () {
     return {
       cargando: false,
       entidadAEditar: this.entidad,
       showModal: false,
-      diasQueRepiteArray: [],
-      errores:[]
+      diasQueRepiteArray: [],      
     };
   },
   methods: {
@@ -37,6 +36,7 @@ var Lista = {
 
       var vue = this;
       vue.cargando = true;
+      vue.errores = [];
 
       axios
         .post(url, data)
@@ -45,14 +45,11 @@ var Lista = {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-
-            vue.showModal = false;
-
-            vue.errores = [];
+            vue.showModal = false;            
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
-            vue.errores = data.Data;
+            vue.setErrores(data.Data);            
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -324,10 +321,11 @@ var Lista = {
       </div>
 
 
-
-      <div class="col-12 my-2" v-if="errores.length > 0" >
-      <div @click="errores = []" class="cursor_pointer" v-for="error in errores">@{{error[0]}}</div>
-    </div>
+      <transition name="fade-enter" v-if="errores.length > 0">
+        <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
+          <div @click="handlerClickErrores" class="color-text-error mb-1" v-for="error in errores">@{{error[0]}}</div>
+        </div>
+      </transition>
 
 
               <button v-if="cargando != true" type="button" @click="edit" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">

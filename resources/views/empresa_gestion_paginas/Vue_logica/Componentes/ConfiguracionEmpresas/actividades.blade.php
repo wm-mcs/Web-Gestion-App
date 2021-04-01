@@ -46,16 +46,16 @@
 
 
   <div class="row mx-0">
-    <h1 class="col-12 col-lg-8" >Actividades</h1>
+    <h1 class="col-12 col-lg-8 h3 font-weight-bold" >Actividades</h1>
     <div class="col-12 col-lg-4">
       <crear-actividad></crear-actividad>
     </div>
-    <p class="col-12 my-3 text-center">
+    <p class="col-12 my-5 text-center">
+      <small>
       Aquí es donde crearás las clases o actividades. Por ejemplo: musculación, boxeo, aeróbica, karate, kik boxin, etc. Se usarán para la función de ingreso.
+      </small>
     </p>
-    <p v-if="$root.empresa.sucursuales_empresa.length > 1 " class="col-12 my-3 text-center">
-      Actividades de la sucursal <strong>@{{$root.Sucursal.name}}</strong>
-    </p>
+
   </div>
 
 
@@ -76,7 +76,7 @@
 
 
 <script type="text/javascript">
-
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Actividad.listado')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.ConfiguracionEmpresas.Componentes.Actividad.crear')

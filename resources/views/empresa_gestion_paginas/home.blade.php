@@ -66,9 +66,14 @@
     <div class="col-3 col-lg-1">
     <ingresar-movimiento-caja :empresa="empresa" :sucursal="Sucursal"></ingresar-movimiento-caja>
     </div>
-    <div class="col-3 col-lg-1">
-       <tipo-de-servicios-modal :servicios="servicios" :empresa="empresa"></tipo-de-servicios-modal>
-    </div>
+    {!! Form::open(['route'  => 'get_analiticas',
+                  'method' => 'Post',
+                  'class'  => 'col-3 col-lg-1'])                         !!}
+      <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
+      <div class="admin-user-boton-Crear disparar-este-form">
+        <i class="far fa-chart-bar"></i>
+      </div>
+     {!! Form::close() !!}
     <div class="col-3 col-lg-1">
       <a class="admin-user-boton-Crear"  href="{{route('get_pagina_de_configuracion',['empresa_id' => $Empresa->id ])}}"> <i class="fas fa-cog"></i></a>
     </div>
