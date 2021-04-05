@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use Closure;
 
-class SistemaGestionServicioSocioIdIgualSocioId
+class SocioPublicoMiddleware
 {
 
     //le paso como 3º parametre

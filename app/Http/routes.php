@@ -13,6 +13,11 @@ Route::group(['middleware' => 'ApiPublica'], function () {
     require __DIR__ . '/Rutas/Api.php';
 });
 
+// P u b l i c   i n t e r f a z   p a r a  h a c e r   r e s e r v a s  y  m á s
+Route::group(['middleware' => 'SocioPublicoMiddleware'], function () {
+    require __DIR__ . '/Rutas/PublicNoAuthSocioReservaYMas.php';
+});
+
 Route::group(['middleware' => 'auth'], function () {
     // H o m e  d e  l a  A P P
     Route::get('/', [
