@@ -10,7 +10,7 @@ class ApiPublica
 
     public function handle($request, Closure $next)
     {
-        $ip = strval($request->header('Ip'));
+        $ip     = strval($request->header('Ip'));
         $nombre = 'ip_del_consultante_' . $ip;
 
         if ($ip != null) {

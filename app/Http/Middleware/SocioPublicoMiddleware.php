@@ -2,39 +2,52 @@
 
 namespace App\Http\Middleware;
 
-use App\Repositorios\ServicioContratadoSocioRepo;
+use App\Helpers\HelpersGenerales;
+use App\Repositorios\EmpresaConSociosoRepo;
 use Closure;
+use Crypt;
+use Illuminate\Support\Facades\Cache;
 
 class SocioPublicoMiddleware
 {
 
-    //le paso como 3º parametre
-    //lo que viene de la Ruta
     public function handle($request, Closure $next)
     {
 
-        /**
-         * obtengo el usuario conectado con el helper auth();
-         */
-        $User         = auth()->user();
-        $RepoServicio = new ServicioContratadoSocioRepo();
-        $Servicio     = $RepoServicio->find($request->get('servicio_id'));
-        $Socio        = $request->get('socio_desde_middleware');
+        $ip      = strval($_SERVER['REMOTE_ADDR']);
+        $mensaje = 'Esperá unos segundo y volvé a intentar. Hay muchas soliictudes en este momento.';
 
-        $Validacion = false;
+        if ($ip === null) {
+            if ($request->isJson()) {
+                HelpersGenerales::formateResponseToVue(false, $mensaje);
+            } else {
+                return $mensaje;
+            }
+        }
 
-        if (($Socio->id == $Servicio->socio_id) || ($User->role > 6)) {
+        if (Cache::has($ip)) {
 
-            $Validacion = true;
-            //agrego al user desde aqui para no pedirlo en el controller
-            $request->attributes->add(['servicio_desde_middleware' => $Servicio]);
+            Cache::increment($ip);
+
+        } else {
+            Cache::put($ip, 1, 20);
+        }
+
+        if (Cache::get($ip) > 30) {
+
+            if ($request->isJson()) {
+                HelpersGenerales::formateResponseToVue(false, $mensaje);
+            } else {
+                return $mensaje;
+            }
 
         }
 
-        if (!$Validacion) {
-            return ['Validacion' => $Validacion,
-                'Validacion_mensaje' => 'No tienes permiso para hacer eso:  el servicio no es de ese socio'];
-        }
+        $Repo = new EmpresaConSociosoRepo();
+
+        $empresa_id = $request->get('id') != null ? Crypt::decrypt($request->get('id')) : $request->get('empresa_id');
+
+        $request->attributes->add(['empresa_middleware' => $Repo->find($empresa_id)]);
 
         return $next($request);
     }

@@ -10,6 +10,7 @@ use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use App\Repositorios\TipoDeServicioRepo;
+use Crypt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -205,6 +206,11 @@ class EmpresaConSocios extends Model
     public function getRouteAdminAttribute()
     {
         return route('get_admin_empresas_gestion_socios_editar', $this->id);
+    }
+
+    public function getRouteReservasAttribute()
+    {
+        return route('get_panel_de_empresa_publico', ['name' => $this->helper_convertir_cadena_para_url($this->name), 'id' => Crypt::encrypt($this->id)]);
     }
 
     public function getRoutePanelEmpresaAttribute()
