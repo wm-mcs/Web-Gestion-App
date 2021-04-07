@@ -18,7 +18,15 @@ class ReservaController extends Controller
 
     public function get_panel_de_empresa_publico(Request $Request)
     {
-        dd('panel');
+        $Empresa = $Request->get('empresa_desde_middleware');
+
+        $Data = [
+            'title'       => $Empresa->name,
+            'img'         => $Empresa->name,
+            'description' => '',
+        ];
+
+        return view('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.empresa_reserva', compact('Empresa', 'Data'));
     }
 
 }

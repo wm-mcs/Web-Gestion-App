@@ -47,7 +47,7 @@ class SocioPublicoMiddleware
 
         $empresa_id = $request->get('id') != null ? Crypt::decrypt($request->get('id')) : $request->get('empresa_id');
 
-        $request->attributes->add(['empresa_middleware' => $Repo->find($empresa_id)]);
+        $request->attributes->add(['empresa_desde_middleware' => $Repo->find($empresa_id)]);
 
         return $next($request);
     }

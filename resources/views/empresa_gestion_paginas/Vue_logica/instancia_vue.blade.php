@@ -3,6 +3,7 @@
 
    @include('empresa_gestion_paginas.Vue_logica.bus')
 
+
     var app = new Vue({
     el: '#app',
     data:{
