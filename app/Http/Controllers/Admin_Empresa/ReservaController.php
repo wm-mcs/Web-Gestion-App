@@ -22,11 +22,11 @@ class ReservaController extends Controller
 
         $Data = [
             'title'       => $Empresa->name,
-            'img'         => $Empresa->name,
+            'img'         => $Empresa->url_img,
             'description' => '',
         ];
 
-        return view('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.empresa_reserva', compact('Empresa', 'Data'));
+        return view('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.empresa_reserva_log_in', compact('Empresa', 'Data'));
     }
 
 }

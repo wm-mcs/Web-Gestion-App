@@ -15,7 +15,7 @@ class SocioPublicoMiddleware
     {
 
         $ip      = strval($_SERVER['REMOTE_ADDR']);
-        $mensaje = 'Esperá unos segundo y volvé a intentar. Hay muchas soliictudes en este momento.';
+        $mensaje = 'Esperá unos segundo y volvé a intentar. Hay muchas solicitudes en este momento.';
 
         if ($ip === null) {
             if ($request->isJson()) {
