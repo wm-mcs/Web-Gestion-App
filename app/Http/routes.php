@@ -15,7 +15,12 @@ Route::group(['middleware' => 'ApiPublica'], function () {
 
 // P u b l i c   i n t e r f a z   p a r a  h a c e r   r e s e r v a s  y  m á s
 Route::group(['middleware' => 'SocioPublicoMiddleware'], function () {
+
     require __DIR__ . '/Rutas/PublicNoAuthSocioReservaYMas.php';
+    Route::group(['middleware' => 'SocioLogInPublic'], function () {
+
+    });
+
 });
 
 Route::group(['middleware' => 'auth'], function () {

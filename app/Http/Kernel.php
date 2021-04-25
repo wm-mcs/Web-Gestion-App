@@ -41,5 +41,6 @@ class Kernel extends HttpKernel
         'SistemaGestionEmpresaIgualVendedorEmpresa'    => \App\Http\Middleware\SistemaGestionEmpresaIgualVendedorEmpresa::class,
         'ApiPublica'                                   => \App\Http\Middleware\ApiPublica::class,
         'SocioPublicoMiddleware'                       => \App\Http\Middleware\SocioPublicoMiddleware::class,
+        'SocioLogInPublic'                             => \App\Http\Middleware\SocioLogInPublic::class,
     ];
 }

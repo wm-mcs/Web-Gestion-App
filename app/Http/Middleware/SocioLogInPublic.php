@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Session;
 
 class SocioLogInPublic
 {
-
     public function handle($request, Closure $next)
     {
 

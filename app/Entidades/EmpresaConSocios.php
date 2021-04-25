@@ -210,7 +210,7 @@ class EmpresaConSocios extends Model
 
     public function getRouteReservasAttribute()
     {
-        return route('get_panel_de_empresa_publico', ['name' => $this->helper_convertir_cadena_para_url($this->name), 'id' => Crypt::encrypt($this->id)]);
+        return route('get_auth_login_reserva_socio', ['name' => $this->helper_convertir_cadena_para_url($this->name), 'id' => Crypt::encrypt($this->id)]);
     }
 
     public function getRoutePanelEmpresaAttribute()

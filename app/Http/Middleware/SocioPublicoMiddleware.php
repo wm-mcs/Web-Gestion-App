@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Cache;
 
 class SocioPublicoMiddleware
 {
-
     public function handle($request, Closure $next)
     {
 
@@ -26,21 +25,17 @@ class SocioPublicoMiddleware
         }
 
         if (Cache::has($ip)) {
-
             Cache::increment($ip);
-
         } else {
             Cache::put($ip, 1, 20);
         }
 
         if (Cache::get($ip) > 30) {
-
             if ($request->isJson()) {
                 HelpersGenerales::formateResponseToVue(false, $mensaje);
             } else {
                 return $mensaje;
             }
-
         }
 
         $Repo = new EmpresaConSociosoRepo();
