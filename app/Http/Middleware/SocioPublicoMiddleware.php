@@ -27,7 +27,7 @@ class SocioPublicoMiddleware
         if (Cache::has($ip)) {
             Cache::increment($ip);
         } else {
-            Cache::put($ip, 1, 20);
+            Cache::put($ip, 1, 5);
         }
 
         if (Cache::get($ip) > 30) {

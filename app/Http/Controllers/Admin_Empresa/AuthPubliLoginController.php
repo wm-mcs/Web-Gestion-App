@@ -19,6 +19,11 @@ class AuthPubliLoginController extends Controller
 
     public function get_auth_login_reserva_socio(Request $Request)
     {
+
+        if (Session::has('socio-auth')) {
+            Session::forget('socio-auth');
+        }
+
         $Empresa = $Request->get('empresa_desde_middleware');
 
         $Data = [
@@ -44,7 +49,8 @@ class AuthPubliLoginController extends Controller
         if ($Socio->count() > 0) {
             Session::put('socio-auth', $Socio->first());
         } else {
-            return redirect()->back()->with('alert-rojo', 'No tenemos ningún socio registrado con este celular 👉 ' . $Celular . ' . Llamanos al ' . $Empresa->celular . ' para arreglar esto.');
+
+            return redirect()->back()->with('alert-danger', 'No tenemos ningún socio registrado con este celular 👉 ' . $Celular . ' . Llamanos al ' . $Empresa->celular . ' para arreglar esto.');
         }
     }
 }

@@ -17,7 +17,7 @@
 
           <div class="container d-flex flex-row align-items-center justify-content-center">
             <div class="w-100 d-flex flex-column align-items-center p-2  ">
-                <div class="col-6 col-lg-4 p-2 p-lg-2 my-3 ">
+                <div class="col-6 col-lg-4 p-2 p-lg-2  ">
                     <img class="img-fluid " src="{{$Data['img']}}">
                 </div>
 

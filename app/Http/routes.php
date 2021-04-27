@@ -18,7 +18,7 @@ Route::group(['middleware' => 'SocioPublicoMiddleware'], function () {
 
     require __DIR__ . '/Rutas/PublicNoAuthSocioReservaYMas.php';
     Route::group(['middleware' => 'SocioLogInPublic'], function () {
-
+        require __DIR__ . '/Rutas/ReservasAuthPublic.php';
     });
 
 });
