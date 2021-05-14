@@ -6,6 +6,7 @@ Vue.component("crear-pais", {
         name: "",
         code: "",
         currencyCode: "",
+        cell_phone_code:"",
         estado: "si",
         imagen: ""
       },
@@ -19,6 +20,7 @@ Vue.component("crear-pais", {
         code: "",
         currencyCode: "",
         estado: "si",
+        cell_phone_code:"",
         imagen: ""
       };
     },
@@ -103,6 +105,12 @@ Vue.component("crear-pais", {
                <label class="formulario-label">Código</label>
                <input v-model="datos_a_enviar.code" type="text"  class="formulario-field" placeholder="Código de país">
               </div>
+              <div class="col-lg-6 formulario-label-fiel">
+               <label class="formulario-label">Código celular</label>
+               <input v-model="datos_a_enviar.cell_phone_code" type="text"  class="formulario-field" placeholder="Código de país">
+              </div>
+
+
 
               <div class="col-lg-6 formulario-label-fiel">
                <label class="formulario-label">Código de moneda</label>

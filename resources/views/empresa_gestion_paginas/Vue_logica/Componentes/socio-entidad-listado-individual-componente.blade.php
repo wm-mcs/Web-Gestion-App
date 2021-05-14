@@ -173,15 +173,12 @@ Vue.component("socio-list", {
       }
     },
     whatsAppLink: function() {
-      if (
-        this.socio.celular_internacional == "" ||
-        this.socio.celular_internacional == null
-      ) {
-        var celular =
-          this.empresa.codigo_pais_whatsapp + this.socio.celular.substr(1);
-      } else {
-        var celular = this.socio.celular_internacional;
-      }
+      var celular = `${this.$root.empresa.pais_object.cell_phone_code}${
+        this.socio.celular.charAt(0) == "0"
+          ? this.socio.celular.substr(1)
+          : this.socio.celular
+      }`;
+
       var url = "https://api.whatsapp.com/send?phone=" + celular + "&text=Hola";
       return url;
     },

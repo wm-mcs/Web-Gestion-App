@@ -23,7 +23,7 @@ class PaisesController extends Controller
 
     public function getPropiedades()
     {
-        return ['name', 'tipo_saldo', 'movimiento_de_empresa_a_socio', 'movimiento_de_la_empresa', 'descripcion_breve', 'estado', 'se_muestra_en_panel', 'socio_opcion_de_pago', 'se_paga'];
+        return ['name', 'code', 'currencyCode', 'cell_phone_code', 'estado'];
     }
 
     /**
@@ -57,9 +57,9 @@ class PaisesController extends Controller
 
         }
 
-        $Propiedades = ['name', 'code', 'currencyCode', 'estado'];
+        $Propiedades = $this->getPropiedades();
 
-        $Entidad = $this->PaisRepo->getEntidad();
+        $Entidad          = $this->PaisRepo->getEntidad();
         $Entidad->borrado = 'no';
 
         $Entidad = $this->PaisRepo->setEntidadDato($Entidad, $Request, $Propiedades);
@@ -83,7 +83,7 @@ class PaisesController extends Controller
         $PaisBuscado = $this->PaisRepo->find($Pais->id);
 
         //las porpiedades que se van a editar
-        $Propiedades = ['name', 'code', 'currencyCode', 'estado'];
+        $Propiedades = $this->getPropiedades();
 
         $this->PaisRepo->setEntidadDatoObjeto($PaisBuscado, $Pais, $Propiedades);
 
@@ -122,10 +122,10 @@ class PaisesController extends Controller
 
         return ['Validacion' => true,
             'Validacion_mensaje' => 'Países cargados correctamente',
-            'Paises' => $Paises,
-            'Header' => $Request->header('Ip'),
-            'Header2' => $Request->header('Maurico'),
-            'cache' => $Request->get('cache')];
+            'Paises'             => $Paises,
+            'Header'             => $Request->header('Ip'),
+            'Header2'            => $Request->header('Maurico'),
+            'cache'              => $Request->get('cache')];
 
     }
 }

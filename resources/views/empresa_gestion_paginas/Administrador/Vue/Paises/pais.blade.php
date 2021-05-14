@@ -95,6 +95,12 @@ var pais = {
                     <input type="text" class="formulario-field" v-model="pais.code" placeholder="Código del país" />
                   </div>
                   <div class="col-lg-6 formulario-label-fiel">
+                    <label class="formulario-label">Código de celular</label>
+                    <input type="text" class="formulario-field" v-model="pais.cell_phone_code" placeholder="Código del país" />
+                  </div>
+
+
+                  <div class="col-lg-6 formulario-label-fiel">
                     <label class="formulario-label">Código de moneda</label>
                     <input type="text" class="formulario-field" v-model="pais.currencyCode"
                       placeholder="Código de la moneda" />

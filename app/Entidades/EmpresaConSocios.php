@@ -6,6 +6,7 @@ use App\Entidades\MovimientoEstadoDeCuentaEmpresa;
 use App\Entidades\Traits\empresaFuncionalidadesVerificar;
 use App\Entidades\Traits\entidadesScopesComunes;
 use App\Entidades\User;
+use App\Repositorios\PaisRepo;
 use App\Repositorios\ServicioContratadoEmpresaRepo;
 use App\Repositorios\ServicioEmpresaRenovacionRepo;
 use App\Repositorios\SucursalEmpresaRepo;
@@ -41,7 +42,8 @@ class EmpresaConSocios extends Model
         'vendedor_de_esta_empresa',
         'path_url_img',
         'control_acceso_habilitado',
-        'reserva_online_habilitado'];
+        'reserva_online_habilitado',
+        'pais_object'];
 
     public function getTipoServiciosAttribute()
     {
@@ -49,6 +51,15 @@ class EmpresaConSocios extends Model
             $Repo = new TipoDeServicioRepo();
 
             return $Repo->getEntidadesDeEstaEmpresa($this->id, 'name', 'asc', null, 'no');
+        });
+    }
+
+    public function getPaisObjectAttribute()
+    {
+        return Cache::remember('PaisEmpresa' . $this->id, 500000, function () {
+            $Repo = new PaisRepo();
+
+            return $Repo->getEntidad()->where('code', $this->pais)->get()[0];
         });
     }
 
