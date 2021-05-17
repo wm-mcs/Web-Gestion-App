@@ -15,6 +15,8 @@ Vue.component("agregar-al-socio-un-servicio", {
         tipo_servicio_id: "",
         renovacion_cantidad_en_dias: ""
       },
+      servicios:[],
+      cargando:false,
       tipo_servicio: ""
     };
   },
@@ -50,6 +52,11 @@ Vue.component("agregar-al-socio-un-servicio", {
       $("#modal-agregar-servicio-socio")
         .appendTo("body")
         .modal("show");
+
+        if(this.servicios.length == 0)
+        {
+          this.getServicios();
+        }
     },
     crear_servicio_a_socio: function() {
       var url = "/agregar_servicio_a_socio";
@@ -111,7 +118,36 @@ Vue.component("agregar-al-socio-un-servicio", {
       return lista.find(function(element) {
         return element.id == valor;
       });
-    }
+    },
+    getServicios: function () {
+      var url = "/get_tipo_servicios";
+
+      var data = {empresa_id:this.$root.empresa.id};
+
+      var vue = this;
+      vue.cargando = true;
+
+      axios
+        .post(url, data)
+        .then(function (response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.cargando = false;
+            vue.servicios = data.Data;
+
+
+
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function (error) {
+          vue.cargando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
+    },
   },
   template: `<span>
     <div id="boton-editar-socio" style="position:relative;" class="admin-user-boton-Crear " v-on:click="abrir_modal">
@@ -130,13 +166,16 @@ Vue.component("agregar-al-socio-un-servicio", {
 
                 </div>
                 <div class="modal-body text-center">
-
-                    <div class="formulario-label-fiel">
-                        <label class="formulario-label">Tipo de servicio <span class="formulario-label-aclaracion"> ¿por
-                                clase o mensual?</span></label>
+                     <div v-if="cargando" class="Procesando-text">
+                        <div class="cssload-container">
+                            <div class="cssload-tube-tunnel"></div>
+                        </div>
+                    </div>
+                    <div v-else class="formulario-label-fiel">
+                        <label class="formulario-label">Tipo de servicio </label>
                         <select v-on:change="cambioTipoDeServicio" class="form-control" v-model="tipo_servicio">
                             <option></option>
-                            <option v-for="servicio in empresa.tipo_servicios" v-bind:value="servicio.id">
+                            <option v-for="servicio in servicios" v-bind:value="servicio.id">
                                 @{{ servicio.name }}</option>
                         </select>
                     </div>

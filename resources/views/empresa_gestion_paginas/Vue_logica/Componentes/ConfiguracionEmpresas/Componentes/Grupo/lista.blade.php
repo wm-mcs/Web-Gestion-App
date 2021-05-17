@@ -1,4 +1,4 @@
-var ListaActividad = {
+var ListaGrupo = {
   mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
   props: ["entidad"],
   data: function () {
@@ -11,7 +11,7 @@ var ListaActividad = {
   },
   methods: {
     edit: function () {
-      var url = "/editar_actividad";
+      var url = "/editar_grupo";
 
       var data = {
         empresa_id: this.$root.empresa.id,

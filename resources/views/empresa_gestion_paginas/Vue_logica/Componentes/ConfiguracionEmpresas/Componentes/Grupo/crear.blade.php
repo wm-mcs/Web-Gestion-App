@@ -1,27 +1,35 @@
-var ListaActividad = {
+Vue.component("crear", {
   mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
-  props: ["entidad"],
   data: function () {
     return {
       cargando: false,
-      entidadAEditar: this.entidad,
+      datos_a_enviar: {
+        name: "",
+        empresa_id: this.$root.empresa.id,
+        sucursal_id: this.$root.Sucursal.id,
+        color:'#7168f3',
+        estado: "si",
+      },
       showModal: false,
-
     };
   },
   methods: {
-    edit: function () {
-      var url = "/editar_actividad";
+    limpiar_data_crear: function () {
+      this.datos_a_enviar = {
+        name: "",
+        estado: "si",
+        color:'#7168f3'
 
-      var data = {
-        empresa_id: this.$root.empresa.id,
-        id: this.entidadAEditar.id,
-        name: this.entidadAEditar.name,
-        estado: this.entidadAEditar.estado,
-        color: this.entidadAEditar.color,
       };
+    },
+
+    crear: function () {
+      var url = "/crear_grupo";
+
+      var data = this.datos_a_enviar;
 
       var vue = this;
+
       vue.cargando = true;
       vue.errores = [];
 
@@ -32,8 +40,9 @@ var ListaActividad = {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-
+            bus.$emit("se-creo-o-edito", "hola");
             vue.showModal = false;
+            vue.limpiar_data_crear();
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
@@ -48,25 +57,14 @@ var ListaActividad = {
     },
   },
   computed: {},
-  mounted: function () {
+  mounted: function () {},
 
-  },
-  created() {},
-
-  template: `
-  <div class="col-12 col-lg-4">
-
-  <div class="px-2 py-2 agenda-lista-contenedor background-gris-0 mb-3" :style="{ borderLeftColor: entidadAEditar.color, opacity:entidadAEditar.estado == 'si' ? '1':'0.5'}">
-    <h3 class="mb-0 simula_link" @click="showModal = true" >
-      @{{entidadAEditar.name}} <i class="fas fa-edit"></i>
-    </h3>
-
-    <p v-if="entidadAEditar.estado != 'si'" class="mt-2 mb-0 text-uppercase">
-      DESACTIVADA
-    </p>
+  template: `<span>
 
 
-  </div>
+  <button type="button" class="Boton-Fuente-Chica Boton-Primario-Relleno" @click="showModal = true">
+   Crear  <i class="fas fa-plus"></i>
+  </button>
 
 
   <transition name="modal" v-if="showModal">
@@ -79,7 +77,7 @@ var ListaActividad = {
 
 
           <div class="row">
-            <h4 class="col-12 sub-titulos-class" > Editar @{{entidadAEditar.name}}</h4>
+            <h4 class="col-12 sub-titulos-class" > Crear</h4>
             <div class="col-12 modal-mensaje-aclarador">
 
             </div>
@@ -96,7 +94,7 @@ var ListaActividad = {
                         name="name"
                         type="text"
                         class="input-text-class-primary"
-                        v-model="entidadAEditar.name"
+                        v-model="datos_a_enviar.name"
                         required
 
                       />
@@ -104,14 +102,13 @@ var ListaActividad = {
                     </fieldset>
                   </div>
 
-
                   <div class="formulario-label-fiel">
                     <fieldset class="float-label">
                       <input
                         name="color"
                         type="color"
                         class="input-text-class-primary"
-                        v-model="entidadAEditar.color"
+                        v-model="datos_a_enviar.color"
                         required
 
                       />
@@ -123,12 +120,14 @@ var ListaActividad = {
 
               <div class="col-12 formulario-label-fiel">
                 <label class="formulario-label">¿Activo?</label>
-                <select v-model="entidadAEditar.estado" class="formulario-field">
+                <select v-model="datos_a_enviar.estado" class="formulario-field">
                   <option>si</option>
                   <option>no</option>
                 </select>
 
               </div>
+
+
 
               <transition name="fade-enter" v-if="errores.length > 0">
         <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
@@ -136,17 +135,12 @@ var ListaActividad = {
         </div>
       </transition>
 
-
-
-              <button v-if="cargando != true" type="button" @click="edit" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
-                 Editar
+              <div v-if="cargando" class="Procesando-text w-100">Procesado...</div>
+              <div v-else class="w-100">
+              <button type="button" @click="crear" class="mt-4 Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
+                 Confirmar
               </button>
-              <div v-else class="my-3  Procesando-text w-100">
-        <div class="cssload-container">
-            <div class="cssload-tube-tunnel"></div>
-        </div>
-    </div>
-
+              </div>
             </div>
 
 
@@ -166,10 +160,5 @@ var ListaActividad = {
   </transition>
 </span>
 
-
-
-
-  </div>
-
 `,
-};
+});

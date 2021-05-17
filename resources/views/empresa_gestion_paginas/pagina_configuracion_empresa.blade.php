@@ -42,40 +42,21 @@
 
 
   <div class="row mx-0 justify-content-center">
-    <h1 class="col-12 h3 col-lg-8 font-weight-bold" >Configuración de la empresa</h1>
+    <h1 class="col-12 h4 text-center" >Configuración de la empresa</h1>
     <div class="col-12 col-lg-4">
-
     </div>
-    <p class="col-12 my-5 text-center">
+    <p class="col-12 mb-5 text-center">
       <small>
         Estos botones de aquí abajo te permitiran configurar todo EasySocio.
-
       </small>
-
     </p>
+  </div>
 
-
-    @if($Empresa->reserva_online_habilitado)
-    <div class="col-6 col-lg-4 mb-4">
-        <div class="formulario-label-aclaracion text-center mb-1">
-            Las actividades son el tipo de clases o "actividades" que se brindan. Por ejemplo "musculación",'karate',"boxeo","funcional".
-        </div>
-        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_actividades_index',['empresa_id' => $Empresa->id ])}}">
-            Actividades
-        </a>
+  <div class="row mx-0 p-3 shadow  w-100 mb-5">
+    <div class="col-12 mb-2">
+       <b>¿Qué servicios se venden?</b>
     </div>
-
-    <div class="col-6 col-lg-4 mb-4">
-        <div class="formulario-label-aclaracion text-center mb-1">
-            Aquí se define el calendario (cronograma) de actividades. Esto se usará para la función de reserva de clases online.
-        </div>
-        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_index_agenda',['empresa_id' => $Empresa->id ])}}">
-            Calendario
-        </a>
-    </div>
-    @endif
-
-    <div class="col-6 col-lg-4 mb-4">
+    <div class="col-12 col-lg-4 mb-4">
         <div class="formulario-label-aclaracion text-center mb-1">
             Son los servicios que vendés. Ejemplo: pase libre, cuponera de 8 clases, etc.
         </div>
@@ -83,13 +64,56 @@
             Servicios
         </a>
     </div>
+  </div>
+
+  @if($Empresa->reserva_online_habilitado)
+  <div class="row mx-0 p-3 shadow w-100 mb-5">
+    <div class="col-12 mb-2">
+        <b>Configurar sistema de reservas online</b>
+    </div>
+
+    <div class="col-12 col-lg-4 mb-4">
+      <div class="formulario-label-aclaracion text-center mb-1">
+          Las actividades son el tipo de clases o "actividades" que se brindan. Por ejemplo "musculación",'karate', "boxeo", "funcional".
+      </div>
+      <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_actividades_index',['empresa_id' => $Empresa->id ])}}">
+          Actividades
+      </a>
+    </div>
+
+    <div class="col-12 col-lg-4 mb-4">
+        <div class="formulario-label-aclaracion text-center mb-1">
+            Aquí se define el calendario (cronograma) de actividades. Esto se usará para la función de reserva de clases online.
+        </div>
+        <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_index_agenda',['empresa_id' => $Empresa->id ])}}">
+            Calendario
+        </a>
+    </div>
+  </div>
+  @endif
+
+
+
+  <div class="row mx-0 p-3 shadow w-100 mb-5">
+    <div class="col-12 mb-2">
+        <b>¿Tenés grupos definidos?</b>
+    </div>
+
+    <div class="col-12 col-lg-4 mb-4">
+      <div class="formulario-label-aclaracion text-center mb-1">
+         Organizá tu academia creando grupos. Podrás vincular socios por medio de estos grupos.
+      </div>
+      <a class="Boton-Fuente-Chica Boton-Primario-Relleno" href="{{route('get_grupos_index',['empresa_id' => $Empresa->id ])}}">
+          Grupos
+      </a>
+    </div>
+
 
   </div>
 
 
-  <p>
 
-  </p>
+
 
 
 
@@ -108,7 +132,6 @@
 
 
 @section('columna')
-
 
   @include('admin.empresas_gestion_socios.columna_derecha.columna_logo_easy_socios')
 
