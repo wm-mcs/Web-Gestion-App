@@ -92,7 +92,7 @@
   </div>
   @endif
 
-
+  @if($Empresa->grupos_habilitado)
 
   <div class="row mx-0 p-3 shadow w-100 mb-5">
     <div class="col-12 mb-2">
@@ -110,6 +110,7 @@
 
 
   </div>
+  @endif
 
 
 

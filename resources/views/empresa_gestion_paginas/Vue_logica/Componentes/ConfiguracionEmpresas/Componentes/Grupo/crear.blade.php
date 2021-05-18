@@ -9,6 +9,7 @@ Vue.component("crear", {
         sucursal_id: this.$root.Sucursal.id,
         color:'#7168f3',
         estado: "si",
+        description:''
       },
       showModal: false,
     };
@@ -18,7 +19,8 @@ Vue.component("crear", {
       this.datos_a_enviar = {
         name: "",
         estado: "si",
-        color:'#7168f3'
+        color:'#7168f3',
+        description:''
 
       };
     },
@@ -101,6 +103,26 @@ Vue.component("crear", {
                       <label for="name">Nombre</label>
                     </fieldset>
                   </div>
+
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <textarea
+                        name="description"
+                        class="input-text-class-primary"
+                        v-model="datos_a_enviar.description"
+                        required
+
+                      >
+                      </textarea>
+
+
+                      <label for="description">Descripción</label>
+                    </fieldset>
+                  </div>
+
+
+
 
                   <div class="formulario-label-fiel">
                     <fieldset class="float-label">

@@ -1,69 +1,72 @@
 Vue.component("crear-plan", {
-	data: function() {
-		return {
-			cargando: false,
-			datos_a_enviar: {
-				name: "",
-				cantidad_socios: "",
-				cantidad_sucursales: "",
-				valor: "",
-				moneda: "",
-				valor_fuera_de_uruguay: "",
-				estado: "",
-				control_acceso: "",
-        reserva_de_clases_on_line:"",
-				tipo: "principal"
-			},
-			showModal: false
-		};
-	},
-	methods: {
-		limpiar_data_crear: function() {
-			this.datos_a_enviar = {
-				name: "",
-				cantidad_socios: "",
-				cantidad_sucursales: "",
-				valor: "",
-				moneda: "",
-				valor_fuera_de_uruguay: "",
-				estado: "",
-				control_acceso: ""
-			};
-		},
+  data: function() {
+    return {
+      cargando: false,
+      datos_a_enviar: {
+        name: "",
+        cantidad_socios: "",
+        cantidad_sucursales: "",
+        valor: "",
+        moneda: "",
+        valor_fuera_de_uruguay: "",
+        estado: "",
+        control_acceso: "",
+        reserva_de_clases_on_line: "",
+        grupos: "",
+        tipo: "principal"
+      },
+      showModal: false
+    };
+  },
+  methods: {
+    limpiar_data_crear: function() {
+      this.datos_a_enviar = {
+        name: "",
+        cantidad_socios: "",
+        cantidad_sucursales: "",
+        valor: "",
+        moneda: "",
+        valor_fuera_de_uruguay: "",
+        estado: "",
+        control_acceso: "",
+        grupos: "",
+        reserva_de_clases_on_line: ""
+      };
+    },
 
-		crear: function() {
-			var url = "/crear_plan";
+    crear: function() {
+      var url = "/crear_plan";
 
-			var data = this.datos_a_enviar;
+      var data = this.datos_a_enviar;
 
-			var vue = this;
+      var vue = this;
 
-			axios
-				.post(url, data)
-				.then(function(response) {
-					var data = response.data;
+      axios
+        .post(url, data)
+        .then(function(response) {
+          var data = response.data;
 
-					if (data.Validacion == true) {
-						vue.cargando = false;
-						bus.$emit("se-creo-o-edito-un-plan", "hola");
-						vue.showModal = false;
-						vue.limpiar_data_crear();
-						$.notify(response.data.Validacion_mensaje, "success");
-					} else {
-						vue.cargando = false;
-						$.notify(response.data.Validacion_mensaje, "error");
-					}
-				})
-				.catch(function(error) {
-					vue.cargando = false;
-					$.notify("Upsssssss.. algo pasó", "error");
-				});
-		}
-	},
-	computed: {},
-	mounted: function() {},
+          if (data.Validacion == true) {
+            vue.cargando = false;
+            bus.$emit("se-creo-o-edito-un-plan", "hola");
+            vue.showModal = false;
+            vue.limpiar_data_crear();
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function(error) {
+          vue.cargando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
+    }
+  },
+  computed: {},
+  mounted: function() {},
 
-	template: `<span>
+  template: `<span>
 
 
   <div class="Boton-Fuente-Chica Boton-Primario-Relleno " @click="showModal = true">
@@ -179,9 +182,21 @@ Vue.component("crear-plan", {
                 </div>
 
                 <div class="row mx-0 contenedor-grupo-datos">
+                  <div class="col-6 formulario-label-fiel">
+                      <label class="formulario-label">¿Incluye reserva de clases online? </label>
+                      <select v-model="datos_a_enviar.reserva_de_clases_on_line" class="formulario-field">
+                          <option>si</option>
+                          <option>no</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                  
+                <div class="row mx-0 contenedor-grupo-datos">
                 <div class="col-6 formulario-label-fiel">
-                    <label class="formulario-label">¿Incluye reserva de clases online? </label>
-                    <select v-model="datos_a_enviar.reserva_de_clases_on_line" class="formulario-field">
+                    <label class="formulario-label">¿Acepta función de grupos? </label>
+                    <select v-model="datos_a_enviar.grupos" class="formulario-field">
                         <option>si</option>
                         <option>no</option>
                     </select>

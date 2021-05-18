@@ -43,6 +43,7 @@ class EmpresaConSocios extends Model
         'path_url_img',
         'control_acceso_habilitado',
         'reserva_online_habilitado',
+        'grupos_habilitado',
         'pais_object'];
 
     public function getTipoServiciosAttribute()
@@ -181,6 +182,11 @@ class EmpresaConSocios extends Model
     public function getReservaOnlineHabilitadoAttribute()
     {
         return $this->verificarSiPuedeUsarEstaFuncionalidad('reserva_de_clases_on_line', $this);
+    }
+
+    public function getGruposHabilitadoAttribute()
+    {
+        return $this->verificarSiPuedeUsarEstaFuncionalidad('grupos', $this);
     }
 
     public function getUrlImgAttribute()

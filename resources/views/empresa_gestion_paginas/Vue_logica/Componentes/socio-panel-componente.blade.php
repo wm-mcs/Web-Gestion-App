@@ -168,7 +168,7 @@ Vue.component("socio-panel-componente", {
     <div class="col-12 col-lg-8 mb-2 mb-lg-0 ">
     <div class="row align-items-center justify-content-center justify-content-lg-start w-100">
 
-      <div class="d-flex flex-row align-items-center mb-3 mb-lg-0">
+      <div class="d-flex flex-row align-items-center mb-3 mb-lg-0 col-7 col-lg-8">
         <div @click="editSocioShow" class="mr-3 cursor-pointer">
             <img class="socio-img  " :src="socio.url_img" />
         </div>
@@ -176,6 +176,14 @@ Vue.component("socio-panel-componente", {
             @include('empresa_gestion_paginas.Vue_logica.Componentes.socio-panel.modal-editar-socio')
         </div>
        </div>
+
+       @if($Empresa->grupos_habilitado)
+          <div class="col-5 col-lg-6 ">
+            Tiene grupos
+          </div>
+       @endif
+
+
 
     </div>
 

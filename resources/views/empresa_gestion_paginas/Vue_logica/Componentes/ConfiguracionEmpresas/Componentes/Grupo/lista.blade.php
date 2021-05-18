@@ -19,6 +19,7 @@ var ListaGrupo = {
         name: this.entidadAEditar.name,
         estado: this.entidadAEditar.estado,
         color: this.entidadAEditar.color,
+        description:this.entidadAEditar.description
       };
 
       var vue = this;
@@ -57,9 +58,12 @@ var ListaGrupo = {
   <div class="col-12 col-lg-4">
 
   <div class="px-2 py-2 agenda-lista-contenedor background-gris-0 mb-3" :style="{ borderLeftColor: entidadAEditar.color, opacity:entidadAEditar.estado == 'si' ? '1':'0.5'}">
-    <h3 class="mb-0 simula_link" @click="showModal = true" >
+    <h3 class="mb-3 h5 simula_link" @click="showModal = true" >
       @{{entidadAEditar.name}} <i class="fas fa-edit"></i>
     </h3>
+    <p class="">
+      @{{entidadAEditar.description}}
+    </p>
 
     <p v-if="entidadAEditar.estado != 'si'" class="mt-2 mb-0 text-uppercase">
       DESACTIVADA
@@ -101,6 +105,21 @@ var ListaGrupo = {
 
                       />
                       <label for="name">Nombre</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="formulario-label-fiel">
+                    <fieldset class="float-label">
+                      <textarea
+                        name="description"
+
+                        class="input-text-class-primary"
+                        v-model="entidadAEditar.description"
+                        required
+
+                      >
+                      </textarea>
+                      <label for="description">Descripción</label>
                     </fieldset>
                   </div>
 

@@ -152,6 +152,18 @@ var plan = {
                 </div>
 
 
+                <div class="row mx-0 contenedor-grupo-datos">
+                <div class="col-6 formulario-label-fiel">
+                    <label class="formulario-label">¿Acepta función de grupos? </label>
+                    <select v-model="plan.grupos" class="formulario-field">
+                        <option>si</option>
+                        <option>no</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
 
 
 

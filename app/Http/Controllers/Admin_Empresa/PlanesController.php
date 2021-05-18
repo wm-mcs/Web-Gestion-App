@@ -45,7 +45,7 @@ class PlanesController extends Controller
 
     public function getPropiedades()
     {
-        return ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales', 'estado', 'control_acceso', 'valor_fuera_de_uruguay', 'reserva_de_clases_on_line'];
+        return ['name', 'tipo', 'moneda', 'valor', 'cantidad_socios', 'cantidad_sucursales', 'estado', 'control_acceso', 'valor_fuera_de_uruguay', 'reserva_de_clases_on_line', 'grupos'];
     }
 
     public function get_planes_empresa(Request $Request)

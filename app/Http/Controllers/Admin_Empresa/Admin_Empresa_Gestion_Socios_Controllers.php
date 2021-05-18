@@ -81,7 +81,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function getPropiedades()
     {
-        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva', 'estado', 'codigo_pais_whatsapp', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access', 'control_acceso', 'reserva_de_clases_on_line'];
+        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva', 'estado', 'codigo_pais_whatsapp', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access', 'control_acceso', 'reserva_de_clases_on_line', 'grupos'];
     }
 
     //La pagina de inicio
