@@ -179,7 +179,7 @@ Vue.component("socio-panel-componente", {
 
        @if($Empresa->grupos_habilitado)
           <div class="col-5 col-lg-6 ">
-            Tiene grupos
+            <administrar-grupos :socio="socio"></administrar-grupos>
           </div>
        @endif
 
