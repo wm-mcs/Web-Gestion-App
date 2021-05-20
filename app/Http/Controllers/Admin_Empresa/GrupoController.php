@@ -8,6 +8,7 @@ use App\Interfases\EntidadCrudInterface;
 use App\Managers\EmpresaGestion\GrupoManager;
 use App\Repositorios\EmpresaConSociosoRepo;
 use App\Repositorios\GrupoRepo;
+use App\Repositorios\GrupoSocioRelacionRepo;
 use Illuminate\Http\Request;
 
 class GrupoController extends Controller implements EntidadCrudInterface
@@ -48,7 +49,7 @@ class GrupoController extends Controller implements EntidadCrudInterface
     {
         $Empresa_id = $Request->get('user_empresa_desde_middleware')->empresa_id;
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se cargaron ', $this->EntidadRepo->getEntidadesDeEstaEmpresa($Empresa_id, 'name', 'desc', false, 'no'));
+        return HelpersGenerales::formateResponseToVue(true, 'Se cargaron ', $this->EntidadRepo->getGrupos($Empresa_id, $Request->get('sucursal_id')));
     }
 
     public function crearEntidad(Request $Request)
@@ -78,5 +79,22 @@ class GrupoController extends Controller implements EntidadCrudInterface
         }
 
         return HelpersGenerales::formateResponseToVue(false, 'No se pudo editar', $manager->getErrors());
+    }
+
+    public function eliminarGrupo(Request $Request)
+    {
+        $RepoGrupoSocioRelacion = new GrupoSocioRelacionRepo();
+        $UserEmpresa            = $Request->get('user_empresa_desde_middleware');
+        $Empresa                = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
+        $GrupoRelacionados      = $RepoGrupoSocioRelacion->getRelacionesDeEsteGrupo($Empresa->id, $Request->get('sucursal_id'), $Request->get('grupo_id'));
+
+        foreach ($GrupoRelacionados as $Relacion) {
+            $RepoGrupoSocioRelacion->destroy_entidad($Relacion);
+        }
+
+        $this->EntidadRepo->destruir_esta_entidad_de_manera_logica($this->EntidadRepo->find($Request->get('grupo_id')));
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se eliminó el grupo correctamente');
+
     }
 }

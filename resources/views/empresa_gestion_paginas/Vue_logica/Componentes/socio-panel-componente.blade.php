@@ -164,7 +164,7 @@ Vue.component("socio-panel-componente", {
   },
   template: `<span v-if="!cargando && socio_cargado">
 
-<div class="row mx-0 align-items-center mb-5">
+<div class="row mx-0 align-items-center shadow-sm mb-3 py-3 py-lg-2">
     <div class="col-12 col-lg-8 mb-2 mb-lg-0 ">
     <div class="row align-items-center justify-content-center justify-content-lg-start w-100">
 
@@ -177,11 +177,6 @@ Vue.component("socio-panel-componente", {
         </div>
        </div>
 
-       @if($Empresa->grupos_habilitado)
-          <div class="col-5 col-lg-6 ">
-            <administrar-grupos :socio="socio"></administrar-grupos>
-          </div>
-       @endif
 
 
 
@@ -201,6 +196,17 @@ Vue.component("socio-panel-componente", {
     </div>
 
   </div>
+
+
+      @if($Empresa->grupos_habilitado)
+
+      <div>
+          <div class="col-12 col-lg-6 d-flex">
+            <administrar-grupos :socio="socio"></administrar-grupos>
+          </div>
+      </div>
+
+       @endif
 
 
 

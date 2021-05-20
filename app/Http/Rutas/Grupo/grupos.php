@@ -18,3 +18,8 @@ Route::post('editar_grupo',
     [
         'uses' => 'Admin_Empresa\GrupoController@editarEntidad',
         'as'   => 'editar_grupo']);
+
+Route::post('eliminarGrupo',
+    [
+        'uses' => 'Admin_Empresa\GrupoController@eliminarGrupo',
+        'as'   => 'eliminarGrupo']);

@@ -18,7 +18,8 @@ Vue.component("listado", {
     get: function () {
       var url = "/get_grupos";
 
-      var data = {empresa_id:this.$root.empresa.id};
+      var data = {empresa_id:this.$root.empresa.id,
+                  sucursal_id: this.$root.Sucursal.id};
 
       var vue = this;
       vue.cargando = true;

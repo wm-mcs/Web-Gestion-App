@@ -15,6 +15,7 @@ var ListaGrupo = {
 
       var data = {
         empresa_id: this.$root.empresa.id,
+        sucursal_id: this.$root.Sucursal.id,
         id: this.entidadAEditar.id,
         name: this.entidadAEditar.name,
         estado: this.entidadAEditar.estado,
@@ -47,6 +48,41 @@ var ListaGrupo = {
           $.notify("Upsssssss.. algo pasó", "error");
         });
     },
+    delet:function(){
+
+      var url = "/eliminarGrupo";
+      var data = {
+        empresa_id: this.$root.empresa.id,
+        sucursal_id: this.$root.Sucursal.id,
+        grupo_id: this.entidadAEditar.id,
+
+      };
+
+      var vue = this;
+      vue.cargando = true;
+      vue.errores = [];
+
+      axios
+        .post(url, data)
+        .then(function (response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.cargando = false;
+            vue.showModal = false;
+            bus.$emit("se-creo-o-edito", "hola");
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            vue.setErrores(data.Data);
+            $.notify(response.data.Validacion_mensaje, "error");
+          }
+        })
+        .catch(function (error) {
+          vue.cargando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
+    }
   },
   computed: {},
   mounted: function () {
@@ -161,10 +197,18 @@ var ListaGrupo = {
                  Editar
               </button>
               <div v-else class="my-3  Procesando-text w-100">
-        <div class="cssload-container">
-            <div class="cssload-tube-tunnel"></div>
-        </div>
-    </div>
+              <div class="cssload-container">
+                  <div class="cssload-tube-tunnel"></div>
+              </div>
+              </div>
+
+              <div  v-if="cargando != true" @click="delet" class="col-12 text-center mt-5 helper-fuente-pequeña">
+                Eliminar este grupo
+              </div>
+
+
+
+
 
             </div>
 
