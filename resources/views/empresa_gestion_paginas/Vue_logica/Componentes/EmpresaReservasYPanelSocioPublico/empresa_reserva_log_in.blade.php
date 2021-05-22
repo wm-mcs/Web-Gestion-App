@@ -40,7 +40,6 @@
                                       type="number"
                                       class="input-text-class-primary"
 
-                                      required
 
                                     />
                                     <label for="celular">Tu celular</label>
@@ -49,7 +48,10 @@
 
 
                                 <div class="mt-3 ">
-                                  <button type="submit" class="Boton-Primario-Relleno Boton-Fuente-Chica">Ingresar a panel de reservas</button>
+                                  <button @click="cargando = !cargando" v-if="!cargando " type="submit" class="Boton-Primario-Relleno Boton-Fuente-Chica">Ingresar a panel de reservas</button>
+                                  <div  v-else class="h4 text-center color-text-gris">
+                                      Procesando
+                                  </div>
                                 </div>
 
                             </div>

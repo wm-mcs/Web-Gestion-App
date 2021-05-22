@@ -48,6 +48,8 @@ class AuthPubliLoginController extends Controller
 
         if ($Socio->count() > 0) {
             Session::put('socio-auth', $Socio->first());
+
+            return redirect()->route('get_panel_de_reservas');
         } else {
 
             return redirect()->back()->with('alert-danger', 'No tenemos ningún socio registrado con este celular 👉 ' . $Celular . ' . Llamanos al ' . $Empresa->celular . ' para arreglar esto.');

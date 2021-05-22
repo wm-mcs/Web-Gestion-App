@@ -12,8 +12,8 @@ data:function(){
       fecha_de_saldo:'',
       movimientos_de_caja_pesos:0,
       movimientos_de_caja_dolares:0,
-      saldo_pesos:{!! json_encode(Session::get('sucursal'.$Empresa->id)->saldo_de_caja_pesos) !!},
-      saldo_dolares:{!! json_encode(Session::get('sucursal'.$Empresa->id)->saldo_de_caja_dolares) !!},
+      saldo_pesos:0,
+      saldo_dolares:0,
       fecha_inicio:new Date(),
       fecha_fin:new Date(),
       fecha_de_arqueo:'',
@@ -21,7 +21,8 @@ data:function(){
       tipo_de_consulta:'inicial',
       inicial:'inicial',
       arqueo:'arqueo',
-      entre_fechas:'entre_fechas'
+      entre_fechas:'entre_fechas',
+      cargando:false
 
     }
 },
@@ -73,7 +74,7 @@ methods:{
                  };
       var vue = this;
 
-      app.cargando = true;
+      this.cargando = true;
 
      axios.post(url,data).then(function (response){
             var data = response.data;
@@ -82,7 +83,7 @@ methods:{
             if(data.Validacion == true)
             {
 
-               app.cargando = false;
+
 
                vue.fecha_de_saldo = data.Fecha_saldo;
                vue.fecha_inicio    = data.Fecha_inicio;
@@ -101,14 +102,16 @@ methods:{
                }
 
                $.notify(response.data.Validacion_mensaje, "success");
+               vue.cargando = false;
             }
             else
             { app.cargando = false;
               $.notify(response.data.Validacion_mensaje, "error");
+              vue.cargando = false;
             }
 
            }).catch(function (error){
-
+            vue.cargando = false;
 
 
            });
@@ -157,31 +160,21 @@ created() {
       this.getMovimientosDeCaja();
     })
 },
-template:'<div>
+template:`<div>
 
-  <div  class="contiene-saldo" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
-     <span class="saldo-aclaracion">
-       Saldo caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
-     </span>
-     <div v-if="esMatoyIgualACero(saldo_pesos)" class="saldo-valor">
-       $ @{{sucursal.saldo_de_caja_pesos}}
-     </div>
-     <div v-else class="color-text-danger saldo-valor ">
-       $ @{{sucursal.saldo_de_caja_pesos}}
-     </div>
-
+  <div  class="w-100 my-2 p-3" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
+     <div class="Boton-Primario-Sin-Relleno ">
+       Caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span>
+     </div>     
   </div>
 
- <div v-if="esDistintoACero(saldo_dolares)" class="contiene-saldo" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
-     <span class="saldo-aclaracion">
-       Saldo caja dolares sucursal <span class="text-bold" >@{{sucursal.name}}</span> <i class="fas fa-hand-point-right"></i>
-     </span>
-     <div v-if="esMatoyIgualACero(saldo_dolares)" class="saldo-valor">
-       U$S @{{sucursal.saldo_de_caja_dolares}}
-     </div>
-     <div v-else class="color-text-danger saldo-valor">
-       U$S @{{sucursal.saldo_de_caja_dolares}}
-     </div>
+ <div v-if="esDistintoACero(saldo_dolares)" class="w-100 my-2 p-3" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
+    
+
+     <div class="Boton-Primario-Sin-Relleno ">
+       Caja dólares sucursal <span class="text-bold" >@{{sucursal.name}}</span>
+     </div> 
+
  </div>
 
 
@@ -189,11 +182,12 @@ template:'<div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title get_width_80" id="myModalLabel">
+
+          <h4  class="modal-title get_width_80" id="myModalLabel">
             Movimientos de caja pesos:
             <div class="saldo-modal">
               Saldo al día @{{fecha_de_saldo}}
-              <span class="saldo-modal-valor">$ @{{saldo_pesos}} </span>
+              <span class="saldo-modal-valor"> <span v-if="cargando"> Cargando ...</span> <span v-else> $ @{{saldo_pesos}} </span></span>
             </div>
             @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
 
@@ -201,7 +195,7 @@ template:'<div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
 
         </div>
-        <div v-if="$root.cargando" class="Procesando-text">
+        <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
@@ -240,14 +234,14 @@ template:'<div>
 
             <div class="saldo-modal">
               Saldo al día @{{fecha_de_saldo}}
-              <span class="saldo-modal-valor">U$S @{{saldo_dolares}}  </span>
+              <span class="saldo-modal-valor"> <span v-if="cargando"> Cargando ...</span> <span v-else>U$S @{{saldo_dolares}}  </span> </span>
             </div>
             @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.caja_buscar_entre_fechas')
           </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
 
         </div>
-        <div v-if="$root.cargando" class="Procesando-text">
+        <div v-if="cargando" class="Procesando-text">
                        <div class="cssload-container">
                              <div class="cssload-tube-tunnel"></div>
                        </div>
@@ -280,7 +274,7 @@ template:'<div>
 
 
 
-</div>'
+</div>`
 
 }
 
