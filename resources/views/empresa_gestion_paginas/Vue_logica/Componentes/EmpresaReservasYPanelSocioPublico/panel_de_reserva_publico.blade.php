@@ -8,8 +8,8 @@
 @section('content')
 
 
-<div style="min-height: 100vh;" class="w-100 d-flex flex-row align-items-center justify-content-center">
-        <div class="w-100 d-flex flex-column align-items-center">
+<div style="min-height: 100vh;" class="w-100 ">
+        <div class="container d-flex flex-column align-items-center">
 
                 <div class="col-10 col-lg-5 d-flex flex-column align-items-center">
                          <img src="{{$Empresa->url_img}}" alt="Logo de {{$Empresa->name}}" class="img-fluid">
