@@ -91,7 +91,7 @@ Vue.component("agregar-al-socio-un-servicio", {
     },
     cambioTipoDeServicio: function() {
       var servicio = this.seleccionarUnObjetoSegunAtributo(
-        this.empresa.tipo_servicios,
+        this.servicios,
         "id",
         this.tipo_servicio
       );

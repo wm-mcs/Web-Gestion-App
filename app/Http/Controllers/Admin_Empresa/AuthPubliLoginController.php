@@ -27,7 +27,7 @@ class AuthPubliLoginController extends Controller
         $Empresa = $Request->get('empresa_desde_middleware');
 
         $Data = [
-            'title'       => 'Reservar clase en ' . $Empresa->name,
+            'title'       => $Empresa->name,
             'img'         => $Empresa->url_img,
             'description' => '',
         ];

@@ -44,7 +44,8 @@ class EmpresaConSocios extends Model
         'control_acceso_habilitado',
         'reserva_online_habilitado',
         'grupos_habilitado',
-        'pais_object'];
+        'pais_object',
+        'zona_horaria'];
 
     public function getTipoServiciosAttribute()
     {
@@ -202,6 +203,15 @@ class EmpresaConSocios extends Model
     public function getNameSlugAttribute()
     {
         return $this->helper_convertir_cadena_para_url($this->name);
+    }
+
+    public function getZonaHorariaAttribute()
+    {
+        if ($this->time_zone != null && $this->time_zone != '') {
+            return $this->time_zone;
+        } else {
+            return 'America/Montevideo';
+        }
     }
 
     //funciones personalizadas para reciclar

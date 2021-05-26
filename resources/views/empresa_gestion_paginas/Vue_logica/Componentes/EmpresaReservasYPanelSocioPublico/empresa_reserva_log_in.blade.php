@@ -21,10 +21,10 @@
                     <img class="img-fluid " src="{{$Data['img']}}">
                 </div>
 
-                <div class="col-11 col-lg-5 background-gris-0 p-5 ">
-                <h1 class="sub-titulos-class font-secondary text-color-black text-center  mb-3"> {{$Data['title']}}</h1>
+                <div class="col-11 col-lg-5 background-gris-0  p-3 p-lg-5 ">
+                <h1 class="sub-titulos-class font-secondary text-color-black text-center  mb-3"> <strong>{{$Data['title']}}</strong> </h1>
                 <p class="col-12 text-center mb-3">
-                  Para reservar clase ingresá tu celular y apretá el botón de abajo.
+                  <small>Para ingresar escribí tu celular <br> y apretá el botón de abajo.</small>
                 </p>
                 {!! Form::open(             ['route' => 'post_auth_login_reserva_socio',
                             'method'   => 'post',
@@ -48,7 +48,7 @@
 
 
                                 <div class="mt-3 ">
-                                  <button @click="cargando = !cargando" v-if="!cargando " type="submit" class="Boton-Primario-Relleno Boton-Fuente-Chica">Ingresar a panel de reservas</button>
+                                  <button @click="cargando = !cargando" v-if="!cargando " type="submit" class="Boton-Primario-Relleno Boton-Fuente-Chica">Ingresar </button>
                                   <div  v-else class="h4 text-center color-text-gris">
                                       Procesando
                                   </div>

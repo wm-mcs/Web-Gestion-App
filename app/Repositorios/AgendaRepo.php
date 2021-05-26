@@ -35,4 +35,14 @@ class AgendaRepo extends BaseRepo
             ->orderBy($Ordenar_key, $Order_sentido)
             ->get();
     }
+
+    /**
+     * Me devuelve las clases disponibles para reservar teniendo en cuenta:
+     * La hora, el día y los días que la empresa quiera permitir hacer reservas.
+     *
+     *   */
+    public function getClasesParaReservar()
+    {
+
+    }
 }

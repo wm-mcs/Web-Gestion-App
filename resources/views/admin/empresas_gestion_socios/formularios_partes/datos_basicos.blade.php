@@ -31,6 +31,17 @@
 </div>
 
 <div class="formulario-label-fiel">
+  {!! Form::label('time_zone', 'Time zone', array('class' => 'formulario-label ')) !!}
+  <div class="modal-mensaje-aclarador mt-0">
+    Importante para las empresas fuera de Uruguay
+  </div>
+  {!! Form::text('time_zone', null ,['class' => 'formulario-field']) !!}
+</div>
+
+
+
+
+<div class="formulario-label-fiel">
   {!! Form::label('mensaje_aviso_especial', 'Aviso Especial', array('class' => 'formulario-label ')) !!}
   <div class="modal-mensaje-aclarador">
     Aquí iría un mensaje de caracter muy especial para que le aparezca cuando inicia.
