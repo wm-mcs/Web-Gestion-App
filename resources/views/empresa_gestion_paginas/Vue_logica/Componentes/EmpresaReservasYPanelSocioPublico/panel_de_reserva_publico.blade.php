@@ -34,6 +34,7 @@
 <script type="text/javascript">
    @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.Componentes.clase')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.Componentes.reservas')
     @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaReservasYPanelSocioPublico.Componentes.componenteGeneralDeReservas')
     @include('empresa_gestion_paginas.Vue_logica.instancia_vue')

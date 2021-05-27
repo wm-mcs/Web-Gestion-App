@@ -13,31 +13,31 @@ Vue.component("listado", {
       diasArrayObjeto: [
         {
           name: "lunes",
-          valor: 0
-        },
-        {
-          name: "martes",
           valor: 1
         },
         {
-          name: "miércoles",
+          name: "martes",
           valor: 2
         },
         {
-          name: "jueves",
+          name: "miércoles",
           valor: 3
         },
         {
-          name: "viernes",
+          name: "jueves",
           valor: 4
         },
         {
-          name: "sábado",
+          name: "viernes",
           valor: 5
         },
         {
-          name: "domingo",
+          name: "sábado",
           valor: 6
+        },
+        {
+          name: "domingo",
+          valor: 0
         }
       ]
     };
@@ -89,7 +89,7 @@ Vue.component("listado", {
             if (a < b) {
               return -1;
             }
-            
+
             return 0;
           });
 

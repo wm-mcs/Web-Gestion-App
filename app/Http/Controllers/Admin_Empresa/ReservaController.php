@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin_Empresa;
 use App\Helpers\HelperFechas;
 use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
+use App\Repositorios\ActividadRepo;
 use App\Repositorios\AgendaRepo;
 use App\Repositorios\EmpresaConSociosoRepo;
 use App\Repositorios\ReservaRepo;
@@ -49,6 +50,15 @@ class ReservaController extends Controller
         return HelpersGenerales::formateResponseToVue(true, 'Sucursales cargadas', $Repo->getSucursalesDeEmpresa($Empresa->id));
     }
 
+    public function get_actividad_desde_reserva()
+    {
+        $Empresa = Session::get('empresa_auth_public');
+
+        $Repo = new ActividadRepo();
+
+        return HelpersGenerales::formateResponseToVue(true, 'Sucursales cargadas', $Repo->getEntidadesDeEstaEmpresa($Empresa->id, 'name', 'desc', false, 'no'));
+    }
+
     public function get_clases_para_reservar_public(Request $Request)
     {
         $Empresa     = Session::get('empresa_auth_public');
@@ -58,46 +68,44 @@ class ReservaController extends Controller
         $RepoAgenda  = new AgendaRepo();
         $ReservaRepo = new ReservaRepo();
 
-        $Hoy = Carbon::now($Empresa->zona_horaria);
-
         $ClasesParaREservarOrdenadasSegunDia = $RepoAgenda->getAgendasDeEstaSucursal($Empresa->id, $Sucursal_id, 'hora_inicio', 'asc');
 
-        //¿Qué día es hoy?
-        $Hoy->dayOfWeekIso;
-
-//0
-
-        //¿Qué hora es?
-        $Hoy->hour;
-
         //¿Cuántos días le muestro?
-        $Dias_por_adelantado_a_mostrar = 2;
+        $Dias_por_adelantado_a_mostrar = $Empresa->reserva_de_clase_dias_por_adelantado;
 
         //Data
         $Data = [];
 
         $Contador = 0;
 
-        while ($Contador < $Dias_por_adelantado_a_mostrar) {
-            $Clases_de_hoy = $ClasesParaREservarOrdenadasSegunDia->filter(function ($value) use ($Hoy) {
+        while ($Contador < (int) $Dias_por_adelantado_a_mostrar) {
 
-                return in_array($Hoy->dayOfWeekIso, explode(',', $value->days)) && (int) $Hoy->hour <= (int) explode(':', $value->hora_inicio)[0];
-            })->all();
+            $Dia = $Contador == 0 ? Carbon::now($Empresa->zona_horaria) : Carbon::now($Empresa->zona_horaria)->addDay($Contador)->startOfDay();
+
+            $Clases_de_hoy = $ClasesParaREservarOrdenadasSegunDia->filter(function ($value) use ($Dia) {
+
+                $validation = in_array((string) $Dia->dayOfWeekIso, explode(',', $value->days)) && (int) $Dia->hour <= intval(explode(':', $value->hora_inicio)[0]);
+
+                return $validation;
+            })->values();
 
             if (count($Clases_de_hoy) > 0) {
                 foreach ($Clases_de_hoy as $Clase) {
-                    $Clase->reservas_del_dia = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Clase, $Hoy)->count();
+                    $Clase->reservas_del_dia = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Clase, $Dia)->count();
                 }
 
                 $Objeto           = new \stdClass();
-                $Objeto->day      = $Hoy;
-                $Objeto->day_text = HelperFechas::getNombreDeDia($Hoy->dayOfWeekIso) . ' ' . $Hoy->format('d-m');
+                $Objeto->day      = $Dia;
+                $Objeto->day_text = HelperFechas::getNombreDeDia($Dia->dayOfWeekIso) . ' ' . $Dia->format('d-m');
                 $Objeto->clases   = $Clases_de_hoy;
                 array_push($Data, $Objeto);
-                $Contador += 1;
+
+            } else {
+
             }
 
-            $Hoy->addDay()->startOfDay();
+            $Contador += 1;
+
         }
 
         return HelpersGenerales::formateResponseToVue(true, 'Se cargaron los días para la reserva', $Data);

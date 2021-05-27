@@ -6,7 +6,7 @@ var Lista = {
       cargando: false,
       entidadAEditar: this.entidad,
       showModal: false,
-      diasQueRepiteArray: [],      
+      diasQueRepiteArray: [],
     };
   },
   methods: {
@@ -45,11 +45,11 @@ var Lista = {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-            vue.showModal = false;            
+            vue.showModal = false;
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
-            vue.setErrores(data.Data);            
+            vue.setErrores(data.Data);
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -59,7 +59,7 @@ var Lista = {
         });
     },
     eliminar:function(){
-      var url = "/eleminar_actividad"; 
+      var url = "/eleminar_actividad";
 
       var validation = confirm("¿De verdad lo querés borrar?");
 
@@ -70,7 +70,7 @@ var Lista = {
       const data = {
         empresa_id: this.$root.empresa.id,
         id: this.entidadAEditar.id,
-       
+
       };
 
       var vue = this;
@@ -88,7 +88,7 @@ var Lista = {
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
-            
+
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
@@ -123,7 +123,7 @@ var Lista = {
       </small>
 
     </p>
-    <p v-if="entidadAEditar.estado != 'si'" class="agenda-lista-dato mt-2 mb-0 text-uppercase">     
+    <p v-if="entidadAEditar.estado != 'si'" class="agenda-lista-dato mt-2 mb-0 text-uppercase">
       DESACTIVADA
     </p>
 
@@ -144,8 +144,8 @@ var Lista = {
 
             </div>
 
-            
-            
+
+
           </div>
 
 
@@ -224,31 +224,31 @@ var Lista = {
       </div>
       <div class="col-12">
           <label for="lunes">Lunes</label>
-          <input type="checkbox" id="lunes" value="0" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="lunes" value="1" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="martes">Martes</label>
-          <input type="checkbox" id="martes" value="1" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="martes" value="2" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="miercoles">Miércoles</label>
-          <input type="checkbox" id="miercoles" value="2" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="miercoles" value="3" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="jueves">Jueves</label>
-          <input type="checkbox" id="jueves" value="3" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="jueves" value="4" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="viernes">Viernes</label>
-          <input type="checkbox" id="viernes" value="4" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="viernes" value="5" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="sabado">Sábado</label>
-          <input type="checkbox" id="sabado" value="5" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="sabado" value="6" v-model="diasQueRepiteArray">
       </div>
       <div class="col-12">
           <label for="domingo">Domingo</label>
-          <input type="checkbox" id="domingo" value="6" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="domingo" value="0" v-model="diasQueRepiteArray">
       </div>
 
 

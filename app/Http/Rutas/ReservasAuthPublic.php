@@ -13,3 +13,8 @@ Route::post('/get_clases_para_reservar_public',
     [
         'uses' => 'Admin_Empresa\ReservaController@get_clases_para_reservar_public',
         'as'   => 'get_clases_para_reservar_public']);
+
+Route::post('/get_actividad_desde_reserva',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@get_actividad_desde_reserva',
+        'as'   => 'get_actividad_desde_reserva']);

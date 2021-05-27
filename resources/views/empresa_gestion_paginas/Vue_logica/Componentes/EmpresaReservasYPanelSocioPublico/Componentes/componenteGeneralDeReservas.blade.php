@@ -113,10 +113,10 @@ Vue.component("componente-general-reservas", {
 
 
 
-  <div class="col-12 mt-4 ">
+  <div class="col-12 my-4 ">
 
   <div class="border borde-primary rounded background-gris-1 p-2">
-    <reservas :sucursales="sucursales" :empresa="empresa" v-if="queMostrar == 'reserva'">
+    <reservas  :sucursales="sucursales" :empresa="empresa" v-if="queMostrar == 'reserva' && sucursales.length > 0">
 
     </reservas>
 

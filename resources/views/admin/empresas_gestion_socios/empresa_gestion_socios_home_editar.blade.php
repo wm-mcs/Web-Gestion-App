@@ -116,9 +116,16 @@
                </div>
            </div>
            <div class="contenedor-grupo-datos">
-              <div class="contenedor-grupo-datos-titulo"> Control de acceso</div>
+              <div class="contenedor-grupo-datos-titulo"> Sistema de control de acceso</div>
               <div class="contenedor-formulario-label-fiel">
                @include('admin.empresas_gestion_socios.formularios_partes.datos_control_de_acceso')
+              </div>
+           </div>
+
+           <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo">Sistema de reservas online</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_sistema_de_reservas')
               </div>
            </div>
 
