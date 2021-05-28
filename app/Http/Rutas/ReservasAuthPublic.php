@@ -18,3 +18,8 @@ Route::post('/get_actividad_desde_reserva',
     [
         'uses' => 'Admin_Empresa\ReservaController@get_actividad_desde_reserva',
         'as'   => 'get_actividad_desde_reserva']);
+
+Route::post('/efectuar_reserva',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@efectuar_reserva',
+        'as'   => 'efectuar_reserva']);

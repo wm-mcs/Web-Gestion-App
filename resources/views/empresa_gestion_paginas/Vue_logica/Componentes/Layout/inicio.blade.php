@@ -1,3 +1,6 @@
+@if(!Auth::guest())
+
+
 Vue.component('nav-inicio' ,
 {
 
@@ -10,7 +13,7 @@ data:function(){
     }
 },
 methods:{
-  
+
   abrir_modal:function(){
   app.abrirModal(this.modal_nombre);
   },
@@ -20,7 +23,7 @@ methods:{
   },
   abrir_cambiar_pass:function(){
 
-   
+
 
     if(this.contraseña === false){
       this.contraseña = true;
@@ -38,18 +41,18 @@ methods:{
       }
       var url = '/cambiarContraseñaUser';
 
-      var data = {    pass:this.pass,     
-                 };  
-      var vue = this;           
+      var data = {    pass:this.pass,
+                 };
+      var vue = this;
 
-     axios.post(url,data).then(function (response){  
-            var data = response.data;  
-            
+     axios.post(url,data).then(function (response){
+            var data = response.data;
+
 
             if(data.Validacion == true)
             {
-               
-               
+
+
                app.cerrarModal(vue.modal_nombre);
                $.notify(response.data.Validacion_mensaje, "success");
             }
@@ -57,19 +60,19 @@ methods:{
             {
               $.notify(response.data.Validacion_mensaje, "error");
             }
-           
+
            }).catch(function (error){
 
-                     
-            
+
+
            });
   }
-    
+
 
 },
 template:'
 
-  
+
     <span class="helper_cursor_pointer" v-on:click="abrir_modal"> <i class="fas fa-user"></i> {{Auth::user()->first_name}}
 
 
@@ -79,14 +82,14 @@ template:'
               <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Menu de  {{Auth::user()->first_name}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                
+
               </div>
-              <div class="modal-body text-center"> 
+              <div class="modal-body text-center">
 
 
 
                 <div class="contraseña-titulo simula_link" v-on:click="abrir_cambiar_pass" >
-                   Cambiar contraseña 
+                   Cambiar contraseña
                   <span v-if="contraseña != true"><i class="fas fa-chevron-down"></i></span>
                   <span v-else> <i class="fas fa-chevron-up"></i></span>
                 </div>
@@ -94,12 +97,12 @@ template:'
                   <div class="flex-row-center get_width_100" >
                     <input type="text" class="form-control get_width_80" v-model="pass"  placeholder="Esribe la nueva contraseña">
                     <div class="flex-row-center get_width_20 flex-justifice-space-around">
-                      <span  class="boton-acciones-editar" v-on:click="cambiar_pass"> Cambiar</span> 
+                      <span  class="boton-acciones-editar" v-on:click="cambiar_pass"> Cambiar</span>
                     </div>
                   </div>
-                  
-                  
-                 
+
+
+
 
 
                 </div>
@@ -109,20 +112,20 @@ template:'
                 <br>
                  <a href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Cambiar de cuenta</a>
 
-                     
 
-                        
-                       
+
+
+
               </div>
-              
+
             </div>
           </div>
       </div>
 
 
 
-    </span> 
-  
+    </span>
+
 
 '
 
@@ -132,3 +135,5 @@ template:'
 
 
 );
+
+@endif

@@ -17,7 +17,12 @@ class SocioLogInPublic
             if ($request->isJson()) {
                 HelpersGenerales::formateResponseToVue(false, 'Hay un error de conexión. Actualizá la página para solucionar.');
             } else {
-                return redirect()->$Empresa->route_reservas->with('alert-rojo', 'La sesión expiró. Ingresá los datos de nuevo.');
+
+                if ($Empresa == null) {
+                    return 'Esta página no existe. Conseguí de nuevo el link. ';
+                }
+
+                return redirect($Empresa->route_reservas)->with('alert-rojo', 'La sesión expiró. Ingresá los datos de nuevo.');
             }
         }
 

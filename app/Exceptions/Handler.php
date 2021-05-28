@@ -4,10 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,15 +43,12 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
 
-
-       if(!Auth::guest())       
-        {
-            if(Auth::user()->role > 8 )
-            {
+        if (!Auth::guest()) {
+            if (Auth::user()->role > 8) {
                 return parent::render($request, $e);
             }
-        }        
-        
+
+        }
 
         // 404 page when a model is not found
         if ($e instanceof ModelNotFoundException) {
@@ -64,9 +60,6 @@ class Handler extends ExceptionHandler
             return response()->view('errors.500', [], 500);
         }
 
-        
-
-    
         return parent::render($request, $e);
     }
 }

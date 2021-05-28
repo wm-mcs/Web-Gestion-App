@@ -60,7 +60,7 @@ var Reservas = {
 
       var url = "/get_clases_para_reservar_public";
 
-      var data = {sucursal_id:this.sucursale_elegida.id};
+      var data = {sucursal_id:this.sucursale_elegida.id                 };
 
       var vue = this;
 
@@ -147,9 +147,11 @@ var Reservas = {
 
             <div class="mx-0 row border-radius-estandar p-3  col-12 col-lg-7">
                 <clase :clase="clase"
+                       @reservo="getClasesParaReservar"
                        :actividades="actividades"
                        :sucursal="sucursale_elegida"
                        :fecha="dia.day_text"
+                       :dia="dia.day.date"
                        v-for="clase in dia.clases"
                        :key="dia.day_text + ' ' + clase.id"></clase>
             </div>

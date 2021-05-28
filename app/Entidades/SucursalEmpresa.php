@@ -38,6 +38,10 @@ class SucursalEmpresa extends Model
     public function getPuedeVerElUserAttribute()
     {
 
+        if (Auth::guest()) {
+            return false;
+        }
+
         $User      = Auth::user();
         $Gerarquia = $User->role;
 

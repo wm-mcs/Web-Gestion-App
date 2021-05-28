@@ -17,7 +17,7 @@ class ReservaRepo extends BaseRepo
             ->where('empresa_id', $Clase->empresa_id)
             ->where('sucursal_id', $Clase->sucursal_id)
             ->whereBetween('fecha_que_se_efectura_la_clase', [$Hoy->startOfDay(), $Hoy->endOfDay()])
-            ->where('agenda_id', $Clase->agenda_id)
+            ->where('agenda_id', $Clase->id)
             ->get();
 
     }
@@ -30,6 +30,7 @@ class ReservaRepo extends BaseRepo
     public function setReserva($Empresa_id, $Sucursal_id, $Agenda_id, $Fecha_que_se_efectura_la_clase, $Socio_id, $Nombre_de_socio)
     {
         $Entidad                                 = $this->getEntidad();
+        $Entidad->estado                         = 'si';
         $Entidad->empresa_id                     = $Empresa_id;
         $Entidad->sucursal_id                    = $Sucursal_id;
         $Entidad->agenda_id                      = $Agenda_id;
@@ -40,5 +41,24 @@ class ReservaRepo extends BaseRepo
 
         return $Entidad;
 
+    }
+
+    /**
+     * Verificá que el socio efectivamente este o no ya reservado
+     *
+     * @return bool
+     */
+    public function verificarSiSocioYaReservo($Clase, $Dia, $Socio)
+    {
+
+        $Entidades = $this->getEntidad()
+            ->where('empresa_id', $Clase->empresa_id)
+            ->where('sucursal_id', $Clase->sucursal_id)
+            ->where('socio_id', $Socio->id)
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->startOfDay(), $Dia->endOfDay()])
+            ->where('agenda_id', $Clase->id)
+            ->get();
+
+        return $Entidades->count() > 0 ? true : false;
     }
 }

@@ -1,11 +1,14 @@
 var Clase = {
   mixins: [onKeyPressEscapeCerrarModalMixIn, erroresMixIn],
-  props: ["clase", "actividades", "fecha", "sucursal"],
+  props: ["clase", "actividades", "fecha", "sucursal", "dia"],
   data: function() {
     return {
       cargando: false,
       entidad: this.clase,
-      showModal: false
+      showModal: false,
+      error: false,
+      success: false,
+      menssage: ""
     };
   },
   methods: {
@@ -18,16 +21,14 @@ var Clase = {
     },
 
     reservar: function() {
-      var url = "/";
+      var url = "/efectuar_reserva";
 
-      var validation = confirm("¿De verdad lo querés borrar?");
-
-      if (!validation) {
-        return "";
-      }
       const data = {
         empresa_id: this.$root.empresa.id,
-        id: this.entidad.id
+        sucursal_id:this.sucursal.id,
+        agenda_id: this.clase.id,
+        actividad_id: this.clase.actividad_id,
+        fecha_de_cuando_sera_la_clase: this.dia
       };
 
       var vue = this;
@@ -40,13 +41,23 @@ var Clase = {
 
           if (data.Validacion == true) {
             vue.cargando = false;
-            vue.showModal = false;
 
-            $.notify(response.data.Validacion_mensaje, "success");
+            vue.success = true;
+            vue.message = response.data.Validacion_mensaje;
+
+            setInterval(function() {
+              vue.showModal = false;
+              vue.$emit('reservo');
+            }, 6000);
           } else {
             vue.cargando = false;
 
-            $.notify(response.data.Validacion_mensaje, "error");
+            vue.error = true;
+            vue.message = response.data.Validacion_mensaje;
+            setInterval(function() {
+              vue.showModal = false;
+            }, 6000);
+
           }
         })
         .catch(function(error) {
@@ -84,11 +95,18 @@ var Clase = {
        Quedan  Cupo de personas máximo <b>@{{entidad.cantidad_de_cupos }}</b>  </span>
       <span v-else> No tiene límite de cupo</span>.
 
+      <div>
+        Reservas = @{{entidad.reservas_del_dia}}
+      </div>
+
       </small>
 
     </p>
 
-    <button  @click="showModal = true" type="button" class="btn btn-primary mt-3">Reservar</button>
+    <button  v-if="!entidad.auth_socio_ya_reservo" @click="showModal = true" type="button" class="btn btn-primary mt-3">Reservar</button>
+    <div v-else class="color-text-success h2 my-1">
+      Rerservado <i  class="fas fa-check-circle"></i>
+    </div>
 
 
 
@@ -109,6 +127,8 @@ var Clase = {
 
             <div class="row  mx-0 ">
 
+            <span  v-if="!success && !error" class="w-100">
+
             <div class="col-12 text-center mb-4">
             <strong>Lo que estás por reservar es:</strong>
              </div>
@@ -123,6 +143,7 @@ var Clase = {
 
             </ul>
 
+            </span>
 
 
 
@@ -141,14 +162,21 @@ var Clase = {
 
 
 
-      <transition name="fade-enter" v-if="errores.length > 0">
-        <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
-          <div @click="handlerClickErrores" class="color-text-error mb-1" v-for="error in errores">@{{error[0]}}</div>
+
+
+      <transition name="fade-enter" v-if="success || error">
+        <div  @click="handlerClickErrores" class="col-12 my-2 py-4  cursor-pointer w-100 border-radius-estandar borde-bottom-gris background-gris-1"  >
+
+          <div :class="[success ? 'color-text-success' : 'color-text-error', 'h1 text-center mb-4']">
+              <i v-if="success" class="fas fa-check-circle"></i>
+              <i v-if="error" class="fas fa-exclamation-triangle"></i>
+          </div>
+          <div :class="[success ? 'color-text-success' : 'color-text-error', 'text-center mb-1']"> @{{message}}</div>
         </div>
       </transition>
 
         <div v-if="cargando != true"  class="d-flex flex-column align-items-center w-100">
-        <button  type="button" @click="reservar" class="mt-4 btn btn-lg btn-primary">
+        <button  v-if="!success && !error"  type="button" @click="reservar" class="mt-4 btn btn-lg btn-primary">
                  Reservar
               </button>
         </div>

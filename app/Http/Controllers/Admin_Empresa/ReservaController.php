@@ -9,6 +9,7 @@ use App\Repositorios\ActividadRepo;
 use App\Repositorios\AgendaRepo;
 use App\Repositorios\EmpresaConSociosoRepo;
 use App\Repositorios\ReservaRepo;
+use App\Repositorios\ServicioContratadoSocioRepo;
 use App\Repositorios\SucursalEmpresaRepo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -91,7 +92,8 @@ class ReservaController extends Controller
 
             if (count($Clases_de_hoy) > 0) {
                 foreach ($Clases_de_hoy as $Clase) {
-                    $Clase->reservas_del_dia = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Clase, $Dia)->count();
+                    $Clase->reservas_del_dia      = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Clase, $Dia)->count();
+                    $Clase->auth_socio_ya_reservo = $ReservaRepo->verificarSiSocioYaReservo($Clase, $Dia, $Socio);
                 }
 
                 $Objeto           = new \stdClass();
@@ -109,5 +111,77 @@ class ReservaController extends Controller
         }
 
         return HelpersGenerales::formateResponseToVue(true, 'Se cargaron los días para la reserva', $Data);
+    }
+
+    /**
+     * Lógica de cuando se apreta el boton RESERVAR
+     */
+    public function efectuar_reserva(Request $Request)
+    {
+
+        $Empresa                       = Session::get('empresa_auth_public');
+        $Socio                         = Session::get('socio-auth');
+        $Sucursal_id                   = $Request->get('sucursal_id');
+        $Agenda_id                     = $Request->get('agenda_id');
+        $Actividad_id                  = $Request->get('actividad_id');
+        $Fecha_de_cuando_sera_la_clase = $Request->get('fecha_de_cuando_sera_la_clase');
+
+        $RepoAgenda  = new AgendaRepo();
+        $ReservaRepo = new ReservaRepo();
+
+        //Verificar si el socio cumple para reservar
+
+        //Está al día
+        if ($Empresa->reserva_de_clase_acepta_deuda == 'no') {
+            if ($Socio->saldo_de_estado_de_cuenta_pesos < 0) {
+                return HelpersGenerales::formateResponseToVue(false, 'Actualmente estás debiendo $ ' . $Socio->saldo_de_estado_de_cuenta_pesos . ' Para poder hacer reserva es necesario estar al día. Comunicate al ' . $Empresa->celular . ' o pasá por el local para liquidar esa deuda. ¡Saludos!');
+            }
+        }
+
+        //Tiene algo contratado
+        if ($Empresa->reserva_de_clase_acepta_sin_plan != 'si') {
+
+            $ServicioContratadoSocioRepo = new ServicioContratadoSocioRepo();
+            $ServiciosDisponibles        = $ServicioContratadoSocioRepo->getServiciosContratadosDisponiblesTodos($Socio->id);
+
+            if ($ServiciosDisponibles->count() < 1) {
+                return HelpersGenerales::formateResponseToVue(false, 'Tu servicio contrato está vencido. Comunicate al ' . $Empresa->celular . ' o pasá por el local para renovarlo. ¡Saludos!');
+            } else {
+                foreach ($ServiciosDisponibles as $Plan) {
+                    if ($Plan->tipo_de_servicio->todo_las_clases_actividades_habilitadas != 'si') {
+
+                        //Eso contratado le sirve para esta clase
+                        if (!in_array((string) $Actividad_id, explode(',', $Plan->actividad_habilitadas))) {
+                            return HelpersGenerales::formateResponseToVue(false, 'El plan que tenés no incluye esta actividad. Comunicate al ' . $Empresa->celular . ' o pasá por el local para ajustar el plan. ¡Saludos!');
+                        }
+                    }
+                }
+            }
+        }
+
+        $Agenda = $RepoAgenda->find($Agenda_id);
+
+        //La clase tiene cupos
+        if ($Agenda->tiene_limite_de_cupos != 'no') {
+            //En caso de que si ¿Quedán disponibles?
+            $Cantidad_de_registrados = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Agenda, $Fecha_de_cuando_sera_la_clase)->count();
+
+            if ($Cantidad_de_registrados + 1 > $Agenda->cantidad_de_cupos) {
+                return HelpersGenerales::formateResponseToVue(false, 'Te ganaron de mano, en este momento alguien le dió al botón reservar más rapido y se quedó con el lugar. Intentá reservar en otro horario.');
+            }
+        }
+
+        // ¿Ya hizo una reserva previamente?
+        if ($ReservaRepo->verificarSiSocioYaReservo($Agenda, Carbon::parse($Fecha_de_cuando_sera_la_clase), $Socio)) {
+            return HelpersGenerales::formateResponseToVue(true, 'Tu reserva quedó hecha. Te esperamos el ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las ' . $Agenda->hora_inicio . ' hs.');
+        } else {
+            $ReservaRepo->setReserva($Empresa->id, $Sucursal_id, $Agenda->id, Carbon::parse($Fecha_de_cuando_sera_la_clase), $Socio->id, $Socio->name);
+
+            //Enviar_email
+
+            return HelpersGenerales::formateResponseToVue(true, 'Tu reserva quedó hecha. Te esperamos el ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las ' . $Agenda->hora_inicio . ' hs.');
+
+        }
+
     }
 }

@@ -65,6 +65,19 @@ class ServicioContratadoSocioRepo extends BaseRepo
         return $Entidad;
     }
 
+    public function getServiciosContratadosDisponiblesTodos($socio_id)
+    {
+        $Hoy = Carbon::now('America/Montevideo');
+
+        return $this->getEntidad()
+            ->where('socio_id', $socio_id)
+            ->where('borrado', 'no')
+            ->where('fecha_vencimiento', '>', $Hoy)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+    }
+
     public function getServiciosContratadosDisponiblesTipoClase($socio_id)
     {
         $Hoy = Carbon::now('America/Montevideo');
