@@ -80,7 +80,6 @@ class ReservaController extends Controller
         $Contador = 0;
 
         while ($Contador < (int) $Dias_por_adelantado_a_mostrar) {
-
             $Dia = $Contador == 0 ? Carbon::now($Empresa->zona_horaria) : Carbon::now($Empresa->zona_horaria)->addDay($Contador)->startOfDay();
 
             $Clases_de_hoy = $ClasesParaREservarOrdenadasSegunDia->filter(function ($value) use ($Dia) {
@@ -101,13 +100,10 @@ class ReservaController extends Controller
                 $Objeto->day_text = HelperFechas::getNombreDeDia($Dia->dayOfWeekIso) . ' ' . $Dia->format('d-m');
                 $Objeto->clases   = $Clases_de_hoy;
                 array_push($Data, $Objeto);
-
             } else {
-
             }
 
             $Contador += 1;
-
         }
 
         return HelpersGenerales::formateResponseToVue(true, 'Se cargaron los días para la reserva', $Data);
@@ -140,7 +136,6 @@ class ReservaController extends Controller
 
         //Tiene algo contratado
         if ($Empresa->reserva_de_clase_acepta_sin_plan != 'si') {
-
             $ServicioContratadoSocioRepo = new ServicioContratadoSocioRepo();
             $ServiciosDisponibles        = $ServicioContratadoSocioRepo->getServiciosContratadosDisponiblesTodos($Socio->id);
 
@@ -149,7 +144,6 @@ class ReservaController extends Controller
             } else {
                 foreach ($ServiciosDisponibles as $Plan) {
                     if ($Plan->tipo_de_servicio->todo_las_clases_actividades_habilitadas != 'si') {
-
                         //Eso contratado le sirve para esta clase
                         if (!in_array((string) $Actividad_id, explode(',', $Plan->actividad_habilitadas))) {
                             return HelpersGenerales::formateResponseToVue(false, 'El plan que tenés no incluye esta actividad. Comunicate al ' . $Empresa->celular . ' o pasá por el local para ajustar el plan. ¡Saludos!');
@@ -164,7 +158,7 @@ class ReservaController extends Controller
         //La clase tiene cupos
         if ($Agenda->tiene_limite_de_cupos != 'no') {
             //En caso de que si ¿Quedán disponibles?
-            $Cantidad_de_registrados = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Agenda, $Fecha_de_cuando_sera_la_clase)->count();
+            $Cantidad_de_registrados = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Agenda, Carbon::parse($Fecha_de_cuando_sera_la_clase))->count();
 
             if ($Cantidad_de_registrados + 1 > $Agenda->cantidad_de_cupos) {
                 return HelpersGenerales::formateResponseToVue(false, 'Te ganaron de mano, en este momento alguien le dió al botón reservar más rapido y se quedó con el lugar. Intentá reservar en otro horario.');
@@ -180,8 +174,33 @@ class ReservaController extends Controller
             //Enviar_email
 
             return HelpersGenerales::formateResponseToVue(true, 'Tu reserva quedó hecha. Te esperamos el ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las ' . $Agenda->hora_inicio . ' hs.');
+        }
+    }
 
+    public function eliminar_reserva(Request $Request)
+    {
+        $Empresa                       = Session::get('empresa_auth_public');
+        $Socio                         = Session::get('socio-auth');
+        $Sucursal_id                   = $Request->get('sucursal_id');
+        $Agenda_id                     = $Request->get('agenda_id');
+        $Actividad_id                  = $Request->get('actividad_id');
+        $Fecha_de_cuando_sera_la_clase = Carbon::parse($Request->get('fecha_de_cuando_sera_la_clase'));
+
+        $RepoAgenda  = new AgendaRepo();
+        $ReservaRepo = new ReservaRepo();
+
+        $Agenda = $RepoAgenda->find($Agenda_id);
+
+        $Reservas = $ReservaRepo->getReservasDelDiaDelSocio($Agenda, $Fecha_de_cuando_sera_la_clase, $Socio);
+
+        if ($Reservas->count() > 0) {
+            foreach ($Reservas as $Reserva) {
+                $ReservaRepo->destruir_esta_entidad($Reserva);
+            }
+
+            return HelpersGenerales::formateResponseToVue(true, 'Se borró la reserva correctamente');
         }
 
+        return HelpersGenerales::formateResponseToVue(false, 'No se encontró la reserva a borrar');
     }
 }

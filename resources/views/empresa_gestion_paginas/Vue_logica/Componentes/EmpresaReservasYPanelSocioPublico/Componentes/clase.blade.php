@@ -8,7 +8,8 @@ var Clase = {
       showModal: false,
       error: false,
       success: false,
-      menssage: ""
+      menssage: "",
+      borrando:false
     };
   },
   methods: {
@@ -64,6 +65,47 @@ var Clase = {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
         });
+    },
+    eliminar: function() {
+      var url = "/eliminar_reserva";
+
+      const data = {
+        empresa_id: this.$root.empresa.id,
+        sucursal_id:this.sucursal.id,
+        agenda_id: this.clase.id,
+        actividad_id: this.clase.actividad_id,
+        fecha_de_cuando_sera_la_clase: this.dia
+      };
+
+      var vue = this;
+      vue.borrando = true;
+
+      axios
+        .post(url, data)
+        .then(function(response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.borrando = false;
+
+            $.notify(data.Validacion_mensaje, "success");
+
+            setInterval(function() {
+              vue.showModal = false;
+              vue.$emit('reservo');
+            }, 1000);
+          } else {
+            vue.borrando = false;
+
+            $.notify("Upsssssss.. algo pasó", "error");
+
+
+          }
+        })
+        .catch(function(error) {
+          vue.borrando = false;
+          $.notify("Upsssssss.. algo pasó", "error");
+        });
     }
   },
   computed: {
@@ -104,9 +146,18 @@ var Clase = {
     </p>
 
     <button  v-if="!entidad.auth_socio_ya_reservo" @click="showModal = true" type="button" class="btn btn-primary mt-3">Reservar</button>
-    <div v-else class="color-text-success h2 my-1">
-      Rerservado <i  class="fas fa-check-circle"></i>
+    <div v-else>
+      <div  class="color-text-success h2 my-1">
+        Rerservado <i  class="fas fa-check-circle"></i>
+      </div>
+      <small v-if="!borrando" @click="eliminar" class="color-text-gris cursor-pointer">
+        Borrar reserva <i class="fas fa-trash"></i>
+      </small>
+      <small v-else class="color-text-gris cursor-pointer">
+        Borrando reserva ...
+      </small>
     </div>
+
 
 
 

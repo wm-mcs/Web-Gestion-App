@@ -23,3 +23,8 @@ Route::post('/efectuar_reserva',
     [
         'uses' => 'Admin_Empresa\ReservaController@efectuar_reserva',
         'as'   => 'efectuar_reserva']);
+
+Route::post('/eliminar_reserva',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@eliminar_reserva',
+        'as'   => 'eliminar_reserva']);

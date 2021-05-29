@@ -61,4 +61,15 @@ class ReservaRepo extends BaseRepo
 
         return $Entidades->count() > 0 ? true : false;
     }
+
+    public function getReservasDelDiaDelSocio($Clase, $Dia, $Socio)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Clase->empresa_id)
+            ->where('sucursal_id', $Clase->sucursal_id)
+            ->where('socio_id', $Socio->id)
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->startOfDay(), $Dia->endOfDay()])
+            ->where('agenda_id', $Clase->id)
+            ->get();
+    }
 }
