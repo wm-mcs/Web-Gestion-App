@@ -13,10 +13,11 @@ class ReservaRepo extends BaseRepo
 
     public function getReservasDeEstaClaseDeEsteDia($Clase, $Hoy)
     {
+
         return $this->getEntidad()
             ->where('empresa_id', $Clase->empresa_id)
             ->where('sucursal_id', $Clase->sucursal_id)
-            ->whereBetween('fecha_que_se_efectura_la_clase', [$Hoy->startOfDay(), $Hoy->endOfDay()])
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Hoy->copy()->startOfDay(), $Hoy->copy()->endOfDay()])
             ->where('agenda_id', $Clase->id)
             ->get();
 
@@ -55,7 +56,7 @@ class ReservaRepo extends BaseRepo
             ->where('empresa_id', $Clase->empresa_id)
             ->where('sucursal_id', $Clase->sucursal_id)
             ->where('socio_id', $Socio->id)
-            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->startOfDay(), $Dia->endOfDay()])
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->copy()->startOfDay(), $Dia->copy()->endOfDay()])
             ->where('agenda_id', $Clase->id)
             ->get();
 
@@ -68,7 +69,7 @@ class ReservaRepo extends BaseRepo
             ->where('empresa_id', $Clase->empresa_id)
             ->where('sucursal_id', $Clase->sucursal_id)
             ->where('socio_id', $Socio->id)
-            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->startOfDay(), $Dia->endOfDay()])
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->copy()->startOfDay(), $Dia->copy()->endOfDay()])
             ->where('agenda_id', $Clase->id)
             ->get();
     }

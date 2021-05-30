@@ -37,7 +37,7 @@ Vue.component("listado", {
         },
         {
           name: "domingo",
-          valor: 0
+          valor: 7
         }
       ]
     };

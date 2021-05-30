@@ -176,31 +176,31 @@ Vue.component("crear-agenda", {
                   </div>
                   <div class="col-12">
                       <label for="lunes">Lunes</label>
-                      <input type="checkbox" id="lunes" value="0" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="lunes" value="1" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="martes">Martes</label>
-                      <input type="checkbox" id="martes" value="1" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="martes" value="2" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="miercoles">Miércoles</label>
-                      <input type="checkbox" id="miercoles" value="2" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="miercoles" value="3" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="jueves">Jueves</label>
-                      <input type="checkbox" id="jueves" value="3" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="jueves" value="4" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="viernes">Viernes</label>
-                      <input type="checkbox" id="viernes" value="4" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="viernes" value="5" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="sabado">Sábado</label>
-                      <input type="checkbox" id="sabado" value="5" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="sabado" value="6" v-model="diasQueRepiteArray">
                   </div>
                   <div class="col-12">
                       <label for="domingo">Domingo</label>
-                      <input type="checkbox" id="domingo" value="6" v-model="diasQueRepiteArray">
+                      <input type="checkbox" id="domingo" value="7" v-model="diasQueRepiteArray">
                   </div>
 
 

@@ -248,7 +248,7 @@ var Lista = {
       </div>
       <div class="col-12">
           <label for="domingo">Domingo</label>
-          <input type="checkbox" id="domingo" value="0" v-model="diasQueRepiteArray">
+          <input type="checkbox" id="domingo" value="7" v-model="diasQueRepiteArray">
       </div>
 
 
