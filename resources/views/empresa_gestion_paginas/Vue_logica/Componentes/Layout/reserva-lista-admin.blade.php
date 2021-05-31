@@ -3,7 +3,15 @@ var reservaAdmin = {
     props:['destacaSocio','reserva'],
 
 
+    methods:{
 
+        eliminar:function(){
+
+        },
+        marcarComoHecha:function(){
+
+        }
+    },
 
 
 
