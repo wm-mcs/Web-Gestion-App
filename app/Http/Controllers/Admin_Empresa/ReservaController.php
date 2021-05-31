@@ -80,11 +80,15 @@ class ReservaController extends Controller
         $Contador = 0;
 
         while ($Contador < (int) $Dias_por_adelantado_a_mostrar) {
-            $Dia = $Contador == 0 ? Carbon::now($Empresa->zona_horaria) : Carbon::now($Empresa->zona_horaria)->addDay($Contador)->copy()->startOfDay();
+            $Dia = $Contador == 0 ? Carbon::now($Empresa->zona_horaria) : Carbon::now($Empresa->zona_horaria)->addDay($Contador);
+
+            if ($Contador > 0) {
+                $Dia = $Dia->copy()->startOfDay()->addHour();
+            }
 
             $Day_number_compatibilizado = $Dia->dayOfWeekIso;
             $Day_hora                   = $Dia->hour;
-            $Dia_para_parsear           = $Dia->toDateString();
+            $Dia_para_parsear           = $Dia->copy()->toDateString();
 
             $Clases_de_hoy = $ClasesParaREservarOrdenadasSegunDia->filter(function ($value) use ($Day_number_compatibilizado, $Day_hora) {
 
@@ -94,16 +98,13 @@ class ReservaController extends Controller
             })->values();
 
             if (count($Clases_de_hoy) > 0) {
-                foreach ($Clases_de_hoy as $Clase) {
-                    $Clase->reservas_del_dia = $ReservaRepo->getReservasDeEstaClaseDeEsteDia($Clase, Carbon::parse($Dia_para_parsear))->count();
 
-                    $Clase->auth_socio_ya_reservo = $ReservaRepo->verificarSiSocioYaReservo($Clase, Carbon::parse($Dia_para_parsear), $Socio);
-                }
-
-                $Objeto           = new \stdClass();
-                $Objeto->day      = Carbon::parse($Dia_para_parsear);
-                $Objeto->day_text = HelperFechas::getNombreDeDia($Dia->dayOfWeekIso) . ' ' . Carbon::parse($Dia_para_parsear)->format('d-m');
-                $Objeto->clases   = $Clases_de_hoy;
+                $Objeto                             = new \stdClass();
+                $Objeto->socio_id                   = $Socio->id;
+                $Objeto->reservas_del_dia_del_socio = $ReservaRepo->getReservasTodasDeEsteDia($Empresa->id, $Sucursal_id, Carbon::parse($Dia_para_parsear));
+                $Objeto->day                        = $Dia;
+                $Objeto->day_text                   = HelperFechas::getNombreDeDia($Dia->dayOfWeekIso) . ' ' . Carbon::parse($Dia_para_parsear)->format('d-m');
+                $Objeto->clases                     = $Clases_de_hoy;
                 array_push($Data, $Objeto);
             } else {
             }

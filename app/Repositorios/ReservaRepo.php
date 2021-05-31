@@ -23,6 +23,25 @@ class ReservaRepo extends BaseRepo
 
     }
 
+    public function getReservasDeEsteDiaDelSocio($Empresa_id, $Sucursal_id, $Socio, $Hoy)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Hoy->copy()->startOfDay(), $Hoy->copy()->endOfDay()])
+            ->where('socio_id', $Socio->id)
+            ->get();
+    }
+
+    public function getReservasTodasDeEsteDia($Empresa_id, $Sucursal_id, $Hoy)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$Hoy->copy()->startOfDay(), $Hoy->copy()->endOfDay()])
+            ->get();
+    }
+
     /**
      * Crea la reserva
      *

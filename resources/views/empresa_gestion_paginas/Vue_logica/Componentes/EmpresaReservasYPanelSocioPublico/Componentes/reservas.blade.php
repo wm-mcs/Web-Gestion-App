@@ -29,7 +29,7 @@ var Reservas = {
       var data = {  };
 
       var vue = this;
-      vue.cargando = true;
+
 
       axios
         .post(url, data)
@@ -37,26 +37,24 @@ var Reservas = {
           var data = response.data;
 
           if (data.Validacion == true) {
-            vue.cargando = false;
+
             vue.actividades = data.Data;
           } else {
-            vue.cargando = false;
+
             $.notify(response.data.Validacion_mensaje, "error");
           }
         })
         .catch(function (error) {
-          vue.cargando = false;
+
           $.notify("Upsssssss.. algo pasó", "error");
+          location.reload();
         });
     },
 
 
-    getClasesParaReservar:function(){
+    getClasesParaReservar:function(loader){
 
-      if(this.clases_para_reservar.length > 0)
-      {
-        this.clases_para_reservar = [];
-      }
+
 
       var url = "/get_clases_para_reservar_public";
 
@@ -64,7 +62,9 @@ var Reservas = {
 
       var vue = this;
 
-      vue.cargando = true;
+      console.log(loader);
+
+      vue.cargando = loader ? true : false;
       vue.errores = [];
 
       axios
@@ -84,6 +84,7 @@ var Reservas = {
         .catch(function(error) {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
+          location.reload();
         });
 
     }
@@ -99,7 +100,7 @@ var Reservas = {
 
     }else{
       this.sucursale_elegida = this.sucursales[0];
-      this.getClasesParaReservar();
+      this.getClasesParaReservar(true);
     }
 
 
@@ -122,7 +123,7 @@ var Reservas = {
       </div>
 
       <fieldset class="float-label">
-        <select @change="getClasesParaReservar" required name="sucursal" v-model="sucursale_elegida"  class="input-text-class-primary">
+        <select @change="getClasesParaReservar(true)" required name="sucursal" v-model="sucursale_elegida"  class="input-text-class-primary">
             <option :value="sucursal" v-for="sucursal in sucursales" :key="sucursal.id">@{{sucursal.name}} | @{{sucursal.direccion}}</option>
         </select>
 
@@ -147,11 +148,13 @@ var Reservas = {
 
             <div class="mx-0 row border-radius-estandar p-3  col-12 col-lg-7">
                 <clase :clase="clase"
-                       @reservo="getClasesParaReservar"
+                       @reservo="getClasesParaReservar(false)"
                        :actividades="actividades"
                        :sucursal="sucursale_elegida"
                        :fecha="dia.day_text"
                        :dia="dia.day.date"
+                       :reservas_del_dia_del_socio="dia.reservas_del_dia_del_socio"
+                       :socio_id="dia.socio_id"
                        v-for="clase in dia.clases"
                        :key="dia.day_text + ' ' + clase.id"></clase>
             </div>

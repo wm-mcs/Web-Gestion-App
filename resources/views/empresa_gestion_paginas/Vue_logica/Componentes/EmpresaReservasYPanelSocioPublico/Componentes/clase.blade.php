@@ -1,6 +1,6 @@
 var Clase = {
   mixins: [onKeyPressEscapeCerrarModalMixIn, erroresMixIn],
-  props: ["clase", "actividades", "fecha", "sucursal", "dia"],
+  props: ["clase", "actividades", "fecha", "sucursal", "dia","reservas_del_dia_del_socio","socio_id"],
   data: function() {
     return {
       cargando: false,
@@ -45,11 +45,12 @@ var Clase = {
 
             vue.success = true;
             vue.message = response.data.Validacion_mensaje;
+            vue.$emit('reservo');
 
             setInterval(function() {
               vue.showModal = false;
-              vue.$emit('reservo');
-            }, 6000);
+              
+            }, 5000);
           } else {
             vue.cargando = false;
 
@@ -57,13 +58,14 @@ var Clase = {
             vue.message = response.data.Validacion_mensaje;
             setInterval(function() {
               vue.showModal = false;
-            }, 6000);
+            }, 4000);
 
           }
         })
         .catch(function(error) {
           vue.cargando = false;
           $.notify("Upsssssss.. algo pasó", "error");
+          location.reload();
         });
     },
     eliminar: function() {
@@ -89,11 +91,9 @@ var Clase = {
             vue.borrando = false;
 
             $.notify(data.Validacion_mensaje, "success");
+            vue.$emit('reservo');
 
-            setInterval(function() {
-              vue.showModal = false;
-              vue.$emit('reservo');
-            }, 1000);
+           
           } else {
             vue.borrando = false;
 
@@ -105,6 +105,7 @@ var Clase = {
         .catch(function(error) {
           vue.borrando = false;
           $.notify("Upsssssss.. algo pasó", "error");
+          location.reload();
         });
     }
   },
@@ -112,9 +113,35 @@ var Clase = {
     cuposDisponibles: function() {
       return (
         parseInt(this.entidad.cantidad_de_cupos) -
-        parseInt(this.entidad.reservas_del_dia)
+        parseInt(this.cantidad_de_reservas)
       );
+    },
+    cantidad_de_reservas:function(){
+
+      let reservas_del_socio = this.reservas_del_dia_del_socio.filter(
+        (reserva) =>{ 
+          
+          return reserva.agenda_id == this.clase.id }
+
+        
+      );
+      return reservas_del_socio.length;
+    },
+    auth_socio_ya_reservo:function(){
+      let reservas_del_socio = this.reservas_del_dia_del_socio.filter(
+        (reserva) =>{ 
+          
+          return reserva.agenda_id == this.clase.id &&  reserva.socio_id == this.socio_id}
+
+        
+      );
+
+      if(reservas_del_socio.length > 0)
+      {
+        return true;
+      }
     }
+
   },
   mounted: function() {},
   created() {},
@@ -132,20 +159,22 @@ var Clase = {
 
     <p class="agenda-lista-dato mb-0">
       <small>
-      <i class="far fa-user"></i> <span v-if="entidad.tiene_limite_de_cupos == 'si'">
+      <i class="far fa-user"></i> 
+      <span v-if="entidad.tiene_limite_de_cupos == 'si'">
 
-       Quedan  Cupo de personas máximo <b>@{{entidad.cantidad_de_cupos }}</b>  </span>
+      <span class="color-text-success">
+      Cupos disponibles:  @{{cuposDisponibles}}
+      </span>
+         </span>
       <span v-else> No tiene límite de cupo</span>.
 
-      <div>
-        Reservas = @{{entidad.reservas_del_dia}}
-      </div>
+    
 
       </small>
 
     </p>
 
-    <button  v-if="!entidad.auth_socio_ya_reservo" @click="showModal = true" type="button" class="btn btn-primary mt-3">Reservar</button>
+    <button  v-if="!auth_socio_ya_reservo" @click="showModal = true" type="button" class="btn btn-primary mt-3">Reservar</button>
     <div v-else>
       <div  class="color-text-success h2 my-1">
         Rerservado <i  class="fas fa-check-circle"></i>
@@ -247,7 +276,7 @@ var Clase = {
           <div class="modal-footer">
 
               <div class="w-100 text-right" @click="showModal = false" >
-                Cancelar
+                Cerrar
 </div>
 
           </div>
