@@ -100,11 +100,14 @@
 
 <script type="text/javascript">
 
+
+    @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
 
-
-     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout..reservas-admin')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.reserva-lista-admin')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.reservas-admin')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.renovacion-automatica-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.configuracion-empresa')

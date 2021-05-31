@@ -209,4 +209,24 @@ class ReservaController extends Controller
 
         return HelpersGenerales::formateResponseToVue(false, 'No se encontró la reserva a borrar');
     }
+
+    /**
+     * Lo uso para pedir las reservas que tiene la empresa de ese día
+     */
+    public function get_reservas_del_dia(Request $Request)
+    {
+        $Empresa_id  = $Request->get('empresa_id');
+        $Sucursal_id = $Request->get('sucursal_id');
+        $Fecha       = $Request->get('fecha');
+
+        $ReservaRepo = new ReservaRepo();
+        $AgendaRepo  = new AgendaRepo();
+
+        $Data = [
+            'reservas' => $ReservaRepo->getReservasTodasDeEsteDia($Empresa_id, $Sucursal_id, Carbon::parse($Fecha)),
+            'agendas'  => $AgendaRepo->getAgendasDeEsteDia($Empresa_id, $Sucursal_id, Carbon::parse($Fecha)),
+        ];
+
+        return HelpersGenerales::formateResponseToVue(true, 'Reservas del día', $Data);
+    }
 }

@@ -5,6 +5,11 @@ require __DIR__ . '/../Actividades/actividades.php';
 require __DIR__ . '/../Servicios/servicios.php';
 require __DIR__ . '/../Grupo/grupos.php';
 
+Route::post('/get_reservas_del_dia',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@get_reservas_del_dia',
+        'as'   => 'get_reservas_del_dia']);
+
 Route::post('get_control_access_view',
     [
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_control_access_view',

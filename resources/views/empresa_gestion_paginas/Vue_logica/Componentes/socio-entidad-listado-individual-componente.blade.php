@@ -194,9 +194,9 @@ Vue.component("socio-list", {
     }
   },
   template: `
-<div class="w-100 row mx-0 col-12 col-md-10 col-lg-9 col-xl-8 align-items-center mb-3 p-3" :class="getClassLista">
+<div class="w-100 row mx-0 align-items-center mb-3 p-3" :class="getClassLista">
   {!! Form::open([ 'route' => ['get_socio_panel'], 'method'=> 'Post', 'files' =>
-  true, 'class' => 'col-6 col-lg-4 d-flex align-items-center mx-0 px-0
+  true, 'class' => 'col-6 col-lg-5 d-flex align-items-center mx-0 px-0
   mb-lg-0' ]) !!}
 
   <input type="hidden" name="empresa_id" :value="empresa.id" />
@@ -221,7 +221,7 @@ Vue.component("socio-list", {
 
   {!! Form::close() !!}
 
-  <div class="col-6 col-lg-8 ">
+  <div class="col-6 col-lg-7 ">
     <div class="w-100 d-flex flex-column align-items-end">
       <div v-if="nadaDisponible" class="color-text-gris text-right datos-socio-lista mb-2">
          <i class="fas fa-times-circle"></i> Nada disponible
@@ -249,37 +249,37 @@ Vue.component("socio-list", {
         </span>
 
         <transition name="fade">
-        <div
-          v-if="clases_desplegadas"
-          class=" my-2 p-1 borde-gris background-gris-0"
-        >
           <div
-            v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase"
-            :key="servicio.id"
-            class="row mx-0 mb-2"
+            v-if="clases_desplegadas"
+            class=" my-2 p-1 borde-gris background-gris-0"
           >
-            <div class="col-12 listado-socio-lista-servicio-disponible">
-              <div class=" col-8 text-left">
-                @{{ servicio.name }}</div
-              >
-              <div v-if="cargando" class="col-4 Procesando-text">
-                <div class="cssload-container">
-                  <div class="cssload-tube-tunnel"></div>
+            <div
+              v-for="servicio in socio.servicios_contratados_disponibles_tipo_clase"
+              :key="servicio.id"
+              class="row mx-0 mb-2"
+            >
+              <div class="col-12 listado-socio-lista-servicio-disponible">
+                <div class=" col-8 text-left">
+                  @{{ servicio.name }}</div
+                >
+                <div v-if="cargando" class="col-4 Procesando-text">
+                  <div class="cssload-container">
+                    <div class="cssload-tube-tunnel"></div>
+                  </div>
                 </div>
+                <div
+                  v-else
+                  class="cursor-pointer col-4 listado-socio-lista-servicio-disponible-accion "
+                  v-on:click="consumir_esta_clase(servicio)"
+                  title="Indicar que el socio va a usar la clase ahora."
+                >
+                  Usar</div>
               </div>
-              <div
-                v-else
-                class="cursor-pointer col-4 listado-socio-lista-servicio-disponible-accion "
-                v-on:click="consumir_esta_clase(servicio)"
-                title="Indicar que el socio va a usar la clase ahora."
-              >
-                Usar</div
-              >
             </div>
           </div>
-        </div>
+          </transition>
       </div>
-      </transition>
+
 
       <div
         v-if="mensualDisponibles"

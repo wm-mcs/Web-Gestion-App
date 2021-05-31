@@ -70,7 +70,7 @@ methods:{
 
 
 },
-template:'
+template:`
 
 
     <span class="helper_cursor_pointer" v-on:click="abrir_modal"> <i class="fas fa-user"></i> {{Auth::user()->first_name}}
@@ -127,7 +127,7 @@ template:'
     </span>
 
 
-'
+`
 
 }
 

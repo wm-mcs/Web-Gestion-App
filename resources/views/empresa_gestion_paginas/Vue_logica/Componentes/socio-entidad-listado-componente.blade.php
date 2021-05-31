@@ -314,7 +314,7 @@ Vue.component("socio-entidad-listado", {
 		window.removeEventListener("scroll", this.scroll);
 	},
 	template: `
-<div v-if="socios.length" class="empresa-contendor-de-secciones">
+<div v-if="socios.length" class="empresa-contendor-de-secciones d-flex flex-xolumn align-items-center">
   <div class="titulo-socios-cuando-hay"><i class="fas fa-users"></i> Socios  <i class="far fa-hand-point-down"></i></div>
 
 
@@ -345,7 +345,7 @@ Vue.component("socio-entidad-listado", {
 
 
 
-  <div v-if="socios_filtrados.length" class="listado-socios-contenedor-lista">
+  <div v-if="socios_filtrados.length" class="listado-socios-contenedor-lista  col-12 col-md-10 col-lg-9 col-xl-8">
 
     <socio-list
 

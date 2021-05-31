@@ -45,4 +45,16 @@ class AgendaRepo extends BaseRepo
     {
 
     }
+
+    public function getAgendasDeEsteDia($Empresa_id, $Sucursal_id, $Dia)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->where('borrado', 'no')
+            ->where('estado', 'si')
+            ->where('days', "LIKE", "%$Dia->dayOfWeekIso%")
+            ->orderBy('hora_inicio', 'asc')
+            ->get();
+    }
 }
