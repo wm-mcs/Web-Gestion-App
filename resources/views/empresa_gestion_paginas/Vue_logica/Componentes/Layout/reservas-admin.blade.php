@@ -73,11 +73,18 @@ Vue.component("reservas-admin", {
 
   template: `
 
-<div>
+<div class="col-12">
 
   <div  @click="abrirModal" class="Boton-Primario-Sin-Relleno">
       Reservas del día
   </div>
+
+  <div class="text-center">
+      <a href="{{$Empresa->route_reservas}}"> Panel reserva</a>
+  </div>
+
+
+
   <transition name="modal" v-if="showModal">
   <div class="modal-mask ">
     <div class="modal-wrapper">

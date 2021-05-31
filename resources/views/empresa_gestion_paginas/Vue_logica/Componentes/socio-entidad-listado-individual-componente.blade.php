@@ -1,5 +1,5 @@
 Vue.component("socio-list", {
-  props: ["socio", "empresa", "acceso"],
+  props: ["socio", "empresa", "acceso","destacaSocio"],
   data: function() {
     return {
       clases_desplegadas: false,
@@ -140,15 +140,12 @@ Vue.component("socio-list", {
       }
     },
     getClassLista: function() {
-      var saldo_pesos = this.socio.saldo_de_estado_de_cuenta_pesos;
-      var saldo_dolares = this.socio.saldo_de_estado_de_cuenta_dolares;
-      if (saldo_pesos < 0 || saldo_dolares < 0) {
-        var debe = true;
-      } else {
-        var debe = false;
-      }
+
+
+
       return {
-        "contiene-socio-tipo-lista": true
+        "contiene-socio-tipo-lista  p-3 mb-3": this.destacaSocio == false ? false :true,
+        "mb-1":this.destacaSocio == false ? true :false
       };
     },
     mostrarEstadoDeCuenta: function() {
@@ -194,7 +191,7 @@ Vue.component("socio-list", {
     }
   },
   template: `
-<div class="w-100 row mx-0 align-items-center mb-3 p-3" :class="getClassLista">
+<div class="w-100 row mx-0 align-items-center " :class="getClassLista">
   {!! Form::open([ 'route' => ['get_socio_panel'], 'method'=> 'Post', 'files' =>
   true, 'class' => 'col-6 col-lg-5 d-flex align-items-center mx-0 px-0
   mb-lg-0' ]) !!}
