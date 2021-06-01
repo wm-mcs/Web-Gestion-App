@@ -229,4 +229,31 @@ class ReservaController extends Controller
 
         return HelpersGenerales::formateResponseToVue(true, 'Reservas del día', $Data);
     }
+
+    public function eliminar_reserva_desde_panel_admin(Request $Request)
+    {
+        $Empresa_id  = $Request->get('empresa_id');
+        $Sucursal_id = $Request->get('sucursal_id');
+        $Reserva_id  = $Request->get('reserva_id');
+
+        $ReservaRepo = new ReservaRepo();
+
+        $ReservaRepo->destruir_esta_entidad($ReservaRepo->find($Reserva_id));
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se borró la reserva correctamente');
+    }
+
+    public function marcar_que_realizo_reserva_desde_panel_admin(Request $Request)
+    {
+        $Empresa_id     = $Request->get('empresa_id');
+        $Sucursal_id    = $Request->get('sucursal_id');
+        $Reserva_id     = $Request->get('reserva_id');
+        $Confirma_anula = $Request->get('confirma_anula');
+
+        $ReservaRepo = new ReservaRepo();
+
+        $ReservaRepo->setAtributoEspecifico($ReservaRepo->find($Reserva_id), 'cumplio_con_la_reserva', $Confirma_anula);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se actualizó correctamente');
+    }
 }

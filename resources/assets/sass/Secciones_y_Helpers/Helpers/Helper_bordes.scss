@@ -1,15 +1,14 @@
 /* B o r d e s */
-
 .border-radius-estandar {
   border-radius: $Border-radius;
 }
 
 .borde-gris {
-  border: solid 1px $color-grey1;
+  border: solid 1px $color-grey-1;
 }
 
 .borde-bottom-gris {
-  border-bottom: solid 1px $color-grey1;
+  border-bottom: solid 1px $color-grey-1;
 }
 
 .borde-primary {

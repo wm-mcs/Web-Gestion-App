@@ -10,6 +10,16 @@ Route::post('/get_reservas_del_dia',
         'uses' => 'Admin_Empresa\ReservaController@get_reservas_del_dia',
         'as'   => 'get_reservas_del_dia']);
 
+Route::post('/eliminar_reserva_desde_panel_admin',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@eliminar_reserva_desde_panel_admin',
+        'as'   => 'eliminar_reserva_desde_panel_admin']);
+
+Route::post('/marcar_que_realizo_reserva_desde_panel_admin',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@marcar_que_realizo_reserva_desde_panel_admin',
+        'as'   => 'marcar_que_realizo_reserva_desde_panel_admin']);
+
 Route::post('get_control_access_view',
     [
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_control_access_view',

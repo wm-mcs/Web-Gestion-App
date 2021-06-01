@@ -22,10 +22,10 @@ Vue.component("reservas-admin", {
         if(this.reservas.length == 0)
         {
             this.dia = new Date().toISOString().slice(0, 10);
-            this.getReservas();
+            this.getReservas(true);
         }
     },
-    getReservas: function() {
+    getReservas: function(cargando) {
       var url = "/get_reservas_del_dia";
 
       var data = {empresa_id:this.$root.empresa.id,
@@ -34,7 +34,7 @@ Vue.component("reservas-admin", {
 
       var vue = this;
 
-      vue.cargando = true;
+      vue.cargando =  cargando ? true :false;
 
 
       axios
@@ -112,7 +112,7 @@ Vue.component("reservas-admin", {
                     <div class="formulario-label-fiel">
                         <fieldset class="float-label">
                         <input
-                            @change="getReservas"
+                            @change="getReservas(true)"
                             name="dia"
                             type="date"
                             class="input-text-class-primary"
@@ -141,7 +141,7 @@ Vue.component("reservas-admin", {
                 <div v-if="filterReservas(agenda.id).length > 0"  class="ml-2  w-100">
                     <div class="w-100" v-for="reserva in filterReservas(agenda.id)" >
 
-                          <reserva-admin-lista :destaca-socio="true" :reserva="reserva" :key="reserva.id">
+                          <reserva-admin-lista @actualizar="getReservas(false)" :destaca-socio="true" :reserva="reserva" :key="reserva.id">
 
 
                           </reserva-admin-lista>
