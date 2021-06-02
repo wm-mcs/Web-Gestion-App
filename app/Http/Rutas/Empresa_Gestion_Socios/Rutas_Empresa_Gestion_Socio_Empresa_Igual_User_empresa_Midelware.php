@@ -22,6 +22,11 @@ Route::post('get_socio',
         'as'   => 'get_socio']);
 
 //Para ir al panel del socio
+
+Route::post('/get_reservas_historicas_del_socio',
+    [
+        'uses' => 'Admin_Empresa\ReservaController@get_reservas_historicas_del_socio',
+        'as'   => 'get_reservas_historicas_del_socio']);
 Route::post('get_socio_panel',
     [
         'uses' => 'Admin_Empresa\Admin_Empresa_Gestion_Socios_Controllers@get_socio_panel',

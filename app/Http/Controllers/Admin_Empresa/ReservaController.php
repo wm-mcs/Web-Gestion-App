@@ -256,4 +256,16 @@ class ReservaController extends Controller
 
         return HelpersGenerales::formateResponseToVue(true, 'Se actualizó correctamente');
     }
+
+    public function get_reservas_historicas_del_socio(Request $Request)
+    {
+        $Empresa_id  = $Request->get('empresa_id');
+        $Sucursal_id = $Request->get('sucursal_id');
+        $Socio_id    = $Request->get('socio_id');
+
+        $ReservaRepo = new ReservaRepo();
+        $Reservas    = $ReservaRepo->getReservasDeSocioHistoricas($Empresa_id, $Sucursal_id, $Socio_id);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Reservas cargadas', $Reservas);
+    }
 }

@@ -128,7 +128,7 @@ Vue.component("ingresar-movimiento-a-socio", {
 	template: `
 <span >
 <div   class="admin-user-boton-Crear"  v-on:click="abrir_modal" title="Ingreso de movimiento de caja">
-    <i class="fas fa-cash-register"></i>   
+    <i class="fas fa-cash-register"></i>
 </div>
 <transition name="modal" v-if="showModal">
 <div class="modal-mask ">
@@ -138,29 +138,29 @@ Vue.component("ingresar-movimiento-a-socio", {
       <i class="fas fa-times"></i>
     </span>
 
-      
+
       <div class="row">
         <h4 class="col-12 sub-titulos-class" v-if="servicio_elegido_comp">Ingresa el monto </h4>
         <h4 class="col-12 sub-titulos-class" v-else> Ingresar movimiento a @{{socio.name}} </h4>
         <div class="col-12 modal-mensaje-aclarador" v-if="!servicio_elegido_comp">
           Para ingresar un movimiento debes elegir una de las opciones que estan abajo <i class="fas fa-hand-point-down"></i>
         </div>
-      </div>      
+      </div>
 
-      <div class="modal-body">  
+      <div class="modal-body">
           <div v-if="servicio_elegido_comp" class="contiene-fase-2-ingreso-de-caja">
             <div class="col-12 mb-2">
               <label class="formulario-label" for="Nombre"> Detalle a ingresar  </label>
               <input type="text" class="formulario-field"  v-model="nombre_a_ingresar" placeholder="Nombre"   />
-            </div> 
-          
+            </div>
+
           <div v-if="$root.aceptaDolares" class="contiene-fase-2-moneda">
             <div class="row mb-2">
               <div class="col-6">
                 <input type="radio" value="$" v-model="moneda">
                 <label class="moneda-label" for="$">Pesos</label>
               </div>
-              
+
               <div  class="col-6">
                 <input type="radio" value="U$S" v-model="moneda">
                 <label class="moneda-label" for="U$S">Dolares</label>
@@ -175,60 +175,60 @@ Vue.component("ingresar-movimiento-a-socio", {
                 <input type="radio" value="si" v-model="se_cobra">
                  <label class="moneda-label" for="si">Paga ahora</label>
              </div>
-             <div class="contiene-opcion-moneda">	
-                <input type="radio" value="no" v-model="se_cobra">	
+             <div class="contiene-opcion-moneda">
+                <input type="radio" value="no" v-model="se_cobra">
                 <label class="moneda-label" for="no">Queda debiendo</label>
               </div>
             </div>
           </div>
 
           <div class="row mb-2 align-items-center justify-content-center">
-            
-            
+
+
             <div class="col-8">
               <input type="number" name="" v-model="valor_ingresar" class="w-100 ingresar-input-valor"  >
             </div>
-            
-            
+
+
           </div>
-          
-          
+
+
           <p v-if="valor_ingresar > 0" class=" color-text-gris text-center">
-            Estás a punto de ingresar esto: <strong>@{{servicio_elegido.name}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? . 
+            Estás a punto de ingresar esto: <strong>@{{servicio_elegido.name}}</strong>  por un valor de <strong>@{{moneda}} @{{valor_ingresar}} </strong> ¿está bién? .
           </p>
-          <div v-if="$root.cargando" class="py-5 d-flex flex-row align-items-center justify-content-center">
+          <div v-if="cargando" class="py-5 d-flex flex-row align-items-center justify-content-center">
               <div class="cssload-container">
                     <div class="cssload-tube-tunnel"></div>
               </div>
           </div>
           <div v-else class="boton-simple mt-4" v-on:click="ingresa_movimiento">
             @{{$root.boton_aceptar_texto}}
-          </div>         
+          </div>
         </div>
         <div v-else  class="row">
-          <div  v-if="tipos_de_movimientos.length" 
-                v-for="movimiento in tipos_de_movimientos" 
+          <div  v-if="tipos_de_movimientos.length"
+                v-for="movimiento in tipos_de_movimientos"
                 :key="movimiento.id"
                 :title="movimiento.descripcion_breve"
                 class="col-6 p-1"
-                v-on:click="elegir_lo_que_voy_a_agregar(movimiento)" 
-                >                
+                v-on:click="elegir_lo_que_voy_a_agregar(movimiento)"
+                >
                   <div class="contiene-ingreso-opciones" :class="class_verificar_tipo_saldo(movimiento.tipo_saldo)">
                     @{{movimiento.name}}
-                  </div>    
+                  </div>
           </div>
           <div v-if="cargando" class=" w-100 d-flex flex-row my-5 align-items-center justify-content-center">
             <div class="cssload-container">
                 <div class="cssload-tube-tunnel"></div>
             </div>
-          </div>           
+          </div>
         </div>
-      </div>     
+      </div>
 
-      <div class="modal-footer">           
+      <div class="modal-footer">
         <button class="modal-default-button"   @click="cancelarIngreso">
           @{{$root.boton_cancelar_texto}}
-        </button>           
+        </button>
       </div>
 
     </div>

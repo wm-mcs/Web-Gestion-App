@@ -92,4 +92,14 @@ class ReservaRepo extends BaseRepo
             ->where('agenda_id', $Clase->id)
             ->get();
     }
+
+    public function getReservasDeSocioHistoricas($Empresa_id, $Sucursal_id, $Socio_id)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->where('socio_id', $Socio_id)
+            ->orderBy('id', 'desc')
+            ->get();
+    }
 }
