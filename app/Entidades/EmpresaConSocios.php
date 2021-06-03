@@ -200,6 +200,15 @@ class EmpresaConSocios extends Model
         return public_path() . '/imagenes/Empresa/' . $this->id . '-logo_empresa_socios' . '.png';
     }
 
+    public function getExisteLogoAttribute()
+    {
+        if (file_exists($this->path_url_img)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getNameSlugAttribute()
     {
         return $this->helper_convertir_cadena_para_url($this->name);

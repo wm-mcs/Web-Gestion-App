@@ -65,7 +65,7 @@ Vue.component("agregar-al-socio-un-servicio", {
 
       var vue = this;
 
-      app.cargando = true;
+      this.cargando = true;
 
       axios
         .post(url, data)
@@ -73,7 +73,7 @@ Vue.component("agregar-al-socio-un-servicio", {
           var data = response.data;
 
           if (data.Validacion == true) {
-            app.cargando = false;
+            vue.cargando = false;
             vue.$emit(
               "actualizar_servicios_de_socios",
               response.data.servicios
@@ -83,11 +83,13 @@ Vue.component("agregar-al-socio-un-servicio", {
             bus.$emit("sucursal-set", response.data.sucursal);
             $.notify(data.Validacion_mensaje, "success");
           } else {
-            app.cargando = false;
+            vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
           }
         })
-        .catch(function(error) {});
+        .catch(function(error) {
+          vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "warn");});
     },
     cambioTipoDeServicio: function() {
       var servicio = this.seleccionarUnObjetoSegunAtributo(
@@ -166,7 +168,7 @@ Vue.component("agregar-al-socio-un-servicio", {
 
                 </div>
                 <div class="modal-body text-center">
-                     <div v-if="cargando" class="Procesando-text">
+                     <div v-if="cargando && servicios.length == 0" class="Procesando-text">
                         <div class="cssload-container">
                             <div class="cssload-tube-tunnel"></div>
                         </div>
@@ -226,7 +228,7 @@ Vue.component("agregar-al-socio-un-servicio", {
 
 
 
-                    <div v-if="$root.cargando" class="Procesando-text">
+                    <div v-if="cargando" class="Procesando-text">
                         <div class="cssload-container">
                             <div class="cssload-tube-tunnel"></div>
                         </div>

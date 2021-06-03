@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin_Empresa;
 
 use App\Guardianes\Guardian;
+use App\Helpers\HelperEmails;
 use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
 use App\Managers\EmpresaGestion\AgregarAlSocioMovimientoManager;
@@ -134,10 +135,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Celular     = $Request->get('celular');
         $Sucursal_id = $Request->get('sucursal_id');
         $Socio       = $this->SocioRepo->getSociosBusqueda($UserEmpresa->empresa_id, $Celular);
+        $Empresa     = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
 
         if ($Socio->count() > 0) {
             $Socio = $Socio->first();
-            $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id, $Sucursal_id, $Socio, $Celular, Carbon::now('America/Montevideo'));
+            $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id, $Sucursal_id, $Socio, $Celular, Carbon::now($Empresa->zona_horaria));
 
             return HelpersGenerales::formateResponseToVue(true, 'Se consigío un socio', $Socio);
         }
@@ -257,11 +259,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Sucursal = $Request->get('sucursal_desde_middleware');
 
         $Actualizar_automaticamente = Cache::remember('ActualizarEmpresaSocios' . $Empresa->id, 3200, function () use ($Empresa, $User, $Sucursal) {
-            $Hoy              = Carbon::now('America/Montevideo');
-            $Hoy_objet        = Carbon::now('America/Montevideo')->format('d/m/Y H:i:s');
+            $Hoy              = Carbon::now($Empresa->zona_horaria);
+            $Hoy_objet        = Carbon::now($Empresa->zona_horaria)->format('d/m/Y H:i:s');
             $Array_resultados = [];
 
-//primer me fijo se está activo esto
+            //primer me fijo se está activo esto
             if ($Empresa->actualizar_servicios_socios_automaticamente != 'si') {
                 $Array_resultados = 'no renueva';
 
@@ -271,7 +273,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             foreach ($this->SocioRepo->getSociosBusqueda($Empresa->id, null, null) as $Socio) {
                 $Servicios_renovacion = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id);
 
-//primero me fijo que el socio no tenga deudas
+                //primero me fijo que el socio no tenga deudas
                 if (($Socio->saldo_de_estado_de_cuenta_pesos < 0 || $Socio->saldo_de_estado_de_cuenta_dolares < 0)) {
                     array_push($Array_resultados, json_decode(json_encode(['Socio' => $Socio->name,
                         'Acutualizo'                                                   => 'no',
@@ -279,7 +281,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                         'Fecha'                                                        => $Hoy_objet])));
                 } else {
 
-//luego me fijo si tiene servicios de renovacion
+                    //luego me fijo si tiene servicios de renovacion
                     if ($Servicios_renovacion->count() == 0) {
                         array_push($Array_resultados, json_decode(json_encode(['Socio' => $Socio->name,
                             'Acutualizo'                                                   => 'no',
@@ -287,14 +289,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                             'Fecha'                                                        => $Hoy_objet])));
                     }
 
-//luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
+                    //luego segun los servicio de renovacion busco los servicio contratados que tiene por id de tipo de servicio
                     foreach ($Servicios_renovacion as $Servicio_para_renovar) {
                         //busco los servicios del socio
                         $Servicio = $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id, $Servicio_para_renovar->tipo_servicio_id);
 
                         if ($Servicio != null) {
-/*debería buscar servicio a socio y ver si en un mes hay alguno disponible*/
-                            if (Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(1) > Carbon::parse($Servicio->fecha_vencimiento)) {
+                            /*debería buscar servicio a socio y ver si en un mes hay alguno disponible*/
+                            if (Carbon::now($Empresa->zona_horaria) > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now($Empresa->zona_horaria)->addDays(1) > Carbon::parse($Servicio->fecha_vencimiento)) {
                                 //creo el nuevo servicio
                                 $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id,
                                     $Sucursal->id,
@@ -308,14 +310,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                     $Nuevo_servicio->valor,
                                     'Compra de ' . $Nuevo_servicio->name . ' ' . $Nuevo_servicio->id,
                                     'acredor',
-                                    Carbon::now('America/Montevideo'),
+                                    Carbon::now($Empresa->zona_horaria),
                                     $Nuevo_servicio->id);
 
                                 //ajusto el servicio de renovación
                                 $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
                                     $Socio->empresa_id,
                                     $Nuevo_servicio->tipo_de_servicio,
-                                    Carbon::now('America/Montevideo'));
+                                    Carbon::now($Empresa->zona_horaria));
+
+                                HelperEmails::sendEmailToSocio($Empresa, $Socio, [
+                                    'subject' => 'Se ha renovado ' . $Nuevo_servicio->tipo_de_servicio->name . ' en ' . $Empresa->name,
+                                    'text'    => $Socio->name . ' ¿Cómo estás?, renovamos de manera automática el servicio ' . $Nuevo_servicio->tipo_de_servicio->name . '. Queda pendiente de pago  $ ' . $Nuevo_servicio->tipo_de_servicio->valor . '. Cuando puedas, pero en lo posible dentro de los siguientes 10 días pasá a abonar. Si se te complica avisanos. El servicio se vencerá el ' . $Nuevo_servicio->fecha_vencimiento_formateada . '. Muchas gracias por ser parte de  ' . $Empresa->name . '.',
+                                ]);
 
                                 array_push($Array_resultados, json_decode(json_encode(['Socio' => $Socio->name,
                                     'Acutualizo'                                                   => 'si',
@@ -498,6 +505,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User       = $Request->get('user_desde_middleware');
         $Socio      = $Request->get('socio_desde_middleware');
         $Sucursal   = $Request->get('sucursal_desde_middleware');
+        $Empresa    = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
 
         $manager = new AgregarAlSocioUnServicioManager(null, $Request->all());
 
@@ -532,10 +540,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                         $Entidad->valor,
                         'Compra de ' . $Entidad->name . ' ' . $Entidad->id,
                         'acredor',
-                        Carbon::now('America/Montevideo'),
+                        Carbon::now($Empresa->zona_horaria),
                         $Entidad->id);
 
-//si se paga ahora
+                //si se paga ahora
                 if ($Request->get('paga') == 'si') {
                     $Estado_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                         ->setEstadoDeCuentaCuando($Entidad->socio_id,
@@ -544,7 +552,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                             $Entidad->valor,
                             'Pago de ' . $Entidad->name . ' ' . $Entidad->id,
                             'deudor',
-                            Carbon::now('America/Montevideo'),
+                            Carbon::now($Empresa->zona_horaria),
                             $Entidad->id);
                     //Movimiento de caja
                     $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'),
@@ -554,13 +562,19 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                         $Entidad->moneda,
                         $Entidad->valor,
                         'Venta de servicio a socio ' . $Socio->name,
-                        Carbon::now('America/Montevideo'),
+                        Carbon::now($Empresa->zona_horaria),
                         'Venta Servicio ',
                         $Entidad,
                         $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
                         $Estado_de_cuenta->id);
                 }
             }
+
+            HelperEmails::sendEmailToSocio($Empresa, $Socio, [
+                'subject' => 'Compra de clases en ' . $Empresa->name,
+                'text'    => 'Hemos registrado ' . $Request->get('cantidad_de_servicios') . ' clases. Tenés hasta el ' . $Request->get('fecha_vencimiento') . ' para usarlas. Que tengas un lindo día y gracias por ser parte de ' . $Empresa->name,
+            ]);
+
         } else {
             $Entidad                     = $this->ServicioContratadoSocioRepo->getEntidad();
             $Entidad->socio_id           = $Socio->id;
@@ -576,7 +590,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
                 $Socio->empresa_id,
                 $Entidad->tipo_de_servicio,
-                Carbon::now('America/Montevideo'));
+                Carbon::now($Empresa->zona_horaria));
 
             //Logica de estado de cuenta cuando compra
             $this->MovimientoEstadoDeCuentaSocioRepo
@@ -586,7 +600,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Entidad->valor,
                     'Compra de ' . $Entidad->name . ' ' . $Entidad->id,
                     'acredor',
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     $Entidad->id);
 
 //si se paga ahora
@@ -598,7 +612,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                         $Entidad->valor,
                         'Pago de ' . $Entidad->name . ' ' . $Entidad->id,
                         'deudor',
-                        Carbon::now('America/Montevideo'),
+                        Carbon::now($Empresa->zona_horaria),
                         $Entidad->id);
 
                 //Movimiento de caja
@@ -609,13 +623,20 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Entidad->moneda,
                     $Entidad->valor,
                     'Venta de servicio a socio ' . $Socio->name,
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     'Venta Servicio',
                     $Entidad,
                     $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id,
                     $Estado_de_cuenta->id
                 );
             }
+
+            $Servicio = $this->TipoDeServicioRepo->find($Request->get('tipo_servicio_id'));
+
+            HelperEmails::sendEmailToSocio($Empresa, $Socio, [
+                'subject' => 'Compra de ' . $Servicio->name . ' en ' . $Empresa->name,
+                'text'    => $Socio->name . ' ¿Cómo estás?, muchas gracias por la compra de ' . $Servicio->name . '. El servicio se vencerá el ' . $Request->get('fecha_vencimiento') . '. Que tengas un lindo día y gracias por ser parte de ' . $Empresa->name,
+            ]);
         }
 
         //actualiza la session
@@ -640,12 +661,13 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User              = $Request->get('user_desde_middleware');
         $Servicio_a_editar = json_decode(json_encode($Request->get('servicio_a_editar')));
         $Socio             = $Request->get('socio_desde_middleware');
+        $Empresa           = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
 
         $Validacion = true;
         $Servicio   = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
 
         $Servicio->editado_por = $User->first_name;
-        $Servicio->editado_at  = Carbon::now('America/Montevideo');
+        $Servicio->editado_at  = Carbon::now($Empresa->zona_horaria);
 
         //las porpiedades que se van a editar
         $Propiedades = ['name', 'tipo', 'moneda', 'fecha_vencimiento', 'esta_consumido'];
@@ -685,7 +707,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Servicio   = $this->ServicioContratadoSocioRepo->find($Request->get('servicio_id'));
         $Socio      = $Request->get('socio_desde_middleware');
         $Sucursal   = $Request->get('sucursal_desde_middleware');
-
+        $Empresa    = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
         $this->ServicioContratadoSocioRepo->destruir_esta_entidad_de_manera_logica($Servicio);
 
         //borrar los estados de cuenta
@@ -698,7 +720,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 $Tipo_saldo = 'deudor';
             }
 
-            $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado, $User->id, Carbon::now('America/Montevideo'));
+            $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Estado, $User->id, Carbon::now($Empresa->zona_horaria));
 
 //me fijo se el estado es deudor (es decir que pagó)
             if ($Estado->tipo_saldo == 'deudor') {
@@ -709,7 +731,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Estado->moneda,
                     $Estado->valor,
                     'Anulación de estado de cuenta de socio ' . $Socio->name,
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     'Anulacion Estado De Cuenta',
                     null,
                     $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Estado->id)
@@ -744,9 +766,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Socio             = $Request->get('socio_desde_middleware');
         $Servicio          = $this->ServicioContratadoSocioRepo->find($Servicio_a_editar->id);
         $Sucursal          = $Request->get('sucursal_desde_middleware');
+        $Empresa           = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
 
         //las porpiedades que se van a editar
-        $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'fecha_consumido', Carbon::now('America/Montevideo'));
+        $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'fecha_consumido', Carbon::now($Empresa->zona_horaria));
 
         //indico la sucursal donde se usó
         $this->ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'sucursal_uso_id', $Sucursal->id);
@@ -776,11 +799,12 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $estado_de_cuenta = json_decode(json_encode($Request->get('estado_de_cuenta')));
         $Socio            = $Request->get('socio_desde_middleware');
         $Sucursal         = $Request->get('sucursal_desde_middleware');
+        $Empresa          = $this->EmpresaConSociosoRepo->find($Socio->empresa_id);
 
         //elimino a la entidad
         $Entidad = $this->MovimientoEstadoDeCuentaSocioRepo->find($estado_de_cuenta->id);
 
-        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad, $User->id, Carbon::now('America/Montevideo'));
+        $this->MovimientoEstadoDeCuentaSocioRepo->AnularEsteEstadoDeCuenta($Entidad, $User->id, Carbon::now($Empresa->zona_horaria));
 
 //me fijo si el estado es deudor (es decir que pagó)
         if ($Entidad->tipo_saldo == 'deudor') {
@@ -791,7 +815,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 $Entidad->moneda,
                 $Entidad->valor,
                 'Anulación de estado de cuenta de socio ' . $Socio->name,
-                Carbon::now('America/Montevideo'),
+                Carbon::now($Empresa->zona_horaria),
                 'Anulacion Estado De Cuenta',
                 null,
                 $this->CajaEmpresaRepo->getTipoDeMovimientoIDPasandoEstadoDeCuentaSocioID($Entidad->id));
@@ -940,6 +964,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     {
 
         $Sucursal = $Request->get('sucursal_desde_middleware');
+        $Empresa  = $this->EmpresaConSociosoRepo->find($Sucursal->empresa_id);
 
         /**
          * Desde el front envio esto ..['arqueo','inicial','entre_fechas']
@@ -953,11 +978,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Fecha_inicio = Carbon::parse($Request->get('fecha_inicio'))->startOfDay();
             $Fecha_fin    = Carbon::parse($Request->get('fecha_fin'))->endOfDay();
         } elseif ($TipoDeConsulta == 'inicial') {
-            $Fecha_fin    = Carbon::now('America/Montevideo');
-            $Fecha_inicio = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
+            $Fecha_fin    = Carbon::now($Empresa->zona_horaria);
+            $Fecha_inicio = Carbon::now($Empresa->zona_horaria)->subDays(30)->startOfDay();
         } else {
-            $Fecha_fin    = Carbon::now('America/Montevideo');
-            $Fecha_inicio = Carbon::now('America/Montevideo')->subDays(30)->startOfDay();
+            $Fecha_fin    = Carbon::now($Empresa->zona_horaria);
+            $Fecha_inicio = Carbon::now($Empresa->zona_horaria)->subDays(30)->startOfDay();
         }
 
         $Fecha_saldo = $Fecha_fin->format('Y-m-d');
@@ -983,6 +1008,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User     = $Request->get('user_desde_middleware');
         $Sucursal = $Request->get('sucursal_desde_middleware');
         $manager  = new IngresarMovimientoCajaManager(null, $Request->all());
+        $Empresa  = $this->EmpresaConSociosoRepo->find($Sucursal->empresa_id);
 
         if ($manager->isValid()) {
             $detalle = $Request->get('nombre');
@@ -993,7 +1019,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 $Request->get('moneda'),
                 $Request->get('valor'),
                 $detalle,
-                Carbon::now('America/Montevideo'),
+                Carbon::now($Empresa->zona_horaria),
                 $Request->get('nombre'),
                 null,
                 $Request->get('tipo_de_movimiento_id'));
@@ -1016,6 +1042,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User          = $Request->get('user_desde_middleware');
         $Sucursal      = $Request->get('sucursal_desde_middleware');
         $Caja_a_anular = $this->CajaEmpresaRepo->find($Request->get('caja_id'));
+        $Empresa       = $this->EmpresaConSociosoRepo->find($Sucursal->empresa_id);
 
         $manager = new AnularCajaManager(null, $Request->all());
 
@@ -1033,7 +1060,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 $Caja_a_anular->moneda,
                 $Caja_a_anular->valor,
                 $this->CajaEmpresaRepo->getDetalleAlAnular($Caja_a_anular),
-                Carbon::now('America/Montevideo'),
+                Carbon::now($Empresa->zona_horaria),
                 'Anulacion',
                 null,
                 $Caja_a_anular->tipo_de_movimiento_id);
@@ -1061,6 +1088,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $User     = $Request->get('user_desde_middleware');
         $Socio    = $Request->get('socio_desde_middleware');
         $Sucursal = $Request->get('sucursal_desde_middleware');
+        $Empresa  = $this->EmpresaConSociosoRepo->find($Sucursal->empresa_id);
 
         $manager = new AgregarAlSocioMovimientoManager(null, $Request->all());
 
@@ -1082,11 +1110,11 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Valor,
                     $Nombre,
                     'acredor',
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     null);
         }
 
-//si se paga ahora
+        //si se paga ahora
         if ($Request->get('paga') == 'si') {
             $EstadoDeCuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                 ->setEstadoDeCuentaCuando($Socio->id,
@@ -1095,7 +1123,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Valor,
                     'Pago de ' . $Nombre,
                     'deudor',
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     null);
             //Movimiento de caja
             $this->CajaEmpresaRepo->InresarMovimientoDeCaja($Request->get('empresa_id'),
@@ -1105,7 +1133,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 $Moneda,
                 $Valor,
                 'Movimiento a ' . $Socio->name . ' por concepto de ' . $Nombre,
-                Carbon::now('America/Montevideo'),
+                Carbon::now($Empresa->zona_horaria),
                 $Nombre,
                 null,
                 $Request->get('tipo_de_movimiento_id'),
@@ -1148,7 +1176,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         $Servicios_renovacion = $this->ServicioSocioRenovacionRepo->getServiciosDeRenovacionDelSocioActivos($Socio->id);
         $Sucursal             = $Request->get('sucursal_desde_middleware');
         $User                 = $Request->get('user_desde_middleware');
-        $Hoy                  = Carbon::now('America/Montevideo');
+        $Empresa              = $this->EmpresaConSociosoRepo->find($Sucursal->empresa_id);
+        $Hoy                  = Carbon::now($Empresa->zona_horaria);
 
         //primero me fijo el manager
         $manager = new RenovarDeFormaAutomaticaManager(null, $Request->all());
@@ -1176,7 +1205,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Servicio = $this->ServicioContratadoSocioRepo->getServiciosDeEsteSocioYConEsteTipoId($Socio->id, $Servicio_para_renovar->tipo_servicio_id);
 
 //debería buscar servicio a socio y ver si en un mes hay alguno disponible
-            if (Carbon::now('America/Montevideo') > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now('America/Montevideo')->addDays(3) > Carbon::parse($Servicio->fecha_vencimiento)) {
+            if (Carbon::now($Empresa->zona_horaria) > Carbon::parse($Servicio->fecha_vencimiento) || Carbon::now($Empresa->zona_horaria)->addDays(3) > Carbon::parse($Servicio->fecha_vencimiento)) {
                 //creo el nuevo servicio
                 $Nuevo_servicio = $this->ServicioContratadoSocioRepo->setServicioASocio($Socio->id,
                     $Sucursal->id,
@@ -1190,14 +1219,14 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     $Nuevo_servicio->valor,
                     'Compra de ' . $Nuevo_servicio->name . ' ' . $Nuevo_servicio->id,
                     'acredor',
-                    Carbon::now('America/Montevideo'),
+                    Carbon::now($Empresa->zona_horaria),
                     $Nuevo_servicio->id);
 
                 //ajusto el servicio de renovación
                 $this->ServicioSocioRenovacionRepo->setServicioRenovacion($Socio->id,
                     $Socio->empresa_id,
                     $Nuevo_servicio->tipo_de_servicio,
-                    Carbon::now('America/Montevideo'));
+                    Carbon::now($Empresa->zona_horaria));
             } else {
                 return ['Validacion' => false,
                     'Validacion_mensaje' => 'No se puede agregar porque aún tiené algún servicio disponible'];
