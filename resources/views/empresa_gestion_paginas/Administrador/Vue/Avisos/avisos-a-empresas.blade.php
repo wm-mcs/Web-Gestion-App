@@ -128,7 +128,7 @@ Vue.component("avisos-empresa-admin", {
             </div>
 
             <transition name="fade-enter" v-if="mostrarCrearMensaje">
-            <div  class="w-100 background-gris-1 p-2 mb-4" :class="classType" >
+            <div  class="w-100  p-2 mb-4" :class="classType" >
 
 
             <div class="formulario-label-fiel">
