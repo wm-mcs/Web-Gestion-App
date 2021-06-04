@@ -82,7 +82,10 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
     public function getPropiedades()
     {
-        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva', 'estado', 'codigo_pais_whatsapp', 'time_zone', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access', 'control_acceso', 'reserva_de_clases_on_line', 'grupos', 'reserva_de_clase_dias_por_adelantado', 'reserva_de_clase_acepta_deuda', 'reserva_de_clase_acepta_sin_plan'];
+        return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva',
+            'estado', 'codigo_pais_whatsapp', 'time_zone', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access',
+            'control_acceso', 'reserva_de_clases_on_line', 'grupos', 'reserva_de_clase_dias_por_adelantado',
+            'reserva_de_clase_acepta_deuda', 'reserva_de_clase_acepta_sin_plan', 'mensajes_sistema', 'mensajes_publicidad'];
     }
 
     //La pagina de inicio
@@ -247,7 +250,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         //para la imagen
         $this->EmpresaConSociosoRepo->setImagen(null, $Request, 'img', 'Empresa/', $Entidad->id . '-logo_empresa_socios', '.png', 500);
 
-        return redirect()->route('get_admin_empresas_gestion_socios')->with('alert', 'Editado Correctamente');
+        return redirect()->back()->with('alert', 'Editado Correctamente');
     }
 
     public function actuliarServiciosDeManeraAutomatica(Request $Request)
@@ -482,7 +485,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 'Validacion_mensaje' => 'Ya existe un socio con ese celular'];
         }
 
-        $Propiedades = ['estado', 'name', 'email', 'celular', 'cedula', 'direccion', 'rut', 'razon_social', 'mutualista', 'nota', 'celular_internacional'];
+        $Propiedades = ['estado', 'name', 'email', 'celular', 'cedula', 'direccion', 'rut', 'razon_social', 'mutualista', 'nota', 'celular_internacional', 'mensajes_sistema'];
 
         $Socio = $this->SocioRepo->setEntidadDato($Socio, $Request, $Propiedades);
 

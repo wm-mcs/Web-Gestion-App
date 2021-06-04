@@ -105,9 +105,7 @@ Vue.component("socios-crear-boton", {
                   </div>
 
                   <div class="formulario-label-fiel">
-                  <div v-if="empresa.pais != 'UY'" class="modal-mensaje-aclarador">
-                        Se deben ingresar todo los dígitos menos el símbolo de +.
-                      </div>
+
                     <fieldset class="float-label">
                       <input
                         name="celular"
@@ -120,6 +118,24 @@ Vue.component("socios-crear-boton", {
                       <label for="celular">Celular</label>
                     </fieldset>
                   </div>
+
+                  <div class="formulario-label-fiel mb-0">
+                    <fieldset class="float-label mb-0">
+                      <input
+                        name="email"
+                        type="text"
+                        class="input-text-class-primary"
+                        v-model="form_socio_email"
+                        required
+
+                      />
+                      <label for="email">Email (opcional) </label>
+                    </fieldset>
+                  </div>
+                  <div class="modal-mensaje-aclarador mb-5 mt-0 col-12 text-center">
+                       Si le agregás el email, podremos enviar mensajes automáticos. Por ejemplo para avisarle cuando se le venció el servicio que haya comprado.
+                   </div>
+
 
 
 
@@ -136,19 +152,7 @@ Vue.component("socios-crear-boton", {
 
 
 
-                  <div class="formulario-label-fiel">
-                    <fieldset class="float-label">
-                      <input
-                        name="email"
-                        type="text"
-                        class="input-text-class-primary"
-                        v-model="form_socio_email"
-                        required
 
-                      />
-                      <label for="email">Email (opcional)</label>
-                    </fieldset>
-                  </div>
                   <div class="formulario-label-fiel">
                     <fieldset class="float-label">
                       <input
@@ -159,7 +163,7 @@ Vue.component("socios-crear-boton", {
                         required
 
                       />
-                      <label for="cedula">Número de cédula (opcional sin puntos ni guión)</label>
+                      <label for="cedula">Número de cédula/DNI (opcional sin puntos ni guión)</label>
                     </fieldset>
                   </div>
 

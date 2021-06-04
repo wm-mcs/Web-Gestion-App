@@ -80,20 +80,6 @@
                   </div>
 
 
-                  <div class="formulario-label-fiel">
-                  <div class="modal-mensaje-aclarador">Rellenar este campo únicamente si el socio tiene un celular distinto al de tu país. Agregar el celular completo sin el símbolo de +. Esto es para que puedas comunicarte por Whatsapp con un solo click.</div>
-                    <fieldset class="float-label">
-                      <input
-                        name="celular_internacional"
-                        type="number"
-                        class="input-text-class-primary"
-                        v-model="socio.celular_internacional"
-                        required
-
-                      />
-                      <label for="celular_internacional">Celular</label>
-                    </fieldset>
-                  </div>
 
 
                   <div class="formulario-label-fiel">
@@ -153,6 +139,27 @@
                       accept="image/*"
                       class="input-text-class-primary">
                       <label for="imagen">Foto de perfil</label>
+                    </fieldset>
+                  </div>
+
+
+
+                  <div class="formulario-label-fiel">
+
+                      <div class="modal-mensaje-aclarador">
+                       Cuando el cliente compra o se le renueva algún servicio, se le envía un mensajes autmático por email (si es que el socio tiene email).
+                       Si no querés que esto pase, seleccioná no.
+                      </div>
+                    <fieldset class="float-label">
+
+                    <select required name="mensajes_sistema" v-model="socio.mensajes_sistema" class="input-text-class-primary">
+
+                        <option>si</option>
+                        <option>no</option>
+
+                      </select>
+
+                      <label for="mensajes_sistema">¿Se le envían mensajes automáticos?</label>
                     </fieldset>
                   </div>
 

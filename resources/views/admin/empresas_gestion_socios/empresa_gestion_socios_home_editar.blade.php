@@ -78,6 +78,13 @@
             </div>
 
             <div class="contenedor-grupo-datos">
+              <div class="contenedor-grupo-datos-titulo"> Mensajes por email</div>
+              <div class="contenedor-formulario-label-fiel">
+               @include('admin.empresas_gestion_socios.formularios_partes.datos_mensajes')
+              </div>
+           </div>
+
+            <div class="contenedor-grupo-datos">
               <div class="contenedor-grupo-datos-titulo"> Acciones</div>
               <div class="contenedor-formulario-label-fiel">
                   <a href="{{route('borrar_todos_los_datos_de_esta_empresa',$Empresa->id)}}"
@@ -139,7 +146,7 @@
 
           </div>
      </div>
-     <div class="admin-boton-editar">
+     <div class="admin-boton-editar mt-5">
        Guardar
      </div>
  </div>
@@ -158,6 +165,9 @@
 
 
      Vue.component('v-select', VueSelect.VueSelect)
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
+     @include('empresa_gestion_paginas.Administrador.Vue.Avisos.avisos-a-empresas')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-sucursal-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-user-empresa')
      @include('empresa_gestion_paginas.Vue_logica.instancia_vue')

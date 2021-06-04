@@ -18,7 +18,7 @@ class HelperEmails
     public static function sendEmailToSocio($Empresa, $Socio, $Data)
     {
 
-        if ($Socio->email == null || $Socio->email == '') {
+        if ($Socio->email == null || $Socio->email == '' || $Socio->mensajes_sistema == 'no') {
             return false;
         }
 
