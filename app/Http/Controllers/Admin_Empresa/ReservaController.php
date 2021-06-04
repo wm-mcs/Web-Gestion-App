@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin_Empresa;
 
+use App\Helpers\HelperEmails;
 use App\Helpers\HelperFechas;
 use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
@@ -178,6 +179,10 @@ class ReservaController extends Controller
             $ReservaRepo->setReserva($Empresa->id, $Sucursal_id, $Agenda->id, Carbon::parse($Fecha_de_cuando_sera_la_clase), $Socio->id, $Socio->name);
 
             //Enviar_email
+            HelperEmails::sendEmailToSocio($Empresa, $Socio, [
+                'subject' => '✅ Confirmación de reserva de' . $Agenda->actividad->name . ' en ' . $Empresa->name . ' día 🗓' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . 'a las 🕖' . $Agenda->hora_inicio,
+                'text'    => 'Estimado/a ' . $Socio->name . ', te confirmamos que su reserva de ' . $Agenda->actividad->name . ' quedó efectuada correctamente ✅. Te esperamos el día ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las 🕖' . $Agenda->hora_inicio . '.  Gracias por ser parte de ' . $Empresa->name,
+            ]);
 
             return HelpersGenerales::formateResponseToVue(true, 'Tu reserva quedó hecha. Te esperamos el ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las ' . $Agenda->hora_inicio . ' hs.');
         }

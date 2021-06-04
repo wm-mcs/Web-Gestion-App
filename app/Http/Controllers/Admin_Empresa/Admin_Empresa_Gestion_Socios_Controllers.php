@@ -320,8 +320,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                                     Carbon::now($Empresa->zona_horaria));
 
                                 HelperEmails::sendEmailToSocio($Empresa, $Socio, [
-                                    'subject' => 'Se ha renovado ' . $Nuevo_servicio->tipo_de_servicio->name . ' en ' . $Empresa->name,
-                                    'text'    => $Socio->name . ' ¿Cómo estás?, renovamos de manera automática el servicio ' . $Nuevo_servicio->tipo_de_servicio->name . '. Queda pendiente de pago  $ ' . $Nuevo_servicio->tipo_de_servicio->valor . '. Cuando puedas, pero en lo posible dentro de los siguientes 10 días pasá a abonar. Si se te complica avisanos. El servicio se vencerá el ' . $Nuevo_servicio->fecha_vencimiento_formateada . '. Muchas gracias por ser parte de  ' . $Empresa->name . '.',
+                                    'subject' => 'Se ha renovado ' . $Nuevo_servicio->tipo_de_servicio->name . ' en 👉 ' . $Empresa->name,
+                                    'text'    => 'Estimado/a ' . $Socio->name . 'Su servicio ' . $Nuevo_servicio->tipo_de_servicio->name . 'se ha renovado de forma automática. La nueva fecha de vencimiento ' . $Nuevo_servicio->fecha_vencimiento_formateada . '. Esto hace que quede pendiente el pago de $ ' . $Nuevo_servicio->tipo_de_servicio->valor . ' del mes corriente. Esperamos que el pago pendiente sea realizado dentro de los siguientes 10 días. Muchas gracias por ser parte de ' . $Empresa->name,
                                 ]);
 
                                 array_push($Array_resultados, json_decode(json_encode(['Socio' => $Socio->name,
@@ -571,8 +571,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             }
 
             HelperEmails::sendEmailToSocio($Empresa, $Socio, [
-                'subject' => 'Compra de clases en ' . $Empresa->name,
-                'text'    => 'Hemos registrado ' . $Request->get('cantidad_de_servicios') . ' clases. Tenés hasta el ' . $Request->get('fecha_vencimiento') . ' para usarlas. Que tengas un lindo día y gracias por ser parte de ' . $Empresa->name,
+                'subject' => 'Compra de clases 💵 en ' . $Empresa->name,
+                'text'    => 'Estimado/a ' . $Socio->name . ' muchas gracias por la compra de ' . $Request->get('cantidad_de_servicios') . ' clases. Las mismas se vencerán el día ' . $Request->get('fecha_vencimiento') . '.  Muchas gracias por ser parte de ' . $Empresa->name,
             ]);
 
         } else {
@@ -603,7 +603,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                     Carbon::now($Empresa->zona_horaria),
                     $Entidad->id);
 
-//si se paga ahora
+            //si se paga ahora
             if ($Request->get('paga') == 'si') {
                 $Estado_de_cuenta = $this->MovimientoEstadoDeCuentaSocioRepo
                     ->setEstadoDeCuentaCuando($Socio->id,
@@ -634,8 +634,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
             $Servicio = $this->TipoDeServicioRepo->find($Request->get('tipo_servicio_id'));
 
             HelperEmails::sendEmailToSocio($Empresa, $Socio, [
-                'subject' => 'Compra de ' . $Servicio->name . ' en ' . $Empresa->name,
-                'text'    => $Socio->name . ' ¿Cómo estás?, muchas gracias por la compra de ' . $Servicio->name . '. El servicio se vencerá el ' . $Request->get('fecha_vencimiento') . '. Que tengas un lindo día y gracias por ser parte de ' . $Empresa->name,
+                'subject' => 'Compra de 💵 ' . $Servicio->name . ' en 👉 ' . $Empresa->name,
+                'text'    => 'Estimado/a ' . $Socio->name . ' muchas gracias por la compra de ' . $Servicio->name . '  Su servicio se vencerá el día ' . $Request->get('fecha_vencimiento') . '.  Muchas gracias por ser parte de ' . $Empresa->name,
             ]);
         }
 

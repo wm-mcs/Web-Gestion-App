@@ -125,14 +125,22 @@
 
 
   <tr style="border-collapse:collapse">
-    <td align="left" style="padding:0;Margin:0">
+    <td align="center" style="padding:0;Margin:0">
       <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:12px;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#666666">
-        <strong>
-           {{$Empresa->name}}  | Celular: {{$Empresa->celular}}  | Email: {{$Empresa->email}}
-        </strong>
+
+           Powered By
+
       </p>
     </td>
   </tr>
+
+  <tr style="border-collapse:collapse">
+                      <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:25px;padding-bottom:25px;font-size:0">
+                        <a href="https://gestionsocios.com.uy">
+                          <img src="https://app.gestionsocios.com.uy/imagenes/Empresa/logo_rectangular.png" alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="170">
+                        </a>
+                      </td>
+                     </tr>
 
 
 
