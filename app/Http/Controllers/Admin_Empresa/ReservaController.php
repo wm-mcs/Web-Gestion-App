@@ -180,7 +180,7 @@ class ReservaController extends Controller
 
             //Enviar_email
             HelperEmails::sendEmailToSocio($Empresa, $Socio, [
-                'subject' => '✅ Reserva de ' . $Agenda->actividad->name . ' día 🗓' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . 'a las 🕖' . $Agenda->hora_inicio,
+                'subject' => '✅ Reserva de ' . $Agenda->actividad->name . ' día 🗓' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las 🕖' . $Agenda->hora_inicio,
                 'text'    => 'Estimado/a ' . $Socio->name . ', te confirmamos que su reserva de ' . $Agenda->actividad->name . ' quedó efectuada correctamente ✅. Te esperamos el día ' . Carbon::parse($Fecha_de_cuando_sera_la_clase)->format('d-m') . ' a las 🕖 ' . $Agenda->hora_inicio . '.  Gracias por ser parte de ' . $Empresa->name,
             ]);
 

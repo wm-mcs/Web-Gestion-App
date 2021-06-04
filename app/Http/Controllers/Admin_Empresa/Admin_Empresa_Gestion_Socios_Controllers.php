@@ -635,7 +635,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
             HelperEmails::sendEmailToSocio($Empresa, $Socio, [
                 'subject' => 'Compra de 💵 ' . $Servicio->name . ' en 👉 ' . $Empresa->name,
-                'text'    => 'Estimado/a ' . $Socio->name . ' muchas gracias por la compra de ' . $Servicio->name . '  Su servicio se vencerá el día ' . $Request->get('fecha_vencimiento') . '.  Muchas gracias por ser parte de ' . $Empresa->name,
+                'text'    => 'Estimado/a ' . $Socio->name . ' muchas gracias por la compra de ' . $Servicio->name . '.  Su servicio se vencerá el día ' . $Request->get('fecha_vencimiento') . '.  Muchas gracias por ser parte de ' . $Empresa->name,
             ]);
         }
 
