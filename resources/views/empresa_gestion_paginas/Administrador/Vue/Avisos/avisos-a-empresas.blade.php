@@ -1,60 +1,53 @@
 Vue.component("avisos-empresa-admin", {
+  mixins: [onKeyPressEscapeCerrarModalMixIn, erroresMixIn],
+  components:{
+    'aviso-item':avisoItem
+  },
 
-
-    mixins: [onKeyPressEscapeCerrarModalMixIn,erroresMixIn],
+  props:['admin'],
 
   data: function() {
     return {
-      empresa:this.$root.empresa.id,
+      empresa: this.$root.empresa,
       avisos: [],
       cargando: false,
-      showModal:false,
-      mostrarCrearMensaje:false,
-      creando:false,
-      tipo_de_mensaje_opciones:['success','error','info','warning'],
-      dataCrear:{
-          empresa_id:this.$root.empresa.id,
-          type:'',
-          title:'',
-          text:'',
-          call_to_action:'',
-          call_to_action_url:''
-
-
+      showModal: false,
+      mostrarCrearMensaje: false,
+      creando: false,
+      tipo_de_mensaje_opciones: ["success", "error", "info", "warning"],
+      dataCrear: {
+        empresa_id: this.$root.empresa.id,
+        type: "",
+        title: "",
+        text: "",
+        call_to_action: "",
+        call_to_action_url: ""
       }
     };
   },
   methods: {
+    abrir: function() {
+      if (this.avisos.length == 0) {
+        this.getAvisos();
+      }
 
-
-    abrir:function(){
-
-        if(this.avisos.length == 0)
-        {
-            this.getAvisos();
-        }
-
-        this.showModal = true;
-
+      this.showModal = true;
     },
-    setAviso:function(){
-
-    },
+    setAviso: function() {},
     getAvisos: function() {
-      var url = "/get_paises_todos";
+      var url =  this.admin ? '/get_avisos_de_esta_empresa' :  '/get_avisos_de_esta_empresa_sin_leer';
       var vue = this;
       vue.cargando = true;
 
-
-      let data = this.dataCrear;
+      let data = { empresa_id: this.empresa.id };
       axios
-        .post(url,data)
+        .post(url, data)
         .then(function(response) {
           var data = response.data;
 
           if (data.Validacion == true) {
             vue.avisos = data.Data;
-            $.notify(response.data.Validacion_mensaje, "success");
+
             vue.cargando = false;
           } else {
             $.notify(response.data.Validacion_mensaje, "error");
@@ -64,31 +57,57 @@ Vue.component("avisos-empresa-admin", {
         .catch(function(error) {
           vue.cargando = false;
         });
+    },
+    crear: function() {
+      var url = "/crear_aviso_empresa";
+      var vue = this;
+      vue.creando = true;
+
+      let data = this.dataCrear;
+      axios
+        .post(url, data)
+        .then(function(response) {
+          var data = response.data;
+
+          if (data.Validacion == true) {
+            vue.getAvisos();
+
+            vue.creando = false;
+            vue.mostrarCrearMensaje = false;
+          } else {
+            $.notify(response.data.Validacion_mensaje, "error");
+            vue.creando = false;
+          }
+        })
+        .catch(function(error) {
+          vue.creando = false;
+        });
     }
   },
   computed: {
+    classType: function() {
+      var success =
+        this.dataCrear.type == "success"
+          ? "text-success border border-success"
+          : "";
+      var error =
+        this.dataCrear.type == "error"
+          ? "text-danger border border-danger"
+          : "";
+      var info =
+        this.dataCrear.type == "info" ? "text-info border border-info" : "";
+      var warning =
+        this.dataCrear.type == "warning"
+          ? "text-warning border border-warning"
+          : "";
 
-    classType:function(){
+      var clase = `${success} ${error} ${info} ${warning}`;
 
-        var success = this.dataCrear.type == 'success' ? 'text-success border border-success':'';
-        var error = this.dataCrear.type ==  'error' ? 'text-danger border border-danger':'';
-        var info = this.dataCrear.type == 'info' ? 'text-info border border-info':'';
-        var warning = this.dataCrear.type == 'warning' ? 'text-warning border border-warning':'';
-
-        var clase = `${success} ${error} ${info} ${warning}`;
-
-        return clase;
-
-
+      return clase;
     }
-
   },
-  mounted: function() {
-
-  },
-  created() {
-
-  },
+  mounted: function() {},
+  created() {},
 
   template: `
 
@@ -123,9 +142,10 @@ Vue.component("avisos-empresa-admin", {
 
 
 
-            <div @click="mostrarCrearMensaje = !mostrarCrearMensaje" class="w-100 my-3 text-center simula_link">
+            <div  @click="mostrarCrearMensaje = !mostrarCrearMensaje" class="w-100 my-3 text-center simula_link">
                  Crear un mensaje  <i v-if="!mostrarCrearMensaje" class="fas fa-chevron-down"></i><i v-else class="fas fa-chevron-up"></i>
             </div>
+
 
             <transition name="fade-enter" v-if="mostrarCrearMensaje">
             <div  class="w-100  p-2 mb-4" :class="classType" >
@@ -207,7 +227,7 @@ Vue.component("avisos-empresa-admin", {
                 </transition>
 
                 <div v-if="creando != true"  class="d-flex flex-column align-items-center w-100">
-                    <button  type="button" @click="setAviso" class="mt-4 btn btn-lg " :class="classType">
+                    <button  type="button" @click="crear" class="mt-4 btn btn-lg " :class="classType">
                             Crear mensaje
                     </button>
                 </div>
@@ -220,10 +240,10 @@ Vue.component("avisos-empresa-admin", {
             </transition>
 
 
-            <div v-if="avisos.length > 0">
-                <p class="text-center col-12">Historial de mensajes</p>
+            <div class="w-100" v-if="avisos.length > 0">
+                <p class="text-center col-12 color-text-gris ">Historial de mensajes</p>
 
-
+                <aviso-item @actualizar="getAvisos"  :admin="admin" v-for="aviso in avisos" :aviso="aviso" :key="aviso.id"></aviso-item>
 
 
 

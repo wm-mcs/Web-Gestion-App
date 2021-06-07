@@ -167,6 +167,7 @@
      Vue.component('v-select', VueSelect.VueSelect)
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
+     @include('empresa_gestion_paginas.Administrador.Vue.Avisos.aviso-item')
      @include('empresa_gestion_paginas.Administrador.Vue.Avisos.avisos-a-empresas')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-sucursal-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.vincular-user-empresa')

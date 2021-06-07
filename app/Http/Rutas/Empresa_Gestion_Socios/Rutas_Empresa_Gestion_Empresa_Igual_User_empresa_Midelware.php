@@ -5,6 +5,12 @@ require __DIR__ . '/../Actividades/actividades.php';
 require __DIR__ . '/../Servicios/servicios.php';
 require __DIR__ . '/../Grupo/grupos.php';
 
+Route::post('confirmar_lectura_de_aviso',
+    [
+        'uses' => 'Admin_Empresa\AvisosController@confirmar_lectura_de_aviso',
+        'as'   => 'confirmar_lectura_de_aviso',
+    ]);
+
 Route::post('/get_reservas_del_dia',
     [
         'uses' => 'Admin_Empresa\ReservaController@get_reservas_del_dia',
