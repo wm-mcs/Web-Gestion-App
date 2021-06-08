@@ -39,7 +39,7 @@
 
 @section('content')
 
-
+  <avisos-empresa-generales :admin="false"></avisos-empresa-generales>
   <avisos-empresa :empresa="empresa"></avisos-empresa>
 
 
@@ -102,6 +102,8 @@
 
 
     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+     @include('empresa_gestion_paginas.Administrador.Vue.Avisos.aviso-item')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-generales')
 
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')

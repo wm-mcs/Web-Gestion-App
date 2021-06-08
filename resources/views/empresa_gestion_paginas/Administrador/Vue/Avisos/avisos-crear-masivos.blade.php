@@ -1,66 +1,40 @@
-Vue.component("avisos-empresa-admin", {
+Vue.component("avisos-crear-masivos", {
   mixins: [onKeyPressEscapeCerrarModalMixIn, erroresMixIn],
-  components:{
-    'aviso-item':avisoItem
-  },
 
-  props:['admin'],
+
+
 
   data: function() {
     return {
-      empresa: this.$root.empresa,
-      avisos: [],
+      empresas:{!! json_encode($Empresas) !!},
+      mostrar_activas:true,
+
       cargando: false,
       showModal: false,
       mostrarCrearMensaje: false,
       creando: false,
       tipo_de_mensaje_opciones: ["success", "error", "info", "warning"],
       dataCrear: {
-        empresa_id: this.$root.empresa.id,
         type: "",
         title: "",
         text: "",
         call_to_action: "",
         call_to_action_url: "",
-        se_envia_email:'no'
+        se_envia_email:'no',
+        empresas_a_enviar:[],
       }
     };
   },
   methods: {
     abrir: function() {
-      if (this.avisos.length == 0) {
-        this.getAvisos();
-      }
+
 
       this.showModal = true;
     },
     setAviso: function() {},
-    getAvisos: function() {
-      var url =  this.admin ? '/get_avisos_de_esta_empresa' :  '/get_avisos_de_esta_empresa_sin_leer';
-      var vue = this;
-      vue.cargando = true;
 
-      let data = { empresa_id: this.empresa.id };
-      axios
-        .post(url, data)
-        .then(function(response) {
-          var data = response.data;
-
-          if (data.Validacion == true) {
-            vue.avisos = data.Data;
-
-            vue.cargando = false;
-          } else {
-            $.notify(response.data.Validacion_mensaje, "error");
-            vue.cargando = false;
-          }
-        })
-        .catch(function(error) {
-          vue.cargando = false;
-        });
-    },
     crear: function() {
-      var url = "/crear_aviso_empresa";
+      var url = "/crear_aviso_empresa_masivo";
       var vue = this;
       vue.creando = true;
 
@@ -71,10 +45,10 @@ Vue.component("avisos-empresa-admin", {
           var data = response.data;
 
           if (data.Validacion == true) {
-            vue.getAvisos();
 
             vue.creando = false;
-            vue.mostrarCrearMensaje = false;
+            vue.showModal = false;
+            $.notify(response.data.Validacion_mensaje, "success");
           } else {
             $.notify(response.data.Validacion_mensaje, "error");
             vue.creando = false;
@@ -105,6 +79,18 @@ Vue.component("avisos-empresa-admin", {
       var clase = `${success} ${error} ${info} ${warning}`;
 
       return clase;
+    },
+    empresasFiltradas:function(){
+       var empresas = this.empresas;
+
+       if(this.mostrar_activas)
+       {
+            empresas = empresas.filter(
+                empresa => empresa.estado == 'si'
+            );
+       }
+
+       return empresas;
     }
   },
   mounted: function() {},
@@ -118,7 +104,7 @@ Vue.component("avisos-empresa-admin", {
 
 	<div class="col-12">
      <div @click="abrir" class="Boton-Fuente-Chica Boton-Primario-Sin-Relleno">
-        Administrar avisos
+        Crear aviso masivo
      </div>
 
     </div>
@@ -143,14 +129,15 @@ Vue.component("avisos-empresa-admin", {
 
 
 
-            <div  @click="mostrarCrearMensaje = !mostrarCrearMensaje" class="w-100 my-3 text-center simula_link">
-                 Crear un mensaje  <i v-if="!mostrarCrearMensaje" class="fas fa-chevron-down"></i><i v-else class="fas fa-chevron-up"></i>
-            </div>
 
 
-            <transition name="fade-enter" v-if="mostrarCrearMensaje">
+
+            <transition name="fade-enter" >
             <div  class="w-100  p-2 mb-4" :class="classType" >
 
+
+                <h2 class="text-center mb-5
+                ">Crear aviso masivo</h2>
 
             <div class="formulario-label-fiel">
 
@@ -236,6 +223,28 @@ Vue.component("avisos-empresa-admin", {
             </div>
 
 
+                 <div class="formulario-label-fiel">
+                  <div  class="col-12 formulario-label"
+                  >
+                  ¿A quién le enviamos?
+                  </div>
+                  <div class="mb-5">
+                      <small>Solo empresas activas </small>   <input type="checkbox" v-model="mostrar_activas">
+
+                  </div>
+                  <div v-for="empresa in empresasFiltradas" :key="empresa.id + 'empresa'" class="col-12">
+                      <label :for="empresa.name">@{{empresa.name}}</label>
+                      <input type="checkbox" :id="empresa.name" :value="empresa.id" v-model="dataCrear.empresas_a_enviar">
+                  </div>
+
+
+
+
+
+
+                </div>
+
+
 
                 <transition name="fade-enter" v-if="errores.length > 0">
                     <div class="col-12 my-2 py-2 background-error cursor-pointer"  >
@@ -257,18 +266,6 @@ Vue.component("avisos-empresa-admin", {
             </transition>
 
 
-            <div class="w-100" v-if="avisos.length > 0">
-                <p class="text-center col-12 color-text-gris ">Historial de mensajes</p>
-
-                <aviso-item @actualizar="getAvisos"  :admin="admin" v-for="aviso in avisos" :aviso="aviso" :key="aviso.id"></aviso-item>
-
-
-
-
-            </div>
-            <div v-else class="color-text-gris my-4 text-center col-12">
-                    Aún no se le ha creado ningun mensaje a esta empresa
-            </div>
 
 
 

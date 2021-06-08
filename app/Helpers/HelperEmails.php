@@ -40,4 +40,30 @@ class HelperEmails
         return true;
     }
 
+    /**
+     *  Para enviar emails a empresas.
+     */
+    public static function sendEmailToEmpresa($Empresa, $Data)
+    {
+
+        if ($Empresa->mensajes_sistema != 'si') {
+            return false;
+        }
+
+        Mail::send('emails.easysocio_mensajes_empresas',
+
+            //con esta funcion le envia los datos a la vista.
+            compact('Empresa',
+                'Data'),
+            function ($m) use ($Empresa, $Data) {
+
+                $m->from('mauricio@gestionsocios.com.uy', 'Easysocio');
+                $m->to($Empresa->email,
+                    $Empresa->name)->subject($Data['subject']);
+            }
+        );
+
+        return true;
+    }
+
 }

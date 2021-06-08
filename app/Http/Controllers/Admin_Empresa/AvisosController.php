@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin_Empresa;
 
+use App\Helpers\HelperEmails;
 use App\Helpers\HelpersGenerales;
 use App\Http\Controllers\Controller;
 use App\Managers\EmpresaGestion\AvisoEmpresaManager;
+use App\Managers\EmpresaGestion\AvisoMasivoEmpresaManager;
 use App\Repositorios\AvisoEmpresaRepo;
 use App\Repositorios\EmpresaConSociosoRepo;
 use Carbon\Carbon;
@@ -38,6 +40,46 @@ class AvisosController extends Controller
         return HelpersGenerales::formateResponseToVue(true, 'Avisos cargados', $this->AvisoEmpresaRepo->getAvisosDeEmpresa($Request->get('empresa_id')));
     }
 
+    public function get_avisos_de_esta_empresa_sin_leer(Request $Request)
+    {
+        return HelpersGenerales::formateResponseToVue(true, 'Avisos cargados', $this->AvisoEmpresaRepo->getAvisosDeEmpresa($Request->get('empresa_id'), 'si'));
+    }
+
+    public function crear_aviso_empresa_masivo(Request $Request)
+    {
+        $manager = new AvisoMasivoEmpresaManager(null, $Request->all());
+
+        if ($manager->isValid()) {
+
+            foreach ($Request->get('empresas_a_enviar') as $clave => $valor) {
+
+                $Empresa = $this->EmpresaConSociosoRepo->find($valor);
+                $Entidad = $this->AvisoEmpresaRepo->getEntidad();
+                $this->AvisoEmpresaRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
+                $Entidad->empresa_id = $Empresa->id;
+                $Entidad->estado     = 'si';
+                $Entidad->borrado    = 'no';
+                $Entidad->save();
+
+                if ($Request->get('se_envia_email') == 'si') {
+
+                    $Data = [
+                        'subject'            => $Request->get('title'),
+                        'text'               => $Request->get('text'),
+                        'call_to_action'     => $Request->get('call_to_action'),
+                        'call_to_action_url' => $Request->get('call_to_action_url'),
+
+                    ];
+
+                    HelperEmails::sendEmailToEmpresa($Empresa, $Data);
+                }
+            }
+
+            return HelpersGenerales::formateResponseToVue(true, 'Se creó el aviso');
+        }
+        return HelpersGenerales::formateResponseToVue(false, 'No se pudo crear', $manager->getErrors());
+    }
+
     public function crear_aviso_empresa(Request $Request)
     {
         $manager = $this->getManager($Request);
@@ -48,8 +90,18 @@ class AvisosController extends Controller
             $Entidad->borrado = 'no';
             $this->AvisoEmpresaRepo->setEntidadDato($Entidad, $Request, $this->getPropiedades());
 
-            if ($Request->get('tambien_se_envia_email') == 'si') {
+            if ($Request->get('se_envia_email') == 'si') {
                 //Enviar email
+
+                $Data = [
+                    'subject'            => $Request->get('title'),
+                    'text'               => $Request->get('text'),
+                    'call_to_action'     => $Request->get('call_to_action'),
+                    'call_to_action_url' => $Request->get('call_to_action_url'),
+
+                ];
+
+                HelperEmails::sendEmailToEmpresa($this->EmpresaConSociosoRepo->find($Request->get('empresa_id')), $Data);
             }
 
             return HelpersGenerales::formateResponseToVue(true, 'Se creó el aviso');
@@ -67,11 +119,25 @@ class AvisosController extends Controller
             return HelpersGenerales::formateResponseToVue(false, 'Algo no está bien. Te estás portando mal picaron.');
         }
 
-        $this->AvisoEmpresaRepo->setAtributoEspecifico($Aviso, 'leido', 'si');
+        $this->AvisoEmpresaRepo->setAtributoEspecifico($Aviso, 'leido', $Aviso->leido == 'si' ? 'no' : 'si');
         $this->AvisoEmpresaRepo->setAtributoEspecifico($Aviso, 'leido_por', Auth::user()->name);
         $this->AvisoEmpresaRepo->setAtributoEspecifico($Aviso, 'fecha_leido', Carbon::now($Empresa->zona_horaria));
 
-        return HelpersGenerales::formateResponseToVue(true, 'Se confirmó lectura');
+        return HelpersGenerales::formateResponseToVue(true, 'Se procesó correctamente');
+    }
+
+    public function borrar_aviso(Request $Request)
+    {
+        $Aviso   = $this->AvisoEmpresaRepo->find($Request->get('aviso_id'));
+        $Empresa = $this->EmpresaConSociosoRepo->find($Request->get('empresa_id'));
+
+        if ($Aviso->empresa_id != $Request->get('empresa_id')) {
+            return HelpersGenerales::formateResponseToVue(false, 'Algo no está bien. Te estás portando mal picaron.');
+        }
+
+        $this->AvisoEmpresaRepo->destruir_esta_entidad_de_manera_logica($Aviso);
+
+        return HelpersGenerales::formateResponseToVue(true, 'Se borró correctamente');
     }
 
 }

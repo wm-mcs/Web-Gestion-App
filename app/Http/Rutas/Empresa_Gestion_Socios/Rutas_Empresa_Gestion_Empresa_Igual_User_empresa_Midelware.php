@@ -5,6 +5,12 @@ require __DIR__ . '/../Actividades/actividades.php';
 require __DIR__ . '/../Servicios/servicios.php';
 require __DIR__ . '/../Grupo/grupos.php';
 
+Route::post('get_avisos_de_esta_empresa_sin_leer',
+    [
+        'uses' => 'Admin_Empresa\AvisosController@get_avisos_de_esta_empresa_sin_leer',
+        'as'   => 'get_avisos_de_esta_empresa_sin_leer',
+    ]);
+
 Route::post('confirmar_lectura_de_aviso',
     [
         'uses' => 'Admin_Empresa\AvisosController@confirmar_lectura_de_aviso',

@@ -10,15 +10,20 @@
 
 <div class="contenedor-admin-entidad-titulo-form-busqueda">
     <div class="admin-entidad-titulo">
-     <a href="{{route('get_admin_empresas_gestion_socios_crear')}}">
-      <span class="admin-user-boton-Crear">Crear </span>
-     </a>
+      <a href="{{route('get_admin_empresas_gestion_socios_crear')}}">
+          <span class="admin-user-boton-Crear">Crear </span>
+      </a>
     </div>
+
+    <avisos-crear-masivos></avisos-crear-masivos>
     @include('admin.empresas_gestion_socios.partes.buscador')
  </div>
 
 
- <mostrar-empresas></mostrar-empresas>
+ <mostrar-empresas>
+
+
+ </mostrar-empresas>
 
 
 
@@ -33,6 +38,10 @@
 
 <script type="text/javascript">
 
+
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+@include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.erroresMixin')
+@include('empresa_gestion_paginas.Administrador.Vue.Avisos.avisos-crear-masivos')
 
 @include('empresa_gestion_paginas.Vue_logica.Componentes.EmpresaAdminPanel.estado-de-cuenta-empresa-saldo')
 @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.mostrar_empresas')
