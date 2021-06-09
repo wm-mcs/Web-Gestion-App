@@ -132,7 +132,7 @@
   @include align-items(center);
   @include flex-direction(row);
   @include justify-content(space-around);
-  margin: 40px auto;
+  margin: 10px auto;
 }
 
 .easy-text {
@@ -162,4 +162,7 @@
 }
 
 @media (min-width: $BrackPoint-Secundario) {
+  .admin-logo-contendor {
+    margin: 40px auto;
+  }
 }

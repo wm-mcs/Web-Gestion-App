@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EasySocio</title>
-    <link rel="stylesheet" type="text/css" href="{{url()}}{{ elixir('css/admin.css') }}">  
-    <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}"> 
+    <link rel="stylesheet" type="text/css" href="{{url()}}{{ elixir('css/admin.css') }}">
+    <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     <META name="robots" content="NOINDEX,NOFOLLOW">
 
 
@@ -24,7 +24,7 @@
  <meta property="og:title"              content="{{ $Titulo}} " />
  <meta property="og:description"        content="{{$DescriptionEtiqueta}}" />
  <meta property="og:image"             content="{{$ImagenParaTaG }}" />
- <meta property="og:image:secure_url"  content="{{$ImagenParaTaG }}" /> 
+ <meta property="og:image:secure_url"  content="{{$ImagenParaTaG }}" />
  <meta property="og:image:width"  content="250">
  <meta property="og:image:height" content="250">
 
@@ -33,10 +33,10 @@
   </head>
 
   <body>
-  
-  
- 
-   
+
+
+
+
    <div id="app" class="admin-contiene-columna-y-content">
 
        <div v-if="cargando" class="cargando-style-contenedor">
@@ -44,70 +44,79 @@
         <div class="cssload-container">
           <div class="cssload-tube-tunnel"></div>
         </div>
-      </div>
-          {{-- <div class="cargando-style-contenedor-sub">
-            <div class="cargando-text-style">Procesando...</div>
-          </div>  --}}    
+        </div>
+
+
+
        </div>
+
+       <div v-if="menu_abierto" class="opasity-layer"></div>
        <div v-show="esResolucionDePc" class="column-wraper-cuando-esta-fixed"></div>
        <div v-show="mostrar_menu" class="admin-columna-contenedor">
+
+       <div>
+
+       </div>
          <div class="admin-columna-wraper">
            <div class="get_width_80 flex-row-column">
 
-             <div v-show="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div> 
-             @yield('columna')
-           </div>
-           
+
+              <div v-show="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div>
+                  @yield('columna')
+              </div>
+
+
+
          </div>
        </div>
-   
-   
-      
-       <div :style="contenido_style_width" class="admin-contiene-content">                        
-             @include('layouts.gestion_socios_layout.mensajes.mensajes')   
+
+
+
+       <div :style="contenido_style_width" class="admin-contiene-content">
+             @include('layouts.gestion_socios_layout.mensajes.mensajes')
               <div class="contiene-miga-y-auth">
-                <div class="admin-contnedor-navegacion-miga"> 
+                <div class="admin-contnedor-navegacion-miga">
 
-                 <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu"><i class="fas fa-bars"></i></div> 
+                 <div v-if="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu"><i class="fas fa-bars"></i></div>
 
-                 @yield('miga-de-pan')                
+                 @yield('miga-de-pan')
                 </div>
                 <div class="contiene-auth-y-sucursal">
                     <div class="navigation-auth-contenedor">
 
-                     
+
                      @if( Auth::user()->role >= 3)
-                     <span v-show="!esResolucionDeTablet"> 
+                     <span v-show="!esResolucionDeTablet">
                       @yield('empresa-configuracion')
-                     </span> 
+                     </span>
                      @endif
-                     <span > 
+                     <span >
                      @yield('sucursal')
                      </span>
-                     
+
                      <nav-inicio></nav-inicio>
                     </div>
-                   
+
                 </div>
-               
-              </div> 
-              
+
+              </div>
+
               <div class="contenedor-admin-entidad">
-                <div class="get_width_100 Helper-OrdenarHijos-columna"> 
+                <div class="get_width_100 Helper-OrdenarHijos-columna">
                     @yield('content')
                 </div>
               </div>
-          
-      </div>      
+
+      </div>
    </div>
 
-   
-  
+
+
         @include('layouts.JS_Partial.LogicaDeComoCargarJS')
-       
 
 
-      
+
+
   </body>
 
 </html>

@@ -101,13 +101,11 @@
 <script type="text/javascript">
 
 
-    @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
+     @include('empresa_gestion_paginas.Vue_logica.Componentes.Helpers.onKeyPressMixIn')
      @include('empresa_gestion_paginas.Administrador.Vue.Avisos.aviso-item')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-generales')
-
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.avisos-empresa')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.atencion-al-cliente')
-
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.reserva-lista-admin')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Layout.reservas-admin')
      @include('empresa_gestion_paginas.Vue_logica.Componentes.Admin.tipo-de-servicios-empresa')
@@ -139,8 +137,7 @@
   @include('admin.empresas_gestion_socios.columna_derecha.columna_dueno')
 
   @if($Empresa->reserva_online_habilitado)
-  <reservas-admin></reservas-admin>
-
+     <reservas-admin></reservas-admin>
   @endif
 
 

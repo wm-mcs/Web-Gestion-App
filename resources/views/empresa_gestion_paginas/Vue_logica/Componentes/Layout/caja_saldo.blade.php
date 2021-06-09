@@ -163,17 +163,17 @@ created() {
 template:`<div>
 
   <div  class="w-100 my-2 p-3" v-on:click="abrir_modal_pesos" title="Clcik para ver detalle de caja">
-     <div class="Boton-Primario-Sin-Relleno ">
-       Caja pesos sucursal <span class="text-bold" >@{{sucursal.name}}</span>
-     </div>     
+     <div class="btn btn-outline-success w-100 align-items-center cursor-pointer">
+      <i class="fas fa-cash-register"></i> Caja $ sucursal <span class="text-bold" >@{{sucursal.name}}</span>
+     </div>
   </div>
 
  <div v-if="esDistintoACero(saldo_dolares)" class="w-100 my-2 p-3" v-on:click="abrir_modal_dolares" title="Clcik para ver detalle de caja">
-    
+
 
      <div class="Boton-Primario-Sin-Relleno ">
        Caja dólares sucursal <span class="text-bold" >@{{sucursal.name}}</span>
-     </div> 
+     </div>
 
  </div>
 

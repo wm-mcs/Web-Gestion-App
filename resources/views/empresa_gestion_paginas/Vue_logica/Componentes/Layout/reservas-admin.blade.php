@@ -76,12 +76,10 @@ Vue.component("reservas-admin", {
 <div class="col-12">
 
   <div  @click="abrirModal" class="Boton-Primario-Sin-Relleno">
-      Reservas del día
+     <i class="far fa-calendar-alt"></i>  Reservas del día
   </div>
 
-  <div class="text-center">
-      <a href="{{$Empresa->route_reservas}}"> Panel reserva</a>
-  </div>
+
 
 
 
@@ -95,6 +93,12 @@ Vue.component("reservas-admin", {
 
 
         <div class="row">
+
+        <div class="text-center col-12 mb-5">
+          <a href="whatsapp://send?text={{$Empresa->route_reservas}}" data-text="Reservas de clases online" data-action="share/whatsapp/share" class="Boton-Primario-Sin-Relleno">
+            <small> Compartir por <i class="fab fa-whatsapp"></i> link de reservas <i class="fas fa-share"></i></small>
+          </a>
+        </div>
           <h4 class="col-12 sub-titulos-class text-center" > Reservas del día  @{{dia}}</h4>
           <div class="col-12 modal-mensaje-aclarador text-center">
                 Puedes cambiar la fecha para ver las reservas de otro día.
