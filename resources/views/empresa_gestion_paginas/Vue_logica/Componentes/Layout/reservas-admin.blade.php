@@ -12,11 +12,39 @@ Vue.component("reservas-admin", {
       sucursal: this.$root.Sucursal,
       dia:'',
       reservas:[],
-      agendas:[]
+      agendas:[],
+      urlReservas:"{{$Empresa->route_reservas}}"
 
     };
   },
   methods: {
+    copiarAlPortaPapelesLinkDeReserva: function(){
+      let url = this.urlReservas ;
+
+
+  var aux = document.createElement("input");
+
+
+  aux.setAttribute("value", url);
+
+
+  document.body.appendChild(aux);
+
+
+  aux.select();
+
+
+  let validation = document.execCommand("copy");
+
+
+  document.body.removeChild(aux);
+
+  if(validation){
+    $.notify('Se copió al portapapeles', "success");
+  }
+
+      console.log(url);
+    },
     abrirModal:function(){
         this.showModal = true;
         if(this.reservas.length == 0)
@@ -95,9 +123,14 @@ Vue.component("reservas-admin", {
         <div class="row">
 
         <div class="text-center col-12 mb-5">
-          <a href="whatsapp://send?text={{$Empresa->route_reservas}}" data-text="Reservas de clases online" data-action="share/whatsapp/share" class="Boton-Primario-Sin-Relleno">
+          <a href="whatsapp://send?text={{$Empresa->route_reservas}}" data-text="Reservas de clases online" data-action="share/whatsapp/share" class="">
             <small> Compartir por <i class="fab fa-whatsapp"></i> link de reservas <i class="fas fa-share"></i></small>
           </a>
+
+          <div @click="copiarAlPortaPapelesLinkDeReserva" class="simula_link">
+            <small> Copiar link de reservas</small>
+          </div>
+
         </div>
           <h4 class="col-12 sub-titulos-class text-center" > Reservas del día  @{{dia}}</h4>
           <div class="col-12 modal-mensaje-aclarador text-center">

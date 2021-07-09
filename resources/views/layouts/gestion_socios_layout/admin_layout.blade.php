@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{{url()}}{{ elixir('css/admin.css') }}">
     <link rel="shortcut icon" href="{{ asset('imagenes/favicon.ico') }}">
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <META name="robots" content="NOINDEX,NOFOLLOW">
