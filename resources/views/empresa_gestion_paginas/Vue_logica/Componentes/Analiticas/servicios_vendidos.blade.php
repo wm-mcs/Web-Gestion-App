@@ -25,6 +25,8 @@ var ServiciosVendidos = {
       this.fecha_inicio = data.fecha_inicio;
       this.fecha_fin = data.fecha_fin;
 
+      console.log(data);
+
       this.getData();
     });
   },
@@ -86,11 +88,9 @@ var ServiciosVendidos = {
         );
 
         if (cantidadRegistrosDeEsteTipo.length > 0) {
-          this.chartData.labels.push(
-            `${tipo.name} precio c/u ${tipo.moneda} ${tipo.valor} `
-          );
+          this.chartData.labels.push(`${tipo.name}`);
 
-          dataset.backgroundColor.push(this.colorSuccess);
+          dataset.backgroundColor.push(this.colorBlue);
           dataset.label = "";
 
           dataset.data.push(cantidadRegistrosDeEsteTipo.length);

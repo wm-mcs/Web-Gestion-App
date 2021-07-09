@@ -2,7 +2,8 @@ const misChartMixin = {
 	data: function() {
 		return {
 			colorSuccess: "#4bb543",
-			colorDanger: "#fcb6b6"
+			colorDanger: "#fcb6b6",
+			colorBlue:'#204e84'
 		};
 	},
 	methods: {

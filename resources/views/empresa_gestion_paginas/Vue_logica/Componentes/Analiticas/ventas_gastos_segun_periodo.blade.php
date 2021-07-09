@@ -52,9 +52,11 @@ var VentasGastoSegunPeridodo = {
             vue.fecha_inicio = response.data.Data.fecha_inicio;
             vue.fecha_fin = response.data.Data.fecha_fin;
             bus.$emit("cambio-perido", {
-              fecha_inicio: vue.fecha_inicio,
-              fecha_fin: vue.fecha_fin
+              fecha_inicio:response.data.Data.fecha_inicio,
+              fecha_fin: response.data.Data.fecha_fin
             });
+
+            console.log(response.data.Data.fecha_inicio,response.data.Data.fecha_inicio);
             $.notify(response.data.Validacion_mensaje, "success");
           } else {
             vue.cargando = false;
