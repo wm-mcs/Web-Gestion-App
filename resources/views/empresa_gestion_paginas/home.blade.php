@@ -9,17 +9,10 @@
                           ])               !!}
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
 
-                  @if(file_exists($Empresa->path_url_img))
-                  <span class="simula_link  disparar-este-form" >
-
-                    <img class="miga-imagen" src="{{$Empresa->url_img}}">
-                   </span>
-
-                 @else
                    <span class="simula_link disparar-este-form">
                    {{$Empresa->name}}
                  </span>
-                 @endif
+
 
 
   {!! Form::close() !!}
