@@ -18,9 +18,9 @@
                     <img class="logo-easy-columna mb-0" src="{{$Empresa->url_img}}">
                    </span>
 
-                   <div class="text-center color-text-gris mb-4" >
+                   <div class="text-center color-text-gris mb-5" style="font-size: 12px;">
 
-                     <small>Powered by <b>Easysocio</b></small>
+                     <small>Powered by <b class="text-primary">Easysocio</b></small>
                    </div>
 
                  @else

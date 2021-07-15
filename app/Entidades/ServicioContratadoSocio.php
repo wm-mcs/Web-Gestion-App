@@ -19,7 +19,7 @@ class ServicioContratadoSocio extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
-    protected $appends = [
+    protected $appends  = [
         'fecha_vencimiento_formateada',
         'fecha_contratado_formateada',
         'fecha_consumido_formateada',
@@ -34,7 +34,7 @@ class ServicioContratadoSocio extends Model
     public function getSucursalDondeSeEmitioAttribute()
     {
         return Cache::remember('EmitioSucursalDondeSeEmitio' . $this->id, 1200, function () {
-            $Repo = new SucursalEmpresaRepo();
+            $Repo     = new SucursalEmpresaRepo();
             $Sucursal = $Repo->find($this->sucursal_emitio_id);
 
             return $Sucursal;
@@ -56,8 +56,9 @@ class ServicioContratadoSocio extends Model
         if ($this->sucursal_uso_id == null) {
             return "";
         }
+
         return Cache::remember('SucursalDondeSeUso' . $this->id, 600, function () {
-            $Repo = new SucursalEmpresaRepo();
+            $Repo     = new SucursalEmpresaRepo();
             $Sucursal = $Repo->find($this->sucursal_uso_id);
             return $Sucursal;
         });

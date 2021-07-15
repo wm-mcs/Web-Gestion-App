@@ -1,262 +1,175 @@
-Vue.component('servicio-socio-lista' ,
-{
-props:['servicio','empresa'],  
+Vue.component("servicio-socio-lista", {
+  props: ["servicio", "empresa"],
 
-data:function(){
+  data: function() {
     return {
-      destroy_modal:false,
-      cargando:false
-    }
-},
-mounted: function mounted () {        
-
-      
-
-
-},
-methods:{
-
-
-    ditintoDeNull:function(valor){
-      if(valor != null)
-      {
+      destroy_modal: false,
+      cargando: false
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    ditintoDeNull: function(valor) {
+      if (valor != null) {
         return valor;
       }
       return false;
     },
 
-    borrar_servicio:function(servicio){
+    borrar_servicio: function(servicio) {
+      var validation = confirm("¿Quieres eliminar el servicio?");
 
+      if (!validation) {
+        return "";
+      }
 
-       var validation = confirm("¿Quieres eliminar el servicio?");
+      var url = "/borrar_servicio_de_socio";
 
-       if(!validation)
-       {
-        return '';
-       }
+      var vue = this;
 
-       var url  = '/borrar_servicio_de_socio';
+      this.cargando = true;
 
-       var vue  = this;
+      var data = {
+        socio_id: this.servicio.socio_id,
+        servicio_id: this.servicio.id,
+        empresa_id: this.empresa.id
+      };
 
-       this.cargando = true;
-
-       var data = {
-                   socio_id:this.servicio.socio_id,
-                servicio_id:this.servicio.id,
-                 empresa_id:this.empresa.id
-
-                  };
-
-       axios.post(url,data).then(function(response){  
-          
-          if(response.data.Validacion == true)
-          {
-
-            var id_modal = '#'+vue.open_modal;
-            bus.$emit('sucursal-set', response.data.sucursal);
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            var id_modal = "#" + vue.open_modal;
+            bus.$emit("sucursal-set", response.data.sucursal);
             vue.cargando = false;
-            app.cerrarModal(id_modal);  
-            vue.$emit('actualizar_socio',response.data.Socio);    
-            
+            app.cerrarModal(id_modal);
+            vue.$emit("actualizar_socio", response.data.Socio);
 
-            
-
-            $.notify(response.data.Validacion_mensaje, "success");  
-
-
-          }
-          else
-          {
-
-            vue.cargando = false;
-            $.notify(response.data.Validacion_mensaje, "warn");  
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
-
-
-    },
-    EditarServicio:_.debounce(function(servicio){
-
-       var url = '/editar_servicio_a_socio';
-
-       var vue = this;
-
-       var data = {servicio_a_editar:this.servicio,
-                  socio_id:this.servicio.socio_id,
-                servicio_id:this.servicio.id,
-                 empresa_id:this.empresa.id };
-
-       this.cargando = true;
-
-       axios.post(url,data).then(function(response){ 
-
-
-          
-          if(response.data.Validacion == true)
-          {
-            
-            
-            vue.$emit('actualizar_socio',response.data.Socio);  
-            vue.cargando = false;
-            app.cerrarModal('#'+'modal-editar-servicio-socio-'+ String(servicio.id));
-             $.notify(response.data.Validacion_mensaje, "success");
-          }
-          else
-          {
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
             vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
-
-                     
-            
-           });
-
-    },1000)
-    ,
-    abrir_modal_editar:function(){
-
-      
-      
-
-      $('#'+ this.open_modal).appendTo("body").modal('show');  
-
-    },
-    indicar_que_se_uso_hoy:function(){
-
-       var validation = confirm("¿Quieres indicar que se usó este servicio?");
-
-       if(!validation)
-       {
-        return '';
-       }
-
-
-       var url = '/indicar_que_se_uso_el_servicio_hoy';
-
-       var vue = this;
-
-       var data = {servicio_a_editar:this.servicio,
-                            socio_id:this.servicio.socio_id,
-                         servicio_id:this.servicio.id,
-                          empresa_id:this.empresa.id};
-
-       this.cargando = true;
-
-       axios.post(url,data).then(function(response){ 
-
-
-          
-          if(response.data.Validacion == true)
-          {
-            
-            vue.cargando = false;
-            vue.$emit('actualizar_socio',response.data.Socio);  
-             $.notify(response.data.Validacion_mensaje, "success");
           }
-          else
-          { vue.cargando = false;
+        })
+        .catch(function(error) {});
+    },
+    EditarServicio: _.debounce(function(servicio) {
+      var url = "/editar_servicio_a_socio";
+
+      var vue = this;
+
+      var data = {
+        servicio_a_editar: this.servicio,
+        socio_id: this.servicio.socio_id,
+        servicio_id: this.servicio.id,
+        empresa_id: this.empresa.id
+      };
+
+      this.cargando = true;
+
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.$emit("actualizar_socio", response.data.Socio);
+            vue.cargando = false;
+            app.cerrarModal(
+              "#" + "modal-editar-servicio-socio-" + String(servicio.id)
+            );
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
             $.notify(response.data.Validacion_mensaje, "warn");
-          }    
-           
-           
-           }).catch(function (error){
+          }
+        })
+        .catch(function(error) {});
+    }, 1000),
+    abrir_modal_editar: function() {
+      $("#" + this.open_modal)
+        .appendTo("body")
+        .modal("show");
+    },
+    indicar_que_se_uso_hoy: function() {
+      var validation = confirm("¿Quieres indicar que se usó este servicio?");
 
-                     
-            
-           });
+      if (!validation) {
+        return "";
+      }
 
+      var url = "/indicar_que_se_uso_el_servicio_hoy";
 
+      var vue = this;
 
+      var data = {
+        servicio_a_editar: this.servicio,
+        socio_id: this.servicio.socio_id,
+        servicio_id: this.servicio.id,
+        empresa_id: this.empresa.id
+      };
 
+      this.cargando = true;
 
-
-
+      axios
+        .post(url, data)
+        .then(function(response) {
+          if (response.data.Validacion == true) {
+            vue.cargando = false;
+            vue.$emit("actualizar_socio", response.data.Socio);
+            $.notify(response.data.Validacion_mensaje, "success");
+          } else {
+            vue.cargando = false;
+            $.notify(response.data.Validacion_mensaje, "warn");
+          }
+        })
+        .catch(function(error) {});
     }
-
-
-},
-computed:{
-
-    esta_activo:function()
-    {
-        if( this.servicio.esta_vencido == true || this.servicio.se_consumio == true )
-        {
-          return false ;
-        }
-        else
-        {
-          return true;
-        }
+  },
+  computed: {
+    esta_activo: function() {
+      if (
+        this.servicio.esta_vencido == true ||
+        this.servicio.se_consumio == true
+      ) {
+        return false;
+      } else {
+        return true;
+      }
     },
-    se_consumio:function(){
-
-       if( this.servicio.se_consumio == true  )
-        {
-          return true ;
-        }
-        else
-        {
-          return false;
-        }
-
+    se_consumio: function() {
+      if (this.servicio.se_consumio == true) {
+        return true;
+      } else {
+        return false;
+      }
     },
-    es_clase:function(){
-
-
-
-        if( this.servicio.tipo === "mensual")
-        {
-          return false ;
-        }
-        else
-        {
-          return true;
-        }
-
+    es_clase: function() {
+      if (this.servicio.tipo === "mensual") {
+        return false;
+      } else {
+        return true;
+      }
     },
-    open_modal:function(){
-      
-      return   'modal-editar-servicio-socio-'+ String(this.servicio.id);
+    open_modal: function() {
+      return "modal-editar-servicio-socio-" + String(this.servicio.id);
     },
-    donde_se_emitio:function(){
-     if(this.servicio.sucursal_donde_se_emitio != null)
-     {
-      return 'Se compró en sucursal ' + this.servicio.sucursal_donde_se_emitio.name;
-     } 
-     else
-     {
-      return false;
-     }     
-      
+    donde_se_emitio: function() {
+      if (this.servicio.sucursal_donde_se_emitio != null) {
+        return (
+          "Se compró en sucursal " + this.servicio.sucursal_donde_se_emitio.name
+        );
+      } else {
+        return false;
+      }
     },
-    donde_se_uso:function(){
-     if(this.servicio.sucursal_donde_se_uso != null)
-     {
-
-      return 'Se usó en sucursal ' + this.servicio.sucursal_donde_se_uso.name;
-     } 
-     else
-     {
-      return false;
-     }
-
-      
-    },
-
-
-  
-},
-template:'
+    donde_se_uso: function() {
+      if (this.servicio.sucursal_donde_se_uso != "") {
+        return "Se usó en sucursal " + this.servicio.sucursal_donde_se_uso.name;
+      } else {
+        return false;
+      }
+    }
+  },
+  template: `
 
 
   <div class="contiene-entidad-lista-servicio">
@@ -461,11 +374,5 @@ template:'
   
 
 
-'
-
-}
-
-
-
-
-);
+`
+});
