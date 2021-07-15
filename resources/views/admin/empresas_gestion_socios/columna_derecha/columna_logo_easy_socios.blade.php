@@ -8,17 +8,17 @@
                             'method'=> 'Post',
                             'files' =>  true,
                             'name'  => 'form1',
-                            'class'=> 'w-100 d-flex flex-column align-items-center'
+                            'class'=> 'w-100 d-flex flex-column align-items-center px-3'
                           ])               !!}
                  <input type="hidden" name="empresa_id" value="{{$Empresa->id}}">
 
                   @if(file_exists($Empresa->path_url_img))
-                  <span class="simula_link  disparar-este-form" >
+                  <span class="simula_link  disparar-este-form " >
 
-                    <img class="logo-easy-columna mb-0" src="{{$Empresa->url_img}}">
+                    <img class="logo-easy-columna  rounded-lg mb-0" src="{{$Empresa->url_img}}">
                    </span>
 
-                   <div class="text-center color-text-gris mb-5" style="font-size: 12px;">
+                   <div class="text-center color-text-gris mt-2 mb-5" style="font-size: 12px;">
 
                      <small>Powered by <b class="text-primary">Easysocio</b></small>
                    </div>
