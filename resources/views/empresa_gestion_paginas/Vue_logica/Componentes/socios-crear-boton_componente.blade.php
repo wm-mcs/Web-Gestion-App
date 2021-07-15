@@ -48,14 +48,25 @@ Vue.component("socios-crear-boton", {
             app.cargando = false;
             const dataError = response.data.Validacion_mensaje;
 
-            const valores = Object.values(dataError);
-            valores.forEach((element) => {
-              console.log(element);
+            console.log(dataError);
+            if(typeof dataError === 'object')
+            {
+              const valores = Object.values(dataError);
+              valores.forEach((element) => {
+
               return $.notify(element[0], "error");
-            });
+             });
+            }
+            else{
+              $.notify(dataError, "error");
+            }
+
+
           }
         })
-        .catch(function(error) {});
+        .catch(function(error) {
+          $.notify(error.message, "error");
+        });
     }
   },
   computed: {

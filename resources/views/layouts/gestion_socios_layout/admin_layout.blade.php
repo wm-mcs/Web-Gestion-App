@@ -54,18 +54,14 @@
 
        <div v-if="menu_abierto" class="opasity-layer"></div>
        <div v-show="esResolucionDePc" class="column-wraper-cuando-esta-fixed"></div>
-       <div v-show="mostrar_menu" class="admin-columna-contenedor">
-
-       <div>
-
-       </div>
-         <div class="admin-columna-wraper">
-           <div class="get_width_80 flex-row-column">
+       <div v-show="mostrar_menu" class="admin-columna-contenedor shadow-sm">
 
 
+         <div class="admin-columna-wraper ">
+           <div class="w-100 flex-row-column">
               <div v-show="esResolucionDeTablet" v-on:click="abrir_menu_cerrar_principal" class="miga-de-pan-boton-abrir-cerra-menu-texto"><i class="fas fa-times"></i></div>
-                  @yield('columna')
-              </div>
+               @yield('columna')
+           </div>
 
 
 
