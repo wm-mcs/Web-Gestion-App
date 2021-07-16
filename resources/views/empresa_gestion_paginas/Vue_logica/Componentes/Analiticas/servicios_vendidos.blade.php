@@ -107,14 +107,14 @@ var ServiciosVendidos = {
     <div  class="contenedor-grupo-datos w-100">
 
     <h6 class="col-12 mb-3" >
-    <strong>Servicios vendidos del período @{{fecha_inicio}} || @{{fecha_fin}}</strong>
+    <strong>Membresías vendidas en el período @{{fecha_inicio}} || @{{fecha_fin}}</strong>
     </h6>
 
       <div class="row mb-4 mx-0">
 
 		<p class="col-12 mt-2">
 			<small>
-				Los resultados que estás viendo son los del período <b>@{{fecha_inicio}} al @{{fecha_fin}}</b>. Puedes cambiar las fechas a tu gusta y se graficará los movimientos entre las fechas que tu indiques.
+				Los resultados que estás viendo son los del período <b>@{{fecha_inicio}} al @{{fecha_fin}}</b>. Podés cambiar las fechas a tu gusto y se graficará los movimientos entre las fechas que indiques.
 			</small>
 
 		</p>
@@ -127,7 +127,7 @@ var ServiciosVendidos = {
 
 
        <div class="col-12">
-      <p class=""><b>Cantidad de servicios vendidos desglosados</b></p>
+      <p class=""><b>Membresías vendidas </b></p>
 
         <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
