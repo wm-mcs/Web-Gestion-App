@@ -153,7 +153,7 @@ Vue.component("control-acceso", {
   },
   template: `
 
-
+<div class="controll-access-contenedor d-flex flex-row align-items-center justify-content-center " style="min-height:100vh;" :class="{ 'bg-success': countDown != false && socio != '' && validacion.validacion }">
 <div v-if="cargando" class="Procesando-text">
 
     <div class="cssload-container">
@@ -161,7 +161,8 @@ Vue.component("control-acceso", {
     </div>
 
 </div>
-<div v-else class="w-100 d-flex flex-column align-items-center">
+
+<div v-else class="w-100 d-flex flex-column align-items-center" >
 <div  v-if="countDown == false" class="controll-access-easy-socio-logo-wraper d-flex flex-row align-items-center justify-content-center">
   <img class="controll-access-easy-socio-logo" src="/imagenes/Empresa/logo_rectangular.png" alt="EasySocio">
 </div>
@@ -183,8 +184,8 @@ Vue.component("control-acceso", {
             <div v-if="socio != ''" class="container d-flex flex-column align-items-center">
                <div :class="{ 'color-text-success': validacion.validacion, 'color-text-gris': validacion.validacion == false }" class="w-100">
 
-               <div class="text-center mb-4 h5" v-if="validacion.validacion">¡Excelente, estás al día!</div>
-               <div class="col-12 row mx-0 shadow p-2 -p-lg-5 rounded mb-4 align-items-center justify-content-center">
+               <div class="text-center mb-4 h5 text-white" v-if="validacion.validacion">¡Excelente, estás al día!</div>
+               <div class="col-12 row mx-0 shadow p-2 -p-lg-5 rounded mb-4 align-items-center justify-content-center bg-white">
                  <div class="col-12 col-lg-6 row mx-0 align-items-center">
                     <div class="mr-3 w-100">
                       <img class="socio-img" width="60" height="60" :src="socio.url_img" />
@@ -270,6 +271,7 @@ Vue.component("control-acceso", {
 
 
 </div>
+  </div>
 
 
 

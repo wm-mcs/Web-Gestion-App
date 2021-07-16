@@ -11,7 +11,7 @@
 
 
 
-<div class="controll-access-contenedor d-flex flex-row align-items-center justify-content-center ">
+
 
 
 
@@ -23,7 +23,7 @@
 
 
 
-</div>
+
 
 
 
