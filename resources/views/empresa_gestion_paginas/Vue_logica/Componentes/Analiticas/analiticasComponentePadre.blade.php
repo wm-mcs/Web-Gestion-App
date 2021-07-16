@@ -47,7 +47,7 @@ Vue.component("analiticas-componente-padre", {
   </div>
 
   <div class="col-12 mb-5">
-  <servicios-vendidos v-show="mostrarAnaliticasServicios"></servicios-vendidos>
+      <servicios-vendidos></servicios-vendidos>
   </div>
 
 </div>

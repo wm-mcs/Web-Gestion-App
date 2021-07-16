@@ -1139,7 +1139,8 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                 Carbon::now($Empresa->zona_horaria),
                 $Nombre,
                 null,
-                $Request->get('tipo_de_movimiento_id'),
+                // Si realiza el pago de la cuota de la mebresía lo registro como venta de producto
+                $Request->get('tipo_de_movimiento_id') == 18 ? $this->TipoDeMovimientoRepo->getMovimientoDeVentaDeServicio()->id : $Request->get('tipo_de_movimiento_id'),
                 $EstadoDeCuenta->id);
 
             //actualiza la session

@@ -1,3 +1,9 @@
+.contenedor-atencion-comercial-layout {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+}
+
 .contacto-whatsapp-contenedor {
   @include flexbox;
   @include flex-direction(row);
@@ -5,9 +11,6 @@
   padding: 8px;
   border-radius: 8px;
   border: solid 4px transparent;
-  position: absolute;
-  bottom: 20px;
-  left: 0px;
 }
 .contacto-whatsapp-contenedor:hover {
   border-color: $color-3;

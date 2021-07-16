@@ -19,29 +19,24 @@ var ServiciosVendidos = {
   },
 
   created: function() {
-    this.getData();
-
     bus.$on("cambio-perido", (data) => {
       this.fecha_inicio = data.fecha_inicio;
       this.fecha_fin = data.fecha_fin;
-
-      console.log(data);
-
-      this.getData();
+      this.getData(data);
     });
   },
 
   mounted: function mounted() {},
 
   methods: {
-    getData: function() {
+    getData: function(Fechas) {
       let url = "/get_servicios_vendidos";
       let vue = this;
       this.cargando = true;
 
       let data = {
-        fecha_inicio: this.fecha_inicio,
-        fecha_fin: this.fecha_fin,
+        fecha_inicio: Fechas.fecha_inicio,
+        fecha_fin: Fechas.fecha_fin,
         empresa_id: this.$root.empresa.id
       };
 
@@ -132,7 +127,7 @@ var ServiciosVendidos = {
 
 
        <div class="col-12">
-      <p class=""><b>Cantidad de servicios vendidos deslosados</b></p>
+      <p class=""><b>Cantidad de servicios vendidos desglosados</b></p>
 
         <bar-chart :chart-data="chartData" ></bar-chart>
       </div>
