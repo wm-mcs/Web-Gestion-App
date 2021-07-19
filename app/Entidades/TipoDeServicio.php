@@ -4,14 +4,10 @@ namespace App\Entidades;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-
-
-
 class TipoDeServicio extends Model
 {
 
-    protected $table ='tipos_de_servicios';
+    protected $table = 'tipos_de_servicios';
 
     /**
      * The attributes that are mass assignable.
@@ -20,14 +16,6 @@ class TipoDeServicio extends Model
      */
     protected $fillable = ['name', 'description'];
     protected $appends  = ['es_clase'];
-
-
-
-
-    
-
-    
-
 
     /**
      * PAra busqueda por nombre
@@ -38,35 +26,26 @@ class TipoDeServicio extends Model
         /// trim() se utiliza para eliminar los espacios.
         ////Like se usa para busqueda incompletas
         /////%% es para los espacios adelante y atras
-        if (trim($name) !="")
-        {                        
-           $query->where('name', "LIKE","%$name%"); 
+        if (trim($name) != "") {
+            $query->where('name', "LIKE", "%$name%");
         }
-        
+
     }
 
     public function scopeActive($query)
     {
-                               
-           $query->where('estado', "si"); 
-                
-    }
 
+        $query->where('estado', "si");
+
+    }
 
     public function getEsClaseAttribute()
     {
-        if($this->tipo == 'clase')
-        {
+        if ($this->tipo == 'clase') {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-
-
-    
-    
 }

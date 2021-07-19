@@ -43,7 +43,7 @@ class ServicioContratadoSocio extends Model
 
     public function getTipoDeServicioAttribute()
     {
-        return Cache::remember('tipoServicio' . $this->id, 600, function () {
+        return Cache::remember('tipoServicio' . $this->id, 30, function () {
 
             $Repo = new TipoDeServicioRepo();
 

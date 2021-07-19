@@ -153,7 +153,6 @@ class ReservaController extends Controller
                 foreach ($ServiciosDisponibles as $Plan) {
                     if ($Plan->tipo_de_servicio->todo_las_clases_actividades_habilitadas != 'si') {
 
-                        dd($Plan->tipo_de_servicio);
                         //Eso contratado le sirve para esta clase
                         if (!in_array((string) $Actividad_id, explode(',', $Plan->tipo_de_servicio->actividad_habilitadas))) {
 
@@ -200,6 +199,8 @@ class ReservaController extends Controller
                 $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'quien_marco_que_se_uso', 'Sistema de reserva'); // ver esto
 
                 $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'esta_consumido', 'si');
+
+                $ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
 
             }
 
@@ -255,6 +256,9 @@ class ReservaController extends Controller
                         $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'quien_marco_que_se_uso', null); // ver esto
 
                         $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'esta_consumido', 'no');
+
+                        $ServicioContratadoSocioRepo->ActualizarCache($Socio->id);
+
                     }
                 }
 
