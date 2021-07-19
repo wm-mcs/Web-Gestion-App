@@ -16,9 +16,11 @@ use App\Managers\EmpresaGestion\EmpresaRenovacionModalManager;
 use App\Managers\EmpresaGestion\IngresarMovimientoCajaManager;
 use App\Managers\EmpresaGestion\RenovarDeFormaAutomaticaManager;
 use App\Repositorios\AccesoClienteRepo;
+use App\Repositorios\AgendaRepo;
 use App\Repositorios\CajaEmpresaRepo;
 use App\Repositorios\EmpresaConSociosoRepo;
 use App\Repositorios\MovimientoEstadoDeCuentaSocioRepo;
+use App\Repositorios\ReservaRepo;
 use App\Repositorios\ServicioContratadoSocioRepo;
 use App\Repositorios\ServicioSocioRenovacionRepo;
 use App\Repositorios\SocioRepo;
@@ -142,6 +144,36 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
         if ($Socio->count() > 0) {
             $Socio = $Socio->first();
+
+            // Me fijo si tiene alguna reserva online hecha para el día de hoy en un margen de horas
+            $ReservaRepo      = new ReservaRepo();
+            $ReservasDelSocio = $ReservaRepo->getReservasDelDiaDelSocio(Carbon::now($Empresa->zona_horaria), $Socio, $UserEmpresa->empresa_id, $Sucursal_id);
+
+            //Si hay reservas
+            if ($ReservasDelSocio->count() > 0) {
+                $RepoAgenda                                 = new AgendaRepo();
+                $ClasesQueEstanPorComenzarORecienComenzaron = $RepoAgenda->getAgendasDeEsteDiaEntreEstasHoras($UserEmpresa->empresa_id, $Sucursal_id, Carbon::now($Empresa->zona_horaria));
+
+                if ($ClasesQueEstanPorComenzarORecienComenzaron->count() > 0) {
+
+                    //Recorro las clases que están por comenzar ahora y me fijo si machea con la reserva del socio
+                    foreach ($ClasesQueEstanPorComenzarORecienComenzaron as $ClasePorComenzar) {
+                        $ReservasFiltradas = $ReservasDelSocio->filter(function ($Reserva) use ($ClasePorComenzar) {
+                            return $Reserva->agenda_id == $ClasePorComenzar->id;
+                        })->all();
+
+                        // Si tenia reserva hecha para alguna clase que estaba comenzando
+                        if ($ReservasFiltradas->count() > 0) {
+                            foreach ($ReservasFiltradas as $Reserva) {
+                                //Indico que el cliente asistió
+                                $ReservaRepo->setAtributoEspecifico($Reserva, 'cumplio_con_la_reserva', 'si');
+                            }
+                        }
+                    }
+
+                }
+            }
+
             $this->AccesoClienteRepo->setAcceso($UserEmpresa->empresa_id, $Sucursal_id, $Socio, $Celular, Carbon::now($Empresa->zona_horaria));
 
             return HelpersGenerales::formateResponseToVue(true, 'Se consigío un socio', $Socio);
@@ -156,8 +188,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
     public function movimientos_de_accesos_view(Request $Request)
     {
         $UserEmpresa = $Request->get('user_empresa_desde_middleware');
-
-        $Empresa = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
+        $Empresa     = $this->EmpresaConSociosoRepo->find($UserEmpresa->empresa_id);
 
         return view('empresa_gestion_paginas.control_de_acceso_movimientos', compact('Empresa'));
     }

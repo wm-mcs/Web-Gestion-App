@@ -82,6 +82,9 @@ class ReservaRepo extends BaseRepo
         return $Entidades->count() > 0 ? true : false;
     }
 
+    /**
+     * Las reservas del día del socio con respecto a una clase en particular
+     */
     public function getReservasDelDiaDelSocio($Clase, $Dia, $Socio)
     {
         return $this->getEntidad()
@@ -90,6 +93,19 @@ class ReservaRepo extends BaseRepo
             ->where('socio_id', $Socio->id)
             ->whereBetween('fecha_que_se_efectura_la_clase', [$Dia->copy()->startOfDay(), $Dia->copy()->endOfDay()])
             ->where('agenda_id', $Clase->id)
+            ->get();
+    }
+
+    /**
+     * Las reservas del día del socio en general que rondan según la hora que ingresa.
+     */
+    public function getReservasDelDiaDelSocioTodas($HoraActual, $Socio, $Empresa_id, $Sucursal_id)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->where('socio_id', $Socio->id)
+            ->whereBetween('fecha_que_se_efectura_la_clase', [$HoraActual->copy()->startOfHour()->subMinutes(5), $HoraActual->copy()->addHours(1)])
             ->get();
     }
 

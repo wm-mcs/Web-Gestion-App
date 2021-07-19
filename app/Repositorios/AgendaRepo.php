@@ -46,6 +46,9 @@ class AgendaRepo extends BaseRepo
 
     }
 
+    /**
+     * Me devuelve las agendas de este día todas.
+     */
     public function getAgendasDeEsteDia($Empresa_id, $Sucursal_id, $Dia)
     {
         return $this->getEntidad()
@@ -54,6 +57,22 @@ class AgendaRepo extends BaseRepo
             ->where('borrado', 'no')
             ->where('estado', 'si')
             ->where('days', "LIKE", "%$Dia->dayOfWeekIso%")
+            ->orderBy('hora_inicio', 'asc')
+            ->get();
+    }
+
+    /**
+     * Me devuelve las agendas de este día todas.
+     */
+    public function getAgendasDeEsteDiaEntreEstasHoras($Empresa_id, $Sucursal_id, $Dia)
+    {
+        return $this->getEntidad()
+            ->where('empresa_id', $Empresa_id)
+            ->where('sucursal_id', $Sucursal_id)
+            ->where('borrado', 'no')
+            ->where('estado', 'si')
+            ->where('days', "LIKE", "%$Dia->dayOfWeekIso%")
+            ->whereBetween('hora_inicio', [$Dia->copy()->startOfHour()->subMinutes(5)->hour, $Dia->copy()->addHours(1)->hour])
             ->orderBy('hora_inicio', 'asc')
             ->get();
     }
