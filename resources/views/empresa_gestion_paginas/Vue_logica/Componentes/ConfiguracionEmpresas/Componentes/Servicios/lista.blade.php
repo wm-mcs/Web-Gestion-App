@@ -7,7 +7,8 @@ var ListaActividad = {
       entidadAEditar: this.entidad,
       showModal: false,
       array_cantidad_de_dias: cantidadDeDiasArray,
-      
+      actividad_habilitadas:[]
+
     };
   },
   methods: {
@@ -22,8 +23,10 @@ var ListaActividad = {
         valor: this.entidadAEditar.valor,
         tipo: this.entidadAEditar.tipo,
         cantidad_clases: this.entidadAEditar.cantidad_clases,
+        todo_las_clases_actividades_habilitadas: this.entidadAEditar.todo_las_clases_actividades_habilitadas,
         renovacion_cantidad_en_dias: this.entidadAEditar
           .renovacion_cantidad_en_dias,
+          actividad_habilitadas:this.actividad_habilitadas
       };
 
       var vue = this;
@@ -55,10 +58,10 @@ var ListaActividad = {
 
     if(this.entidadAEditar.actividad_habilitadas != null && this.entidadAEditar.actividad_habilitadas != '')
     {
-      this.entidadAEditar.actividad_habilitadas = this.entidadAEditar.actividad_habilitadas.split(',');
+      this.actividad_habilitadas = this.entidadAEditar.actividad_habilitadas.split(',');
     }
     else{
-      this.entidadAEditar.actividad_habilitadas = [];
+      this.actividad_habilitadas = [];
     }
 
   },
@@ -202,7 +205,7 @@ var ListaActividad = {
                   </div>
                   <div v-for="actividad in actividades" :key="actividad.id" class="col-12">
                       <label :for="actividad.name">@{{actividad.name}}</label>
-                      <input type="checkbox" :id="actividad.name" :value="actividad.id" v-model="entidadAEditar.actividad_habilitadas">
+                      <input type="checkbox" :id="actividad.name" :value="actividad.id" v-model="actividad_habilitadas">
                   </div>
 
 

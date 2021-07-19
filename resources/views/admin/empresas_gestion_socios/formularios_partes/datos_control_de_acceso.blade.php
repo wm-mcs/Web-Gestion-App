@@ -1,5 +1,5 @@
 <div class="formulario-label-fiel">
-  {!! Form::label('tiempo_luego_consulta_control_access', 'Segundo luego de acceso', array('class' => 'formulario-label ')) !!}
+  {!! Form::label('tiempo_luego_consulta_control_access', 'Segundos luego de acceso', array('class' => 'formulario-label ')) !!}
    <div class="modal-mensaje-aclarador">
     Es el tiempo luego de la consulta del usuario en el control de acceso.
    </div>

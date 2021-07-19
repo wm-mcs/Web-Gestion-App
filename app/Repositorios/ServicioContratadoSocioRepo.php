@@ -94,6 +94,22 @@ class ServicioContratadoSocioRepo extends BaseRepo
         return $Servicos_tipo_clase;
     }
 
+    public function getServiciosContratadosConsumidosPorReservaOnlineTipoClase($socio_id, $feche_de_reserva)
+    {
+
+        $Servicos_tipo_clase = $this->getEntidad()
+            ->where('socio_id', $socio_id)
+            ->where('borrado', 'no')
+            ->where('tipo', 'clase')
+            ->where('esta_consumido', 'si')
+            ->where('quien_marco_que_se_uso', 'Sistema de reserva')
+            ->whereBetween('fecha_consumido', [$feche_de_reserva->copy()->subMinutes(1), $feche_de_reserva->copy()->addMinutes(1)])
+            ->orderBy('fecha_consumido', 'DESC')
+            ->get();
+
+        return $Servicos_tipo_clase;
+    }
+
     public function getServiciosContratadosDisponiblesTipoMensual($socio_id)
     {
         $Hoy = Carbon::now('America/Montevideo');

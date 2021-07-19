@@ -87,7 +87,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
         return ['name', 'rut', 'razon_social', 'email', 'celular', 'direccion', 'factura_con_iva',
             'estado', 'codigo_pais_whatsapp', 'time_zone', 'mensaje_aviso_especial', 'tiempo_luego_consulta_control_access',
             'control_acceso', 'reserva_de_clases_on_line', 'grupos', 'reserva_de_clase_dias_por_adelantado',
-            'reserva_de_clase_acepta_deuda', 'reserva_de_clase_acepta_sin_plan', 'mensajes_sistema', 'mensajes_publicidad'];
+            'reserva_de_clase_acepta_deuda', 'reserva_de_clase_acepta_sin_plan', 'reserva_de_clases_cantidad_de_horas_cancelar', 'mensajes_sistema', 'mensajes_publicidad'];
     }
 
     //La pagina de inicio

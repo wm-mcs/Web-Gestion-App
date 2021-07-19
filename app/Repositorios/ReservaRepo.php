@@ -3,6 +3,7 @@
 namespace App\Repositorios;
 
 use App\Entidades\Reserva;
+use Carbon\Carbon;
 
 class ReservaRepo extends BaseRepo
 {
@@ -47,7 +48,7 @@ class ReservaRepo extends BaseRepo
      *
      * @return Object Reserva
      */
-    public function setReserva($Empresa_id, $Sucursal_id, $Agenda_id, $Fecha_que_se_efectura_la_clase, $Socio_id, $Nombre_de_socio)
+    public function setReserva($Empresa_id, $Sucursal_id, $Agenda_id, $Fecha_que_se_efectura_la_clase, $Socio_id, $Nombre_de_socio, $FechaQueSeHaceLaReserva = null)
     {
         $Entidad                                 = $this->getEntidad();
         $Entidad->estado                         = 'si';
@@ -57,6 +58,7 @@ class ReservaRepo extends BaseRepo
         $Entidad->fecha_que_se_efectura_la_clase = $Fecha_que_se_efectura_la_clase;
         $Entidad->socio_id                       = $Socio_id;
         $Entidad->nombre_de_socio                = $Nombre_de_socio;
+        $Entidad->fecha_que_se_hizo_la_reserva   = $FechaQueSeHaceLaReserva == null ? Carbon::now() : $FechaQueSeHaceLaReserva;
         $Entidad->save();
 
         return $Entidad;

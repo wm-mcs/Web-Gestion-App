@@ -18,3 +18,11 @@
   {!! Form::select('reserva_de_clase_acepta_sin_plan',['si' => 'Si',
                              'no' => 'No'] , null ,['class' => 'formulario-field'] )          !!}
 </div>
+
+<div class="formulario-label-fiel">
+  {!! Form::label('reserva_de_clases_cantidad_de_horas_cancelar', 'Horas para cancelar', array('class' => 'formulario-label ')) !!}
+   <div class="modal-mensaje-aclarador">
+    Cuántas horas antes del comienzo de la clase le permitimos cancelar
+   </div>
+  {!! Form::text('reserva_de_clases_cantidad_de_horas_cancelar', null ,['class' => 'formulario-field']) !!}
+</div>

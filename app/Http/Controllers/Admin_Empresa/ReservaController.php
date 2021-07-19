@@ -152,8 +152,10 @@ class ReservaController extends Controller
                 $PuedePasar = false;
                 foreach ($ServiciosDisponibles as $Plan) {
                     if ($Plan->tipo_de_servicio->todo_las_clases_actividades_habilitadas != 'si') {
+
+                        dd($Plan->tipo_de_servicio);
                         //Eso contratado le sirve para esta clase
-                        if (!in_array((string) $Actividad_id, explode(',', $Plan->actividad_habilitadas))) {
+                        if (!in_array((string) $Actividad_id, explode(',', $Plan->tipo_de_servicio->actividad_habilitadas))) {
 
                         } else {
                             $PuedePasar = true;
@@ -201,7 +203,7 @@ class ReservaController extends Controller
 
             }
 
-            $ReservaRepo->setReserva($Empresa->id, $Sucursal_id, $Agenda->id, Carbon::parse($Fecha_de_cuando_sera_la_clase), $Socio->id, $Socio->name);
+            $ReservaRepo->setReserva($Empresa->id, $Sucursal_id, $Agenda->id, Carbon::parse($Fecha_de_cuando_sera_la_clase), $Socio->id, $Socio->name, Carbon::now($Empresa->zona_horaria));
 
             //Enviar_email
             HelperEmails::sendEmailToSocio($Empresa, $Socio, [
@@ -229,8 +231,33 @@ class ReservaController extends Controller
 
         $Reservas = $ReservaRepo->getReservasDelDiaDelSocio($Agenda, $Fecha_de_cuando_sera_la_clase, $Socio);
 
+        $ServicioContratadoSocioRepo = new ServicioContratadoSocioRepo();
+
         if ($Reservas->count() > 0) {
             foreach ($Reservas as $Reserva) {
+
+                $HoraDeCuandoSeraLaClase         = Carbon::parse($Reserva->fecha_que_se_efectura_la_clase);
+                $HoraDeCuandoSeraLaClase->hour   = intval(explode(':', $Reserva->agenda->hora_inicio)[0]);
+                $HoraDeCuandoSeraLaClase->minute = intval(explode(':', $Reserva->agenda->hora_inicio)[1]);
+
+                if (Carbon::now($Empresa->zona_horaria) < $HoraDeCuandoSeraLaClase->subHours($Empresa->reserva_de_clases_cantidad_de_horas_cancelar)) {
+
+                    $ServicioConsumidosConLaReserva = $ServicioContratadoSocioRepo->getServiciosContratadosConsumidosPorReservaOnlineTipoClase($Socio->id, Carbon::parse($Reserva->fecha_que_se_hizo_la_reserva));
+
+                    if ($ServicioConsumidosConLaReserva->count() > 0) {
+                        //Me fijo si le había consumido alguna clase
+                        $Servicio = $ServicioConsumidosConLaReserva->first();
+
+                        $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'fecha_consumido', null);
+
+                        $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'sucursal_uso_id', null);
+
+                        $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'quien_marco_que_se_uso', null); // ver esto
+
+                        $ServicioContratadoSocioRepo->setAtributoEspecifico($Servicio, 'esta_consumido', 'no');
+                    }
+                }
+
                 $ReservaRepo->destruir_esta_entidad($Reserva);
             }
 

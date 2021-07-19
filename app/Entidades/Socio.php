@@ -33,7 +33,7 @@ class Socio extends Model
 
     public function getServiciosContratadosDelSocioAttribute()
     {
-        return Cache::remember('ServiciosContratadosDelSocio' . $this->id, 120, function () {
+        return Cache::remember('ServiciosContratadosDelSocio' . $this->id, 30, function () {
 
             $Repo = new ServicioContratadoSocioRepo();
 
@@ -55,7 +55,7 @@ class Socio extends Model
 
     public function getServiciosContratadosDisponiblesTipoClaseAttribute()
     {
-        return Cache::remember('ServiciosContratadosDisponiblesTipoClaseSocio' . $this->id, 200, function () {
+        return Cache::remember('ServiciosContratadosDisponiblesTipoClaseSocio' . $this->id, 30, function () {
 
             $Repo = new ServicioContratadoSocioRepo();
             return $Repo->getServiciosContratadosDisponiblesTipoClase($this->id);
@@ -64,7 +64,7 @@ class Socio extends Model
 
     public function getServiciosContratadosDisponiblesTipoMensualAttribute()
     {
-        return Cache::remember('ServiciosContratadosDisponiblesTipoMensualSocio' . $this->id, 200, function () {
+        return Cache::remember('ServiciosContratadosDisponiblesTipoMensualSocio' . $this->id, 30, function () {
             $Repo = new ServicioContratadoSocioRepo();
             return $Repo->getServiciosContratadosDisponiblesTipoMensual($this->id);
         });
