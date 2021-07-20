@@ -163,7 +163,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
                         })->all();
 
                         // Si tenia reserva hecha para alguna clase que estaba comenzando
-                        if ($ReservasFiltradas->count() > 0) {
+                        if (count($ReservasFiltradas) > 0) {
                             foreach ($ReservasFiltradas as $Reserva) {
                                 //Indico que el cliente asistió
                                 $ReservaRepo->setAtributoEspecifico($Reserva, 'cumplio_con_la_reserva', 'si');
