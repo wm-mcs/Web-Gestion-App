@@ -147,7 +147,7 @@ class Admin_Empresa_Gestion_Socios_Controllers extends Controller
 
             // Me fijo si tiene alguna reserva online hecha para el día de hoy en un margen de horas
             $ReservaRepo      = new ReservaRepo();
-            $ReservasDelSocio = $ReservaRepo->getReservasDelDiaDelSocio(Carbon::now($Empresa->zona_horaria), $Socio, $UserEmpresa->empresa_id, $Sucursal_id);
+            $ReservasDelSocio = $ReservaRepo->getReservasDelDiaDelSocioTodas(Carbon::now($Empresa->zona_horaria), $Socio, $UserEmpresa->empresa_id, $Sucursal_id);
 
             //Si hay reservas
             if ($ReservasDelSocio->count() > 0) {

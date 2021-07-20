@@ -159,6 +159,8 @@ class ReservaController extends Controller
                         } else {
                             $PuedePasar = true;
                         }
+                    } else {
+                        $PuedePasar = true;
                     }
                 }
 
